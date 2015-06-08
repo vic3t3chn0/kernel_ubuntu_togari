@@ -3247,6 +3247,10 @@ static const struct usb_device_id sisusb_table[] = {
 	{ USB_DEVICE(0x0711, 0x0903) },
 	{ USB_DEVICE(0x0711, 0x0918) },
 	{ USB_DEVICE(0x0711, 0x0920) },
+<<<<<<< HEAD
+=======
+	{ USB_DEVICE(0x0711, 0x0950) },
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ USB_DEVICE(0x182d, 0x021c) },
 	{ USB_DEVICE(0x182d, 0x0269) },
 	{ }

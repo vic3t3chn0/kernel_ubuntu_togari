@@ -59,7 +59,11 @@ static DEFINE_MUTEX(misc_mtx);
 /*
  * Assigned numbers, used for dynamic minors
  */
+<<<<<<< HEAD
 #define DYNAMIC_MINORS 128 /* like dynamic majors */
+=======
+#define DYNAMIC_MINORS 64 /* like dynamic majors */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static DECLARE_BITMAP(misc_minors, DYNAMIC_MINORS);
 
 #ifdef CONFIG_PROC_FS
@@ -258,7 +262,11 @@ int misc_deregister(struct miscdevice *misc)
 EXPORT_SYMBOL(misc_register);
 EXPORT_SYMBOL(misc_deregister);
 
+<<<<<<< HEAD
 static char *misc_devnode(struct device *dev, umode_t *mode)
+=======
+static char *misc_devnode(struct device *dev, mode_t *mode)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct miscdevice *c = dev_get_drvdata(dev);
 

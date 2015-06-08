@@ -19,7 +19,10 @@
  */
 
 #include <media/rc-map.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* TrekStor DVB-T USB Stick remote controller. */
 /* Imported from af9015.h.

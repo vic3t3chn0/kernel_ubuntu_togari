@@ -16,13 +16,22 @@
 #include <linux/regulator/driver.h>
 #include <linux/slab.h>
 #include <linux/regulator/max8649.h>
+<<<<<<< HEAD
 #include <linux/regmap.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define MAX8649_DCDC_VMIN	750000		/* uV */
 #define MAX8649_DCDC_VMAX	1380000		/* uV */
 #define MAX8649_DCDC_STEP	10000		/* uV */
 #define MAX8649_VOL_MASK	0x3f
 
+<<<<<<< HEAD
+=======
+/* difference between voltages of max8649 and max8952 */
+#define DIFF_MAX8952_DCDC_VOL	20000		/* uV */
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Registers */
 #define MAX8649_MODE0		0x00
 #define MAX8649_MODE1		0x01
@@ -48,12 +57,28 @@
 #define MAX8649_RAMP_MASK	(7 << 5)
 #define MAX8649_RAMP_DOWN	(1 << 1)
 
+<<<<<<< HEAD
 struct max8649_regulator_info {
 	struct regulator_dev	*regulator;
 	struct device		*dev;
 	struct regmap		*regmap;
 
 	int		vol_reg;
+=======
+enum chips {
+	MAX8649 = 0x200a,
+	MAX8952 = 0x201a,
+};
+
+struct max8649_regulator_info {
+	struct regulator_dev	*regulator;
+	struct i2c_client	*i2c;
+	struct device		*dev;
+	struct mutex		io_lock;
+
+	int		vol_reg;
+	int		type;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned	mode:2;	/* bit[1:0] = VID1, VID0 */
 	unsigned	extclk_freq:2;
 	unsigned	extclk:1;
@@ -63,6 +88,74 @@ struct max8649_regulator_info {
 
 /* I2C operations */
 
+<<<<<<< HEAD
+=======
+static inline int max8649_read_device(struct i2c_client *i2c,
+				      int reg, int bytes, void *dest)
+{
+	unsigned char data;
+	int ret;
+
+	data = (unsigned char)reg;
+	ret = i2c_master_send(i2c, &data, 1);
+	if (ret < 0)
+		return ret;
+	ret = i2c_master_recv(i2c, dest, bytes);
+	if (ret < 0)
+		return ret;
+	return 0;
+}
+
+static inline int max8649_write_device(struct i2c_client *i2c,
+				       int reg, int bytes, void *src)
+{
+	unsigned char buf[bytes + 1];
+	int ret;
+
+	buf[0] = (unsigned char)reg;
+	memcpy(&buf[1], src, bytes);
+
+	ret = i2c_master_send(i2c, buf, bytes + 1);
+	if (ret < 0)
+		return ret;
+	return 0;
+}
+
+static int max8649_reg_read(struct i2c_client *i2c, int reg)
+{
+	struct max8649_regulator_info *info = i2c_get_clientdata(i2c);
+	unsigned char data;
+	int ret;
+
+	mutex_lock(&info->io_lock);
+	ret = max8649_read_device(i2c, reg, 1, &data);
+	mutex_unlock(&info->io_lock);
+
+	if (ret < 0)
+		return ret;
+	return (int)data;
+}
+
+static int max8649_set_bits(struct i2c_client *i2c, int reg,
+			    unsigned char mask, unsigned char data)
+{
+	struct max8649_regulator_info *info = i2c_get_clientdata(i2c);
+	unsigned char value;
+	int ret;
+
+	mutex_lock(&info->io_lock);
+	ret = max8649_read_device(i2c, reg, 1, &value);
+	if (ret < 0)
+		goto out;
+	value &= ~mask;
+	value |= data;
+	ret = max8649_write_device(i2c, reg, 1, &value);
+out:
+	mutex_unlock(&info->io_lock);
+	return ret;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline int check_range(int min_uV, int max_uV)
 {
 	if ((min_uV < MAX8649_DCDC_VMIN) || (max_uV > MAX8649_DCDC_VMAX)
@@ -73,12 +166,22 @@ static inline int check_range(int min_uV, int max_uV)
 
 static int max8649_list_voltage(struct regulator_dev *rdev, unsigned index)
 {
+<<<<<<< HEAD
 	return (MAX8649_DCDC_VMIN + index * MAX8649_DCDC_STEP);
+=======
+	struct max8649_regulator_info *info = rdev_get_drvdata(rdev);
+	int ret = MAX8649_DCDC_VMIN + index * MAX8649_DCDC_STEP;
+
+	if (info->type == MAX8952)
+		ret += DIFF_MAX8952_DCDC_VOL;
+	return ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int max8649_get_voltage(struct regulator_dev *rdev)
 {
 	struct max8649_regulator_info *info = rdev_get_drvdata(rdev);
+<<<<<<< HEAD
 	unsigned int val;
 	unsigned char data;
 	int ret;
@@ -87,6 +190,15 @@ static int max8649_get_voltage(struct regulator_dev *rdev)
 	if (ret != 0)
 		return ret;
 	data = (unsigned char)val & MAX8649_VOL_MASK;
+=======
+	unsigned char data;
+	int ret;
+
+	ret = max8649_reg_read(info->i2c, info->vol_reg);
+	if (ret < 0)
+		return ret;
+	data = (unsigned char)ret & MAX8649_VOL_MASK;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return max8649_list_voltage(rdev, data);
 }
 
@@ -96,23 +208,44 @@ static int max8649_set_voltage(struct regulator_dev *rdev,
 	struct max8649_regulator_info *info = rdev_get_drvdata(rdev);
 	unsigned char data, mask;
 
+<<<<<<< HEAD
+=======
+	if (info->type == MAX8952) {
+		min_uV -= DIFF_MAX8952_DCDC_VOL;
+		max_uV -= DIFF_MAX8952_DCDC_VOL;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (check_range(min_uV, max_uV)) {
 		dev_err(info->dev, "invalid voltage range (%d, %d) uV\n",
 			min_uV, max_uV);
 		return -EINVAL;
 	}
+<<<<<<< HEAD
 	data = DIV_ROUND_UP(min_uV - MAX8649_DCDC_VMIN, MAX8649_DCDC_STEP);
 	mask = MAX8649_VOL_MASK;
 	*selector = data & mask;
 
 	return regmap_update_bits(info->regmap, info->vol_reg, mask, data);
+=======
+	data = (min_uV - MAX8649_DCDC_VMIN + MAX8649_DCDC_STEP - 1)
+		/ MAX8649_DCDC_STEP;
+	mask = MAX8649_VOL_MASK;
+	*selector = data & mask;
+
+	return max8649_set_bits(info->i2c, info->vol_reg, mask, data);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /* EN_PD means pulldown on EN input */
 static int max8649_enable(struct regulator_dev *rdev)
 {
 	struct max8649_regulator_info *info = rdev_get_drvdata(rdev);
+<<<<<<< HEAD
 	return regmap_update_bits(info->regmap, MAX8649_CONTROL, MAX8649_EN_PD, 0);
+=======
+	return max8649_set_bits(info->i2c, MAX8649_CONTROL, MAX8649_EN_PD, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -122,13 +255,18 @@ static int max8649_enable(struct regulator_dev *rdev)
 static int max8649_disable(struct regulator_dev *rdev)
 {
 	struct max8649_regulator_info *info = rdev_get_drvdata(rdev);
+<<<<<<< HEAD
 	return regmap_update_bits(info->regmap, MAX8649_CONTROL, MAX8649_EN_PD,
+=======
+	return max8649_set_bits(info->i2c, MAX8649_CONTROL, MAX8649_EN_PD,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				MAX8649_EN_PD);
 }
 
 static int max8649_is_enabled(struct regulator_dev *rdev)
 {
 	struct max8649_regulator_info *info = rdev_get_drvdata(rdev);
+<<<<<<< HEAD
 	unsigned int val;
 	int ret;
 
@@ -136,12 +274,21 @@ static int max8649_is_enabled(struct regulator_dev *rdev)
 	if (ret != 0)
 		return ret;
 	return !((unsigned char)val & MAX8649_EN_PD);
+=======
+	int ret;
+
+	ret = max8649_reg_read(info->i2c, MAX8649_CONTROL);
+	if (ret < 0)
+		return ret;
+	return !((unsigned char)ret & MAX8649_EN_PD);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int max8649_enable_time(struct regulator_dev *rdev)
 {
 	struct max8649_regulator_info *info = rdev_get_drvdata(rdev);
 	int voltage, rate, ret;
+<<<<<<< HEAD
 	unsigned int val;
 
 	/* get voltage */
@@ -159,6 +306,24 @@ static int max8649_enable_time(struct regulator_dev *rdev)
 	rate = (32 * 1000) >> ret;	/* uV/uS */
 
 	return DIV_ROUND_UP(voltage, rate);
+=======
+
+	/* get voltage */
+	ret = max8649_reg_read(info->i2c, info->vol_reg);
+	if (ret < 0)
+		return ret;
+	ret &= MAX8649_VOL_MASK;
+	voltage = max8649_list_voltage(rdev, (unsigned char)ret); /* uV */
+
+	/* get rate */
+	ret = max8649_reg_read(info->i2c, MAX8649_RAMP);
+	if (ret < 0)
+		return ret;
+	ret = (ret & MAX8649_RAMP_MASK) >> 5;
+	rate = (32 * 1000) >> ret;	/* uV/uS */
+
+	return (voltage / rate);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int max8649_set_mode(struct regulator_dev *rdev, unsigned int mode)
@@ -167,12 +332,21 @@ static int max8649_set_mode(struct regulator_dev *rdev, unsigned int mode)
 
 	switch (mode) {
 	case REGULATOR_MODE_FAST:
+<<<<<<< HEAD
 		regmap_update_bits(info->regmap, info->vol_reg, MAX8649_FORCE_PWM,
 				   MAX8649_FORCE_PWM);
 		break;
 	case REGULATOR_MODE_NORMAL:
 		regmap_update_bits(info->regmap, info->vol_reg,
 				   MAX8649_FORCE_PWM, 0);
+=======
+		max8649_set_bits(info->i2c, info->vol_reg, MAX8649_FORCE_PWM,
+				 MAX8649_FORCE_PWM);
+		break;
+	case REGULATOR_MODE_NORMAL:
+		max8649_set_bits(info->i2c, info->vol_reg,
+				 MAX8649_FORCE_PWM, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 	default:
 		return -EINVAL;
@@ -183,6 +357,7 @@ static int max8649_set_mode(struct regulator_dev *rdev, unsigned int mode)
 static unsigned int max8649_get_mode(struct regulator_dev *rdev)
 {
 	struct max8649_regulator_info *info = rdev_get_drvdata(rdev);
+<<<<<<< HEAD
 	unsigned int val;
 	int ret;
 
@@ -190,6 +365,12 @@ static unsigned int max8649_get_mode(struct regulator_dev *rdev)
 	if (ret != 0)
 		return ret;
 	if (val & MAX8649_FORCE_PWM)
+=======
+	int ret;
+
+	ret = max8649_reg_read(info->i2c, info->vol_reg);
+	if (ret & MAX8649_FORCE_PWM)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return REGULATOR_MODE_FAST;
 	return REGULATOR_MODE_NORMAL;
 }
@@ -215,19 +396,28 @@ static struct regulator_desc dcdc_desc = {
 	.owner		= THIS_MODULE,
 };
 
+<<<<<<< HEAD
 static struct regmap_config max8649_regmap_config = {
 	.reg_bits = 8,
 	.val_bits = 8,
 };
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int __devinit max8649_regulator_probe(struct i2c_client *client,
 					     const struct i2c_device_id *id)
 {
 	struct max8649_platform_data *pdata = client->dev.platform_data;
 	struct max8649_regulator_info *info = NULL;
+<<<<<<< HEAD
 	unsigned int val;
 	unsigned char data;
 	int ret;
+=======
+	unsigned char data;
+	int ret;
+	int chip_id;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	info = kzalloc(sizeof(struct max8649_regulator_info), GFP_KERNEL);
 	if (!info) {
@@ -235,6 +425,7 @@ static int __devinit max8649_regulator_probe(struct i2c_client *client,
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 	info->regmap = regmap_init_i2c(client, &max8649_regmap_config);
 	if (IS_ERR(info->regmap)) {
 		ret = PTR_ERR(info->regmap);
@@ -243,6 +434,11 @@ static int __devinit max8649_regulator_probe(struct i2c_client *client,
 	}
 
 	info->dev = &client->dev;
+=======
+	info->i2c = client;
+	info->dev = &client->dev;
+	mutex_init(&info->io_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	i2c_set_clientdata(client, info);
 
 	info->mode = pdata->mode;
@@ -263,6 +459,7 @@ static int __devinit max8649_regulator_probe(struct i2c_client *client,
 		break;
 	}
 
+<<<<<<< HEAD
 	ret = regmap_read(info->regmap, MAX8649_CHIP_ID1, &val);
 	if (ret != 0) {
 		dev_err(info->dev, "Failed to detect ID of MAX8649:%d\n",
@@ -273,32 +470,88 @@ static int __devinit max8649_regulator_probe(struct i2c_client *client,
 
 	/* enable VID0 & VID1 */
 	regmap_update_bits(info->regmap, MAX8649_CONTROL, MAX8649_VID_MASK, 0);
+=======
+	ret = max8649_reg_read(info->i2c, MAX8649_CHIP_ID1);
+	if (ret < 0) {
+		dev_err(info->dev, "Failed to detect ID1 of %s:%d\n",
+			id->name, ret);
+		goto out;
+	}
+	chip_id = ret;
+
+	ret = max8649_reg_read(info->i2c, MAX8649_CHIP_ID2);
+	if (ret < 0) {
+		dev_err(info->dev, "Failed to detect ID2 of %s:%d\n",
+			id->name, ret);
+		goto out;
+	}
+
+	chip_id = (chip_id << 8) | ret;
+
+	if ((id->driver_data & 0xFFF0) != (chip_id & 0xFFF0)) {
+		dev_err(info->dev, "Failed to detect the device\n"
+				   "requested : 0x%x, detected 0x%x\n",
+				   (u32)id->driver_data, chip_id);
+		ret = -ENODEV;
+		goto out;
+	}
+
+	dev_info(info->dev, "Detected %s (ID: 0x%x)\n", id->name, chip_id);
+
+	info->type = id->driver_data;
+
+	/* enable VID0 & VID1 */
+	max8649_set_bits(info->i2c, MAX8649_CONTROL, MAX8649_VID_MASK, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* enable/disable external clock synchronization */
 	info->extclk = pdata->extclk;
 	data = (info->extclk) ? MAX8649_SYNC_EXTCLK : 0;
+<<<<<<< HEAD
 	regmap_update_bits(info->regmap, info->vol_reg, MAX8649_SYNC_EXTCLK, data);
 	if (info->extclk) {
 		/* set external clock frequency */
 		info->extclk_freq = pdata->extclk_freq;
 		regmap_update_bits(info->regmap, MAX8649_SYNC, MAX8649_EXT_MASK,
 				   info->extclk_freq << 6);
+=======
+	max8649_set_bits(info->i2c, info->vol_reg, MAX8649_SYNC_EXTCLK, data);
+	if (info->extclk) {
+		/* set external clock frequency */
+		info->extclk_freq = pdata->extclk_freq;
+		max8649_set_bits(info->i2c, MAX8649_SYNC, MAX8649_EXT_MASK,
+				 info->extclk_freq << 6);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (pdata->ramp_timing) {
 		info->ramp_timing = pdata->ramp_timing;
+<<<<<<< HEAD
 		regmap_update_bits(info->regmap, MAX8649_RAMP, MAX8649_RAMP_MASK,
 				   info->ramp_timing << 5);
+=======
+		max8649_set_bits(info->i2c, MAX8649_RAMP, MAX8649_RAMP_MASK,
+				 info->ramp_timing << 5);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	info->ramp_down = pdata->ramp_down;
 	if (info->ramp_down) {
+<<<<<<< HEAD
 		regmap_update_bits(info->regmap, MAX8649_RAMP, MAX8649_RAMP_DOWN,
 				   MAX8649_RAMP_DOWN);
 	}
 
 	info->regulator = regulator_register(&dcdc_desc, &client->dev,
 					     pdata->regulator, info, NULL);
+=======
+		max8649_set_bits(info->i2c, MAX8649_RAMP, MAX8649_RAMP_DOWN,
+				 MAX8649_RAMP_DOWN);
+	}
+
+	info->regulator = regulator_register(&dcdc_desc, &client->dev,
+					     pdata->regulator, info);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (IS_ERR(info->regulator)) {
 		dev_err(info->dev, "failed to register regulator %s\n",
 			dcdc_desc.name);
@@ -306,11 +559,17 @@ static int __devinit max8649_regulator_probe(struct i2c_client *client,
 		goto out;
 	}
 
+<<<<<<< HEAD
 	dev_info(info->dev, "Max8649 regulator device is detected.\n");
 	return 0;
 out:
 	regmap_exit(info->regmap);
 fail:
+=======
+	dev_info(info->dev, "%s regulator device is detected.\n", id->name);
+	return 0;
+out:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(info);
 	return ret;
 }
@@ -322,7 +581,10 @@ static int __devexit max8649_regulator_remove(struct i2c_client *client)
 	if (info) {
 		if (info->regulator)
 			regulator_unregister(info->regulator);
+<<<<<<< HEAD
 		regmap_exit(info->regmap);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		kfree(info);
 	}
 
@@ -330,7 +592,12 @@ static int __devexit max8649_regulator_remove(struct i2c_client *client)
 }
 
 static const struct i2c_device_id max8649_id[] = {
+<<<<<<< HEAD
 	{ "max8649", 0 },
+=======
+	{ "max8649", MAX8649 },
+	{ "max8952", MAX8952 },
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ }
 };
 MODULE_DEVICE_TABLE(i2c, max8649_id);

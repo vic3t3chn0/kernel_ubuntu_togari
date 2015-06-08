@@ -572,10 +572,21 @@ static DEVICE_ATTR(raw2, S_IWUSR, line6_nop_read, variax_set_raw2);
 static void variax_destruct(struct usb_interface *interface)
 {
 	struct usb_line6_variax *variax = usb_get_intfdata(interface);
+<<<<<<< HEAD
 
 	if (variax == NULL)
 		return;
 	line6_cleanup_audio(&variax->line6);
+=======
+	struct usb_line6 *line6;
+
+	if (variax == NULL)
+		return;
+	line6 = &variax->line6;
+	if (line6 == NULL)
+		return;
+	line6_cleanup_audio(line6);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	del_timer(&variax->startup_timer1);
 	del_timer(&variax->startup_timer2);

@@ -182,6 +182,10 @@ static struct pci_device_id vmw_pci_id_list[] = {
 	{0x15ad, 0x0405, PCI_ANY_ID, PCI_ANY_ID, 0, 0, VMWGFX_CHIP_SVGAII},
 	{0, 0, 0}
 };
+<<<<<<< HEAD
+=======
+MODULE_DEVICE_TABLE(pci, vmw_pci_id_list);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int enable_fbdev;
 
@@ -471,7 +475,11 @@ static int vmw_driver_load(struct drm_device *dev, unsigned long chipset)
 	svga_id = vmw_read(dev_priv, SVGA_REG_ID);
 	if (svga_id != SVGA_ID_2) {
 		ret = -ENOSYS;
+<<<<<<< HEAD
 		DRM_ERROR("Unsupported SVGA ID 0x%x\n", svga_id);
+=======
+		DRM_ERROR("Unsuported SVGA ID 0x%x\n", svga_id);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mutex_unlock(&dev_priv->hw_mutex);
 		goto out_err0;
 	}
@@ -1101,6 +1109,14 @@ static void vmw_pm_complete(struct device *kdev)
 	struct drm_device *dev = pci_get_drvdata(pdev);
 	struct vmw_private *dev_priv = vmw_priv(dev);
 
+<<<<<<< HEAD
+=======
+	mutex_lock(&dev_priv->hw_mutex);
+	vmw_write(dev_priv, SVGA_REG_ID, SVGA_ID_2);
+	(void) vmw_read(dev_priv, SVGA_REG_ID);
+	mutex_unlock(&dev_priv->hw_mutex);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/**
 	 * Reclaim 3d reference held by fbdev and potentially
 	 * start fifo.

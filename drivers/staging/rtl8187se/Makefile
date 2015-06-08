@@ -1,7 +1,13 @@
 
+<<<<<<< HEAD
 #ccflags-y += -DCONFIG_IEEE80211_NOWEP=y
 #ccflags-y += -std=gnu89
 #ccflags-y += -O2
+=======
+#EXTRA_CFLAGS += -DCONFIG_IEEE80211_NOWEP=y
+#EXTRA_CFLAGS += -std=gnu89
+#EXTRA_CFLAGS += -O2
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #CC            = gcc
 
 ccflags-y := -DSW_ANTE

@@ -8,6 +8,10 @@
  *	archive for more details.
  */
 #include <linux/types.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * Bt431 cursor generator registers, 32-bit aligned.

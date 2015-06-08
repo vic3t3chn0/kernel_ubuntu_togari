@@ -4,7 +4,11 @@
  * Framebuffer support for the EP93xx series.
  *
  * Copyright (C) 2007 Bluewater Systems Ltd
+<<<<<<< HEAD
  * Author: Ryan Mallon
+=======
+ * Author: Ryan Mallon <ryan@bluewatersys.com>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Copyright (c) 2009 H Hartley Sweeten <hsweeten@visionengravers.com>
  *
@@ -18,7 +22,10 @@
  */
 
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
 #include <linux/clk.h>
@@ -519,6 +526,7 @@ static int __devinit ep93xxfb_probe(struct platform_device *pdev)
 		goto failed;
 	}
 
+<<<<<<< HEAD
 	/*
 	 * FIXME - We don't do a request_mem_region here because we are
 	 * sharing the register space with the backlight driver (see
@@ -528,6 +536,14 @@ static int __devinit ep93xxfb_probe(struct platform_device *pdev)
 	 * NOTE: No locking is required; the backlight does not touch
 	 * any of the framebuffer registers.
 	 */
+=======
+	res = request_mem_region(res->start, resource_size(res), pdev->name);
+	if (!res) {
+		err = -EBUSY;
+		goto failed;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	fbi->res = res;
 	fbi->mmio_base = ioremap(res->start, resource_size(res));
 	if (!fbi->mmio_base) {
@@ -589,6 +605,11 @@ failed:
 		clk_put(fbi->clk);
 	if (fbi->mmio_base)
 		iounmap(fbi->mmio_base);
+<<<<<<< HEAD
+=======
+	if (fbi->res)
+		release_mem_region(fbi->res->start, resource_size(fbi->res));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ep93xxfb_dealloc_videomem(info);
 	if (&info->cmap)
 		fb_dealloc_cmap(&info->cmap);
@@ -609,6 +630,10 @@ static int __devexit ep93xxfb_remove(struct platform_device *pdev)
 	clk_disable(fbi->clk);
 	clk_put(fbi->clk);
 	iounmap(fbi->mmio_base);
+<<<<<<< HEAD
+=======
+	release_mem_region(fbi->res->start, resource_size(fbi->res));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ep93xxfb_dealloc_videomem(info);
 	fb_dealloc_cmap(&info->cmap);
 
@@ -645,6 +670,10 @@ module_exit(ep93xxfb_exit);
 
 MODULE_DESCRIPTION("EP93XX Framebuffer Driver");
 MODULE_ALIAS("platform:ep93xx-fb");
+<<<<<<< HEAD
 MODULE_AUTHOR("Ryan Mallon, "
+=======
+MODULE_AUTHOR("Ryan Mallon <ryan&bluewatersys.com>, "
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	      "H Hartley Sweeten <hsweeten@visionengravers.com");
 MODULE_LICENSE("GPL");

@@ -421,6 +421,10 @@ static struct attribute *pem_input_attributes[] = {
 	&sensor_dev_attr_in2_input.dev_attr.attr,
 	&sensor_dev_attr_curr1_input.dev_attr.attr,
 	&sensor_dev_attr_power1_input.dev_attr.attr,
+<<<<<<< HEAD
+=======
+	NULL
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static const struct attribute_group pem_input_group = {
@@ -431,6 +435,10 @@ static struct attribute *pem_fan_attributes[] = {
 	&sensor_dev_attr_fan1_input.dev_attr.attr,
 	&sensor_dev_attr_fan2_input.dev_attr.attr,
 	&sensor_dev_attr_fan3_input.dev_attr.attr,
+<<<<<<< HEAD
+=======
+	NULL
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static const struct attribute_group pem_fan_group = {
@@ -448,7 +456,11 @@ static int pem_probe(struct i2c_client *client,
 				     | I2C_FUNC_SMBUS_WRITE_BYTE))
 		return -ENODEV;
 
+<<<<<<< HEAD
 	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
+=======
+	data = kzalloc(sizeof(*data), GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!data)
 		return -ENOMEM;
 
@@ -462,11 +474,19 @@ static int pem_probe(struct i2c_client *client,
 	ret = pem_read_block(client, PEM_READ_FIRMWARE_REV,
 			     data->firmware_rev, sizeof(data->firmware_rev));
 	if (ret < 0)
+<<<<<<< HEAD
 		return ret;
 
 	ret = i2c_smbus_write_byte(client, PEM_CLEAR_INFO_FLAGS);
 	if (ret < 0)
 		return ret;
+=======
+		goto out_kfree;
+
+	ret = i2c_smbus_write_byte(client, PEM_CLEAR_INFO_FLAGS);
+	if (ret < 0)
+		goto out_kfree;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	dev_info(&client->dev, "Firmware revision %d.%d.%d\n",
 		 data->firmware_rev[0], data->firmware_rev[1],
@@ -475,7 +495,11 @@ static int pem_probe(struct i2c_client *client,
 	/* Register sysfs hooks */
 	ret = sysfs_create_group(&client->dev.kobj, &pem_group);
 	if (ret)
+<<<<<<< HEAD
 		return ret;
+=======
+		goto out_kfree;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Check if input readings are supported.
@@ -534,6 +558,11 @@ out_remove_groups:
 	sysfs_remove_group(&client->dev.kobj, &pem_input_group);
 	sysfs_remove_group(&client->dev.kobj, &pem_fan_group);
 	sysfs_remove_group(&client->dev.kobj, &pem_group);
+<<<<<<< HEAD
+=======
+out_kfree:
+	kfree(data);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return ret;
 }
 
@@ -547,6 +576,10 @@ static int pem_remove(struct i2c_client *client)
 	sysfs_remove_group(&client->dev.kobj, &pem_fan_group);
 	sysfs_remove_group(&client->dev.kobj, &pem_group);
 
+<<<<<<< HEAD
+=======
+	kfree(data);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -565,8 +598,26 @@ static struct i2c_driver pem_driver = {
 	.id_table = pem_id,
 };
 
+<<<<<<< HEAD
 module_i2c_driver(pem_driver);
+=======
+static int __init pem_init(void)
+{
+	return i2c_add_driver(&pem_driver);
+}
+
+static void __exit pem_exit(void)
+{
+	i2c_del_driver(&pem_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Guenter Roeck <guenter.roeck@ericsson.com>");
 MODULE_DESCRIPTION("Lineage CPL PEM hardware monitoring driver");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
+=======
+
+module_init(pem_init);
+module_exit(pem_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

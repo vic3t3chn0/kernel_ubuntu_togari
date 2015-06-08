@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 obj-$(CONFIG_TIDSPBRIDGE)	+= tidspbridge.o
+=======
+obj-$(CONFIG_TIDSPBRIDGE)	+= bridgedriver.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 libgen = gen/gh.o gen/uuidutil.o
 libcore = core/chnl_sm.o core/msg_sm.o core/io_sm.o core/tiomap3430.o \
@@ -13,7 +17,11 @@ libdload = dynload/cload.o dynload/getsection.o dynload/reloc.o \
 		 dynload/tramp.o
 libhw = hw/hw_mmu.o
 
+<<<<<<< HEAD
 tidspbridge-y := $(libgen) $(libservices) $(libcore) $(libpmgr) $(librmgr) \
+=======
+bridgedriver-y := $(libgen) $(libservices) $(libcore) $(libpmgr) $(librmgr) \
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			$(libdload) $(libhw)
 
 #Machine dependent

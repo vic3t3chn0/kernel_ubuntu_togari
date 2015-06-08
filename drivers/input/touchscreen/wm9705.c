@@ -215,9 +215,14 @@ static inline int is_pden(struct wm97xx *wm)
 static int wm9705_poll_sample(struct wm97xx *wm, int adcsel, int *sample)
 {
 	int timeout = 5 * delay;
+<<<<<<< HEAD
 	bool wants_pen = adcsel & WM97XX_PEN_DOWN;
 
 	if (wants_pen && !wm->pen_probably_down) {
+=======
+
+	if (!wm->pen_probably_down) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		u16 data = wm97xx_reg_read(wm, AC97_WM97XX_DIGITISER_RD);
 		if (!(data & WM97XX_PEN_DOWN))
 			return RC_PENUP;
@@ -225,10 +230,20 @@ static int wm9705_poll_sample(struct wm97xx *wm, int adcsel, int *sample)
 	}
 
 	/* set up digitiser */
+<<<<<<< HEAD
 	if (wm->mach_ops && wm->mach_ops->pre_sample)
 		wm->mach_ops->pre_sample(adcsel);
 	wm97xx_reg_write(wm, AC97_WM97XX_DIGITISER1, (adcsel & WM97XX_ADCSEL_MASK)
 				| WM97XX_POLL | WM97XX_DELAY(delay));
+=======
+	if (adcsel & 0x8000)
+		adcsel = ((adcsel & 0x7fff) + 3) << 12;
+
+	if (wm->mach_ops && wm->mach_ops->pre_sample)
+		wm->mach_ops->pre_sample(adcsel);
+	wm97xx_reg_write(wm, AC97_WM97XX_DIGITISER1,
+			 adcsel | WM97XX_POLL | WM97XX_DELAY(delay));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* wait 3 AC97 time slots + delay for conversion */
 	poll_delay(delay);
@@ -254,6 +269,7 @@ static int wm9705_poll_sample(struct wm97xx *wm, int adcsel, int *sample)
 		wm->mach_ops->post_sample(adcsel);
 
 	/* check we have correct sample */
+<<<<<<< HEAD
 	if ((*sample ^ adcsel) & WM97XX_ADCSEL_MASK) {
 		dev_dbg(wm->dev, "adc wrong sample, wanted %x got %x",
 			adcsel & WM97XX_ADCSEL_MASK,
@@ -262,6 +278,15 @@ static int wm9705_poll_sample(struct wm97xx *wm, int adcsel, int *sample)
 	}
 
 	if (wants_pen && !(*sample & WM97XX_PEN_DOWN)) {
+=======
+	if ((*sample & WM97XX_ADCSEL_MASK) != adcsel) {
+		dev_dbg(wm->dev, "adc wrong sample, read %x got %x", adcsel,
+		*sample & WM97XX_ADCSEL_MASK);
+		return RC_PENUP;
+	}
+
+	if (!(*sample & WM97XX_PEN_DOWN)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		wm->pen_probably_down = 0;
 		return RC_PENUP;
 	}
@@ -276,6 +301,7 @@ static int wm9705_poll_touch(struct wm97xx *wm, struct wm97xx_data *data)
 {
 	int rc;
 
+<<<<<<< HEAD
 	rc = wm9705_poll_sample(wm, WM97XX_ADCSEL_X | WM97XX_PEN_DOWN, &data->x);
 	if (rc != RC_VALID)
 		return rc;
@@ -284,6 +310,16 @@ static int wm9705_poll_touch(struct wm97xx *wm, struct wm97xx_data *data)
 		return rc;
 	if (pil) {
 		rc = wm9705_poll_sample(wm, WM97XX_ADCSEL_PRES | WM97XX_PEN_DOWN, &data->p);
+=======
+	rc = wm9705_poll_sample(wm, WM97XX_ADCSEL_X, &data->x);
+	if (rc != RC_VALID)
+		return rc;
+	rc = wm9705_poll_sample(wm, WM97XX_ADCSEL_Y, &data->y);
+	if (rc != RC_VALID)
+		return rc;
+	if (pil) {
+		rc = wm9705_poll_sample(wm, WM97XX_ADCSEL_PRES, &data->p);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (rc != RC_VALID)
 			return rc;
 	} else

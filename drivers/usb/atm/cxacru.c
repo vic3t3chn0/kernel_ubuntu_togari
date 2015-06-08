@@ -686,7 +686,12 @@ static int cxacru_cm_get_array(struct cxacru_data *instance, enum cxacru_cm_requ
 {
 	int ret, len;
 	__le32 *buf;
+<<<<<<< HEAD
 	int offb, offd;
+=======
+	int offb;
+	unsigned int offd;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	const int stride = CMD_PACKET_SIZE / (4 * 2) - 1;
 	int buflen =  ((size - 1) / stride + 1 + size * 2) * 4;
 
@@ -1372,7 +1377,22 @@ static struct usb_driver cxacru_usb_driver = {
 	.id_table	= cxacru_usb_ids
 };
 
+<<<<<<< HEAD
 module_usb_driver(cxacru_usb_driver);
+=======
+static int __init cxacru_init(void)
+{
+	return usb_register(&cxacru_usb_driver);
+}
+
+static void __exit cxacru_cleanup(void)
+{
+	usb_deregister(&cxacru_usb_driver);
+}
+
+module_init(cxacru_init);
+module_exit(cxacru_cleanup);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

@@ -100,8 +100,11 @@ struct tda18218_priv {
 	struct tda18218_config *cfg;
 	struct i2c_adapter *i2c;
 
+<<<<<<< HEAD
 	u32 if_frequency;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u8 regs[TDA18218_NUM_REGS];
 };
 

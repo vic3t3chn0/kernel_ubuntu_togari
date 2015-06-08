@@ -64,6 +64,7 @@ MODULE_PARM_DESC(semaphores,
 		"Use semaphores for inter-ring sync (default: -1 (use per-chip defaults))");
 
 int i915_enable_rc6 __read_mostly = -1;
+<<<<<<< HEAD
 module_param_named(i915_enable_rc6, i915_enable_rc6, int, 0400);
 MODULE_PARM_DESC(i915_enable_rc6,
 		"Enable power-saving render C-state 6. "
@@ -71,6 +72,11 @@ MODULE_PARM_DESC(i915_enable_rc6,
 		"(0 = disable; 1 = enable rc6; 2 = enable deep rc6; 4 = enable deepest rc6). "
 		"For example, 3 would enable rc6 and deep rc6, and 7 would enable everything. "
 		"default: -1 (use per-chip default)");
+=======
+module_param_named(i915_enable_rc6, i915_enable_rc6, int, 0600);
+MODULE_PARM_DESC(i915_enable_rc6,
+		"Enable power-saving render C-state 6 (default: -1 (use per-chip default)");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int i915_enable_fbc __read_mostly = -1;
 module_param_named(i915_enable_fbc, i915_enable_fbc, int, 0600);
@@ -107,8 +113,13 @@ MODULE_PARM_DESC(enable_hangcheck,
 		"WARNING: Disabling this can cause system wide hangs. "
 		"(default: true)");
 
+<<<<<<< HEAD
 int i915_enable_ppgtt __read_mostly = -1;
 module_param_named(i915_enable_ppgtt, i915_enable_ppgtt, int, 0600);
+=======
+bool i915_enable_ppgtt __read_mostly = 1;
+module_param_named(i915_enable_ppgtt, i915_enable_ppgtt, bool, 0600);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_PARM_DESC(i915_enable_ppgtt,
 		"Enable PPGTT (default: true)");
 
@@ -296,7 +307,10 @@ static const struct pci_device_id pciidlist[] = {		/* aka */
 	INTEL_VGA_DEVICE(0x0152, &intel_ivybridge_d_info), /* GT1 desktop */
 	INTEL_VGA_DEVICE(0x0162, &intel_ivybridge_d_info), /* GT2 desktop */
 	INTEL_VGA_DEVICE(0x015a, &intel_ivybridge_d_info), /* GT1 server */
+<<<<<<< HEAD
 	INTEL_VGA_DEVICE(0x016a, &intel_ivybridge_d_info), /* GT2 server */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{0, 0, 0}
 };
 

@@ -11,7 +11,10 @@
 #include <linux/mm.h>
 #include <linux/pagemap.h>
 #include <linux/vmalloc.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/slab.h>
 
 #define DM_MSG_PREFIX "snapshot exception stores"

@@ -19,8 +19,11 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.               *
  ***************************************************************************/
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "et61x251_sensor.h"
 
 

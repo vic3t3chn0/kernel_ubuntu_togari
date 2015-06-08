@@ -26,8 +26,11 @@
 
 #include <asm/io.h>
 
+<<<<<<< HEAD
 #include <plat/cpu.h>
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define RNG_OUT_REG		0x00		/* Output register */
 #define RNG_STAT_REG		0x04		/* Status register
 							[0] = STAT_BUSY */
@@ -115,10 +118,15 @@ static int __devinit omap_rng_probe(struct platform_device *pdev)
 
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 
+<<<<<<< HEAD
 	if (!res) {
 		ret = -ENOENT;
 		goto err_region;
 	}
+=======
+	if (!res)
+		return -ENOENT;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!request_mem_region(res->start, resource_size(res), pdev->name)) {
 		ret = -EBUSY;

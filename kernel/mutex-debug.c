@@ -14,7 +14,11 @@
  */
 #include <linux/mutex.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/poison.h>
 #include <linux/sched.h>
 #include <linux/spinlock.h>

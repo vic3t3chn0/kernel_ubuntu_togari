@@ -34,6 +34,10 @@
  *      msg_callback:        Called whenever an RMS_EXIT message is received.
  *  Returns:
  *  Requires:
+<<<<<<< HEAD
+=======
+ *      msg_mod_init(void) called.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *      msg_man != NULL.
  *      hdev_obj != NULL.
  *      msg_callback != NULL.
@@ -51,9 +55,41 @@ extern int msg_create(struct msg_mgr **msg_man,
  *      hmsg_mgr:            Handle returned from msg_create().
  *  Returns:
  *  Requires:
+<<<<<<< HEAD
+=======
+ *      msg_mod_init(void) called.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *      Valid hmsg_mgr.
  *  Ensures:
  */
 extern void msg_delete(struct msg_mgr *hmsg_mgr);
 
+<<<<<<< HEAD
+=======
+/*
+ *  ======== msg_exit ========
+ *  Purpose:
+ *      Discontinue usage of msg_ctrl module.
+ *  Parameters:
+ *  Returns:
+ *  Requires:
+ *      msg_mod_init(void) successfully called before.
+ *  Ensures:
+ *      Any resources acquired in msg_mod_init(void) will be freed when last
+ *      msg_ctrl client calls msg_exit(void).
+ */
+extern void msg_exit(void);
+
+/*
+ *  ======== msg_mod_init ========
+ *  Purpose:
+ *      Initialize the msg_ctrl module.
+ *  Parameters:
+ *  Returns:
+ *      TRUE if initialization succeeded, FALSE otherwise.
+ *  Ensures:
+ */
+extern bool msg_mod_init(void);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* MSG_ */

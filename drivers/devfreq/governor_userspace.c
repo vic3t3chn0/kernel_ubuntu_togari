@@ -14,7 +14,10 @@
 #include <linux/devfreq.h>
 #include <linux/pm.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "governor.h"
 
 struct userspace_data {
@@ -22,6 +25,7 @@ struct userspace_data {
 	bool valid;
 };
 
+<<<<<<< HEAD
 static int devfreq_userspace_func(struct devfreq *df, unsigned long *freq,
 					u32 *flag)
 {
@@ -40,6 +44,16 @@ static int devfreq_userspace_func(struct devfreq *df, unsigned long *freq,
 	} else {
 		*freq = df->previous_freq; /* No user freq specified yet */
 	}
+=======
+static int devfreq_userspace_func(struct devfreq *df, unsigned long *freq)
+{
+	struct userspace_data *data = df->data;
+
+	if (!data->valid)
+		*freq = df->previous_freq; /* No user freq specified yet */
+	else
+		*freq = data->user_frequency;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -118,6 +132,7 @@ static void userspace_exit(struct devfreq *devfreq)
 	devfreq->data = NULL;
 }
 
+<<<<<<< HEAD
 static int devfreq_userspace_handler(struct devfreq *devfreq,
 			unsigned int event, void *data)
 {
@@ -161,3 +176,12 @@ static void __exit devfreq_userspace_exit(void)
 }
 module_exit(devfreq_userspace_exit);
 MODULE_LICENSE("GPL");
+=======
+const struct devfreq_governor devfreq_userspace = {
+	.name = "userspace",
+	.get_target_freq = devfreq_userspace_func,
+	.init = userspace_init,
+	.exit = userspace_exit,
+	.no_central_polling = true,
+};
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

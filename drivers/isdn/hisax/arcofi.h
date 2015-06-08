@@ -9,7 +9,11 @@
  * of the GNU General Public License, incorporated herein by reference.
  *
  */
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define ARCOFI_USE	1
 
 /* states */

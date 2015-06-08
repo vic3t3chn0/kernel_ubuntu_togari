@@ -673,7 +673,11 @@ static int cx23888_ir_rx_read(struct v4l2_subdev *sd, u8 *buf, size_t count,
 
 	unsigned int i, n;
 	union cx23888_ir_fifo_rec *p;
+<<<<<<< HEAD
 	unsigned u, v, w;
+=======
+	unsigned u, v;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	n = count / sizeof(union cx23888_ir_fifo_rec)
 		* sizeof(union cx23888_ir_fifo_rec);
@@ -692,12 +696,19 @@ static int cx23888_ir_rx_read(struct v4l2_subdev *sd, u8 *buf, size_t count,
 		if ((p->hw_fifo_data & FIFO_RXTX_RTO) == FIFO_RXTX_RTO) {
 			/* Assume RTO was because of no IR light input */
 			u = 0;
+<<<<<<< HEAD
 			w = 1;
+=======
+			v4l2_dbg(2, ir_888_debug, sd, "rx read: end of rx\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} else {
 			u = (p->hw_fifo_data & FIFO_RXTX_LVL) ? 1 : 0;
 			if (invert)
 				u = u ? 0 : 1;
+<<<<<<< HEAD
 			w = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 
 		v = (unsigned) pulse_width_count_to_ns(
@@ -708,12 +719,18 @@ static int cx23888_ir_rx_read(struct v4l2_subdev *sd, u8 *buf, size_t count,
 		init_ir_raw_event(&p->ir_core_data);
 		p->ir_core_data.pulse = u;
 		p->ir_core_data.duration = v;
+<<<<<<< HEAD
 		p->ir_core_data.timeout = w;
 
 		v4l2_dbg(2, ir_888_debug, sd, "rx read: %10u ns  %s  %s\n",
 			 v, u ? "mark" : "space", w ? "(timed out)" : "");
 		if (w)
 			v4l2_dbg(2, ir_888_debug, sd, "rx read: end of rx\n");
+=======
+
+		v4l2_dbg(2, ir_888_debug, sd, "rx read: %10u ns  %s\n",
+			 v, u ? "mark" : "space");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return 0;
 }

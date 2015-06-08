@@ -21,7 +21,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: bcmsdh_sdmmc.h 313732 2012-02-08 19:49:00Z $
+=======
+ * $Id: bcmsdh_sdmmc.h 393684 2013-03-28 11:03:49Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef __BCMSDH_SDMMC_H__
@@ -59,10 +63,28 @@ extern void sdioh_sdmmc_osfree(sdioh_info_t *sd);
 
 /* private bus modes */
 #define SDIOH_MODE_SD4		2
+<<<<<<< HEAD
 #define CLIENT_INTR 		0x100	/* Get rid of this! */
 
 struct sdioh_info {
 	osl_t 		*osh;			/* osh handler */
+=======
+#define CLIENT_INTR			0x100	/* Get rid of this! */
+
+#ifdef BCMSDIOH_TXGLOM
+/* Setting the MAX limit to 10 */
+#define SDIOH_MAXGLOM_SIZE	16
+
+typedef struct glom_buf {
+	void *glom_pkt_head;
+	void *glom_pkt_tail;
+	uint32 count;				/* Total number of pkts queued */
+} glom_buf_t;
+#endif
+
+struct sdioh_info {
+	osl_t		*osh;			/* osh handler */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	bool		client_intr_enabled;	/* interrupt connnected flag */
 	bool		intr_handler_valid;	/* client driver interrupt handler valid */
 	sdioh_cb_fn_t	intr_handler;		/* registered interrupt handler */
@@ -70,22 +92,42 @@ struct sdioh_info {
 	uint16		intmask;		/* Current active interrupts */
 	void		*sdos_info;		/* Pointer to per-OS private data */
 
+<<<<<<< HEAD
 	uint 		irq;			/* Client irq */
 	int 		intrcount;		/* Client interrupts */
 
 	bool		sd_use_dma;		/* DMA on CMD53 */
 	bool 		sd_blockmode;		/* sd_blockmode == FALSE => 64 Byte Cmd 53s. */
+=======
+	uint		irq;			/* Client irq */
+	int			intrcount;		/* Client interrupts */
+
+	bool		sd_use_dma;		/* DMA on CMD53 */
+	bool		sd_blockmode;		/* sd_blockmode == FALSE => 64 Byte Cmd 53s. */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						/*  Must be on for sd_multiblock to be effective */
 	bool 		use_client_ints;	/* If this is false, make sure to restore */
 	int 		sd_mode;		/* SD1/SD4/SPI */
 	int 		client_block_size[SDIOD_MAX_IOFUNCS];		/* Blocksize */
 	uint8 		num_funcs;		/* Supported funcs on client */
 	uint32 		com_cis_ptr;
+<<<<<<< HEAD
 	uint32 		func_cis_ptr[SDIOD_MAX_IOFUNCS];
+=======
+	uint32		func_cis_ptr[SDIOD_MAX_IOFUNCS];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define SDIOH_SDMMC_MAX_SG_ENTRIES	32
 	struct scatterlist sg_list[SDIOH_SDMMC_MAX_SG_ENTRIES];
 	bool		use_rxchain;
+<<<<<<< HEAD
+=======
+
+#ifdef BCMSDIOH_TXGLOM
+	glom_buf_t glom_info;		/* pkt information used for glomming */
+	uint	txglom_mode;		/* Txglom mode: 0 - copy, 1 - multi-descriptor */
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /************************************************************

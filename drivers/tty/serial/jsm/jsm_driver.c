@@ -24,7 +24,11 @@
  *
  *
  ***********************************************************************/
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+#include <linux/moduleparam.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/pci.h>
 #include <linux/slab.h>
 
@@ -160,10 +164,33 @@ static int __devinit jsm_probe_one(struct pci_dev *pdev, const struct pci_device
 	dev_info(&pdev->dev, "board %d: Digi Neo (rev %d), irq %d\n",
 			adapter_count, brd->rev, brd->irq);
 
+<<<<<<< HEAD
+=======
+	/*
+	 * allocate flip buffer for board.
+	 *
+	 * Okay to malloc with GFP_KERNEL, we are not at interrupt
+	 * context, and there are no locks held.
+	 */
+	brd->flipbuf = kzalloc(MYFLIPLEN, GFP_KERNEL);
+	if (!brd->flipbuf) {
+		/* XXX: leaking all resources from jsm_tty_init and
+		 	jsm_uart_port_init here! */
+		dev_err(&pdev->dev, "memory allocation for flipbuf failed\n");
+		rc = -ENOMEM;
+		goto out_free_uart;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	pci_set_drvdata(pdev, brd);
 	pci_save_state(pdev);
 
 	return 0;
+<<<<<<< HEAD
+=======
+ out_free_uart:
+	jsm_remove_uart_port(brd);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  out_free_irq:
 	jsm_remove_uart_port(brd);
 	free_irq(brd->irq, brd);
@@ -200,6 +227,10 @@ static void __devexit jsm_remove_one(struct pci_dev *pdev)
 
 	pci_release_regions(pdev);
 	pci_disable_device(pdev);
+<<<<<<< HEAD
+=======
+	kfree(brd->flipbuf);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(brd);
 }
 

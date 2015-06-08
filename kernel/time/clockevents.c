@@ -17,6 +17,10 @@
 #include <linux/module.h>
 #include <linux/notifier.h>
 #include <linux/smp.h>
+<<<<<<< HEAD
+=======
+#include <linux/sysdev.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "tick-internal.h"
 
@@ -93,6 +97,7 @@ void clockevents_shutdown(struct clock_event_device *dev)
 	dev->next_event.tv64 = KTIME_MAX;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_GENERIC_CLOCKEVENTS_MIN_ADJUST
 
 /* Limit min_delta to a jiffie */
@@ -195,26 +200,47 @@ static int clockevents_program_min_delta(struct clock_event_device *dev)
  * @dev:	device to program
  * @expires:	absolute expiry time (monotonic clock)
  * @force:	program minimum delay if expires can not be set
+=======
+/**
+ * clockevents_program_event - Reprogram the clock event device.
+ * @expires:	absolute expiry time (monotonic clock)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Returns 0 on success, -ETIME when the event is in the past.
  */
 int clockevents_program_event(struct clock_event_device *dev, ktime_t expires,
+<<<<<<< HEAD
 			      bool force)
 {
 	unsigned long long clc;
 	int64_t delta;
 	int rc;
+=======
+			      ktime_t now)
+{
+	unsigned long long clc;
+	int64_t delta;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (unlikely(expires.tv64 < 0)) {
 		WARN_ON_ONCE(1);
 		return -ETIME;
 	}
 
+<<<<<<< HEAD
+=======
+	delta = ktime_to_ns(ktime_sub(expires, now));
+
+	if (delta <= 0)
+		return -ETIME;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dev->next_event = expires;
 
 	if (dev->mode == CLOCK_EVT_MODE_SHUTDOWN)
 		return 0;
 
+<<<<<<< HEAD
 	/* Shortcut for clockevent devices that can deal with ktime. */
 	if (dev->features & CLOCK_EVT_FEAT_KTIME)
 		return dev->set_next_ktime(expires, dev);
@@ -230,6 +256,17 @@ int clockevents_program_event(struct clock_event_device *dev, ktime_t expires,
 	rc = dev->set_next_event((unsigned long) clc, dev);
 
 	return (rc && force) ? clockevents_program_min_delta(dev) : rc;
+=======
+	if (delta > dev->max_delta_ns)
+		delta = dev->max_delta_ns;
+	if (delta < dev->min_delta_ns)
+		delta = dev->min_delta_ns;
+
+	clc = delta * dev->mult;
+	clc >>= dev->shift;
+
+	return dev->set_next_event((unsigned long) clc, dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -358,7 +395,11 @@ int clockevents_update_freq(struct clock_event_device *dev, u32 freq)
 	if (dev->mode != CLOCK_EVT_MODE_ONESHOT)
 		return 0;
 
+<<<<<<< HEAD
 	return clockevents_program_event(dev, dev->next_event, false);
+=======
+	return clockevents_program_event(dev, dev->next_event, ktime_get());
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*

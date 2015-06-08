@@ -83,7 +83,10 @@ struct grant_map {
 	struct ioctl_gntdev_grant_ref *grants;
 	struct gnttab_map_grant_ref   *map_ops;
 	struct gnttab_unmap_grant_ref *unmap_ops;
+<<<<<<< HEAD
 	struct gnttab_map_grant_ref   *kmap_ops;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct page **pages;
 };
 
@@ -114,6 +117,7 @@ static struct grant_map *gntdev_alloc_map(struct gntdev_priv *priv, int count)
 	if (NULL == add)
 		return NULL;
 
+<<<<<<< HEAD
 	add->grants    = kcalloc(count, sizeof(add->grants[0]), GFP_KERNEL);
 	add->map_ops   = kcalloc(count, sizeof(add->map_ops[0]), GFP_KERNEL);
 	add->unmap_ops = kcalloc(count, sizeof(add->unmap_ops[0]), GFP_KERNEL);
@@ -127,12 +131,28 @@ static struct grant_map *gntdev_alloc_map(struct gntdev_priv *priv, int count)
 		goto err;
 
 	if (alloc_xenballooned_pages(count, add->pages, false /* lowmem */))
+=======
+	add->grants    = kzalloc(sizeof(add->grants[0])    * count, GFP_KERNEL);
+	add->map_ops   = kzalloc(sizeof(add->map_ops[0])   * count, GFP_KERNEL);
+	add->unmap_ops = kzalloc(sizeof(add->unmap_ops[0]) * count, GFP_KERNEL);
+	add->pages     = kzalloc(sizeof(add->pages[0])     * count, GFP_KERNEL);
+	if (NULL == add->grants    ||
+	    NULL == add->map_ops   ||
+	    NULL == add->unmap_ops ||
+	    NULL == add->pages)
+		goto err;
+
+	if (alloc_xenballooned_pages(count, add->pages))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		goto err;
 
 	for (i = 0; i < count; i++) {
 		add->map_ops[i].handle = -1;
 		add->unmap_ops[i].handle = -1;
+<<<<<<< HEAD
 		add->kmap_ops[i].handle = -1;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	add->index = 0;
@@ -146,7 +166,10 @@ err:
 	kfree(add->grants);
 	kfree(add->map_ops);
 	kfree(add->unmap_ops);
+<<<<<<< HEAD
 	kfree(add->kmap_ops);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(add);
 	return NULL;
 }
@@ -195,7 +218,10 @@ static void gntdev_put_map(struct grant_map *map)
 
 	if (map->notify.flags & UNMAP_NOTIFY_SEND_EVENT) {
 		notify_remote_via_evtchn(map->notify.event);
+<<<<<<< HEAD
 		evtchn_put(map->notify.event);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (map->pages) {
@@ -249,6 +275,7 @@ static int map_grant_pages(struct grant_map *map)
 			gnttab_set_unmap_op(&map->unmap_ops[i], addr,
 				map->flags, -1 /* handle */);
 		}
+<<<<<<< HEAD
 	} else {
 		/*
 		 * Setup the map_ops corresponding to the pte entries pointing
@@ -278,6 +305,12 @@ static int map_grant_pages(struct grant_map *map)
 	pr_debug("map %d+%d\n", map->index, map->count);
 	err = gnttab_map_refs(map->map_ops, use_ptemod ? map->kmap_ops : NULL,
 			map->pages, map->count);
+=======
+	}
+
+	pr_debug("map %d+%d\n", map->index, map->count);
+	err = gnttab_map_refs(map->map_ops, map->pages, map->count);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (err)
 		return err;
 
@@ -314,8 +347,12 @@ static int __unmap_grant_pages(struct grant_map *map, int offset, int pages)
 		}
 	}
 
+<<<<<<< HEAD
 	err = gnttab_unmap_refs(map->unmap_ops + offset, map->pages + offset,
 				pages, true);
+=======
+	err = gnttab_unmap_refs(map->unmap_ops + offset, map->pages + offset, pages);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (err)
 		return err;
 
@@ -494,11 +531,19 @@ static int gntdev_release(struct inode *inode, struct file *flip)
 
 	pr_debug("priv %p\n", priv);
 
+<<<<<<< HEAD
+=======
+	spin_lock(&priv->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	while (!list_empty(&priv->maps)) {
 		map = list_entry(priv->maps.next, struct grant_map, next);
 		list_del(&map->next);
 		gntdev_put_map(map);
 	}
+<<<<<<< HEAD
+=======
+	spin_unlock(&priv->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (use_ptemod)
 		mmu_notifier_unregister(&priv->mn, priv->mm);
@@ -562,11 +607,18 @@ static long gntdev_ioctl_unmap_grant_ref(struct gntdev_priv *priv,
 	map = gntdev_find_map_index(priv, op.index >> PAGE_SHIFT, op.count);
 	if (map) {
 		list_del(&map->next);
+<<<<<<< HEAD
 		err = 0;
 	}
 	spin_unlock(&priv->lock);
 	if (map)
 		gntdev_put_map(map);
+=======
+		gntdev_put_map(map);
+		err = 0;
+	}
+	spin_unlock(&priv->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return err;
 }
 
@@ -602,8 +654,11 @@ static long gntdev_ioctl_notify(struct gntdev_priv *priv, void __user *u)
 	struct ioctl_gntdev_unmap_notify op;
 	struct grant_map *map;
 	int rc;
+<<<<<<< HEAD
 	int out_flags;
 	unsigned int out_event;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (copy_from_user(&op, u, sizeof(op)))
 		return -EFAULT;
@@ -611,6 +666,7 @@ static long gntdev_ioctl_notify(struct gntdev_priv *priv, void __user *u)
 	if (op.action & ~(UNMAP_NOTIFY_CLEAR_BYTE|UNMAP_NOTIFY_SEND_EVENT))
 		return -EINVAL;
 
+<<<<<<< HEAD
 	/* We need to grab a reference to the event channel we are going to use
 	 * to send the notify before releasing the reference we may already have
 	 * (if someone has called this ioctl twice). This is required so that
@@ -626,6 +682,8 @@ static long gntdev_ioctl_notify(struct gntdev_priv *priv, void __user *u)
 	out_flags = op.action;
 	out_event = op.event_channel_port;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_lock(&priv->lock);
 
 	list_for_each_entry(map, &priv->maps, next) {
@@ -644,6 +702,7 @@ static long gntdev_ioctl_notify(struct gntdev_priv *priv, void __user *u)
 		goto unlock_out;
 	}
 
+<<<<<<< HEAD
 	out_flags = map->notify.flags;
 	out_event = map->notify.event;
 
@@ -660,6 +719,14 @@ static long gntdev_ioctl_notify(struct gntdev_priv *priv, void __user *u)
 	if (out_flags & UNMAP_NOTIFY_SEND_EVENT)
 		evtchn_put(out_event);
 
+=======
+	map->notify.flags = op.action;
+	map->notify.addr = op.index - (map->index << PAGE_SHIFT);
+	map->notify.event = op.event_channel_port;
+	rc = 0;
+ unlock_out:
+	spin_unlock(&priv->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return rc;
 }
 

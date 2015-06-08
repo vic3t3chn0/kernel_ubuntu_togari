@@ -1,6 +1,10 @@
 /*
     lm75.h - Part of lm_sensors, Linux kernel modules for hardware
+<<<<<<< HEAD
 	      monitoring
+=======
+             monitoring
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
     Copyright (c) 2003 Mark M. Hoffman <mhoffman@lightlink.com>
 
     This program is free software; you can redistribute it and/or modify
@@ -37,7 +41,11 @@
 static inline u16 LM75_TEMP_TO_REG(long temp)
 {
 	int ntemp = SENSORS_LIMIT(temp, LM75_TEMP_MIN, LM75_TEMP_MAX);
+<<<<<<< HEAD
 	ntemp += (ntemp < 0 ? -250 : 250);
+=======
+	ntemp += (ntemp<0 ? -250 : 250);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return (u16)((ntemp / 500) << 7);
 }
 
@@ -47,3 +55,7 @@ static inline int LM75_TEMP_FROM_REG(u16 reg)
 	   guarantee arithmetic shift and preserve the sign */
 	return ((s16)reg / 128) * 500;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

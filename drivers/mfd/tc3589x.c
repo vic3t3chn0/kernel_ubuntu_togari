@@ -357,7 +357,10 @@ static int __devexit tc3589x_remove(struct i2c_client *client)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_PM
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int tc3589x_suspend(struct device *dev)
 {
 	struct tc3589x *tc3589x = dev_get_drvdata(dev);
@@ -388,7 +391,10 @@ static int tc3589x_resume(struct device *dev)
 
 static const SIMPLE_DEV_PM_OPS(tc3589x_dev_pm_ops, tc3589x_suspend,
 						tc3589x_resume);
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static const struct i2c_device_id tc3589x_id[] = {
 	{ "tc3589x", 24 },

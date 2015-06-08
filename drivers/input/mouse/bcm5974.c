@@ -67,6 +67,7 @@
 #define USB_DEVICE_ID_APPLE_WELLSPRING5_ANSI	0x0245
 #define USB_DEVICE_ID_APPLE_WELLSPRING5_ISO	0x0246
 #define USB_DEVICE_ID_APPLE_WELLSPRING5_JIS	0x0247
+<<<<<<< HEAD
 /* MacbookAir4,1 (unibody, July 2011) */
 #define USB_DEVICE_ID_APPLE_WELLSPRING6A_ANSI	0x0249
 #define USB_DEVICE_ID_APPLE_WELLSPRING6A_ISO	0x024a
@@ -79,6 +80,8 @@
 #define USB_DEVICE_ID_APPLE_WELLSPRING5A_ANSI	0x0252
 #define USB_DEVICE_ID_APPLE_WELLSPRING5A_ISO	0x0253
 #define USB_DEVICE_ID_APPLE_WELLSPRING5A_JIS	0x0254
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define BCM5974_DEVICE(prod) {					\
 	.match_flags = (USB_DEVICE_ID_MATCH_DEVICE |		\
@@ -116,6 +119,7 @@ static const struct usb_device_id bcm5974_table[] = {
 	BCM5974_DEVICE(USB_DEVICE_ID_APPLE_WELLSPRING5_ANSI),
 	BCM5974_DEVICE(USB_DEVICE_ID_APPLE_WELLSPRING5_ISO),
 	BCM5974_DEVICE(USB_DEVICE_ID_APPLE_WELLSPRING5_JIS),
+<<<<<<< HEAD
 	/* MacbookAir4,1 */
 	BCM5974_DEVICE(USB_DEVICE_ID_APPLE_WELLSPRING6A_ANSI),
 	BCM5974_DEVICE(USB_DEVICE_ID_APPLE_WELLSPRING6A_ISO),
@@ -128,6 +132,8 @@ static const struct usb_device_id bcm5974_table[] = {
 	BCM5974_DEVICE(USB_DEVICE_ID_APPLE_WELLSPRING5A_ANSI),
 	BCM5974_DEVICE(USB_DEVICE_ID_APPLE_WELLSPRING5A_ISO),
 	BCM5974_DEVICE(USB_DEVICE_ID_APPLE_WELLSPRING5A_JIS),
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Terminating entry */
 	{}
 };
@@ -318,6 +324,7 @@ static const struct bcm5974_config bcm5974_config_table[] = {
 		{ DIM_X, DIM_X / SN_COORD, -4415, 5050 },
 		{ DIM_Y, DIM_Y / SN_COORD, -55, 6680 }
 	},
+<<<<<<< HEAD
 	{
 		USB_DEVICE_ID_APPLE_WELLSPRING6_ANSI,
 		USB_DEVICE_ID_APPLE_WELLSPRING6_ISO,
@@ -354,6 +361,8 @@ static const struct bcm5974_config bcm5974_config_table[] = {
 		{ DIM_X, DIM_X / SN_COORD, -4620, 5140 },
 		{ DIM_Y, DIM_Y / SN_COORD, -150, 6600 }
 	},
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{}
 };
 
@@ -433,7 +442,10 @@ static void setup_events_to_report(struct input_dev *input_dev,
 	__set_bit(BTN_TOOL_QUADTAP, input_dev->keybit);
 	__set_bit(BTN_LEFT, input_dev->keybit);
 
+<<<<<<< HEAD
 	__set_bit(INPUT_PROP_POINTER, input_dev->propbit);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (cfg->caps & HAS_INTEGRATED_BUTTON)
 		__set_bit(INPUT_PROP_BUTTONPAD, input_dev->propbit);
 
@@ -944,4 +956,20 @@ static struct usb_driver bcm5974_driver = {
 	.supports_autosuspend	= 1,
 };
 
+<<<<<<< HEAD
 module_usb_driver(bcm5974_driver);
+=======
+static int __init bcm5974_init(void)
+{
+	return usb_register(&bcm5974_driver);
+}
+
+static void __exit bcm5974_exit(void)
+{
+	usb_deregister(&bcm5974_driver);
+}
+
+module_init(bcm5974_init);
+module_exit(bcm5974_exit);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

@@ -322,7 +322,11 @@ static int usb_hcd_da8xx_probe(const struct hc_driver *driver,
 		goto err2;
 	}
 	hcd->rsrc_start = mem->start;
+<<<<<<< HEAD
 	hcd->rsrc_len = resource_size(mem);
+=======
+	hcd->rsrc_len = mem->end - mem->start + 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!request_mem_region(hcd->rsrc_start, hcd->rsrc_len, hcd_name)) {
 		dev_dbg(&pdev->dev, "request_mem_region failed\n");
@@ -344,7 +348,11 @@ static int usb_hcd_da8xx_probe(const struct hc_driver *driver,
 		error = -ENODEV;
 		goto err4;
 	}
+<<<<<<< HEAD
 	error = usb_add_hcd(hcd, irq, 0);
+=======
+	error = usb_add_hcd(hcd, irq, IRQF_DISABLED);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (error)
 		goto err4;
 

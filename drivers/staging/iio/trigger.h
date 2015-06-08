@@ -7,7 +7,10 @@
  * the Free Software Foundation.
  */
 #include <linux/irq.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifndef _IIO_TRIGGER_H_
 #define _IIO_TRIGGER_H_
@@ -17,6 +20,7 @@ struct iio_subirq {
 };
 
 /**
+<<<<<<< HEAD
  * struct iio_trigger_ops - operations structure for an iio_trigger.
  * @owner:		used to monitor usage count of the trigger.
  * @set_trigger_state:	switch on/off the trigger on demand
@@ -38,6 +42,8 @@ struct iio_trigger_ops {
 
 
 /**
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * struct iio_trigger - industrial I/O trigger device
  *
  * @id:			[INTERN] unique id number
@@ -46,7 +52,15 @@ struct iio_trigger_ops {
  * @private_data:	[DRIVER] device specific data
  * @list:		[INTERN] used in maintenance of global trigger list
  * @alloc_list:		[DRIVER] used for driver specific trigger list
+<<<<<<< HEAD
  * @use_count:		use count for the trigger
+=======
+ * @owner:		[DRIVER] used to monitor usage count of the trigger.
+ * @use_count:		use count for the trigger
+ * @set_trigger_state:	[DRIVER] switch on/off the trigger on demand
+ * @try_reenable:	function to reenable the trigger when the
+ *			use count is zero (may be NULL)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @subirq_chip:	[INTERN] associate 'virtual' irq chip.
  * @subirq_base:	[INTERN] base number for irqs provided by trigger.
  * @subirqs:		[INTERN] information about the 'child' irqs.
@@ -54,7 +68,10 @@ struct iio_trigger_ops {
  * @pool_lock:		[INTERN] protection of the irq pool.
  **/
 struct iio_trigger {
+<<<<<<< HEAD
 	const struct iio_trigger_ops	*ops;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int				id;
 	const char			*name;
 	struct device			dev;
@@ -62,8 +79,17 @@ struct iio_trigger {
 	void				*private_data;
 	struct list_head		list;
 	struct list_head		alloc_list;
+<<<<<<< HEAD
 	int use_count;
 
+=======
+	struct module			*owner;
+	int use_count;
+
+	int (*set_trigger_state)(struct iio_trigger *trig, bool state);
+	int (*try_reenable)(struct iio_trigger *trig);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct irq_chip			subirq_chip;
 	int				subirq_base;
 
@@ -72,7 +98,10 @@ struct iio_trigger {
 	struct mutex			pool_lock;
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline struct iio_trigger *to_iio_trigger(struct device *d)
 {
 	return container_of(d, struct iio_trigger, dev);
@@ -80,14 +109,24 @@ static inline struct iio_trigger *to_iio_trigger(struct device *d)
 
 static inline void iio_put_trigger(struct iio_trigger *trig)
 {
+<<<<<<< HEAD
 	module_put(trig->ops->owner);
 	put_device(&trig->dev);
+=======
+	put_device(&trig->dev);
+	module_put(trig->owner);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static inline void iio_get_trigger(struct iio_trigger *trig)
 {
+<<<<<<< HEAD
 	get_device(&trig->dev);
 	__module_get(trig->ops->owner);
+=======
+	__module_get(trig->owner);
+	get_device(&trig->dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /**
@@ -103,6 +142,26 @@ int iio_trigger_register(struct iio_trigger *trig_info);
 void iio_trigger_unregister(struct iio_trigger *trig_info);
 
 /**
+<<<<<<< HEAD
+=======
+ * iio_trigger_attach_poll_func() - add a function pair to be run on trigger
+ * @trig:	trigger to which the function pair are being added
+ * @pf:		poll function pair
+ **/
+int iio_trigger_attach_poll_func(struct iio_trigger *trig,
+				 struct iio_poll_func *pf);
+
+/**
+ * iio_trigger_dettach_poll_func() -	remove function pair from those to be
+ *					run on trigger
+ * @trig:	trigger from which the function is being removed
+ * @pf:		poll function pair
+ **/
+int iio_trigger_dettach_poll_func(struct iio_trigger *trig,
+				  struct iio_poll_func *pf);
+
+/**
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * iio_trigger_poll() - called on a trigger occurring
  * @trig: trigger which occurred
  *
@@ -110,10 +169,81 @@ void iio_trigger_unregister(struct iio_trigger *trig_info);
  **/
 void iio_trigger_poll(struct iio_trigger *trig, s64 time);
 void iio_trigger_poll_chained(struct iio_trigger *trig, s64 time);
+<<<<<<< HEAD
 
 irqreturn_t iio_trigger_generic_data_rdy_poll(int irq, void *private);
 
 __printf(1, 2) struct iio_trigger *iio_allocate_trigger(const char *fmt, ...);
+=======
+void iio_trigger_notify_done(struct iio_trigger *trig);
+
+irqreturn_t iio_trigger_generic_data_rdy_poll(int irq, void *private);
+
+static inline int iio_trigger_get_irq(struct iio_trigger *trig)
+{
+	int ret;
+	mutex_lock(&trig->pool_lock);
+	ret = bitmap_find_free_region(trig->pool,
+				      CONFIG_IIO_CONSUMERS_PER_TRIGGER,
+				      ilog2(1));
+	mutex_unlock(&trig->pool_lock);
+	if (ret >= 0)
+		ret += trig->subirq_base;
+
+	return ret;
+};
+
+static inline void iio_trigger_put_irq(struct iio_trigger *trig, int irq)
+{
+	mutex_lock(&trig->pool_lock);
+	clear_bit(irq - trig->subirq_base, trig->pool);
+	mutex_unlock(&trig->pool_lock);
+};
+
+/**
+ * struct iio_poll_func - poll function pair
+ *
+ * @private_data:		data specific to device (passed into poll func)
+ * @h:				the function that is actually run on trigger
+ * @thread:			threaded interrupt part
+ * @type:			the type of interrupt (basically if oneshot)
+ * @name:			name used to identify the trigger consumer.
+ * @irq:			the corresponding irq as allocated from the
+ *				trigger pool
+ * @timestamp:			some devices need a timestamp grabbed as soon
+ *				as possible after the trigger - hence handler
+ *				passes it via here.
+ **/
+struct iio_poll_func {
+	void				*private_data;
+	irqreturn_t (*h)(int irq, void *p);
+	irqreturn_t (*thread)(int irq, void *p);
+	int type;
+	char *name;
+	int irq;
+	s64 timestamp;
+};
+
+struct iio_poll_func
+*iio_alloc_pollfunc(irqreturn_t (*h)(int irq, void *p),
+		    irqreturn_t (*thread)(int irq, void *p),
+		    int type,
+		    void *private,
+		    const char *fmt,
+		    ...);
+void iio_dealloc_pollfunc(struct iio_poll_func *pf);
+irqreturn_t iio_pollfunc_store_time(int irq, void *p);
+
+/*
+ * Two functions for common case where all that happens is a pollfunc
+ * is attached and detached from a trigger
+ */
+int iio_triggered_ring_postenable(struct iio_dev *indio_dev);
+int iio_triggered_ring_predisable(struct iio_dev *indio_dev);
+
+struct iio_trigger *iio_allocate_trigger(const char *fmt, ...)
+	__attribute__((format(printf, 1, 2)));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void iio_free_trigger(struct iio_trigger *trig);
 
 #endif /* _IIO_TRIGGER_H_ */

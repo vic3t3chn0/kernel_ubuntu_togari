@@ -42,6 +42,10 @@
 #include <linux/bitops.h>
 #include <media/rc-core.h>
 #include <linux/pci_ids.h>
+<<<<<<< HEAD
+=======
+#include <linux/delay.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "ite-cir.h"
 
@@ -382,7 +386,11 @@ static int ite_set_tx_duty_cycle(struct rc_dev *rcdev, u32 duty_cycle)
 /* transmit out IR pulses; what you get here is a batch of alternating
  * pulse/space/pulse/space lengths that we should write out completely through
  * the FIFO, blocking on a full FIFO */
+<<<<<<< HEAD
 static int ite_tx_ir(struct rc_dev *rcdev, unsigned *txbuf, unsigned n)
+=======
+static int ite_tx_ir(struct rc_dev *rcdev, int *txbuf, u32 n)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	unsigned long flags;
 	struct ite_dev *dev = rcdev->priv;
@@ -398,6 +406,12 @@ static int ite_tx_ir(struct rc_dev *rcdev, unsigned *txbuf, unsigned n)
 	/* clear the array just in case */
 	memset(last_sent, 0, ARRAY_SIZE(last_sent));
 
+<<<<<<< HEAD
+=======
+	/* n comes in bytes; convert to ints */
+	n /= sizeof(int);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_lock_irqsave(&dev->lock, flags);
 
 	/* let everybody know we're now transmitting */
@@ -1473,6 +1487,10 @@ static int ite_probe(struct pnp_dev *pdev, const struct pnp_device_id
 	rdev = rc_allocate_device();
 	if (!rdev)
 		goto failure;
+<<<<<<< HEAD
+=======
+	itdev->rdev = rdev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	ret = -ENODEV;
 
@@ -1604,7 +1622,10 @@ static int ite_probe(struct pnp_dev *pdev, const struct pnp_device_id
 	if (ret)
 		goto failure;
 
+<<<<<<< HEAD
 	itdev->rdev = rdev;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ite_pr(KERN_NOTICE, "driver has been successfully loaded\n");
 
 	return 0;

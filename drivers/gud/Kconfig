@@ -3,6 +3,10 @@
 #
 config MOBICORE_SUPPORT
 	tristate "Linux MobiCore Support"
+<<<<<<< HEAD
+=======
+	depends on ARM_TRUSTZONE
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	---help---
 	  Enable Linux Kernel MobiCore Support
 
@@ -11,14 +15,22 @@ config MOBICORE_DEBUG
     depends on MOBICORE_SUPPORT
     ---help---
       Enable Debug mode in the MobiCore Driver.
+<<<<<<< HEAD
       It enables printing information about MobiCore operations
+=======
+      It enables printing information about mobicore operations
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config MOBICORE_VERBOSE
     bool "MobiCore Module verbose debug mode"
     depends on MOBICORE_DEBUG
     ---help---
       Enable Verbose Debug mode in the MobiCore Driver.
+<<<<<<< HEAD
       It enables printing extra information about MobiCore operations
+=======
+      It enables printing extra information about mobicore operations
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
       Beware: this is only useful for debuging deep in the driver because
       it prints too much logs
 

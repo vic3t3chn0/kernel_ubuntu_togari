@@ -1632,7 +1632,11 @@ static int hso_get_count(struct tty_struct *tty,
 	struct hso_serial *serial = get_serial_by_tty(tty);
 	struct hso_tiocmget  *tiocmget = serial->tiocmget;
 
+<<<<<<< HEAD
 	memset(icount, 0, sizeof(struct serial_icounter_struct));
+=======
+	memset(&icount, 0, sizeof(struct serial_icounter_struct));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!tiocmget)
 		 return -ENOENT;
@@ -3313,6 +3317,10 @@ static int __init hso_init(void)
 
 	/* fill in all needed values */
 	tty_drv->magic = TTY_DRIVER_MAGIC;
+<<<<<<< HEAD
+=======
+	tty_drv->owner = THIS_MODULE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	tty_drv->driver_name = driver_name;
 	tty_drv->name = tty_filename;
 
@@ -3321,6 +3329,10 @@ static int __init hso_init(void)
 		tty_drv->major = tty_major;
 
 	tty_drv->minor_start = 0;
+<<<<<<< HEAD
+=======
+	tty_drv->num = HSO_SERIAL_TTY_MINORS;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	tty_drv->type = TTY_DRIVER_TYPE_SERIAL;
 	tty_drv->subtype = SERIAL_TYPE_NORMAL;
 	tty_drv->flags = TTY_DRIVER_REAL_RAW | TTY_DRIVER_DYNAMIC_DEV;

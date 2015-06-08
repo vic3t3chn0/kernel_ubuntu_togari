@@ -172,6 +172,10 @@ static int empress_querycap(struct file *file, void  *priv,
 	strlcpy(cap->card, saa7134_boards[dev->board].name,
 		sizeof(cap->card));
 	sprintf(cap->bus_info, "PCI:%s", pci_name(dev->pci));
+<<<<<<< HEAD
+=======
+	cap->version = SAA7134_VERSION_CODE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	cap->capabilities =
 		V4L2_CAP_VIDEO_CAPTURE |
 		V4L2_CAP_READWRITE |

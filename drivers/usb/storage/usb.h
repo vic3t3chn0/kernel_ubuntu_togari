@@ -161,7 +161,10 @@ struct us_data {
 	/* hacks for READ CAPACITY bug handling */
 	int			use_last_sector_hacks;
 	int			last_sector_retries;
+<<<<<<< HEAD
 	int			sdev_autosuspend_delay;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /* Convert between us_data and the corresponding Scsi_Host */

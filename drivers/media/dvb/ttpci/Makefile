@@ -17,5 +17,10 @@ obj-$(CONFIG_DVB_BUDGET_CI) += budget-ci.o
 obj-$(CONFIG_DVB_BUDGET_PATCH) += budget-patch.o
 obj-$(CONFIG_DVB_AV7110) += dvb-ttpci.o
 
+<<<<<<< HEAD
 ccflags-y += -Idrivers/media/dvb/dvb-core/ -Idrivers/media/dvb/frontends/
 ccflags-y += -Idrivers/media/common/tuners
+=======
+EXTRA_CFLAGS += -Idrivers/media/dvb/dvb-core/ -Idrivers/media/dvb/frontends/
+EXTRA_CFLAGS += -Idrivers/media/common/tuners
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

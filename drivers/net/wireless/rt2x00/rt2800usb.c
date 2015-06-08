@@ -45,7 +45,11 @@
 /*
  * Allow hardware encryption to be disabled.
  */
+<<<<<<< HEAD
 static bool modparam_nohwcrypt;
+=======
+static int modparam_nohwcrypt;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param_named(nohwcrypt, modparam_nohwcrypt, bool, S_IRUGO);
 MODULE_PARM_DESC(nohwcrypt, "Disable hardware encryption.");
 
@@ -114,6 +118,7 @@ static bool rt2800usb_txstatus_pending(struct rt2x00_dev *rt2x00dev)
 	return false;
 }
 
+<<<<<<< HEAD
 static inline bool rt2800usb_entry_txstatus_timeout(struct queue_entry *entry)
 {
 	bool tout;
@@ -199,12 +204,38 @@ static void rt2800usb_async_read_tx_status(struct rt2x00_dev *rt2x00dev)
 	/* Read TX_STA_FIFO register after 500 us */
 	hrtimer_start(&rt2x00dev->txstatus_timer, ktime_set(0, 500000),
 		      HRTIMER_MODE_REL);
+=======
+static bool rt2800usb_tx_sta_fifo_read_completed(struct rt2x00_dev *rt2x00dev,
+						 int urb_status, u32 tx_status)
+{
+	if (urb_status) {
+		WARNING(rt2x00dev, "rt2x00usb_register_read_async failed: %d\n", urb_status);
+		return false;
+	}
+
+	/* try to read all TX_STA_FIFO entries before scheduling txdone_work */
+	if (rt2x00_get_field32(tx_status, TX_STA_FIFO_VALID)) {
+		if (!kfifo_put(&rt2x00dev->txstatus_fifo, &tx_status)) {
+			WARNING(rt2x00dev, "TX status FIFO overrun, "
+				"drop tx status report.\n");
+			queue_work(rt2x00dev->workqueue, &rt2x00dev->txdone_work);
+		} else
+			return true;
+	} else if (!kfifo_is_empty(&rt2x00dev->txstatus_fifo)) {
+		queue_work(rt2x00dev->workqueue, &rt2x00dev->txdone_work);
+	} else if (rt2800usb_txstatus_pending(rt2x00dev)) {
+		mod_timer(&rt2x00dev->txstatus_timer, jiffies + msecs_to_jiffies(2));
+	}
+
+	return false;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void rt2800usb_tx_dma_done(struct queue_entry *entry)
 {
 	struct rt2x00_dev *rt2x00dev = entry->queue->rt2x00dev;
 
+<<<<<<< HEAD
 	rt2800usb_async_read_tx_status(rt2x00dev);
 }
 
@@ -217,6 +248,18 @@ static enum hrtimer_restart rt2800usb_tx_sta_fifo_timeout(struct hrtimer *timer)
 				      rt2800usb_tx_sta_fifo_read_completed);
 
 	return HRTIMER_NORESTART;
+=======
+	rt2x00usb_register_read_async(rt2x00dev, TX_STA_FIFO,
+				      rt2800usb_tx_sta_fifo_read_completed);
+}
+
+static void rt2800usb_tx_sta_fifo_timeout(unsigned long data)
+{
+	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
+
+	rt2x00usb_register_read_async(rt2x00dev, TX_STA_FIFO,
+				      rt2800usb_tx_sta_fifo_read_completed);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -290,7 +333,13 @@ static int rt2800usb_init_registers(struct rt2x00_dev *rt2x00dev)
 	rt2x00usb_register_read(rt2x00dev, PBF_SYS_CTRL, &reg);
 	rt2x00usb_register_write(rt2x00dev, PBF_SYS_CTRL, reg & ~0x00002000);
 
+<<<<<<< HEAD
 	reg = 0;
+=======
+	rt2x00usb_register_write(rt2x00dev, PWR_PIN_CFG, 0x00000003);
+
+	rt2x00usb_register_read(rt2x00dev, MAC_SYS_CTRL, &reg);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	rt2x00_set_field32(&reg, MAC_SYS_CTRL_RESET_CSR, 1);
 	rt2x00_set_field32(&reg, MAC_SYS_CTRL_RESET_BBP, 1);
 	rt2x00usb_register_write(rt2x00dev, MAC_SYS_CTRL, reg);
@@ -462,10 +511,17 @@ static void rt2800usb_write_tx_desc(struct queue_entry *entry,
 	/*
 	 * The size of TXINFO_W0_USB_DMA_TX_PKT_LEN is
 	 * TXWI + 802.11 header + L2 pad + payload + pad,
+<<<<<<< HEAD
 	 * so need to decrease size of TXINFO.
 	 */
 	rt2x00_set_field32(&word, TXINFO_W0_USB_DMA_TX_PKT_LEN,
 			   roundup(entry->skb->len, 4) - TXINFO_DESC_SIZE);
+=======
+	 * so need to decrease size of TXINFO and USB end pad.
+	 */
+	rt2x00_set_field32(&word, TXINFO_W0_USB_DMA_TX_PKT_LEN,
+			   entry->skb->len - TXINFO_DESC_SIZE - 4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	rt2x00_set_field32(&word, TXINFO_W0_WIV,
 			   !test_bit(ENTRY_TXD_ENCRYPT_IV, &txdesc->flags));
 	rt2x00_set_field32(&word, TXINFO_W0_QSEL, 2);
@@ -483,6 +539,7 @@ static void rt2800usb_write_tx_desc(struct queue_entry *entry,
 	skbdesc->desc_len = TXINFO_DESC_SIZE + TXWI_DESC_SIZE;
 }
 
+<<<<<<< HEAD
 /*
  * TX data initialization
  */
@@ -491,10 +548,24 @@ static int rt2800usb_get_tx_data_len(struct queue_entry *entry)
 	/*
 	 * pad(1~3 bytes) is needed after each 802.11 payload.
 	 * USB end pad(4 bytes) is needed at each USB bulk out packet end.
+=======
+static void rt2800usb_write_tx_data(struct queue_entry *entry,
+					struct txentry_desc *txdesc)
+{
+	unsigned int len;
+	int err;
+
+	rt2800_write_tx_data(entry, txdesc);
+
+	/*
+	 * pad(1~3 bytes) is added after each 802.11 payload.
+	 * USB end pad(4 bytes) is added at each USB bulk out packet end.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 * TX frame format is :
 	 * | TXINFO | TXWI | 802.11 header | L2 pad | payload | pad | USB end pad |
 	 *                 |<------------- tx_pkt_len ------------->|
 	 */
+<<<<<<< HEAD
 
 	return roundup(entry->skb->len, 4) + 4;
 }
@@ -587,6 +658,37 @@ static void rt2800usb_txdone_nostatus(struct rt2x00_dev *rt2x00dev)
 {
 	struct data_queue *queue;
 	struct queue_entry *entry;
+=======
+	len = roundup(entry->skb->len, 4) + 4;
+	err = skb_padto(entry->skb, len);
+	if (unlikely(err)) {
+		WARNING(entry->queue->rt2x00dev, "TX SKB padding error, out of memory\n");
+		return;
+	}
+
+	entry->skb->len = len;
+}
+
+/*
+ * TX data initialization
+ */
+static int rt2800usb_get_tx_data_len(struct queue_entry *entry)
+{
+	return entry->skb->len;
+}
+
+/*
+ * TX control handlers
+ */
+static void rt2800usb_work_txdone(struct work_struct *work)
+{
+	struct rt2x00_dev *rt2x00dev =
+	    container_of(work, struct rt2x00_dev, txdone_work);
+	struct data_queue *queue;
+	struct queue_entry *entry;
+
+	rt2800_txdone(rt2x00dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Process any trailing TX status reports for IO failures,
@@ -605,12 +707,17 @@ static void rt2800usb_txdone_nostatus(struct rt2x00_dev *rt2x00dev)
 
 			if (test_bit(ENTRY_DATA_IO_FAILED, &entry->flags))
 				rt2x00lib_txdone_noinfo(entry, TXDONE_FAILURE);
+<<<<<<< HEAD
 			else if (rt2800usb_entry_txstatus_timeout(entry))
+=======
+			else if (rt2x00queue_status_timeout(entry))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				rt2x00lib_txdone_noinfo(entry, TXDONE_UNKNOWN);
 			else
 				break;
 		}
 	}
+<<<<<<< HEAD
 }
 
 static void rt2800usb_work_txdone(struct work_struct *work)
@@ -633,6 +740,16 @@ static void rt2800usb_work_txdone(struct work_struct *work)
 		if (rt2800usb_txstatus_pending(rt2x00dev))
 			rt2800usb_async_read_tx_status(rt2x00dev);
 	}
+=======
+
+	/*
+	 * The hw may delay sending the packet after DMA complete
+	 * if the medium is busy, thus the TX_STA_FIFO entry is
+	 * also delayed -> use a timer to retrieve it.
+	 */
+	if (rt2800usb_txstatus_pending(rt2x00dev))
+		mod_timer(&rt2x00dev->txstatus_timer, jiffies + msecs_to_jiffies(2));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -736,6 +853,10 @@ static int rt2800usb_validate_eeprom(struct rt2x00_dev *rt2x00dev)
 static int rt2800usb_probe_hw(struct rt2x00_dev *rt2x00dev)
 {
 	int retval;
+<<<<<<< HEAD
+=======
+	u32 reg;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Allocate eeprom data.
@@ -749,6 +870,17 @@ static int rt2800usb_probe_hw(struct rt2x00_dev *rt2x00dev)
 		return retval;
 
 	/*
+<<<<<<< HEAD
+=======
+	 * Enable rfkill polling by setting GPIO direction of the
+	 * rfkill switch GPIO pin correctly.
+	 */
+	rt2x00usb_register_read(rt2x00dev, GPIO_CTRL_CFG, &reg);
+	rt2x00_set_field32(&reg, GPIO_CTRL_CFG_GPIOD_BIT2, 1);
+	rt2x00usb_register_write(rt2x00dev, GPIO_CTRL_CFG, reg);
+
+	/*
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 * Initialize hw specifications.
 	 */
 	retval = rt2800_probe_hw_mode(rt2x00dev);
@@ -774,7 +906,13 @@ static int rt2800usb_probe_hw(struct rt2x00_dev *rt2x00dev)
 	__set_bit(REQUIRE_TXSTATUS_FIFO, &rt2x00dev->cap_flags);
 	__set_bit(REQUIRE_PS_AUTOWAKE, &rt2x00dev->cap_flags);
 
+<<<<<<< HEAD
 	rt2x00dev->txstatus_timer.function = rt2800usb_tx_sta_fifo_timeout,
+=======
+	setup_timer(&rt2x00dev->txstatus_timer,
+		    rt2800usb_tx_sta_fifo_timeout,
+		    (unsigned long) rt2x00dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Set the rssi offset.
@@ -804,8 +942,11 @@ static const struct ieee80211_ops rt2800usb_mac80211_ops = {
 	.get_stats		= rt2x00mac_get_stats,
 	.get_tkip_seq		= rt2800_get_tkip_seq,
 	.set_rts_threshold	= rt2800_set_rts_threshold,
+<<<<<<< HEAD
 	.sta_add		= rt2x00mac_sta_add,
 	.sta_remove		= rt2x00mac_sta_remove,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.bss_info_changed	= rt2x00mac_bss_info_changed,
 	.conf_tx		= rt2800_conf_tx,
 	.get_tsf		= rt2800_get_tsf,
@@ -814,7 +955,10 @@ static const struct ieee80211_ops rt2800usb_mac80211_ops = {
 	.flush			= rt2x00mac_flush,
 	.get_survey		= rt2800_get_survey,
 	.get_ringparam		= rt2x00mac_get_ringparam,
+<<<<<<< HEAD
 	.tx_frames_pending	= rt2x00mac_tx_frames_pending,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static const struct rt2800_ops rt2800usb_rt2800_ops = {
@@ -844,7 +988,10 @@ static const struct rt2x00lib_ops rt2800usb_rt2x00_ops = {
 	.reset_tuner		= rt2800_reset_tuner,
 	.link_tuner		= rt2800_link_tuner,
 	.gain_calibration	= rt2800_gain_calibration,
+<<<<<<< HEAD
 	.vco_calibration	= rt2800_vco_calibration,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.watchdog		= rt2800usb_watchdog,
 	.start_queue		= rt2800usb_start_queue,
 	.kick_queue		= rt2x00usb_kick_queue,
@@ -852,7 +999,11 @@ static const struct rt2x00lib_ops rt2800usb_rt2x00_ops = {
 	.flush_queue		= rt2x00usb_flush_queue,
 	.tx_dma_done		= rt2800usb_tx_dma_done,
 	.write_tx_desc		= rt2800usb_write_tx_desc,
+<<<<<<< HEAD
 	.write_tx_data		= rt2800_write_tx_data,
+=======
+	.write_tx_data		= rt2800usb_write_tx_data,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.write_beacon		= rt2800_write_beacon,
 	.clear_beacon		= rt2800_clear_beacon,
 	.get_tx_data_len	= rt2800usb_get_tx_data_len,
@@ -864,8 +1015,11 @@ static const struct rt2x00lib_ops rt2800usb_rt2x00_ops = {
 	.config_erp		= rt2800_config_erp,
 	.config_ant		= rt2800_config_ant,
 	.config			= rt2800_config,
+<<<<<<< HEAD
 	.sta_add		= rt2800_sta_add,
 	.sta_remove		= rt2800_sta_remove,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static const struct data_queue_desc rt2800usb_queue_rx = {
@@ -876,7 +1030,11 @@ static const struct data_queue_desc rt2800usb_queue_rx = {
 };
 
 static const struct data_queue_desc rt2800usb_queue_tx = {
+<<<<<<< HEAD
 	.entry_num		= 16,
+=======
+	.entry_num		= 64,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.data_size		= AGGREGATION_SIZE,
 	.desc_size		= TXINFO_DESC_SIZE + TXWI_DESC_SIZE,
 	.priv_size		= sizeof(struct queue_entry_priv_usb),
@@ -891,7 +1049,10 @@ static const struct data_queue_desc rt2800usb_queue_bcn = {
 
 static const struct rt2x00_ops rt2800usb_ops = {
 	.name			= KBUILD_MODNAME,
+<<<<<<< HEAD
 	.drv_data_size		= sizeof(struct rt2800_drv_data),
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.max_sta_intf		= 1,
 	.max_ap_intf		= 8,
 	.eeprom_size		= EEPROM_SIZE,
@@ -970,6 +1131,10 @@ static struct usb_device_id rt2800usb_device_table[] = {
 	{ USB_DEVICE(0x0411, 0x015d) },
 	{ USB_DEVICE(0x0411, 0x016f) },
 	{ USB_DEVICE(0x0411, 0x01a2) },
+<<<<<<< HEAD
+=======
+	{ USB_DEVICE(0x0411, 0x01ee) },
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Corega */
 	{ USB_DEVICE(0x07aa, 0x002f) },
 	{ USB_DEVICE(0x07aa, 0x003c) },
@@ -988,8 +1153,11 @@ static struct usb_device_id rt2800usb_device_table[] = {
 	{ USB_DEVICE(0x2001, 0x3c1b) },
 	/* Draytek */
 	{ USB_DEVICE(0x07fa, 0x7712) },
+<<<<<<< HEAD
 	/* DVICO */
 	{ USB_DEVICE(0x0fe9, 0xb307) },
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Edimax */
 	{ USB_DEVICE(0x7392, 0x7711) },
 	{ USB_DEVICE(0x7392, 0x7717) },
@@ -1165,6 +1333,7 @@ static struct usb_device_id rt2800usb_device_table[] = {
 	{ USB_DEVICE(0x5a57, 0x0284) },
 #endif
 #ifdef CONFIG_RT2800USB_RT53XX
+<<<<<<< HEAD
 	/* Alpha */
 	{ USB_DEVICE(0x2001, 0x3c15) },
 	{ USB_DEVICE(0x2001, 0x3c19) },
@@ -1185,6 +1354,14 @@ static struct usb_device_id rt2800usb_device_table[] = {
 	{ USB_DEVICE(0x148f, 0x5372) },
 	/* Unknown */
 	{ USB_DEVICE(0x04da, 0x23f6) },
+=======
+	/* Azurewave */
+	{ USB_DEVICE(0x13d3, 0x3329) },
+	{ USB_DEVICE(0x13d3, 0x3365) },
+	/* Ralink */
+	{ USB_DEVICE(0x148f, 0x5370) },
+	{ USB_DEVICE(0x148f, 0x5372) },
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 #ifdef CONFIG_RT2800USB_UNKNOWN
 	/*
@@ -1295,4 +1472,19 @@ static struct usb_driver rt2800usb_driver = {
 	.resume		= rt2x00usb_resume,
 };
 
+<<<<<<< HEAD
 module_usb_driver(rt2800usb_driver);
+=======
+static int __init rt2800usb_init(void)
+{
+	return usb_register(&rt2800usb_driver);
+}
+
+static void __exit rt2800usb_exit(void)
+{
+	usb_deregister(&rt2800usb_driver);
+}
+
+module_init(rt2800usb_init);
+module_exit(rt2800usb_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

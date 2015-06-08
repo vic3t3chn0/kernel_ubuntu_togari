@@ -291,7 +291,11 @@ static int __devexit sh_keysc_remove(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_PM_SLEEP
+=======
+#if CONFIG_PM_SLEEP
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int sh_keysc_suspend(struct device *dev)
 {
 	struct platform_device *pdev = to_platform_device(dev);
@@ -337,7 +341,23 @@ static struct platform_driver sh_keysc_device_driver = {
 		.pm	= &sh_keysc_dev_pm_ops,
 	}
 };
+<<<<<<< HEAD
 module_platform_driver(sh_keysc_device_driver);
+=======
+
+static int __init sh_keysc_init(void)
+{
+	return platform_driver_register(&sh_keysc_device_driver);
+}
+
+static void __exit sh_keysc_exit(void)
+{
+	platform_driver_unregister(&sh_keysc_device_driver);
+}
+
+module_init(sh_keysc_init);
+module_exit(sh_keysc_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Magnus Damm");
 MODULE_DESCRIPTION("SuperH KEYSC Keypad Driver");

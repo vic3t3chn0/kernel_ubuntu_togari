@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Simple synchronous userspace interface to SPI devices
+=======
+ * spidev.c -- simple synchronous userspace interface to SPI devices
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Copyright (C) 2006 SWAPP
  *	Andrea Paterniani <a.paterniani@swapp-eng.it>
@@ -83,7 +87,10 @@ struct spidev_data {
 	struct mutex		buf_lock;
 	unsigned		users;
 	u8			*buffer;
+<<<<<<< HEAD
 	u8			*bufferrx;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static LIST_HEAD(device_list);
@@ -93,6 +100,7 @@ static unsigned bufsiz = 4096;
 module_param(bufsiz, uint, S_IRUGO);
 MODULE_PARM_DESC(bufsiz, "data bytes in biggest supported SPI message");
 
+<<<<<<< HEAD
 /*
  * This can be used for testing the controller, given the busnum and the
  * cs required to use. If those parameters are used, spidev is
@@ -117,6 +125,8 @@ MODULE_PARM_DESC(spimode, "mode of the desired device");
 
 static struct spi_device *spi;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*-------------------------------------------------------------------------*/
 
 /*
@@ -246,7 +256,11 @@ static int spidev_message(struct spidev_data *spidev,
 	struct spi_transfer	*k_tmp;
 	struct spi_ioc_transfer *u_tmp;
 	unsigned		n, total;
+<<<<<<< HEAD
 	u8			*buf, *bufrx;
+=======
+	u8			*buf;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int			status = -EFAULT;
 
 	spi_message_init(&msg);
@@ -259,7 +273,10 @@ static int spidev_message(struct spidev_data *spidev,
 	 * to initialize a kernel version of the same transfer.
 	 */
 	buf = spidev->buffer;
+<<<<<<< HEAD
 	bufrx = spidev->bufferrx;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	total = 0;
 	for (n = n_xfers, k_tmp = k_xfers, u_tmp = u_xfers;
 			n;
@@ -273,7 +290,11 @@ static int spidev_message(struct spidev_data *spidev,
 		}
 
 		if (u_tmp->rx_buf) {
+<<<<<<< HEAD
 			k_tmp->rx_buf = bufrx;
+=======
+			k_tmp->rx_buf = buf;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			if (!access_ok(VERIFY_WRITE, (u8 __user *)
 						(uintptr_t) u_tmp->rx_buf,
 						u_tmp->len))
@@ -287,7 +308,10 @@ static int spidev_message(struct spidev_data *spidev,
 				goto done;
 		}
 		buf += k_tmp->len;
+<<<<<<< HEAD
 		bufrx += k_tmp->len;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		k_tmp->cs_change = !!u_tmp->cs_change;
 		k_tmp->bits_per_word = u_tmp->bits_per_word;
@@ -312,7 +336,11 @@ static int spidev_message(struct spidev_data *spidev,
 		goto done;
 
 	/* copy any rx data out of bounce buffer */
+<<<<<<< HEAD
 	buf = spidev->bufferrx;
+=======
+	buf = spidev->buffer;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (n = n_xfers, u_tmp = u_xfers; n; n--, u_tmp++) {
 		if (u_tmp->rx_buf) {
 			if (__copy_to_user((u8 __user *)
@@ -530,6 +558,7 @@ static int spidev_open(struct inode *inode, struct file *filp)
 				status = -ENOMEM;
 			}
 		}
+<<<<<<< HEAD
 		if (!spidev->bufferrx) {
 			spidev->bufferrx = kmalloc(bufsiz, GFP_KERNEL);
 			if (!spidev->bufferrx) {
@@ -539,6 +568,8 @@ static int spidev_open(struct inode *inode, struct file *filp)
 				status = -ENOMEM;
 			}
 		}
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (status == 0) {
 			spidev->users++;
 			filp->private_data = spidev;
@@ -567,8 +598,11 @@ static int spidev_release(struct inode *inode, struct file *filp)
 
 		kfree(spidev->buffer);
 		spidev->buffer = NULL;
+<<<<<<< HEAD
 		kfree(spidev->bufferrx);
 		spidev->bufferrx = NULL;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		/* ... after we unbound from the underlying device? */
 		spin_lock_irq(&spidev->spi_lock);
@@ -712,6 +746,7 @@ static int __init spidev_init(void)
 
 	spidev_class = class_create(THIS_MODULE, "spidev");
 	if (IS_ERR(spidev_class)) {
+<<<<<<< HEAD
 		status = PTR_ERR(spidev_class);
 		goto error_class;
 	}
@@ -754,16 +789,30 @@ error_register:
 	class_destroy(spidev_class);
 error_class:
 	unregister_chrdev(SPIDEV_MAJOR, spidev_spi_driver.driver.name);
+=======
+		unregister_chrdev(SPIDEV_MAJOR, spidev_spi_driver.driver.name);
+		return PTR_ERR(spidev_class);
+	}
+
+	status = spi_register_driver(&spidev_spi_driver);
+	if (status < 0) {
+		class_destroy(spidev_class);
+		unregister_chrdev(SPIDEV_MAJOR, spidev_spi_driver.driver.name);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return status;
 }
 module_init(spidev_init);
 
 static void __exit spidev_exit(void)
 {
+<<<<<<< HEAD
 	if (spi) {
 		spi_unregister_device(spi);
 		spi = NULL;
 	}
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spi_unregister_driver(&spidev_spi_driver);
 	class_destroy(spidev_class);
 	unregister_chrdev(SPIDEV_MAJOR, spidev_spi_driver.driver.name);

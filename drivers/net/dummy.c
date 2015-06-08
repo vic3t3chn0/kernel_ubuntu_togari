@@ -37,6 +37,10 @@
 #include <linux/rtnetlink.h>
 #include <net/rtnetlink.h>
 #include <linux/u64_stats_sync.h>
+<<<<<<< HEAD
+=======
+#include <linux/sched.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int numdummies = 1;
 
@@ -47,7 +51,10 @@ static int dummy_set_address(struct net_device *dev, void *p)
 	if (!is_valid_ether_addr(sa->sa_data))
 		return -EADDRNOTAVAIL;
 
+<<<<<<< HEAD
 	dev->addr_assign_type &= ~NET_ADDR_RANDOM;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	memcpy(dev->dev_addr, sa->sa_data, ETH_ALEN);
 	return 0;
 }
@@ -117,7 +124,11 @@ static const struct net_device_ops dummy_netdev_ops = {
 	.ndo_uninit		= dummy_dev_uninit,
 	.ndo_start_xmit		= dummy_xmit,
 	.ndo_validate_addr	= eth_validate_addr,
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= set_multicast_list,
+=======
+	.ndo_set_multicast_list = set_multicast_list,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.ndo_set_mac_address	= dummy_set_address,
 	.ndo_get_stats64	= dummy_get_stats64,
 };
@@ -135,8 +146,13 @@ static void dummy_setup(struct net_device *dev)
 	dev->flags |= IFF_NOARP;
 	dev->flags &= ~IFF_MULTICAST;
 	dev->features	|= NETIF_F_SG | NETIF_F_FRAGLIST | NETIF_F_TSO;
+<<<<<<< HEAD
 	dev->features	|= NETIF_F_HW_CSUM | NETIF_F_HIGHDMA | NETIF_F_LLTX;
 	eth_hw_addr_random(dev);
+=======
+	dev->features	|= NETIF_F_NO_CSUM | NETIF_F_HIGHDMA | NETIF_F_LLTX;
+	random_ether_addr(dev->dev_addr);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int dummy_validate(struct nlattr *tb[], struct nlattr *data[])
@@ -186,11 +202,25 @@ static int __init dummy_init_module(void)
 
 	rtnl_lock();
 	err = __rtnl_link_register(&dummy_link_ops);
+<<<<<<< HEAD
 
 	for (i = 0; i < numdummies && !err; i++)
 		err = dummy_init_one();
 	if (err < 0)
 		__rtnl_link_unregister(&dummy_link_ops);
+=======
+	if (err < 0)
+		goto out;
+
+	for (i = 0; i < numdummies && !err; i++) {
+		err = dummy_init_one();
+		cond_resched();
+	}
+	if (err < 0)
+		__rtnl_link_unregister(&dummy_link_ops);
+
+out:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	rtnl_unlock();
 
 	return err;

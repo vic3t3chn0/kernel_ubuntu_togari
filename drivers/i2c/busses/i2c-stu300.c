@@ -916,7 +916,11 @@ stu300_probe(struct platform_device *pdev)
 	}
 
 	dev->irq = platform_get_irq(pdev, 0);
+<<<<<<< HEAD
 	if (request_irq(dev->irq, stu300_irh, 0,
+=======
+	if (request_irq(dev->irq, stu300_irh, IRQF_DISABLED,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			NAME, dev)) {
 		ret = -EIO;
 		goto err_no_irq;

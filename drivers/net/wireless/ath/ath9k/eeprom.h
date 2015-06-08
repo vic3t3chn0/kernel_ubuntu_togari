@@ -104,11 +104,23 @@
 #define OLC_FOR_AR9287_10_LATER (AR_SREV_9287_11_OR_LATER(ah) && \
 				 ah->eep_ops->get_eeprom(ah, EEP_OL_PWRCTRL))
 
+<<<<<<< HEAD
+=======
+#define AR_EEPROM_RFSILENT_GPIO_SEL     0x001c
+#define AR_EEPROM_RFSILENT_GPIO_SEL_S   2
+#define AR_EEPROM_RFSILENT_POLARITY     0x0002
+#define AR_EEPROM_RFSILENT_POLARITY_S   1
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define EEP_RFSILENT_ENABLED        0x0001
 #define EEP_RFSILENT_ENABLED_S      0
 #define EEP_RFSILENT_POLARITY       0x0002
 #define EEP_RFSILENT_POLARITY_S     1
+<<<<<<< HEAD
 #define EEP_RFSILENT_GPIO_SEL       (AR_SREV_9462(ah) ? 0x00fc : 0x001c)
+=======
+#define EEP_RFSILENT_GPIO_SEL       0x001c
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define EEP_RFSILENT_GPIO_SEL_S     2
 
 #define AR5416_OPFLAGS_11A           0x01
@@ -220,6 +232,10 @@ enum eeprom_param {
 	EEP_MAC_MID,
 	EEP_MAC_LSW,
 	EEP_REG_0,
+<<<<<<< HEAD
+=======
+	EEP_REG_1,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	EEP_OP_CAP,
 	EEP_OP_MODE,
 	EEP_RF_SILENT,
@@ -247,10 +263,14 @@ enum eeprom_param {
 	EEP_PAPRD,
 	EEP_MODAL_VER,
 	EEP_ANT_DIV_CTL1,
+<<<<<<< HEAD
 	EEP_CHAIN_MASK_REDUCE,
 	EEP_ANTENNA_GAIN_2G,
 	EEP_ANTENNA_GAIN_5G,
 	EEP_QUICK_DROP
+=======
+	EEP_CHAIN_MASK_REDUCE
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 enum ar5416_rates {
@@ -646,15 +666,23 @@ struct eeprom_ops {
 	int (*check_eeprom)(struct ath_hw *hw);
 	u32 (*get_eeprom)(struct ath_hw *hw, enum eeprom_param param);
 	bool (*fill_eeprom)(struct ath_hw *hw);
+<<<<<<< HEAD
 	u32 (*dump_eeprom)(struct ath_hw *hw, bool dump_base_hdr, u8 *buf,
 			   u32 len, u32 size);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int (*get_eeprom_ver)(struct ath_hw *hw);
 	int (*get_eeprom_rev)(struct ath_hw *hw);
 	void (*set_board_values)(struct ath_hw *hw, struct ath9k_channel *chan);
 	void (*set_addac)(struct ath_hw *hw, struct ath9k_channel *chan);
 	void (*set_txpower)(struct ath_hw *hw, struct ath9k_channel *chan,
 			   u16 cfgCtl, u8 twiceAntennaReduction,
+<<<<<<< HEAD
 			   u8 powerLimit, bool test);
+=======
+			   u8 twiceMaxRegulatoryPower, u8 powerLimit,
+			   bool test);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u16 (*get_spur_channel)(struct ath_hw *ah, u16 i, bool is2GHz);
 };
 

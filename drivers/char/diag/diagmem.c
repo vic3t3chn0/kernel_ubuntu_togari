@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2008-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2008-2010, Code Aurora Forum. All rights reserved.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -15,16 +19,22 @@
 #include <linux/module.h>
 #include <linux/mempool.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
 #include <asm/atomic.h>
 #include "diagchar.h"
 #include "diagfwd_bridge.h"
 #include "diagfwd_hsic.h"
 
 mempool_t *diag_pools_array[NUM_MEMORY_POOLS];
+=======
+#include <linux/atomic.h>
+#include "diagchar.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 void *diagmem_alloc(struct diagchar_dev *driver, int size, int pool_type)
 {
 	void *buf = NULL;
+<<<<<<< HEAD
 	unsigned long flags;
 	int index;
 
@@ -34,21 +44,37 @@ void *diagmem_alloc(struct diagchar_dev *driver, int size, int pool_type)
 		if (driver->diagpool) {
 			if ((driver->count < driver->poolsize) &&
 				(size <= driver->itemsize)) {
+=======
+
+	if (pool_type == POOL_TYPE_COPY) {
+		if (driver->diagpool) {
+			mutex_lock(&driver->diagmem_mutex);
+			if (driver->count < driver->poolsize) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				atomic_add(1, (atomic_t *)&driver->count);
 				buf = mempool_alloc(driver->diagpool,
 								 GFP_ATOMIC);
 			}
+<<<<<<< HEAD
 		}
 	} else if (pool_type == POOL_TYPE_HDLC) {
 		if (driver->diag_hdlc_pool) {
 			if ((driver->count_hdlc_pool < driver->poolsize_hdlc) &&
 				(size <= driver->itemsize_hdlc)) {
+=======
+			mutex_unlock(&driver->diagmem_mutex);
+		}
+	} else if (pool_type == POOL_TYPE_HDLC) {
+		if (driver->diag_hdlc_pool) {
+			if (driver->count_hdlc_pool < driver->poolsize_hdlc) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				atomic_add(1,
 					 (atomic_t *)&driver->count_hdlc_pool);
 				buf = mempool_alloc(driver->diag_hdlc_pool,
 								 GFP_ATOMIC);
 			}
 		}
+<<<<<<< HEAD
 	} else if (pool_type == POOL_TYPE_USER) {
 		if (driver->diag_user_pool) {
 			if ((driver->count_user_pool < driver->poolsize_user) &&
@@ -64,12 +90,19 @@ void *diagmem_alloc(struct diagchar_dev *driver, int size, int pool_type)
 			if ((driver->count_write_struct_pool <
 			     driver->poolsize_write_struct) &&
 			     (size <= driver->itemsize_write_struct)) {
+=======
+	} else if (pool_type == POOL_TYPE_WRITE_STRUCT) {
+		if (driver->diag_write_struct_pool) {
+			if (driver->count_write_struct_pool <
+					 driver->poolsize_write_struct) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				atomic_add(1,
 				 (atomic_t *)&driver->count_write_struct_pool);
 				buf = mempool_alloc(
 				driver->diag_write_struct_pool, GFP_ATOMIC);
 			}
 		}
+<<<<<<< HEAD
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
 	} else if (pool_type == POOL_TYPE_HSIC ||
 				pool_type == POOL_TYPE_HSIC_2) {
@@ -103,30 +136,43 @@ void *diagmem_alloc(struct diagchar_dev *driver, int size, int pool_type)
 #endif
 	}
 	spin_unlock_irqrestore(&driver->diag_mem_lock, flags);
+=======
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return buf;
 }
 
 void diagmem_exit(struct diagchar_dev *driver, int pool_type)
 {
+<<<<<<< HEAD
 	int index;
 	unsigned long flags;
 	index = 0;
 
 	spin_lock_irqsave(&driver->diag_mem_lock, flags);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (driver->diagpool) {
 		if (driver->count == 0 && driver->ref_count == 0) {
 			mempool_destroy(driver->diagpool);
 			driver->diagpool = NULL;
+<<<<<<< HEAD
 		} else if (driver->ref_count == 0 && pool_type ==
 							POOL_TYPE_ALL) {
 			pr_err("diag: Unable to destroy COPY mempool");
 		}
 	}
+=======
+		} else if (driver->ref_count == 0 && pool_type == POOL_TYPE_ALL)
+			printk(KERN_ALERT "Unable to destroy COPY mempool");
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (driver->diag_hdlc_pool) {
 		if (driver->count_hdlc_pool == 0 && driver->ref_count == 0) {
 			mempool_destroy(driver->diag_hdlc_pool);
 			driver->diag_hdlc_pool = NULL;
+<<<<<<< HEAD
 		} else if (driver->ref_count == 0 && pool_type ==
 							POOL_TYPE_ALL) {
 			pr_err("diag: Unable to destroy HDLC mempool");
@@ -142,6 +188,11 @@ void diagmem_exit(struct diagchar_dev *driver, int pool_type)
 			pr_err("diag: Unable to destroy USER mempool");
 		}
 	}
+=======
+		} else if (driver->ref_count == 0 && pool_type == POOL_TYPE_ALL)
+			printk(KERN_ALERT "Unable to destroy HDLC mempool");
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (driver->diag_write_struct_pool) {
 		/* Free up struct pool ONLY if there are no outstanding
@@ -150,6 +201,7 @@ void diagmem_exit(struct diagchar_dev *driver, int pool_type)
 		 driver->count_hdlc_pool == 0 && driver->ref_count == 0) {
 			mempool_destroy(driver->diag_write_struct_pool);
 			driver->diag_write_struct_pool = NULL;
+<<<<<<< HEAD
 		} else if (driver->ref_count == 0 && pool_type ==
 							POOL_TYPE_ALL) {
 			pr_err("diag: Unable to destroy STRUCT mempool");
@@ -186,10 +238,16 @@ void diagmem_exit(struct diagchar_dev *driver, int pool_type)
 	}
 #endif
 	spin_unlock_irqrestore(&driver->diag_mem_lock, flags);
+=======
+		} else if (driver->ref_count == 0 && pool_type == POOL_TYPE_ALL)
+			printk(KERN_ALERT "Unable to destroy STRUCT mempool");
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 void diagmem_free(struct diagchar_dev *driver, void *buf, int pool_type)
 {
+<<<<<<< HEAD
 	int index;
 	unsigned long flags;
 
@@ -198,19 +256,27 @@ void diagmem_free(struct diagchar_dev *driver, void *buf, int pool_type)
 
 	spin_lock_irqsave(&driver->diag_mem_lock, flags);
 	index = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (pool_type == POOL_TYPE_COPY) {
 		if (driver->diagpool != NULL && driver->count > 0) {
 			mempool_free(buf, driver->diagpool);
 			atomic_add(-1, (atomic_t *)&driver->count);
 		} else
+<<<<<<< HEAD
 			pr_err("diag: Attempt to free up DIAG driver mempool memory which is already free %d",
 							driver->count);
+=======
+			pr_err("diag: Attempt to free up DIAG driver "
+	       "mempool memory which is already free %d", driver->count);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} else if (pool_type == POOL_TYPE_HDLC) {
 		if (driver->diag_hdlc_pool != NULL &&
 			 driver->count_hdlc_pool > 0) {
 			mempool_free(buf, driver->diag_hdlc_pool);
 			atomic_add(-1, (atomic_t *)&driver->count_hdlc_pool);
 		} else
+<<<<<<< HEAD
 			pr_err("diag: Attempt to free up DIAG driver HDLC mempool which is already free %d ",
 						driver->count_hdlc_pool);
 	} else if (pool_type == POOL_TYPE_USER) {
@@ -222,6 +288,10 @@ void diagmem_free(struct diagchar_dev *driver, void *buf, int pool_type)
 			pr_err("diag: Attempt to free up DIAG driver USER mempool which is already free %d ",
 						driver->count_user_pool);
 		}
+=======
+			pr_err("diag: Attempt to free up DIAG driver "
+	"HDLC mempool which is already free %d ", driver->count_hdlc_pool);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} else if (pool_type == POOL_TYPE_WRITE_STRUCT) {
 		if (driver->diag_write_struct_pool != NULL &&
 			 driver->count_write_struct_pool > 0) {
@@ -229,6 +299,7 @@ void diagmem_free(struct diagchar_dev *driver, void *buf, int pool_type)
 			atomic_add(-1,
 				 (atomic_t *)&driver->count_write_struct_pool);
 		} else
+<<<<<<< HEAD
 			pr_err("diag: Attempt to free up DIAG driver USB structure mempool which is already free %d ",
 					driver->count_write_struct_pool);
 #ifdef CONFIG_DIAGFWD_BRIDGE_CODE
@@ -262,11 +333,19 @@ void diagmem_free(struct diagchar_dev *driver, void *buf, int pool_type)
 
 	}
 	spin_unlock_irqrestore(&driver->diag_mem_lock, flags);
+=======
+			pr_err("diag: Attempt to free up DIAG driver "
+			   "USB structure mempool which is already free %d ",
+				    driver->count_write_struct_pool);
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	diagmem_exit(driver, pool_type);
 }
 
 void diagmem_init(struct diagchar_dev *driver)
 {
+<<<<<<< HEAD
 	spin_lock_init(&driver->diag_mem_lock);
 
 	if (driver->count == 0) {
@@ -341,4 +420,29 @@ void diagmem_hsic_init(int index)
 
 }
 #endif
+=======
+	mutex_init(&driver->diagmem_mutex);
+
+	if (driver->count == 0)
+		driver->diagpool = mempool_create_kmalloc_pool(
+					driver->poolsize, driver->itemsize);
+
+	if (driver->count_hdlc_pool == 0)
+		driver->diag_hdlc_pool = mempool_create_kmalloc_pool(
+				driver->poolsize_hdlc, driver->itemsize_hdlc);
+
+	if (driver->count_write_struct_pool == 0)
+		driver->diag_write_struct_pool = mempool_create_kmalloc_pool(
+		driver->poolsize_write_struct, driver->itemsize_write_struct);
+
+	if (!driver->diagpool)
+		printk(KERN_INFO "Cannot allocate diag mempool\n");
+
+	if (!driver->diag_hdlc_pool)
+		printk(KERN_INFO "Cannot allocate diag HDLC mempool\n");
+
+	if (!driver->diag_write_struct_pool)
+		printk(KERN_INFO "Cannot allocate diag USB struct mempool\n");
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 

@@ -437,7 +437,27 @@ static struct usb_driver sevseg_driver = {
 	.supports_autosuspend = 1,
 };
 
+<<<<<<< HEAD
 module_usb_driver(sevseg_driver);
+=======
+static int __init usb_sevseg_init(void)
+{
+	int rc = 0;
+
+	rc = usb_register(&sevseg_driver);
+	if (rc)
+		err("usb_register failed. Error number %d", rc);
+	return rc;
+}
+
+static void __exit usb_sevseg_exit(void)
+{
+	usb_deregister(&sevseg_driver);
+}
+
+module_init(usb_sevseg_init);
+module_exit(usb_sevseg_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);

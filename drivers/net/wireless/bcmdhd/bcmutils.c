@@ -20,7 +20,11 @@
  *      Notwithstanding the above, under no circumstances may you combine this
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
+<<<<<<< HEAD
  * $Id: bcmutils.c 312855 2012-02-04 02:01:18Z $
+=======
+ * $Id: bcmutils.c 367039 2012-11-06 11:31:19Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #include <bcm_cfg.h>
@@ -192,7 +196,11 @@ pktsegcnt_war(osl_t *osh, void *p)
 }
 
 uint8 * BCMFASTPATH
+<<<<<<< HEAD
 pktoffset(osl_t *osh, void *p,  uint offset)
+=======
+pktdataoffset(osl_t *osh, void *p,  uint offset)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	uint total = pkttotlen(osh, p);
 	uint pkt_off = 0, len = 0;
@@ -211,6 +219,28 @@ pktoffset(osl_t *osh, void *p,  uint offset)
 	return (uint8*) (pdata+pkt_off);
 }
 
+<<<<<<< HEAD
+=======
+
+/* given a offset in pdata, find the pkt seg hdr */
+void *
+pktoffset(osl_t *osh, void *p,  uint offset)
+{
+	uint total = pkttotlen(osh, p);
+	uint len = 0;
+
+	if (offset > total)
+		return NULL;
+
+	for (; p; p = PKTNEXT(osh, p)) {
+		len += PKTLEN(osh, p);
+		if (len > offset)
+			break;
+	}
+	return p;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * osl multiple-precedence packet queue
  * hi_prec is always >= the number of the highest non-empty precedence
@@ -324,6 +354,47 @@ pktq_pdeq_prev(struct pktq *pq, int prec, void *prev_p)
 }
 
 void * BCMFASTPATH
+<<<<<<< HEAD
+=======
+pktq_pdeq_with_fn(struct pktq *pq, int prec, ifpkt_cb_t fn, int arg)
+{
+	struct pktq_prec *q;
+	void *p, *prev = NULL;
+
+	ASSERT(prec >= 0 && prec < pq->num_prec);
+
+	q = &pq->q[prec];
+	p = q->head;
+
+	while (p) {
+		if (fn == NULL || (*fn)(p, arg)) {
+			break;
+		} else {
+			prev = p;
+			p = PKTLINK(p);
+		}
+	}
+	if (p == NULL)
+		return NULL;
+
+	if (prev == NULL) {
+		if ((q->head = PKTLINK(p)) == NULL)
+			q->tail = NULL;
+	} else {
+		PKTSETLINK(prev, PKTLINK(p));
+	}
+
+	q->len--;
+
+	pq->len--;
+
+	PKTSETLINK(p, NULL);
+
+	return p;
+}
+
+void * BCMFASTPATH
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 pktq_pdeq_tail(struct pktq *pq, int prec)
 {
 	struct pktq_prec *q;
@@ -654,6 +725,10 @@ pktq_mdeq(struct pktq *pq, uint prec_bmp, int *prec_out)
 
 #endif /* BCMDRIVER */
 
+<<<<<<< HEAD
+=======
+#if !defined(BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 const unsigned char bcm_ctype[] = {
 
 	_BCM_C,_BCM_C,_BCM_C,_BCM_C,_BCM_C,_BCM_C,_BCM_C,_BCM_C,			/* 0-7 */
@@ -967,6 +1042,10 @@ bcm_ether_atoe(const char *p, struct ether_addr *ea)
 
 	return (i == 6);
 }
+<<<<<<< HEAD
+=======
+#endif	/* !BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 #if defined(CONFIG_USBRNDIS_RETAIL) || defined(NDIS_MINIPORT_DRIVER)
@@ -1078,7 +1157,11 @@ pktsetprio(void *pkt, bool update_vtag)
 
 	eh = (struct ether_header *) pktdata;
 
+<<<<<<< HEAD
 	if (ntoh16(eh->ether_type) == ETHER_TYPE_8021Q) {
+=======
+	if (eh->ether_type == hton16(ETHER_TYPE_8021Q)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		uint16 vlan_tag;
 		int vlan_prio, dscp_prio = 0;
 
@@ -1087,7 +1170,11 @@ pktsetprio(void *pkt, bool update_vtag)
 		vlan_tag = ntoh16(evh->vlan_tag);
 		vlan_prio = (int) (vlan_tag >> VLAN_PRI_SHIFT) & VLAN_PRI_MASK;
 
+<<<<<<< HEAD
 		if (ntoh16(evh->ether_type) == ETHER_TYPE_IP) {
+=======
+		if (evh->ether_type == hton16(ETHER_TYPE_IP)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			uint8 *ip_body = pktdata + sizeof(struct ethervlan_header);
 			uint8 tos_tc = IP_TOS46(ip_body);
 			dscp_prio = (int)(tos_tc >> IPV4_TOS_PREC_SHIFT);
@@ -1114,7 +1201,11 @@ pktsetprio(void *pkt, bool update_vtag)
 			evh->vlan_tag = hton16(vlan_tag);
 			rc |= PKTPRIO_UPD;
 		}
+<<<<<<< HEAD
 	} else if (ntoh16(eh->ether_type) == ETHER_TYPE_IP) {
+=======
+	} else if (eh->ether_type == hton16(ETHER_TYPE_IP)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		uint8 *ip_body = pktdata + sizeof(struct ether_header);
 		uint8 tos_tc = IP_TOS46(ip_body);
 		priority = (int)(tos_tc >> IPV4_TOS_PREC_SHIFT);
@@ -1223,6 +1314,10 @@ bcm_iovar_lencheck(const bcm_iovar_t *vi, void *arg, int len, bool set)
 #endif	/* BCMDRIVER */
 
 
+<<<<<<< HEAD
+=======
+#if !defined(BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*******************************************************************************
  * crc8
  *
@@ -1579,10 +1674,42 @@ bcm_parse_ordered_tlvs(void *buf, int buflen, uint key)
 	}
 	return NULL;
 }
+<<<<<<< HEAD
+=======
+#endif	/* !BCMROMOFFLOAD_EXCLUDE_BCMUTILS_FUNCS */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #if defined(WLMSG_PRHDRS) || defined(WLMSG_PRPKT) || defined(WLMSG_ASSOC) || \
 	defined(DHD_DEBUG)
 int
+<<<<<<< HEAD
+=======
+bcm_format_field(const bcm_bit_desc_ex_t *bd, uint32 flags, char* buf, int len)
+{
+	int i, slen = 0;
+	uint32 bit, mask;
+	const char *name;
+	mask = bd->mask;
+	if (len < 2 || !buf)
+		return 0;
+
+	buf[0] = '\0';
+
+	for (i = 0;  (name = bd->bitfield[i].name) != NULL; i++) {
+		bit = bd->bitfield[i].bit;
+		if ((flags & mask) == bit) {
+			if (len > (int)strlen(name)) {
+				slen = strlen(name);
+				strncpy(buf, name, slen+1);
+			}
+			break;
+		}
+	}
+	return slen;
+}
+
+int
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 bcm_format_flags(const bcm_bit_desc_t *bd, uint32 flags, char* buf, int len)
 {
 	int i;
@@ -1695,10 +1822,23 @@ static const char *crypto_algo_names[] = {
 	"AES_CCM",
 	"AES_OCB_MSDU",
 	"AES_OCB_MPDU",
+<<<<<<< HEAD
+=======
+#ifdef BCMCCX
+	"CKIP",
+	"CKIP_MMH",
+	"WEP_MMH",
+	"NALG"
+#else
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	"NALG"
 	"UNDEF",
 	"UNDEF",
 	"UNDEF",
+<<<<<<< HEAD
+=======
+#endif /* BCMCCX */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef BCMWAPI_WPI
 	"WAPI",
 #endif /* BCMWAPI_WPI */

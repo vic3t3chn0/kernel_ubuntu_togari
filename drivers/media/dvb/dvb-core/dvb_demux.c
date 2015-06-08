@@ -5,8 +5,11 @@
  *		       & Marcus Metzler <marcus@convergence.de>
  *			 for convergence integrated media GmbH
  *
+<<<<<<< HEAD
  * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
  *
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License
  * as published by the Free Software Foundation; either version 2.1
@@ -52,6 +55,7 @@ module_param(dvb_demux_speedcheck, int, 0644);
 MODULE_PARM_DESC(dvb_demux_speedcheck,
 		"enable transport stream speed check");
 
+<<<<<<< HEAD
 /* counter advancing for each new dvb-demux device */
 static int dvb_demux_index;
 
@@ -60,11 +64,14 @@ module_param(dvb_demux_performancecheck, int, 0644);
 MODULE_PARM_DESC(dvb_demux_performancecheck,
 		"enable transport stream performance check, reported through debugfs");
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define dprintk_tscheck(x...) do {                              \
 		if (dvb_demux_tscheck && printk_ratelimit())    \
 			printk(x);                              \
 	} while (0)
 
+<<<<<<< HEAD
 static const struct dvb_dmx_video_patterns mpeg2_seq_hdr = {
 	{0x00, 0x00, 0x01, 0xB3},
 	{0xFF, 0xFF, 0xFF, 0xFF},
@@ -164,6 +171,8 @@ static const struct dvb_dmx_video_patterns vc1_frame = {
 };
 
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /******************************************************************************
  * static inlined helper functions
  ******************************************************************************/
@@ -178,11 +187,14 @@ static inline u16 ts_pid(const u8 *buf)
 	return ((buf[1] & 0x1f) << 8) + buf[2];
 }
 
+<<<<<<< HEAD
 static inline u16 ts_scrambling_ctrl(const u8 *buf)
 {
 	return (buf[3] >> 6) & 0x3;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline u8 payload(const u8 *tsp)
 {
 	if (!(tsp[3] & 0x10))	// no payload?
@@ -209,6 +221,7 @@ static void dvb_dmx_memcopy(struct dvb_demux_feed *f, u8 *d, const u8 *s,
 	memcpy(d, s, len);
 }
 
+<<<<<<< HEAD
 static u32 dvb_dmx_calc_time_delta(struct timespec past_time)
 {
 	struct timespec curr_time, delta_time;
@@ -222,10 +235,13 @@ static u32 dvb_dmx_calc_time_delta(struct timespec past_time)
 	return (u32)delta_time_us;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /******************************************************************************
  * Software filter functions
  ******************************************************************************/
 
+<<<<<<< HEAD
 /*
  * Check if two patterns are identical, taking mask into consideration.
  * @pattern1: the first byte pattern to compare.
@@ -516,19 +532,27 @@ static int dvb_dmx_check_pes_end(struct dvb_demux_feed *feed)
 	return feed->data_ready_cb.ts(&feed->feed.ts, &data);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline int dvb_dmx_swfilter_payload(struct dvb_demux_feed *feed,
 					   const u8 *buf)
 {
 	int count = payload(buf);
 	int p;
+<<<<<<< HEAD
 	int ccok;
 	u8 cc;
+=======
+	//int ccok;
+	//u8 cc;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (count == 0)
 		return -1;
 
 	p = 188 - count;
 
+<<<<<<< HEAD
 	cc = buf[3] & 0x0f;
 	if (feed->first_cc)
 		ccok = 1;
@@ -554,6 +578,18 @@ static inline int dvb_dmx_swfilter_payload(struct dvb_demux_feed *feed,
 	feed->pes_ts_packets_num++;
 	feed->pes_cont_err_counter += !ccok;
 	feed->pes_tei_counter += (buf[1] & 0x80) ? 1 : 0;
+=======
+	/*
+	cc = buf[3] & 0x0f;
+	ccok = ((feed->cc + 1) & 0x0f) == cc;
+	feed->cc = cc;
+	if (!ccok)
+		printk("missed packet!\n");
+	*/
+
+	if (buf[1] & 0x40)	// PUSI ?
+		feed->peslen = 0xfffa;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	feed->peslen += count;
 
@@ -596,6 +632,7 @@ static inline int dvb_dmx_swfilter_section_feed(struct dvb_demux_feed *feed)
 		return 0;
 
 	if (sec->check_crc) {
+<<<<<<< HEAD
 		struct timespec pre_crc_time;
 
 		if (dvb_demux_performancecheck)
@@ -618,6 +655,12 @@ static inline int dvb_dmx_swfilter_section_feed(struct dvb_demux_feed *feed)
 		if (dvb_demux_performancecheck)
 			demux->total_crc_time +=
 				dvb_dmx_calc_time_delta(pre_crc_time);
+=======
+		section_syntax_indicator = ((sec->secbuf[1] & 0x80) != 0);
+		if (section_syntax_indicator &&
+		    demux->check_crc32(feed, sec->secbuf, sec->seclen))
+			return -1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	do {
@@ -747,6 +790,7 @@ static int dvb_dmx_swfilter_section_packet(struct dvb_demux_feed *feed,
 	p = 188 - count;	/* payload start */
 
 	cc = buf[3] & 0x0f;
+<<<<<<< HEAD
 	if (feed->first_cc)
 		ccok = 1;
 	else
@@ -757,6 +801,9 @@ static int dvb_dmx_swfilter_section_packet(struct dvb_demux_feed *feed,
 		return -EINVAL;
 
 	feed->first_cc = 0;
+=======
+	ccok = ((feed->cc + 1) & 0x0f) == cc;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	feed->cc = cc;
 
 	if (buf[3] & 0x20) {
@@ -810,6 +857,7 @@ static int dvb_dmx_swfilter_section_packet(struct dvb_demux_feed *feed,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int dvb_demux_save_idx_event(struct dvb_demux_feed *feed,
 		struct dmx_index_event_info *idx_event,
 		int traverse_from_tail)
@@ -1616,6 +1664,167 @@ static inline void _dvb_dmx_swfilter(struct dvb_demux *demux, const u8 *buf,
 
 	demux->sw_filter_abort = 0;
 	dvb_dmx_configure_decoder_fullness(demux, 1);
+=======
+static inline void dvb_dmx_swfilter_packet_type(struct dvb_demux_feed *feed,
+						const u8 *buf)
+{
+	switch (feed->type) {
+	case DMX_TYPE_TS:
+		if (!feed->feed.ts.is_filtering)
+			break;
+		if (feed->ts_type & TS_PACKET) {
+			if (feed->ts_type & TS_PAYLOAD_ONLY)
+				dvb_dmx_swfilter_payload(feed, buf);
+			else
+				feed->cb.ts(buf, 188, NULL, 0, &feed->feed.ts,
+					    DMX_OK);
+		}
+		if (feed->ts_type & TS_DECODER)
+			if (feed->demux->write_to_decoder)
+				feed->demux->write_to_decoder(feed, buf, 188);
+		break;
+
+	case DMX_TYPE_SEC:
+		if (!feed->feed.sec.is_filtering)
+			break;
+		if (dvb_dmx_swfilter_section_packet(feed, buf) < 0)
+			feed->feed.sec.seclen = feed->feed.sec.secbufp = 0;
+		break;
+
+	default:
+		break;
+	}
+}
+
+#define DVR_FEED(f)							\
+	(((f)->type == DMX_TYPE_TS) &&					\
+	((f)->feed.ts.is_filtering) &&					\
+	(((f)->ts_type & (TS_PACKET | TS_DEMUX)) == TS_PACKET))
+
+static void dvb_dmx_swfilter_packet(struct dvb_demux *demux, const u8 *buf)
+{
+	struct dvb_demux_feed *feed;
+	u16 pid = ts_pid(buf);
+	int dvr_done = 0;
+
+	if (dvb_demux_speedcheck) {
+		struct timespec cur_time, delta_time;
+		u64 speed_bytes, speed_timedelta;
+
+		demux->speed_pkts_cnt++;
+
+		/* show speed every SPEED_PKTS_INTERVAL packets */
+		if (!(demux->speed_pkts_cnt % SPEED_PKTS_INTERVAL)) {
+			cur_time = current_kernel_time();
+
+			if (demux->speed_last_time.tv_sec != 0 &&
+					demux->speed_last_time.tv_nsec != 0) {
+				delta_time = timespec_sub(cur_time,
+						demux->speed_last_time);
+				speed_bytes = (u64)demux->speed_pkts_cnt
+					* 188 * 8;
+				/* convert to 1024 basis */
+				speed_bytes = 1000 * div64_u64(speed_bytes,
+						1024);
+				speed_timedelta =
+					(u64)timespec_to_ns(&delta_time);
+				speed_timedelta = div64_u64(speed_timedelta,
+						1000000); /* nsec -> usec */
+				printk(KERN_INFO "TS speed %llu Kbits/sec \n",
+						div64_u64(speed_bytes,
+							speed_timedelta));
+			};
+
+			demux->speed_last_time = cur_time;
+			demux->speed_pkts_cnt = 0;
+		};
+	};
+
+	if (demux->cnt_storage && dvb_demux_tscheck) {
+		/* check pkt counter */
+		if (pid < MAX_PID) {
+			if (buf[1] & 0x80)
+				dprintk_tscheck("TEI detected. "
+						"PID=0x%x data1=0x%x\n",
+						pid, buf[1]);
+
+			if ((buf[3] & 0xf) != demux->cnt_storage[pid])
+				dprintk_tscheck("TS packet counter mismatch. "
+						"PID=0x%x expected 0x%x "
+						"got 0x%x\n",
+						pid, demux->cnt_storage[pid],
+						buf[3] & 0xf);
+
+			demux->cnt_storage[pid] = ((buf[3] & 0xf) + 1)&0xf;
+		};
+		/* end check */
+	};
+
+	list_for_each_entry(feed, &demux->feed_list, list_head) {
+		if ((feed->pid != pid) && (feed->pid != 0x2000))
+			continue;
+
+		/* copy each packet only once to the dvr device, even
+		 * if a PID is in multiple filters (e.g. video + PCR) */
+		if ((DVR_FEED(feed)) && (dvr_done++))
+			continue;
+
+		if (feed->pid == pid)
+			dvb_dmx_swfilter_packet_type(feed, buf);
+		else if (feed->pid == 0x2000)
+			feed->cb.ts(buf, 188, NULL, 0, &feed->feed.ts, DMX_OK);
+	}
+}
+
+void dvb_dmx_swfilter_packets(struct dvb_demux *demux, const u8 *buf,
+			      size_t count)
+{
+	spin_lock(&demux->lock);
+
+	while (count--) {
+		if (buf[0] == 0x47)
+			dvb_dmx_swfilter_packet(demux, buf);
+		buf += 188;
+	}
+
+	spin_unlock(&demux->lock);
+}
+
+EXPORT_SYMBOL(dvb_dmx_swfilter_packets);
+
+static inline int find_next_packet(const u8 *buf, int pos, size_t count,
+				   const int pktsize)
+{
+	int start = pos, lost;
+
+	while (pos < count) {
+		if (buf[pos] == 0x47 ||
+		    (pktsize == 204 && buf[pos] == 0xB8))
+			break;
+		pos++;
+	}
+
+	lost = pos - start;
+	if (lost) {
+		/* This garbage is part of a valid packet? */
+		int backtrack = pos - pktsize;
+		if (backtrack >= 0 && (buf[backtrack] == 0x47 ||
+		    (pktsize == 204 && buf[backtrack] == 0xB8)))
+			return backtrack;
+	}
+
+	return pos;
+}
+
+/* Filter all pktsize= 188 or 204 sized packets and skip garbage. */
+static inline void _dvb_dmx_swfilter(struct dvb_demux *demux, const u8 *buf,
+		size_t count, const int pktsize)
+{
+	int p = 0, i, j;
+	const u8 *q;
+
+	spin_lock(&demux->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (demux->tsbufp) { /* tsbuf[0] is now 0x47. */
 		i = demux->tsbufp;
@@ -1625,6 +1834,7 @@ static inline void _dvb_dmx_swfilter(struct dvb_demux *demux, const u8 *buf,
 			demux->tsbufp += count;
 			goto bailout;
 		}
+<<<<<<< HEAD
 		memcpy(&demux->tsbuf[i], buf, j);
 
 		if (pktsize == 192) {
@@ -2036,6 +2246,87 @@ static void dvb_dmx_free_rec_info(struct dmx_ts_feed *ts_feed)
 	feed->rec_info->ref_count--;
 
 	return;
+=======
+		memcpy(&demux->tsbuf[i], buf, j);
+		if (demux->tsbuf[0] == 0x47) /* double check */
+			dvb_dmx_swfilter_packet(demux, demux->tsbuf);
+		demux->tsbufp = 0;
+		p += j;
+	}
+
+	while (1) {
+		p = find_next_packet(buf, p, count, pktsize);
+		if (p >= count)
+			break;
+		if (count - p < pktsize)
+			break;
+
+		q = &buf[p];
+
+		if (pktsize == 204 && (*q == 0xB8)) {
+			memcpy(demux->tsbuf, q, 188);
+			demux->tsbuf[0] = 0x47;
+			q = demux->tsbuf;
+		}
+		dvb_dmx_swfilter_packet(demux, q);
+		p += pktsize;
+	}
+
+	i = count - p;
+	if (i) {
+		memcpy(demux->tsbuf, &buf[p], i);
+		demux->tsbufp = i;
+		if (pktsize == 204 && demux->tsbuf[0] == 0xB8)
+			demux->tsbuf[0] = 0x47;
+	}
+
+bailout:
+	spin_unlock(&demux->lock);
+}
+
+void dvb_dmx_swfilter(struct dvb_demux *demux, const u8 *buf, size_t count)
+{
+	_dvb_dmx_swfilter(demux, buf, count, 188);
+}
+EXPORT_SYMBOL(dvb_dmx_swfilter);
+
+void dvb_dmx_swfilter_204(struct dvb_demux *demux, const u8 *buf, size_t count)
+{
+	_dvb_dmx_swfilter(demux, buf, count, 204);
+}
+EXPORT_SYMBOL(dvb_dmx_swfilter_204);
+
+static struct dvb_demux_filter *dvb_dmx_filter_alloc(struct dvb_demux *demux)
+{
+	int i;
+
+	for (i = 0; i < demux->filternum; i++)
+		if (demux->filter[i].state == DMX_STATE_FREE)
+			break;
+
+	if (i == demux->filternum)
+		return NULL;
+
+	demux->filter[i].state = DMX_STATE_ALLOCATED;
+
+	return &demux->filter[i];
+}
+
+static struct dvb_demux_feed *dvb_dmx_feed_alloc(struct dvb_demux *demux)
+{
+	int i;
+
+	for (i = 0; i < demux->feednum; i++)
+		if (demux->feed[i].state == DMX_STATE_FREE)
+			break;
+
+	if (i == demux->feednum)
+		return NULL;
+
+	demux->feed[i].state = DMX_STATE_ALLOCATED;
+
+	return &demux->feed[i];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int dvb_demux_feed_find(struct dvb_demux_feed *feed)
@@ -2100,6 +2391,7 @@ static int dmx_ts_feed_set(struct dmx_ts_feed *ts_feed, u16 pid, int ts_type,
 		    demux->pesfilter[pes_type] != feed) {
 			mutex_unlock(&demux->mutex);
 			return -EINVAL;
+<<<<<<< HEAD
 		}
 
 		demux->pesfilter[pes_type] = feed;
@@ -2366,10 +2658,41 @@ static int dmx_ts_set_idx_params(struct dmx_ts_feed *ts_feed,
 	}
 
 	mutex_unlock(&dvbdmx->mutex);
+=======
+		}
+
+		demux->pesfilter[pes_type] = feed;
+		demux->pids[pes_type] = pid;
+	}
+
+	dvb_demux_feed_add(feed);
+
+	feed->pid = pid;
+	feed->buffer_size = circular_buffer_size;
+	feed->timeout = timeout;
+	feed->ts_type = ts_type;
+	feed->pes_type = pes_type;
+
+	if (feed->buffer_size) {
+#ifdef NOBUFS
+		feed->buffer = NULL;
+#else
+		feed->buffer = vmalloc(feed->buffer_size);
+		if (!feed->buffer) {
+			mutex_unlock(&demux->mutex);
+			return -ENOMEM;
+		}
+#endif
+	}
+
+	feed->state = DMX_STATE_READY;
+	mutex_unlock(&demux->mutex);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
 
+<<<<<<< HEAD
 static int dvbdmx_ts_feed_oob_cmd(struct dmx_ts_feed *ts_feed,
 		struct dmx_oob_command *cmd)
 {
@@ -2480,6 +2803,68 @@ static int dmx_ts_set_tsp_out_format(
 	feed->tsp_out_format = tsp_format;
 	mutex_unlock(&dvbdmx->mutex);
 	return 0;
+=======
+static int dmx_ts_feed_start_filtering(struct dmx_ts_feed *ts_feed)
+{
+	struct dvb_demux_feed *feed = (struct dvb_demux_feed *)ts_feed;
+	struct dvb_demux *demux = feed->demux;
+	int ret;
+
+	if (mutex_lock_interruptible(&demux->mutex))
+		return -ERESTARTSYS;
+
+	if (feed->state != DMX_STATE_READY || feed->type != DMX_TYPE_TS) {
+		mutex_unlock(&demux->mutex);
+		return -EINVAL;
+	}
+
+	if (!demux->start_feed) {
+		mutex_unlock(&demux->mutex);
+		return -ENODEV;
+	}
+
+	if ((ret = demux->start_feed(feed)) < 0) {
+		mutex_unlock(&demux->mutex);
+		return ret;
+	}
+
+	spin_lock_irq(&demux->lock);
+	ts_feed->is_filtering = 1;
+	feed->state = DMX_STATE_GO;
+	spin_unlock_irq(&demux->lock);
+	mutex_unlock(&demux->mutex);
+
+	return 0;
+}
+
+static int dmx_ts_feed_stop_filtering(struct dmx_ts_feed *ts_feed)
+{
+	struct dvb_demux_feed *feed = (struct dvb_demux_feed *)ts_feed;
+	struct dvb_demux *demux = feed->demux;
+	int ret;
+
+	mutex_lock(&demux->mutex);
+
+	if (feed->state < DMX_STATE_GO) {
+		mutex_unlock(&demux->mutex);
+		return -EINVAL;
+	}
+
+	if (!demux->stop_feed) {
+		mutex_unlock(&demux->mutex);
+		return -ENODEV;
+	}
+
+	ret = demux->stop_feed(feed);
+
+	spin_lock_irq(&demux->lock);
+	ts_feed->is_filtering = 0;
+	feed->state = DMX_STATE_ALLOCATED;
+	spin_unlock_irq(&demux->lock);
+	mutex_unlock(&demux->mutex);
+
+	return ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int dvbdmx_allocate_ts_feed(struct dmx_demux *dmx,
@@ -2501,6 +2886,7 @@ static int dvbdmx_allocate_ts_feed(struct dmx_demux *dmx,
 	feed->cb.ts = callback;
 	feed->demux = demux;
 	feed->pid = 0xffff;
+<<<<<<< HEAD
 	feed->peslen = 0;
 	feed->pes_tei_counter = 0;
 	feed->pes_ts_packets_num = 0;
@@ -2516,6 +2902,10 @@ static int dvbdmx_allocate_ts_feed(struct dmx_demux *dmx,
 	 * first PES differently.
 	 */
 	feed->pusi_seen = 1;
+=======
+	feed->peslen = 0xfffa;
+	feed->buffer = NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	(*ts_feed) = &feed->feed.ts;
 	(*ts_feed)->parent = dmx;
@@ -2524,6 +2914,7 @@ static int dvbdmx_allocate_ts_feed(struct dmx_demux *dmx,
 	(*ts_feed)->start_filtering = dmx_ts_feed_start_filtering;
 	(*ts_feed)->stop_filtering = dmx_ts_feed_stop_filtering;
 	(*ts_feed)->set = dmx_ts_feed_set;
+<<<<<<< HEAD
 	(*ts_feed)->set_video_codec = dmx_ts_set_video_codec;
 	(*ts_feed)->set_idx_params = dmx_ts_set_idx_params;
 	(*ts_feed)->set_tsp_out_format = dmx_ts_set_tsp_out_format;
@@ -2539,6 +2930,8 @@ static int dvbdmx_allocate_ts_feed(struct dmx_demux *dmx,
 	(*ts_feed)->ts_insertion_terminate = NULL;
 	(*ts_feed)->ts_insertion_insert_buffer =
 		dvbdmx_ts_insertion_insert_buffer;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!(feed->filter = dvb_dmx_filter_alloc(demux))) {
 		feed->state = DMX_STATE_FREE;
@@ -2700,8 +3093,11 @@ static int dmx_section_feed_start_filtering(struct dmx_section_feed *feed)
 	dvbdmxfeed->feed.sec.secbuf = dvbdmxfeed->feed.sec.secbuf_base;
 	dvbdmxfeed->feed.sec.secbufp = 0;
 	dvbdmxfeed->feed.sec.seclen = 0;
+<<<<<<< HEAD
 	dvbdmxfeed->first_cc = 1;
 	dvbdmxfeed->scrambling_bits = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!dvbdmx->start_feed) {
 		mutex_unlock(&dvbdmx->mutex);
@@ -2748,6 +3144,7 @@ static int dmx_section_feed_stop_filtering(struct dmx_section_feed *feed)
 	return ret;
 }
 
+<<<<<<< HEAD
 
 static int dmx_section_feed_data_ready_cb(struct dmx_section_feed *feed,
 				dmx_section_data_ready_cb callback)
@@ -2808,6 +3205,8 @@ static int dmx_section_set_cipher_ops(struct dmx_section_feed *feed,
 	return ret;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int dmx_section_feed_release_filter(struct dmx_section_feed *feed,
 					   struct dmx_section_filter *filter)
 {
@@ -2842,6 +3241,7 @@ static int dmx_section_feed_release_filter(struct dmx_section_feed *feed,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int dvbdmx_section_feed_oob_cmd(struct dmx_section_feed *section_feed,
 		struct dmx_oob_command *cmd)
 {
@@ -2911,6 +3311,8 @@ static int dvbdmx_section_get_scrambling_bits(
 	return 0;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int dvbdmx_allocate_section_feed(struct dmx_demux *demux,
 					struct dmx_section_feed **feed,
 					dmx_section_cb callback)
@@ -2930,7 +3332,10 @@ static int dvbdmx_allocate_section_feed(struct dmx_demux *demux,
 	dvbdmxfeed->cb.sec = callback;
 	dvbdmxfeed->demux = dvbdmx;
 	dvbdmxfeed->pid = 0xffff;
+<<<<<<< HEAD
 	dvbdmxfeed->secure_mode.is_secured = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dvbdmxfeed->feed.sec.secbuf = dvbdmxfeed->feed.sec.secbuf_base;
 	dvbdmxfeed->feed.sec.secbufp = dvbdmxfeed->feed.sec.seclen = 0;
 	dvbdmxfeed->feed.sec.tsfeedp = 0;
@@ -2947,12 +3352,15 @@ static int dvbdmx_allocate_section_feed(struct dmx_demux *demux,
 	(*feed)->start_filtering = dmx_section_feed_start_filtering;
 	(*feed)->stop_filtering = dmx_section_feed_stop_filtering;
 	(*feed)->release_filter = dmx_section_feed_release_filter;
+<<<<<<< HEAD
 	(*feed)->data_ready_cb = dmx_section_feed_data_ready_cb;
 	(*feed)->notify_data_read = NULL;
 	(*feed)->set_secure_mode = dmx_section_set_secure_mode;
 	(*feed)->set_cipher_ops = dmx_section_set_cipher_ops;
 	(*feed)->oob_command = dvbdmx_section_feed_oob_cmd;
 	(*feed)->get_scrambling_bits = dvbdmx_section_get_scrambling_bits;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	mutex_unlock(&dvbdmx->mutex);
 	return 0;
@@ -3011,6 +3419,7 @@ static int dvbdmx_close(struct dmx_demux *demux)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int dvbdmx_write(struct dmx_demux *demux, const char *buf, size_t count)
 {
 	struct dvb_demux *dvbdemux = (struct dvb_demux *)demux;
@@ -3021,12 +3430,33 @@ static int dvbdmx_write(struct dmx_demux *demux, const char *buf, size_t count)
 	}
 
 	dvb_dmx_swfilter_format(dvbdemux, buf, count, dvbdemux->tsp_format);
+=======
+static int dvbdmx_write(struct dmx_demux *demux, const char __user *buf, size_t count)
+{
+	struct dvb_demux *dvbdemux = (struct dvb_demux *)demux;
+	void *p;
+
+	if ((!demux->frontend) || (demux->frontend->source != DMX_MEMORY_FE))
+		return -EINVAL;
+
+	p = memdup_user(buf, count);
+	if (IS_ERR(p))
+		return PTR_ERR(p);
+	if (mutex_lock_interruptible(&dvbdemux->mutex)) {
+		kfree(p);
+		return -ERESTARTSYS;
+	}
+	dvb_dmx_swfilter(dvbdemux, p, count);
+	kfree(p);
+	mutex_unlock(&dvbdemux->mutex);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (signal_pending(current))
 		return -EINTR;
 	return count;
 }
 
+<<<<<<< HEAD
 static int dvbdmx_write_cancel(struct dmx_demux *demux)
 {
 	struct dvb_demux *dvbdmx = (struct dvb_demux *)demux;
@@ -3061,6 +3491,8 @@ static int dvbdmx_set_playback_mode(struct dmx_demux *demux,
 	return 0;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int dvbdmx_add_frontend(struct dmx_demux *demux,
 			       struct dmx_frontend *frontend)
 {
@@ -3118,7 +3550,11 @@ static int dvbdmx_disconnect_frontend(struct dmx_demux *demux)
 	struct dvb_demux *dvbdemux = (struct dvb_demux *)demux;
 
 	mutex_lock(&dvbdemux->mutex);
+<<<<<<< HEAD
 	dvbdemux->sw_filter_abort = 0;
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	demux->frontend = NULL;
 	mutex_unlock(&dvbdemux->mutex);
 	return 0;
@@ -3132,6 +3568,7 @@ static int dvbdmx_get_pes_pids(struct dmx_demux *demux, u16 * pids)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int dvbdmx_get_tsp_size(struct dmx_demux *demux)
 {
 	int tsp_size;
@@ -3174,6 +3611,8 @@ static int dvbdmx_set_tsp_format(
 	return 0;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int dvb_dmx_init(struct dvb_demux *dvbdemux)
 {
 	int i;
@@ -3192,6 +3631,7 @@ int dvb_dmx_init(struct dvb_demux *dvbdemux)
 		dvbdemux->filter = NULL;
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
 
 	dvbdemux->rec_info_pool = vmalloc(dvbdemux->feednum *
 		sizeof(struct dvb_demux_rec_info));
@@ -3228,16 +3668,24 @@ int dvb_dmx_init(struct dvb_demux *dvbdemux)
 			&dvbdemux->total_crc_time);
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (i = 0; i < dvbdemux->filternum; i++) {
 		dvbdemux->filter[i].state = DMX_STATE_FREE;
 		dvbdemux->filter[i].index = i;
 	}
+<<<<<<< HEAD
 
 	for (i = 0; i < dvbdemux->feednum; i++) {
 		dvbdemux->feed[i].state = DMX_STATE_FREE;
 		dvbdemux->feed[i].index = i;
 
 		dvbdemux->rec_info_pool[i].ref_count = 0;
+=======
+	for (i = 0; i < dvbdemux->feednum; i++) {
+		dvbdemux->feed[i].state = DMX_STATE_FREE;
+		dvbdemux->feed[i].index = i;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	dvbdemux->cnt_storage = vmalloc(MAX_PID + 1);
@@ -3257,9 +3705,12 @@ int dvb_dmx_init(struct dvb_demux *dvbdemux)
 	dvbdemux->recording = 0;
 	dvbdemux->tsbufp = 0;
 
+<<<<<<< HEAD
 	dvbdemux->tsp_format = DMX_TSP_FORMAT_188;
 	dvbdemux->ts_packet_size = 188;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!dvbdemux->check_crc32)
 		dvbdemux->check_crc32 = dvb_dmx_crc32;
 
@@ -3271,14 +3722,20 @@ int dvb_dmx_init(struct dvb_demux *dvbdemux)
 	dmx->open = dvbdmx_open;
 	dmx->close = dvbdmx_close;
 	dmx->write = dvbdmx_write;
+<<<<<<< HEAD
 	dmx->write_cancel = dvbdmx_write_cancel;
 	dmx->set_playback_mode = dvbdmx_set_playback_mode;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dmx->allocate_ts_feed = dvbdmx_allocate_ts_feed;
 	dmx->release_ts_feed = dvbdmx_release_ts_feed;
 	dmx->allocate_section_feed = dvbdmx_allocate_section_feed;
 	dmx->release_section_feed = dvbdmx_release_section_feed;
+<<<<<<< HEAD
 	dmx->map_buffer = NULL;
 	dmx->unmap_buffer = NULL;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	dmx->add_frontend = dvbdmx_add_frontend;
 	dmx->remove_frontend = dvbdmx_remove_frontend;
@@ -3287,9 +3744,12 @@ int dvb_dmx_init(struct dvb_demux *dvbdemux)
 	dmx->disconnect_frontend = dvbdmx_disconnect_frontend;
 	dmx->get_pes_pids = dvbdmx_get_pes_pids;
 
+<<<<<<< HEAD
 	dmx->set_tsp_format = dvbdmx_set_tsp_format;
 	dmx->get_tsp_size = dvbdmx_get_tsp_size;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	mutex_init(&dvbdemux->mutex);
 	spin_lock_init(&dvbdemux->lock);
 
@@ -3300,6 +3760,7 @@ EXPORT_SYMBOL(dvb_dmx_init);
 
 void dvb_dmx_release(struct dvb_demux *dvbdemux)
 {
+<<<<<<< HEAD
 	if (dvbdemux->dmx.debugfs_demux_dir != NULL)
 		debugfs_remove_recursive(dvbdemux->dmx.debugfs_demux_dir);
 
@@ -3308,6 +3769,11 @@ void dvb_dmx_release(struct dvb_demux *dvbdemux)
 	vfree(dvbdemux->filter);
 	vfree(dvbdemux->feed);
 	vfree(dvbdemux->rec_info_pool);
+=======
+	vfree(dvbdemux->cnt_storage);
+	vfree(dvbdemux->filter);
+	vfree(dvbdemux->feed);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 EXPORT_SYMBOL(dvb_dmx_release);

@@ -42,8 +42,13 @@ struct adb_dev {
 	struct usb_ep *ep_in;
 	struct usb_ep *ep_out;
 
+<<<<<<< HEAD
 	atomic_t online;
 	atomic_t error;
+=======
+	int online;
+	int error;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	atomic_t read_excl;
 	atomic_t write_excl;
@@ -55,8 +60,11 @@ struct adb_dev {
 	wait_queue_head_t write_wq;
 	struct usb_request *rx_req;
 	int rx_done;
+<<<<<<< HEAD
 	bool notify_close;
 	bool close_notified;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static struct usb_interface_descriptor adb_interface_desc = {
@@ -77,6 +85,7 @@ static struct usb_endpoint_descriptor adb_superspeed_in_desc = {
 	.wMaxPacketSize         = __constant_cpu_to_le16(1024),
 };
 
+<<<<<<< HEAD
 static struct usb_ss_ep_comp_descriptor adb_superspeed_in_comp_desc = {
 	.bLength =		sizeof adb_superspeed_in_comp_desc,
 	.bDescriptorType =	USB_DT_SS_ENDPOINT_COMP,
@@ -86,6 +95,8 @@ static struct usb_ss_ep_comp_descriptor adb_superspeed_in_comp_desc = {
 	/* .bmAttributes =	0, */
 };
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct usb_endpoint_descriptor adb_superspeed_out_desc = {
 	.bLength                = USB_DT_ENDPOINT_SIZE,
 	.bDescriptorType        = USB_DT_ENDPOINT,
@@ -94,6 +105,7 @@ static struct usb_endpoint_descriptor adb_superspeed_out_desc = {
 	.wMaxPacketSize         = __constant_cpu_to_le16(1024),
 };
 
+<<<<<<< HEAD
 static struct usb_ss_ep_comp_descriptor adb_superspeed_out_comp_desc = {
 	.bLength =		sizeof adb_superspeed_out_comp_desc,
 	.bDescriptorType =	USB_DT_SS_ENDPOINT_COMP,
@@ -101,6 +113,15 @@ static struct usb_ss_ep_comp_descriptor adb_superspeed_out_comp_desc = {
 	/* the following 2 values can be tweaked if necessary */
 	/* .bMaxBurst =		0, */
 	/* .bmAttributes =	0, */
+=======
+static struct usb_ss_ep_comp_descriptor adb_superspeed_bulk_comp_desc = {
+	.bLength =              sizeof adb_superspeed_bulk_comp_desc,
+	.bDescriptorType =      USB_DT_SS_ENDPOINT_COMP,
+
+	/* the following 2 values can be tweaked if necessary */
+	/* .bMaxBurst =         0, */
+	/* .bmAttributes =      0, */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static struct usb_endpoint_descriptor adb_highspeed_in_desc = {
@@ -150,9 +171,15 @@ static struct usb_descriptor_header *hs_adb_descs[] = {
 static struct usb_descriptor_header *ss_adb_descs[] = {
 	(struct usb_descriptor_header *) &adb_interface_desc,
 	(struct usb_descriptor_header *) &adb_superspeed_in_desc,
+<<<<<<< HEAD
 	(struct usb_descriptor_header *) &adb_superspeed_in_comp_desc,
 	(struct usb_descriptor_header *) &adb_superspeed_out_desc,
 	(struct usb_descriptor_header *) &adb_superspeed_out_comp_desc,
+=======
+	(struct usb_descriptor_header *) &adb_superspeed_bulk_comp_desc,
+	(struct usb_descriptor_header *) &adb_superspeed_out_desc,
+	(struct usb_descriptor_header *) &adb_superspeed_bulk_comp_desc,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	NULL,
 };
 
@@ -240,7 +267,11 @@ static void adb_complete_in(struct usb_ep *ep, struct usb_request *req)
 	struct adb_dev *dev = _adb_dev;
 
 	if (req->status != 0)
+<<<<<<< HEAD
 		atomic_set(&dev->error, 1);
+=======
+		dev->error = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	adb_req_put(dev, &dev->tx_idle, req);
 
@@ -252,8 +283,13 @@ static void adb_complete_out(struct usb_ep *ep, struct usb_request *req)
 	struct adb_dev *dev = _adb_dev;
 
 	dev->rx_done = 1;
+<<<<<<< HEAD
 	if (req->status != 0 && req->status != -ECONNRESET)
 		atomic_set(&dev->error, 1);
+=======
+	if (req->status != 0)
+		dev->error = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	wake_up(&dev->read_wq);
 }
@@ -328,17 +364,28 @@ static ssize_t adb_read(struct file *fp, char __user *buf,
 		return -EBUSY;
 
 	/* we will block until we're online */
+<<<<<<< HEAD
 	while (!(atomic_read(&dev->online) || atomic_read(&dev->error))) {
 		pr_debug("adb_read: waiting for online state\n");
 		ret = wait_event_interruptible(dev->read_wq,
 			(atomic_read(&dev->online) ||
 			atomic_read(&dev->error)));
+=======
+	while (!(dev->online || dev->error)) {
+		pr_debug("adb_read: waiting for online state\n");
+		ret = wait_event_interruptible(dev->read_wq,
+				(dev->online || dev->error));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (ret < 0) {
 			adb_unlock(&dev->read_excl);
 			return ret;
 		}
 	}
+<<<<<<< HEAD
 	if (atomic_read(&dev->error)) {
+=======
+	if (dev->error) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		r = -EIO;
 		goto done;
 	}
@@ -346,35 +393,57 @@ static ssize_t adb_read(struct file *fp, char __user *buf,
 requeue_req:
 	/* queue a request */
 	req = dev->rx_req;
+<<<<<<< HEAD
 	req->length = ADB_BULK_BUFFER_SIZE;
+=======
+	req->length = count;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dev->rx_done = 0;
 	ret = usb_ep_queue(dev->ep_out, req, GFP_ATOMIC);
 	if (ret < 0) {
 		pr_debug("adb_read: failed to queue req %p (%d)\n", req, ret);
 		r = -EIO;
+<<<<<<< HEAD
 		atomic_set(&dev->error, 1);
+=======
+		dev->error = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		goto done;
 	} else {
 		pr_debug("rx %p queue\n", req);
 	}
 
 	/* wait for a request to complete */
+<<<<<<< HEAD
 	ret = wait_event_interruptible(dev->read_wq, dev->rx_done ||
 				atomic_read(&dev->error));
 	if (ret < 0) {
 		if (ret != -ERESTARTSYS)
 		atomic_set(&dev->error, 1);
+=======
+	ret = wait_event_interruptible(dev->read_wq, dev->rx_done);
+	if (ret < 0) {
+		dev->error = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		r = ret;
 		usb_ep_dequeue(dev->ep_out, req);
 		goto done;
 	}
+<<<<<<< HEAD
 	if (!atomic_read(&dev->error)) {
+=======
+	if (!dev->error) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* If we got a 0-len packet, throw it back and try again. */
 		if (req->actual == 0)
 			goto requeue_req;
 
 		pr_debug("rx %p %d\n", req, req->actual);
 		xfer = (req->actual < count) ? req->actual : count;
+<<<<<<< HEAD
+=======
+		r = xfer;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (copy_to_user(buf, req->buf, xfer))
 			r = -EFAULT;
 
@@ -382,9 +451,12 @@ requeue_req:
 		r = -EIO;
 
 done:
+<<<<<<< HEAD
 	if (atomic_read(&dev->error))
 		wake_up(&dev->write_wq);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	adb_unlock(&dev->read_excl);
 	pr_debug("adb_read returning %d\n", r);
 	return r;
@@ -406,7 +478,11 @@ static ssize_t adb_write(struct file *fp, const char __user *buf,
 		return -EBUSY;
 
 	while (count > 0) {
+<<<<<<< HEAD
 		if (atomic_read(&dev->error)) {
+=======
+		if (dev->error) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			pr_debug("adb_write dev->error\n");
 			r = -EIO;
 			break;
@@ -415,8 +491,12 @@ static ssize_t adb_write(struct file *fp, const char __user *buf,
 		/* get an idle tx request to use */
 		req = 0;
 		ret = wait_event_interruptible(dev->write_wq,
+<<<<<<< HEAD
 			((req = adb_req_get(dev, &dev->tx_idle)) ||
 			 atomic_read(&dev->error)));
+=======
+			(req = adb_req_get(dev, &dev->tx_idle)) || dev->error);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		if (ret < 0) {
 			r = ret;
@@ -437,7 +517,11 @@ static ssize_t adb_write(struct file *fp, const char __user *buf,
 			ret = usb_ep_queue(dev->ep_in, req, GFP_ATOMIC);
 			if (ret < 0) {
 				pr_debug("adb_write: xfer error %d\n", ret);
+<<<<<<< HEAD
 				atomic_set(&dev->error, 1);
+=======
+				dev->error = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				r = -EIO;
 				break;
 			}
@@ -453,9 +537,12 @@ static ssize_t adb_write(struct file *fp, const char __user *buf,
 	if (req)
 		adb_req_put(dev, &dev->tx_idle, req);
 
+<<<<<<< HEAD
 	if (atomic_read(&dev->error))
 		wake_up(&dev->read_wq);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	adb_unlock(&dev->write_excl);
 	pr_debug("adb_write returning %d\n", r);
 	return r;
@@ -463,10 +550,14 @@ static ssize_t adb_write(struct file *fp, const char __user *buf,
 
 static int adb_open(struct inode *ip, struct file *fp)
 {
+<<<<<<< HEAD
 	static DEFINE_RATELIMIT_STATE(rl, 10*HZ, 1);
 
 	if (__ratelimit(&rl))
 		pr_info("adb_open\n");
+=======
+	pr_info("adb_open\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!_adb_dev)
 		return -ENODEV;
 
@@ -476,6 +567,7 @@ static int adb_open(struct inode *ip, struct file *fp)
 	fp->private_data = _adb_dev;
 
 	/* clear the error latch */
+<<<<<<< HEAD
 	atomic_set(&_adb_dev->error, 0);
 
 	if (_adb_dev->close_notified) {
@@ -484,11 +576,18 @@ static int adb_open(struct inode *ip, struct file *fp)
 	}
 
 	_adb_dev->notify_close = true;
+=======
+	_adb_dev->error = 0;
+
+	adb_ready_callback();
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
 static int adb_release(struct inode *ip, struct file *fp)
 {
+<<<<<<< HEAD
 	static DEFINE_RATELIMIT_STATE(rl, 10*HZ, 1);
 
 	if (__ratelimit(&rl))
@@ -506,13 +605,22 @@ static int adb_release(struct inode *ip, struct file *fp)
 		adb_closed_callback();
 		_adb_dev->close_notified = true;
 	}
+=======
+	pr_info("adb_release\n");
+
+	adb_closed_callback();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	adb_unlock(&_adb_dev->open_excl);
 	return 0;
 }
 
 /* file operations for ADB device /dev/android_adb */
+<<<<<<< HEAD
 static const struct file_operations adb_fops = {
+=======
+static struct file_operations adb_fops = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.owner = THIS_MODULE,
 	.read = adb_read,
 	.write = adb_write,
@@ -559,6 +667,10 @@ adb_function_bind(struct usb_configuration *c, struct usb_function *f)
 		adb_highspeed_out_desc.bEndpointAddress =
 			adb_fullspeed_out_desc.bEndpointAddress;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* support super speed hardware */
 	if (gadget_is_superspeed(c->cdev->gadget)) {
 		adb_superspeed_in_desc.bEndpointAddress =
@@ -568,6 +680,10 @@ adb_function_bind(struct usb_configuration *c, struct usb_function *f)
 	}
 
 	DBG(cdev, "%s speed %s: IN/%s, OUT/%s\n",
+<<<<<<< HEAD
+=======
+			gadget_is_superspeed(c->cdev->gadget) ? "super" :
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			gadget_is_dualspeed(c->cdev->gadget) ? "dual" : "full",
 			f->name, dev->ep_in->name, dev->ep_out->name);
 	return 0;
@@ -580,8 +696,13 @@ adb_function_unbind(struct usb_configuration *c, struct usb_function *f)
 	struct usb_request *req;
 
 
+<<<<<<< HEAD
 	atomic_set(&dev->online, 0);
 	atomic_set(&dev->error, 1);
+=======
+	dev->online = 0;
+	dev->error = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	wake_up(&dev->read_wq);
 
@@ -598,6 +719,7 @@ static int adb_function_set_alt(struct usb_function *f,
 	int ret;
 
 	DBG(cdev, "adb_function_set_alt intf: %d alt: %d\n", intf, alt);
+<<<<<<< HEAD
 
 	ret = config_ep_by_speed(cdev->gadget, f, dev->ep_in);
 	if (ret) {
@@ -629,6 +751,23 @@ static int adb_function_set_alt(struct usb_function *f,
 		return ret;
 	}
 	atomic_set(&dev->online, 1);
+=======
+	ret = usb_ep_enable(dev->ep_in,
+			ep_choose(cdev->gadget,
+				&adb_highspeed_in_desc,
+				&adb_fullspeed_in_desc));
+	if (ret)
+		return ret;
+	ret = usb_ep_enable(dev->ep_out,
+			ep_choose(cdev->gadget,
+				&adb_highspeed_out_desc,
+				&adb_fullspeed_out_desc));
+	if (ret) {
+		usb_ep_disable(dev->ep_in);
+		return ret;
+	}
+	dev->online = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* readers may be blocked waiting for us to go online */
 	wake_up(&dev->read_wq);
@@ -641,6 +780,7 @@ static void adb_function_disable(struct usb_function *f)
 	struct usb_composite_dev	*cdev = dev->cdev;
 
 	DBG(cdev, "adb_function_disable cdev %p\n", cdev);
+<<<<<<< HEAD
 	/*
 	 * Bus reset happened or cable disconnected.  No
 	 * need to disable the configuration now.  We will
@@ -649,6 +789,10 @@ static void adb_function_disable(struct usb_function *f)
 	dev->notify_close = false;
 	atomic_set(&dev->online, 0);
 	atomic_set(&dev->error, 1);
+=======
+	dev->online = 0;
+	dev->error = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	usb_ep_disable(dev->ep_in);
 	usb_ep_disable(dev->ep_out);
 
@@ -662,14 +806,22 @@ static int adb_bind_config(struct usb_configuration *c)
 {
 	struct adb_dev *dev = _adb_dev;
 
+<<<<<<< HEAD
 	pr_debug("adb_bind_config\n");
+=======
+	printk(KERN_INFO "adb_bind_config\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	dev->cdev = c->cdev;
 	dev->function.name = "adb";
 	dev->function.descriptors = fs_adb_descs;
 	dev->function.hs_descriptors = hs_adb_descs;
+<<<<<<< HEAD
 	if (gadget_is_superspeed(c->cdev->gadget))
 		dev->function.ss_descriptors = ss_adb_descs;
+=======
+	dev->function.ss_descriptors = ss_adb_descs;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dev->function.bind = adb_function_bind;
 	dev->function.unbind = adb_function_unbind;
 	dev->function.set_alt = adb_function_set_alt;
@@ -696,9 +848,12 @@ static int adb_setup(void)
 	atomic_set(&dev->read_excl, 0);
 	atomic_set(&dev->write_excl, 0);
 
+<<<<<<< HEAD
 	/* config is disabled by default if adb is present. */
 	dev->close_notified = true;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	INIT_LIST_HEAD(&dev->tx_idle);
 
 	_adb_dev = dev;

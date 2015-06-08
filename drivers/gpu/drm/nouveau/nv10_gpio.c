@@ -65,7 +65,11 @@ nv10_gpio_drive(struct drm_device *dev, int line, int dir, int out)
 	if (line < 10) {
 		line = (line - 2) * 4;
 		reg  = NV_PCRTC_GPIO_EXT;
+<<<<<<< HEAD
 		mask = 0x00000003;
+=======
+		mask = 0x00000003 << ((line - 2) * 4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		data = (dir << 1) | out;
 	} else
 	if (line < 14) {

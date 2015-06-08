@@ -8,6 +8,14 @@
  *	it under the terms of the GNU General Public License as published by
  *	the Free Software Foundation; either version 2 of the License, or
  *	(at your option) any later version.
+<<<<<<< HEAD
+=======
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef __LINUX_USB_GADGET_IMX_H

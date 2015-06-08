@@ -246,6 +246,7 @@ static int __init oprofile_init(void)
 	int err;
 
 	/* always init architecture to setup backtrace support */
+<<<<<<< HEAD
 	timer_mode = 0;
 	err = oprofile_arch_init(&oprofile_ops);
 	if (!err) {
@@ -258,19 +259,47 @@ static int __init oprofile_init(void)
 	timer_mode = 1;
 	/* no nmi timer mode if oprofile.timer is set */
 	if (timer || op_nmi_timer_init(&oprofile_ops)) {
+=======
+	err = oprofile_arch_init(&oprofile_ops);
+
+	timer_mode = err || timer;	/* fall back to timer mode on errors */
+	if (timer_mode) {
+		if (!err)
+			oprofile_arch_exit();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		err = oprofile_timer_init(&oprofile_ops);
 		if (err)
 			return err;
 	}
 
+<<<<<<< HEAD
 	return oprofilefs_register();
+=======
+	err = oprofilefs_register();
+	if (!err)
+		return 0;
+
+	/* failed */
+	if (timer_mode)
+		oprofile_timer_exit();
+	else
+		oprofile_arch_exit();
+
+	return err;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 
 static void __exit oprofile_exit(void)
 {
 	oprofilefs_unregister();
+<<<<<<< HEAD
 	if (!timer_mode)
+=======
+	if (timer_mode)
+		oprofile_timer_exit();
+	else
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		oprofile_arch_exit();
 }
 

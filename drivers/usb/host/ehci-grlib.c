@@ -130,7 +130,11 @@ static int __devinit ehci_hcd_grlib_probe(struct platform_device *op)
 		return -ENOMEM;
 
 	hcd->rsrc_start = res.start;
+<<<<<<< HEAD
 	hcd->rsrc_len = resource_size(&res);
+=======
+	hcd->rsrc_len = res.end - res.start + 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!request_mem_region(hcd->rsrc_start, hcd->rsrc_len, hcd_name)) {
 		printk(KERN_ERR "%s: request_mem_region failed\n", __FILE__);

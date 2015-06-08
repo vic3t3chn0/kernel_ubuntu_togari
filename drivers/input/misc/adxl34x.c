@@ -16,7 +16,10 @@
 #include <linux/slab.h>
 #include <linux/workqueue.h>
 #include <linux/input/adxl34x.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "adxl34x.h"
 
@@ -452,10 +455,17 @@ static ssize_t adxl34x_disable_store(struct device *dev,
 				     const char *buf, size_t count)
 {
 	struct adxl34x *ac = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	unsigned int val;
 	int error;
 
 	error = kstrtouint(buf, 10, &val);
+=======
+	unsigned long val;
+	int error;
+
+	error = strict_strtoul(buf, 10, &val);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (error)
 		return error;
 
@@ -541,10 +551,17 @@ static ssize_t adxl34x_rate_store(struct device *dev,
 				  const char *buf, size_t count)
 {
 	struct adxl34x *ac = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	unsigned char val;
 	int error;
 
 	error = kstrtou8(buf, 10, &val);
+=======
+	unsigned long val;
+	int error;
+
+	error = strict_strtoul(buf, 10, &val);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (error)
 		return error;
 
@@ -576,10 +593,17 @@ static ssize_t adxl34x_autosleep_store(struct device *dev,
 				  const char *buf, size_t count)
 {
 	struct adxl34x *ac = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	unsigned int val;
 	int error;
 
 	error = kstrtouint(buf, 10, &val);
+=======
+	unsigned long val;
+	int error;
+
+	error = strict_strtoul(buf, 10, &val);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (error)
 		return error;
 
@@ -623,13 +647,21 @@ static ssize_t adxl34x_write_store(struct device *dev,
 				   const char *buf, size_t count)
 {
 	struct adxl34x *ac = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	unsigned int val;
+=======
+	unsigned long val;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int error;
 
 	/*
 	 * This allows basic ADXL register write access for debug purposes.
 	 */
+<<<<<<< HEAD
 	error = kstrtouint(buf, 16, &val);
+=======
+	error = strict_strtoul(buf, 16, &val);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (error)
 		return error;
 

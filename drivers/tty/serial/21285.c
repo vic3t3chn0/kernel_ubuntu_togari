@@ -16,7 +16,10 @@
 
 #include <asm/irq.h>
 #include <asm/mach-types.h>
+<<<<<<< HEAD
 #include <asm/system_info.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/hardware/dec21285.h>
 #include <mach/hardware.h>
 
@@ -332,7 +335,11 @@ static int serial21285_verify_port(struct uart_port *port, struct serial_struct 
 	int ret = 0;
 	if (ser->type != PORT_UNKNOWN && ser->type != PORT_21285)
 		ret = -EINVAL;
+<<<<<<< HEAD
 	if (ser->irq <= 0)
+=======
+	if (ser->irq != NO_IRQ)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ret = -EINVAL;
 	if (ser->baud_base != port->uartclk / 16)
 		ret = -EINVAL;
@@ -361,7 +368,11 @@ static struct uart_ops serial21285_ops = {
 static struct uart_port serial21285_port = {
 	.mapbase	= 0x42000160,
 	.iotype		= UPIO_MEM,
+<<<<<<< HEAD
 	.irq		= 0,
+=======
+	.irq		= NO_IRQ,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.fifosize	= 16,
 	.ops		= &serial21285_ops,
 	.flags		= UPF_BOOT_AUTOCONF,

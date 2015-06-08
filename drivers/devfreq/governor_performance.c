@@ -10,12 +10,18 @@
  */
 
 #include <linux/devfreq.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 #include "governor.h"
 
 static int devfreq_performance_func(struct devfreq *df,
 				    unsigned long *freq,
 				u32 *flag)
+=======
+
+static int devfreq_performance_func(struct devfreq *df,
+				    unsigned long *freq)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	/*
 	 * target callback should be able to get floor value as
@@ -28,6 +34,7 @@ static int devfreq_performance_func(struct devfreq *df,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int devfreq_performance_handler(struct devfreq *devfreq,
 				unsigned int event, void *data)
 {
@@ -79,3 +86,10 @@ static void __exit devfreq_performance_exit(void)
 }
 module_exit(devfreq_performance_exit);
 MODULE_LICENSE("GPL");
+=======
+const struct devfreq_governor devfreq_performance = {
+	.name = "performance",
+	.get_target_freq = devfreq_performance_func,
+	.no_central_polling = true,
+};
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

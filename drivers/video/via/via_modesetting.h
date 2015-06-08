@@ -33,6 +33,7 @@
 #define VIA_PITCH_MAX	0x3FF8
 
 
+<<<<<<< HEAD
 struct display_timing {
 	u16 hor_total;
 	u16 hor_addr;
@@ -51,6 +52,8 @@ struct display_timing {
 
 void via_set_primary_timing(const struct display_timing *timing);
 void via_set_secondary_timing(const struct display_timing *timing);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void via_set_primary_address(u32 addr);
 void via_set_secondary_address(u32 addr);
 void via_set_primary_pitch(u32 pitch);

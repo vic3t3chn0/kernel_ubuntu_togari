@@ -188,9 +188,18 @@ static const struct comedi_lrange me2600_ao_range = {
 };
 
 static DEFINE_PCI_DEVICE_TABLE(me_pci_table) = {
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_MEILHAUS, ME2600_DEVICE_ID) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_MEILHAUS, ME2000_DEVICE_ID) },
 	{0}
+=======
+	{
+	PCI_VENDOR_ID_MEILHAUS, ME2600_DEVICE_ID, PCI_ANY_ID,
+		    PCI_ANY_ID, 0, 0, 0}, {
+	PCI_VENDOR_ID_MEILHAUS, ME2000_DEVICE_ID, PCI_ANY_ID,
+		    PCI_ANY_ID, 0, 0, 0}, {
+	0}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 MODULE_DEVICE_TABLE(pci, me_pci_table);

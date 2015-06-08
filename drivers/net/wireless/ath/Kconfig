@@ -22,9 +22,12 @@ config ATH_DEBUG
 	  Say Y, if you want to debug atheros wireless drivers.
 	  Right now only ath9k makes use of this.
 
+<<<<<<< HEAD
 source "drivers/net/wireless/ath/ath5k/Kconfig"
 source "drivers/net/wireless/ath/ath9k/Kconfig"
 source "drivers/net/wireless/ath/carl9170/Kconfig"
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/net/wireless/ath/ath6kl/Kconfig"
 
 endif

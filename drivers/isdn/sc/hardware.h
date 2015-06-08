@@ -105,6 +105,10 @@
  */
 
 /* Determine if a channel number is valid for the adapter */
+<<<<<<< HEAD
 #define IS_VALID_CHANNEL(y, x)	((x > 0) && (x <= sc_adapter[y]->channels))
+=======
+#define IS_VALID_CHANNEL(y,x)	((x>0) && (x <= sc_adapter[y]->channels))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #endif

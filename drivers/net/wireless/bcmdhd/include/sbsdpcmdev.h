@@ -22,7 +22,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: sbsdpcmdev.h 241182 2011-02-17 21:50:03Z $
+=======
+ * $Id: sbsdpcmdev.h 336848 2012-06-05 11:28:07Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef	_sbsdpcmdev_h_
@@ -290,4 +294,9 @@ typedef volatile struct {
 /* HW frame tag */
 #define SDPCM_FRAMETAG_LEN	4	/* HW frametag: 2 bytes len, 2 bytes check val */
 
+<<<<<<< HEAD
+=======
+#define SDPCM_HWEXT_LEN	8
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif	/* _sbsdpcmdev_h_ */

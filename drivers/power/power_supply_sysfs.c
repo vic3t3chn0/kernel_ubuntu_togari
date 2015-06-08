@@ -5,7 +5,10 @@
  *  Copyright © 2007  Anton Vorontsov <cbou@mail.ru>
  *  Copyright © 2004  Szabolcs Gyurko
  *  Copyright © 2003  Ian Molton <spyro@f2s.com>
+<<<<<<< HEAD
  *  Copyright (C) 2013-2014 Sony Mobile Communications AB.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  *  Modified: 2004, Oct     Szabolcs Gyurko
  *
@@ -13,10 +16,15 @@
  */
 
 #include <linux/ctype.h>
+<<<<<<< HEAD
 #include <linux/device.h>
 #include <linux/power_supply.h>
 #include <linux/slab.h>
 #include <linux/stat.h>
+=======
+#include <linux/power_supply.h>
+#include <linux/slab.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "power_supply.h"
 
@@ -45,7 +53,11 @@ static ssize_t power_supply_show_property(struct device *dev,
 					  struct device_attribute *attr,
 					  char *buf) {
 	static char *type_text[] = {
+<<<<<<< HEAD
 		"Unknown", "Battery", "UPS", "Mains", "USB",
+=======
+		"Battery", "UPS", "Mains", "USB",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		"USB_DCP", "USB_CDP", "USB_ACA"
 	};
 	static char *status_text[] = {
@@ -55,8 +67,13 @@ static ssize_t power_supply_show_property(struct device *dev,
 		"Unknown", "N/A", "Trickle", "Fast"
 	};
 	static char *health_text[] = {
+<<<<<<< HEAD
 		"Unknown", "Good", "Overheat", "Warm", "Dead", "Over voltage",
 		"Unspecified failure", "Cold", "Cool"
+=======
+		"Unknown", "Good", "Overheat", "Dead", "Over voltage",
+		"Unspecified failure", "Cold",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	};
 	static char *technology_text[] = {
 		"Unknown", "NiMH", "Li-ion", "Li-poly", "LiFe", "NiCd",
@@ -65,9 +82,12 @@ static ssize_t power_supply_show_property(struct device *dev,
 	static char *capacity_level_text[] = {
 		"Unknown", "Critical", "Low", "Normal", "High", "Full"
 	};
+<<<<<<< HEAD
 	static char *scope_text[] = {
 		"Unknown", "System", "Device"
 	};
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ssize_t ret = 0;
 	struct power_supply *psy = dev_get_drvdata(dev);
 	const ptrdiff_t off = attr - power_supply_attrs;
@@ -83,8 +103,13 @@ static ssize_t power_supply_show_property(struct device *dev,
 			dev_dbg(dev, "driver has no data for `%s' property\n",
 				attr->attr.name);
 		else if (ret != -ENODEV)
+<<<<<<< HEAD
 			dev_err(dev, "driver failed to report `%s' property: %zd\n",
 				attr->attr.name, ret);
+=======
+			dev_err(dev, "driver failed to report `%s' property\n",
+				attr->attr.name);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return ret;
 	}
 
@@ -100,8 +125,11 @@ static ssize_t power_supply_show_property(struct device *dev,
 		return sprintf(buf, "%s\n", capacity_level_text[value.intval]);
 	else if (off == POWER_SUPPLY_PROP_TYPE)
 		return sprintf(buf, "%s\n", type_text[value.intval]);
+<<<<<<< HEAD
 	else if (off == POWER_SUPPLY_PROP_SCOPE)
 		return sprintf(buf, "%s\n", scope_text[value.intval]);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	else if (off >= POWER_SUPPLY_PROP_MODEL_NAME)
 		return sprintf(buf, "%s\n", value.strval);
 
@@ -139,7 +167,10 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(health),
 	POWER_SUPPLY_ATTR(present),
 	POWER_SUPPLY_ATTR(online),
+<<<<<<< HEAD
 	POWER_SUPPLY_ATTR(charging_enabled),
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	POWER_SUPPLY_ATTR(technology),
 	POWER_SUPPLY_ATTR(cycle_count),
 	POWER_SUPPLY_ATTR(voltage_max),
@@ -148,6 +179,7 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(voltage_min_design),
 	POWER_SUPPLY_ATTR(voltage_now),
 	POWER_SUPPLY_ATTR(voltage_avg),
+<<<<<<< HEAD
 	POWER_SUPPLY_ATTR(input_voltage_regulation),
 	POWER_SUPPLY_ATTR(voltage_ocv),
 	POWER_SUPPLY_ATTR(current_max),
@@ -157,6 +189,11 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(current_now),
 	POWER_SUPPLY_ATTR(current_avg),
 	POWER_SUPPLY_ATTR(current_system_max),
+=======
+	POWER_SUPPLY_ATTR(current_max),
+	POWER_SUPPLY_ATTR(current_now),
+	POWER_SUPPLY_ATTR(current_avg),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	POWER_SUPPLY_ATTR(power_now),
 	POWER_SUPPLY_ATTR(power_avg),
 	POWER_SUPPLY_ATTR(charge_full_design),
@@ -166,7 +203,10 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(charge_now),
 	POWER_SUPPLY_ATTR(charge_avg),
 	POWER_SUPPLY_ATTR(charge_counter),
+<<<<<<< HEAD
 	POWER_SUPPLY_ATTR(charge_counter_shadow),
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	POWER_SUPPLY_ATTR(energy_full_design),
 	POWER_SUPPLY_ATTR(energy_empty_design),
 	POWER_SUPPLY_ATTR(energy_full),
@@ -174,21 +214,32 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(energy_now),
 	POWER_SUPPLY_ATTR(energy_avg),
 	POWER_SUPPLY_ATTR(capacity),
+<<<<<<< HEAD
 	POWER_SUPPLY_ATTR(capacity_level),
 	POWER_SUPPLY_ATTR(temp),
 	POWER_SUPPLY_ATTR(temp_cool),
 	POWER_SUPPLY_ATTR(temp_warm),
+=======
+#ifdef CONFIG_SLP
+	POWER_SUPPLY_ATTR(capacity_raw),
+#endif
+	POWER_SUPPLY_ATTR(capacity_level),
+	POWER_SUPPLY_ATTR(temp),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	POWER_SUPPLY_ATTR(temp_ambient),
 	POWER_SUPPLY_ATTR(time_to_empty_now),
 	POWER_SUPPLY_ATTR(time_to_empty_avg),
 	POWER_SUPPLY_ATTR(time_to_full_now),
 	POWER_SUPPLY_ATTR(time_to_full_avg),
 	POWER_SUPPLY_ATTR(type),
+<<<<<<< HEAD
 	POWER_SUPPLY_ATTR(scope),
 	POWER_SUPPLY_ATTR(system_temp_level),
 	POWER_SUPPLY_ATTR(resistance),
 	POWER_SUPPLY_ATTR(enable_stop_charging_at_low_battery),
 	POWER_SUPPLY_ATTR(soc_update_request),
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Properties of type `const char *' */
 	POWER_SUPPLY_ATTR(model_name),
 	POWER_SUPPLY_ATTR(manufacturer),
@@ -198,13 +249,21 @@ static struct device_attribute power_supply_attrs[] = {
 static struct attribute *
 __power_supply_attrs[ARRAY_SIZE(power_supply_attrs) + 1];
 
+<<<<<<< HEAD
 static umode_t power_supply_attr_is_visible(struct kobject *kobj,
+=======
+static mode_t power_supply_attr_is_visible(struct kobject *kobj,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					   struct attribute *attr,
 					   int attrno)
 {
 	struct device *dev = container_of(kobj, struct device, kobj);
 	struct power_supply *psy = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	umode_t mode = S_IRUSR | S_IRGRP | S_IROTH;
+=======
+	mode_t mode = S_IRUSR | S_IRGRP | S_IROTH;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int i;
 
 	if (attrno == POWER_SUPPLY_PROP_TYPE)

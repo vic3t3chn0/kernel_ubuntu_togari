@@ -10,7 +10,10 @@
 
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/notifier.h>
 #include <linux/usb.h>
 #include <linux/mutex.h>
@@ -58,12 +61,15 @@ void usb_notify_remove_device(struct usb_device *udev)
 	mutex_unlock(&usbfs_mutex);
 }
 
+<<<<<<< HEAD
 void usb_notify_config_device(struct usb_device *udev)
 {
 	blocking_notifier_call_chain(&usb_notifier_list,
 			USB_DEVICE_CONFIG, udev);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void usb_notify_add_bus(struct usb_bus *ubus)
 {
 	blocking_notifier_call_chain(&usb_notifier_list, USB_BUS_ADD, ubus);

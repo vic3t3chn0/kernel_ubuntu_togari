@@ -76,7 +76,11 @@ int sbusfb_mmap_helper(struct sbus_mmap_map *map,
 				map_offset = (physbase + map[i].poff) & POFF_MASK;
 				break;
 			}
+<<<<<<< HEAD
 		if (!map_size) {
+=======
+		if (!map_size){
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			page += PAGE_SIZE;
 			continue;
 		}

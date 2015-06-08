@@ -32,12 +32,20 @@
 
 /**
  * struct ad5624r_chip_info - chip specific information
+<<<<<<< HEAD
  * @channels:		channel spec for the DAC
+=======
+ * @bits:		accuracy of the DAC in bits
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @int_vref_mv:	AD5620/40/60: the internal reference voltage
  */
 
 struct ad5624r_chip_info {
+<<<<<<< HEAD
 	const struct iio_chan_spec	*channels;
+=======
+	u8				bits;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u16				int_vref_mv;
 };
 
@@ -53,6 +61,10 @@ struct ad5624r_chip_info {
  */
 
 struct ad5624r_state {
+<<<<<<< HEAD
+=======
+	struct iio_dev			*indio_dev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct spi_device		*us;
 	const struct ad5624r_chip_info	*chip_info;
 	struct regulator		*reg;

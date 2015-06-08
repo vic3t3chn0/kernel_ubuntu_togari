@@ -9,7 +9,10 @@ obj-$(CONFIG_SATA_FSL)		+= sata_fsl.o
 obj-$(CONFIG_SATA_INIC162X)	+= sata_inic162x.o
 obj-$(CONFIG_SATA_SIL24)	+= sata_sil24.o
 obj-$(CONFIG_SATA_DWC)		+= sata_dwc_460ex.o
+<<<<<<< HEAD
 obj-$(CONFIG_SATA_AHCI_MSM)	+= ahci_msm.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 # SFF w/ custom DMA
 obj-$(CONFIG_PDC_ADMA)		+= pdc_adma.o
@@ -49,7 +52,10 @@ obj-$(CONFIG_PATA_HPT37X)	+= pata_hpt37x.o
 obj-$(CONFIG_PATA_HPT3X2N)	+= pata_hpt3x2n.o
 obj-$(CONFIG_PATA_HPT3X3)	+= pata_hpt3x3.o
 obj-$(CONFIG_PATA_ICSIDE)	+= pata_icside.o
+<<<<<<< HEAD
 obj-$(CONFIG_PATA_IMX)		+= pata_imx.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_PATA_IT8213)	+= pata_it8213.o
 obj-$(CONFIG_PATA_IT821X)	+= pata_it821x.o
 obj-$(CONFIG_PATA_JMICRON)	+= pata_jmicron.o
@@ -89,6 +95,10 @@ obj-$(CONFIG_PATA_PCMCIA)	+= pata_pcmcia.o
 obj-$(CONFIG_PATA_PALMLD)	+= pata_palmld.o
 obj-$(CONFIG_PATA_PLATFORM)	+= pata_platform.o
 obj-$(CONFIG_PATA_OF_PLATFORM)	+= pata_of_platform.o
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_PATA_QDI)		+= pata_qdi.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_PATA_RB532)	+= pata_rb532_cf.o
 obj-$(CONFIG_PATA_RZ1000)	+= pata_rz1000.o
 obj-$(CONFIG_PATA_SAMSUNG_CF)	+= pata_samsung_cf.o

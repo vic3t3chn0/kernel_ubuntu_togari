@@ -4,15 +4,26 @@
  *  Copyright (C) 1991, 1992  Linus Torvalds
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/mm.h>
 #include <linux/utsname.h>
 #include <linux/mman.h>
+=======
+#include <linux/module.h>
+#include <linux/mm.h>
+#include <linux/utsname.h>
+#include <linux/mman.h>
+#include <linux/notifier.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/reboot.h>
 #include <linux/prctl.h>
 #include <linux/highuid.h>
 #include <linux/fs.h>
+<<<<<<< HEAD
 #include <linux/kmod.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/perf_event.h>
 #include <linux/resource.h>
 #include <linux/kernel.h>
@@ -123,6 +134,13 @@ EXPORT_SYMBOL(cad_pid);
 
 void (*pm_power_off_prepare)(void);
 
+<<<<<<< HEAD
+=======
+int (*timer_slack_check)(struct task_struct *task, unsigned long slack_ns) =
+	NULL;
+EXPORT_SYMBOL_GPL(timer_slack_check);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * Returns true if current's euid is same as p's uid or euid,
  * or has CAP_SYS_NICE to p's user_ns.
@@ -320,6 +338,7 @@ void kernel_restart_prepare(char *cmd)
 	system_state = SYSTEM_RESTART;
 	usermodehelper_disable();
 	device_shutdown();
+<<<<<<< HEAD
 	syscore_shutdown();
 }
 
@@ -355,6 +374,11 @@ int unregister_reboot_notifier(struct notifier_block *nb)
 EXPORT_SYMBOL(unregister_reboot_notifier);
 
 /**
+=======
+}
+
+/**
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *	kernel_restart - reboot the system
  *	@cmd: pointer to buffer containing command to execute for restart
  *		or %NULL
@@ -365,10 +389,23 @@ EXPORT_SYMBOL(unregister_reboot_notifier);
 void kernel_restart(char *cmd)
 {
 	kernel_restart_prepare(cmd);
+<<<<<<< HEAD
 	if (!cmd)
 		printk(KERN_EMERG "Restarting system.\n");
 	else
 		printk(KERN_EMERG "Restarting system with command '%s'.\n", cmd);
+=======
+	if (pm_power_off_prepare)
+		pm_power_off_prepare();
+	disable_nonboot_cpus();
+	syscore_shutdown();
+	if (!cmd)
+		printk(KERN_EMERG "Restarting system.\n");
+	else{
+		printk(KERN_EMERG "Restarting system with command '%s'.\n", cmd);
+		printk(KERN_EMERG "pid = %d name:%s\n", task_tgid_vnr(current), current->comm);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kmsg_dump(KMSG_DUMP_RESTART);
 	machine_restart(cmd);
 }
@@ -390,6 +427,10 @@ static void kernel_shutdown_prepare(enum system_states state)
 void kernel_halt(void)
 {
 	kernel_shutdown_prepare(SYSTEM_HALT);
+<<<<<<< HEAD
+=======
+	disable_nonboot_cpus();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	syscore_shutdown();
 	printk(KERN_EMERG "System halted.\n");
 	kmsg_dump(KMSG_DUMP_HALT);
@@ -444,6 +485,7 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
 	                magic2 != LINUX_REBOOT_MAGIC2C))
 		return -EINVAL;
 
+<<<<<<< HEAD
 	/*
 	 * If pid namespaces are enabled and the current task is in a child
 	 * pid_namespace, the command is handled by reboot_pid_ns() which will
@@ -453,6 +495,8 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
 	if (ret)
 		return ret;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Instead of trying to make the power_off code look like
 	 * halt when pm_power_off is not set do it the easy way.
 	 */
@@ -635,6 +679,7 @@ static int set_user(struct cred *new)
 	if (!new_user)
 		return -EAGAIN;
 
+<<<<<<< HEAD
 	/*
 	 * We don't fail in case of NPROC limit excess here because too many
 	 * poorly written programs don't check set*uid() return code, assuming
@@ -647,6 +692,13 @@ static int set_user(struct cred *new)
 		current->flags |= PF_NPROC_EXCEEDED;
 	else
 		current->flags &= ~PF_NPROC_EXCEEDED;
+=======
+	if (atomic_read(&new_user->processes) >= rlimit(RLIMIT_NPROC) &&
+			new_user != INIT_USER) {
+		free_uid(new_user);
+		return -EAGAIN;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	free_uid(new->user);
 	new->user = new_user;
@@ -1298,7 +1350,10 @@ SYSCALL_DEFINE2(sethostname, char __user *, name, int, len)
 		memset(u->nodename + len, 0, sizeof(u->nodename) - len);
 		errno = 0;
 	}
+<<<<<<< HEAD
 	uts_proc_notify(UTS_PROC_HOSTNAME);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	up_write(&uts_sem);
 	return errno;
 }
@@ -1349,7 +1404,10 @@ SYSCALL_DEFINE2(setdomainname, char __user *, name, int, len)
 		memset(u->domainname + len, 0, sizeof(u->domainname) - len);
 		errno = 0;
 	}
+<<<<<<< HEAD
 	uts_proc_notify(UTS_PROC_DOMAINNAME);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	up_write(&uts_sem);
 	return errno;
 }
@@ -1616,7 +1674,11 @@ static void k_getrusage(struct task_struct *p, int who, struct rusage *r)
 	unsigned long maxrss = 0;
 
 	memset((char *) r, 0, sizeof *r);
+<<<<<<< HEAD
 	utime = stime = 0;
+=======
+	utime = stime = cputime_zero;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (who == RUSAGE_THREAD) {
 		task_times(current, &utime, &stime);
@@ -1646,8 +1708,13 @@ static void k_getrusage(struct task_struct *p, int who, struct rusage *r)
 
 		case RUSAGE_SELF:
 			thread_group_times(p, &tgutime, &tgstime);
+<<<<<<< HEAD
 			utime += tgutime;
 			stime += tgstime;
+=======
+			utime = cputime_add(utime, tgutime);
+			stime = cputime_add(stime, tgstime);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			r->ru_nvcsw += p->signal->nvcsw;
 			r->ru_nivcsw += p->signal->nivcsw;
 			r->ru_minflt += p->signal->min_flt;
@@ -1703,6 +1770,7 @@ SYSCALL_DEFINE1(umask, int, mask)
 	return mask;
 }
 
+<<<<<<< HEAD
 #ifdef CONFIG_CHECKPOINT_RESTORE
 static int prctl_set_mm(int opt, unsigned long addr,
 			unsigned long arg4, unsigned long arg5)
@@ -1821,6 +1889,8 @@ static int prctl_set_mm(int opt, unsigned long addr,
 }
 #endif
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 SYSCALL_DEFINE5(prctl, int, option, unsigned long, arg2, unsigned long, arg3,
 		unsigned long, arg4, unsigned long, arg5)
 {
@@ -1891,7 +1961,10 @@ SYSCALL_DEFINE5(prctl, int, option, unsigned long, arg2, unsigned long, arg3,
 					      sizeof(me->comm) - 1) < 0)
 				return -EFAULT;
 			set_task_comm(me, comm);
+<<<<<<< HEAD
 			proc_comm_connector(me);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return 0;
 		case PR_GET_NAME:
 			get_task_comm(comm, me);
@@ -1927,6 +2000,7 @@ SYSCALL_DEFINE5(prctl, int, option, unsigned long, arg2, unsigned long, arg3,
 		case PR_GET_TIMERSLACK:
 			error = current->timer_slack_ns;
 			break;
+<<<<<<< HEAD
 		case PR_SET_TIMERSLACK:
 			if (arg2 <= 0)
 				current->timer_slack_ns =
@@ -1934,6 +2008,21 @@ SYSCALL_DEFINE5(prctl, int, option, unsigned long, arg2, unsigned long, arg3,
 			else
 				current->timer_slack_ns = arg2;
 			error = 0;
+=======
+		case PR_GET_EFFECTIVE_TIMERSLACK:
+			error = task_get_effective_timer_slack(current);
+			break;
+		case PR_SET_TIMERSLACK:
+			if (arg2 <= 0) {
+				me->timer_slack_ns = me->default_timer_slack_ns;
+				break;
+			}
+
+			error = timer_slack_check ?
+				timer_slack_check(me, arg2) : 0;
+			if (!error)
+				me->timer_slack_ns = arg2;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		case PR_MCE_KILL:
 			if (arg4 | arg5)
@@ -1970,6 +2059,7 @@ SYSCALL_DEFINE5(prctl, int, option, unsigned long, arg2, unsigned long, arg3,
 			else
 				error = PR_MCE_KILL_DEFAULT;
 			break;
+<<<<<<< HEAD
 		case PR_SET_MM:
 			error = prctl_set_mm(arg2, arg3, arg4, arg5);
 			break;
@@ -1981,6 +2071,8 @@ SYSCALL_DEFINE5(prctl, int, option, unsigned long, arg2, unsigned long, arg3,
 			error = put_user(me->signal->is_child_subreaper,
 					 (int __user *) arg2);
 			break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		default:
 			error = -EINVAL;
 			break;

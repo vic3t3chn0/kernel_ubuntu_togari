@@ -51,7 +51,11 @@
 #include <linux/idr.h>
 #include <asm/io.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "nicstar.h"
 #ifdef CONFIG_ATM_NICSTAR_USE_SUNI
 #include "suni.h"

@@ -13,9 +13,13 @@ fb-objs                           := $(fb-y)
 
 obj-$(CONFIG_VT)		  += console/
 obj-$(CONFIG_LOGO)		  += logo/
+<<<<<<< HEAD
 obj-y				  += backlight/
 
 obj-$(CONFIG_EXYNOS_VIDEO)     += exynos/
+=======
+obj-y				  += backlight/ display/
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 obj-$(CONFIG_FB_CFB_FILLRECT)  += cfbfillrect.o
 obj-$(CONFIG_FB_CFB_COPYAREA)  += cfbcopyarea.o
@@ -35,11 +39,17 @@ obj-$(CONFIG_FB_AMIGA)            += amifb.o c2p_planar.o
 obj-$(CONFIG_FB_ARC)              += arcfb.o
 obj-$(CONFIG_FB_CLPS711X)         += clps711xfb.o
 obj-$(CONFIG_FB_CYBER2000)        += cyber2000fb.o
+<<<<<<< HEAD
 obj-$(CONFIG_FB_GRVGA)            += grvga.o
 obj-$(CONFIG_FB_PM2)              += pm2fb.o
 obj-$(CONFIG_FB_PM3)		  += pm3fb.o
 
 obj-$(CONFIG_FB_I740)		  += i740fb.o
+=======
+obj-$(CONFIG_FB_PM2)              += pm2fb.o
+obj-$(CONFIG_FB_PM3)		  += pm3fb.o
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_FB_MATROX)		  += matrox/
 obj-$(CONFIG_FB_RIVA)		  += riva/
 obj-$(CONFIG_FB_NVIDIA)		  += nvidia/
@@ -121,8 +131,33 @@ obj-$(CONFIG_FB_BROADSHEET)       += broadsheetfb.o
 obj-$(CONFIG_FB_S1D13XXX)	  += s1d13xxxfb.o
 obj-$(CONFIG_FB_SH7760)		  += sh7760fb.o
 obj-$(CONFIG_FB_IMX)              += imxfb.o
+<<<<<<< HEAD
 obj-$(CONFIG_FB_S3C)		  += s3c-fb.o
 obj-$(CONFIG_FB_S3C2410)	  += s3c2410fb.o
+=======
+obj-$(CONFIG_FB_MIPI_DSIM)	  += s5p_mipi_dsi.o s5p_mipi_dsi_lowlevel.o
+obj-$(CONFIG_FB_S3C)		  += s3c-fb.o
+obj-$(CONFIG_S5P_DP)		  += s5p-dp-core.o s5p-dp-reg.o
+obj-$(CONFIG_FB_S3C2410)	  += s3c2410fb.o
+ifeq ($(CONFIG_S5P_DSIM_SWITCHABLE_DUAL_LCD),y)
+obj-$(CONFIG_FB_S5P)              += samsung_duallcd/
+ifeq ($(CONFIG_NAPLES_COMMON),y)
+obj-$(CONFIG_S5P_MIPI_DSI2)	  += samsung_duallcd/dsim2_tmp/
+else
+obj-$(CONFIG_S5P_MIPI_DSI2)	  += samsung_duallcd/dsim2/
+endif
+obj-$(CONFIG_FIMD_EXT_SUPPORT)    += samsung_duallcd/extension/
+else
+obj-$(CONFIG_FB_S5P)              += samsung/
+ifeq ($(CONFIG_NAPLES_COMMON),y)
+obj-$(CONFIG_S5P_MIPI_DSI2)	  += samsung/dsim2_tmp/
+else
+obj-$(CONFIG_S5P_MIPI_DSI2)	  += samsung/dsim2/
+endif
+obj-$(CONFIG_FIMD_EXT_SUPPORT)    += samsung/extension/
+endif
+obj-$(CONFIG_FB_S5P_EXTDSP)       += samsung_extdisp/
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_FB_FSL_DIU)	  += fsl-diu-fb.o
 obj-$(CONFIG_FB_COBALT)           += cobalt_lcdfb.o
 obj-$(CONFIG_FB_PNX4008_DUM)	  += pnx4008/
@@ -131,7 +166,10 @@ obj-$(CONFIG_FB_IBM_GXT4500)	  += gxt4500.o
 obj-$(CONFIG_FB_PS3)		  += ps3fb.o
 obj-$(CONFIG_FB_SM501)            += sm501fb.o
 obj-$(CONFIG_FB_UDL)		  += udlfb.o
+<<<<<<< HEAD
 obj-$(CONFIG_FB_SMSCUFX)	  += smscufx.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_FB_XILINX)           += xilinxfb.o
 obj-$(CONFIG_SH_MIPI_DSI)	  += sh_mipi_dsi.o
 obj-$(CONFIG_FB_SH_MOBILE_HDMI)	  += sh_mobile_hdmi.o
@@ -167,3 +205,9 @@ obj-$(CONFIG_FB_VIRTUAL)          += vfb.o
 
 #video output switch sysfs driver
 obj-$(CONFIG_VIDEO_OUTPUT_CONTROL) += output.o
+<<<<<<< HEAD
+=======
+
+ifeq ($(CONFIG_VITHAR),y)
+endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

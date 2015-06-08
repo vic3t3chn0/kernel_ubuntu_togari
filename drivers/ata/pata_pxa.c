@@ -390,7 +390,22 @@ static struct platform_driver pxa_ata_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(pxa_ata_driver);
+=======
+static int __init pxa_ata_init(void)
+{
+	return platform_driver_register(&pxa_ata_driver);
+}
+
+static void __exit pxa_ata_exit(void)
+{
+	platform_driver_unregister(&pxa_ata_driver);
+}
+
+module_init(pxa_ata_init);
+module_exit(pxa_ata_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Marek Vasut <marek.vasut@gmail.com>");
 MODULE_DESCRIPTION("DMA-capable driver for PATA on PXA CPU");

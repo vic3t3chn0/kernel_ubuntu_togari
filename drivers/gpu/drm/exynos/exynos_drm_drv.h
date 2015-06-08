@@ -59,12 +59,20 @@ enum exynos_drm_output_type {
  *
  * @mode_set: copy drm overlay info to hw specific overlay info.
  * @commit: apply hardware specific overlay data to registers.
+<<<<<<< HEAD
+=======
+ * @enable: enable hardware specific overlay.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @disable: disable hardware specific overlay.
  */
 struct exynos_drm_overlay_ops {
 	void (*mode_set)(struct device *subdrv_dev,
 			 struct exynos_drm_overlay *overlay);
 	void (*commit)(struct device *subdrv_dev, int zpos);
+<<<<<<< HEAD
+=======
+	void (*enable)(struct device *subdrv_dev, int zpos);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	void (*disable)(struct device *subdrv_dev, int zpos);
 };
 
@@ -77,6 +85,11 @@ struct exynos_drm_overlay_ops {
  *	- the unit is screen coordinates.
  * @fb_width: width of a framebuffer.
  * @fb_height: height of a framebuffer.
+<<<<<<< HEAD
+=======
+ * @src_width: width of a partial image to be displayed from framebuffer.
+ * @src_height: height of a partial image to be displayed from framebuffer.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @crtc_x: offset x on hardware screen.
  * @crtc_y: offset y on hardware screen.
  * @crtc_width: window width to be displayed (hardware screen).
@@ -108,6 +121,11 @@ struct exynos_drm_overlay {
 	unsigned int fb_y;
 	unsigned int fb_width;
 	unsigned int fb_height;
+<<<<<<< HEAD
+=======
+	unsigned int src_width;
+	unsigned int src_height;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned int crtc_x;
 	unsigned int crtc_y;
 	unsigned int crtc_width;
@@ -205,6 +223,46 @@ struct exynos_drm_manager {
 	struct exynos_drm_display_ops *display_ops;
 };
 
+<<<<<<< HEAD
+=======
+struct iommu_info_node {
+	struct list_head	list;
+	dma_addr_t		dma_addr;
+	void			*gem_obj;
+	/* TODO */
+};
+
+/*
+ * Exynos drm g2d private structure
+ *
+ * @dev: device object to device driver for using iommu.
+ */
+struct exynos_drm_g2d_private {
+	struct device		*dev;
+	struct list_head	inuse_cmdlist;
+	struct list_head	event_list;
+};
+
+/*
+ * Exynos drm ipp private structure
+ *
+ * @dev: device object to device driver for using driver data.
+ * @ippdrv: link used ippdrv.
+ * @event_list: list head to event.
+ */
+struct exynos_drm_ipp_private {
+	struct device	*dev;
+	void *ippdrv;
+	struct list_head	event_list;
+};
+
+struct drm_exynos_file_private {
+	struct exynos_drm_g2d_private	*g2d_priv;
+	struct exynos_drm_ipp_private	*ipp_priv;
+	pid_t				tgid;
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * Exynos drm private structure.
  */
@@ -219,6 +277,21 @@ struct exynos_drm_private {
 	 * this array is used to be aware of which crtc did it request vblank.
 	 */
 	struct drm_crtc *crtc[MAX_CRTC];
+<<<<<<< HEAD
+=======
+
+	/*
+	 * maximum size of allocation by userptr feature.
+	 * - as default, this has 16MB and only root user can change it.
+	 */
+	unsigned long userptr_limit;
+
+	/* a iovmm object for iommu support. */
+	void *vmm;
+
+	struct drm_property *plane_zpos_property;
+	struct drm_property *crtc_mode_property;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /*
@@ -246,7 +319,11 @@ struct exynos_drm_subdrv {
 	struct exynos_drm_manager *manager;
 
 	int (*probe)(struct drm_device *drm_dev, struct device *dev);
+<<<<<<< HEAD
 	void (*remove)(struct drm_device *dev);
+=======
+	void (*remove)(struct drm_device *drm_dev, struct device *dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int (*open)(struct drm_device *drm_dev, struct device *dev,
 			struct drm_file *file);
 	void (*close)(struct drm_device *drm_dev, struct device *dev,
@@ -287,4 +364,12 @@ extern struct platform_driver hdmi_driver;
 extern struct platform_driver mixer_driver;
 extern struct platform_driver exynos_drm_common_hdmi_driver;
 extern struct platform_driver vidi_driver;
+<<<<<<< HEAD
+=======
+extern struct platform_driver g2d_driver;
+extern struct platform_driver rotator_driver;
+extern struct platform_driver fimc_driver;
+extern struct platform_driver gsc_driver;
+extern struct platform_driver ipp_driver;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif

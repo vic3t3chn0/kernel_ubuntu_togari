@@ -10,5 +10,8 @@ obj-$(CONFIG_MLX4_INFINIBAND)		+= hw/mlx4/
 obj-$(CONFIG_INFINIBAND_NES)		+= hw/nes/
 obj-$(CONFIG_INFINIBAND_IPOIB)		+= ulp/ipoib/
 obj-$(CONFIG_INFINIBAND_SRP)		+= ulp/srp/
+<<<<<<< HEAD
 obj-$(CONFIG_INFINIBAND_SRPT)		+= ulp/srpt/
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_INFINIBAND_ISER)		+= ulp/iser/

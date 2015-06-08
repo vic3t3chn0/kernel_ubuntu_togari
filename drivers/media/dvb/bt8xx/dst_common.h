@@ -124,7 +124,11 @@ struct dst_state {
 	u16 decode_snr;
 	unsigned long cur_jiff;
 	u8 k22;
+<<<<<<< HEAD
 	u32 bandwidth;
+=======
+	fe_bandwidth_t bandwidth;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u32 dst_hw_cap;
 	u8 dst_fw_version;
 	fe_sec_mini_cmd_t minicmd;

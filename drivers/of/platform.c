@@ -13,7 +13,10 @@
  */
 #include <linux/errno.h>
 #include <linux/module.h>
+<<<<<<< HEAD
 #include <linux/amba/bus.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/device.h>
 #include <linux/dma-mapping.h>
 #include <linux/slab.h>
@@ -23,6 +26,7 @@
 #include <linux/of_platform.h>
 #include <linux/platform_device.h>
 
+<<<<<<< HEAD
 const struct of_device_id of_default_bus_match_table[] = {
 	{ .compatible = "simple-bus", },
 #ifdef CONFIG_ARM_AMBA
@@ -31,6 +35,8 @@ const struct of_device_id of_default_bus_match_table[] = {
 	{} /* Empty terminated list */
 };
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int of_dev_node_match(struct device *dev, void *data)
 {
 	return dev->of_node == data;
@@ -55,7 +61,11 @@ EXPORT_SYMBOL(of_find_device_by_node);
 #include <asm/dcr.h>
 #endif
 
+<<<<<<< HEAD
 #ifdef CONFIG_OF_ADDRESS
+=======
+#if !defined(CONFIG_SPARC)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * The following routines scan a subtree and registers a device for
  * each applicable node.
@@ -78,7 +88,10 @@ void of_device_make_bus_id(struct device *dev)
 	struct device_node *node = dev->of_node;
 	const u32 *reg;
 	u64 addr;
+<<<<<<< HEAD
 	const __be32 *addrp;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int magic;
 
 #ifdef CONFIG_PPC_DCR
@@ -106,6 +119,7 @@ void of_device_make_bus_id(struct device *dev)
 	 */
 	reg = of_get_property(node, "reg", NULL);
 	if (reg) {
+<<<<<<< HEAD
 		if (of_can_translate_address(node)) {
 			addr = of_translate_address(node, reg);
 		} else {
@@ -115,6 +129,9 @@ void of_device_make_bus_id(struct device *dev)
 			else
 				addr = OF_BAD_ADDR;
 		}
+=======
+		addr = of_translate_address(node, reg);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (addr != OF_BAD_ADDR) {
 			dev_set_name(dev, "%llx.%s",
 				     (unsigned long long)addr, node->name);
@@ -149,9 +166,14 @@ struct platform_device *of_device_alloc(struct device_node *np,
 		return NULL;
 
 	/* count the io and irq resources */
+<<<<<<< HEAD
 	if (of_can_translate_address(np))
 		while (of_address_to_resource(np, num_reg, &temp_res) == 0)
 			num_reg++;
+=======
+	while (of_address_to_resource(np, num_reg, &temp_res) == 0)
+		num_reg++;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	num_irq = of_irq_count(np);
 
 	/* Populate the resource table */
@@ -172,7 +194,11 @@ struct platform_device *of_device_alloc(struct device_node *np,
 	}
 
 	dev->dev.of_node = of_node_get(np);
+<<<<<<< HEAD
 #if defined(CONFIG_MICROBLAZE)
+=======
+#if defined(CONFIG_PPC) || defined(CONFIG_MICROBLAZE)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dev->dev.dma_mask = &dev->archdata.dma_mask;
 #endif
 	dev->dev.parent = parent;
@@ -187,20 +213,32 @@ struct platform_device *of_device_alloc(struct device_node *np,
 EXPORT_SYMBOL(of_device_alloc);
 
 /**
+<<<<<<< HEAD
  * of_platform_device_create_pdata - Alloc, initialize and register an of_device
  * @np: pointer to node to create device for
  * @bus_id: name to assign device
  * @platform_data: pointer to populate platform_data pointer with
+=======
+ * of_platform_device_create - Alloc, initialize and register an of_device
+ * @np: pointer to node to create device for
+ * @bus_id: name to assign device
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @parent: Linux device model parent device.
  *
  * Returns pointer to created platform device, or NULL if a device was not
  * registered.  Unavailable devices will not get registered.
  */
+<<<<<<< HEAD
 struct platform_device *of_platform_device_create_pdata(
 					struct device_node *np,
 					const char *bus_id,
 					void *platform_data,
 					struct device *parent)
+=======
+struct platform_device *of_platform_device_create(struct device_node *np,
+					    const char *bus_id,
+					    struct device *parent)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct platform_device *dev;
 
@@ -211,12 +249,20 @@ struct platform_device *of_platform_device_create_pdata(
 	if (!dev)
 		return NULL;
 
+<<<<<<< HEAD
 #if defined(CONFIG_MICROBLAZE)
 	dev->archdata.dma_mask = 0xffffffffUL;
 #endif
 	dev->dev.coherent_dma_mask = DMA_BIT_MASK(sizeof(dma_addr_t) * 8);
 	dev->dev.bus = &platform_bus_type;
 	dev->dev.platform_data = platform_data;
+=======
+#if defined(CONFIG_PPC) || defined(CONFIG_MICROBLAZE)
+	dev->archdata.dma_mask = 0xffffffffUL;
+#endif
+	dev->dev.coherent_dma_mask = DMA_BIT_MASK(32);
+	dev->dev.bus = &platform_bus_type;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* We do not fill the DMA ops for platform devices by default.
 	 * This is currently the responsibility of the platform code
@@ -230,6 +276,7 @@ struct platform_device *of_platform_device_create_pdata(
 
 	return dev;
 }
+<<<<<<< HEAD
 
 /**
  * of_platform_device_create - Alloc, initialize and register an of_device
@@ -337,19 +384,29 @@ static const struct of_dev_auxdata *of_dev_lookup(const struct of_dev_auxdata *l
 	return NULL;
 }
 
+=======
+EXPORT_SYMBOL(of_platform_device_create);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * of_platform_bus_create() - Create a device for a node and its children.
  * @bus: device node of the bus to instantiate
  * @matches: match table for bus nodes
+<<<<<<< HEAD
  * @lookup: auxdata table for matching id and platform_data with device nodes
  * @parent: parent for new device, or NULL for top level.
  * @strict: require compatible property
+=======
+ * disallow recursive creation of child buses
+ * @parent: parent for new device, or NULL for top level.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Creates a platform_device for the provided device_node, and optionally
  * recursively create devices for all the child nodes.
  */
 static int of_platform_bus_create(struct device_node *bus,
 				  const struct of_device_id *matches,
+<<<<<<< HEAD
 				  const struct of_dev_auxdata *lookup,
 				  struct device *parent, bool strict)
 {
@@ -379,12 +436,25 @@ static int of_platform_bus_create(struct device_node *bus,
 	}
 
 	dev = of_platform_device_create_pdata(bus, bus_id, platform_data, parent);
+=======
+				  struct device *parent)
+{
+	struct device_node *child;
+	struct platform_device *dev;
+	int rc = 0;
+
+	dev = of_platform_device_create(bus, NULL, parent);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!dev || !of_match_node(matches, bus))
 		return 0;
 
 	for_each_child_of_node(bus, child) {
 		pr_debug("   create child: %s\n", child->full_name);
+<<<<<<< HEAD
 		rc = of_platform_bus_create(child, matches, lookup, &dev->dev, strict);
+=======
+		rc = of_platform_bus_create(child, matches, &dev->dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (rc) {
 			of_node_put(child);
 			break;
@@ -418,11 +488,19 @@ int of_platform_bus_probe(struct device_node *root,
 
 	/* Do a self check of bus type, if there's a match, create children */
 	if (of_match_node(matches, root)) {
+<<<<<<< HEAD
 		rc = of_platform_bus_create(root, matches, NULL, parent, false);
 	} else for_each_child_of_node(root, child) {
 		if (!of_match_node(matches, child))
 			continue;
 		rc = of_platform_bus_create(child, matches, NULL, parent, false);
+=======
+		rc = of_platform_bus_create(root, matches, parent);
+	} else for_each_child_of_node(root, child) {
+		if (!of_match_node(matches, child))
+			continue;
+		rc = of_platform_bus_create(child, matches, parent);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (rc)
 			break;
 	}
@@ -431,6 +509,7 @@ int of_platform_bus_probe(struct device_node *root,
 	return rc;
 }
 EXPORT_SYMBOL(of_platform_bus_probe);
+<<<<<<< HEAD
 
 /**
  * of_platform_populate() - Populate platform_devices from device tree data
@@ -472,3 +551,6 @@ int of_platform_populate(struct device_node *root,
 	return rc;
 }
 #endif /* CONFIG_OF_ADDRESS */
+=======
+#endif /* !CONFIG_SPARC */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

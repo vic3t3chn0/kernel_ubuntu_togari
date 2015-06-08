@@ -55,7 +55,11 @@ static int nmk_rng_probe(struct amba_device *dev, const struct amba_id *id)
 
 	ret = amba_request_regions(dev, dev->dev.init_name);
 	if (ret)
+<<<<<<< HEAD
 		goto out_clk;
+=======
+		return ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ret = -ENOMEM;
 	base = ioremap(dev->res.start, resource_size(&dev->res));
 	if (!base)
@@ -70,7 +74,10 @@ out_unmap:
 	iounmap(base);
 out_release:
 	amba_release_regions(dev);
+<<<<<<< HEAD
 out_clk:
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	clk_disable(rng_clk);
 	clk_put(rng_clk);
 	return ret;
@@ -95,8 +102,11 @@ static struct amba_id nmk_rng_ids[] = {
 	{0, 0},
 };
 
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(amba, nmk_rng_ids);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct amba_driver nmk_rng_driver = {
 	.drv = {
 		.owner = THIS_MODULE,
@@ -107,6 +117,21 @@ static struct amba_driver nmk_rng_driver = {
 	.id_table = nmk_rng_ids,
 };
 
+<<<<<<< HEAD
 module_amba_driver(nmk_rng_driver);
+=======
+static int __init nmk_rng_init(void)
+{
+	return amba_driver_register(&nmk_rng_driver);
+}
+
+static void __devexit nmk_rng_exit(void)
+{
+	amba_driver_unregister(&nmk_rng_driver);
+}
+
+module_init(nmk_rng_init);
+module_exit(nmk_rng_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_LICENSE("GPL");

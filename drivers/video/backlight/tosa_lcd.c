@@ -285,7 +285,22 @@ static struct spi_driver tosa_lcd_driver = {
 	.resume		= tosa_lcd_resume,
 };
 
+<<<<<<< HEAD
 module_spi_driver(tosa_lcd_driver);
+=======
+static int __init tosa_lcd_init(void)
+{
+	return spi_register_driver(&tosa_lcd_driver);
+}
+
+static void __exit tosa_lcd_exit(void)
+{
+	spi_unregister_driver(&tosa_lcd_driver);
+}
+
+module_init(tosa_lcd_init);
+module_exit(tosa_lcd_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Dmitry Baryshkov");
 MODULE_LICENSE("GPL v2");

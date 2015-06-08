@@ -46,7 +46,11 @@
 #define PRESENT         1	/* Card in slot */
 
 #define MY_NAME "rpaphp"
+<<<<<<< HEAD
 extern bool rpaphp_debug;
+=======
+extern int rpaphp_debug;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define dbg(format, arg...)					\
 	do {							\
 		if (rpaphp_debug)					\

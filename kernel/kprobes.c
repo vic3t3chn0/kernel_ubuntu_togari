@@ -36,7 +36,11 @@
 #include <linux/init.h>
 #include <linux/slab.h>
 #include <linux/stddef.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/moduleloader.h>
 #include <linux/kallsyms.h>
 #include <linux/freezer.h>
@@ -68,7 +72,10 @@
 #endif
 
 static int kprobes_initialized;
+<<<<<<< HEAD
 static int kprobe_blacklist_initialized;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct hlist_head kprobe_table[KPROBE_TABLE_SIZE];
 static struct hlist_head kretprobe_inst_table[KPROBE_TABLE_SIZE];
 
@@ -79,10 +86,17 @@ static bool kprobes_all_disarmed;
 static DEFINE_MUTEX(kprobe_mutex);
 static DEFINE_PER_CPU(struct kprobe *, kprobe_instance) = NULL;
 static struct {
+<<<<<<< HEAD
 	raw_spinlock_t lock ____cacheline_aligned_in_smp;
 } kretprobe_table_locks[KPROBE_TABLE_SIZE];
 
 static raw_spinlock_t *kretprobe_table_lock_ptr(unsigned long hash)
+=======
+	spinlock_t lock ____cacheline_aligned_in_smp;
+} kretprobe_table_locks[KPROBE_TABLE_SIZE];
+
+static spinlock_t *kretprobe_table_lock_ptr(unsigned long hash)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	return &(kretprobe_table_locks[hash].lock);
 }
@@ -103,6 +117,7 @@ static struct kprobe_blackpoint kprobe_blacklist[] = {
 	{NULL}    /* Terminator */
 };
 
+<<<<<<< HEAD
 /* it can take some time ( > 100ms ) to initialise the
  * blacklist so we delay this until we actually need it
  */
@@ -151,6 +166,8 @@ static void init_kprobe_blacklist(void)
 	kprobe_blacklist_initialized = 1;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef __ARCH_WANT_KPROBES_INSN_SLOT
 /*
  * kprobe->ainsn.insn points to the copy of the instruction to be
@@ -1062,9 +1079,15 @@ void __kprobes recycle_rp_inst(struct kretprobe_instance *ri,
 	hlist_del(&ri->hlist);
 	INIT_HLIST_NODE(&ri->hlist);
 	if (likely(rp)) {
+<<<<<<< HEAD
 		raw_spin_lock(&rp->lock);
 		hlist_add_head(&ri->hlist, &rp->free_instances);
 		raw_spin_unlock(&rp->lock);
+=======
+		spin_lock(&rp->lock);
+		hlist_add_head(&ri->hlist, &rp->free_instances);
+		spin_unlock(&rp->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} else
 		/* Unregistering */
 		hlist_add_head(&ri->hlist, head);
@@ -1075,19 +1098,32 @@ void __kprobes kretprobe_hash_lock(struct task_struct *tsk,
 __acquires(hlist_lock)
 {
 	unsigned long hash = hash_ptr(tsk, KPROBE_HASH_BITS);
+<<<<<<< HEAD
 	raw_spinlock_t *hlist_lock;
 
 	*head = &kretprobe_inst_table[hash];
 	hlist_lock = kretprobe_table_lock_ptr(hash);
 	raw_spin_lock_irqsave(hlist_lock, *flags);
+=======
+	spinlock_t *hlist_lock;
+
+	*head = &kretprobe_inst_table[hash];
+	hlist_lock = kretprobe_table_lock_ptr(hash);
+	spin_lock_irqsave(hlist_lock, *flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void __kprobes kretprobe_table_lock(unsigned long hash,
 	unsigned long *flags)
 __acquires(hlist_lock)
 {
+<<<<<<< HEAD
 	raw_spinlock_t *hlist_lock = kretprobe_table_lock_ptr(hash);
 	raw_spin_lock_irqsave(hlist_lock, *flags);
+=======
+	spinlock_t *hlist_lock = kretprobe_table_lock_ptr(hash);
+	spin_lock_irqsave(hlist_lock, *flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 void __kprobes kretprobe_hash_unlock(struct task_struct *tsk,
@@ -1095,18 +1131,30 @@ void __kprobes kretprobe_hash_unlock(struct task_struct *tsk,
 __releases(hlist_lock)
 {
 	unsigned long hash = hash_ptr(tsk, KPROBE_HASH_BITS);
+<<<<<<< HEAD
 	raw_spinlock_t *hlist_lock;
 
 	hlist_lock = kretprobe_table_lock_ptr(hash);
 	raw_spin_unlock_irqrestore(hlist_lock, *flags);
+=======
+	spinlock_t *hlist_lock;
+
+	hlist_lock = kretprobe_table_lock_ptr(hash);
+	spin_unlock_irqrestore(hlist_lock, *flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void __kprobes kretprobe_table_unlock(unsigned long hash,
        unsigned long *flags)
 __releases(hlist_lock)
 {
+<<<<<<< HEAD
 	raw_spinlock_t *hlist_lock = kretprobe_table_lock_ptr(hash);
 	raw_spin_unlock_irqrestore(hlist_lock, *flags);
+=======
+	spinlock_t *hlist_lock = kretprobe_table_lock_ptr(hash);
+	spin_unlock_irqrestore(hlist_lock, *flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -1287,9 +1335,12 @@ static int __kprobes in_kprobes_functions(unsigned long addr)
 	if (addr >= (unsigned long)__kprobes_text_start &&
 	    addr < (unsigned long)__kprobes_text_end)
 		return -EINVAL;
+<<<<<<< HEAD
 
 	if (!kprobe_blacklist_initialized)
 		init_kprobe_blacklist();
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * If there exists a kprobe_blacklist, verify and
 	 * fail any probe registration in the prohibited area
@@ -1307,12 +1358,16 @@ static int __kprobes in_kprobes_functions(unsigned long addr)
 /*
  * If we have a symbol_name argument, look it up and add the offset field
  * to it. This way, we can specify a relative address to a symbol.
+<<<<<<< HEAD
  * This returns encoded errors if it fails to look up symbol or invalid
  * combination of parameters.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 static kprobe_opcode_t __kprobes *kprobe_addr(struct kprobe *p)
 {
 	kprobe_opcode_t *addr = p->addr;
+<<<<<<< HEAD
 
 	if ((p->symbol_name && p->addr) ||
 	    (!p->symbol_name && !p->addr))
@@ -1330,6 +1385,17 @@ static kprobe_opcode_t __kprobes *kprobe_addr(struct kprobe *p)
 
 invalid:
 	return ERR_PTR(-EINVAL);
+=======
+	if (p->symbol_name) {
+		if (addr)
+			return NULL;
+		kprobe_lookup_name(p->symbol_name, addr);
+	}
+
+	if (!addr)
+		return NULL;
+	return (kprobe_opcode_t *)(((char *)addr) + p->offset);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /* Check passed kprobe is valid and return kprobe in kprobe_table. */
@@ -1373,8 +1439,13 @@ int __kprobes register_kprobe(struct kprobe *p)
 	kprobe_opcode_t *addr;
 
 	addr = kprobe_addr(p);
+<<<<<<< HEAD
 	if (IS_ERR(addr))
 		return PTR_ERR(addr);
+=======
+	if (!addr)
+		return -EINVAL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	p->addr = addr;
 
 	ret = check_kprobe_rereg(p);
@@ -1386,10 +1457,15 @@ int __kprobes register_kprobe(struct kprobe *p)
 	if (!kernel_text_address((unsigned long) p->addr) ||
 	    in_kprobes_functions((unsigned long) p->addr) ||
 	    ftrace_text_reserved(p->addr, p->addr) ||
+<<<<<<< HEAD
 	    jump_label_text_reserved(p->addr, p->addr)) {
 		ret = -EINVAL;
 		goto cannot_probe;
 	}
+=======
+	    jump_label_text_reserved(p->addr, p->addr))
+		goto fail_with_jump_label;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* User can pass only KPROBE_FLAG_DISABLED to register_kprobe */
 	p->flags &= KPROBE_FLAG_DISABLED;
@@ -1399,14 +1475,21 @@ int __kprobes register_kprobe(struct kprobe *p)
 	 */
 	probed_mod = __module_text_address((unsigned long) p->addr);
 	if (probed_mod) {
+<<<<<<< HEAD
 		/* Return -ENOENT if fail. */
 		ret = -ENOENT;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/*
 		 * We must hold a refcount of the probed module while updating
 		 * its code to prohibit unexpected unloading.
 		 */
 		if (unlikely(!try_module_get(probed_mod)))
+<<<<<<< HEAD
 			goto cannot_probe;
+=======
+			goto fail_with_jump_label;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		/*
 		 * If the module freed .init.text, we couldn't insert
@@ -1415,9 +1498,14 @@ int __kprobes register_kprobe(struct kprobe *p)
 		if (within_module_init((unsigned long)p->addr, probed_mod) &&
 		    probed_mod->state != MODULE_STATE_COMING) {
 			module_put(probed_mod);
+<<<<<<< HEAD
 			goto cannot_probe;
 		}
 		/* ret will be updated by following code */
+=======
+			goto fail_with_jump_label;
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	preempt_enable();
 	jump_label_unlock();
@@ -1463,10 +1551,17 @@ out:
 
 	return ret;
 
+<<<<<<< HEAD
 cannot_probe:
 	preempt_enable();
 	jump_label_unlock();
 	return ret;
+=======
+fail_with_jump_label:
+	preempt_enable();
+	jump_label_unlock();
+	return -EINVAL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 EXPORT_SYMBOL_GPL(register_kprobe);
 
@@ -1717,20 +1812,34 @@ static int __kprobes pre_handler_kretprobe(struct kprobe *p,
 
 	/*TODO: consider to only swap the RA after the last pre_handler fired */
 	hash = hash_ptr(current, KPROBE_HASH_BITS);
+<<<<<<< HEAD
 	raw_spin_lock_irqsave(&rp->lock, flags);
+=======
+	spin_lock_irqsave(&rp->lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!hlist_empty(&rp->free_instances)) {
 		ri = hlist_entry(rp->free_instances.first,
 				struct kretprobe_instance, hlist);
 		hlist_del(&ri->hlist);
+<<<<<<< HEAD
 		raw_spin_unlock_irqrestore(&rp->lock, flags);
+=======
+		spin_unlock_irqrestore(&rp->lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		ri->rp = rp;
 		ri->task = current;
 
 		if (rp->entry_handler && rp->entry_handler(ri, regs)) {
+<<<<<<< HEAD
 			raw_spin_lock_irqsave(&rp->lock, flags);
 			hlist_add_head(&ri->hlist, &rp->free_instances);
 			raw_spin_unlock_irqrestore(&rp->lock, flags);
+=======
+			spin_lock_irqsave(&rp->lock, flags);
+			hlist_add_head(&ri->hlist, &rp->free_instances);
+			spin_unlock_irqrestore(&rp->lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return 0;
 		}
 
@@ -1743,7 +1852,11 @@ static int __kprobes pre_handler_kretprobe(struct kprobe *p,
 		kretprobe_table_unlock(hash, &flags);
 	} else {
 		rp->nmissed++;
+<<<<<<< HEAD
 		raw_spin_unlock_irqrestore(&rp->lock, flags);
+=======
+		spin_unlock_irqrestore(&rp->lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return 0;
 }
@@ -1756,11 +1869,17 @@ int __kprobes register_kretprobe(struct kretprobe *rp)
 	void *addr;
 
 	if (kretprobe_blacklist_size) {
+<<<<<<< HEAD
 		if (!kprobe_blacklist_initialized)
 			init_kprobe_blacklist();
 		addr = kprobe_addr(&rp->kp);
 		if (IS_ERR(addr))
 			return PTR_ERR(addr);
+=======
+		addr = kprobe_addr(&rp->kp);
+		if (!addr)
+			return -EINVAL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		for (i = 0; kretprobe_blacklist[i].name != NULL; i++) {
 			if (kretprobe_blacklist[i].addr == addr)
@@ -1781,7 +1900,11 @@ int __kprobes register_kretprobe(struct kretprobe *rp)
 		rp->maxactive = num_possible_cpus();
 #endif
 	}
+<<<<<<< HEAD
 	raw_spin_lock_init(&rp->lock);
+=======
+	spin_lock_init(&rp->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	INIT_HLIST_HEAD(&rp->free_instances);
 	for (i = 0; i < rp->maxactive; i++) {
 		inst = kmalloc(sizeof(struct kretprobe_instance) +
@@ -2008,13 +2131,58 @@ static struct notifier_block kprobe_module_nb = {
 static int __init init_kprobes(void)
 {
 	int i, err = 0;
+<<<<<<< HEAD
+=======
+	unsigned long offset = 0, size = 0;
+	char *modname, namebuf[128];
+	const char *symbol_name;
+	void *addr;
+	struct kprobe_blackpoint *kb;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* FIXME allocate the probe table, currently defined statically */
 	/* initialize all list heads */
 	for (i = 0; i < KPROBE_TABLE_SIZE; i++) {
 		INIT_HLIST_HEAD(&kprobe_table[i]);
 		INIT_HLIST_HEAD(&kretprobe_inst_table[i]);
+<<<<<<< HEAD
 		raw_spin_lock_init(&(kretprobe_table_locks[i].lock));
+=======
+		spin_lock_init(&(kretprobe_table_locks[i].lock));
+	}
+
+	/*
+	 * Lookup and populate the kprobe_blacklist.
+	 *
+	 * Unlike the kretprobe blacklist, we'll need to determine
+	 * the range of addresses that belong to the said functions,
+	 * since a kprobe need not necessarily be at the beginning
+	 * of a function.
+	 */
+	for (kb = kprobe_blacklist; kb->name != NULL; kb++) {
+		kprobe_lookup_name(kb->name, addr);
+		if (!addr)
+			continue;
+
+		kb->start_addr = (unsigned long)addr;
+		symbol_name = kallsyms_lookup(kb->start_addr,
+				&size, &offset, &modname, namebuf);
+		if (!symbol_name)
+			kb->range = 0;
+		else
+			kb->range = size;
+	}
+
+	if (kretprobe_blacklist_size) {
+		/* lookup the function address from its name */
+		for (i = 0; kretprobe_blacklist[i].name != NULL; i++) {
+			kprobe_lookup_name(kretprobe_blacklist[i].name,
+					   kretprobe_blacklist[i].addr);
+			if (!kretprobe_blacklist[i].addr)
+				printk("kretprobe: lookup failed: %s\n",
+				       kretprobe_blacklist[i].name);
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 #if defined(CONFIG_OPTPROBES)
@@ -2220,7 +2388,11 @@ static ssize_t write_enabled_file_bool(struct file *file,
 	       const char __user *user_buf, size_t count, loff_t *ppos)
 {
 	char buf[32];
+<<<<<<< HEAD
 	size_t buf_size;
+=======
+	int buf_size;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	buf_size = min(count, (sizeof(buf)-1));
 	if (copy_from_user(buf, user_buf, buf_size))

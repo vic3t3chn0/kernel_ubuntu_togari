@@ -8,6 +8,10 @@
  *	it under the terms of the GNU General Public License as published by
  *	the Free Software Foundation; either version 2 of the License, or
  *	(at your option) any later version.
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #include <linux/kernel.h>

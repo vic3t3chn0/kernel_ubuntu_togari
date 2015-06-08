@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+/*
+ * $Id: musycc.h,v 1.3 2005/09/28 00:10:08 rickd PMCC4_3_1B $
+ */
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifndef _INC_MUSYCC_H_
 #define _INC_MUSYCC_H_
 
@@ -20,13 +27,45 @@
  * For further information, contact via email: support@sbei.com
  * SBE, Inc.  San Ramon, California  U.S.A.
  *-----------------------------------------------------------------------------
+<<<<<<< HEAD
  */
 
 #include <linux/types.h>
+=======
+ * RCS info:
+ * RCS revision: $Revision: 1.3 $
+ * Last changed on $Date: 2005/09/28 00:10:08 $
+ * Changed by $Author: rickd $
+ *-----------------------------------------------------------------------------
+ * $Log: musycc.h,v $
+ * Revision 1.3  2005/09/28 00:10:08  rickd
+ * Add GNU license info. Add PMCC4 PCI/DevIDs.  Implement new
+ * musycc reg&bits namings. Use PORTMAP_0 GCD grouping.
+ *
+ * Revision 1.2  2005/04/28 23:43:04  rickd
+ * Add RCS tracking heading.
+ *
+ *-----------------------------------------------------------------------------
+ */
+
+#if defined (__FreeBSD__) || defined (__NetBSD__)
+#include <sys/types.h>
+#else
+#include <linux/types.h>
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define VINT8   volatile u_int8_t
 #define VINT32  volatile u_int32_t
 
+<<<<<<< HEAD
+=======
+#ifdef __cplusplus
+extern      "C"
+{
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "pmcc4_defs.h"
 
 
@@ -421,6 +460,13 @@
 /*  This must be defined on an entire channel group (Port) basis */
 #define SUERM_THRESHOLD     0x1f
 
+<<<<<<< HEAD
+=======
+#ifdef __cplusplus
+}
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #undef VINT32
 #undef VINT8
 

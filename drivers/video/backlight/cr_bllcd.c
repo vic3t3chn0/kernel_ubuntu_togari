@@ -212,7 +212,11 @@ static int cr_backlight_probe(struct platform_device *pdev)
 			      &gpio_bar);
 	gpio_bar &= ~0x3F;
 
+<<<<<<< HEAD
 	crp = devm_kzalloc(&pdev->dev, sizeof(*crp), GFP_KERNEL);
+=======
+	crp = kzalloc(sizeof(*crp), GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!crp) {
 		lcd_device_unregister(ldp);
 		backlight_device_unregister(bdp);
@@ -243,6 +247,10 @@ static int cr_backlight_remove(struct platform_device *pdev)
 	backlight_device_unregister(crp->cr_backlight_device);
 	lcd_device_unregister(crp->cr_lcd_device);
 	pci_dev_put(lpc_dev);
+<<<<<<< HEAD
+=======
+	kfree(crp);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }

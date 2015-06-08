@@ -28,7 +28,11 @@
 #include "aerdrv.h"
 
 /* Override the existing corrected and uncorrected error masks */
+<<<<<<< HEAD
 static bool aer_mask_override;
+=======
+static int aer_mask_override;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(aer_mask_override, bool, 0);
 
 struct aer_error_inj {

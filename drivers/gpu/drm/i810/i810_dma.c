@@ -129,7 +129,10 @@ static int i810_map_buffer(struct drm_buf *buf, struct drm_file *file_priv)
 	if (buf_priv->currently_mapped == I810_BUF_MAPPED)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	/* This is all entirely broken */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	down_write(&current->mm->mmap_sem);
 	old_fops = file_priv->filp->f_op;
 	file_priv->filp->f_op = &i810_buffer_fops;
@@ -158,8 +161,16 @@ static int i810_unmap_buffer(struct drm_buf *buf)
 	if (buf_priv->currently_mapped != I810_BUF_MAPPED)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	retcode = vm_munmap((unsigned long)buf_priv->virtual,
 			    (size_t) buf->total);
+=======
+	down_write(&current->mm->mmap_sem);
+	retcode = do_munmap(current->mm,
+			    (unsigned long)buf_priv->virtual,
+			    (size_t) buf->total);
+	up_write(&current->mm->mmap_sem);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	buf_priv->currently_mapped = I810_BUF_UNMAPPED;
 	buf_priv->virtual = NULL;

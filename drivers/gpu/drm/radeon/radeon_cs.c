@@ -103,6 +103,7 @@ static int radeon_cs_get_ring(struct radeon_cs_parser *p, u32 ring, s32 priority
 		p->ring = RADEON_RING_TYPE_GFX_INDEX;
 		break;
 	case RADEON_CS_RING_COMPUTE:
+<<<<<<< HEAD
 		if (p->rdev->family >= CHIP_TAHITI) {
 			if (p->priority > 0)
 				p->ring = CAYMAN_RING_TYPE_CP1_INDEX;
@@ -110,6 +111,10 @@ static int radeon_cs_get_ring(struct radeon_cs_parser *p, u32 ring, s32 priority
 				p->ring = CAYMAN_RING_TYPE_CP2_INDEX;
 		} else
 			p->ring = RADEON_RING_TYPE_GFX_INDEX;
+=======
+		/* for now */
+		p->ring = RADEON_RING_TYPE_GFX_INDEX;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 	}
 	return 0;
@@ -175,7 +180,10 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
 	p->chunk_ib_idx = -1;
 	p->chunk_relocs_idx = -1;
 	p->chunk_flags_idx = -1;
+<<<<<<< HEAD
 	p->chunk_const_ib_idx = -1;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	p->chunks_array = kcalloc(cs->num_chunks, sizeof(uint64_t), GFP_KERNEL);
 	if (p->chunks_array == NULL) {
 		return -ENOMEM;
@@ -214,12 +222,15 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
 			if (p->chunks[i].length_dw == 0)
 				return -EINVAL;
 		}
+<<<<<<< HEAD
 		if (p->chunks[i].chunk_id == RADEON_CHUNK_ID_CONST_IB) {
 			p->chunk_const_ib_idx = i;
 			/* zero length CONST IB isn't useful */
 			if (p->chunks[i].length_dw == 0)
 				return -EINVAL;
 		}
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (p->chunks[i].chunk_id == RADEON_CHUNK_ID_FLAGS) {
 			p->chunk_flags_idx = i;
 			/* zero length flags aren't useful */
@@ -258,6 +269,7 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	/* we only support VM on SI+ */
 	if ((p->rdev->family >= CHIP_TAHITI) &&
 	    ((p->cs_flags & RADEON_CS_USE_VM) == 0)) {
@@ -265,6 +277,8 @@ int radeon_cs_parser_init(struct radeon_cs_parser *p, void *data)
 		return -EINVAL;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (radeon_cs_get_ring(p, ring, priority))
 		return -EINVAL;
 
@@ -408,6 +422,7 @@ static int radeon_cs_ib_vm_chunk(struct radeon_device *rdev,
 	if ((parser->cs_flags & RADEON_CS_USE_VM) == 0)
 		return 0;
 
+<<<<<<< HEAD
 	if ((rdev->family >= CHIP_TAHITI) &&
 	    (parser->chunk_const_ib_idx != -1)) {
 		ib_chunk = &parser->chunks[parser->chunk_const_ib_idx];
@@ -434,6 +449,8 @@ static int radeon_cs_ib_vm_chunk(struct radeon_device *rdev,
 		}
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ib_chunk = &parser->chunks[parser->chunk_ib_idx];
 	if (ib_chunk->length_dw > RADEON_IB_VM_MAX_SIZE) {
 		DRM_ERROR("cs IB too big: %d\n", ib_chunk->length_dw);
@@ -469,6 +486,7 @@ static int radeon_cs_ib_vm_chunk(struct radeon_device *rdev,
 	if (r) {
 		DRM_ERROR("Failed to synchronize rings !\n");
 	}
+<<<<<<< HEAD
 
 	if ((rdev->family >= CHIP_TAHITI) &&
 	    (parser->chunk_const_ib_idx != -1)) {
@@ -482,12 +500,17 @@ static int radeon_cs_ib_vm_chunk(struct radeon_device *rdev,
 			goto out;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	parser->ib->vm_id = vm->id;
 	/* ib pool is bind at 0 in virtual address space to gpu_addr is the
 	 * offset inside the pool bo
 	 */
 	parser->ib->gpu_addr = parser->ib->sa_bo.offset;
+<<<<<<< HEAD
 	parser->ib->is_const_ib = false;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	r = radeon_ib_schedule(rdev, parser->ib);
 out:
 	if (!r) {

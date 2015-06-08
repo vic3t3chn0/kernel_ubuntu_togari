@@ -55,3 +55,7 @@
 /* 2 * 64 byte is a compromise between IRQ count and latency */
 #define NJ_DMA_RXSIZE		128  /* 2 * 64 */
 #define NJ_DMA_TXSIZE		128  /* 2 * 64 */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

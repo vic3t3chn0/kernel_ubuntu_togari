@@ -47,7 +47,11 @@ static struct vm_operations_struct udl_gem_vm_ops = {
 static const struct file_operations udl_driver_fops = {
 	.owner = THIS_MODULE,
 	.open = drm_open,
+<<<<<<< HEAD
 	.mmap = udl_drm_gem_mmap,
+=======
+	.mmap = drm_gem_mmap,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.poll = drm_poll,
 	.read = drm_read,
 	.unlocked_ioctl	= drm_ioctl,

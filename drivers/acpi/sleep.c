@@ -17,8 +17,11 @@
 #include <linux/suspend.h>
 #include <linux/reboot.h>
 #include <linux/acpi.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/pm_runtime.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <asm/io.h>
 
@@ -28,6 +31,7 @@
 #include "internal.h"
 #include "sleep.h"
 
+<<<<<<< HEAD
 u8 wake_sleep_flags = ACPI_NO_OPTIONAL_METHODS;
 static unsigned int gts, bfs;
 static int set_param_wake_flag(const char *val, struct kernel_param *kp)
@@ -56,6 +60,8 @@ module_param_call(bfs, set_param_wake_flag, param_get_int, &bfs, 0644);
 MODULE_PARM_DESC(gts, "Enable evaluation of _GTS on suspend.");
 MODULE_PARM_DESC(bfs, "Enable evaluation of _BFS on resume".);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static u8 sleep_states[ACPI_S_STATE_COUNT];
 
 static void acpi_sleep_tts_switch(u32 acpi_state)
@@ -280,7 +286,11 @@ static int acpi_suspend_enter(suspend_state_t pm_state)
 	switch (acpi_state) {
 	case ACPI_STATE_S1:
 		barrier();
+<<<<<<< HEAD
 		status = acpi_enter_sleep_state(acpi_state, wake_sleep_flags);
+=======
+		status = acpi_enter_sleep_state(acpi_state);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 
 	case ACPI_STATE_S3:
@@ -295,7 +305,11 @@ static int acpi_suspend_enter(suspend_state_t pm_state)
 	acpi_write_bit_register(ACPI_BITREG_SCI_ENABLE, 1);
 
 	/* Reprogram control registers and execute _BFS */
+<<<<<<< HEAD
 	acpi_leave_sleep_state_prep(acpi_state, wake_sleep_flags);
+=======
+	acpi_leave_sleep_state_prep(acpi_state);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* ACPI 3.0 specs (P62) says that it's the responsibility
 	 * of the OSPM to clear the status bit [ implying that the
@@ -420,6 +434,7 @@ static struct dmi_system_id __initdata acpisleep_dmi_table[] = {
 	},
 	{
 	.callback = init_nvs_nosave,
+<<<<<<< HEAD
 	.ident = "Sony Vaio VGN-FW21E",
 	.matches = {
 		DMI_MATCH(DMI_SYS_VENDOR, "Sony Corporation"),
@@ -436,6 +451,8 @@ static struct dmi_system_id __initdata acpisleep_dmi_table[] = {
 	},
 	{
 	.callback = init_nvs_nosave,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.ident = "Sony Vaio VGN-SR11M",
 	.matches = {
 		DMI_MATCH(DMI_SYS_VENDOR, "Sony Corporation"),
@@ -483,6 +500,7 @@ static struct dmi_system_id __initdata acpisleep_dmi_table[] = {
 		},
 	},
 	{
+<<<<<<< HEAD
 	.callback = init_old_suspend_ordering,
 	.ident = "Asus A8N-SLI DELUXE",
 	.matches = {
@@ -515,6 +533,8 @@ static struct dmi_system_id __initdata acpisleep_dmi_table[] = {
 		},
 	},
 	{
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.callback = init_nvs_nosave,
 	.ident = "Asus K54C",
 	.matches = {
@@ -564,9 +584,15 @@ static int acpi_hibernation_enter(void)
 	ACPI_FLUSH_CPU_CACHE();
 
 	/* This shouldn't return.  If it returns, we have a problem */
+<<<<<<< HEAD
 	status = acpi_enter_sleep_state(ACPI_STATE_S4, wake_sleep_flags);
 	/* Reprogram control registers and execute _BFS */
 	acpi_leave_sleep_state_prep(ACPI_STATE_S4, wake_sleep_flags);
+=======
+	status = acpi_enter_sleep_state(ACPI_STATE_S4);
+	/* Reprogram control registers and execute _BFS */
+	acpi_leave_sleep_state_prep(ACPI_STATE_S4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ACPI_SUCCESS(status) ? 0 : -EFAULT;
 }
@@ -579,7 +605,11 @@ static void acpi_hibernation_leave(void)
 	 */
 	acpi_enable();
 	/* Reprogram control registers and execute _BFS */
+<<<<<<< HEAD
 	acpi_leave_sleep_state_prep(ACPI_STATE_S4, wake_sleep_flags);
+=======
+	acpi_leave_sleep_state_prep(ACPI_STATE_S4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Check the hardware signature */
 	if (facs && s4_hardware_signature != facs->hardware_signature) {
 		printk(KERN_EMERG "ACPI: Hardware changed while hibernated, "
@@ -760,6 +790,7 @@ int acpi_pm_device_sleep_state(struct device *dev, int *d_min_p)
 
 #ifdef CONFIG_PM_SLEEP
 /**
+<<<<<<< HEAD
  * acpi_pm_device_run_wake - Enable/disable wake-up for given device.
  * @phys_dev: Device to enable/disable the platform to wake-up the system for.
  * @enable: Whether enable or disable the wake-up functionality.
@@ -794,6 +825,8 @@ int acpi_pm_device_run_wake(struct device *phys_dev, bool enable)
 }
 
 /**
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *	acpi_pm_device_sleep_wake - enable or disable the system wake-up
  *                                  capability of given device
  *	@dev: device to handle
@@ -837,7 +870,11 @@ static void acpi_power_off(void)
 	/* acpi_sleep_prepare(ACPI_STATE_S5) should have already been called */
 	printk(KERN_DEBUG "%s called\n", __func__);
 	local_irq_disable();
+<<<<<<< HEAD
 	acpi_enter_sleep_state(ACPI_STATE_S5, wake_sleep_flags);
+=======
+	acpi_enter_sleep_state(ACPI_STATE_S5);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -852,13 +889,21 @@ static void __init acpi_gts_bfs_check(void)
 {
 	acpi_handle dummy;
 
+<<<<<<< HEAD
 	if (ACPI_SUCCESS(acpi_get_handle(ACPI_ROOT_OBJECT, METHOD_PATHNAME__GTS, &dummy)))
+=======
+	if (ACPI_SUCCESS(acpi_get_handle(ACPI_ROOT_OBJECT, METHOD_NAME__GTS, &dummy)))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{
 		printk(KERN_NOTICE PREFIX "BIOS offers _GTS\n");
 		printk(KERN_NOTICE PREFIX "If \"acpi.gts=1\" improves suspend, "
 			"please notify linux-acpi@vger.kernel.org\n");
 	}
+<<<<<<< HEAD
 	if (ACPI_SUCCESS(acpi_get_handle(ACPI_ROOT_OBJECT, METHOD_PATHNAME__BFS, &dummy)))
+=======
+	if (ACPI_SUCCESS(acpi_get_handle(ACPI_ROOT_OBJECT, METHOD_NAME__BFS, &dummy)))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{
 		printk(KERN_NOTICE PREFIX "BIOS offers _BFS\n");
 		printk(KERN_NOTICE PREFIX "If \"acpi.bfs=1\" improves resume, "

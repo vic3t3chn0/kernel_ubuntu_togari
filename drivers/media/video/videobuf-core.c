@@ -330,12 +330,21 @@ static void videobuf_status(struct videobuf_queue *q, struct v4l2_buffer *b,
 		break;
 	case V4L2_MEMORY_USERPTR:
 		b->m.userptr = vb->baddr;
+<<<<<<< HEAD
 		b->reserved = vb->boff;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		b->length    = vb->bsize;
 		break;
 	case V4L2_MEMORY_OVERLAY:
 		b->m.offset  = vb->boff;
 		break;
+<<<<<<< HEAD
+=======
+	case V4L2_MEMORY_DMABUF:
+		/* DMABUF is not handled in videobuf framework */
+		break;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	b->flags    = 0;
@@ -412,6 +421,10 @@ int __videobuf_mmap_setup(struct videobuf_queue *q,
 			break;
 		case V4L2_MEMORY_USERPTR:
 		case V4L2_MEMORY_OVERLAY:
+<<<<<<< HEAD
+=======
+		case V4L2_MEMORY_DMABUF:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			/* nothing */
 			break;
 		}
@@ -601,7 +614,10 @@ int videobuf_qbuf(struct videobuf_queue *q, struct v4l2_buffer *b)
 		    buf->baddr != b->m.userptr)
 			q->ops->buf_release(q, buf);
 		buf->baddr = b->m.userptr;
+<<<<<<< HEAD
 		buf->boff = b->reserved;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 	case V4L2_MEMORY_OVERLAY:
 		buf->boff = b->m.offset;
@@ -1140,6 +1156,11 @@ unsigned int videobuf_poll_stream(struct file *file,
 			buf = list_entry(q->stream.next,
 					 struct videobuf_buffer, stream);
 	} else {
+<<<<<<< HEAD
+=======
+		if (!q->reading)
+			__videobuf_read_start(q);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (!q->reading) {
 			rc = POLLERR;
 		} else if (NULL == q->read_buf) {

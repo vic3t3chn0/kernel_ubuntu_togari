@@ -23,7 +23,10 @@
 #include <linux/types.h>
 #include <linux/ioctl.h>
 #include <linux/media.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <media/media-device.h>
 #include <media/media-devnode.h>
@@ -108,7 +111,12 @@ static long media_device_enum_entities(struct media_device *mdev,
 	u_ent.group_id = ent->group_id;
 	u_ent.pads = ent->num_pads;
 	u_ent.links = ent->num_links - ent->num_backlinks;
+<<<<<<< HEAD
 	memcpy(&u_ent.raw, &ent->info, sizeof(ent->info));
+=======
+	u_ent.v4l.major = ent->v4l.major;
+	u_ent.v4l.minor = ent->v4l.minor;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (copy_to_user(uent, &u_ent, sizeof(u_ent)))
 		return -EFAULT;
 	return 0;
@@ -139,7 +147,11 @@ static long media_device_enum_links(struct media_device *mdev,
 		unsigned int p;
 
 		for (p = 0; p < entity->num_pads; p++) {
+<<<<<<< HEAD
 			struct media_pad_desc pad = {0};
+=======
+			struct media_pad_desc pad;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			media_device_kpad_to_upad(&entity->pads[p], &pad);
 			if (copy_to_user(&links.pads[p], &pad, sizeof(pad)))
 				return -EFAULT;

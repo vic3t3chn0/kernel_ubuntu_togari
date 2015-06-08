@@ -67,7 +67,10 @@
 #include <linux/wimax/i2400m.h>
 #include <linux/debugfs.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 #define D_SUBMODULE usb
@@ -339,6 +342,7 @@ int i2400mu_bus_reset(struct i2400m *i2400m, enum i2400m_reset_type rt)
 	return result;
 }
 
+<<<<<<< HEAD
 static void i2400mu_get_drvinfo(struct net_device *net_dev,
                                 struct ethtool_drvinfo *info)
 {
@@ -356,6 +360,8 @@ static const struct ethtool_ops i2400mu_ethtool_ops = {
 	.get_drvinfo = i2400mu_get_drvinfo,
 	.get_link = ethtool_op_get_link,
 };
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static
 void i2400mu_netdev_setup(struct net_device *net_dev)
@@ -364,7 +370,10 @@ void i2400mu_netdev_setup(struct net_device *net_dev)
 	struct i2400mu *i2400mu = container_of(i2400m, struct i2400mu, i2400m);
 	i2400mu_init(i2400mu);
 	i2400m_netdev_setup(net_dev);
+<<<<<<< HEAD
 	net_dev->ethtool_ops = &i2400mu_ethtool_ops;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 
@@ -510,6 +519,12 @@ int i2400mu_probe(struct usb_interface *iface,
 	switch (id->idProduct) {
 	case USB_DEVICE_ID_I6050:
 	case USB_DEVICE_ID_I6050_2:
+<<<<<<< HEAD
+=======
+	case USB_DEVICE_ID_I6150:
+	case USB_DEVICE_ID_I6150_2:
+	case USB_DEVICE_ID_I6150_3:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	case USB_DEVICE_ID_I6250:
 		i2400mu->i6050 = 1;
 		break;
@@ -618,7 +633,11 @@ void i2400mu_disconnect(struct usb_interface *iface)
  *
  *    As well, the device might refuse going to sleep for whichever
  *    reason. In this case we just fail. For system suspend/hibernate,
+<<<<<<< HEAD
  *    we *can't* fail. We check PMSG_IS_AUTO to see if the
+=======
+ *    we *can't* fail. We check PM_EVENT_AUTO to see if the
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *    suspend call comes from the USB stack or from the system and act
  *    in consequence.
  *
@@ -634,7 +653,11 @@ int i2400mu_suspend(struct usb_interface *iface, pm_message_t pm_msg)
 	struct i2400m *i2400m = &i2400mu->i2400m;
 
 #ifdef CONFIG_PM
+<<<<<<< HEAD
 	if (PMSG_IS_AUTO(pm_msg))
+=======
+	if (pm_msg.event & PM_EVENT_AUTO)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		is_autosuspend = 1;
 #endif
 
@@ -759,6 +782,12 @@ static
 struct usb_device_id i2400mu_id_table[] = {
 	{ USB_DEVICE(0x8086, USB_DEVICE_ID_I6050) },
 	{ USB_DEVICE(0x8086, USB_DEVICE_ID_I6050_2) },
+<<<<<<< HEAD
+=======
+	{ USB_DEVICE(0x8087, USB_DEVICE_ID_I6150) },
+	{ USB_DEVICE(0x8087, USB_DEVICE_ID_I6150_2) },
+	{ USB_DEVICE(0x8087, USB_DEVICE_ID_I6150_3) },
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ USB_DEVICE(0x8086, USB_DEVICE_ID_I6250) },
 	{ USB_DEVICE(0x8086, 0x0181) },
 	{ USB_DEVICE(0x8086, 0x1403) },

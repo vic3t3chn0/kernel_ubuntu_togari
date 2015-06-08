@@ -29,7 +29,11 @@ GPIO13 - screen blanking
 #include <linux/module.h>
 #include <linux/io.h>
 
+<<<<<<< HEAD
 #include <asm/gpio.h>
+=======
+#include <mach/gpio.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "omapfb.h"
 
 static int palmtt_panel_init(struct lcd_panel *panel,
@@ -102,7 +106,11 @@ static int palmtt_panel_resume(struct platform_device *pdev)
 	return 0;
 }
 
+<<<<<<< HEAD
 static struct platform_driver palmtt_panel_driver = {
+=======
+struct platform_driver palmtt_panel_driver = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.probe		= palmtt_panel_probe,
 	.remove		= palmtt_panel_remove,
 	.suspend	= palmtt_panel_suspend,
@@ -113,4 +121,19 @@ static struct platform_driver palmtt_panel_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(palmtt_panel_driver);
+=======
+static int __init palmtt_panel_drv_init(void)
+{
+	return platform_driver_register(&palmtt_panel_driver);
+}
+
+static void __exit palmtt_panel_drv_cleanup(void)
+{
+	platform_driver_unregister(&palmtt_panel_driver);
+}
+
+module_init(palmtt_panel_drv_init);
+module_exit(palmtt_panel_drv_cleanup);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

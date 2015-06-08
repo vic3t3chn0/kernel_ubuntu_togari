@@ -27,7 +27,10 @@
  * transport class is framed entirely in terms of generic devices to
  * allow it to be used by any physical HBA in the system.
  */
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/attribute_container.h>
 #include <linux/transport_class.h>
 

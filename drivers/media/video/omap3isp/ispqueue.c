@@ -868,10 +868,13 @@ int omap3isp_video_queue_qbuf(struct isp_video_queue *queue,
 		goto done;
 
 	if (vbuf->memory == V4L2_MEMORY_USERPTR &&
+<<<<<<< HEAD
 	    vbuf->length < buf->vbuf.length)
 		goto done;
 
 	if (vbuf->memory == V4L2_MEMORY_USERPTR &&
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	    vbuf->m.userptr != buf->vbuf.m.userptr) {
 		isp_video_buffer_cleanup(buf);
 		buf->vbuf.m.userptr = vbuf->m.userptr;

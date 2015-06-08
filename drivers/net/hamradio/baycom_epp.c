@@ -1162,7 +1162,11 @@ static void baycom_probe(struct net_device *dev)
 /*
  * command line settable parameters
  */
+<<<<<<< HEAD
 static char *mode[NR_PORTS] = { "", };
+=======
+static const char *mode[NR_PORTS] = { "", };
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int iobase[NR_PORTS] = { 0x378, };
 
 module_param_array(mode, charp, NULL, 0);

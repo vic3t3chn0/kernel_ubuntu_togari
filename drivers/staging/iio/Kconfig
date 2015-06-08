@@ -11,6 +11,7 @@ menuconfig IIO
 	  number of different physical interfaces (i2c, spi, etc). See
 	  drivers/staging/iio/Documentation for more information.
 if IIO
+<<<<<<< HEAD
 config IIO_ST_HWMON
 	tristate "Hwmon driver that uses channels specified via iio maps"
 	depends on HWMON
@@ -20,12 +21,20 @@ config IIO_ST_HWMON
 	  for those channels specified in the map.
 
 config IIO_BUFFER
+=======
+
+config IIO_RING_BUFFER
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	bool "Enable buffer support within IIO"
 	help
 	  Provide core support for various buffer based data
 	  acquisition methods.
 
+<<<<<<< HEAD
 if IIO_BUFFER
+=======
+if IIO_RING_BUFFER
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config IIO_SW_RING
        select IIO_TRIGGER
@@ -45,7 +54,11 @@ config IIO_KFIFO_BUF
 	  no buffer events so it is up to userspace to work out how
 	  often to read from the buffer.
 
+<<<<<<< HEAD
 endif # IIO_BUFFER
+=======
+endif # IIO_RINGBUFFER
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config IIO_TRIGGER
 	boolean "Enable triggered sampling support"
@@ -66,11 +79,17 @@ config IIO_CONSUMERS_PER_TRIGGER
 source "drivers/staging/iio/accel/Kconfig"
 source "drivers/staging/iio/adc/Kconfig"
 source "drivers/staging/iio/addac/Kconfig"
+<<<<<<< HEAD
 source "drivers/staging/iio/cdc/Kconfig"
 source "drivers/staging/iio/dac/Kconfig"
 source "drivers/staging/iio/dds/Kconfig"
 source "drivers/staging/iio/gyro/Kconfig"
 source "drivers/staging/iio/impedance-analyzer/Kconfig"
+=======
+source "drivers/staging/iio/dac/Kconfig"
+source "drivers/staging/iio/dds/Kconfig"
+source "drivers/staging/iio/gyro/Kconfig"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/staging/iio/imu/Kconfig"
 source "drivers/staging/iio/light/Kconfig"
 source "drivers/staging/iio/magnetometer/Kconfig"
@@ -78,6 +97,7 @@ source "drivers/staging/iio/meter/Kconfig"
 source "drivers/staging/iio/resolver/Kconfig"
 source "drivers/staging/iio/trigger/Kconfig"
 
+<<<<<<< HEAD
 config IIO_DUMMY_EVGEN
        tristate
 
@@ -104,4 +124,6 @@ config IIO_SIMPLE_DUMMY_BUFFER
 
 endif # IIO_SIMPLE_DUMMY
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 endif # IIO

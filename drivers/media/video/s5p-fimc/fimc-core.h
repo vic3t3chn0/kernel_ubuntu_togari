@@ -10,21 +10,33 @@
 #define FIMC_CORE_H_
 
 /*#define DEBUG*/
+<<<<<<< HEAD
 
 #include <linux/platform_device.h>
+=======
+#include <linux/delay.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/sched.h>
 #include <linux/spinlock.h>
 #include <linux/types.h>
 #include <linux/videodev2.h>
+<<<<<<< HEAD
 #include <linux/io.h>
 
 #include <media/media-entity.h>
 #include <media/videobuf2-core.h>
 #include <media/v4l2-ctrls.h>
+=======
+#include <linux/videodev2_exynos_media.h>
+#include <linux/videodev2_exynos_camera.h>
+#include <linux/io.h>
+#include <media/videobuf2-core.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <media/v4l2-device.h>
 #include <media/v4l2-mem2mem.h>
 #include <media/v4l2-mediabus.h>
 #include <media/s5p_fimc.h>
+<<<<<<< HEAD
 
 #include "regs-fimc.h"
 
@@ -38,17 +50,75 @@
 #define FIMC_SHUTDOWN_TIMEOUT	((100*HZ)/1000)
 #define MAX_FIMC_CLOCKS		2
 #define FIMC_MODULE_NAME	"s5p-fimc"
+=======
+#include "regs-fimc.h"
+
+#if defined(CONFIG_VIDEOBUF2_SDVMM)
+#include <media/videobuf2-sdvmm.h>
+#include <plat/s5p-vcm.h>
+#elif defined(CONFIG_VIDEOBUF2_CMA_PHYS)
+#include <media/videobuf2-cma-phys.h>
+#elif defined(CONFIG_VIDEOBUF2_ION)
+#include <media/videobuf2-ion.h>
+#endif
+
+#ifdef CONFIG_PM_RUNTIME
+#include <linux/pm_runtime.h>
+#else
+#define pm_runtime_enable(x)		(void)NULL
+#define pm_runtime_get_sync(x)		(void)NULL
+#define pm_runtime_put_sync(x)		(void)NULL
+#define pm_runtime_forbid(x)		(void)NULL
+#define pm_runtime_allow(x)		(void)NULL
+#define __pm_runtime_disable(x, y)	(void)NULL
+#endif
+
+#define fimc_cam_use(x)		((pdata->isp_info[x]->use_cam) ? 1 : 0)
+
+#define err(fmt, args...) \
+	printk(KERN_ERR "%s:%d: " fmt "\n", __func__, __LINE__, ##args)
+
+#ifdef DEBUG
+#define dbg(fmt, args...) \
+	printk(KERN_DEBUG "%s:%d: " fmt "\n", __func__, __LINE__, ##args)
+#else
+#define dbg(fmt, args...)
+#endif
+
+/* Time to wait for next frame VSYNC interrupt while stopping operation. */
+#define FIMC_SHUTDOWN_TIMEOUT	((100*HZ)/1000)
+#define MAX_FIMC_CLOCKS		4
+#define MODULE_NAME		"s5p-fimc"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define FIMC_MAX_DEVS		4
 #define FIMC_MAX_OUT_BUFS	4
 #define SCALER_MAX_HRATIO	64
 #define SCALER_MAX_VRATIO	64
 #define DMA_MIN_SIZE		8
+<<<<<<< HEAD
 #define FIMC_CAMIF_MAX_HEIGHT	0x2000
+=======
+#define DEFAULT_ISP_PIXCODE	V4L2_MBUS_FMT_YUYV8_2X8
+
+#define CAM_SRC_CLOCK		"xusbxti"
+#define CLK_NAME_CAM0		"sclk_cam0"
+#define CLK_NAME_CAM1		"sclk_cam1"
+#define FIMC_CMA_NAME		"fimc"
+#define FIMC_CMA_NAME_SIZE	6
+#define WORKQUEUE_NAME_SIZE	32
+
+#ifdef CONFIG_FB_S5P
+#define FIMD_MODULE_NAME	"s3cfb"
+#else
+#define FIMD_MODULE_NAME	"s3c-fb"
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* indices to the clocks array */
 enum {
 	CLK_BUS,
 	CLK_GATE,
+<<<<<<< HEAD
 };
 
 enum fimc_dev_flags {
@@ -76,6 +146,41 @@ enum fimc_dev_flags {
 #define fimc_capture_running(dev) test_bit(ST_CAPT_RUN, &(dev)->state)
 #define fimc_capture_pending(dev) test_bit(ST_CAPT_PEND, &(dev)->state)
 #define fimc_capture_busy(dev) test_bit(ST_CAPT_BUSY, &(dev)->state)
+=======
+	CLK_CAM0,
+	CLK_CAM1,
+};
+
+enum fimc_dev_flags {
+	/* for global */
+	ST_IDLE,
+	ST_PWR_ON,
+	/* for m2m node */
+	ST_M2M_OPEN,
+	ST_M2M_RUN,
+	ST_M2M_STOP_REQ,
+	/* for capture node */
+	ST_CAPT_PEND,
+	ST_CAPT_RUN,
+	ST_CAPT_SNAPSHOT,
+	ST_CAPT_STREAM,
+	ST_CAPT_SENS_STREAM,
+	ST_CAPT_SHUT,
+};
+
+#define fimc_m2m_active(dev) test_bit(ST_M2M_OPEN, &(dev)->state)
+#define fimc_m2m_run(dev) test_bit(ST_M2M_RUN, &(dev)->state)
+
+#define fimc_capture_running(dev) test_bit(ST_CAPT_RUN, &(dev)->state)
+#define fimc_capture_pending(dev) test_bit(ST_CAPT_PEND, &(dev)->state)
+#define fimc_capture_opened(dev) (dev->vid_cap.refcnt > 0) ? 1 : 0
+#define fimc_capture_camera(dev) (dev->vid_cap.sd == NULL) ? 0 : 1
+#define fimc_capture_writeback(dev) (dev->vid_cap.fb_sd != NULL &&\
+				test_bit(ST_CAPT_PEND, &(dev)->state)) ? 1 : 0
+
+#define fimc_capture_streaming(dev) \
+	test_bit(ST_CAPT_STREAM, &(dev)->state)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 enum fimc_datapath {
 	FIMC_CAMERA,
@@ -85,6 +190,7 @@ enum fimc_datapath {
 };
 
 enum fimc_color_fmt {
+<<<<<<< HEAD
 	S5P_FIMC_RGB444 = 0x10,
 	S5P_FIMC_RGB555,
 	S5P_FIMC_RGB565,
@@ -92,6 +198,17 @@ enum fimc_color_fmt {
 	S5P_FIMC_RGB888,
 	S5P_FIMC_RGB30_LOCAL,
 	S5P_FIMC_YCBCR420 = 0x20,
+=======
+	S5P_FIMC_RGB565 = 0x10,
+	S5P_FIMC_RGB666,
+	S5P_FIMC_RGB888,
+	S5P_FIMC_RGB555,
+	S5P_FIMC_RGB444,
+	S5P_FIMC_RGB30_LOCAL,
+	S5P_FIMC_YCBCR420 = 0x20,
+	S5P_FIMC_YCRCB420,
+	S5P_FIMC_YCBCR422,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	S5P_FIMC_YCBYCR422,
 	S5P_FIMC_YCRYCB422,
 	S5P_FIMC_CBYCRY422,
@@ -103,9 +220,12 @@ enum fimc_color_fmt {
 #define fimc_fmt_is_rgb(x) (!!((x) & 0x10))
 #define fimc_fmt_is_jpeg(x) (!!((x) & 0x40))
 
+<<<<<<< HEAD
 #define IS_M2M(__strt) ((__strt) == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE || \
 			__strt == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE)
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Cb/Cr chrominance components order for 2 plane Y/CbCr 4:2:2 formats. */
 #define	S5P_FIMC_LSB_CRCB	S5P_CIOCTRL_ORDER422_2P_LSB_CRCB
 
@@ -123,10 +243,16 @@ enum fimc_color_fmt {
 #define	FIMC_DST_ADDR		(1 << 2)
 #define	FIMC_SRC_FMT		(1 << 3)
 #define	FIMC_DST_FMT		(1 << 4)
+<<<<<<< HEAD
 #define	FIMC_DST_CROP		(1 << 5)
 #define	FIMC_CTX_M2M		(1 << 16)
 #define	FIMC_CTX_CAP		(1 << 17)
 #define	FIMC_CTX_SHUT		(1 << 18)
+=======
+#define	FIMC_CTX_M2M		(1 << 5)
+#define	FIMC_CTX_CAP		(1 << 6)
+#define	FIMC_CTX_STOP_REQ	(1 << 7)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Image conversion flags */
 #define	FIMC_IN_DMA_ACCESS_TILED	(1 << 0)
@@ -142,6 +268,14 @@ enum fimc_color_fmt {
 /* Y (16 ~ 235), Cb/Cr (16 ~ 240) */
 #define	FIMC_COLOR_RANGE_NARROW		(1 << 3)
 
+<<<<<<< HEAD
+=======
+#define	FLIP_NONE			0
+#define	FLIP_X_AXIS			1
+#define	FLIP_Y_AXIS			2
+#define	FLIP_XY_AXIS			(FLIP_X_AXIS | FLIP_Y_AXIS)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * struct fimc_fmt - the driver's internal color format data
  * @mbus_code: Media Bus pixel code, -1 if not applicable
@@ -162,11 +296,16 @@ struct fimc_fmt {
 	u16	colplanes;
 	u8	depth[VIDEO_MAX_PLANES];
 	u16	flags;
+<<<<<<< HEAD
 #define FMT_FLAGS_CAM		(1 << 0)
 #define FMT_FLAGS_M2M_IN	(1 << 1)
 #define FMT_FLAGS_M2M_OUT	(1 << 2)
 #define FMT_FLAGS_M2M		(1 << 1 | 1 << 2)
 #define FMT_HAS_ALPHA		(1 << 3)
+=======
+#define FMT_FLAGS_CAM	(1 << 0)
+#define FMT_FLAGS_M2M	(1 << 1)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /**
@@ -284,39 +423,79 @@ struct fimc_frame {
 	u32	offs_v;
 	u32	width;
 	u32	height;
+<<<<<<< HEAD
+=======
+	u8	alpha;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned long		payload[VIDEO_MAX_PLANES];
 	struct fimc_addr	paddr;
 	struct fimc_dma_offset	dma_offset;
 	struct fimc_fmt		*fmt;
+<<<<<<< HEAD
 	u8			alpha;
+=======
+	bool			cacheable;
+};
+
+/**
+ * struct fimc_is - fimc is subdevice information
+ */
+struct fimc_is {
+	struct v4l2_pix_format	fmt;
+	struct v4l2_mbus_framefmt mbus_fmt;
+	struct v4l2_subdev      *sd;
+	u32 frame_count;
+	u32 valid;
+	u32 bad_mark;
+	u32 offset_x;
+	u32 offset_y;
+	u16 camcording;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /**
  * struct fimc_m2m_device - v4l2 memory-to-memory device data
  * @vfd: the video device node for v4l2 m2m mode
+<<<<<<< HEAD
+=======
+ * @v4l2_dev: v4l2 device for m2m mode
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @m2m_dev: v4l2 memory-to-memory device data
  * @ctx: hardware context data
  * @refcnt: the reference counter
  */
 struct fimc_m2m_device {
 	struct video_device	*vfd;
+<<<<<<< HEAD
+=======
+	struct v4l2_device	v4l2_dev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct v4l2_m2m_dev	*m2m_dev;
 	struct fimc_ctx		*ctx;
 	int			refcnt;
 };
 
+<<<<<<< HEAD
 #define FIMC_SD_PAD_SINK	0
 #define FIMC_SD_PAD_SOURCE	1
 #define FIMC_SD_PADS_NUM	2
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * struct fimc_vid_cap - camera capture device information
  * @ctx: hardware context data
  * @vfd: video device node for camera capture mode
+<<<<<<< HEAD
  * @subdev: subdev exposing the FIMC processing block
  * @vd_pad: fimc video capture node pad
  * @sd_pads: fimc video processing block pads
  * @mf: media bus format at the FIMC camera input (and the scaler output) pad
+=======
+ * @v4l2_dev: v4l2_device struct to manage subdevs
+ * @sd: pointer to camera sensor subdevice currently in use
+ * @fmt: Media Bus format configured at selected image sensor
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @pending_buf_q: the pending buffer queue head
  * @active_buf_q: the queue head of buffers scheduled in hardware
  * @vbq: the capture am video buffer queue
@@ -326,13 +505,17 @@ struct fimc_m2m_device {
  * @reqbufs_count: the number of buffers requested in REQBUFS ioctl
  * @input_index: input (camera sensor) index
  * @refcnt: driver's private reference counter
+<<<<<<< HEAD
  * @input: capture input type, grp_id of the attached subdev
  * @user_subdev_api: true if subdevs are not configured by the host driver
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 struct fimc_vid_cap {
 	struct fimc_ctx			*ctx;
 	struct vb2_alloc_ctx		*alloc_ctx;
 	struct video_device		*vfd;
+<<<<<<< HEAD
 	struct v4l2_subdev		*subdev;
 	struct media_pad		vd_pad;
 	struct v4l2_mbus_framefmt	mf;
@@ -340,14 +523,30 @@ struct fimc_vid_cap {
 	struct list_head		pending_buf_q;
 	struct list_head		active_buf_q;
 	struct vb2_queue		vbq;
+=======
+	struct v4l2_device		v4l2_dev;
+	struct v4l2_subdev		*sd;
+	struct v4l2_subdev		*fb_sd;
+	struct v4l2_subdev		*mipi_sd;
+	struct v4l2_mbus_framefmt	fmt;
+	struct list_head		pending_buf_q;
+	struct list_head		active_buf_q;
+	struct vb2_queue		vbq;
+	struct fimc_is			is;
+	struct v4l2_subdev		*flite_sd;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int				active_buf_cnt;
 	int				buf_index;
 	unsigned int			frame_count;
 	unsigned int			reqbufs_count;
 	int				input_index;
 	int				refcnt;
+<<<<<<< HEAD
 	u32				input;
 	bool				user_subdev_api;
+=======
+	int				mux_id;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /**
@@ -378,12 +577,18 @@ struct fimc_pix_limit {
  * @has_cistatus2: 1 if CISTATUS2 register is present in this IP revision
  * @has_mainscaler_ext: 1 if extended mainscaler ratios in CIEXTEN register
  *			 are present in this IP revision
+<<<<<<< HEAD
  * @has_cam_if: set if this instance has a camera input interface
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @pix_limit: pixel size constraints for the scaler
  * @min_inp_pixsize: minimum input pixel size
  * @min_out_pixsize: minimum output pixel size
  * @hor_offs_align: horizontal pixel offset aligment
+<<<<<<< HEAD
  * @min_vsize_align: minimum vertical pixel size alignment
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @out_buf_count: the number of buffers in output DMA sequence
  */
 struct samsung_fimc_variant {
@@ -392,13 +597,19 @@ struct samsung_fimc_variant {
 	unsigned int	has_out_rot:1;
 	unsigned int	has_cistatus2:1;
 	unsigned int	has_mainscaler_ext:1;
+<<<<<<< HEAD
 	unsigned int	has_cam_if:1;
 	unsigned int	has_alpha:1;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct fimc_pix_limit *pix_limit;
 	u16		min_inp_pixsize;
 	u16		min_out_pixsize;
 	u16		hor_offs_align;
+<<<<<<< HEAD
 	u16		min_vsize_align;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u16		out_buf_count;
 };
 
@@ -415,10 +626,28 @@ struct samsung_fimc_driverdata {
 	int		num_entities;
 };
 
+<<<<<<< HEAD
 struct fimc_pipeline {
 	struct media_pipeline *pipe;
 	struct v4l2_subdev *sensor;
 	struct v4l2_subdev *csis;
+=======
+struct fimc_dev;
+
+struct fimc_vb2 {
+	const struct vb2_mem_ops *ops;
+	void *(*init)(struct fimc_dev *fimc);
+	void (*cleanup)(void *alloc_ctx);
+
+	unsigned long (*plane_addr)(struct vb2_buffer *vb, u32 plane_no);
+
+	int (*resume)(void *alloc_ctx);
+	void (*suspend)(void *alloc_ctx);
+
+	int (*cache_flush)(struct vb2_buffer *vb, u32 num_planes);
+	void (*set_cacheable)(void *alloc_ctx, bool cacheable);
+	void (*set_sharable)(void *alloc_ctx, bool sharable);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 struct fimc_ctx;
@@ -434,14 +663,23 @@ struct fimc_ctx;
  * @num_clocks: the number of clocks managed by this device instance
  * @clock:	clocks required for FIMC operation
  * @regs:	the mapped hardware registers
+<<<<<<< HEAD
  * @irq:	FIMC interrupt number
  * @irq_queue:	interrupt handler waitqueue
  * @v4l2_dev:	root v4l2_device
+=======
+ * @regs_res:	the resource claimed for IO registers
+ * @irq:	FIMC interrupt number
+ * @irq_queue:	interrupt handler waitqueue
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @m2m:	memory-to-memory V4L2 device information
  * @vid_cap:	camera capture device information
  * @state:	flags used to synchronize m2m and capture mode operation
  * @alloc_ctx:	videobuf2 memory allocator context
+<<<<<<< HEAD
  * @pipeline:	fimc video capture pipeline data structure
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 struct fimc_dev {
 	spinlock_t			slock;
@@ -453,14 +691,30 @@ struct fimc_dev {
 	u16				num_clocks;
 	struct clk			*clock[MAX_FIMC_CLOCKS];
 	void __iomem			*regs;
+<<<<<<< HEAD
 	int				irq;
 	wait_queue_head_t		irq_queue;
 	struct v4l2_device		*v4l2_dev;
+=======
+	struct resource			*regs_res;
+	int				irq;
+	wait_queue_head_t		irq_queue;
+	struct work_struct		work_struct;
+	struct workqueue_struct		*irq_workqueue;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct fimc_m2m_device		m2m;
 	struct fimc_vid_cap		vid_cap;
 	unsigned long			state;
 	struct vb2_alloc_ctx		*alloc_ctx;
+<<<<<<< HEAD
 	struct fimc_pipeline		pipeline;
+=======
+	struct fimc_addr		paddr[FIMC_MAX_OUT_BUFS];
+#ifdef CONFIG_VIDEOBUF2_SDVMM
+	enum vcm_dev_id			vcm_id;
+#endif
+	const struct fimc_vb2		*vb2;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /**
@@ -477,12 +731,17 @@ struct fimc_dev {
  * @scaler:		image scaler properties
  * @effect:		image effect
  * @rotation:		image clockwise rotation in degrees
+<<<<<<< HEAD
  * @hflip:		indicates image horizontal flip if set
  * @vflip:		indicates image vertical flip if set
+=======
+ * @flip:		image flip mode
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @flags:		additional flags for image conversion
  * @state:		flags to keep track of user configuration
  * @fimc_dev:		the FIMC device this context applies to
  * @m2m_ctx:		memory-to-memory device context
+<<<<<<< HEAD
  * @fh:			v4l2 file handle
  * @ctrl_handler:	v4l2 controls handler
  * @ctrl_rotate		image rotation control
@@ -490,6 +749,8 @@ struct fimc_dev {
  * @ctrl_vflip		vertical flip control
  * @ctrl_alpha		RGB alpha control
  * @ctrls_rdy:		true if the control handler is initialized
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 struct fimc_ctx {
 	spinlock_t		slock;
@@ -504,12 +765,17 @@ struct fimc_ctx {
 	struct fimc_scaler	scaler;
 	struct fimc_effect	effect;
 	int			rotation;
+<<<<<<< HEAD
 	unsigned int		hflip:1;
 	unsigned int		vflip:1;
+=======
+	u32			flip;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u32			flags;
 	u32			state;
 	struct fimc_dev		*fimc_dev;
 	struct v4l2_m2m_ctx	*m2m_ctx;
+<<<<<<< HEAD
 	struct v4l2_fh		fh;
 	struct v4l2_ctrl_handler ctrl_handler;
 	struct v4l2_ctrl	*ctrl_rotate;
@@ -548,6 +814,11 @@ static inline u32 fimc_get_format_depth(struct fimc_fmt *ff)
 	return depth;
 }
 
+=======
+	bool			cacheable;
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline bool fimc_capture_active(struct fimc_dev *fimc)
 {
 	unsigned long flags;
@@ -585,6 +856,7 @@ static inline int tiled_fmt(struct fimc_fmt *fmt)
 	return fmt->fourcc == V4L2_PIX_FMT_NV12MT;
 }
 
+<<<<<<< HEAD
 /* Return the alpha component bit mask */
 static inline int fimc_get_alpha_mask(struct fimc_fmt *fmt)
 {
@@ -596,6 +868,8 @@ static inline int fimc_get_alpha_mask(struct fimc_fmt *fmt)
 	};
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline void fimc_hw_clear_irq(struct fimc_dev *dev)
 {
 	u32 cfg = readl(dev->regs + S5P_CIGCTRL);
@@ -630,6 +904,22 @@ static inline void fimc_hw_dis_capture(struct fimc_dev *dev)
 	writel(cfg, dev->regs + S5P_CIIMGCPT);
 }
 
+<<<<<<< HEAD
+=======
+static inline void fimc_hw_enable_frame_end_irq(struct fimc_dev *dev)
+{
+	u32 cfg = readl(dev->regs + S5P_CIGCTRL);
+	cfg |= S5P_CIGCTRL_IRQ_END_DISABLE;
+	writel(cfg, dev->regs + S5P_CIGCTRL);
+}
+
+static inline void fimc_hw_disable_frame_end_irq(struct fimc_dev *dev)
+{
+	u32 cfg = readl(dev->regs + S5P_CIGCTRL);
+	cfg &= ~S5P_CIGCTRL_IRQ_END_DISABLE;
+	writel(cfg, dev->regs + S5P_CIGCTRL);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * fimc_hw_set_dma_seq - configure output DMA buffer sequence
  * @mask: each bit corresponds to one of 32 output buffer registers set
@@ -657,7 +947,11 @@ static inline struct fimc_frame *ctx_get_frame(struct fimc_ctx *ctx,
 	} else if (V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE == type) {
 		frame = &ctx->d_frame;
 	} else {
+<<<<<<< HEAD
 		v4l2_err(ctx->fimc_dev->v4l2_dev,
+=======
+		v4l2_err(&ctx->fimc_dev->m2m.v4l2_dev,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			"Wrong buffer/video queue type (%d)\n", type);
 		return ERR_PTR(-EINVAL);
 	}
@@ -683,6 +977,10 @@ static inline u32 fimc_hw_get_frame_index(struct fimc_dev *dev)
 /* -----------------------------------------------------*/
 /* fimc-reg.c						*/
 void fimc_hw_reset(struct fimc_dev *fimc);
+<<<<<<< HEAD
+=======
+void fimc_hw_set_irq_level(struct fimc_dev *dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void fimc_hw_set_rotation(struct fimc_ctx *ctx);
 void fimc_hw_set_target_format(struct fimc_ctx *ctx);
 void fimc_hw_set_out_dma(struct fimc_ctx *ctx);
@@ -691,7 +989,11 @@ void fimc_hw_en_irq(struct fimc_dev *fimc, int enable);
 void fimc_hw_set_prescaler(struct fimc_ctx *ctx);
 void fimc_hw_set_mainscaler(struct fimc_ctx *ctx);
 void fimc_hw_en_capture(struct fimc_ctx *ctx);
+<<<<<<< HEAD
 void fimc_hw_set_effect(struct fimc_ctx *ctx, bool active);
+=======
+void fimc_hw_set_effect(struct fimc_ctx *ctx);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void fimc_hw_set_rgb_alpha(struct fimc_ctx *ctx);
 void fimc_hw_set_in_dma(struct fimc_ctx *ctx);
 void fimc_hw_set_input_path(struct fimc_ctx *ctx);
@@ -699,6 +1001,10 @@ void fimc_hw_set_output_path(struct fimc_ctx *ctx);
 void fimc_hw_set_input_addr(struct fimc_dev *fimc, struct fimc_addr *paddr);
 void fimc_hw_set_output_addr(struct fimc_dev *fimc, struct fimc_addr *paddr,
 			     int index);
+<<<<<<< HEAD
+=======
+int fimc_hw_save_output_addr(struct fimc_dev *fimc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int fimc_hw_set_camera_source(struct fimc_dev *fimc,
 			      struct s5p_fimc_isp_info *cam);
 int fimc_hw_set_camera_offset(struct fimc_dev *fimc, struct fimc_frame *f);
@@ -706,6 +1012,7 @@ int fimc_hw_set_camera_polarity(struct fimc_dev *fimc,
 				struct s5p_fimc_isp_info *cam);
 int fimc_hw_set_camera_type(struct fimc_dev *fimc,
 			    struct s5p_fimc_isp_info *cam);
+<<<<<<< HEAD
 
 /* -----------------------------------------------------*/
 /* fimc-core.c */
@@ -723,10 +1030,41 @@ struct fimc_fmt *fimc_find_format(const u32 *pixelformat, const u32 *mbus_code,
 
 int fimc_check_scaler_ratio(struct fimc_ctx *ctx, int sw, int sh,
 			    int dw, int dh, int rotation);
+=======
+int fimc_hwset_sysreg_camblk_fimd0_wb(struct fimc_dev *fimc);
+int fimc_hwset_sysreg_camblk_fimd1_wb(struct fimc_dev *fimc);
+int fimc_hwset_sysreg_camblk_isp_wb(struct fimc_dev *fimc);
+int fimc_wait_disable_capture(struct fimc_dev *fimc);
+int fimc_hwset_enable_lastend(struct fimc_dev *fimc);
+/* -----------------------------------------------------*/
+/* fimc-core.c						*/
+int fimc_vidioc_enum_fmt_mplane(struct file *file, void *priv,
+				struct v4l2_fmtdesc *f);
+int fimc_vidioc_g_fmt_mplane(struct file *file, void *priv,
+			     struct v4l2_format *f);
+int fimc_vidioc_try_fmt_mplane(struct file *file, void *priv,
+			       struct v4l2_format *f);
+int fimc_vidioc_queryctrl(struct file *file, void *priv,
+			  struct v4l2_queryctrl *qc);
+int fimc_vidioc_g_ctrl(struct file *file, void *priv,
+		       struct v4l2_control *ctrl);
+
+int fimc_try_crop(struct fimc_ctx *ctx, struct v4l2_crop *cr);
+int check_ctrl_val(struct fimc_ctx *ctx,  struct v4l2_control *ctrl);
+int fimc_s_ctrl(struct fimc_ctx *ctx, struct v4l2_control *ctrl);
+
+struct fimc_fmt *find_format(struct v4l2_format *f, unsigned int mask);
+struct fimc_fmt *find_mbus_format(struct v4l2_mbus_framefmt *f,
+				  unsigned int mask);
+
+int fimc_check_scaler_ratio(struct fimc_ctx *ctx, int sw, int sh,
+			int dw, int dh, int rot);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int fimc_set_scaler_info(struct fimc_ctx *ctx);
 int fimc_prepare_config(struct fimc_ctx *ctx, u32 flags);
 int fimc_prepare_addr(struct fimc_ctx *ctx, struct vb2_buffer *vb,
 		      struct fimc_frame *frame, struct fimc_addr *paddr);
+<<<<<<< HEAD
 void fimc_prepare_dma_offset(struct fimc_ctx *ctx, struct fimc_frame *f);
 void fimc_set_yuv_order(struct fimc_ctx *ctx);
 void fimc_fill_frame(struct fimc_frame *frame, struct v4l2_format *f);
@@ -751,16 +1089,42 @@ void fimc_sensor_notify(struct v4l2_subdev *sd, unsigned int notification,
 int fimc_capture_suspend(struct fimc_dev *fimc);
 int fimc_capture_resume(struct fimc_dev *fimc);
 int fimc_capture_config_update(struct fimc_ctx *ctx);
+=======
+void fimc_set_frame_size_mp(struct fimc_frame *frame, struct v4l2_format *f);
+int fimc_clk_setrate(struct fimc_dev *fimc, int clk_num, void *pdata);
+void fimc_capture_irq_handler(struct fimc_dev *fimc);
+/* -----------------------------------------------------*/
+/* fimc-capture.c					*/
+int fimc_register_capture_device(struct fimc_dev *fimc);
+void fimc_unregister_capture_device(struct fimc_dev *fimc);
+int fimc_sensor_sd_init(struct fimc_dev *fimc, int index);
+int fimc_vid_cap_buf_queue(struct fimc_dev *fimc,
+			     struct fimc_vid_buffer *fimc_vb);
+/* -----------------------------------------------------*/
+/* fimc-vb2.c						*/
+#if defined(CONFIG_VIDEOBUF2_SDVMM)
+extern const struct fimc_vb2 fimc_vb2_sdvmm;
+#elif defined(CONFIG_VIDEOBUF2_CMA_PHYS)
+extern const struct fimc_vb2 fimc_vb2_cma;
+#elif defined(CONFIG_VIDEOBUF2_ION)
+extern const struct fimc_vb2 fimc_vb2_ion;
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Locking: the caller holds fimc->slock */
 static inline void fimc_activate_capture(struct fimc_ctx *ctx)
 {
 	fimc_hw_enable_scaler(ctx->fimc_dev, ctx->scaler.enabled);
 	fimc_hw_en_capture(ctx);
+<<<<<<< HEAD
+=======
+	fimc_hw_disable_frame_end_irq(ctx->fimc_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static inline void fimc_deactivate_capture(struct fimc_dev *fimc)
 {
+<<<<<<< HEAD
 	fimc_hw_en_lastirq(fimc, true);
 	fimc_hw_dis_capture(fimc);
 	fimc_hw_enable_scaler(fimc, false);
@@ -777,11 +1141,25 @@ static inline void fimc_deactivate_capture(struct fimc_dev *fimc)
  */
 static inline void fimc_active_queue_add(struct fimc_vid_cap *vid_cap,
 					 struct fimc_vid_buffer *buf)
+=======
+	fimc_hw_dis_capture(fimc);
+	fimc_hw_enable_scaler(fimc, false);
+	fimc_hw_enable_frame_end_irq(fimc);
+}
+
+/*
+ * Add buf to the capture active buffers queue.
+ * Locking: Need to be called with fimc_dev::slock held.
+ */
+static inline void active_queue_add(struct fimc_vid_cap *vid_cap,
+				    struct fimc_vid_buffer *buf)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	list_add_tail(&buf->list, &vid_cap->active_buf_q);
 	vid_cap->active_buf_cnt++;
 }
 
+<<<<<<< HEAD
 /**
  * fimc_active_queue_pop - pop buffer from the capture active buffers queue
  *
@@ -789,6 +1167,14 @@ static inline void fimc_active_queue_add(struct fimc_vid_cap *vid_cap,
  */
 static inline struct fimc_vid_buffer *fimc_active_queue_pop(
 				    struct fimc_vid_cap *vid_cap)
+=======
+/*
+ * Pop a video buffer from the capture active buffers queue
+ * Locking: Need to be called with fimc_dev::slock held.
+ */
+static inline struct fimc_vid_buffer *
+active_queue_pop(struct fimc_vid_cap *vid_cap)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct fimc_vid_buffer *buf;
 	buf = list_entry(vid_cap->active_buf_q.next,
@@ -798,16 +1184,21 @@ static inline struct fimc_vid_buffer *fimc_active_queue_pop(
 	return buf;
 }
 
+<<<<<<< HEAD
 /**
  * fimc_pending_queue_add - add buffer to the capture pending buffers queue
  * @buf: buffer to add to the pending buffers list
  */
+=======
+/* Add video buffer to the capture pending buffers queue */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline void fimc_pending_queue_add(struct fimc_vid_cap *vid_cap,
 					  struct fimc_vid_buffer *buf)
 {
 	list_add_tail(&buf->list, &vid_cap->pending_buf_q);
 }
 
+<<<<<<< HEAD
 /**
  * fimc_pending_queue_pop - pop buffer from the capture pending buffers queue
  *
@@ -815,6 +1206,11 @@ static inline void fimc_pending_queue_add(struct fimc_vid_cap *vid_cap,
  */
 static inline struct fimc_vid_buffer *fimc_pending_queue_pop(
 				     struct fimc_vid_cap *vid_cap)
+=======
+/* Add video buffer to the capture pending buffers queue */
+static inline struct fimc_vid_buffer *
+pending_queue_pop(struct fimc_vid_cap *vid_cap)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct fimc_vid_buffer *buf;
 	buf = list_entry(vid_cap->pending_buf_q.next,

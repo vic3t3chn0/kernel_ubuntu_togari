@@ -100,6 +100,10 @@
 #undef NCR5380_STAT_LIMIT
 #endif
 
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/io.h>
 #include <linux/signal.h>
 #include <linux/blkdev.h>

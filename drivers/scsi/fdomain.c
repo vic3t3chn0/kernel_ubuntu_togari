@@ -282,6 +282,10 @@
 #include <linux/slab.h>
 #include <scsi/scsicam.h>
 
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <scsi/scsi.h>
 #include <scsi/scsi_cmnd.h>

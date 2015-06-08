@@ -35,7 +35,10 @@
 #include <linux/timer.h>
 #include <linux/slab.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/unaligned.h>
 
 #include <scsi/fc/fc_gs.h>
@@ -61,7 +64,11 @@ static void fc_disc_restart(struct fc_disc *);
  * Locking Note: This function expects that the lport mutex is locked before
  * calling it.
  */
+<<<<<<< HEAD
 static void fc_disc_stop_rports(struct fc_disc *disc)
+=======
+void fc_disc_stop_rports(struct fc_disc *disc)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct fc_lport *lport;
 	struct fc_rport_priv *rdata;
@@ -337,6 +344,7 @@ static void fc_disc_error(struct fc_disc *disc, struct fc_frame *fp)
 			schedule_delayed_work(&disc->disc_work, delay);
 		} else
 			fc_disc_done(disc, DISC_EV_FAILED);
+<<<<<<< HEAD
 	} else if (PTR_ERR(fp) == -FC_EX_CLOSED) {
 		/*
 		 * if discovery fails due to lport reset, clear
@@ -344,6 +352,8 @@ static void fc_disc_error(struct fc_disc *disc, struct fc_frame *fp)
 		 * continue
 		 */
 		disc->pending = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 }
 
@@ -689,7 +699,11 @@ static int fc_disc_single(struct fc_lport *lport, struct fc_disc_port *dp)
  * fc_disc_stop() - Stop discovery for a given lport
  * @lport: The local port that discovery should stop on
  */
+<<<<<<< HEAD
 static void fc_disc_stop(struct fc_lport *lport)
+=======
+void fc_disc_stop(struct fc_lport *lport)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct fc_disc *disc = &lport->disc;
 
@@ -705,7 +719,11 @@ static void fc_disc_stop(struct fc_lport *lport)
  * This function will block until discovery has been
  * completely stopped and all rports have been deleted.
  */
+<<<<<<< HEAD
 static void fc_disc_stop_final(struct fc_lport *lport)
+=======
+void fc_disc_stop_final(struct fc_lport *lport)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	fc_disc_stop(lport);
 	lport->tt.rport_flush_queue();

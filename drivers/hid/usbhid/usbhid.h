@@ -55,6 +55,10 @@ struct usb_interface *usbhid_find_interface(int minor);
 #define HID_STARTED		8
 #define HID_REPORTED_IDLE	9
 #define HID_KEYS_PRESSED	10
+<<<<<<< HEAD
+=======
+#define HID_LED_ON		11
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * USB-specific HID struct, to be pointed to
@@ -96,8 +100,11 @@ struct usbhid_device {
 	struct work_struct reset_work;                                  /* Task context for resets */
 	wait_queue_head_t wait;						/* For sleeping */
 	int ledcount;							/* counting the number of active leds */
+<<<<<<< HEAD
 
 	struct work_struct led_work;					/* Task context for setting LEDs */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 #define	hid_to_usb_dev(hid_dev) \

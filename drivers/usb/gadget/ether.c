@@ -9,6 +9,18 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
+<<<<<<< HEAD
+=======
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 /* #define VERBOSE_DEBUG */
@@ -237,7 +249,13 @@ static int __init rndis_do_config(struct usb_configuration *c)
 		c->bmAttributes |= USB_CONFIG_ATT_WAKEUP;
 	}
 
+<<<<<<< HEAD
 	return rndis_bind_config(c, hostaddr);
+=======
+	return rndis_bind_config(c, hostaddr,
+				 cpu_to_le16 (CDC_VENDOR_NUM),
+				 manufacturer);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static struct usb_configuration rndis_config_driver = {
@@ -250,9 +268,15 @@ static struct usb_configuration rndis_config_driver = {
 /*-------------------------------------------------------------------------*/
 
 #ifdef CONFIG_USB_ETH_EEM
+<<<<<<< HEAD
 static bool use_eem = 1;
 #else
 static bool use_eem;
+=======
+static int use_eem = 1;
+#else
+static int use_eem;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 module_param(use_eem, bool, 0);
 MODULE_PARM_DESC(use_eem, "use CDC EEM mode");
@@ -392,7 +416,10 @@ static struct usb_composite_driver eth_driver = {
 	.name		= "g_ether",
 	.dev		= &device_desc,
 	.strings	= dev_strings,
+<<<<<<< HEAD
 	.max_speed	= USB_SPEED_SUPER,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.unbind		= __exit_p(eth_unbind),
 };
 

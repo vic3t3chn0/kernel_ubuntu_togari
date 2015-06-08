@@ -24,7 +24,10 @@
 #include <linux/ioport.h>
 #include <linux/uaccess.h>
 #include <linux/platform_device.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * Cursor position address
@@ -304,7 +307,11 @@ static int __devinit cobalt_lcdfb_probe(struct platform_device *dev)
 		return -EBUSY;
 	}
 
+<<<<<<< HEAD
 	info->screen_size = resource_size(res);
+=======
+	info->screen_size = res->end - res->start + 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	info->screen_base = ioremap(res->start, info->screen_size);
 	info->fbops = &cobalt_lcd_fbops;
 	info->fix = cobalt_lcdfb_fix;

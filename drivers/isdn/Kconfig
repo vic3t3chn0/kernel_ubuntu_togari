@@ -5,7 +5,11 @@
 menuconfig ISDN
 	bool "ISDN support"
 	depends on NET
+<<<<<<< HEAD
 	depends on !S390 && !UML
+=======
+	depends on !S390
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	---help---
 	  ISDN ("Integrated Services Digital Network", called RNIS in France)
 	  is a fully digital telephone service that can be used for voice and

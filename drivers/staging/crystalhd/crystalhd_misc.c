@@ -24,10 +24,18 @@
  * along with this driver.  If not, see <http://www.gnu.org/licenses/>.
  **********************************************************************/
 
+<<<<<<< HEAD
 #include "crystalhd.h"
 
 #include <linux/slab.h>
 
+=======
+#include <linux/slab.h>
+
+#include "crystalhd_misc.h"
+#include "crystalhd_lnx.h"
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 uint32_t g_linklog_level;
 
 static inline uint32_t crystalhd_dram_rd(struct crystalhd_adp *adp, uint32_t mem_off)

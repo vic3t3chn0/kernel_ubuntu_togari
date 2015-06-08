@@ -27,6 +27,11 @@
 
 #define _PIPE(pipe, a, b) ((a) + (pipe)*((b)-(a)))
 
+<<<<<<< HEAD
+=======
+#define _MASKED_BIT_ENABLE(a) (((a) << 16) | (a))
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * The Bridge device's PCI config space has information about the
  * fb aperture size and the amount of pre-reserved memory.
@@ -425,6 +430,10 @@
  * the enables for writing to the corresponding low bit.
  */
 #define _3D_CHICKEN	0x02084
+<<<<<<< HEAD
+=======
+#define _3D_CHICKEN_HIZ_PLANE_DISABLE_MSAA_4X_SNB	(1 << 10)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define _3D_CHICKEN2	0x0208c
 /* Disables pipelining of read flushes past the SF-WIZ interface.
  * Required on all Ironlake steppings according to the B-Spec, but the
@@ -568,7 +577,10 @@
 #define   CM0_MASK_SHIFT          16
 #define   CM0_IZ_OPT_DISABLE      (1<<6)
 #define   CM0_ZR_OPT_DISABLE      (1<<5)
+<<<<<<< HEAD
 #define	  CM0_STC_EVICT_DISABLE_LRA_SNB	(1<<5)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define   CM0_DEPTH_EVICT_DISABLE (1<<4)
 #define   CM0_COLOR_EVICT_DISABLE (1<<3)
 #define   CM0_DEPTH_WRITE_DISABLE (1<<1)
@@ -615,6 +627,24 @@
 
 #define GEN6_BSD_RNCID			0x12198
 
+<<<<<<< HEAD
+=======
+#define GEN7_FF_THREAD_MODE		0x20a0
+#define   GEN7_FF_SCHED_MASK		0x0077070
+#define   GEN7_FF_TS_SCHED_HS1		(0x5<<16)
+#define   GEN7_FF_TS_SCHED_HS0		(0x3<<16)
+#define   GEN7_FF_TS_SCHED_LOAD_BALANCE	(0x1<<16)
+#define   GEN7_FF_TS_SCHED_HW		(0x0<<16) /* Default */
+#define   GEN7_FF_VS_SCHED_HS1		(0x5<<12)
+#define   GEN7_FF_VS_SCHED_HS0		(0x3<<12)
+#define   GEN7_FF_VS_SCHED_LOAD_BALANCE	(0x1<<12) /* Default */
+#define   GEN7_FF_VS_SCHED_HW		(0x0<<12)
+#define   GEN7_FF_DS_SCHED_HS1		(0x5<<4)
+#define   GEN7_FF_DS_SCHED_HS0		(0x3<<4)
+#define   GEN7_FF_DS_SCHED_LOAD_BALANCE	(0x1<<4)  /* Default */
+#define   GEN7_FF_DS_SCHED_HW		(0x0<<4)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * Framebuffer compression (915+ only)
  */
@@ -2774,7 +2804,11 @@
 #define   DVS_FORMAT_RGBX888	(2<<25)
 #define   DVS_FORMAT_RGBX161616	(3<<25)
 #define   DVS_SOURCE_KEY	(1<<22)
+<<<<<<< HEAD
 #define   DVS_RGB_ORDER_XBGR	(1<<20)
+=======
+#define   DVS_RGB_ORDER_RGBX	(1<<20)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define   DVS_YUV_BYTE_ORDER_MASK (3<<16)
 #define   DVS_YUV_ORDER_YUYV	(0<<16)
 #define   DVS_YUV_ORDER_UYVY	(1<<16)
@@ -3000,6 +3034,11 @@
 #define _PFA_CTL_1               0x68080
 #define _PFB_CTL_1               0x68880
 #define  PF_ENABLE              (1<<31)
+<<<<<<< HEAD
+=======
+#define  PF_PIPE_SEL_MASK_IVB	(3<<29)
+#define  PF_PIPE_SEL_IVB(pipe)	((pipe)<<29)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define  PF_FILTER_MASK		(3<<23)
 #define  PF_FILTER_PROGRAMMED	(0<<23)
 #define  PF_FILTER_MED_3x3	(1<<23)
@@ -3729,9 +3768,12 @@
 #define  GT_FIFO_FREE_ENTRIES			0x120008
 #define    GT_FIFO_NUM_RESERVED_ENTRIES		20
 
+<<<<<<< HEAD
 #define GEN6_UCGCTL1				0x9400
 # define GEN6_BLBUNIT_CLOCK_GATE_DISABLE		(1 << 5)
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define GEN6_UCGCTL2				0x9404
 # define GEN6_RCZUNIT_CLOCK_GATE_DISABLE		(1 << 13)
 # define GEN6_RCPBUNIT_CLOCK_GATE_DISABLE		(1 << 12)

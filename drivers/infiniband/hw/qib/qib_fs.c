@@ -47,7 +47,11 @@ static struct super_block *qib_super;
 #define private2dd(file) ((file)->f_dentry->d_inode->i_private)
 
 static int qibfs_mknod(struct inode *dir, struct dentry *dentry,
+<<<<<<< HEAD
 		       umode_t mode, const struct file_operations *fops,
+=======
+		       int mode, const struct file_operations *fops,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		       void *data)
 {
 	int error;
@@ -67,7 +71,11 @@ static int qibfs_mknod(struct inode *dir, struct dentry *dentry,
 	inode->i_mtime = inode->i_atime;
 	inode->i_ctime = inode->i_atime;
 	inode->i_private = data;
+<<<<<<< HEAD
 	if (S_ISDIR(mode)) {
+=======
+	if ((mode & S_IFMT) == S_IFDIR) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		inode->i_op = &simple_dir_inode_operations;
 		inc_nlink(inode);
 		inc_nlink(dir);
@@ -82,7 +90,11 @@ bail:
 	return error;
 }
 
+<<<<<<< HEAD
 static int create_file(const char *name, umode_t mode,
+=======
+static int create_file(const char *name, mode_t mode,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		       struct dentry *parent, struct dentry **dentry,
 		       const struct file_operations *fops, void *data)
 {

@@ -15,7 +15,10 @@
  */
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/file.h>
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
@@ -43,7 +46,10 @@ struct sync_pt *sw_sync_pt_create(struct sw_sync_timeline *obj, u32 value)
 
 	return (struct sync_pt *)pt;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(sw_sync_pt_create);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static struct sync_pt *sw_sync_pt_dup(struct sync_pt *sync_pt)
 {
@@ -71,6 +77,26 @@ static int sw_sync_pt_compare(struct sync_pt *a, struct sync_pt *b)
 	return sw_sync_cmp(pt_a->value, pt_b->value);
 }
 
+<<<<<<< HEAD
+=======
+static void sw_sync_print_obj(struct seq_file *s,
+			      struct sync_timeline *sync_timeline)
+{
+	struct sw_sync_timeline *obj = (struct sw_sync_timeline *)sync_timeline;
+
+	seq_printf(s, "%d", obj->value);
+}
+
+static void sw_sync_print_pt(struct seq_file *s, struct sync_pt *sync_pt)
+{
+	struct sw_sync_pt *pt = (struct sw_sync_pt *)sync_pt;
+	struct sw_sync_timeline *obj =
+		(struct sw_sync_timeline *)sync_pt->parent;
+
+	seq_printf(s, "%d / %d", pt->value, obj->value);
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int sw_sync_fill_driver_data(struct sync_pt *sync_pt,
 				    void *data, int size)
 {
@@ -84,6 +110,7 @@ static int sw_sync_fill_driver_data(struct sync_pt *sync_pt,
 	return sizeof(pt->value);
 }
 
+<<<<<<< HEAD
 static void sw_sync_timeline_value_str(struct sync_timeline *sync_timeline,
 				       char *str, int size)
 {
@@ -99,14 +126,22 @@ static void sw_sync_pt_value_str(struct sync_pt *sync_pt,
 	snprintf(str, size, "%d", pt->value);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 struct sync_timeline_ops sw_sync_timeline_ops = {
 	.driver_name = "sw_sync",
 	.dup = sw_sync_pt_dup,
 	.has_signaled = sw_sync_pt_has_signaled,
 	.compare = sw_sync_pt_compare,
+<<<<<<< HEAD
 	.fill_driver_data = sw_sync_fill_driver_data,
 	.timeline_value_str = sw_sync_timeline_value_str,
 	.pt_value_str = sw_sync_pt_value_str,
+=======
+	.print_obj = sw_sync_print_obj,
+	.print_pt = sw_sync_print_pt,
+	.fill_driver_data = sw_sync_fill_driver_data,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 
@@ -119,7 +154,10 @@ struct sw_sync_timeline *sw_sync_timeline_create(const char *name)
 
 	return obj;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(sw_sync_timeline_create);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 void sw_sync_timeline_inc(struct sw_sync_timeline *obj, u32 inc)
 {
@@ -127,7 +165,11 @@ void sw_sync_timeline_inc(struct sw_sync_timeline *obj, u32 inc)
 
 	sync_timeline_signal(&obj->obj);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(sw_sync_timeline_inc);
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_SW_SYNC_USER
 /* *WARNING*

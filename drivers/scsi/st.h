@@ -120,7 +120,10 @@ struct scsi_tape {
 	unsigned char c_algo;			/* compression algorithm */
 	unsigned char pos_unknown;			/* after reset position unknown */
 	unsigned char sili;			/* use SILI when reading in variable b mode */
+<<<<<<< HEAD
 	unsigned char immediate_filemark;	/* write filemark immediately */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int tape_type;
 	int long_timeout;	/* timeout for commands known to take long time */
 

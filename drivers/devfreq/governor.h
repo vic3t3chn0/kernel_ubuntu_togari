@@ -18,6 +18,7 @@
 
 #define to_devfreq(DEV)	container_of((DEV), struct devfreq, dev)
 
+<<<<<<< HEAD
 /* Devfreq events */
 #define DEVFREQ_GOV_START			0x1
 #define DEVFREQ_GOV_STOP			0x2
@@ -39,4 +40,9 @@ extern int devfreq_add_governor(struct devfreq_governor *governor);
 extern int devfreq_remove_governor(struct devfreq_governor *governor);
 
 extern int devfreq_get_freq_level(struct devfreq *devfreq, unsigned long freq);
+=======
+/* Caution: devfreq->lock must be locked before calling update_devfreq */
+extern int update_devfreq(struct devfreq *devfreq);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* _GOVERNOR_H */

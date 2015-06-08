@@ -67,7 +67,10 @@ Configuration options:
 #include <linux/delay.h>
 #include <linux/gfp.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <linux/io.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "amcc_s5933.h"
 #include "8253.h"

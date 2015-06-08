@@ -3,14 +3,21 @@
  * Broadcom ChipCommon core driver
  *
  * Copyright 2005, Broadcom Corporation
+<<<<<<< HEAD
  * Copyright 2006, 2007, Michael Buesch <m@bues.ch>
+=======
+ * Copyright 2006, 2007, Michael Buesch <mb@bu3sch.de>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Licensed under the GNU/GPL. See COPYING for details.
  */
 
 #include <linux/ssb/ssb.h>
 #include <linux/ssb/ssb_regs.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/pci.h>
 
 #include "ssb_private.h"

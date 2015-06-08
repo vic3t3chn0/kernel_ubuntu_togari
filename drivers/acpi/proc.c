@@ -1,6 +1,9 @@
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/suspend.h>
 #include <linux/bcd.h>
 #include <asm/uaccess.h>

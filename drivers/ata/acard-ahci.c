@@ -135,8 +135,13 @@ static int acard_ahci_pci_device_suspend(struct pci_dev *pdev, pm_message_t mesg
 
 	if (mesg.event & PM_EVENT_SUSPEND &&
 	    hpriv->flags & AHCI_HFLAG_NO_SUSPEND) {
+<<<<<<< HEAD
 		dev_err(&pdev->dev,
 			"BIOS update required for suspend/resume\n");
+=======
+		dev_printk(KERN_ERR, &pdev->dev,
+			   "BIOS update required for suspend/resume\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -EIO;
 	}
 
@@ -187,7 +192,11 @@ static int acard_ahci_configure_dma_masks(struct pci_dev *pdev, int using_dac)
 		if (rc) {
 			rc = pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(32));
 			if (rc) {
+<<<<<<< HEAD
 				dev_err(&pdev->dev,
+=======
+				dev_printk(KERN_ERR, &pdev->dev,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					   "64-bit DMA enable failed\n");
 				return rc;
 			}
@@ -195,13 +204,23 @@ static int acard_ahci_configure_dma_masks(struct pci_dev *pdev, int using_dac)
 	} else {
 		rc = pci_set_dma_mask(pdev, DMA_BIT_MASK(32));
 		if (rc) {
+<<<<<<< HEAD
 			dev_err(&pdev->dev, "32-bit DMA enable failed\n");
+=======
+			dev_printk(KERN_ERR, &pdev->dev,
+				   "32-bit DMA enable failed\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return rc;
 		}
 		rc = pci_set_consistent_dma_mask(pdev, DMA_BIT_MASK(32));
 		if (rc) {
+<<<<<<< HEAD
 			dev_err(&pdev->dev,
 				"32-bit consistent DMA enable failed\n");
+=======
+			dev_printk(KERN_ERR, &pdev->dev,
+				   "32-bit consistent DMA enable failed\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return rc;
 		}
 	}
@@ -342,12 +361,23 @@ static int acard_ahci_port_start(struct ata_port *ap)
 		if (cmd & PORT_CMD_FBSCP)
 			pp->fbs_supported = true;
 		else if (hpriv->flags & AHCI_HFLAG_YES_FBS) {
+<<<<<<< HEAD
 			dev_info(dev, "port %d can do FBS, forcing FBSCP\n",
 				 ap->port_no);
 			pp->fbs_supported = true;
 		} else
 			dev_warn(dev, "port %d is not capable of FBS\n",
 				 ap->port_no);
+=======
+			dev_printk(KERN_INFO, dev,
+				   "port %d can do FBS, forcing FBSCP\n",
+				   ap->port_no);
+			pp->fbs_supported = true;
+		} else
+			dev_printk(KERN_WARNING, dev,
+				   "port %d is not capable of FBS\n",
+				   ap->port_no);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (pp->fbs_supported) {
@@ -403,6 +433,10 @@ static int acard_ahci_port_start(struct ata_port *ap)
 
 static int acard_ahci_init_one(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
+<<<<<<< HEAD
+=======
+	static int printed_version;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned int board_id = ent->driver_data;
 	struct ata_port_info pi = acard_ahci_port_info[board_id];
 	const struct ata_port_info *ppi[] = { &pi, NULL };
@@ -415,7 +449,12 @@ static int acard_ahci_init_one(struct pci_dev *pdev, const struct pci_device_id 
 
 	WARN_ON((int)ATA_MAX_QUEUE > AHCI_MAX_CMDS);
 
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev, "version " DRV_VERSION "\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* acquire resources */
 	rc = pcim_enable_device(pdev);

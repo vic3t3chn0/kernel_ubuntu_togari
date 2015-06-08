@@ -755,7 +755,11 @@ static int davinci_i2c_remove(struct platform_device *pdev)
 	dev->clk = NULL;
 
 	davinci_i2c_write_reg(dev, DAVINCI_I2C_MDR_REG, 0);
+<<<<<<< HEAD
 	free_irq(IRQ_I2C, dev);
+=======
+	free_irq(dev->irq, dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	iounmap(dev->base);
 	kfree(dev);
 

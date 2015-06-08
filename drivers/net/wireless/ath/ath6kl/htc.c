@@ -172,6 +172,7 @@ static void ath6kl_credit_reduce(struct ath6kl_htc_credit_info *cred_info,
 static void ath6kl_credit_update(struct ath6kl_htc_credit_info *cred_info,
 				 struct list_head *epdist_list)
 {
+<<<<<<< HEAD
 	struct htc_endpoint_credit_dist *cur_list;
 
 	list_for_each_entry(cur_list, epdist_list, list) {
@@ -195,6 +196,33 @@ static void ath6kl_credit_update(struct ath6kl_htc_credit_info *cred_info,
 				if (cur_list->txq_depth == 0)
 					ath6kl_credit_reduce(cred_info,
 							     cur_list, 0);
+=======
+	struct htc_endpoint_credit_dist *cur_dist_list;
+
+	list_for_each_entry(cur_dist_list, epdist_list, list) {
+		if (cur_dist_list->endpoint == ENDPOINT_0)
+			continue;
+
+		if (cur_dist_list->cred_to_dist > 0) {
+			cur_dist_list->credits +=
+					cur_dist_list->cred_to_dist;
+			cur_dist_list->cred_to_dist = 0;
+			if (cur_dist_list->credits >
+			    cur_dist_list->cred_assngd)
+				ath6kl_credit_reduce(cred_info,
+						cur_dist_list,
+						cur_dist_list->cred_assngd);
+
+			if (cur_dist_list->credits >
+			    cur_dist_list->cred_norm)
+				ath6kl_credit_reduce(cred_info, cur_dist_list,
+						     cur_dist_list->cred_norm);
+
+			if (!(cur_dist_list->dist_flags & HTC_EP_ACTIVE)) {
+				if (cur_dist_list->txq_depth == 0)
+					ath6kl_credit_reduce(cred_info,
+							     cur_dist_list, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			}
 		}
 	}
@@ -462,8 +490,13 @@ static void htc_async_tx_scat_complete(struct htc_target *target,
 	INIT_LIST_HEAD(&tx_compq);
 
 	ath6kl_dbg(ATH6KL_DBG_HTC,
+<<<<<<< HEAD
 		   "htc tx scat complete len %d entries %d\n",
 		   scat_req->len, scat_req->scat_entries);
+=======
+		"htc tx scat complete len %d entries %d\n",
+		scat_req->len, scat_req->scat_entries);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (scat_req->status)
 		ath6kl_err("send scatter req failed: %d\n", scat_req->status);
@@ -601,8 +634,13 @@ static void ath6kl_htc_tx_pkts_get(struct htc_target *target,
 					  list);
 
 		ath6kl_dbg(ATH6KL_DBG_HTC,
+<<<<<<< HEAD
 			   "htc tx got packet 0x%p queue depth %d\n",
 			   packet, get_queue_depth(&endpoint->txq));
+=======
+			"htc tx got packet 0x%p queue depth %d\n",
+			packet, get_queue_depth(&endpoint->txq));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		len = CALC_TXRX_PADDED_LEN(target,
 					   packet->act_len + HTC_HDR_LENGTH);
@@ -672,7 +710,10 @@ static int ath6kl_htc_tx_setup_scat_list(struct htc_target *target,
 	struct htc_packet *packet;
 	int i, len, rem_scat, cred_pad;
 	int status = 0;
+<<<<<<< HEAD
 	u8 flags;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	rem_scat = target->max_tx_bndl_sz;
 
@@ -699,9 +740,15 @@ static int ath6kl_htc_tx_setup_scat_list(struct htc_target *target,
 
 		scat_req->scat_list[i].packet = packet;
 		/* prepare packet and flag message as part of a send bundle */
+<<<<<<< HEAD
 		flags = packet->info.tx.flags | HTC_FLAGS_SEND_BUNDLE;
 		ath6kl_htc_tx_prep_pkt(packet, flags,
 				       cred_pad, packet->info.tx.seqno);
+=======
+		ath6kl_htc_tx_prep_pkt(packet,
+				packet->info.tx.flags | HTC_FLAGS_SEND_BUNDLE,
+				cred_pad, packet->info.tx.seqno);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* Make sure the buffer is 4-byte aligned */
 		ath6kl_htc_tx_buf_align(&packet->buf,
 					packet->act_len + HTC_HDR_LENGTH);
@@ -751,7 +798,11 @@ static void ath6kl_htc_tx_bundle(struct htc_endpoint *endpoint,
 	u8 ac = WMM_NUM_AC;
 
 	if ((HTC_CTRL_RSVD_SVC != endpoint->svc_id) ||
+<<<<<<< HEAD
 	    (WMI_CONTROL_SVC != endpoint->svc_id))
+=======
+		(WMI_CONTROL_SVC != endpoint->svc_id))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ac = target->dev->ar->ep2ac_map[endpoint->eid];
 
 	while (true) {
@@ -768,7 +819,11 @@ static void ath6kl_htc_tx_bundle(struct htc_endpoint *endpoint,
 		if (!scat_req) {
 			/* no scatter resources  */
 			ath6kl_dbg(ATH6KL_DBG_HTC,
+<<<<<<< HEAD
 				   "htc tx no more scatter resources\n");
+=======
+				"htc tx no more scatter resources\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		}
 
@@ -859,7 +914,11 @@ static void ath6kl_htc_tx_from_queue(struct htc_target *target,
 	INIT_LIST_HEAD(&txq);
 
 	if ((HTC_CTRL_RSVD_SVC != endpoint->svc_id) ||
+<<<<<<< HEAD
 	    (WMI_CONTROL_SVC != endpoint->svc_id))
+=======
+		(WMI_CONTROL_SVC != endpoint->svc_id))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ac = target->dev->ar->ep2ac_map[endpoint->eid];
 
 	while (true) {
@@ -917,7 +976,11 @@ static void ath6kl_htc_tx_from_queue(struct htc_target *target,
 		 */
 		if (!bundle_sent) {
 			if (!(target->tx_bndl_mask & (1 << ac)) &&
+<<<<<<< HEAD
 			    (ac < WMM_NUM_AC)) {
+=======
+				(ac < WMM_NUM_AC)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				if (++target->ac_tx_count[ac] >=
 					TX_RESUME_BUNDLE_THRESHOLD) {
 					target->ac_tx_count[ac] = 0;
@@ -1041,8 +1104,13 @@ static int htc_setup_tx_complete(struct htc_target *target)
 		memcpy(&setup_comp_ext->flags, &flags,
 		       sizeof(setup_comp_ext->flags));
 		set_htc_pkt_info(send_pkt, NULL, (u8 *) setup_comp_ext,
+<<<<<<< HEAD
 				 sizeof(struct htc_setup_comp_ext_msg),
 				 ENDPOINT_0, HTC_SERVICE_TX_PACKET_TAG);
+=======
+				       sizeof(struct htc_setup_comp_ext_msg),
+				       ENDPOINT_0, HTC_SERVICE_TX_PACKET_TAG);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	} else {
 		struct htc_setup_comp_msg *setup_comp;
@@ -1050,8 +1118,13 @@ static int htc_setup_tx_complete(struct htc_target *target)
 		memset(setup_comp, 0, sizeof(struct htc_setup_comp_msg));
 		setup_comp->msg_id = cpu_to_le16(HTC_MSG_SETUP_COMPLETE_ID);
 		set_htc_pkt_info(send_pkt, NULL, (u8 *) setup_comp,
+<<<<<<< HEAD
 				 sizeof(struct htc_setup_comp_msg),
 				 ENDPOINT_0, HTC_SERVICE_TX_PACKET_TAG);
+=======
+				       sizeof(struct htc_setup_comp_msg),
+				       ENDPOINT_0, HTC_SERVICE_TX_PACKET_TAG);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	/* we want synchronous operation */
@@ -1150,9 +1223,15 @@ void ath6kl_htc_flush_txep(struct htc_target *target,
 		packet->status = -ECANCELED;
 		list_del(&packet->list);
 		ath6kl_dbg(ATH6KL_DBG_HTC,
+<<<<<<< HEAD
 			   "htc tx flushing pkt 0x%p len %d  ep %d tag 0x%x\n",
 			   packet, packet->act_len,
 			   packet->endpoint, packet->info.tx.tag);
+=======
+			"htc tx flushing pkt 0x%p len %d  ep %d tag 0x%x\n",
+			packet, packet->act_len,
+			packet->endpoint, packet->info.tx.tag);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		INIT_LIST_HEAD(&container);
 		list_add_tail(&packet->list, &container);
@@ -1353,7 +1432,13 @@ static int ath6kl_htc_rx_setup(struct htc_target *target,
 					sizeof(*htc_hdr));
 
 	if (!htc_valid_rx_frame_len(target, ep->eid, full_len)) {
+<<<<<<< HEAD
 		ath6kl_warn("Rx buffer requested with invalid length\n");
+=======
+		ath6kl_warn("Rx buffer requested with invalid length"
+			" htc_hdr : eid - %d, flags = 0x%x, len - %d\n",
+			htc_hdr->eid, htc_hdr->flags, le16_to_cpu(htc_hdr->payld_len));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -EINVAL;
 	}
 
@@ -1448,6 +1533,11 @@ static int ath6kl_htc_rx_alloc(struct htc_target *target,
 	struct htc_packet *packet, *tmp_pkt;
 	struct htc_frame_hdr *htc_hdr;
 	int i, n_msg;
+<<<<<<< HEAD
+=======
+	struct ath6kl_vif *vif;
+	vif = ath6kl_vif_first(target->dev->ar);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	spin_lock_bh(&target->rx_lock);
 
@@ -1552,7 +1642,11 @@ static void htc_ctrl_rx(struct htc_target *context, struct htc_packet *packets)
 
 	if (packets->act_len > 0) {
 		ath6kl_err("htc_ctrl_rx, got message with len:%zu\n",
+<<<<<<< HEAD
 			   packets->act_len + HTC_HDR_LENGTH);
+=======
+			packets->act_len + HTC_HDR_LENGTH);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		ath6kl_dbg_dump(ATH6KL_DBG_HTC,
 				"htc rx unexpected endpoint 0 message", "",
@@ -1671,8 +1765,13 @@ static int htc_parse_trailer(struct htc_target *target,
 		}
 
 		lk_ahd = (struct htc_lookahead_report *) record_buf;
+<<<<<<< HEAD
 		if ((lk_ahd->pre_valid == ((~lk_ahd->post_valid) & 0xFF)) &&
 		    next_lk_ahds) {
+=======
+		if ((lk_ahd->pre_valid == ((~lk_ahd->post_valid) & 0xFF))
+		    && next_lk_ahds) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 			ath6kl_dbg(ATH6KL_DBG_HTC,
 				   "htc rx lk_ahd found pre_valid 0x%x post_valid 0x%x\n",
@@ -1685,7 +1784,12 @@ static int htc_parse_trailer(struct htc_target *target,
 					"htc rx next look ahead",
 					"", next_lk_ahds, 4);
 
+<<<<<<< HEAD
 			*n_lk_ahds = 1;
+=======
+			if (n_lk_ahds)
+				*n_lk_ahds = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 		break;
 	case HTC_RECORD_LOOKAHEAD_BUNDLE:
@@ -1710,7 +1814,12 @@ static int htc_parse_trailer(struct htc_target *target,
 				bundle_lkahd_rpt++;
 			}
 
+<<<<<<< HEAD
 			*n_lk_ahds = i;
+=======
+			if (n_lk_ahds)
+				*n_lk_ahds = i;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 		break;
 	default:
@@ -2100,13 +2209,21 @@ fail_rx:
 	list_for_each_entry_safe(packet, tmp_pkt, rx_pktq, list) {
 		list_del(&packet->list);
 		htc_reclaim_rxbuf(target, packet,
+<<<<<<< HEAD
 				  &target->endpoint[packet->endpoint]);
+=======
+				&target->endpoint[packet->endpoint]);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	list_for_each_entry_safe(packet, tmp_pkt, &tmp_rxq, list) {
 		list_del(&packet->list);
 		htc_reclaim_rxbuf(target, packet,
+<<<<<<< HEAD
 				  &target->endpoint[packet->endpoint]);
+=======
+				&target->endpoint[packet->endpoint]);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	return status;
@@ -2123,6 +2240,11 @@ int ath6kl_htc_rxmsg_pending_handler(struct htc_target *target,
 	int num_look_ahead = 1;
 	enum htc_endpoint_id id;
 	int n_fetched = 0;
+<<<<<<< HEAD
+=======
+	struct ath6kl_vif *vif;
+	vif = ath6kl_vif_first(target->dev->ar);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	INIT_LIST_HEAD(&comp_pktq);
 	*num_pkts = 0;
@@ -2238,11 +2360,19 @@ static struct htc_packet *htc_wait_for_ctrl_msg(struct htc_target *target)
 	u32 look_ahead;
 
 	if (ath6kl_hif_poll_mboxmsg_rx(target->dev, &look_ahead,
+<<<<<<< HEAD
 				       HTC_TARGET_RESPONSE_TIMEOUT))
 		return NULL;
 
 	ath6kl_dbg(ATH6KL_DBG_HTC,
 		   "htc rx wait ctrl look_ahead 0x%X\n", look_ahead);
+=======
+			       HTC_TARGET_RESPONSE_TIMEOUT))
+		return NULL;
+
+	ath6kl_dbg(ATH6KL_DBG_HTC,
+		"htc rx wait ctrl look_ahead 0x%X\n", look_ahead);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	htc_hdr = (struct htc_frame_hdr *)&look_ahead;
 
@@ -2307,7 +2437,11 @@ int ath6kl_htc_add_rxbuf_multiple(struct htc_target *target,
 	depth = get_queue_depth(pkt_queue);
 
 	ath6kl_dbg(ATH6KL_DBG_HTC,
+<<<<<<< HEAD
 		   "htc rx add multiple ep id %d cnt %d len %d\n",
+=======
+		"htc rx add multiple ep id %d cnt %d len %d\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		first_pkt->endpoint, depth, first_pkt->buf_len);
 
 	endpoint = &target->endpoint[first_pkt->endpoint];
@@ -2333,8 +2467,13 @@ int ath6kl_htc_add_rxbuf_multiple(struct htc_target *target,
 	if (target->rx_st_flags & HTC_RECV_WAIT_BUFFERS) {
 		if (target->ep_waiting == first_pkt->endpoint) {
 			ath6kl_dbg(ATH6KL_DBG_HTC,
+<<<<<<< HEAD
 				   "htc rx blocked on ep %d, unblocking\n",
 				   target->ep_waiting);
+=======
+				"htc rx blocked on ep %d, unblocking\n",
+				target->ep_waiting);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			target->rx_st_flags &= ~HTC_RECV_WAIT_BUFFERS;
 			target->ep_waiting = ENDPOINT_MAX;
 			rx_unblock = true;
@@ -2404,7 +2543,10 @@ int ath6kl_htc_conn_service(struct htc_target *target,
 	enum htc_endpoint_id assigned_ep = ENDPOINT_MAX;
 	unsigned int max_msg_sz = 0;
 	int status = 0;
+<<<<<<< HEAD
 	u16 msg_id;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	ath6kl_dbg(ATH6KL_DBG_HTC,
 		   "htc connect service target 0x%p service id 0x%x\n",
@@ -2448,10 +2590,16 @@ int ath6kl_htc_conn_service(struct htc_target *target,
 		}
 
 		resp_msg = (struct htc_conn_service_resp *)rx_pkt->buf;
+<<<<<<< HEAD
 		msg_id = le16_to_cpu(resp_msg->msg_id);
 
 		if ((msg_id != HTC_MSG_CONN_SVC_RESP_ID) ||
 		    (rx_pkt->act_len < sizeof(*resp_msg))) {
+=======
+
+		if ((le16_to_cpu(resp_msg->msg_id) != HTC_MSG_CONN_SVC_RESP_ID)
+		    || (rx_pkt->act_len < sizeof(*resp_msg))) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			status = -ENOMEM;
 			goto fail_tx;
 		}
@@ -2498,6 +2646,7 @@ int ath6kl_htc_conn_service(struct htc_target *target,
 	endpoint->cred_dist.endpoint = assigned_ep;
 	endpoint->cred_dist.cred_sz = target->tgt_cred_sz;
 
+<<<<<<< HEAD
 	switch (endpoint->svc_id) {
 	case WMI_DATA_BK_SVC:
 		endpoint->tx_drop_packet_threshold = MAX_DEF_COOKIE_NUM / 3;
@@ -2507,6 +2656,8 @@ int ath6kl_htc_conn_service(struct htc_target *target,
 		break;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (conn_req->max_rxmsg_sz) {
 		/*
 		 * Override cred_per_msg calculation, this optimizes
@@ -2677,8 +2828,13 @@ int ath6kl_htc_wait_target(struct htc_target *target)
 	}
 
 	ath6kl_dbg(ATH6KL_DBG_BOOT, "htc using protocol %s (%d)\n",
+<<<<<<< HEAD
 		   (target->htc_tgt_ver == HTC_VERSION_2P0) ? "2.0" : ">= 2.1",
 		   target->htc_tgt_ver);
+=======
+		  (target->htc_tgt_ver == HTC_VERSION_2P0) ? "2.0" : ">= 2.1",
+		  target->htc_tgt_ver);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (target->msg_per_bndl_max > 0)
 		htc_setup_msg_bndl(target);
@@ -2872,14 +3028,22 @@ void ath6kl_htc_cleanup(struct htc_target *target)
 		ath6kl_hif_cleanup_scatter(target->dev->ar);
 
 	list_for_each_entry_safe(packet, tmp_packet,
+<<<<<<< HEAD
 				 &target->free_ctrl_txbuf, list) {
+=======
+			&target->free_ctrl_txbuf, list) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		list_del(&packet->list);
 		kfree(packet->buf_start);
 		kfree(packet);
 	}
 
 	list_for_each_entry_safe(packet, tmp_packet,
+<<<<<<< HEAD
 				 &target->free_ctrl_rxbuf, list) {
+=======
+			&target->free_ctrl_rxbuf, list) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		list_del(&packet->list);
 		kfree(packet->buf_start);
 		kfree(packet);

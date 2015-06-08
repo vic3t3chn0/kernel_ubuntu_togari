@@ -34,7 +34,10 @@
 #include <linux/delay.h>
 #include <linux/netdevice.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/interrupt.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/bootmem.h>
 #include <linux/arcdevice.h>
 #include <linux/com20020.h>

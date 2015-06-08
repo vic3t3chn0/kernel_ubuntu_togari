@@ -26,6 +26,12 @@
 #ifndef _EXYNOS_DRM_HDMI_H_
 #define _EXYNOS_DRM_HDMI_H_
 
+<<<<<<< HEAD
+=======
+#define MIXER_WIN_NR		3
+#define MIXER_DEFAULT_WIN	0
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * exynos hdmi common context structure.
  *
@@ -54,13 +60,21 @@ struct exynos_hdmi_ops {
 	void (*get_max_resol)(void *ctx, unsigned int *width,
 				unsigned int *height);
 	void (*commit)(void *ctx);
+<<<<<<< HEAD
 	void (*disable)(void *ctx);
+=======
+	void (*dpms)(void *ctx, int mode);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 struct exynos_mixer_ops {
 	/* manager */
 	int (*enable_vblank)(void *ctx, int pipe);
 	void (*disable_vblank)(void *ctx);
+<<<<<<< HEAD
+=======
+	void (*dpms)(void *ctx, int mode);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* overlay */
 	void (*win_mode_set)(void *ctx, struct exynos_drm_overlay *overlay);

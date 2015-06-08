@@ -1,6 +1,10 @@
 /*
+<<<<<<< HEAD
  * AD5760, AD5780, AD5781, AD5790, AD5791 Voltage Output Digital to Analog
  * Converter
+=======
+ * AD5760, AD5780, AD5781, AD5791 Voltage Output Digital to Analog Converter
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Copyright 2011 Analog Devices Inc.
  *
@@ -8,6 +12,10 @@
  */
 
 #include <linux/interrupt.h>
+<<<<<<< HEAD
+=======
+#include <linux/gpio.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/fs.h>
 #include <linux/device.h>
 #include <linux/kernel.h>
@@ -15,7 +23,10 @@
 #include <linux/slab.h>
 #include <linux/sysfs.h>
 #include <linux/regulator/consumer.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "../iio.h"
 #include "../sysfs.h"
@@ -72,6 +83,7 @@ static int ad5791_spi_read(struct spi_device *spi, u8 addr, u32 *val)
 	return ret;
 }
 
+<<<<<<< HEAD
 #define AD5791_CHAN(bits, shift) {			\
 	.type = IIO_VOLTAGE,				\
 	.output = 1,					\
@@ -89,12 +101,60 @@ static const struct iio_chan_spec ad5791_channels[] = {
 	[ID_AD5781] = AD5791_CHAN(18, 2),
 	[ID_AD5791] = AD5791_CHAN(20, 0)
 };
+=======
+static ssize_t ad5791_write_dac(struct device *dev,
+				 struct device_attribute *attr,
+				 const char *buf, size_t len)
+{
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	struct ad5791_state *st = iio_dev_get_devdata(indio_dev);
+	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
+	long readin;
+	int ret;
+
+	ret = strict_strtol(buf, 10, &readin);
+	if (ret)
+		return ret;
+
+	readin += (1 << (st->chip_info->bits - 1));
+	readin &= AD5791_RES_MASK(st->chip_info->bits);
+	readin <<= st->chip_info->left_shift;
+
+	ret = ad5791_spi_write(st->spi, this_attr->address, readin);
+	return ret ? ret : len;
+}
+
+static ssize_t ad5791_read_dac(struct device *dev,
+					   struct device_attribute *attr,
+					   char *buf)
+{
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	struct ad5791_state *st = iio_dev_get_devdata(indio_dev);
+	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
+	int ret;
+	int val;
+
+	ret = ad5791_spi_read(st->spi, this_attr->address, &val);
+	if (ret)
+		return ret;
+
+	val &= AD5791_DAC_MASK;
+	val >>= st->chip_info->left_shift;
+	val -= (1 << (st->chip_info->bits - 1));
+
+	return sprintf(buf, "%d\n", val);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static ssize_t ad5791_read_powerdown_mode(struct device *dev,
 				      struct device_attribute *attr, char *buf)
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	struct ad5791_state *st = iio_priv(indio_dev);
+=======
+	struct ad5791_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	const char mode[][14] = {"6kohm_to_gnd", "three_state"};
 
@@ -106,7 +166,11 @@ static ssize_t ad5791_write_powerdown_mode(struct device *dev,
 				       const char *buf, size_t len)
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	struct ad5791_state *st = iio_priv(indio_dev);
+=======
+	struct ad5791_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int ret;
 
 	if (sysfs_streq(buf, "6kohm_to_gnd"))
@@ -124,7 +188,11 @@ static ssize_t ad5791_read_dac_powerdown(struct device *dev,
 					   char *buf)
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	struct ad5791_state *st = iio_priv(indio_dev);
+=======
+	struct ad5791_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return sprintf(buf, "%d\n", st->pwr_down);
 }
@@ -136,7 +204,11 @@ static ssize_t ad5791_write_dac_powerdown(struct device *dev,
 	long readin;
 	int ret;
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	struct ad5791_state *st = iio_priv(indio_dev);
+=======
+	struct ad5791_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	ret = strict_strtol(buf, 10, &readin);
 	if (ret)
@@ -159,6 +231,7 @@ static ssize_t ad5791_write_dac_powerdown(struct device *dev,
 	return ret ? ret : len;
 }
 
+<<<<<<< HEAD
 static IIO_DEVICE_ATTR(out_voltage_powerdown_mode, S_IRUGO |
 			S_IWUSR, ad5791_read_powerdown_mode,
 			ad5791_write_powerdown_mode, 0);
@@ -168,15 +241,66 @@ static IIO_CONST_ATTR(out_voltage_powerdown_mode_available,
 
 #define IIO_DEV_ATTR_DAC_POWERDOWN(_num, _show, _store, _addr)		\
 	IIO_DEVICE_ATTR(out_voltage##_num##_powerdown,			\
+=======
+static ssize_t ad5791_show_scale(struct device *dev,
+				struct device_attribute *attr,
+				char *buf)
+{
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	struct ad5791_state *st = iio_dev_get_devdata(indio_dev);
+	/* Corresponds to Vref / 2^(bits) */
+	unsigned int scale_uv = (st->vref_mv * 1000) >> st->chip_info->bits;
+
+	return sprintf(buf, "%d.%03d\n", scale_uv / 1000, scale_uv % 1000);
+}
+static IIO_DEVICE_ATTR(out_scale, S_IRUGO, ad5791_show_scale, NULL, 0);
+
+static ssize_t ad5791_show_name(struct device *dev,
+				 struct device_attribute *attr,
+				 char *buf)
+{
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	struct ad5791_state *st = iio_dev_get_devdata(indio_dev);
+
+	return sprintf(buf, "%s\n", spi_get_device_id(st->spi)->name);
+}
+static IIO_DEVICE_ATTR(name, S_IRUGO, ad5791_show_name, NULL, 0);
+
+#define IIO_DEV_ATTR_OUT_RW_RAW(_num, _show, _store, _addr)		\
+	IIO_DEVICE_ATTR(out##_num##_raw,				\
+			S_IRUGO | S_IWUSR, _show, _store, _addr)
+
+static IIO_DEV_ATTR_OUT_RW_RAW(0, ad5791_read_dac,
+	ad5791_write_dac, AD5791_ADDR_DAC0);
+
+static IIO_DEVICE_ATTR(out_powerdown_mode, S_IRUGO |
+			S_IWUSR, ad5791_read_powerdown_mode,
+			ad5791_write_powerdown_mode, 0);
+
+static IIO_CONST_ATTR(out_powerdown_mode_available,
+			"6kohm_to_gnd three_state");
+
+#define IIO_DEV_ATTR_DAC_POWERDOWN(_num, _show, _store, _addr)		\
+	IIO_DEVICE_ATTR(out##_num##_powerdown,				\
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			S_IRUGO | S_IWUSR, _show, _store, _addr)
 
 static IIO_DEV_ATTR_DAC_POWERDOWN(0, ad5791_read_dac_powerdown,
 				   ad5791_write_dac_powerdown, 0);
 
 static struct attribute *ad5791_attributes[] = {
+<<<<<<< HEAD
 	&iio_dev_attr_out_voltage0_powerdown.dev_attr.attr,
 	&iio_dev_attr_out_voltage_powerdown_mode.dev_attr.attr,
 	&iio_const_attr_out_voltage_powerdown_mode_available.dev_attr.attr,
+=======
+	&iio_dev_attr_out0_raw.dev_attr.attr,
+	&iio_dev_attr_out0_powerdown.dev_attr.attr,
+	&iio_dev_attr_out_powerdown_mode.dev_attr.attr,
+	&iio_const_attr_out_powerdown_mode_available.dev_attr.attr,
+	&iio_dev_attr_out_scale.dev_attr.attr,
+	&iio_dev_attr_name.dev_attr.attr,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	NULL,
 };
 
@@ -205,6 +329,7 @@ static int ad5780_get_lin_comp(unsigned int span)
 	else
 		return AD5780_LINCOMP_10_20;
 }
+<<<<<<< HEAD
 static const struct ad5791_chip_info ad5791_chip_info_tbl[] = {
 	[ID_AD5760] = {
 		.get_lin_comp = ad5780_get_lin_comp,
@@ -216,10 +341,33 @@ static const struct ad5791_chip_info ad5791_chip_info_tbl[] = {
 		.get_lin_comp = ad5791_get_lin_comp,
 	},
 	[ID_AD5791] = {
+=======
+
+static const struct ad5791_chip_info ad5791_chip_info_tbl[] = {
+	[ID_AD5760] = {
+		.bits = 16,
+		.left_shift = 4,
+		.get_lin_comp = ad5780_get_lin_comp,
+	},
+	[ID_AD5780] = {
+		.bits = 18,
+		.left_shift = 2,
+		.get_lin_comp = ad5780_get_lin_comp,
+	},
+	[ID_AD5781] = {
+		.bits = 18,
+		.left_shift = 2,
+		.get_lin_comp = ad5791_get_lin_comp,
+	},
+	[ID_AD5791] = {
+		.bits = 20,
+		.left_shift = 0,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.get_lin_comp = ad5791_get_lin_comp,
 	},
 };
 
+<<<<<<< HEAD
 static int ad5791_read_raw(struct iio_dev *indio_dev,
 			   struct iio_chan_spec const *chan,
 			   int *val,
@@ -277,6 +425,9 @@ static int ad5791_write_raw(struct iio_dev *indio_dev,
 static const struct iio_info ad5791_info = {
 	.read_raw = &ad5791_read_raw,
 	.write_raw = &ad5791_write_raw,
+=======
+static const struct iio_info ad5791_info = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.attrs = &ad5791_attribute_group,
 	.driver_module = THIS_MODULE,
 };
@@ -284,6 +435,7 @@ static const struct iio_info ad5791_info = {
 static int __devinit ad5791_probe(struct spi_device *spi)
 {
 	struct ad5791_platform_data *pdata = spi->dev.platform_data;
+<<<<<<< HEAD
 	struct iio_dev *indio_dev;
 	struct ad5791_state *st;
 	int ret, pos_voltage_uv = 0, neg_voltage_uv = 0;
@@ -294,6 +446,19 @@ static int __devinit ad5791_probe(struct spi_device *spi)
 		goto error_ret;
 	}
 	st = iio_priv(indio_dev);
+=======
+	struct ad5791_state *st;
+	int ret, pos_voltage_uv = 0, neg_voltage_uv = 0;
+
+	st = kzalloc(sizeof(*st), GFP_KERNEL);
+	if (st == NULL) {
+		ret = -ENOMEM;
+		goto error_ret;
+	}
+
+	spi_set_drvdata(spi, st);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	st->reg_vdd = regulator_get(&spi->dev, "vdd");
 	if (!IS_ERR(st->reg_vdd)) {
 		ret = regulator_enable(st->reg_vdd);
@@ -312,6 +477,7 @@ static int __devinit ad5791_probe(struct spi_device *spi)
 		neg_voltage_uv = regulator_get_voltage(st->reg_vss);
 	}
 
+<<<<<<< HEAD
 	st->pwr_down = true;
 	st->spi = spi;
 
@@ -324,13 +490,26 @@ static int __devinit ad5791_probe(struct spi_device *spi)
 	} else {
 		dev_warn(&spi->dev, "reference voltage unspecified\n");
 	}
+=======
+	if (!IS_ERR(st->reg_vss) && !IS_ERR(st->reg_vdd))
+		st->vref_mv = (pos_voltage_uv - neg_voltage_uv) / 1000;
+	else if (pdata)
+		st->vref_mv = pdata->vref_pos_mv - pdata->vref_neg_mv;
+	else
+		dev_warn(&spi->dev, "reference voltage unspecified\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	ret = ad5791_spi_write(spi, AD5791_ADDR_SW_CTRL, AD5791_SWCTRL_RESET);
 	if (ret)
 		goto error_disable_reg_neg;
 
+<<<<<<< HEAD
 	st->chip_info =	&ad5791_chip_info_tbl[spi_get_device_id(spi)
 					      ->driver_data];
+=======
+	st->chip_info =
+		&ad5791_chip_info_tbl[spi_get_device_id(spi)->driver_data];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 	st->ctrl = AD5761_CTRL_LINCOMP(st->chip_info->get_lin_comp(st->vref_mv))
@@ -342,6 +521,7 @@ static int __devinit ad5791_probe(struct spi_device *spi)
 	if (ret)
 		goto error_disable_reg_neg;
 
+<<<<<<< HEAD
 	spi_set_drvdata(spi, indio_dev);
 	indio_dev->dev.parent = &spi->dev;
 	indio_dev->info = &ad5791_info;
@@ -356,6 +536,30 @@ static int __devinit ad5791_probe(struct spi_device *spi)
 
 	return 0;
 
+=======
+	st->pwr_down = true;
+
+	st->spi = spi;
+	st->indio_dev = iio_allocate_device(0);
+	if (st->indio_dev == NULL) {
+		ret = -ENOMEM;
+		goto error_disable_reg_neg;
+	}
+	st->indio_dev->dev.parent = &spi->dev;
+	st->indio_dev->dev_data = (void *)(st);
+	st->indio_dev->info = &ad5791_info;
+	st->indio_dev->modes = INDIO_DIRECT_MODE;
+
+	ret = iio_device_register(st->indio_dev);
+	if (ret)
+		goto error_free_dev;
+
+	return 0;
+
+error_free_dev:
+	iio_free_device(st->indio_dev);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 error_disable_reg_neg:
 	if (!IS_ERR(st->reg_vss))
 		regulator_disable(st->reg_vss);
@@ -368,18 +572,31 @@ error_put_reg_neg:
 error_put_reg_pos:
 	if (!IS_ERR(st->reg_vdd))
 		regulator_put(st->reg_vdd);
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
 error_ret:
 
+=======
+
+	kfree(st);
+error_ret:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return ret;
 }
 
 static int __devexit ad5791_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 	struct ad5791_state *st = iio_priv(indio_dev);
 
 	iio_device_unregister(indio_dev);
+=======
+	struct ad5791_state *st = spi_get_drvdata(spi);
+
+	iio_device_unregister(st->indio_dev);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!IS_ERR(st->reg_vdd)) {
 		regulator_disable(st->reg_vdd);
 		regulator_put(st->reg_vdd);
@@ -389,7 +606,12 @@ static int __devexit ad5791_remove(struct spi_device *spi)
 		regulator_disable(st->reg_vss);
 		regulator_put(st->reg_vss);
 	}
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
+=======
+
+	kfree(st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -398,11 +620,17 @@ static const struct spi_device_id ad5791_id[] = {
 	{"ad5760", ID_AD5760},
 	{"ad5780", ID_AD5780},
 	{"ad5781", ID_AD5781},
+<<<<<<< HEAD
 	{"ad5790", ID_AD5791},
 	{"ad5791", ID_AD5791},
 	{}
 };
 MODULE_DEVICE_TABLE(spi, ad5791_id);
+=======
+	{"ad5791", ID_AD5791},
+	{}
+};
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static struct spi_driver ad5791_driver = {
 	.driver = {
@@ -413,8 +641,26 @@ static struct spi_driver ad5791_driver = {
 	.remove = __devexit_p(ad5791_remove),
 	.id_table = ad5791_id,
 };
+<<<<<<< HEAD
 module_spi_driver(ad5791_driver);
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD5760/AD5780/AD5781/AD5790/AD5791 DAC");
+=======
+
+static __init int ad5791_spi_init(void)
+{
+	return spi_register_driver(&ad5791_driver);
+}
+module_init(ad5791_spi_init);
+
+static __exit void ad5791_spi_exit(void)
+{
+	spi_unregister_driver(&ad5791_driver);
+}
+module_exit(ad5791_spi_exit);
+
+MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
+MODULE_DESCRIPTION("Analog Devices AD5760/AD5780/AD5781/AD5791 DAC");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_LICENSE("GPL v2");

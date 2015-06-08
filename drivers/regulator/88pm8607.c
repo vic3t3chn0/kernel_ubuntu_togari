@@ -16,7 +16,10 @@
 #include <linux/regulator/driver.h>
 #include <linux/regulator/machine.h>
 #include <linux/mfd/88pm860x.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 struct pm8607_regulator_info {
 	struct regulator_desc	desc;
@@ -413,7 +416,11 @@ static int __devinit pm8607_regulator_probe(struct platform_device *pdev)
 		if (info->desc.id == res->start)
 			break;
 	}
+<<<<<<< HEAD
 	if (i == ARRAY_SIZE(pm8607_regulator_info)) {
+=======
+	if ((i < 0) || (i > PM8607_ID_RG_MAX)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		dev_err(&pdev->dev, "Failed to find regulator %llu\n",
 			(unsigned long long)res->start);
 		return -EINVAL;
@@ -427,7 +434,11 @@ static int __devinit pm8607_regulator_probe(struct platform_device *pdev)
 
 	/* replace driver_data with info */
 	info->regulator = regulator_register(&info->desc, &pdev->dev,
+<<<<<<< HEAD
 					     pdata, info, NULL);
+=======
+					     pdata, info);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (IS_ERR(info->regulator)) {
 		dev_err(&pdev->dev, "failed to register regulator %s\n",
 			info->desc.name);

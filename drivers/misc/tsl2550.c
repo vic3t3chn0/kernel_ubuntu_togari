@@ -454,9 +454,27 @@ static struct i2c_driver tsl2550_driver = {
 	.id_table = tsl2550_id,
 };
 
+<<<<<<< HEAD
 module_i2c_driver(tsl2550_driver);
+=======
+static int __init tsl2550_init(void)
+{
+	return i2c_add_driver(&tsl2550_driver);
+}
+
+static void __exit tsl2550_exit(void)
+{
+	i2c_del_driver(&tsl2550_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Rodolfo Giometti <giometti@linux.it>");
 MODULE_DESCRIPTION("TSL2550 ambient light sensor driver");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(DRIVER_VERSION);
+<<<<<<< HEAD
+=======
+
+module_init(tsl2550_init);
+module_exit(tsl2550_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

@@ -369,7 +369,11 @@ static struct i2c_adapter sis5595_adapter = {
 	.algo		= &smbus_algorithm,
 };
 
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(sis5595_ids) = {
+=======
+static const struct pci_device_id sis5595_ids[] __devinitconst = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ PCI_DEVICE(PCI_VENDOR_ID_SI, PCI_DEVICE_ID_SI_503) }, 
 	{ 0, }
 };

@@ -1,6 +1,10 @@
 /******************************************************************************
  *
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation. All rights reserved.
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation. All rights reserved.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -47,8 +51,13 @@ void rtl92cu_sw_led_on(struct ieee80211_hw *hw, struct rtl_led *pled)
 	u8 ledcfg;
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_LED, DBG_LOUD, "LedAddr:%X ledpin=%d\n",
 		 REG_LEDCFG2, pled->ledpin);
+=======
+	RT_TRACE(rtlpriv, COMP_LED, DBG_LOUD,
+		 ("LedAddr:%X ledpin=%d\n", REG_LEDCFG2, pled->ledpin));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ledcfg = rtl_read_byte(rtlpriv, REG_LEDCFG2);
 	switch (pled->ledpin) {
 	case LED_PIN_GPIO0:
@@ -62,7 +71,11 @@ void rtl92cu_sw_led_on(struct ieee80211_hw *hw, struct rtl_led *pled)
 		break;
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
+<<<<<<< HEAD
 			 "switch case not processed\n");
+=======
+			 ("switch case not process\n"));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 	}
 	pled->ledon = true;
@@ -74,15 +87,24 @@ void rtl92cu_sw_led_off(struct ieee80211_hw *hw, struct rtl_led *pled)
 	struct rtl_usb_priv *usbpriv = rtl_usbpriv(hw);
 	u8 ledcfg;
 
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_LED, DBG_LOUD, "LedAddr:%X ledpin=%d\n",
 		 REG_LEDCFG2, pled->ledpin);
+=======
+	RT_TRACE(rtlpriv, COMP_LED, DBG_LOUD,
+		 ("LedAddr:%X ledpin=%d\n", REG_LEDCFG2, pled->ledpin));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ledcfg = rtl_read_byte(rtlpriv, REG_LEDCFG2);
 	switch (pled->ledpin) {
 	case LED_PIN_GPIO0:
 		break;
 	case LED_PIN_LED0:
 		ledcfg &= 0xf0;
+<<<<<<< HEAD
 		if (usbpriv->ledctl.led_opendrain)
+=======
+		if (usbpriv->ledctl.led_opendrain == true)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			rtl_write_byte(rtlpriv, REG_LEDCFG2,
 				       (ledcfg | BIT(1) | BIT(5) | BIT(6)));
 		else
@@ -95,7 +117,11 @@ void rtl92cu_sw_led_off(struct ieee80211_hw *hw, struct rtl_led *pled)
 		break;
 	default:
 		RT_TRACE(rtlpriv, COMP_ERR, DBG_EMERG,
+<<<<<<< HEAD
 			 "switch case not processed\n");
+=======
+			 ("switch case not process\n"));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 	}
 	pled->ledon = false;
@@ -136,6 +162,11 @@ void rtl92cu_led_control(struct ieee80211_hw *hw,
 	     ledaction == LED_CTL_POWER_ON)) {
 		return;
 	}
+<<<<<<< HEAD
 	RT_TRACE(rtlpriv, COMP_LED, DBG_LOUD, "ledaction %d\n", ledaction);
+=======
+	RT_TRACE(rtlpriv, COMP_LED, DBG_LOUD, ("ledaction %d,\n",
+				ledaction));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	_rtl92cu_sw_led_control(hw, ledaction);
 }

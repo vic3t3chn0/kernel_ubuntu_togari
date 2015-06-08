@@ -15,10 +15,17 @@
 
 
 /*
+<<<<<<< HEAD
  *  include Genero generated HFC-4S/8S header file hfc48scu.h
  *  for complete register description. This will define _HFC48SCU_H_
  *  to prevent redefinitions
  */
+=======
+*  include Genero generated HFC-4S/8S header file hfc48scu.h
+*  for complete register description. This will define _HFC48SCU_H_
+*  to prevent redefinitions
+*/
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 // #include "hfc48scu.h"
 

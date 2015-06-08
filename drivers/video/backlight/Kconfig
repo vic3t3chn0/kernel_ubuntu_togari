@@ -109,6 +109,33 @@ config LCD_S6E63M0
 	  If you have an S6E63M0 LCD Panel, say Y to enable its
 	  LCD control driver.
 
+<<<<<<< HEAD
+=======
+config LCD_MIPI_S6E63M0
+	tristate "S6E63M0 AMOLED MIPI LCD Driver"
+	depends on BACKLIGHT_CLASS_DEVICE
+	default n
+	help
+	  If you have an S6E63M0 MIPI LCD Panel, say Y to enable its
+	  LCD control driver.
+
+config LCD_MIPI_S6E8AB0
+	tristate "1280 X 800 S6E8AB0 AMOLED MIPI LCD Driver"
+	depends on BACKLIGHT_CLASS_DEVICE
+	default n
+	help
+	  If you have an S6E8AB0 MIPI LCD Panel, say Y to enable its
+	  LCD control driver.
+
+config LCD_MIPI_TC358764
+	tristate "1280 X 800 TC358764 AMOLED MIPI LCD Driver"
+	depends on BACKLIGHT_CLASS_DEVICE
+	default n
+	help
+	  If you have an TC358764 MIPI LCD Panel, say Y to enable its
+	  LCD control driver.
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config LCD_LD9040
 	tristate "LD9040 AMOLED LCD Driver"
 	depends on SPI && BACKLIGHT_CLASS_DEVICE
@@ -119,12 +146,79 @@ config LCD_LD9040
 
 config LCD_AMS369FG06
 	tristate "AMS369FG06 AMOLED LCD Driver"
+<<<<<<< HEAD
 	depends on SPI && BACKLIGHT_CLASS_DEVICE
 	default n
+=======
+	depends on SPI_GPIO && BACKLIGHT_CLASS_DEVICE && FB_S3C
+	default y
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  If you have an AMS369FG06 AMOLED Panel, say Y to enable its
 	  LCD control driver.
 
+<<<<<<< HEAD
+=======
+config LCD_LMS501KF03
+	tristate "LMS501KF03 TFT LCD Driver"
+	depends on SPI_GPIO && BACKLIGHT_CLASS_DEVICE && FB_S3C
+	default y
+	help
+	  If you have an LMS501KF03 AMOLED Panel, say Y to enable its
+	  LCD control driver.
+
+config LCD_WA101S
+	tristate "LCD_WA101S LCD Driver"
+	default n
+	help
+	  If you have a WA101S Panel(WXGA), say Y to enable its
+	  LCD control driver.
+
+config LCD_LTE480WV
+	tristate "LCD_LTE480WV LCD Driver"
+	default n
+	help
+	  If you have an LTE480 Panel(WVGA), say Y to enable its
+	  LCD control drvier.
+
+config LCD_S6E8AA0
+	tristate "S6E8AA0 MIPI AMOLED LCD Driver"
+	depends on S5P_MIPI_DSI2 && BACKLIGHT_CLASS_DEVICE && \
+			(MACH_SLP_MIDAS || MACH_SLP_PQ_LTE || MACH_SLP_PQ || MACH_TRATS)
+	default n
+	help
+	  If you have an S6E8AA0 MIPI AMOLED LCD Panel, say Y to enable its
+	  LCD control driver.
+
+config LCD_EA8061
+	tristate "EA8061 MIPI AMOLED LCD Driver"
+	depends on S5P_MIPI_DSI2 && BACKLIGHT_CLASS_DEVICE && \
+			(MACH_SLP_T0_LTE)
+	default n
+	help
+	  If you have an S6E8AA0 MIPI AMOLED LCD Panel, say Y to enable its
+	  LCD control driver. this driver supported S-Strip Portrait.
+	  It support MIPI interface for transmitting video data to LCD.
+	  please find quality about display.
+
+config LCD_S6D6AA1
+	tristate "S6D6AA1 MIPI TFT-LCD Driver"
+	depends on S5P_MIPI_DSI2 && BACKLIGHT_CLASS_DEVICE && \
+			(MACH_REDWOOD)
+	help
+	  If you have an S6D6AA1 MIPI TFT-LCD Panel, say Y to enable its
+	  LCD control driver. this driver supported white maic sony ip.
+	  improve power consumtion and outdoor mode using white pixel.
+	  please find advantage about this driver.
+
+config LCD_S6E39A0X02
+	tristate "S6E39A0X02 MIPI AMOLED LCD Driver"
+	depends on S5P_MIPI_DSI2 && BACKLIGHT_CLASS_DEVICE
+	default n
+	help
+	  If you have an S6E39A0X02 MIPI AMOLED LCD Panel, say Y to enable its
+	  LCD control driver.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 endif # LCD_CLASS_DEVICE
 
 #
@@ -245,12 +339,15 @@ config BACKLIGHT_DA903X
 	  If you have a LCD backlight connected to the WLED output of DA9030
 	  or DA9034 WLED output, say Y here to enable this driver.
 
+<<<<<<< HEAD
 config BACKLIGHT_DA9052
 	tristate "Dialog DA9052/DA9053 WLED"
 	depends on PMIC_DA9052
 	help
 	  Enable the Backlight Driver for DA9052-BC and DA9053-AA/Bx PMICs.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config BACKLIGHT_MAX8925
 	tristate "Backlight driver for MAX8925"
 	depends on MFD_MAX8925
@@ -286,6 +383,17 @@ config BACKLIGHT_WM831X
 	  If you have a backlight driven by the ISINK and DCDC of a
 	  WM831x PMIC say y to enable the backlight driver for it.
 
+<<<<<<< HEAD
+=======
+config BACKLIGHT_ADX
+	tristate "Avionic Design Xanthos Backlight Driver"
+	depends on ARCH_PXA_ADX
+	default y
+	help
+	  Say Y to enable the backlight driver on Avionic Design Xanthos-based
+	  boards.
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config BACKLIGHT_ADP5520
 	tristate "Backlight Driver for ADP5520/ADP5501 using WLED"
 	depends on PMIC_ADP5520
@@ -333,6 +441,7 @@ config BACKLIGHT_PCF50633
 	  If you have a backlight driven by a NXP PCF50633 MFD, say Y here to
 	  enable its driver.
 
+<<<<<<< HEAD
 config BACKLIGHT_AAT2870
 	tristate "AnalogicTech AAT2870 Backlight"
 	depends on BACKLIGHT_CLASS_DEVICE && MFD_AAT2870_CORE
@@ -360,6 +469,13 @@ config BACKLIGHT_PANDORA
 	help
 	  If you have a Pandora console, say Y to enable the
 	  backlight driver.
+=======
+config BACKLIGHT_SMART_DIMMING
+	bool "SLP Backlight driver feature for smart dimming"
+	depends on (MACH_SLP_MIDAS || MACH_SLP_T0_LTE || MACH_SLP_PQ_LTE || MACH_SLP_PQ || MACH_TRATS)
+	help
+	  Say Y to enable the Smart Dimming Feature.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 endif # BACKLIGHT_CLASS_DEVICE
 

@@ -36,7 +36,10 @@
 #include "drm_hashtab.h"
 #include <linux/hash.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int drm_ht_create(struct drm_open_hash *ht, unsigned int order)
 {

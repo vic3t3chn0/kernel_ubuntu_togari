@@ -2,7 +2,11 @@
 #include <linux/user-return-notifier.h>
 #include <linux/percpu.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static DEFINE_PER_CPU(struct hlist_head, return_notifier_list);
 

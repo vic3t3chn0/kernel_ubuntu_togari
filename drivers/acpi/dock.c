@@ -43,7 +43,11 @@ MODULE_AUTHOR("Kristen Carlson Accardi");
 MODULE_DESCRIPTION(ACPI_DOCK_DRIVER_DESCRIPTION);
 MODULE_LICENSE("GPL");
 
+<<<<<<< HEAD
 static bool immediate_undock = 1;
+=======
+static int immediate_undock = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(immediate_undock, bool, 0644);
 MODULE_PARM_DESC(immediate_undock, "1 (default) will cause the driver to "
 	"undock immediately when the undock button is pressed, 0 will cause"
@@ -77,7 +81,11 @@ struct dock_dependent_device {
 	struct list_head list;
 	struct list_head hotplug_list;
 	acpi_handle handle;
+<<<<<<< HEAD
 	const struct acpi_dock_ops *ops;
+=======
+	struct acpi_dock_ops *ops;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	void *context;
 };
 
@@ -589,7 +597,11 @@ EXPORT_SYMBOL_GPL(unregister_dock_notifier);
  * the dock driver after _DCK is executed.
  */
 int
+<<<<<<< HEAD
 register_hotplug_dock_device(acpi_handle handle, const struct acpi_dock_ops *ops,
+=======
+register_hotplug_dock_device(acpi_handle handle, struct acpi_dock_ops *ops,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			     void *context)
 {
 	struct dock_dependent_device *dd;

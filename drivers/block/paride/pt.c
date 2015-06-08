@@ -109,15 +109,22 @@
 #define PT_NAME		"pt"
 #define PT_UNITS	4
 
+<<<<<<< HEAD
 #include <linux/types.h>
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Here are things one can override from the insmod command.
    Most are autoprobed by paride unless set here.  Verbose is on
    by default.
 
 */
 
+<<<<<<< HEAD
 static bool verbose = 0;
+=======
+static int verbose = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int major = PT_MAJOR;
 static char *name = PT_NAME;
 static int disable = 0;

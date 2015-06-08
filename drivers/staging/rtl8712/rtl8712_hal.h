@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -23,6 +24,8 @@
  * Larry Finger <Larry.Finger@lwfinger.net>
  *
  ******************************************************************************/
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifndef __RTL8712_HAL_H__
 #define __RTL8712_HAL_H__
 
@@ -138,13 +141,20 @@ struct fw_hdr {/*8-byte alinment required*/
 	struct fw_priv	fwpriv;
 };
 
+<<<<<<< HEAD
 struct hal_priv {
+=======
+struct hal_priv{
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*Endpoint handles*/
 	struct  net_device *pipehdls_r8712[10];
 	u8 (*hal_bus_init)(struct _adapter *adapter);
 };
 
 uint	 rtl8712_hal_init(struct _adapter *padapter);
+<<<<<<< HEAD
 int rtl871x_load_fw(struct _adapter *padapter);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #endif

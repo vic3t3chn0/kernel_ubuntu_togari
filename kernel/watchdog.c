@@ -3,6 +3,7 @@
  *
  * started by Don Zickus, Copyright (C) 2010 Red Hat, Inc.
  *
+<<<<<<< HEAD
  * Note: Most of this code is borrowed heavily from the original softlockup
  * detector, so thanks to Ingo for the initial implementation.
  * Some chunks also taken from the old x86-specific nmi watchdog code, thanks
@@ -11,6 +12,17 @@
 
 #define pr_fmt(fmt) "NMI watchdog: " fmt
 
+=======
+ * this code detects hard lockups: incidents in where on a CPU
+ * the kernel does not respond to anything except NMI.
+ *
+ * Note: Most of this code is borrowed heavily from softlockup.c,
+ * so thanks to Ingo for the initial implementation.
+ * Some chunks also taken from arch/x86/kernel/apic/nmi.c, thanks
+ * to those contributors as well.
+ */
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/mm.h>
 #include <linux/cpu.h>
 #include <linux/nmi.h>
@@ -112,6 +124,7 @@ static unsigned long get_timestamp(int this_cpu)
 	return cpu_clock(this_cpu) >> 30LL;  /* 2^30 ~= 10^9 */
 }
 
+<<<<<<< HEAD
 static unsigned long get_sample_period(void)
 {
 	/*
@@ -122,12 +135,27 @@ static unsigned long get_sample_period(void)
 	 * hardlockup detector generates a warning
 	 */
 	return get_softlockup_thresh() * (NSEC_PER_SEC / 5);
+=======
+static u64 get_sample_period(void)
+{
+	/*
+	 * convert watchdog_thresh from seconds to ns
+	 * the divide by 5 is to give hrtimer 5 chances to
+	 * increment before the hardlockup detector generates
+	 * a warning
+	 */
+	return get_softlockup_thresh() * ((u64)NSEC_PER_SEC / 5);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /* Commands for resetting the watchdog */
 static void __touch_watchdog(void)
 {
+<<<<<<< HEAD
 	int this_cpu = raw_smp_processor_id();
+=======
+	int this_cpu = smp_processor_id();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	__this_cpu_write(watchdog_touch_ts, get_timestamp(this_cpu));
 }
@@ -200,7 +228,10 @@ static int is_softlockup(unsigned long touch_ts)
 }
 
 #ifdef CONFIG_HARDLOCKUP_DETECTOR
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct perf_event_attr wd_hw_attr = {
 	.type		= PERF_TYPE_HARDWARE,
 	.config		= PERF_COUNT_HW_CPU_CYCLES,
@@ -210,7 +241,11 @@ static struct perf_event_attr wd_hw_attr = {
 };
 
 /* Callback function for perf event subsystem */
+<<<<<<< HEAD
 static void watchdog_overflow_callback(struct perf_event *event,
+=======
+static void watchdog_overflow_callback(struct perf_event *event, int nmi,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		 struct perf_sample_data *data,
 		 struct pt_regs *regs)
 {
@@ -296,7 +331,11 @@ static enum hrtimer_restart watchdog_timer_fn(struct hrtimer *hrtimer)
 		if (__this_cpu_read(soft_watchdog_warn) == true)
 			return HRTIMER_RESTART;
 
+<<<<<<< HEAD
 		printk(KERN_EMERG "BUG: soft lockup - CPU#%d stuck for %us! [%s:%d]\n",
+=======
+		printk(KERN_ERR "BUG: soft lockup - CPU#%d stuck for %us! [%s:%d]\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			smp_processor_id(), duration,
 			current->comm, task_pid_nr(current));
 		print_modules();
@@ -321,9 +360,17 @@ static enum hrtimer_restart watchdog_timer_fn(struct hrtimer *hrtimer)
  */
 static int watchdog(void *unused)
 {
+<<<<<<< HEAD
 	struct sched_param param = { .sched_priority = 0 };
 	struct hrtimer *hrtimer = &__raw_get_cpu_var(watchdog_hrtimer);
 
+=======
+	static struct sched_param param = { .sched_priority = MAX_RT_PRIO-1 };
+	struct hrtimer *hrtimer = &__raw_get_cpu_var(watchdog_hrtimer);
+
+	sched_setscheduler(current, SCHED_FIFO, &param);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* initialize timestamp */
 	__touch_watchdog();
 
@@ -334,11 +381,17 @@ static int watchdog(void *unused)
 
 	set_current_state(TASK_INTERRUPTIBLE);
 	/*
+<<<<<<< HEAD
 	 * Run briefly (kicked by the hrtimer callback function) once every
 	 * get_sample_period() seconds (4 seconds by default) to reset the
 	 * softlockup timestamp. If this gets delayed for more than
 	 * 2*watchdog_thresh seconds then the debug-printout triggers in
 	 * watchdog_timer_fn().
+=======
+	 * Run briefly once per second to reset the softlockup timestamp.
+	 * If this gets delayed for more than 60 seconds then the
+	 * debug-printout triggers in watchdog_timer_fn().
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 */
 	while (!kthread_should_stop()) {
 		__touch_watchdog();
@@ -349,12 +402,17 @@ static int watchdog(void *unused)
 
 		set_current_state(TASK_INTERRUPTIBLE);
 	}
+<<<<<<< HEAD
 	/*
 	 * Drop the policy/priority elevation during thread exit to avoid a
 	 * scheduling latency spike.
 	 */
 	__set_current_state(TASK_RUNNING);
 	sched_setscheduler(current, SCHED_NORMAL, &param);
+=======
+	__set_current_state(TASK_RUNNING);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -373,6 +431,7 @@ static int watchdog_nmi_enable(int cpu)
 	if (event != NULL)
 		goto out_enable;
 
+<<<<<<< HEAD
 	wd_attr = &wd_hw_attr;
 	wd_attr->sample_period = hw_nmi_get_sample_period(watchdog_thresh);
 
@@ -380,12 +439,21 @@ static int watchdog_nmi_enable(int cpu)
 	event = perf_event_create_kernel_counter(wd_attr, cpu, NULL, watchdog_overflow_callback, NULL);
 	if (!IS_ERR(event)) {
 		pr_info("enabled, takes one hw-pmu counter.\n");
+=======
+	/* Try to register using hardware perf events */
+	wd_attr = &wd_hw_attr;
+	wd_attr->sample_period = hw_nmi_get_sample_period(watchdog_thresh);
+	event = perf_event_create_kernel_counter(wd_attr, cpu, NULL, watchdog_overflow_callback);
+	if (!IS_ERR(event)) {
+		printk(KERN_INFO "NMI watchdog enabled, takes one hw-pmu counter.\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		goto out_save;
 	}
 
 
 	/* vary the KERN level based on the returned errno */
 	if (PTR_ERR(event) == -EOPNOTSUPP)
+<<<<<<< HEAD
 		pr_info("disabled (cpu%i): not supported (no LAPIC?)\n", cpu);
 	else if (PTR_ERR(event) == -ENOENT)
 		pr_warning("disabled (cpu%i): hardware events not enabled\n",
@@ -393,6 +461,13 @@ static int watchdog_nmi_enable(int cpu)
 	else
 		pr_err("disabled (cpu%i): unable to create perf event: %ld\n",
 			cpu, PTR_ERR(event));
+=======
+		printk(KERN_INFO "NMI watchdog disabled (cpu%i): not supported (no LAPIC?)\n", cpu);
+	else if (PTR_ERR(event) == -ENOENT)
+		printk(KERN_WARNING "NMI watchdog disabled (cpu%i): hardware events not enabled\n", cpu);
+	else
+		printk(KERN_ERR "NMI watchdog disabled (cpu%i): unable to create perf event: %ld\n", cpu, PTR_ERR(event));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return PTR_ERR(event);
 
 	/* success path */
@@ -444,10 +519,16 @@ static int watchdog_enable(int cpu)
 
 	/* create the watchdog thread */
 	if (!p) {
+<<<<<<< HEAD
 		struct sched_param param = { .sched_priority = MAX_RT_PRIO-1 };
 		p = kthread_create_on_node(watchdog, NULL, cpu_to_node(cpu), "watchdog/%d", cpu);
 		if (IS_ERR(p)) {
 			pr_err("softlockup watchdog for %i failed\n", cpu);
+=======
+		p = kthread_create(watchdog, (void *)(unsigned long)cpu, "watchdog/%d", cpu);
+		if (IS_ERR(p)) {
+			printk(KERN_ERR "softlockup watchdog for %i failed\n", cpu);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			if (!err) {
 				/* if hardlockup hasn't already set this */
 				err = PTR_ERR(p);
@@ -456,7 +537,10 @@ static int watchdog_enable(int cpu)
 			}
 			goto out;
 		}
+<<<<<<< HEAD
 		sched_setscheduler(p, SCHED_FIFO, &param);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		kthread_bind(p, cpu);
 		per_cpu(watchdog_touch_ts, cpu) = 0;
 		per_cpu(softlockup_watchdog, cpu) = p;
@@ -488,8 +572,11 @@ static void watchdog_disable(int cpu)
 	}
 }
 
+<<<<<<< HEAD
 /* sysctl functions */
 #ifdef CONFIG_SYSCTL
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void watchdog_enable_all_cpus(void)
 {
 	int cpu;
@@ -503,7 +590,11 @@ static void watchdog_enable_all_cpus(void)
 			watchdog_enabled = 1;
 
 	if (!watchdog_enabled)
+<<<<<<< HEAD
 		pr_err("failed to be enabled on some cpus\n");
+=======
+		printk(KERN_ERR "watchdog: failed to be enabled on some cpus\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 }
 
@@ -519,6 +610,11 @@ static void watchdog_disable_all_cpus(void)
 }
 
 
+<<<<<<< HEAD
+=======
+/* sysctl functions */
+#ifdef CONFIG_SYSCTL
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * proc handler for /proc/sys/kernel/nmi_watchdog,watchdog_thresh
  */

@@ -14,7 +14,10 @@
 #include <linux/spi/spi.h>
 #include <linux/slab.h>
 #include <linux/sysfs.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "../iio.h"
 #include "../sysfs.h"
@@ -52,6 +55,10 @@ struct ad9951_config {
 
 struct ad9951_state {
 	struct mutex lock;
+<<<<<<< HEAD
+=======
+	struct iio_dev *idev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct spi_device *sdev;
 };
 
@@ -65,7 +72,11 @@ static ssize_t ad9951_set_parameter(struct device *dev,
 	int ret;
 	struct ad9951_config *config = (struct ad9951_config *)buf;
 	struct iio_dev *idev = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	struct ad9951_state *st = iio_priv(idev);
+=======
+	struct ad9951_state *st = idev->dev_data;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	xfer.len = 3;
 	xfer.tx_buf = &config->asf[0];
@@ -162,6 +173,10 @@ static struct attribute *ad9951_attributes[] = {
 };
 
 static const struct attribute_group ad9951_attribute_group = {
+<<<<<<< HEAD
+=======
+	.name = DRV_NAME,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.attrs = ad9951_attributes,
 };
 
@@ -173,6 +188,7 @@ static const struct iio_info ad9951_info = {
 static int __devinit ad9951_probe(struct spi_device *spi)
 {
 	struct ad9951_state *st;
+<<<<<<< HEAD
 	struct iio_dev *idev;
 	int ret = 0;
 
@@ -192,6 +208,32 @@ static int __devinit ad9951_probe(struct spi_device *spi)
 	idev->modes = INDIO_DIRECT_MODE;
 
 	ret = iio_device_register(idev);
+=======
+	int ret = 0;
+
+	st = kzalloc(sizeof(*st), GFP_KERNEL);
+	if (st == NULL) {
+		ret = -ENOMEM;
+		goto error_ret;
+	}
+	spi_set_drvdata(spi, st);
+
+	mutex_init(&st->lock);
+	st->sdev = spi;
+
+	st->idev = iio_allocate_device(0);
+	if (st->idev == NULL) {
+		ret = -ENOMEM;
+		goto error_free_st;
+	}
+	st->idev->dev.parent = &spi->dev;
+
+	st->idev->info = &ad9951_info;
+	st->idev->dev_data = (void *)(st);
+	st->idev->modes = INDIO_DIRECT_MODE;
+
+	ret = iio_device_register(st->idev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret)
 		goto error_free_dev;
 	spi->max_speed_hz = 2000000;
@@ -202,16 +244,29 @@ static int __devinit ad9951_probe(struct spi_device *spi)
 	return 0;
 
 error_free_dev:
+<<<<<<< HEAD
 	iio_free_device(idev);
 
+=======
+	iio_free_device(st->idev);
+error_free_st:
+	kfree(st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 error_ret:
 	return ret;
 }
 
 static int __devexit ad9951_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
+=======
+	struct ad9951_state *st = spi_get_drvdata(spi);
+
+	iio_device_unregister(st->idev);
+	kfree(st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -224,9 +279,27 @@ static struct spi_driver ad9951_driver = {
 	.probe = ad9951_probe,
 	.remove = __devexit_p(ad9951_remove),
 };
+<<<<<<< HEAD
 module_spi_driver(ad9951_driver);
+=======
+
+static __init int ad9951_spi_init(void)
+{
+	return spi_register_driver(&ad9951_driver);
+}
+module_init(ad9951_spi_init);
+
+static __exit void ad9951_spi_exit(void)
+{
+	spi_unregister_driver(&ad9951_driver);
+}
+module_exit(ad9951_spi_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Cliff Cai");
 MODULE_DESCRIPTION("Analog Devices ad9951 driver");
 MODULE_LICENSE("GPL v2");
+<<<<<<< HEAD
 MODULE_ALIAS("spi:" DRV_NAME);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

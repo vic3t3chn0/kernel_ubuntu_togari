@@ -239,7 +239,11 @@ static int debug_status_show(struct seq_file *s, void *v)
 		"ETDs allocated: %d/%d (max=%d)\n"
 		"ETDs in use sw: %d\n"
 		"ETDs in use hw: %d\n"
+<<<<<<< HEAD
 		"DMEM allocated: %d/%d (max=%d)\n"
+=======
+		"DMEM alocated: %d/%d (max=%d)\n"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		"DMEM blocks: %d\n"
 		"Queued waiting for ETD: %d\n"
 		"Queued waiting for DMEM: %d\n",

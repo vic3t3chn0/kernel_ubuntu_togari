@@ -12,7 +12,11 @@ drm-y       :=	drm_auth.o drm_buffer.o drm_bufs.o drm_cache.o \
 		drm_platform.o drm_sysfs.o drm_hashtab.o drm_mm.o \
 		drm_crtc.o drm_modes.o drm_edid.o \
 		drm_info.o drm_debugfs.o drm_encoder_slave.o \
+<<<<<<< HEAD
 		drm_trace_points.o drm_global.o drm_prime.o
+=======
+		drm_trace_points.o drm_global.o drm_prime.o drm_backlight.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 drm-$(CONFIG_COMPAT) += drm_ioc32.o
 
@@ -39,7 +43,14 @@ obj-$(CONFIG_DRM_SAVAGE)+= savage/
 obj-$(CONFIG_DRM_VMWGFX)+= vmwgfx/
 obj-$(CONFIG_DRM_VIA)	+=via/
 obj-$(CONFIG_DRM_NOUVEAU) +=nouveau/
+<<<<<<< HEAD
 obj-$(CONFIG_DRM_EXYNOS) +=exynos/
+=======
+ifeq ($(CONFIG_NAPLES_COMMON),y)
+else
+obj-$(CONFIG_DRM_EXYNOS) +=exynos/
+endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_DRM_GMA500) += gma500/
 obj-$(CONFIG_DRM_UDL) += udl/
 obj-y			+= i2c/

@@ -48,7 +48,11 @@ MODULE_DESCRIPTION("Wistron laptop button driver");
 MODULE_LICENSE("GPL v2");
 MODULE_VERSION("0.3");
 
+<<<<<<< HEAD
 static bool force; /* = 0; */
+=======
+static int force; /* = 0; */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(force, bool, 0);
 MODULE_PARM_DESC(force, "Load even if computer is not in database");
 

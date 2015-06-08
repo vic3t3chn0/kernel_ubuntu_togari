@@ -92,6 +92,13 @@ static int radio_si4713_s_audout(struct file *file, void *priv,
 static int radio_si4713_querycap(struct file *file, void *priv,
 					struct v4l2_capability *capability)
 {
+<<<<<<< HEAD
+=======
+	struct radio_si4713_device *rsdev;
+
+	rsdev = video_get_drvdata(video_devdata(file));
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	strlcpy(capability->driver, "radio-si4713", sizeof(capability->driver));
 	strlcpy(capability->card, "Silicon Labs Si4713 Modulator",
 				sizeof(capability->card));
@@ -355,4 +362,21 @@ static struct platform_driver radio_si4713_pdriver = {
 	.remove         = __exit_p(radio_si4713_pdriver_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(radio_si4713_pdriver);
+=======
+/* Module Interface */
+static int __init radio_si4713_module_init(void)
+{
+	return platform_driver_register(&radio_si4713_pdriver);
+}
+
+static void __exit radio_si4713_module_exit(void)
+{
+	platform_driver_unregister(&radio_si4713_pdriver);
+}
+
+module_init(radio_si4713_module_init);
+module_exit(radio_si4713_module_exit);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

@@ -11,7 +11,10 @@
  */
 
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/dmaengine.h>
 #include <linux/mfd/tmio.h>
 #include <linux/mmc/host.h>
@@ -23,6 +26,7 @@
 
 #define TMIO_MMC_MIN_DMA_LEN 8
 
+<<<<<<< HEAD
 void tmio_mmc_enable_dma(struct tmio_mmc_host *host, bool enable)
 {
 	if (!host->chan_tx || !host->chan_rx)
@@ -46,6 +50,16 @@ void tmio_mmc_abort_dma(struct tmio_mmc_host *host)
 	tmio_mmc_enable_dma(host, true);
 }
 
+=======
+static void tmio_mmc_enable_dma(struct tmio_mmc_host *host, bool enable)
+{
+#if defined(CONFIG_SUPERH) || defined(CONFIG_ARCH_SHMOBILE)
+	/* Switch DMA mode on or off - SuperH specific? */
+	writew(enable ? 2 : 0, host->ctl + (0xd8 << host->bus_shift));
+#endif
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void tmio_mmc_start_dma_rx(struct tmio_mmc_host *host)
 {
 	struct scatterlist *sg = host->sg_ptr, *sg_tmp;
@@ -88,8 +102,13 @@ static void tmio_mmc_start_dma_rx(struct tmio_mmc_host *host)
 
 	ret = dma_map_sg(chan->device->dev, sg, host->sg_len, DMA_FROM_DEVICE);
 	if (ret > 0)
+<<<<<<< HEAD
 		desc = dmaengine_prep_slave_sg(chan, sg, ret,
 			DMA_DEV_TO_MEM, DMA_CTRL_ACK);
+=======
+		desc = chan->device->device_prep_slave_sg(chan, sg, ret,
+			DMA_FROM_DEVICE, DMA_CTRL_ACK);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (desc) {
 		cookie = dmaengine_submit(desc);
@@ -169,8 +188,13 @@ static void tmio_mmc_start_dma_tx(struct tmio_mmc_host *host)
 
 	ret = dma_map_sg(chan->device->dev, sg, host->sg_len, DMA_TO_DEVICE);
 	if (ret > 0)
+<<<<<<< HEAD
 		desc = dmaengine_prep_slave_sg(chan, sg, ret,
 			DMA_MEM_TO_DEV, DMA_CTRL_ACK);
+=======
+		desc = chan->device->device_prep_slave_sg(chan, sg, ret,
+			DMA_TO_DEVICE, DMA_CTRL_ACK);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (desc) {
 		cookie = dmaengine_submit(desc);

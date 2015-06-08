@@ -5,7 +5,11 @@
  *****************************************************************************/
 
 /*
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -114,6 +118,10 @@ acpi_tb_add_table(struct acpi_table_desc *table_desc, u32 *table_index)
 {
 	u32 i;
 	acpi_status status = AE_OK;
+<<<<<<< HEAD
+=======
+	struct acpi_table_header *override_table = NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	ACPI_FUNCTION_TRACE(tb_add_table);
 
@@ -125,6 +133,7 @@ acpi_tb_add_table(struct acpi_table_desc *table_desc, u32 *table_index)
 	}
 
 	/*
+<<<<<<< HEAD
 	 * Validate the incoming table signature.
 	 *
 	 * 1) Originally, we checked the table signature for "SSDT" or "PSDT".
@@ -148,6 +157,14 @@ acpi_tb_add_table(struct acpi_table_desc *table_desc, u32 *table_index)
 
 		return_ACPI_STATUS(AE_BAD_SIGNATURE);
 	}
+=======
+	 * Originally, we checked the table signature for "SSDT" or "PSDT" here.
+	 * Next, we added support for OEMx tables, signature "OEM".
+	 * Valid tables were encountered with a null signature, so we've just
+	 * given up on validating the signature, since it seems to be a waste
+	 * of code. The original code was removed (05/2008).
+	 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	(void)acpi_ut_acquire_mutex(ACPI_MTX_TABLES);
 
@@ -223,10 +240,32 @@ acpi_tb_add_table(struct acpi_table_desc *table_desc, u32 *table_index)
 	/*
 	 * ACPI Table Override:
 	 * Allow the host to override dynamically loaded tables.
+<<<<<<< HEAD
 	 * NOTE: the table is fully mapped at this point, and the mapping will
 	 * be deleted by tb_table_override if the table is actually overridden.
 	 */
 	(void)acpi_tb_table_override(table_desc->pointer, table_desc);
+=======
+	 */
+	status = acpi_os_table_override(table_desc->pointer, &override_table);
+	if (ACPI_SUCCESS(status) && override_table) {
+		ACPI_INFO((AE_INFO,
+			   "%4.4s @ 0x%p Table override, replaced with:",
+			   table_desc->pointer->signature,
+			   ACPI_CAST_PTR(void, table_desc->address)));
+
+		/* We can delete the table that was passed as a parameter */
+
+		acpi_tb_delete_table(table_desc);
+
+		/* Setup descriptor for the new table */
+
+		table_desc->address = ACPI_PTR_TO_PHYSADDR(override_table);
+		table_desc->pointer = override_table;
+		table_desc->length = override_table->length;
+		table_desc->flags = ACPI_TABLE_ORIGIN_OVERRIDE;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* Add the table to the global root table list */
 
@@ -247,6 +286,7 @@ acpi_tb_add_table(struct acpi_table_desc *table_desc, u32 *table_index)
 
 /*******************************************************************************
  *
+<<<<<<< HEAD
  * FUNCTION:    acpi_tb_table_override
  *
  * PARAMETERS:  table_header        - Header for the original table
@@ -336,6 +376,8 @@ struct acpi_table_header *acpi_tb_table_override(struct acpi_table_header
 
 /*******************************************************************************
  *
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * FUNCTION:    acpi_tb_resize_root_table_list
  *
  * PARAMETERS:  None
@@ -469,11 +511,15 @@ void acpi_tb_delete_table(struct acpi_table_desc *table_desc)
 	case ACPI_TABLE_ORIGIN_ALLOCATED:
 		ACPI_FREE(table_desc->pointer);
 		break;
+<<<<<<< HEAD
 
 		/* Not mapped or allocated, there is nothing we can do */
 
 	default:
 		return;
+=======
+	default:;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	table_desc->pointer = NULL;

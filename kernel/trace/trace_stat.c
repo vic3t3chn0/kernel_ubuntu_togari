@@ -307,6 +307,11 @@ static int tracing_stat_init(void)
 	struct dentry *d_tracing;
 
 	d_tracing = tracing_init_dentry();
+<<<<<<< HEAD
+=======
+	if (!d_tracing)
+		return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	stat_dir = debugfs_create_dir("trace_stat", d_tracing);
 	if (!stat_dir)

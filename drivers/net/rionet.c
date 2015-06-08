@@ -190,7 +190,11 @@ static int rionet_start_xmit(struct sk_buff *skb, struct net_device *ndev)
 		return NETDEV_TX_BUSY;
 	}
 
+<<<<<<< HEAD
 	if (is_multicast_ether_addr(eth->h_dest)) {
+=======
+	if (eth->h_dest[0] & 0x01) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		for (i = 0; i < RIO_MAX_ROUTE_ENTRIES(rnet->mport->sys_size);
 				i++)
 			if (rionet_active[i])
@@ -375,8 +379,13 @@ static void rionet_remove(struct rio_dev *rdev)
 	struct net_device *ndev = rio_get_drvdata(rdev);
 	struct rionet_peer *peer, *tmp;
 
+<<<<<<< HEAD
 	free_pages((unsigned long)rionet_active, get_order(sizeof(void *) *
 			RIO_MAX_ROUTE_ENTRIES(rdev->net->hport->sys_size)));
+=======
+	free_pages((unsigned long)rionet_active, rdev->net->hport->sys_size ?
+					__fls(sizeof(void *)) + 4 : 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unregister_netdev(ndev);
 	free_netdev(ndev);
 
@@ -432,16 +441,27 @@ static int rionet_setup_netdev(struct rio_mport *mport, struct net_device *ndev)
 	int rc = 0;
 	struct rionet_private *rnet;
 	u16 device_id;
+<<<<<<< HEAD
 	const size_t rionet_active_bytes = sizeof(void *) *
 				RIO_MAX_ROUTE_ENTRIES(mport->sys_size);
 
 	rionet_active = (struct rio_dev **)__get_free_pages(GFP_KERNEL,
 			get_order(rionet_active_bytes));
+=======
+
+	rionet_active = (struct rio_dev **)__get_free_pages(GFP_KERNEL,
+			mport->sys_size ? __fls(sizeof(void *)) + 4 : 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!rionet_active) {
 		rc = -ENOMEM;
 		goto out;
 	}
+<<<<<<< HEAD
 	memset((void *)rionet_active, 0, rionet_active_bytes);
+=======
+	memset((void *)rionet_active, 0, sizeof(void *) *
+				RIO_MAX_ROUTE_ENTRIES(mport->sys_size));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* Set up private area */
 	rnet = netdev_priv(ndev);
@@ -498,6 +518,11 @@ static int rionet_probe(struct rio_dev *rdev, const struct rio_device_id *id)
 	/* Allocate our net_device structure */
 	ndev = alloc_etherdev(sizeof(struct rionet_private));
 	if (ndev == NULL) {
+<<<<<<< HEAD
+=======
+		printk(KERN_INFO "%s: could not allocate ethernet device.\n",
+		       DRV_NAME);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		rc = -ENOMEM;
 		goto out;
 	}

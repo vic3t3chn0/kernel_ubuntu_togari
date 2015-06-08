@@ -148,6 +148,7 @@
  * struct ade7854_state - device instance specific data
  * @spi:			actual spi_device
  * @indio_dev:		industrial I/O device structure
+<<<<<<< HEAD
  * @buf_lock:		mutex to protect tx and rx
  * @tx:			transmit buffer
  * @rx:			receive buffer
@@ -172,5 +173,31 @@ struct ade7854_state {
 
 extern int ade7854_probe(struct iio_dev *indio_dev, struct device *dev);
 extern int ade7854_remove(struct iio_dev *indio_dev);
+=======
+ * @tx:			transmit buffer
+ * @rx:			receive buffer
+ * @buf_lock:		mutex to protect tx and rx
+ **/
+struct ade7854_state {
+	struct spi_device		*spi;
+	struct i2c_client               *i2c;
+	struct iio_dev			*indio_dev;
+	u8				*tx;
+	u8				*rx;
+	int				(*read_reg_8) (struct device *, u16, u8 *);
+	int				(*read_reg_16) (struct device *, u16, u16 *);
+	int				(*read_reg_24) (struct device *, u16, u32 *);
+	int				(*read_reg_32) (struct device *, u16, u32 *);
+	int				(*write_reg_8) (struct device *, u16, u8);
+	int				(*write_reg_16) (struct device *, u16, u16);
+	int				(*write_reg_24) (struct device *, u16, u32);
+	int				(*write_reg_32) (struct device *, u16, u32);
+	int                             irq;
+	struct mutex			buf_lock;
+};
+
+extern int ade7854_probe(struct ade7854_state *st, struct device *dev);
+extern int ade7854_remove(struct ade7854_state *st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #endif

@@ -554,7 +554,11 @@ static int disable_slot(struct hotplug_slot *bss_hotplug_slot)
 				   	     PCI_FUNC(func)));
 		if (dev) {
 			sn_bus_free_data(dev);
+<<<<<<< HEAD
 			pci_stop_and_remove_bus_device(dev);
+=======
+			pci_remove_bus_device(dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			pci_dev_put(dev);
 		}
 	}

@@ -494,6 +494,10 @@ isl1208_rtc_interrupt(int irq, void *data)
 {
 	unsigned long timeout = jiffies + msecs_to_jiffies(1000);
 	struct i2c_client *client = data;
+<<<<<<< HEAD
+=======
+	struct rtc_device *rtc = i2c_get_clientdata(client);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int handled = 0, sr, err;
 
 	/*
@@ -516,6 +520,11 @@ isl1208_rtc_interrupt(int irq, void *data)
 	if (sr & ISL1208_REG_SR_ALM) {
 		dev_dbg(&client->dev, "alarm!\n");
 
+<<<<<<< HEAD
+=======
+		rtc_update_irq(rtc, 1, RTC_IRQF | RTC_AF);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* Clear the alarm */
 		sr &= ~ISL1208_REG_SR_ALM;
 		sr = i2c_smbus_write_byte_data(client, ISL1208_REG_SR, sr);
@@ -710,9 +719,29 @@ static struct i2c_driver isl1208_driver = {
 	.id_table = isl1208_id,
 };
 
+<<<<<<< HEAD
 module_i2c_driver(isl1208_driver);
+=======
+static int __init
+isl1208_init(void)
+{
+	return i2c_add_driver(&isl1208_driver);
+}
+
+static void __exit
+isl1208_exit(void)
+{
+	i2c_del_driver(&isl1208_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Herbert Valerio Riedel <hvr@gnu.org>");
 MODULE_DESCRIPTION("Intersil ISL1208 RTC driver");
 MODULE_LICENSE("GPL");
 MODULE_VERSION(DRV_VERSION);
+<<<<<<< HEAD
+=======
+
+module_init(isl1208_init);
+module_exit(isl1208_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

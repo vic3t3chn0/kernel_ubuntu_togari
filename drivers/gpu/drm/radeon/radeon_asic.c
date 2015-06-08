@@ -1408,6 +1408,7 @@ static struct radeon_asic cayman_asic = {
 	},
 };
 
+<<<<<<< HEAD
 static struct radeon_asic trinity_asic = {
 	.init = &cayman_init,
 	.fini = &cayman_fini,
@@ -1602,6 +1603,8 @@ static struct radeon_asic si_asic = {
 	},
 };
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int radeon_asic_init(struct radeon_device *rdev)
 {
 	radeon_register_accessor_init(rdev);
@@ -1719,6 +1722,7 @@ int radeon_asic_init(struct radeon_device *rdev)
 		rdev->num_crtc = 6;
 		rdev->vm_manager.funcs = &cayman_vm_funcs;
 		break;
+<<<<<<< HEAD
 	case CHIP_ARUBA:
 		rdev->asic = &trinity_asic;
 		/* set num crtcs */
@@ -1733,6 +1737,8 @@ int radeon_asic_init(struct radeon_device *rdev)
 		rdev->num_crtc = 6;
 		rdev->vm_manager.funcs = &si_vm_funcs;
 		break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default:
 		/* FIXME: not supported yet */
 		return -EINVAL;

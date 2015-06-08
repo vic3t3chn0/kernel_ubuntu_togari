@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Aic7xxx SCSI host adapter firmware assembler
+=======
+ * Aic7xxx SCSI host adapter firmware asssembler
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Copyright (c) 1997, 1998, 2000, 2001 Justin T. Gibbs.
  * Copyright (c) 2001, 2002 Adaptec Inc.

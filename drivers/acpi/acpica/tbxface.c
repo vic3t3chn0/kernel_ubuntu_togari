@@ -6,7 +6,11 @@
  *****************************************************************************/
 
 /*
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +46,10 @@
  * POSSIBILITY OF SUCH DAMAGES.
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <acpi/acpi.h>
 #include "accommon.h"
 #include "acnamesp.h"
@@ -436,6 +443,10 @@ acpi_get_table_with_size(char *signature,
 
 	return (AE_NOT_FOUND);
 }
+<<<<<<< HEAD
+=======
+ACPI_EXPORT_SYMBOL(acpi_get_table_with_size)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 acpi_status
 acpi_get_table(char *signature,

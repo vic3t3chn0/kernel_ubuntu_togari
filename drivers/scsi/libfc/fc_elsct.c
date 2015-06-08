@@ -21,14 +21,20 @@
  * Provide interface to send ELS/CT FC frames
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/unaligned.h>
 #include <scsi/fc/fc_gs.h>
 #include <scsi/fc/fc_ns.h>
 #include <scsi/fc/fc_els.h>
 #include <scsi/libfc.h>
 #include <scsi/fc_encode.h>
+<<<<<<< HEAD
 #include "fc_libfc.h"
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * fc_elsct_send() - Send an ELS or CT frame
@@ -56,7 +62,12 @@ struct fc_seq *fc_elsct_send(struct fc_lport *lport, u32 did,
 		rc = fc_els_fill(lport, did, fp, op, &r_ctl, &fh_type);
 	else {
 		/* CT requests */
+<<<<<<< HEAD
 		rc = fc_ct_fill(lport, did, fp, op, &r_ctl, &fh_type, &did);
+=======
+		rc = fc_ct_fill(lport, did, fp, op, &r_ctl, &fh_type);
+		did = FC_FID_DIR_SERV;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (rc) {

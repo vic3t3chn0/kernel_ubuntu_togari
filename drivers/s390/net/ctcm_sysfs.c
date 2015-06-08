@@ -159,7 +159,11 @@ static ssize_t ctcm_proto_store(struct device *dev,
 	return count;
 }
 
+<<<<<<< HEAD
 static const char *ctcm_type[] = {
+=======
+const char *ctcm_type[] = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	"not a channel",
 	"CTC/A",
 	"FICON channel",

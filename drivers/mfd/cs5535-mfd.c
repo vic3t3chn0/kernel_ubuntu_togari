@@ -172,7 +172,11 @@ static void __devexit cs5535_mfd_remove(struct pci_dev *pdev)
 	pci_disable_device(pdev);
 }
 
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(cs5535_mfd_pci_tbl) = {
+=======
+static struct pci_device_id cs5535_mfd_pci_tbl[] = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ PCI_DEVICE(PCI_VENDOR_ID_NS, PCI_DEVICE_ID_NS_CS5535_ISA) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_AMD, PCI_DEVICE_ID_AMD_CS5536_ISA) },
 	{ 0, }

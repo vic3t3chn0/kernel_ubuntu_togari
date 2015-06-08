@@ -1,7 +1,11 @@
 /*******************************************************************************
  * Filename:  target_core_hba.c
  *
+<<<<<<< HEAD
  * This file contains the TCM HBA Transport related functions.
+=======
+ * This file copntains the iSCSI HBA Transport related functions.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Copyright (c) 2003, 2004, 2005 PyX Technologies, Inc.
  * Copyright (c) 2005, 2006, 2007 SBE, Inc.
@@ -32,24 +36,38 @@
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 #include <linux/in.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <net/sock.h>
 #include <net/tcp.h>
 
 #include <target/target_core_base.h>
+<<<<<<< HEAD
 #include <target/target_core_backend.h>
 #include <target/target_core_fabric.h>
 
 #include "target_core_internal.h"
+=======
+#include <target/target_core_device.h>
+#include <target/target_core_tpg.h>
+#include <target/target_core_transport.h>
+
+#include "target_core_hba.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static LIST_HEAD(subsystem_list);
 static DEFINE_MUTEX(subsystem_mutex);
 
+<<<<<<< HEAD
 static u32 hba_id_counter;
 
 static DEFINE_SPINLOCK(hba_lock);
 static LIST_HEAD(hba_list);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int transport_subsystem_register(struct se_subsystem_api *sub_api)
 {
 	struct se_subsystem_api *s;
@@ -58,8 +76,13 @@ int transport_subsystem_register(struct se_subsystem_api *sub_api)
 
 	mutex_lock(&subsystem_mutex);
 	list_for_each_entry(s, &subsystem_list, sub_api_list) {
+<<<<<<< HEAD
 		if (!strcmp(s->name, sub_api->name)) {
 			pr_err("%p is already registered with"
+=======
+		if (!(strcmp(s->name, sub_api->name))) {
+			printk(KERN_ERR "%p is already registered with"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				" duplicate name %s, unable to process"
 				" request\n", s, s->name);
 			mutex_unlock(&subsystem_mutex);
@@ -69,7 +92,11 @@ int transport_subsystem_register(struct se_subsystem_api *sub_api)
 	list_add_tail(&sub_api->sub_api_list, &subsystem_list);
 	mutex_unlock(&subsystem_mutex);
 
+<<<<<<< HEAD
 	pr_debug("TCM: Registered subsystem plugin: %s struct module:"
+=======
+	printk(KERN_INFO "TCM: Registered subsystem plugin: %s struct module:"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			" %p\n", sub_api->name, sub_api->owner);
 	return 0;
 }
@@ -109,17 +136,31 @@ core_alloc_hba(const char *plugin_name, u32 plugin_dep_id, u32 hba_flags)
 
 	hba = kzalloc(sizeof(*hba), GFP_KERNEL);
 	if (!hba) {
+<<<<<<< HEAD
 		pr_err("Unable to allocate struct se_hba\n");
+=======
+		printk(KERN_ERR "Unable to allocate struct se_hba\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return ERR_PTR(-ENOMEM);
 	}
 
 	INIT_LIST_HEAD(&hba->hba_dev_list);
 	spin_lock_init(&hba->device_lock);
+<<<<<<< HEAD
+=======
+	spin_lock_init(&hba->hba_queue_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	mutex_init(&hba->hba_access_mutex);
 
 	hba->hba_index = scsi_get_new_index(SCSI_INST_INDEX);
 	hba->hba_flags |= hba_flags;
 
+<<<<<<< HEAD
+=======
+	atomic_set(&hba->max_queue_depth, 0);
+	atomic_set(&hba->left_queue_depth, 0);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	hba->transport = core_get_backend(plugin_name);
 	if (!hba->transport) {
 		ret = -EINVAL;
@@ -130,12 +171,21 @@ core_alloc_hba(const char *plugin_name, u32 plugin_dep_id, u32 hba_flags)
 	if (ret < 0)
 		goto out_module_put;
 
+<<<<<<< HEAD
 	spin_lock(&hba_lock);
 	hba->hba_id = hba_id_counter++;
 	list_add_tail(&hba->hba_node, &hba_list);
 	spin_unlock(&hba_lock);
 
 	pr_debug("CORE_HBA[%d] - Attached HBA to Generic Target"
+=======
+	spin_lock(&se_global->hba_lock);
+	hba->hba_id = se_global->g_hba_id_counter++;
+	list_add_tail(&hba->hba_list, &se_global->g_hba_list);
+	spin_unlock(&se_global->hba_lock);
+
+	printk(KERN_INFO "CORE_HBA[%d] - Attached HBA to Generic Target"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			" Core\n", hba->hba_id);
 
 	return hba;
@@ -157,11 +207,19 @@ core_delete_hba(struct se_hba *hba)
 
 	hba->transport->detach_hba(hba);
 
+<<<<<<< HEAD
 	spin_lock(&hba_lock);
 	list_del(&hba->hba_node);
 	spin_unlock(&hba_lock);
 
 	pr_debug("CORE_HBA[%d] - Detached HBA from Generic Target"
+=======
+	spin_lock(&se_global->hba_lock);
+	list_del(&hba->hba_list);
+	spin_unlock(&se_global->hba_lock);
+
+	printk(KERN_INFO "CORE_HBA[%d] - Detached HBA from Generic Target"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			" Core\n", hba->hba_id);
 
 	if (hba->transport->owner)

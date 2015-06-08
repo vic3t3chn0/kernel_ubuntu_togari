@@ -18,6 +18,10 @@
 #include <linux/mm.h>
 #include <linux/sched.h>
 #include <linux/file.h>
+<<<<<<< HEAD
+=======
+#include <linux/slab.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <media/videobuf2-core.h>
 #include <media/videobuf2-memops.h>
@@ -55,7 +59,10 @@ struct vm_area_struct *vb2_get_vma(struct vm_area_struct *vma)
 
 	return vma_copy;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(vb2_get_vma);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * vb2_put_userptr() - release a userspace virtual memory area
@@ -69,12 +76,21 @@ void vb2_put_vma(struct vm_area_struct *vma)
 	if (!vma)
 		return;
 
+<<<<<<< HEAD
 	if (vma->vm_ops && vma->vm_ops->close)
 		vma->vm_ops->close(vma);
 
 	if (vma->vm_file)
 		fput(vma->vm_file);
 
+=======
+	if (vma->vm_file)
+		fput(vma->vm_file);
+
+	if (vma->vm_ops && vma->vm_ops->close)
+		vma->vm_ops->close(vma);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(vma);
 }
 EXPORT_SYMBOL_GPL(vb2_put_vma);
@@ -101,11 +117,16 @@ int vb2_get_contig_userptr(unsigned long vaddr, unsigned long size,
 	unsigned long offset, start, end;
 	unsigned long this_pfn, prev_pfn;
 	dma_addr_t pa = 0;
+<<<<<<< HEAD
+=======
+	int ret = -EFAULT;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	start = vaddr;
 	offset = start & ~PAGE_MASK;
 	end = start + size;
 
+<<<<<<< HEAD
 	vma = find_vma(mm, start);
 
 	if (vma == NULL || vma->vm_end < end)
@@ -121,6 +142,25 @@ int vb2_get_contig_userptr(unsigned long vaddr, unsigned long size,
 		else if (this_pfn != prev_pfn + 1)
 			return -EFAULT;
 
+=======
+	down_read(&mm->mmap_sem);
+	vma = find_vma(mm, start);
+
+	if (vma == NULL || vma->vm_end < end)
+		goto done;
+
+	for (prev_pfn = 0; start < end; start += PAGE_SIZE) {
+		ret = follow_pfn(vma, start, &this_pfn);
+		if (ret)
+			goto done;
+
+		if (prev_pfn == 0)
+			pa = this_pfn << PAGE_SHIFT;
+		else if (this_pfn != prev_pfn + 1) {
+			ret = -EFAULT;
+			goto done;
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		prev_pfn = this_pfn;
 	}
 
@@ -128,11 +168,24 @@ int vb2_get_contig_userptr(unsigned long vaddr, unsigned long size,
 	 * Memory is contigous, lock vma and return to the caller
 	 */
 	*res_vma = vb2_get_vma(vma);
+<<<<<<< HEAD
 	if (*res_vma == NULL)
 		return -ENOMEM;
 
 	*res_pa = pa + offset;
 	return 0;
+=======
+	if (*res_vma == NULL) {
+		ret = -ENOMEM;
+		goto done;
+	}
+	*res_pa = pa + offset;
+	ret = 0;
+
+done:
+	up_read(&mm->mmap_sem);
+	return ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 EXPORT_SYMBOL_GPL(vb2_get_contig_userptr);
 
@@ -169,7 +222,11 @@ int vb2_mmap_pfn_range(struct vm_area_struct *vma, unsigned long paddr,
 
 	vma->vm_ops->open(vma);
 
+<<<<<<< HEAD
 	pr_debug("%s: mapped paddr 0x%08lx at 0x%08lx, size %ld\n",
+=======
+	printk(KERN_DEBUG "%s: mapped paddr 0x%08lx at 0x%08lx, size %ld\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			__func__, paddr, vma->vm_start, size);
 
 	return 0;
@@ -187,7 +244,11 @@ static void vb2_common_vm_open(struct vm_area_struct *vma)
 {
 	struct vb2_vmarea_handler *h = vma->vm_private_data;
 
+<<<<<<< HEAD
 	pr_debug("%s: %p, refcount: %d, vma: %08lx-%08lx\n",
+=======
+	printk(KERN_DEBUG "%s: %p, refcount: %d, vma: %08lx-%08lx\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	       __func__, h, atomic_read(h->refcount), vma->vm_start,
 	       vma->vm_end);
 
@@ -205,7 +266,11 @@ static void vb2_common_vm_close(struct vm_area_struct *vma)
 {
 	struct vb2_vmarea_handler *h = vma->vm_private_data;
 
+<<<<<<< HEAD
 	pr_debug("%s: %p, refcount: %d, vma: %08lx-%08lx\n",
+=======
+	printk(KERN_DEBUG "%s: %p, refcount: %d, vma: %08lx-%08lx\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	       __func__, h, atomic_read(h->refcount), vma->vm_start,
 	       vma->vm_end);
 

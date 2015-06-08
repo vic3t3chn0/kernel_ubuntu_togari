@@ -15,6 +15,13 @@
 #include <linux/fb.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_DRM
+#include <drm/drm_backlight.h>
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #if defined(CONFIG_FB) || (defined(CONFIG_FB_MODULE) && \
 			   defined(CONFIG_LCD_CLASS_DEVICE_MODULE))
 /* This callback gets called when something important happens inside a
@@ -32,6 +39,11 @@ static int fb_notifier_callback(struct notifier_block *self,
 	case FB_EVENT_BLANK:
 	case FB_EVENT_MODE_CHANGE:
 	case FB_EVENT_MODE_CHANGE_ALL:
+<<<<<<< HEAD
+=======
+	case FB_EARLY_EVENT_BLANK:
+	case FB_R_EARLY_EVENT_BLANK:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 	default:
 		return 0;
@@ -46,6 +58,17 @@ static int fb_notifier_callback(struct notifier_block *self,
 		if (event == FB_EVENT_BLANK) {
 			if (ld->ops->set_power)
 				ld->ops->set_power(ld, *(int *)evdata->data);
+<<<<<<< HEAD
+=======
+		} else if (event == FB_EARLY_EVENT_BLANK) {
+			if (ld->ops->early_set_power)
+				ld->ops->early_set_power(ld,
+						*(int *)evdata->data);
+		} else if (event == FB_R_EARLY_EVENT_BLANK) {
+			if (ld->ops->r_early_set_power)
+				ld->ops->r_early_set_power(ld,
+						*(int *)evdata->data);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} else {
 			if (ld->ops->set_mode)
 				ld->ops->set_mode(ld, evdata->data);
@@ -97,6 +120,7 @@ static ssize_t lcd_store_power(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
 	int rc = -ENXIO;
+<<<<<<< HEAD
 	struct lcd_device *ld = to_lcd_device(dev);
 	unsigned long power;
 
@@ -107,6 +131,21 @@ static ssize_t lcd_store_power(struct device *dev,
 	mutex_lock(&ld->ops_lock);
 	if (ld->ops && ld->ops->set_power) {
 		pr_debug("lcd: set power to %lu\n", power);
+=======
+	char *endp;
+	struct lcd_device *ld = to_lcd_device(dev);
+	int power = simple_strtoul(buf, &endp, 0);
+	size_t size = endp - buf;
+
+	if (isspace(*endp))
+		size++;
+	if (size != count)
+		return -EINVAL;
+
+	mutex_lock(&ld->ops_lock);
+	if (ld->ops && ld->ops->set_power) {
+		pr_debug("lcd: set power to %d\n", power);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ld->ops->set_power(ld, power);
 		rc = count;
 	}
@@ -133,6 +172,7 @@ static ssize_t lcd_store_contrast(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
 	int rc = -ENXIO;
+<<<<<<< HEAD
 	struct lcd_device *ld = to_lcd_device(dev);
 	unsigned long contrast;
 
@@ -143,6 +183,21 @@ static ssize_t lcd_store_contrast(struct device *dev,
 	mutex_lock(&ld->ops_lock);
 	if (ld->ops && ld->ops->set_contrast) {
 		pr_debug("lcd: set contrast to %lu\n", contrast);
+=======
+	char *endp;
+	struct lcd_device *ld = to_lcd_device(dev);
+	int contrast = simple_strtoul(buf, &endp, 0);
+	size_t size = endp - buf;
+
+	if (isspace(*endp))
+		size++;
+	if (size != count)
+		return -EINVAL;
+
+	mutex_lock(&ld->ops_lock);
+	if (ld->ops && ld->ops->set_contrast) {
+		pr_debug("lcd: set contrast to %d\n", contrast);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ld->ops->set_contrast(ld, contrast);
 		rc = count;
 	}
@@ -220,6 +275,13 @@ struct lcd_device *lcd_device_register(const char *name, struct device *parent,
 
 	new_ld->ops = ops;
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_DRM
+	drm_bl_register(&new_ld->dev, BL_LCD_CLASS);
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return new_ld;
 }
 EXPORT_SYMBOL(lcd_device_register);
@@ -235,6 +297,13 @@ void lcd_device_unregister(struct lcd_device *ld)
 	if (!ld)
 		return;
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_DRM
+	drm_bl_unregister(&ld->dev);
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	mutex_lock(&ld->ops_lock);
 	ld->ops = NULL;
 	mutex_unlock(&ld->ops_lock);

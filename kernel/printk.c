@@ -43,10 +43,14 @@
 #include <linux/rculist.h>
 
 #include <asm/uaccess.h>
+<<<<<<< HEAD
 
 #include <mach/msm_rtb.h>
 #define CREATE_TRACE_POINTS
 #include <trace/events/printk.h>
+=======
+#include <mach/sec_debug.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * Architectures can override it:
@@ -57,6 +61,13 @@ void asmlinkage __attribute__((weak)) early_printk(const char *fmt, ...)
 
 #define __LOG_BUF_LEN	(1 << CONFIG_LOG_BUF_SHIFT)
 
+<<<<<<< HEAD
+=======
+#ifdef        CONFIG_DEBUG_LL
+extern void printascii(char *);
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* printk's without a loglevel use this.. */
 #define DEFAULT_MESSAGE_LOGLEVEL CONFIG_DEFAULT_MESSAGE_LOGLEVEL
 
@@ -104,7 +115,11 @@ static int console_locked, console_suspended;
  * It is also used in interesting ways to provide interlocking in
  * console_unlock();.
  */
+<<<<<<< HEAD
 static DEFINE_RAW_SPINLOCK(logbuf_lock);
+=======
+static DEFINE_SPINLOCK(logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define LOG_BUF_MASK (log_buf_len-1)
 #define LOG_BUF(idx) (log_buf[(idx) & LOG_BUF_MASK])
@@ -148,7 +163,11 @@ static int console_may_schedule;
 
 #ifdef CONFIG_PRINTK
 
+<<<<<<< HEAD
 static char __log_buf[__LOG_BUF_LEN];
+=======
+static char __log_buf[__LOG_BUF_LEN] __nosavedata;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static char *log_buf = __log_buf;
 static int log_buf_len = __LOG_BUF_LEN;
 static unsigned logged_chars; /* Number of chars produced since last read+clear operation */
@@ -203,7 +222,11 @@ void __init setup_log_buf(int early)
 		unsigned long mem;
 
 		mem = memblock_alloc(new_log_buf_len, PAGE_SIZE);
+<<<<<<< HEAD
 		if (!mem)
+=======
+		if (mem == MEMBLOCK_ERROR)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return;
 		new_log_buf = __va(mem);
 	} else {
@@ -215,8 +238,12 @@ void __init setup_log_buf(int early)
 			new_log_buf_len);
 		return;
 	}
+<<<<<<< HEAD
 
 	raw_spin_lock_irqsave(&logbuf_lock, flags);
+=======
+	spin_lock_irqsave(&logbuf_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	log_buf_len = new_log_buf_len;
 	log_buf = new_log_buf;
 	new_log_buf_len = 0;
@@ -234,7 +261,11 @@ void __init setup_log_buf(int early)
 	log_start -= offset;
 	con_start -= offset;
 	log_end -= offset;
+<<<<<<< HEAD
 	raw_spin_unlock_irqrestore(&logbuf_lock, flags);
+=======
+	spin_unlock_irqrestore(&logbuf_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	pr_info("log_buf_len: %d\n", log_buf_len);
 	pr_info("early log buf free: %d(%d%%)\n",
@@ -319,7 +350,11 @@ int log_buf_copy(char *dest, int idx, int len)
 	bool took_lock = false;
 
 	if (!oops_in_progress) {
+<<<<<<< HEAD
 		raw_spin_lock_irq(&logbuf_lock);
+=======
+		spin_lock_irq(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		took_lock = true;
 	}
 
@@ -336,7 +371,11 @@ int log_buf_copy(char *dest, int idx, int len)
 	}
 
 	if (took_lock)
+<<<<<<< HEAD
 		raw_spin_unlock_irq(&logbuf_lock);
+=======
+		spin_unlock_irq(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ret;
 }
@@ -416,18 +455,32 @@ int do_syslog(int type, char __user *buf, int len, bool from_file)
 		if (error)
 			goto out;
 		i = 0;
+<<<<<<< HEAD
 		raw_spin_lock_irq(&logbuf_lock);
 		while (!error && (log_start != log_end) && i < len) {
 			c = LOG_BUF(log_start);
 			log_start++;
 			raw_spin_unlock_irq(&logbuf_lock);
+=======
+		spin_lock_irq(&logbuf_lock);
+		while (!error && (log_start != log_end) && i < len) {
+			c = LOG_BUF(log_start);
+			log_start++;
+			spin_unlock_irq(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			error = __put_user(c,buf);
 			buf++;
 			i++;
 			cond_resched();
+<<<<<<< HEAD
 			raw_spin_lock_irq(&logbuf_lock);
 		}
 		raw_spin_unlock_irq(&logbuf_lock);
+=======
+			spin_lock_irq(&logbuf_lock);
+		}
+		spin_unlock_irq(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (!error)
 			error = i;
 		break;
@@ -450,7 +503,11 @@ int do_syslog(int type, char __user *buf, int len, bool from_file)
 		count = len;
 		if (count > log_buf_len)
 			count = log_buf_len;
+<<<<<<< HEAD
 		raw_spin_lock_irq(&logbuf_lock);
+=======
+		spin_lock_irq(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (count > logged_chars)
 			count = logged_chars;
 		if (do_clear)
@@ -467,12 +524,21 @@ int do_syslog(int type, char __user *buf, int len, bool from_file)
 			if (j + log_buf_len < log_end)
 				break;
 			c = LOG_BUF(j);
+<<<<<<< HEAD
 			raw_spin_unlock_irq(&logbuf_lock);
 			error = __put_user(c,&buf[count-1-i]);
 			cond_resched();
 			raw_spin_lock_irq(&logbuf_lock);
 		}
 		raw_spin_unlock_irq(&logbuf_lock);
+=======
+			spin_unlock_irq(&logbuf_lock);
+			error = __put_user(c,&buf[count-1-i]);
+			cond_resched();
+			spin_lock_irq(&logbuf_lock);
+		}
+		spin_unlock_irq(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (error)
 			break;
 		error = i;
@@ -572,7 +638,11 @@ static void __call_console_drivers(unsigned start, unsigned end)
 	}
 }
 
+<<<<<<< HEAD
 static bool __read_mostly ignore_loglevel;
+=======
+static int __read_mostly ignore_loglevel;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int __init ignore_loglevel_setup(char *str)
 {
@@ -583,9 +653,12 @@ static int __init ignore_loglevel_setup(char *str)
 }
 
 early_param("ignore_loglevel", ignore_loglevel_setup);
+<<<<<<< HEAD
 module_param(ignore_loglevel, bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(ignore_loglevel, "ignore loglevel setting, to"
 	"print all kernel messages to the console.");
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * Write out chars from start to end - 1 inclusive
@@ -593,8 +666,11 @@ MODULE_PARM_DESC(ignore_loglevel, "ignore loglevel setting, to"
 static void _call_console_drivers(unsigned start,
 				unsigned end, int msg_log_level)
 {
+<<<<<<< HEAD
 	trace_console(&LOG_BUF(0), start, end, log_buf_len);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if ((msg_log_level < console_loglevel || ignore_loglevel) &&
 			console_drivers && start != end) {
 		if ((start & LOG_BUF_MASK) > (end & LOG_BUF_MASK)) {
@@ -648,6 +724,12 @@ static size_t log_prefix(const char *p, unsigned int *level, char *special)
 		/* multi digit including the level and facility number */
 		char *endp = NULL;
 
+<<<<<<< HEAD
+=======
+		if (p[1] < '0' && p[1] > '9')
+			return 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		lev = (simple_strtoul(&p[1], &endp, 10) & 7);
 		if (endp == NULL || endp[0] != '>')
 			return 0;
@@ -686,8 +768,24 @@ static void call_console_drivers(unsigned start, unsigned end)
 	start_print = start;
 	while (cur_index != end) {
 		if (msg_level < 0 && ((end - cur_index) > 2)) {
+<<<<<<< HEAD
 			/* strip log prefix */
 			cur_index += log_prefix(&LOG_BUF(cur_index), &msg_level, NULL);
+=======
+			/*
+			 * prepare buf_prefix, as a contiguous array,
+			 * to be processed by log_prefix function
+			 */
+			char buf_prefix[SYSLOG_PRI_MAX_LENGTH+1];
+			unsigned i;
+			for (i = 0; i < ((end - cur_index)) && (i < SYSLOG_PRI_MAX_LENGTH); i++) {
+				buf_prefix[i] = LOG_BUF(cur_index + i);
+			}
+			buf_prefix[i] = '\0'; /* force '\0' as last string character */
+
+			/* strip log prefix */
+			cur_index += log_prefix((const char *)&buf_prefix, &msg_level, NULL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			start_print = cur_index;
 		}
 		while (cur_index != end) {
@@ -714,6 +812,30 @@ static void call_console_drivers(unsigned start, unsigned end)
 	_call_console_drivers(start_print, end, msg_level);
 }
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_SEC_LOG
+static void (*log_char_hook)(char c);
+
+void register_log_char_hook(void (*f) (char c))
+{
+	unsigned start;
+	unsigned long flags;
+
+	spin_lock_irqsave(&logbuf_lock, flags);
+
+	start = min(con_start, log_start);
+	while (start != log_end)
+		f(__log_buf[start++ & (__LOG_BUF_LEN - 1)]);
+
+	log_char_hook = f;
+
+	spin_unlock_irqrestore(&logbuf_lock, flags);
+}
+EXPORT_SYMBOL(register_log_char_hook);
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void emit_log_char(char c)
 {
 	LOG_BUF(log_end) = c;
@@ -724,6 +846,14 @@ static void emit_log_char(char c)
 		con_start = log_end - log_buf_len;
 	if (logged_chars < log_buf_len)
 		logged_chars++;
+<<<<<<< HEAD
+=======
+
+#ifdef CONFIG_SEC_LOG
+	if (log_char_hook)
+		log_char_hook(c);
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -741,14 +871,20 @@ static void zap_locks(void)
 
 	oops_timestamp = jiffies;
 
+<<<<<<< HEAD
 	debug_locks_off();
 	/* If a crash is occurring, make sure we can't deadlock */
 	raw_spin_lock_init(&logbuf_lock);
+=======
+	/* If a crash is occurring, make sure we can't deadlock */
+	spin_lock_init(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* And make sure that we print immediately */
 	sema_init(&console_sem, 1);
 }
 
 #if defined(CONFIG_PRINTK_TIME)
+<<<<<<< HEAD
 static bool printk_time = 1;
 #else
 static bool printk_time = 0;
@@ -757,6 +893,28 @@ module_param_named(time, printk_time, bool, S_IRUGO | S_IWUSR);
 
 static bool always_kmsg_dump;
 module_param_named(always_kmsg_dump, always_kmsg_dump, bool, S_IRUGO | S_IWUSR);
+=======
+static int printk_time = 1;
+#else
+static int printk_time = 0;
+#endif
+module_param_named(time, printk_time, bool, S_IRUGO | S_IWUSR);
+
+#if defined(CONFIG_PRINTK_CPU_ID)
+static int printk_cpu_id = 1;
+#else
+static int printk_cpu_id = 0;
+#endif
+module_param_named(cpu, printk_cpu_id, bool, S_IRUGO | S_IWUSR);
+
+#if defined(CONFIG_PRINTK_PID)
+static int printk_pid = 1;
+#else
+static int printk_pid;
+#endif
+module_param_named(pid, printk_pid, bool, S_IRUGO | S_IWUSR);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Check if we have any console registered that can be called early in boot. */
 static int have_callable_console(void)
@@ -796,11 +954,14 @@ asmlinkage int printk(const char *fmt, ...)
 {
 	va_list args;
 	int r;
+<<<<<<< HEAD
 #ifdef CONFIG_MSM_RTB
 	void *caller = __builtin_return_address(0);
 
 	uncached_logk_pc(LOGK_LOGBUF, caller, (void *)log_end);
 #endif
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_KGDB_KDB
 	if (unlikely(kdb_trap_printk)) {
@@ -846,7 +1007,11 @@ static inline int can_use_console(unsigned int cpu)
 static int console_trylock_for_printk(unsigned int cpu)
 	__releases(&logbuf_lock)
 {
+<<<<<<< HEAD
 	int retval = 0, wake = 0;
+=======
+	int retval = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (console_trylock()) {
 		retval = 1;
@@ -859,14 +1024,22 @@ static int console_trylock_for_printk(unsigned int cpu)
 		 */
 		if (!can_use_console(cpu)) {
 			console_locked = 0;
+<<<<<<< HEAD
 			wake = 1;
+=======
+			up(&console_sem);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			retval = 0;
 		}
 	}
 	printk_cpu = UINT_MAX;
+<<<<<<< HEAD
 	if (wake)
 		up(&console_sem);
 	raw_spin_unlock(&logbuf_lock);
+=======
+	spin_unlock(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return retval;
 }
 static const char recursion_bug_msg [] =
@@ -902,8 +1075,14 @@ asmlinkage int vprintk(const char *fmt, va_list args)
 	boot_delay_msec();
 	printk_delay();
 
+<<<<<<< HEAD
 	/* This stops the holder of console_sem just where we want him */
 	local_irq_save(flags);
+=======
+	preempt_disable();
+	/* This stops the holder of console_sem just where we want him */
+	raw_local_irq_save(flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	this_cpu = smp_processor_id();
 
 	/*
@@ -917,7 +1096,11 @@ asmlinkage int vprintk(const char *fmt, va_list args)
 		 * recursion and return - but flag the recursion so that
 		 * it can be printed at the next appropriate moment:
 		 */
+<<<<<<< HEAD
 		if (!oops_in_progress && !lockdep_recursing(current)) {
+=======
+		if (!oops_in_progress) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			recursion_bug = 1;
 			goto out_restore_irqs;
 		}
@@ -925,7 +1108,11 @@ asmlinkage int vprintk(const char *fmt, va_list args)
 	}
 
 	lockdep_off();
+<<<<<<< HEAD
 	raw_spin_lock(&logbuf_lock);
+=======
+	spin_lock(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	printk_cpu = this_cpu;
 
 	if (recursion_bug) {
@@ -937,6 +1124,12 @@ asmlinkage int vprintk(const char *fmt, va_list args)
 	printed_len += vscnprintf(printk_buf + printed_len,
 				  sizeof(printk_buf) - printed_len, fmt, args);
 
+<<<<<<< HEAD
+=======
+#ifdef	CONFIG_DEBUG_LL
+	printascii(printk_buf);
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	p = printk_buf;
 
@@ -1000,6 +1193,33 @@ asmlinkage int vprintk(const char *fmt, va_list args)
 				printed_len += tlen;
 			}
 
+<<<<<<< HEAD
+=======
+			if (printk_cpu_id) {
+				/* Add the cpu id */
+				char tbuf[10], *tp;
+				unsigned tlen;
+
+				tlen = sprintf(tbuf, "c%u ", printk_cpu);
+
+				for (tp = tbuf; tp < tbuf + tlen; tp++)
+					emit_log_char(*tp);
+				printed_len += tlen;
+			}
+
+			if (printk_pid) {
+				/* Add the current process id */
+				char tbuf[10], *tp;
+				unsigned tlen;
+
+				tlen = sprintf(tbuf, "%6u ", current->pid);
+
+				for (tp = tbuf; tp < tbuf + tlen; tp++)
+					emit_log_char(*tp);
+				printed_len += tlen;
+			}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			if (!*p)
 				break;
 		}
@@ -1024,8 +1244,14 @@ asmlinkage int vprintk(const char *fmt, va_list args)
 
 	lockdep_on();
 out_restore_irqs:
+<<<<<<< HEAD
 	local_irq_restore(flags);
 
+=======
+	raw_local_irq_restore(flags);
+
+	preempt_enable();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return printed_len;
 }
 EXPORT_SYMBOL(printk);
@@ -1160,7 +1386,11 @@ int update_console_cmdline(char *name, int idx, char *name_new, int idx_new, cha
 	return -1;
 }
 
+<<<<<<< HEAD
 bool console_suspend_enabled = 1;
+=======
+int console_suspend_enabled = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 EXPORT_SYMBOL(console_suspend_enabled);
 
 static int __init console_suspend_disable(char *str)
@@ -1169,10 +1399,13 @@ static int __init console_suspend_disable(char *str)
 	return 1;
 }
 __setup("no_console_suspend", console_suspend_disable);
+<<<<<<< HEAD
 module_param_named(console_suspend, console_suspend_enabled,
 		bool, S_IRUGO | S_IWUSR);
 MODULE_PARM_DESC(console_suspend, "suspend console during suspend"
 	" and hibernate operations");
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * suspend_console - suspend the console subsystem
@@ -1198,6 +1431,7 @@ void resume_console(void)
 	console_unlock();
 }
 
+<<<<<<< HEAD
 static void __cpuinit console_flush(struct work_struct *work)
 {
 	console_lock();
@@ -1205,6 +1439,13 @@ static void __cpuinit console_flush(struct work_struct *work)
 }
 
 static __cpuinitdata DECLARE_WORK(console_cpu_notify_work, console_flush);
+=======
+int get_console_suspended(void)
+{
+	return console_suspended;
+}
+EXPORT_SYMBOL(get_console_suspended);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * console_cpu_notify - print deferred console messages after CPU hotplug
@@ -1216,19 +1457,27 @@ static __cpuinitdata DECLARE_WORK(console_cpu_notify_work, console_flush);
  * will be spooled but will not show up on the console.  This function is
  * called when a new CPU comes online (or fails to come up), and ensures
  * that any such output gets printed.
+<<<<<<< HEAD
  *
  * Special handling must be done for cases invoked from an atomic context,
  * as we can't be taking the console semaphore here.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 static int __cpuinit console_cpu_notify(struct notifier_block *self,
 	unsigned long action, void *hcpu)
 {
 	switch (action) {
+<<<<<<< HEAD
+=======
+	case CPU_ONLINE:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	case CPU_DEAD:
 	case CPU_DOWN_FAILED:
 	case CPU_UP_CANCELED:
 		console_lock();
 		console_unlock();
+<<<<<<< HEAD
 		break;
 	case CPU_ONLINE:
 	case CPU_DYING:
@@ -1237,6 +1486,8 @@ static int __cpuinit console_cpu_notify(struct notifier_block *self,
 			schedule_work(&console_cpu_notify_work);
 		else
 			console_unlock();
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return NOTIFY_OK;
 }
@@ -1287,6 +1538,7 @@ int is_console_locked(void)
 	return console_locked;
 }
 
+<<<<<<< HEAD
 /*
  * Delayed printk facility, for scheduler-internal messages:
  */
@@ -1297,10 +1549,14 @@ int is_console_locked(void)
 
 static DEFINE_PER_CPU(int, printk_pending);
 static DEFINE_PER_CPU(char [PRINTK_BUF_SIZE], printk_sched_buf);
+=======
+static DEFINE_PER_CPU(int, printk_pending);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 void printk_tick(void)
 {
 	if (__this_cpu_read(printk_pending)) {
+<<<<<<< HEAD
 		int pending = __this_cpu_xchg(printk_pending, 0);
 		if (pending & PRINTK_PENDING_SCHED) {
 			char *buf = __get_cpu_var(printk_sched_buf);
@@ -1308,6 +1564,10 @@ void printk_tick(void)
 		}
 		if (pending & PRINTK_PENDING_WAKEUP)
 			wake_up_interruptible(&log_wait);
+=======
+		__this_cpu_write(printk_pending, 0);
+		wake_up_interruptible(&log_wait);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 }
 
@@ -1321,7 +1581,11 @@ int printk_needs_cpu(int cpu)
 void wake_up_klogd(void)
 {
 	if (waitqueue_active(&log_wait))
+<<<<<<< HEAD
 		this_cpu_or(printk_pending, PRINTK_PENDING_WAKEUP);
+=======
+		this_cpu_write(printk_pending, 1);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -1342,7 +1606,11 @@ void console_unlock(void)
 {
 	unsigned long flags;
 	unsigned _con_start, _log_end;
+<<<<<<< HEAD
 	unsigned wake_klogd = 0, retry = 0;
+=======
+	unsigned wake_klogd = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (console_suspended) {
 		up(&console_sem);
@@ -1351,16 +1619,25 @@ void console_unlock(void)
 
 	console_may_schedule = 0;
 
+<<<<<<< HEAD
 again:
 	for ( ; ; ) {
 		raw_spin_lock_irqsave(&logbuf_lock, flags);
+=======
+	for ( ; ; ) {
+		spin_lock_irqsave(&logbuf_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		wake_klogd |= log_start - log_end;
 		if (con_start == log_end)
 			break;			/* Nothing to print */
 		_con_start = con_start;
 		_log_end = log_end;
 		con_start = log_end;		/* Flush */
+<<<<<<< HEAD
 		raw_spin_unlock(&logbuf_lock);
+=======
+		spin_unlock(&logbuf_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		stop_critical_timings();	/* don't trace print latency */
 		call_console_drivers(_con_start, _log_end);
 		start_critical_timings();
@@ -1372,6 +1649,7 @@ again:
 	if (unlikely(exclusive_console))
 		exclusive_console = NULL;
 
+<<<<<<< HEAD
 	raw_spin_unlock(&logbuf_lock);
 
 	up(&console_sem);
@@ -1389,6 +1667,10 @@ again:
 	if (retry && console_trylock())
 		goto again;
 
+=======
+	up(&console_sem);
+	spin_unlock_irqrestore(&logbuf_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (wake_klogd)
 		wake_up_klogd();
 }
@@ -1618,9 +1900,15 @@ void register_console(struct console *newcon)
 		 * console_unlock(); will print out the buffered messages
 		 * for us.
 		 */
+<<<<<<< HEAD
 		raw_spin_lock_irqsave(&logbuf_lock, flags);
 		con_start = log_start;
 		raw_spin_unlock_irqrestore(&logbuf_lock, flags);
+=======
+		spin_lock_irqsave(&logbuf_lock, flags);
+		con_start = log_start;
+		spin_unlock_irqrestore(&logbuf_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/*
 		 * We're about to replay the log buffer.  Only do this to the
 		 * just-registered console to avoid excessive message spam to
@@ -1713,6 +2001,7 @@ late_initcall(printk_late_init);
 
 #if defined CONFIG_PRINTK
 
+<<<<<<< HEAD
 int printk_sched(const char *fmt, ...)
 {
 	unsigned long flags;
@@ -1733,6 +2022,8 @@ int printk_sched(const char *fmt, ...)
 	return r;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * printk rate limiting, lifted from the networking subsystem.
  *
@@ -1844,6 +2135,7 @@ void kmsg_dump(enum kmsg_dump_reason reason)
 	unsigned long l1, l2;
 	unsigned long flags;
 
+<<<<<<< HEAD
 	if ((reason > KMSG_DUMP_OOPS) && !always_kmsg_dump)
 		return;
 
@@ -1854,6 +2146,15 @@ void kmsg_dump(enum kmsg_dump_reason reason)
 	end = log_end & LOG_BUF_MASK;
 	chars = logged_chars;
 	raw_spin_unlock_irqrestore(&logbuf_lock, flags);
+=======
+	/* Theoretically, the log could move on after we do this, but
+	   there's not a lot we can do about that. The new messages
+	   will overwrite the start of what we dump. */
+	spin_lock_irqsave(&logbuf_lock, flags);
+	end = log_end & LOG_BUF_MASK;
+	chars = logged_chars;
+	spin_unlock_irqrestore(&logbuf_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (chars > end) {
 		s1 = log_buf + log_buf_len - chars + end;
@@ -1875,3 +2176,14 @@ void kmsg_dump(enum kmsg_dump_reason reason)
 	rcu_read_unlock();
 }
 #endif
+<<<<<<< HEAD
+=======
+
+#ifdef CONFIG_MACH_PX
+void logbuf_force_unlock(void)
+{
+	logbuf_lock = __SPIN_LOCK_UNLOCKED(logbuf_lock);
+}
+EXPORT_SYMBOL(logbuf_force_unlock);
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

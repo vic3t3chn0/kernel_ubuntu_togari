@@ -106,14 +106,24 @@ struct wmi_data_sync_bufs {
 #define WMM_AC_VI   2		/* video */
 #define WMM_AC_VO   3		/* voice */
 
+<<<<<<< HEAD
+=======
+#define WMI_VOICE_USER_PRIORITY		0x7
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 struct wmi {
 	u16 stream_exist_for_ac[WMM_NUM_AC];
 	u8 fat_pipe_exist;
 	struct ath6kl *parent_dev;
 	u8 pwr_mode;
+<<<<<<< HEAD
 
 	/* protects fat_pipe_exist and stream_exist_for_ac */
 	spinlock_t lock;
+=======
+	spinlock_t lock;
+	struct mutex lock_mgmt;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	enum htc_endpoint_id ep_id;
 	struct sq_threshold_params
 	    sq_threshld[SIGNAL_QUALITY_METRICS_NUM_MAX];
@@ -423,6 +433,10 @@ enum wmi_cmd_id {
 	WMI_SET_FRAMERATES_CMDID,
 	WMI_SET_AP_PS_CMDID,
 	WMI_SET_QOS_SUPP_CMDID,
+<<<<<<< HEAD
+=======
+	WMI_SET_IE_CMDID,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* WMI_THIN_RESERVED_... mark the start and end
 	 * values for WMI_THIN_RESERVED command IDs. These
@@ -618,6 +632,10 @@ enum wmi_cmd_id {
 	WMI_SEND_MGMT_CMDID,
 	WMI_BEGIN_SCAN_CMDID,
 
+<<<<<<< HEAD
+=======
+	WMI_SET_MCASTRATE_CMDID,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 enum wmi_mgmt_frame_type {
@@ -629,6 +647,14 @@ enum wmi_mgmt_frame_type {
 	WMI_NUM_MGMT_FRAME
 };
 
+<<<<<<< HEAD
+=======
+enum wmi_ie_field_type {
+	WMI_RSN_IE_CAPB	= 0x1,
+	WMI_IE_FULL		= 0xFF  /* indicats full IE */
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* WMI_CONNECT_CMDID  */
 enum network_type {
 	INFRA_NETWORK = 0x01,
@@ -967,7 +993,11 @@ struct wmi_bss_filter_cmd {
 } __packed;
 
 /* WMI_SET_PROBED_SSID_CMDID */
+<<<<<<< HEAD
 #define MAX_PROBED_SSID_INDEX   9
+=======
+#define MAX_PROBED_SSIDS   16
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 enum wmi_ssid_flag {
 	/* disables entry */
@@ -981,7 +1011,11 @@ enum wmi_ssid_flag {
 };
 
 struct wmi_probed_ssid_cmd {
+<<<<<<< HEAD
 	/* 0 to MAX_PROBED_SSID_INDEX */
+=======
+	/* 0 to MAX_PROBED_SSIDS - 1 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u8 entry_index;
 
 	/* see, enum wmi_ssid_flg */
@@ -1023,7 +1057,11 @@ struct wmi_power_mode_cmd {
  */
 enum power_save_fail_event_policy {
 	SEND_POWER_SAVE_FAIL_EVENT_ALWAYS = 1,
+<<<<<<< HEAD
 	IGNORE_PS_FAIL_DURING_SCAN = 2,
+=======
+	IGNORE_POWER_SAVE_FAIL_EVENT_DURING_SCAN = 2,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 struct wmi_power_params_cmd {
@@ -1221,7 +1259,11 @@ struct wmi_snr_threshold_params_cmd {
 
 enum wmi_preamble_policy {
 	WMI_IGNORE_BARKER_IN_ERP = 0,
+<<<<<<< HEAD
 	WMI_FOLLOW_BARKER_IN_ERP,
+=======
+	WMI_DONOT_IGNORE_BARKER_IN_ERP
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 struct wmi_set_lpreamble_cmd {
@@ -1482,10 +1524,25 @@ enum wmi_bi_ftype {
 	PROBEREQ_FTYPE,
 };
 
+<<<<<<< HEAD
 #define DEF_LRSSI_SCAN_PERIOD		 5
 #define DEF_LRSSI_ROAM_THRESHOLD	20
 #define DEF_LRSSI_ROAM_FLOOR		60
 #define DEF_SCAN_FOR_ROAM_INTVL		 2
+=======
+#ifdef CONFIG_MACH_PX
+#define DEF_LRSSI_SCAN_PERIOD		( 5 * 1000 )
+#else
+#define DEF_LRSSI_SCAN_PERIOD		 5
+#endif
+#define DEF_LRSSI_ROAM_THRESHOLD	20
+#define DEF_LRSSI_ROAM_FLOOR		60
+#ifdef CONFIG_MACH_PX
+#define DEF_SCAN_FOR_ROAM_INTVL		 5
+#else
+#define DEF_SCAN_FOR_ROAM_INTVL		 2
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 enum wmi_roam_ctrl {
 	WMI_FORCE_ROAM = 1,
@@ -1907,12 +1964,30 @@ struct wmi_get_keepalive_cmd {
 	u8 keep_alive_intvl;
 } __packed;
 
+<<<<<<< HEAD
+=======
+struct wmi_set_mcastrate_cmd {
+	u16 bitrate;
+} __packed;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 struct wmi_set_appie_cmd {
 	u8 mgmt_frm_type; /* enum wmi_mgmt_frame_type */
 	u8 ie_len;
 	u8 ie_info[0];
 } __packed;
 
+<<<<<<< HEAD
+=======
+struct wmi_set_ie_cmd {
+	u8 ie_id;
+	u8 ie_field;	/* enum wmi_ie_field_type */
+	u8 ie_len;
+	u8 reserved;
+	u8 ie_info[0];
+} __packed;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Notify the WSC registration status to the target */
 #define WSC_REG_ACTIVE     1
 #define WSC_REG_INACTIVE   0
@@ -2287,6 +2362,20 @@ struct wmi_p2p_probe_response_cmd {
 	u8 data[0];
 } __packed;
 
+<<<<<<< HEAD
+=======
+struct wmi_set_ht_cap_cmd {
+	u8 band;
+	u8 enable;
+	u8 chan_width_40m_supported;
+	u8 short_gi_20mhz;
+	u8 short_gi_40mhz;
+	u8 intolerance_40mhz;
+	u8 max_ampdu_len_exp;
+} __packed;
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Extended WMI (WMIX)
  *
  * Extended WMIX commands are encapsulated in a WMI message with
@@ -2426,8 +2515,16 @@ int ath6kl_wmi_probedssid_cmd(struct wmi *wmi, u8 if_idx, u8 index, u8 flag,
 int ath6kl_wmi_listeninterval_cmd(struct wmi *wmi, u8 if_idx,
 				  u16 listen_interval,
 				  u16 listen_beacons);
+<<<<<<< HEAD
 int ath6kl_wmi_bmisstime_cmd(struct wmi *wmi, u8 if_idx,
 			     u16 bmiss_time, u16 num_beacons);
+=======
+int ath6kl_wmi_mcastrate_cmd(struct wmi *wmi, u8 if_idx,
+				 u16 bitrate);
+int ath6kl_wmi_bmisstime_cmd(struct wmi *wmi, u8 if_idx,
+				  u16 bmiss_time,
+				  u16 bmiss_beacons);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int ath6kl_wmi_powermode_cmd(struct wmi *wmi, u8 if_idx, u8 pwr_mode);
 int ath6kl_wmi_pmparams_cmd(struct wmi *wmi, u8 if_idx, u16 idle_period,
 			    u16 ps_poll_num, u16 dtim_policy,
@@ -2483,11 +2580,22 @@ int ath6kl_wmi_add_wow_pattern_cmd(struct wmi *wmi, u8 if_idx,
 int ath6kl_wmi_del_wow_pattern_cmd(struct wmi *wmi, u8 if_idx,
 				   u16 list_id, u16 filter_id);
 int ath6kl_wmi_set_roam_lrssi_cmd(struct wmi *wmi, u8 lrssi);
+<<<<<<< HEAD
+=======
+int ath6kl_wmi_set_roam_lrssi_config_cmd(struct wmi *wmi,
+				struct low_rssi_scan_params *params);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int ath6kl_wmi_force_roam_cmd(struct wmi *wmi, const u8 *bssid);
 int ath6kl_wmi_set_roam_mode_cmd(struct wmi *wmi, enum wmi_roam_mode mode);
 int ath6kl_wmi_mcast_filter_cmd(struct wmi *wmi, u8 if_idx, bool mc_all_on);
 int ath6kl_wmi_add_del_mcast_filter_cmd(struct wmi *wmi, u8 if_idx,
 					u8 *filter, bool add_filter);
+<<<<<<< HEAD
+=======
+int ath6kl_wmi_set_ht_cap_cmd(struct wmi *wmi, u8 if_idx,
+		struct wmi_set_ht_cap_cmd *params);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* AP mode uAPSD */
 int ath6kl_wmi_ap_set_apsd(struct wmi *wmi, u8 if_idx, u8 enable);
 
@@ -2495,6 +2603,13 @@ int ath6kl_wmi_set_apsd_bfrd_traf(struct wmi *wmi,
 						u8 if_idx, u16 aid,
 						u16 bitmap, u32 flags);
 
+<<<<<<< HEAD
+=======
+int ath6kl_wmi_mcast_filter_cmd(struct wmi *wmi, u8 if_idx, bool mc_all_on);
+int ath6kl_wmi_add_del_mcast_filter_cmd(struct wmi *wmi, u8 if_idx,
+					u8 *filter, bool add_filter);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 u8 ath6kl_wmi_get_traffic_class(u8 user_priority);
 
 u8 ath6kl_wmi_determine_user_priority(u8 *pkt, u32 layer2_pri);
@@ -2515,6 +2630,12 @@ int ath6kl_wmi_set_rx_frame_format_cmd(struct wmi *wmi, u8 if_idx,
 int ath6kl_wmi_set_appie_cmd(struct wmi *wmi, u8 if_idx, u8 mgmt_frm_type,
 			     const u8 *ie, u8 ie_len);
 
+<<<<<<< HEAD
+=======
+int ath6kl_wmi_set_ie_cmd(struct wmi *wmi, u8 if_idx, u8 ie_id, u8 ie_field,
+			     const u8 *ie_info, u8 ie_len);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* P2P */
 int ath6kl_wmi_disable_11b_rates_cmd(struct wmi *wmi, bool disable);
 

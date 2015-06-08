@@ -33,7 +33,11 @@
 #include <linux/slab.h>
 #include <linux/string.h>
 
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <scsi/scsi_cmnd.h>
 #include <scsi/scsi_device.h>
@@ -763,6 +767,7 @@ static void complete_scsi_command(CommandList_struct *c, int timeout,
 		{
 			case CMD_TARGET_STATUS:
 				/* Pass it up to the upper layers... */
+<<<<<<< HEAD
 				if( ei->ScsiStatus)
                 		{
 #if 0
@@ -773,6 +778,9 @@ static void complete_scsi_command(CommandList_struct *c, int timeout,
 					cmd->result |= (ei->ScsiStatus << 1);
                 		}
 				else {  /* scsi status is zero??? How??? */
+=======
+				if (!ei->ScsiStatus) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					
 	/* Ordinarily, this case should never happen, but there is a bug
 	   in some released firmware revisions that allows it to happen
@@ -804,6 +812,10 @@ static void complete_scsi_command(CommandList_struct *c, int timeout,
 				}
 			break;
 			case CMD_PROTOCOL_ERR:
+<<<<<<< HEAD
+=======
+				cmd->result = DID_ERROR << 16;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				dev_warn(&h->pdev->dev,
 					"%p has protocol error\n", c);
                         break;
@@ -1721,6 +1733,9 @@ static int  cciss_eh_abort_handler(struct scsi_cmnd *scsicmd)
 /* If no tape support, then these become defined out of existence */
 
 #define cciss_scsi_setup(cntl_num)
+<<<<<<< HEAD
 #define cciss_engage_scsi(h)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #endif /* CONFIG_CISS_SCSI_TAPE */

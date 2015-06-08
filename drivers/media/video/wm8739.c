@@ -291,4 +291,19 @@ static struct i2c_driver wm8739_driver = {
 	.id_table	= wm8739_id,
 };
 
+<<<<<<< HEAD
 module_i2c_driver(wm8739_driver);
+=======
+static __init int init_wm8739(void)
+{
+	return i2c_add_driver(&wm8739_driver);
+}
+
+static __exit void exit_wm8739(void)
+{
+	i2c_del_driver(&wm8739_driver);
+}
+
+module_init(init_wm8739);
+module_exit(exit_wm8739);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

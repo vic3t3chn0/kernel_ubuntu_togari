@@ -14,7 +14,10 @@
 #include <linux/rtc.h>
 #include <linux/bcd.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define DRV_VERSION "0.6"
 
@@ -689,7 +692,22 @@ static struct i2c_driver rs5c372_driver = {
 	.id_table	= rs5c372_id,
 };
 
+<<<<<<< HEAD
 module_i2c_driver(rs5c372_driver);
+=======
+static __init int rs5c372_init(void)
+{
+	return i2c_add_driver(&rs5c372_driver);
+}
+
+static __exit void rs5c372_exit(void)
+{
+	i2c_del_driver(&rs5c372_driver);
+}
+
+module_init(rs5c372_init);
+module_exit(rs5c372_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR(
 		"Pavel Mironchik <pmironchik@optifacio.net>, "

@@ -95,6 +95,10 @@ extern const struct hc_driver musb_hc_driver;
 
 static inline struct urb *next_urb(struct musb_qh *qh)
 {
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_USB_MUSB_HDRC_HCD
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct list_head	*queue;
 
 	if (!qh)
@@ -103,6 +107,12 @@ static inline struct urb *next_urb(struct musb_qh *qh)
 	if (list_empty(queue))
 		return NULL;
 	return list_entry(queue->next, struct urb, urb_list);
+<<<<<<< HEAD
+=======
+#else
+	return NULL;
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 #endif				/* _MUSB_HOST_H */

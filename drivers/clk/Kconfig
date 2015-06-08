@@ -2,6 +2,7 @@
 config CLKDEV_LOOKUP
 	bool
 	select HAVE_CLK
+<<<<<<< HEAD
 
 config HAVE_CLK_PREPARE
 	bool
@@ -45,3 +46,5 @@ config COMMON_CLK_DEBUG
 	  clk_notifier_count.
 
 endmenu
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

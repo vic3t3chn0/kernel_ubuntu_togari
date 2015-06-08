@@ -37,6 +37,10 @@
 #include <linux/proc_fs.h>	// Necessary because we use the proc fs
 #include <linux/if_arp.h>
 #include <linux/random.h>
+<<<<<<< HEAD
+=======
+#include <linux/version.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/io.h>
 #include "ieee80211/ieee80211.h"
 

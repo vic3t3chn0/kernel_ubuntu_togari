@@ -1,10 +1,26 @@
 config ET131X
 	tristate "Agere ET-1310 Gigabit Ethernet support"
+<<<<<<< HEAD
 	depends on PCI && NET && NETDEVICES
 	select PHYLIB
+=======
+	depends on NETDEV_1000 && PCI
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default n
 	---help---
 	  This driver supports Agere ET-1310 ethernet adapters.
 
 	  To compile this driver as a module, choose M here. The module
 	  will be called et131x.
+<<<<<<< HEAD
+=======
+
+config ET131X_DEBUG
+	bool "Enable et131x debugging"
+	depends on ET131X
+	default n
+	---help---
+	  Say Y for detailed debug information.
+
+	  If in doubt, say N.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

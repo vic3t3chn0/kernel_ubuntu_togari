@@ -23,7 +23,11 @@
 #include <linux/swab.h>
 #include "r592.h"
 
+<<<<<<< HEAD
 static bool r592_enable_dma = 1;
+=======
+static int r592_enable_dma = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int debug;
 
 static const char *tpc_names[] = {

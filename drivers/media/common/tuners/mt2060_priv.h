@@ -97,6 +97,10 @@ struct mt2060_priv {
 	struct i2c_adapter   *i2c;
 
 	u32 frequency;
+<<<<<<< HEAD
+=======
+	u32 bandwidth;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u16 if1_freq;
 	u8  fmfreq;
 };

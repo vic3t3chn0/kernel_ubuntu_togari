@@ -1,6 +1,7 @@
 /*
  *  Handling of internal CCW device requests.
  *
+<<<<<<< HEAD
  *    Copyright IBM Corp. 2009, 2011
  *    Author(s): Peter Oberparleiter <peter.oberparleiter@de.ibm.com>
  */
@@ -8,6 +9,12 @@
 #define KMSG_COMPONENT "cio"
 #define pr_fmt(fmt) KMSG_COMPONENT ": " fmt
 
+=======
+ *    Copyright IBM Corp. 2009
+ *    Author(s): Peter Oberparleiter <peter.oberparleiter@de.ibm.com>
+ */
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/types.h>
 #include <linux/err.h>
 #include <asm/ccwdev.h>
@@ -326,6 +333,7 @@ void ccw_request_timeout(struct ccw_device *cdev)
 {
 	struct subchannel *sch = to_subchannel(cdev->dev.parent);
 	struct ccw_request *req = &cdev->private->req;
+<<<<<<< HEAD
 	int rc = -ENODEV, chp;
 
 	if (cio_update_schib(sch))
@@ -341,6 +349,9 @@ void ccw_request_timeout(struct ccw_device *cdev)
 				   sch->schid.cssid,
 				   sch->schib.pmcw.chpid[chp]);
 	}
+=======
+	int rc;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!ccwreq_next_path(cdev)) {
 		/* set the final return code for this request */
@@ -359,7 +370,11 @@ err:
  * ccw_request_notoper - notoper handler for I/O request procedure
  * @cdev: ccw device
  *
+<<<<<<< HEAD
  * Handle notoper during I/O request procedure.
+=======
+ * Handle timeout during I/O request procedure.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 void ccw_request_notoper(struct ccw_device *cdev)
 {

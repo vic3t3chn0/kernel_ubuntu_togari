@@ -85,7 +85,11 @@ static int __init uclinux_mtd_init(void)
 	}
 
 	mtd->owner = THIS_MODULE;
+<<<<<<< HEAD
 	mtd->_point = uclinux_point;
+=======
+	mtd->point = uclinux_point;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	mtd->priv = mapp;
 
 	uclinux_ram_mtdinfo = mtd;

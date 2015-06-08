@@ -334,8 +334,15 @@ int uwb_rsv_find_best_allocation(struct uwb_rsv *rsv, struct uwb_mas_bm *availab
 
 
 	/* fill the not available vector from the available bm */
+<<<<<<< HEAD
 	for_each_clear_bit(bit_index, available->bm, UWB_NUM_MAS)
 		ai->bm[bit_index] = UWB_RSV_MAS_NOT_AVAIL;
+=======
+	for (bit_index = 0; bit_index < UWB_NUM_MAS; bit_index++) {
+		if (!test_bit(bit_index, available->bm))
+			ai->bm[bit_index] = UWB_RSV_MAS_NOT_AVAIL;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (ai->max_interval == 1) {
 		get_row_descriptors(ai);

@@ -27,16 +27,22 @@
 struct dvb_frontend;
 struct i2c_adapter;
 
+<<<<<<< HEAD
 #define XC5000A 1
 #define XC5000C 2
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 struct xc5000_config {
 	u8   i2c_address;
 	u32  if_khz;
 	u8   radio_input;
+<<<<<<< HEAD
 	u32  xtal_khz;
 
 	int chip_id;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /* xc5000 callback command */

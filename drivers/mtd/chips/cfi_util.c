@@ -173,6 +173,15 @@ int cfi_varsize_frob(struct mtd_info *mtd, varsize_frob_t frob,
 	int i, first;
 	struct mtd_erase_region_info *regions = mtd->eraseregions;
 
+<<<<<<< HEAD
+=======
+	if (ofs > mtd->size)
+		return -EINVAL;
+
+	if ((len + ofs) > mtd->size)
+		return -EINVAL;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Check that both start and end of the requested erase are
 	 * aligned with the erasesize at the appropriate addresses.
 	 */

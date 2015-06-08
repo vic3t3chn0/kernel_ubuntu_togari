@@ -21,12 +21,21 @@
 #include <linux/spi/spi.h>
 #include <linux/slab.h>
 #include <linux/sysfs.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "../events.h"
 #include "../buffer.h"
+=======
+
+#include "../iio.h"
+#include "../sysfs.h"
+#include "../ring_generic.h"
+
+#include "accel.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "lis3l02dq.h"
 
@@ -35,8 +44,13 @@
  * This means that use cannot be made of spi_write etc.
  */
 /* direct copy of the irq_default_primary_handler */
+<<<<<<< HEAD
 #ifndef CONFIG_IIO_BUFFER
 static irqreturn_t lis3l02dq_nobuffer(int irq, void *private)
+=======
+#ifndef CONFIG_IIO_RING_BUFFER
+static irqreturn_t lis3l02dq_noring(int irq, void *private)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	return IRQ_WAKE_THREAD;
 }
@@ -201,14 +215,22 @@ static u8 lis3l02dq_axis_map[3][3] = {
 };
 
 static int lis3l02dq_read_thresh(struct iio_dev *indio_dev,
+<<<<<<< HEAD
 				 u64 e,
+=======
+				 int e,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				 int *val)
 {
 	return lis3l02dq_read_reg_s16(indio_dev, LIS3L02DQ_REG_THS_L_ADDR, val);
 }
 
 static int lis3l02dq_write_thresh(struct iio_dev *indio_dev,
+<<<<<<< HEAD
 				  u64 event_code,
+=======
+				  int event_code,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				  int val)
 {
 	u16 value = val;
@@ -227,14 +249,22 @@ static int lis3l02dq_write_raw(struct iio_dev *indio_dev,
 	u8 uval;
 	s8 sval;
 	switch (mask) {
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_CALIBBIAS:
+=======
+	case (1 << IIO_CHAN_INFO_CALIBBIAS_SEPARATE):
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (val > 255 || val < -256)
 			return -EINVAL;
 		sval = val;
 		reg = lis3l02dq_axis_map[LIS3L02DQ_BIAS][chan->address];
 		ret = lis3l02dq_spi_write_reg_8(indio_dev, reg, sval);
 		break;
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_CALIBSCALE:
+=======
+	case (1 << IIO_CHAN_INFO_CALIBSCALE_SEPARATE):
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (val & ~0xFF)
 			return -EINVAL;
 		uval = val;
@@ -260,20 +290,36 @@ static int lis3l02dq_read_raw(struct iio_dev *indio_dev,
 	case 0:
 		/* Take the iio_dev status lock */
 		mutex_lock(&indio_dev->mlock);
+<<<<<<< HEAD
 		if (indio_dev->currentmode == INDIO_BUFFER_TRIGGERED) {
 			ret = -EBUSY;
 		} else {
+=======
+		if (indio_dev->currentmode == INDIO_RING_TRIGGERED)
+			ret = lis3l02dq_read_accel_from_ring(indio_dev->ring,
+							     chan->scan_index,
+							     val);
+		else {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			reg = lis3l02dq_axis_map
 				[LIS3L02DQ_ACCEL][chan->address];
 			ret = lis3l02dq_read_reg_s16(indio_dev, reg, val);
 		}
 		mutex_unlock(&indio_dev->mlock);
 		return IIO_VAL_INT;
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_SCALE:
 		*val = 0;
 		*val2 = 9580;
 		return IIO_VAL_INT_PLUS_MICRO;
 	case IIO_CHAN_INFO_CALIBSCALE:
+=======
+	case (1 << IIO_CHAN_INFO_SCALE_SHARED):
+		*val = 0;
+		*val2 = 9580;
+		return IIO_VAL_INT_PLUS_MICRO;
+	case (1 << IIO_CHAN_INFO_CALIBSCALE_SEPARATE):
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		reg = lis3l02dq_axis_map[LIS3L02DQ_GAIN][chan->address];
 		ret = lis3l02dq_spi_read_reg_8(indio_dev, reg, &utemp);
 		if (ret)
@@ -282,7 +328,11 @@ static int lis3l02dq_read_raw(struct iio_dev *indio_dev,
 		*val = utemp;
 		return IIO_VAL_INT;
 
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_CALIBBIAS:
+=======
+	case (1 << IIO_CHAN_INFO_CALIBBIAS_SEPARATE):
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		reg = lis3l02dq_axis_map[LIS3L02DQ_BIAS][chan->address];
 		ret = lis3l02dq_spi_read_reg_8(indio_dev, reg, (u8 *)&stemp);
 		/* to match with what previous code does */
@@ -329,11 +379,19 @@ static ssize_t lis3l02dq_write_frequency(struct device *dev,
 					 size_t len)
 {
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	unsigned long val;
 	int ret;
 	u8 t;
 
 	ret = kstrtoul(buf, 10, &val);
+=======
+	long val;
+	int ret;
+	u8 t;
+
+	ret = strict_strtol(buf, 10, &val);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret)
 		return ret;
 
@@ -451,55 +509,97 @@ static irqreturn_t lis3l02dq_event_handler(int irq, void *private)
 				 &t);
 
 	if (t & LIS3L02DQ_REG_WAKE_UP_SRC_INTERRUPT_Z_HIGH)
+<<<<<<< HEAD
 		iio_push_event(indio_dev,
 			       IIO_MOD_EVENT_CODE(IIO_ACCEL,
 						  0,
 						  IIO_MOD_Z,
+=======
+		iio_push_event(indio_dev, 0,
+			       IIO_MOD_EVENT_CODE(IIO_EV_CLASS_ACCEL,
+						  0,
+						  IIO_EV_MOD_Z,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						  IIO_EV_TYPE_THRESH,
 						  IIO_EV_DIR_RISING),
 			       timestamp);
 
 	if (t & LIS3L02DQ_REG_WAKE_UP_SRC_INTERRUPT_Z_LOW)
+<<<<<<< HEAD
 		iio_push_event(indio_dev,
 			       IIO_MOD_EVENT_CODE(IIO_ACCEL,
 						  0,
 						  IIO_MOD_Z,
+=======
+		iio_push_event(indio_dev, 0,
+			       IIO_MOD_EVENT_CODE(IIO_EV_CLASS_ACCEL,
+						  0,
+						  IIO_EV_MOD_Z,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						  IIO_EV_TYPE_THRESH,
 						  IIO_EV_DIR_FALLING),
 			       timestamp);
 
 	if (t & LIS3L02DQ_REG_WAKE_UP_SRC_INTERRUPT_Y_HIGH)
+<<<<<<< HEAD
 		iio_push_event(indio_dev,
 			       IIO_MOD_EVENT_CODE(IIO_ACCEL,
 						  0,
 						  IIO_MOD_Y,
+=======
+		iio_push_event(indio_dev, 0,
+			       IIO_MOD_EVENT_CODE(IIO_EV_CLASS_ACCEL,
+						  0,
+						  IIO_EV_MOD_Y,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						  IIO_EV_TYPE_THRESH,
 						  IIO_EV_DIR_RISING),
 			       timestamp);
 
 	if (t & LIS3L02DQ_REG_WAKE_UP_SRC_INTERRUPT_Y_LOW)
+<<<<<<< HEAD
 		iio_push_event(indio_dev,
 			       IIO_MOD_EVENT_CODE(IIO_ACCEL,
 						  0,
 						  IIO_MOD_Y,
+=======
+		iio_push_event(indio_dev, 0,
+			       IIO_MOD_EVENT_CODE(IIO_EV_CLASS_ACCEL,
+						  0,
+						  IIO_EV_MOD_Y,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						  IIO_EV_TYPE_THRESH,
 						  IIO_EV_DIR_FALLING),
 			       timestamp);
 
 	if (t & LIS3L02DQ_REG_WAKE_UP_SRC_INTERRUPT_X_HIGH)
+<<<<<<< HEAD
 		iio_push_event(indio_dev,
 			       IIO_MOD_EVENT_CODE(IIO_ACCEL,
 						  0,
 						  IIO_MOD_X,
+=======
+		iio_push_event(indio_dev, 0,
+			       IIO_MOD_EVENT_CODE(IIO_EV_CLASS_ACCEL,
+						  0,
+						  IIO_EV_MOD_X,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						  IIO_EV_TYPE_THRESH,
 						  IIO_EV_DIR_RISING),
 			       timestamp);
 
 	if (t & LIS3L02DQ_REG_WAKE_UP_SRC_INTERRUPT_X_LOW)
+<<<<<<< HEAD
 		iio_push_event(indio_dev,
 			       IIO_MOD_EVENT_CODE(IIO_ACCEL,
 						  0,
 						  IIO_MOD_X,
+=======
+		iio_push_event(indio_dev, 0,
+			       IIO_MOD_EVENT_CODE(IIO_EV_CLASS_ACCEL,
+						  0,
+						  IIO_EV_MOD_X,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						  IIO_EV_TYPE_THRESH,
 						  IIO_EV_DIR_FALLING),
 			       timestamp);
@@ -513,9 +613,15 @@ static irqreturn_t lis3l02dq_event_handler(int irq, void *private)
 }
 
 #define LIS3L02DQ_INFO_MASK				\
+<<<<<<< HEAD
 	(IIO_CHAN_INFO_SCALE_SHARED_BIT |		\
 	 IIO_CHAN_INFO_CALIBSCALE_SEPARATE_BIT |	\
 	 IIO_CHAN_INFO_CALIBBIAS_SEPARATE_BIT)
+=======
+	((1 << IIO_CHAN_INFO_SCALE_SHARED) |		\
+	 (1 << IIO_CHAN_INFO_CALIBSCALE_SEPARATE) |	\
+	 (1 << IIO_CHAN_INFO_CALIBBIAS_SEPARATE))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define LIS3L02DQ_EVENT_MASK					\
 	(IIO_EV_BIT(IIO_EV_TYPE_THRESH, IIO_EV_DIR_RISING) |	\
@@ -532,8 +638,13 @@ static struct iio_chan_spec lis3l02dq_channels[] = {
 };
 
 
+<<<<<<< HEAD
 static int lis3l02dq_read_event_config(struct iio_dev *indio_dev,
 					   u64 event_code)
+=======
+static ssize_t lis3l02dq_read_event_config(struct iio_dev *indio_dev,
+					   int event_code)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 
 	u8 val;
@@ -585,7 +696,11 @@ error_ret:
 }
 
 static int lis3l02dq_write_event_config(struct iio_dev *indio_dev,
+<<<<<<< HEAD
 					u64 event_code,
+=======
+					int event_code,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					int state)
 {
 	int ret = 0;
@@ -650,6 +765,10 @@ static const struct attribute_group lis3l02dq_attribute_group = {
 };
 
 static const struct iio_info lis3l02dq_info = {
+<<<<<<< HEAD
+=======
+	.num_interrupt_lines = 1,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.read_raw = &lis3l02dq_read_raw,
 	.write_raw = &lis3l02dq_write_raw,
 	.read_event_value = &lis3l02dq_read_thresh,
@@ -662,7 +781,11 @@ static const struct iio_info lis3l02dq_info = {
 
 static int __devinit lis3l02dq_probe(struct spi_device *spi)
 {
+<<<<<<< HEAD
 	int ret;
+=======
+	int ret, regdone = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct lis3l02dq_state *st;
 	struct iio_dev *indio_dev;
 
@@ -673,7 +796,11 @@ static int __devinit lis3l02dq_probe(struct spi_device *spi)
 	}
 	st = iio_priv(indio_dev);
 	/* this is only used tor removal purposes */
+<<<<<<< HEAD
 	spi_set_drvdata(spi, indio_dev);
+=======
+	spi_set_drvdata(spi, st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	st->us = spi;
 	mutex_init(&st->buf_lock);
@@ -685,6 +812,7 @@ static int __devinit lis3l02dq_probe(struct spi_device *spi)
 
 	indio_dev->modes = INDIO_DIRECT_MODE;
 
+<<<<<<< HEAD
 	ret = lis3l02dq_configure_buffer(indio_dev);
 	if (ret)
 		goto error_free_dev;
@@ -695,6 +823,23 @@ static int __devinit lis3l02dq_probe(struct spi_device *spi)
 	if (ret) {
 		printk(KERN_ERR "failed to initialize the buffer\n");
 		goto error_unreg_buffer_funcs;
+=======
+	ret = lis3l02dq_configure_ring(indio_dev);
+	if (ret)
+		goto error_free_dev;
+
+	ret = iio_device_register(indio_dev);
+	if (ret)
+		goto error_unreg_ring_funcs;
+	regdone = 1;
+
+	ret = iio_ring_buffer_register_ex(indio_dev->ring, 0,
+					  lis3l02dq_channels,
+					  ARRAY_SIZE(lis3l02dq_channels));
+	if (ret) {
+		printk(KERN_ERR "failed to initialize the ring\n");
+		goto error_unreg_ring_funcs;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (spi->irq && gpio_is_valid(irq_to_gpio(spi->irq)) > 0) {
@@ -705,7 +850,11 @@ static int __devinit lis3l02dq_probe(struct spi_device *spi)
 					   "lis3l02dq",
 					   indio_dev);
 		if (ret)
+<<<<<<< HEAD
 			goto error_uninitialize_buffer;
+=======
+			goto error_uninitialize_ring;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		ret = lis3l02dq_probe_trigger(indio_dev);
 		if (ret)
@@ -716,6 +865,7 @@ static int __devinit lis3l02dq_probe(struct spi_device *spi)
 	ret = lis3l02dq_initial_setup(indio_dev);
 	if (ret)
 		goto error_remove_trigger;
+<<<<<<< HEAD
 
 	ret = iio_device_register(indio_dev);
 	if (ret)
@@ -725,16 +875,34 @@ static int __devinit lis3l02dq_probe(struct spi_device *spi)
 
 error_remove_trigger:
 	if (indio_dev->modes & INDIO_BUFFER_TRIGGERED)
+=======
+	return 0;
+
+error_remove_trigger:
+	if (indio_dev->modes & INDIO_RING_TRIGGERED)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		lis3l02dq_remove_trigger(indio_dev);
 error_free_interrupt:
 	if (spi->irq && gpio_is_valid(irq_to_gpio(spi->irq)) > 0)
 		free_irq(st->us->irq, indio_dev);
+<<<<<<< HEAD
 error_uninitialize_buffer:
 	iio_buffer_unregister(indio_dev);
 error_unreg_buffer_funcs:
 	lis3l02dq_unconfigure_buffer(indio_dev);
 error_free_dev:
 	iio_free_device(indio_dev);
+=======
+error_uninitialize_ring:
+	iio_ring_buffer_unregister(indio_dev->ring);
+error_unreg_ring_funcs:
+	lis3l02dq_unconfigure_ring(indio_dev);
+error_free_dev:
+	if (regdone)
+		iio_device_unregister(indio_dev);
+	else
+		iio_free_device(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 error_ret:
 	return ret;
 }
@@ -772,8 +940,11 @@ static int lis3l02dq_remove(struct spi_device *spi)
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 	struct lis3l02dq_state *st = iio_priv(indio_dev);
 
+<<<<<<< HEAD
 	iio_device_unregister(indio_dev);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ret = lis3l02dq_disable_all_events(indio_dev);
 	if (ret)
 		goto err_ret;
@@ -786,10 +957,19 @@ static int lis3l02dq_remove(struct spi_device *spi)
 		free_irq(st->us->irq, indio_dev);
 
 	lis3l02dq_remove_trigger(indio_dev);
+<<<<<<< HEAD
 	iio_buffer_unregister(indio_dev);
 	lis3l02dq_unconfigure_buffer(indio_dev);
 
 	iio_free_device(indio_dev);
+=======
+	iio_ring_buffer_unregister(indio_dev->ring);
+	lis3l02dq_unconfigure_ring(indio_dev);
+	iio_device_unregister(indio_dev);
+
+	return 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 err_ret:
 	return ret;
 }
@@ -802,9 +982,27 @@ static struct spi_driver lis3l02dq_driver = {
 	.probe = lis3l02dq_probe,
 	.remove = __devexit_p(lis3l02dq_remove),
 };
+<<<<<<< HEAD
 module_spi_driver(lis3l02dq_driver);
+=======
+
+static __init int lis3l02dq_init(void)
+{
+	return spi_register_driver(&lis3l02dq_driver);
+}
+module_init(lis3l02dq_init);
+
+static __exit void lis3l02dq_exit(void)
+{
+	spi_unregister_driver(&lis3l02dq_driver);
+}
+module_exit(lis3l02dq_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Jonathan Cameron <jic23@cam.ac.uk>");
 MODULE_DESCRIPTION("ST LIS3L02DQ Accelerometer SPI driver");
 MODULE_LICENSE("GPL v2");
+<<<<<<< HEAD
 MODULE_ALIAS("spi:lis3l02dq");
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

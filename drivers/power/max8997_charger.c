@@ -56,8 +56,22 @@ static int max8997_battery_get_property(struct power_supply *psy,
 		ret = max8997_read_reg(i2c, MAX8997_REG_STATUS4, &reg);
 		if (ret)
 			return ret;
+<<<<<<< HEAD
 		if ((reg & (1 << 0)) == 0x1)
 			val->intval = POWER_SUPPLY_STATUS_FULL;
+=======
+
+		if ((reg & (1 << 0)) == 0x1)
+			val->intval = POWER_SUPPLY_STATUS_FULL;
+		else if ((reg & (1 << 1)) && !(reg & (1 << 2)) &&
+			 (reg & (1 << 3)) && (reg & (3 << 4)) &&
+			 !(reg & (1 << 6)))
+			val->intval = POWER_SUPPLY_STATUS_CHARGING;
+		else if ((reg & (1 << 1)) && !(reg & (1 << 6)))
+			val->intval = POWER_SUPPLY_STATUS_NOT_CHARGING;
+		else
+			val->intval = POWER_SUPPLY_STATUS_DISCHARGING;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		break;
 	case POWER_SUPPLY_PROP_PRESENT:
@@ -97,7 +111,11 @@ static __devinit int max8997_battery_probe(struct platform_device *pdev)
 		return -EINVAL;
 
 	if (pdata->eoc_mA) {
+<<<<<<< HEAD
 		int val = (pdata->eoc_mA - 50) / 10;
+=======
+		u8 val = (pdata->eoc_mA - 50) / 10;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (val < 0)
 			val = 0;
 		if (val > 0xf)
@@ -178,7 +196,10 @@ static int __devexit max8997_battery_remove(struct platform_device *pdev)
 
 static const struct platform_device_id max8997_battery_id[] = {
 	{ "max8997-battery", 0 },
+<<<<<<< HEAD
 	{ }
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static struct platform_driver max8997_battery_driver = {

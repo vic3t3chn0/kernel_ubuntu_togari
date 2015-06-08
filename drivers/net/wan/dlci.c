@@ -28,8 +28,11 @@
  *		2 of the License, or (at your option) any later version.
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/types.h>
@@ -50,6 +53,10 @@
 
 #include <net/sock.h>
 
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/io.h>
 #include <asm/dma.h>
 #include <asm/uaccess.h>
@@ -113,7 +120,12 @@ static void dlci_receive(struct sk_buff *skb, struct net_device *dev)
 
 	dlp = netdev_priv(dev);
 	if (!pskb_may_pull(skb, sizeof(*hdr))) {
+<<<<<<< HEAD
 		netdev_notice(dev, "invalid data no header\n");
+=======
+		printk(KERN_NOTICE "%s: invalid data no header\n",
+		       dev->name);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		dev->stats.rx_errors++;
 		kfree_skb(skb);
 		return;
@@ -126,8 +138,12 @@ static void dlci_receive(struct sk_buff *skb, struct net_device *dev)
 
 	if (hdr->control != FRAD_I_UI)
 	{
+<<<<<<< HEAD
 		netdev_notice(dev, "Invalid header flag 0x%02X\n",
 			      hdr->control);
+=======
+		printk(KERN_NOTICE "%s: Invalid header flag 0x%02X.\n", dev->name, hdr->control);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		dev->stats.rx_errors++;
 	}
 	else
@@ -136,18 +152,26 @@ static void dlci_receive(struct sk_buff *skb, struct net_device *dev)
 			case FRAD_P_PADDING:
 				if (hdr->NLPID != FRAD_P_SNAP)
 				{
+<<<<<<< HEAD
 					netdev_notice(dev, "Unsupported NLPID 0x%02X\n",
 						      hdr->NLPID);
+=======
+					printk(KERN_NOTICE "%s: Unsupported NLPID 0x%02X.\n", dev->name, hdr->NLPID);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					dev->stats.rx_errors++;
 					break;
 				}
 	 
 				if (hdr->OUI[0] + hdr->OUI[1] + hdr->OUI[2] != 0)
 				{
+<<<<<<< HEAD
 					netdev_notice(dev, "Unsupported organizationally unique identifier 0x%02X-%02X-%02X\n",
 						      hdr->OUI[0],
 						      hdr->OUI[1],
 						      hdr->OUI[2]);
+=======
+					printk(KERN_NOTICE "%s: Unsupported organizationally unique identifier 0x%02X-%02X-%02X.\n", dev->name, hdr->OUI[0], hdr->OUI[1], hdr->OUI[2]);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					dev->stats.rx_errors++;
 					break;
 				}
@@ -168,14 +192,22 @@ static void dlci_receive(struct sk_buff *skb, struct net_device *dev)
 			case FRAD_P_SNAP:
 			case FRAD_P_Q933:
 			case FRAD_P_CLNP:
+<<<<<<< HEAD
 				netdev_notice(dev, "Unsupported NLPID 0x%02X\n",
 					      hdr->pad);
+=======
+				printk(KERN_NOTICE "%s: Unsupported NLPID 0x%02X.\n", dev->name, hdr->pad);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				dev->stats.rx_errors++;
 				break;
 
 			default:
+<<<<<<< HEAD
 				netdev_notice(dev, "Invalid pad byte 0x%02X\n",
 					      hdr->pad);
+=======
+				printk(KERN_NOTICE "%s: Invalid pad byte 0x%02X.\n", dev->name, hdr->pad);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				dev->stats.rx_errors++;
 				break;				
 		}

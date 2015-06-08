@@ -1,5 +1,9 @@
 /* Copyright (c) 2007 Coraid, Inc.  See COPYING for GPL terms. */
+<<<<<<< HEAD
 #define VERSION "47"
+=======
+#define VERSION "47q"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define AOE_MAJOR 152
 #define DEVICE_NAME "aoe"
 

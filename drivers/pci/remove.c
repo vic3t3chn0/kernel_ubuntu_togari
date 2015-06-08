@@ -19,6 +19,11 @@ static void pci_free_resources(struct pci_dev *dev)
 
 static void pci_stop_dev(struct pci_dev *dev)
 {
+<<<<<<< HEAD
+=======
+	pci_pme_active(dev, false);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (dev->is_added) {
 		pci_proc_detach_device(dev);
 		pci_remove_sysfs_dev_files(dev);
@@ -77,9 +82,14 @@ void pci_remove_bus(struct pci_bus *pci_bus)
 }
 EXPORT_SYMBOL(pci_remove_bus);
 
+<<<<<<< HEAD
 static void __pci_remove_behind_bridge(struct pci_dev *dev);
 /**
  * pci_stop_and_remove_bus_device - remove a PCI device and any children
+=======
+/**
+ * pci_remove_bus_device - remove a PCI device and any children
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @dev: the device to remove
  *
  * Remove a PCI device from the device lists, informing the drivers
@@ -90,18 +100,29 @@ static void __pci_remove_behind_bridge(struct pci_dev *dev);
  * device lists, remove the /proc entry, and notify userspace
  * (/sbin/hotplug).
  */
+<<<<<<< HEAD
 void __pci_remove_bus_device(struct pci_dev *dev)
 {
 	if (dev->subordinate) {
 		struct pci_bus *b = dev->subordinate;
 
 		__pci_remove_behind_bridge(dev);
+=======
+void pci_remove_bus_device(struct pci_dev *dev)
+{
+	pci_stop_bus_device(dev);
+	if (dev->subordinate) {
+		struct pci_bus *b = dev->subordinate;
+
+		pci_remove_behind_bridge(dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		pci_remove_bus(b);
 		dev->subordinate = NULL;
 	}
 
 	pci_destroy_dev(dev);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(__pci_remove_bus_device);
 
 void pci_stop_and_remove_bus_device(struct pci_dev *dev)
@@ -131,22 +152,38 @@ static void pci_stop_behind_bridge(struct pci_dev *dev)
 /**
  * pci_stop_and_remove_behind_bridge - stop and remove all devices behind
  *					 a PCI bridge
+=======
+
+/**
+ * pci_remove_behind_bridge - remove all devices behind a PCI bridge
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @dev: PCI bridge device
  *
  * Remove all devices on the bus, except for the parent bridge.
  * This also removes any child buses, and any devices they may
  * contain in a depth-first manner.
  */
+<<<<<<< HEAD
 void pci_stop_and_remove_behind_bridge(struct pci_dev *dev)
 {
 	pci_stop_behind_bridge(dev);
 	__pci_remove_behind_bridge(dev);
+=======
+void pci_remove_behind_bridge(struct pci_dev *dev)
+{
+	struct list_head *l, *n;
+
+	if (dev->subordinate)
+		list_for_each_safe(l, n, &dev->subordinate->devices)
+			pci_remove_bus_device(pci_dev_b(l));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void pci_stop_bus_devices(struct pci_bus *bus)
 {
 	struct list_head *l, *n;
 
+<<<<<<< HEAD
 	/*
 	 * VFs could be removed by pci_stop_and_remove_bus_device() in the
 	 *  pci_stop_bus_devices() code path for PF.
@@ -156,6 +193,9 @@ static void pci_stop_bus_devices(struct pci_bus *bus)
 	 *  of removed VF.
 	 */
 	list_for_each_prev_safe(l, n, &bus->devices) {
+=======
+	list_for_each_safe(l, n, &bus->devices) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		struct pci_dev *dev = pci_dev_b(l);
 		pci_stop_bus_device(dev);
 	}
@@ -177,6 +217,11 @@ void pci_stop_bus_device(struct pci_dev *dev)
 	pci_stop_dev(dev);
 }
 
+<<<<<<< HEAD
 EXPORT_SYMBOL(pci_stop_and_remove_bus_device);
 EXPORT_SYMBOL(pci_stop_and_remove_behind_bridge);
+=======
+EXPORT_SYMBOL(pci_remove_bus_device);
+EXPORT_SYMBOL(pci_remove_behind_bridge);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 EXPORT_SYMBOL_GPL(pci_stop_bus_device);

@@ -3,9 +3,13 @@
 #
 ccflags-$(CONFIG_USB_GADGET_DEBUG) := -DDEBUG
 
+<<<<<<< HEAD
 obj-$(CONFIG_USB_GADGET)	+= udc-core.o
 obj-$(CONFIG_USB_DUMMY_HCD)	+= dummy_hcd.o
 obj-$(CONFIG_USB_NET2272)	+= net2272.o
+=======
+obj-$(CONFIG_USB_DUMMY_HCD)	+= dummy_hcd.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_USB_NET2280)	+= net2280.o
 obj-$(CONFIG_USB_AMD5536UDC)	+= amd5536udc.o
 obj-$(CONFIG_USB_PXA25X)	+= pxa25x_udc.o
@@ -14,6 +18,11 @@ obj-$(CONFIG_USB_IMX)		+= imx_udc.o
 obj-$(CONFIG_USB_GOKU)		+= goku_udc.o
 obj-$(CONFIG_USB_OMAP)		+= omap_udc.o
 obj-$(CONFIG_USB_S3C2410)	+= s3c2410_udc.o
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_USB_S3C_OTGD)	+= s3c_udc_otg.o
+obj-$(CONFIG_USB_EXYNOS_SS_UDC) += exynos_ss_udc.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_USB_AT91)		+= at91_udc.o
 obj-$(CONFIG_USB_ATMEL_USBA)	+= atmel_usba_udc.o
 obj-$(CONFIG_USB_FSL_USB2)	+= fsl_usb2_udc.o
@@ -27,12 +36,19 @@ obj-$(CONFIG_USB_S3C_HSOTG)	+= s3c-hsotg.o
 obj-$(CONFIG_USB_S3C_HSUDC)	+= s3c-hsudc.o
 obj-$(CONFIG_USB_LANGWELL)	+= langwell_udc.o
 obj-$(CONFIG_USB_EG20T)		+= pch_udc.o
+<<<<<<< HEAD
 obj-$(CONFIG_USB_MV_UDC)	+= mv_udc.o
 mv_udc-y			:= mv_udc_core.o
 obj-$(CONFIG_USB_CI13XXX_MSM_HSIC)	+= ci13xxx_msm_hsic.o
 obj-$(CONFIG_USB_CI13XXX_MSM)	+= ci13xxx_msm.o
 obj-$(CONFIG_USB_FUSB300)	+= fusb300_udc.o
 obj-$(CONFIG_USB_MSM_72K)	+= msm72k_udc.o
+=======
+obj-$(CONFIG_USB_PXA_U2O)	+= mv_udc.o
+mv_udc-y			:= mv_udc_core.o mv_udc_phy.o
+obj-$(CONFIG_USB_CI13XXX_MSM)	+= ci13xxx_msm.o
+obj-$(CONFIG_USB_FUSB300)	+= fusb300_udc.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #
 # USB gadget drivers
@@ -53,9 +69,14 @@ g_dbgp-y			:= dbgp.o
 g_nokia-y			:= nokia.o
 g_webcam-y			:= webcam.o
 g_ncm-y				:= ncm.o
+<<<<<<< HEAD
 g_acm_ms-y			:= acm_ms.o
 g_tcm_usb_gadget-y		:= tcm_usb_gadget.o
 g_android-y			:= android.o
+=======
+g_android-y			:= android.o
+g_slp-y				:= slp.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 obj-$(CONFIG_USB_ZERO)		+= g_zero.o
 obj-$(CONFIG_USB_AUDIO)		+= g_audio.o
@@ -74,6 +95,18 @@ obj-$(CONFIG_USB_G_MULTI)	+= g_multi.o
 obj-$(CONFIG_USB_G_NOKIA)	+= g_nokia.o
 obj-$(CONFIG_USB_G_WEBCAM)	+= g_webcam.o
 obj-$(CONFIG_USB_G_NCM)		+= g_ncm.o
+<<<<<<< HEAD
 obj-$(CONFIG_USB_G_ACM_MS)	+= g_acm_ms.o
 obj-$(CONFIG_USB_GADGET_TARGET)	+= tcm_usb_gadget.o
 obj-$(CONFIG_USB_G_ANDROID)	+= g_android.o
+=======
+obj-$(CONFIG_USB_G_ANDROID)	+= g_android.o
+obj-$(CONFIG_USB_G_SLP)		+= g_slp.o
+obj-$(CONFIG_USB_ANDROID)	+= gadget_gbhc/android.o
+obj-$(CONFIG_USB_ANDROID_ACM)	+= gadget_gbhc/f_acm.o gadget_gbhc/u_serial.o
+obj-$(CONFIG_USB_ANDROID_ADB)	+= gadget_gbhc/f_adb.o
+obj-$(CONFIG_USB_ANDROID_MASS_STORAGE)	+= gadget_gbhc/f_mass_storage.o
+obj-$(CONFIG_USB_ANDROID_MTP)	+= gadget_gbhc/f_mtp.o
+obj-$(CONFIG_USB_ANDROID_RNDIS)	+= gadget_gbhc/f_rndis.o gadget_gbhc/u_ether.o
+obj-$(CONFIG_USB_ANDROID_SAMSUNG_COMPOSITE)	+= multi_config.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

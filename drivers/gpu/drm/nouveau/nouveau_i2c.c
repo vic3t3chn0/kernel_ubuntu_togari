@@ -29,6 +29,13 @@
 #include "nouveau_i2c.h"
 #include "nouveau_hw.h"
 
+<<<<<<< HEAD
+=======
+#define T_TIMEOUT  2200000
+#define T_RISEFALL 1000
+#define T_HOLD     5000
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void
 i2c_drive_scl(void *data, int state)
 {
@@ -109,6 +116,178 @@ i2c_sense_sda(void *data)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+static void
+i2c_delay(struct nouveau_i2c_chan *port, u32 nsec)
+{
+	udelay((nsec + 500) / 1000);
+}
+
+static bool
+i2c_raise_scl(struct nouveau_i2c_chan *port)
+{
+	u32 timeout = T_TIMEOUT / T_RISEFALL;
+
+	i2c_drive_scl(port, 1);
+	do {
+		i2c_delay(port, T_RISEFALL);
+	} while (!i2c_sense_scl(port) && --timeout);
+
+	return timeout != 0;
+}
+
+static int
+i2c_start(struct nouveau_i2c_chan *port)
+{
+	int ret = 0;
+
+	port->state  = i2c_sense_scl(port);
+	port->state |= i2c_sense_sda(port) << 1;
+	if (port->state != 3) {
+		i2c_drive_scl(port, 0);
+		i2c_drive_sda(port, 1);
+		if (!i2c_raise_scl(port))
+			ret = -EBUSY;
+	}
+
+	i2c_drive_sda(port, 0);
+	i2c_delay(port, T_HOLD);
+	i2c_drive_scl(port, 0);
+	i2c_delay(port, T_HOLD);
+	return ret;
+}
+
+static void
+i2c_stop(struct nouveau_i2c_chan *port)
+{
+	i2c_drive_scl(port, 0);
+	i2c_drive_sda(port, 0);
+	i2c_delay(port, T_RISEFALL);
+
+	i2c_drive_scl(port, 1);
+	i2c_delay(port, T_HOLD);
+	i2c_drive_sda(port, 1);
+	i2c_delay(port, T_HOLD);
+}
+
+static int
+i2c_bitw(struct nouveau_i2c_chan *port, int sda)
+{
+	i2c_drive_sda(port, sda);
+	i2c_delay(port, T_RISEFALL);
+
+	if (!i2c_raise_scl(port))
+		return -ETIMEDOUT;
+	i2c_delay(port, T_HOLD);
+
+	i2c_drive_scl(port, 0);
+	i2c_delay(port, T_HOLD);
+	return 0;
+}
+
+static int
+i2c_bitr(struct nouveau_i2c_chan *port)
+{
+	int sda;
+
+	i2c_drive_sda(port, 1);
+	i2c_delay(port, T_RISEFALL);
+
+	if (!i2c_raise_scl(port))
+		return -ETIMEDOUT;
+	i2c_delay(port, T_HOLD);
+
+	sda = i2c_sense_sda(port);
+
+	i2c_drive_scl(port, 0);
+	i2c_delay(port, T_HOLD);
+	return sda;
+}
+
+static int
+i2c_get_byte(struct nouveau_i2c_chan *port, u8 *byte, bool last)
+{
+	int i, bit;
+
+	*byte = 0;
+	for (i = 7; i >= 0; i--) {
+		bit = i2c_bitr(port);
+		if (bit < 0)
+			return bit;
+		*byte |= bit << i;
+	}
+
+	return i2c_bitw(port, last ? 1 : 0);
+}
+
+static int
+i2c_put_byte(struct nouveau_i2c_chan *port, u8 byte)
+{
+	int i, ret;
+	for (i = 7; i >= 0; i--) {
+		ret = i2c_bitw(port, !!(byte & (1 << i)));
+		if (ret < 0)
+			return ret;
+	}
+
+	ret = i2c_bitr(port);
+	if (ret == 1) /* nack */
+		ret = -EIO;
+	return ret;
+}
+
+static int
+i2c_addr(struct nouveau_i2c_chan *port, struct i2c_msg *msg)
+{
+	u32 addr = msg->addr << 1;
+	if (msg->flags & I2C_M_RD)
+		addr |= 1;
+	return i2c_put_byte(port, addr);
+}
+
+static int
+i2c_bit_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
+{
+	struct nouveau_i2c_chan *port = (struct nouveau_i2c_chan *)adap;
+	struct i2c_msg *msg = msgs;
+	int ret = 0, mcnt = num;
+
+	while (!ret && mcnt--) {
+		u8 remaining = msg->len;
+		u8 *ptr = msg->buf;
+
+		ret = i2c_start(port);
+		if (ret == 0)
+			ret = i2c_addr(port, msg);
+
+		if (msg->flags & I2C_M_RD) {
+			while (!ret && remaining--)
+				ret = i2c_get_byte(port, ptr++, !remaining);
+		} else {
+			while (!ret && remaining--)
+				ret = i2c_put_byte(port, *ptr++);
+		}
+
+		msg++;
+	}
+
+	i2c_stop(port);
+	return (ret < 0) ? ret : num;
+}
+
+static u32
+i2c_bit_func(struct i2c_adapter *adap)
+{
+	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
+}
+
+const struct i2c_algorithm nouveau_i2c_bit_algo = {
+	.master_xfer = i2c_bit_xfer,
+	.functionality = i2c_bit_func
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static const uint32_t nv50_i2c_port[] = {
 	0x00e138, 0x00e150, 0x00e168, 0x00e180,
 	0x00e254, 0x00e274, 0x00e764, 0x00e780,
@@ -142,8 +321,13 @@ nouveau_i2c_init(struct drm_device *dev)
 	struct drm_nouveau_private *dev_priv = dev->dev_private;
 	struct nvbios *bios = &dev_priv->vbios;
 	struct nouveau_i2c_chan *port;
+<<<<<<< HEAD
 	u8 version = 0x00, entries, recordlen;
 	u8 *i2c, *entry, legacy[2][4] = {};
+=======
+	u8 *i2c, *entry, legacy[2][4] = {};
+	u8 version, entries, recordlen;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int ret, i;
 
 	INIT_LIST_HEAD(&dev_priv->i2c_ports);
@@ -173,12 +357,20 @@ nouveau_i2c_init(struct drm_device *dev)
 		if (i2c[7]) legacy[1][1] = i2c[7];
 	}
 
+<<<<<<< HEAD
 	if (version >= 0x30) {
+=======
+	if (i2c && version >= 0x30) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		entry     = i2c[1] + i2c;
 		entries   = i2c[2];
 		recordlen = i2c[3];
 	} else
+<<<<<<< HEAD
 	if (version) {
+=======
+	if (i2c) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		entry     = i2c;
 		entries   = 16;
 		recordlen = 4;
@@ -211,10 +403,18 @@ nouveau_i2c_init(struct drm_device *dev)
 		case 0: /* NV04:NV50 */
 			port->drive = entry[0];
 			port->sense = entry[1];
+<<<<<<< HEAD
+=======
+			port->adapter.algo = &nouveau_i2c_bit_algo;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		case 4: /* NV4E */
 			port->drive = 0x600800 + entry[1];
 			port->sense = port->drive;
+<<<<<<< HEAD
+=======
+			port->adapter.algo = &nouveau_i2c_bit_algo;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		case 5: /* NV50- */
 			port->drive = entry[0] & 0x0f;
@@ -227,6 +427,10 @@ nouveau_i2c_init(struct drm_device *dev)
 				port->drive = 0x00d014 + (port->drive * 0x20);
 				port->sense = port->drive;
 			}
+<<<<<<< HEAD
+=======
+			port->adapter.algo = &nouveau_i2c_bit_algo;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		case 6: /* NV50- DP AUX */
 			port->drive = entry[0];
@@ -237,7 +441,11 @@ nouveau_i2c_init(struct drm_device *dev)
 			break;
 		}
 
+<<<<<<< HEAD
 		if (!port->adapter.algo && !port->drive) {
+=======
+		if (!port->adapter.algo) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			NV_ERROR(dev, "I2C%d: type %d index %x/%x unknown\n",
 				 i, port->type, port->drive, port->sense);
 			kfree(port);
@@ -253,6 +461,7 @@ nouveau_i2c_init(struct drm_device *dev)
 		port->dcb = ROM32(entry[0]);
 		i2c_set_adapdata(&port->adapter, i2c);
 
+<<<<<<< HEAD
 		if (port->adapter.algo != &nouveau_dp_i2c_algo) {
 			port->adapter.algo_data = &port->bit;
 			port->bit.udelay = 10;
@@ -273,6 +482,9 @@ nouveau_i2c_init(struct drm_device *dev)
 			ret = i2c_add_adapter(&port->adapter);
 		}
 
+=======
+		ret = i2c_add_adapter(&port->adapter);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (ret) {
 			NV_ERROR(dev, "I2C%d: failed register: %d\n", i, ret);
 			kfree(port);

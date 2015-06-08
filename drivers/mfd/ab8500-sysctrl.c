@@ -5,11 +5,18 @@
  */
 
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/platform_device.h>
 #include <linux/mfd/abx500.h>
 #include <linux/mfd/abx500/ab8500.h>
 #include <linux/mfd/abx500/ab8500-sysctrl.h>
+=======
+#include <linux/platform_device.h>
+#include <linux/mfd/ab8500.h>
+#include <linux/mfd/abx500.h>
+#include <linux/mfd/ab8500/sysctrl.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static struct device *sysctrl_dev;
 

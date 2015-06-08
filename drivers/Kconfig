@@ -40,6 +40,11 @@ source "drivers/net/Kconfig"
 
 source "drivers/isdn/Kconfig"
 
+<<<<<<< HEAD
+=======
+source "drivers/telephony/Kconfig"
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 # input before char - char/joystick depends on it. As does USB.
 
 source "drivers/input/Kconfig"
@@ -50,22 +55,33 @@ source "drivers/i2c/Kconfig"
 
 source "drivers/spi/Kconfig"
 
+<<<<<<< HEAD
 source "drivers/spmi/Kconfig"
 
 source "drivers/slimbus/Kconfig"
 
 source "drivers/hsi/Kconfig"
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/pps/Kconfig"
 
 source "drivers/ptp/Kconfig"
 
+<<<<<<< HEAD
 source "drivers/pinctrl/Kconfig"
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/gpio/Kconfig"
 
 source "drivers/w1/Kconfig"
 
+<<<<<<< HEAD
+=======
+source "drivers/battery/Kconfig"
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/power/Kconfig"
 
 source "drivers/hwmon/Kconfig"
@@ -100,6 +116,11 @@ source "drivers/memstick/Kconfig"
 
 source "drivers/leds/Kconfig"
 
+<<<<<<< HEAD
+=======
+source "drivers/nfc/Kconfig"
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/switch/Kconfig"
 
 source "drivers/accessibility/Kconfig"
@@ -120,10 +141,13 @@ source "drivers/uio/Kconfig"
 
 source "drivers/vlynq/Kconfig"
 
+<<<<<<< HEAD
 source "drivers/virtio/Kconfig"
 
 source "drivers/hv/Kconfig"
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/xen/Kconfig"
 
 source "drivers/staging/Kconfig"
@@ -136,6 +160,7 @@ source "drivers/hwspinlock/Kconfig"
 
 source "drivers/clocksource/Kconfig"
 
+<<<<<<< HEAD
 source "drivers/iommu/Kconfig"
 
 source "drivers/remoteproc/Kconfig"
@@ -153,5 +178,39 @@ source "drivers/coresight/Kconfig"
 source "drivers/bif/Kconfig"
 
 source "drivers/sensors/Kconfig"
+=======
+source "drivers/motor/Kconfig"
+
+source "drivers/samsung/Kconfig"
+
+source "drivers/sensor/Kconfig"
+
+source "drivers/sensorhub/Kconfig"
+
+source "drivers/devfreq/Kconfig"
+
+source "drivers/phone_svn/Kconfig"
+
+source "drivers/svnet/Kconfig"
+
+source "drivers/accessory/Kconfig"
+
+source "drivers/irda/Kconfig"
+
+source "drivers/extcon/Kconfig"
+
+source "drivers/barcode_emul/Kconfig"
+
+# Secure OS Mobicore
+source "drivers/gud/Kconfig"
+
+source "drivers/iommu/Kconfig"
+
+# FELICA
+source "drivers/felica/Kconfig"
+
+# Authentec
+source "drivers/interceptor/Kconfig"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 endmenu

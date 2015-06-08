@@ -6580,6 +6580,7 @@ static const struct file_operations dac960_user_command_proc_fops = {
 
 static void DAC960_CreateProcEntries(DAC960_Controller_T *Controller)
 {
+<<<<<<< HEAD
 	struct proc_dir_entry *ControllerProcEntry;
 
 	if (DAC960_ProcDirectoryEntry == NULL) {
@@ -6595,6 +6596,26 @@ static void DAC960_CreateProcEntries(DAC960_Controller_T *Controller)
 	proc_create_data("current_status", 0, ControllerProcEntry, &dac960_current_status_proc_fops, Controller);
 	proc_create_data("user_command", S_IWUSR | S_IRUSR, ControllerProcEntry, &dac960_user_command_proc_fops, Controller);
 	Controller->ControllerProcEntry = ControllerProcEntry;
+=======
+	struct proc_dir_entry *StatusProcEntry;
+	struct proc_dir_entry *ControllerProcEntry;
+	struct proc_dir_entry *UserCommandProcEntry;
+
+	if (DAC960_ProcDirectoryEntry == NULL) {
+  		DAC960_ProcDirectoryEntry = proc_mkdir("rd", NULL);
+  		StatusProcEntry = proc_create("status", 0,
+					   DAC960_ProcDirectoryEntry,
+					   &dac960_proc_fops);
+	}
+
+      sprintf(Controller->ControllerName, "c%d", Controller->ControllerNumber);
+      ControllerProcEntry = proc_mkdir(Controller->ControllerName,
+				       DAC960_ProcDirectoryEntry);
+      proc_create_data("initial_status", 0, ControllerProcEntry, &dac960_initial_status_proc_fops, Controller);
+      proc_create_data("current_status", 0, ControllerProcEntry, &dac960_current_status_proc_fops, Controller);
+      UserCommandProcEntry = proc_create_data("user_command", S_IWUSR | S_IRUSR, ControllerProcEntry, &dac960_user_command_proc_fops, Controller);
+      Controller->ControllerProcEntry = ControllerProcEntry;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 

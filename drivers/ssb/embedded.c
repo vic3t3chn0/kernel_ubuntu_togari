@@ -3,12 +3,19 @@
  * Embedded systems support code
  *
  * Copyright 2005-2008, Broadcom Corporation
+<<<<<<< HEAD
  * Copyright 2006-2008, Michael Buesch <m@bues.ch>
+=======
+ * Copyright 2006-2008, Michael Buesch <mb@bu3sch.de>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Licensed under the GNU/GPL. See COPYING for details.
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/ssb/ssb.h>
 #include <linux/ssb/ssb_embedded.h>
 #include <linux/ssb/ssb_driver_pci.h>

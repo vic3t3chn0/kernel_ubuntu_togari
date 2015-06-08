@@ -20,12 +20,21 @@ void qla4xxx_dump_buffer(void *b, uint32_t size)
 	printk("------------------------------------------------------------"
 	       "--\n");
 	for (cnt = 0; cnt < size; c++) {
+<<<<<<< HEAD
 		printk("%02x", *c);
 		if (!(++cnt % 16))
 			printk("\n");
 
 		else
 			printk("  ");
+=======
+		printk(KERN_INFO "%02x", *c);
+		if (!(++cnt % 16))
+			printk(KERN_INFO "\n");
+
+		else
+			printk(KERN_INFO "  ");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	printk(KERN_INFO "\n");
 }

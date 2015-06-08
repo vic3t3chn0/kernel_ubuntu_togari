@@ -1,4 +1,5 @@
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <linux/gpio.h>
 #include <linux/mutex.h>
 #include <linux/kernel.h>
@@ -11,6 +12,23 @@
 #include "../kfifo_buf.h"
 #include "../trigger.h"
 #include "../trigger_consumer.h"
+=======
+#include <linux/irq.h>
+#include <linux/gpio.h>
+#include <linux/mutex.h>
+#include <linux/device.h>
+#include <linux/kernel.h>
+#include <linux/spi/spi.h>
+#include <linux/sysfs.h>
+#include <linux/slab.h>
+
+#include "../iio.h"
+#include "../sysfs.h"
+#include "../ring_sw.h"
+#include "../kfifo_buf.h"
+#include "accel.h"
+#include "../trigger.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "lis3l02dq.h"
 
 /**
@@ -38,6 +56,40 @@ irqreturn_t lis3l02dq_data_rdy_trig_poll(int irq, void *private)
 		return IRQ_WAKE_THREAD;
 }
 
+<<<<<<< HEAD
+=======
+/**
+ * lis3l02dq_read_accel_from_ring() individual acceleration read from ring
+ **/
+ssize_t lis3l02dq_read_accel_from_ring(struct iio_ring_buffer *ring,
+				       int index,
+				       int *val)
+{
+	int ret;
+	s16 *data;
+
+	if (!iio_scan_mask_query(ring, index))
+		return -EINVAL;
+
+	if (!ring->access->read_last)
+		return -EBUSY;
+
+	data = kmalloc(ring->access->get_bytes_per_datum(ring),
+		       GFP_KERNEL);
+	if (data == NULL)
+		return -ENOMEM;
+
+	ret = ring->access->read_last(ring, (u8 *)data);
+	if (ret)
+		goto error_free_data;
+	*val = data[bitmap_weight(&ring->scan_mask, index)];
+error_free_data:
+	kfree(data);
+
+	return ret;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static const u8 read_all_tx_array[] = {
 	LIS3L02DQ_READ_REG(LIS3L02DQ_REG_OUT_X_L_ADDR), 0,
 	LIS3L02DQ_READ_REG(LIS3L02DQ_REG_OUT_X_H_ADDR), 0,
@@ -55,21 +107,34 @@ static const u8 read_all_tx_array[] = {
  **/
 static int lis3l02dq_read_all(struct iio_dev *indio_dev, u8 *rx_array)
 {
+<<<<<<< HEAD
+=======
+	struct iio_ring_buffer *ring = indio_dev->ring;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct lis3l02dq_state *st = iio_priv(indio_dev);
 	struct spi_transfer *xfers;
 	struct spi_message msg;
 	int ret, i, j = 0;
 
+<<<<<<< HEAD
 	xfers = kcalloc(bitmap_weight(indio_dev->active_scan_mask,
 				      indio_dev->masklength) * 2,
 			sizeof(*xfers), GFP_KERNEL);
+=======
+	xfers = kzalloc((ring->scan_count) * 2
+			* sizeof(*xfers), GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!xfers)
 		return -ENOMEM;
 
 	mutex_lock(&st->buf_lock);
 
 	for (i = 0; i < ARRAY_SIZE(read_all_tx_array)/4; i++)
+<<<<<<< HEAD
 		if (test_bit(i, indio_dev->active_scan_mask)) {
+=======
+		if (ring->scan_mask & (1 << i)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			/* lower byte */
 			xfers[j].tx_buf = st->tx + 2*j;
 			st->tx[2*j] = read_all_tx_array[i*4];
@@ -97,8 +162,12 @@ static int lis3l02dq_read_all(struct iio_dev *indio_dev, u8 *rx_array)
 	 * values in alternate bytes
 	 */
 	spi_message_init(&msg);
+<<<<<<< HEAD
 	for (j = 0; j < bitmap_weight(indio_dev->active_scan_mask,
 				      indio_dev->masklength) * 2; j++)
+=======
+	for (j = 0; j < ring->scan_count * 2; j++)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spi_message_add_tail(&xfers[j], &msg);
 
 	ret = spi_sync(st->us, &msg);
@@ -108,22 +177,35 @@ static int lis3l02dq_read_all(struct iio_dev *indio_dev, u8 *rx_array)
 	return ret;
 }
 
+<<<<<<< HEAD
 static int lis3l02dq_get_buffer_element(struct iio_dev *indio_dev,
+=======
+static int lis3l02dq_get_ring_element(struct iio_dev *indio_dev,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				u8 *buf)
 {
 	int ret, i;
 	u8 *rx_array ;
 	s16 *data = (s16 *)buf;
+<<<<<<< HEAD
 	int scan_count = bitmap_weight(indio_dev->active_scan_mask,
 				       indio_dev->masklength);
 
 	rx_array = kzalloc(4 * scan_count, GFP_KERNEL);
+=======
+
+	rx_array = kzalloc(4 * (indio_dev->ring->scan_count), GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (rx_array == NULL)
 		return -ENOMEM;
 	ret = lis3l02dq_read_all(indio_dev, rx_array);
 	if (ret < 0)
 		return ret;
+<<<<<<< HEAD
 	for (i = 0; i < scan_count; i++)
+=======
+	for (i = 0; i < indio_dev->ring->scan_count; i++)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		data[i] = combine_8_to_16(rx_array[i*4+1],
 					rx_array[i*4+3]);
 	kfree(rx_array);
@@ -134,14 +216,22 @@ static int lis3l02dq_get_buffer_element(struct iio_dev *indio_dev,
 static irqreturn_t lis3l02dq_trigger_handler(int irq, void *p)
 {
 	struct iio_poll_func *pf = p;
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = pf->indio_dev;
 	struct iio_buffer *buffer = indio_dev->buffer;
 	int len = 0;
 	size_t datasize = buffer->access->get_bytes_per_datum(buffer);
+=======
+	struct iio_dev *indio_dev = pf->private_data;
+	struct iio_ring_buffer *ring = indio_dev->ring;
+	int len = 0;
+	size_t datasize = ring->access->get_bytes_per_datum(ring);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	char *data = kmalloc(datasize, GFP_KERNEL);
 
 	if (data == NULL) {
 		dev_err(indio_dev->dev.parent,
+<<<<<<< HEAD
 			"memory alloc failed in buffer bh");
 		return -ENOMEM;
 	}
@@ -155,6 +245,21 @@ static irqreturn_t lis3l02dq_trigger_handler(int irq, void *p)
 				+ sizeof(s64) - 1) & ~(sizeof(s64) - 1))
 			= pf->timestamp;
 	buffer->access->store_to(buffer, (u8 *)data, pf->timestamp);
+=======
+			"memory alloc failed in ring bh");
+		return -ENOMEM;
+	}
+
+	if (ring->scan_count)
+		len = lis3l02dq_get_ring_element(indio_dev, data);
+
+	  /* Guaranteed to be aligned with 8 byte boundary */
+	if (ring->scan_timestamp)
+		*(s64 *)(((phys_addr_t)data + len
+				+ sizeof(s64) - 1) & ~(sizeof(s64) - 1))
+			= pf->timestamp;
+	ring->access->store_to(ring, (u8 *)data, pf->timestamp);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	iio_trigger_notify_done(indio_dev->trig);
 	kfree(data);
@@ -227,7 +332,11 @@ error_ret:
  *
  * If disabling the interrupt also does a final read to ensure it is clear.
  * This is only important in some cases where the scan enable elements are
+<<<<<<< HEAD
  * switched before the buffer is reenabled.
+=======
+ * switched before the ring is reenabled.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  **/
 static int lis3l02dq_data_rdy_trigger_set_state(struct iio_trigger *trig,
 						bool state)
@@ -239,7 +348,11 @@ static int lis3l02dq_data_rdy_trigger_set_state(struct iio_trigger *trig,
 	__lis3l02dq_write_data_ready_config(&indio_dev->dev, state);
 	if (state == false) {
 		/*
+<<<<<<< HEAD
 		 * A possible quirk with the handler is currently worked around
+=======
+		 * A possible quirk with teh handler is currently worked around
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		 *  by ensuring outstanding read events are cleared.
 		 */
 		ret = lis3l02dq_read_all(indio_dev, NULL);
@@ -275,12 +388,15 @@ static int lis3l02dq_trig_try_reen(struct iio_trigger *trig)
 	return 0;
 }
 
+<<<<<<< HEAD
 static const struct iio_trigger_ops lis3l02dq_trigger_ops = {
 	.owner = THIS_MODULE,
 	.set_trigger_state = &lis3l02dq_data_rdy_trigger_set_state,
 	.try_reenable = &lis3l02dq_trig_try_reen,
 };
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int lis3l02dq_probe_trigger(struct iio_dev *indio_dev)
 {
 	int ret;
@@ -293,8 +409,15 @@ int lis3l02dq_probe_trigger(struct iio_dev *indio_dev)
 	}
 
 	st->trig->dev.parent = &st->us->dev;
+<<<<<<< HEAD
 	st->trig->ops = &lis3l02dq_trigger_ops;
 	st->trig->private_data = indio_dev;
+=======
+	st->trig->owner = THIS_MODULE;
+	st->trig->private_data = indio_dev;
+	st->trig->set_trigger_state = &lis3l02dq_data_rdy_trigger_set_state;
+	st->trig->try_reenable = &lis3l02dq_trig_try_reen;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ret = iio_trigger_register(st->trig);
 	if (ret)
 		goto error_free_trig;
@@ -315,6 +438,7 @@ void lis3l02dq_remove_trigger(struct iio_dev *indio_dev)
 	iio_free_trigger(st->trig);
 }
 
+<<<<<<< HEAD
 void lis3l02dq_unconfigure_buffer(struct iio_dev *indio_dev)
 {
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
@@ -322,6 +446,15 @@ void lis3l02dq_unconfigure_buffer(struct iio_dev *indio_dev)
 }
 
 static int lis3l02dq_buffer_postenable(struct iio_dev *indio_dev)
+=======
+void lis3l02dq_unconfigure_ring(struct iio_dev *indio_dev)
+{
+	iio_dealloc_pollfunc(indio_dev->pollfunc);
+	lis3l02dq_free_buf(indio_dev->ring);
+}
+
+static int lis3l02dq_ring_postenable(struct iio_dev *indio_dev)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	/* Disable unwanted channels otherwise the interrupt will not clear */
 	u8 t;
@@ -334,17 +467,29 @@ static int lis3l02dq_buffer_postenable(struct iio_dev *indio_dev)
 	if (ret)
 		goto error_ret;
 
+<<<<<<< HEAD
 	if (test_bit(0, indio_dev->active_scan_mask)) {
+=======
+	if (iio_scan_mask_query(indio_dev->ring, 0)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		t |= LIS3L02DQ_REG_CTRL_1_AXES_X_ENABLE;
 		oneenabled = true;
 	} else
 		t &= ~LIS3L02DQ_REG_CTRL_1_AXES_X_ENABLE;
+<<<<<<< HEAD
 	if (test_bit(1, indio_dev->active_scan_mask)) {
+=======
+	if (iio_scan_mask_query(indio_dev->ring, 1)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		t |= LIS3L02DQ_REG_CTRL_1_AXES_Y_ENABLE;
 		oneenabled = true;
 	} else
 		t &= ~LIS3L02DQ_REG_CTRL_1_AXES_Y_ENABLE;
+<<<<<<< HEAD
 	if (test_bit(2, indio_dev->active_scan_mask)) {
+=======
+	if (iio_scan_mask_query(indio_dev->ring, 2)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		t |= LIS3L02DQ_REG_CTRL_1_AXES_Z_ENABLE;
 		oneenabled = true;
 	} else
@@ -358,18 +503,30 @@ static int lis3l02dq_buffer_postenable(struct iio_dev *indio_dev)
 	if (ret)
 		goto error_ret;
 
+<<<<<<< HEAD
 	return iio_triggered_buffer_postenable(indio_dev);
+=======
+	return iio_triggered_ring_postenable(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 error_ret:
 	return ret;
 }
 
 /* Turn all channels on again */
+<<<<<<< HEAD
 static int lis3l02dq_buffer_predisable(struct iio_dev *indio_dev)
+=======
+static int lis3l02dq_ring_predisable(struct iio_dev *indio_dev)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	u8 t;
 	int ret;
 
+<<<<<<< HEAD
 	ret = iio_triggered_buffer_predisable(indio_dev);
+=======
+	ret = iio_triggered_ring_predisable(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret)
 		goto error_ret;
 
@@ -390,6 +547,7 @@ error_ret:
 	return ret;
 }
 
+<<<<<<< HEAD
 static const struct iio_buffer_setup_ops lis3l02dq_buffer_setup_ops = {
 	.preenable = &iio_sw_buffer_preenable,
 	.postenable = &lis3l02dq_buffer_postenable,
@@ -409,6 +567,36 @@ int lis3l02dq_configure_buffer(struct iio_dev *indio_dev)
 
 	buffer->scan_timestamp = true;
 	indio_dev->setup_ops = &lis3l02dq_buffer_setup_ops;
+=======
+static const struct iio_ring_setup_ops lis3l02dq_ring_setup_ops = {
+	.preenable = &iio_sw_ring_preenable,
+	.postenable = &lis3l02dq_ring_postenable,
+	.predisable = &lis3l02dq_ring_predisable,
+};
+
+int lis3l02dq_configure_ring(struct iio_dev *indio_dev)
+{
+	int ret;
+	struct iio_ring_buffer *ring;
+
+	ring = lis3l02dq_alloc_buf(indio_dev);
+	if (!ring)
+		return -ENOMEM;
+
+	indio_dev->ring = ring;
+	/* Effectively select the ring buffer implementation */
+	indio_dev->ring->access = &lis3l02dq_access_funcs;
+	ring->bpe = 2;
+
+	ring->scan_timestamp = true;
+	ring->setup_ops = &lis3l02dq_ring_setup_ops;
+	ring->owner = THIS_MODULE;
+
+	/* Set default scan mode */
+	iio_scan_mask_set(ring, 0);
+	iio_scan_mask_set(ring, 1);
+	iio_scan_mask_set(ring, 2);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* Functions are NULL as we set handler below */
 	indio_dev->pollfunc = iio_alloc_pollfunc(&iio_pollfunc_store_time,
@@ -423,10 +611,18 @@ int lis3l02dq_configure_buffer(struct iio_dev *indio_dev)
 		goto error_iio_sw_rb_free;
 	}
 
+<<<<<<< HEAD
 	indio_dev->modes |= INDIO_BUFFER_TRIGGERED;
 	return 0;
 
 error_iio_sw_rb_free:
 	lis3l02dq_free_buf(indio_dev->buffer);
+=======
+	indio_dev->modes |= INDIO_RING_TRIGGERED;
+	return 0;
+
+error_iio_sw_rb_free:
+	lis3l02dq_free_buf(indio_dev->ring);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return ret;
 }

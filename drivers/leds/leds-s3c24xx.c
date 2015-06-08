@@ -17,7 +17,10 @@
 #include <linux/leds.h>
 #include <linux/gpio.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <mach/hardware.h>
 #include <mach/regs-gpio.h>
@@ -121,7 +124,22 @@ static struct platform_driver s3c24xx_led_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(s3c24xx_led_driver);
+=======
+static int __init s3c24xx_led_init(void)
+{
+	return platform_driver_register(&s3c24xx_led_driver);
+}
+
+static void __exit s3c24xx_led_exit(void)
+{
+	platform_driver_unregister(&s3c24xx_led_driver);
+}
+
+module_init(s3c24xx_led_init);
+module_exit(s3c24xx_led_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Ben Dooks <ben@simtec.co.uk>");
 MODULE_DESCRIPTION("S3C24XX LED driver");

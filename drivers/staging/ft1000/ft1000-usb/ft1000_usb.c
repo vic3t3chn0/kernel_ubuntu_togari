@@ -263,4 +263,28 @@ static struct usb_driver ft1000_usb_driver = {
 	.id_table = id_table,
 };
 
+<<<<<<< HEAD
 module_usb_driver(ft1000_usb_driver);
+=======
+static int __init usb_ft1000_init(void)
+{
+	int ret = 0;
+
+	DEBUG("Initialize and register the driver\n");
+
+	ret = usb_register(&ft1000_usb_driver);
+	if (ret)
+		err("usb_register failed. Error number %d", ret);
+
+	return ret;
+}
+
+static void __exit usb_ft1000_exit(void)
+{
+	DEBUG("Deregister the driver\n");
+	usb_deregister(&ft1000_usb_driver);
+}
+
+module_init(usb_ft1000_init);
+module_exit(usb_ft1000_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

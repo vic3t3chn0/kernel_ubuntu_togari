@@ -69,7 +69,11 @@ static void nv04_tv_dpms(struct drm_encoder *encoder, int mode)
 	struct nv04_mode_state *state = &dev_priv->mode_reg;
 	uint8_t crtc1A;
 
+<<<<<<< HEAD
 	NV_INFO(dev, "Setting dpms mode %d on TV encoder (output %d)\n",
+=======
+	NV_DEBUG(dev, "Setting dpms mode %d on TV encoder (output %d)\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mode, nv_encoder->dcb->index);
 
 	state->pllsel &= ~(PLLSEL_TV_CRTC1_MASK | PLLSEL_TV_CRTC2_MASK);
@@ -162,7 +166,11 @@ static void nv04_tv_commit(struct drm_encoder *encoder)
 
 	helper->dpms(encoder, DRM_MODE_DPMS_ON);
 
+<<<<<<< HEAD
 	NV_INFO(dev, "Output %s is running on CRTC %d using output %c\n",
+=======
+	NV_DEBUG(dev, "Output %s is running on CRTC %d using output %c\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		      drm_get_connector_name(&nouveau_encoder_connector_get(nv_encoder)->base), nv_crtc->index,
 		      '@' + ffs(nv_encoder->dcb->or));
 }

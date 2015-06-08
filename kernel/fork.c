@@ -37,6 +37,10 @@
 #include <linux/swap.h>
 #include <linux/syscalls.h>
 #include <linux/jiffies.h>
+<<<<<<< HEAD
+=======
+#include <linux/tracehook.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/futex.h>
 #include <linux/compat.h>
 #include <linux/kthread.h>
@@ -78,14 +82,21 @@
 
 #include <trace/events/sched.h>
 
+<<<<<<< HEAD
 #define CREATE_TRACE_POINTS
 #include <trace/events/task.h>
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * Protected counters by write_lock_irq(&tasklist_lock)
  */
 unsigned long total_forks;	/* Handle normal Linux uptimes. */
+<<<<<<< HEAD
 int nr_threads;			/* The idle threads do not count.. */
+=======
+int nr_threads; 		/* The idle threads do not count.. */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int max_threads;		/* tunable limit on nr_threads */
 
@@ -170,6 +181,10 @@ static void account_kernel_stack(struct thread_info *ti, int account)
 
 void free_task(struct task_struct *tsk)
 {
+<<<<<<< HEAD
+=======
+	prop_local_destroy_single(&tsk->dirties);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	account_kernel_stack(tsk->stack, -1);
 	free_thread_info(tsk->stack);
 	rt_mutex_debug_task_free(tsk);
@@ -209,7 +224,10 @@ void __put_task_struct(struct task_struct *tsk)
 	WARN_ON(atomic_read(&tsk->usage));
 	WARN_ON(tsk == current);
 
+<<<<<<< HEAD
 	security_task_free(tsk);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	exit_creds(tsk);
 	delayacct_tsk_free(tsk);
 	put_signal_struct(tsk->signal);
@@ -253,7 +271,11 @@ void __init fork_init(unsigned long mempages)
 	/*
 	 * we need to allow at least 20 threads to boot a system
 	 */
+<<<<<<< HEAD
 	if (max_threads < 20)
+=======
+	if(max_threads < 20)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		max_threads = 20;
 
 	init_task.signal->rlim[RLIMIT_NPROC].rlim_cur = max_threads/2;
@@ -289,12 +311,23 @@ static struct task_struct *dup_task_struct(struct task_struct *orig)
 		return NULL;
 	}
 
+<<<<<<< HEAD
 	err = arch_dup_task_struct(tsk, orig);
+=======
+ 	err = arch_dup_task_struct(tsk, orig);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (err)
 		goto out;
 
 	tsk->stack = ti;
 
+<<<<<<< HEAD
+=======
+	err = prop_local_init_single(&tsk->dirties);
+	if (err)
+		goto out;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	setup_thread_stack(tsk, orig);
 	clear_user_return_notifier(tsk);
 	clear_tsk_need_resched(tsk);
@@ -305,11 +338,17 @@ static struct task_struct *dup_task_struct(struct task_struct *orig)
 	tsk->stack_canary = get_random_int();
 #endif
 
+<<<<<<< HEAD
 	/*
 	 * One for us, one for whoever does the "release_task()" (usually
 	 * parent)
 	 */
 	atomic_set(&tsk->usage, 2);
+=======
+	/* One for us, one for whoever does the "release_task()" (usually parent) */
+	atomic_set(&tsk->usage,2);
+	atomic_set(&tsk->fs_excl, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_BLK_DEV_IO_TRACE
 	tsk->btrace_seq = 0;
 #endif
@@ -373,7 +412,11 @@ static int dup_mmap(struct mm_struct *mm, struct mm_struct *oldmm)
 		charge = 0;
 		if (mpnt->vm_flags & VM_ACCOUNT) {
 			unsigned int len = (mpnt->vm_end - mpnt->vm_start) >> PAGE_SHIFT;
+<<<<<<< HEAD
 			if (security_vm_enough_memory_mm(oldmm, len)) /* sic */
+=======
+			if (security_vm_enough_memory(len))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				goto fail_nomem;
 			charge = len;
 		}
@@ -457,7 +500,11 @@ fail_nomem:
 	goto out;
 }
 
+<<<<<<< HEAD
 static inline int mm_alloc_pgd(struct mm_struct *mm)
+=======
+static inline int mm_alloc_pgd(struct mm_struct * mm)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	mm->pgd = pgd_alloc(mm);
 	if (unlikely(!mm->pgd))
@@ -465,7 +512,11 @@ static inline int mm_alloc_pgd(struct mm_struct *mm)
 	return 0;
 }
 
+<<<<<<< HEAD
 static inline void mm_free_pgd(struct mm_struct *mm)
+=======
+static inline void mm_free_pgd(struct mm_struct * mm)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	pgd_free(mm, mm->pgd);
 }
@@ -502,7 +553,11 @@ static void mm_init_aio(struct mm_struct *mm)
 #endif
 }
 
+<<<<<<< HEAD
 static struct mm_struct *mm_init(struct mm_struct *mm, struct task_struct *p)
+=======
+static struct mm_struct * mm_init(struct mm_struct * mm, struct task_struct *p)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	atomic_set(&mm->mm_users, 1);
 	atomic_set(&mm->mm_count, 1);
@@ -518,6 +573,10 @@ static struct mm_struct *mm_init(struct mm_struct *mm, struct task_struct *p)
 	mm->cached_hole_size = ~0UL;
 	mm_init_aio(mm);
 	mm_init_owner(mm, p);
+<<<<<<< HEAD
+=======
+	atomic_set(&mm->oom_disable_count, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (likely(!mm_alloc_pgd(mm))) {
 		mm->def_flags = 0;
@@ -529,6 +588,7 @@ static struct mm_struct *mm_init(struct mm_struct *mm, struct task_struct *p)
 	return NULL;
 }
 
+<<<<<<< HEAD
 static void check_mm(struct mm_struct *mm)
 {
 	int i;
@@ -552,6 +612,14 @@ static void check_mm(struct mm_struct *mm)
 struct mm_struct *mm_alloc(void)
 {
 	struct mm_struct *mm;
+=======
+/*
+ * Allocate and initialize an mm_struct.
+ */
+struct mm_struct * mm_alloc(void)
+{
+	struct mm_struct * mm;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	mm = allocate_mm();
 	if (!mm)
@@ -573,7 +641,13 @@ void __mmdrop(struct mm_struct *mm)
 	mm_free_pgd(mm);
 	destroy_context(mm);
 	mmu_notifier_mm_destroy(mm);
+<<<<<<< HEAD
 	check_mm(mm);
+=======
+#ifdef CONFIG_TRANSPARENT_HUGEPAGE
+	VM_BUG_ON(mm->pmd_huge_pte);
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	free_mm(mm);
 }
 EXPORT_SYMBOL_GPL(__mmdrop);
@@ -581,9 +655,14 @@ EXPORT_SYMBOL_GPL(__mmdrop);
 /*
  * Decrement the use count and release all resources for an mm.
  */
+<<<<<<< HEAD
 int mmput(struct mm_struct *mm)
 {
 	int mm_freed = 0;
+=======
+void mmput(struct mm_struct *mm)
+{
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	might_sleep();
 
 	if (atomic_dec_and_test(&mm->mm_users)) {
@@ -597,12 +676,20 @@ int mmput(struct mm_struct *mm)
 			list_del(&mm->mmlist);
 			spin_unlock(&mmlist_lock);
 		}
+<<<<<<< HEAD
 		if (mm->binfmt)
 			module_put(mm->binfmt->module);
 		mmdrop(mm);
 		mm_freed = 1;
 	}
 	return mm_freed;
+=======
+		put_swap_token(mm);
+		if (mm->binfmt)
+			module_put(mm->binfmt->module);
+		mmdrop(mm);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 EXPORT_SYMBOL_GPL(mmput);
 
@@ -619,7 +706,11 @@ void added_exe_file_vma(struct mm_struct *mm)
 void removed_exe_file_vma(struct mm_struct *mm)
 {
 	mm->num_exe_file_vmas--;
+<<<<<<< HEAD
 	if ((mm->num_exe_file_vmas == 0) && mm->exe_file) {
+=======
+	if ((mm->num_exe_file_vmas == 0) && mm->exe_file){
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		fput(mm->exe_file);
 		mm->exe_file = NULL;
 	}
@@ -683,6 +774,7 @@ struct mm_struct *get_task_mm(struct task_struct *task)
 }
 EXPORT_SYMBOL_GPL(get_task_mm);
 
+<<<<<<< HEAD
 struct mm_struct *mm_access(struct task_struct *task, unsigned int mode)
 {
 	struct mm_struct *mm;
@@ -736,6 +828,8 @@ static int wait_for_vfork_done(struct task_struct *child,
 	return killed;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Please note the differences between mmput and mm_release.
  * mmput is called whenever we stop holding onto a mm_struct,
  * error success whatever.
@@ -751,6 +845,11 @@ static int wait_for_vfork_done(struct task_struct *child,
  */
 void mm_release(struct task_struct *tsk, struct mm_struct *mm)
 {
+<<<<<<< HEAD
+=======
+	struct completion *vfork_done = tsk->vfork_done;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Get rid of any futexes when releasing the mm */
 #ifdef CONFIG_FUTEX
 	if (unlikely(tsk->robust_list)) {
@@ -770,15 +869,27 @@ void mm_release(struct task_struct *tsk, struct mm_struct *mm)
 	/* Get rid of any cached register state */
 	deactivate_mm(tsk, mm);
 
+<<<<<<< HEAD
 	if (tsk->vfork_done)
 		complete_vfork_done(tsk);
+=======
+	/* notify parent sleeping on vfork() */
+	if (vfork_done) {
+		tsk->vfork_done = NULL;
+		complete(vfork_done);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * If we're exiting normally, clear a user-space tid field if
 	 * requested.  We leave this alone when dying by signal, to leave
 	 * the value intact in a core dump, and to save the unnecessary
+<<<<<<< HEAD
 	 * trouble, say, a killed vfork parent shouldn't touch this mm.
 	 * Userland only wants this done for a sys_exit.
+=======
+	 * trouble otherwise.  Userland only wants this done for a sys_exit.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 */
 	if (tsk->clear_child_tid) {
 		if (!(tsk->flags & PF_SIGNALED) &&
@@ -814,6 +925,13 @@ struct mm_struct *dup_mm(struct task_struct *tsk)
 	memcpy(mm, oldmm, sizeof(*mm));
 	mm_init_cpumask(mm);
 
+<<<<<<< HEAD
+=======
+	/* Initializing for Swap token stuff */
+	mm->token_priority = 0;
+	mm->last_interval = 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_TRANSPARENT_HUGEPAGE
 	mm->pmd_huge_pte = NULL;
 #endif
@@ -856,9 +974,15 @@ fail_nocontext:
 	return NULL;
 }
 
+<<<<<<< HEAD
 static int copy_mm(unsigned long clone_flags, struct task_struct *tsk)
 {
 	struct mm_struct *mm, *oldmm;
+=======
+static int copy_mm(unsigned long clone_flags, struct task_struct * tsk)
+{
+	struct mm_struct * mm, *oldmm;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int retval;
 
 	tsk->min_flt = tsk->maj_flt = 0;
@@ -891,6 +1015,15 @@ static int copy_mm(unsigned long clone_flags, struct task_struct *tsk)
 		goto fail_nomem;
 
 good_mm:
+<<<<<<< HEAD
+=======
+	/* Initializing for Swap token stuff */
+	mm->token_priority = 0;
+	mm->last_interval = 0;
+	if (tsk->signal->oom_score_adj == OOM_SCORE_ADJ_MIN)
+		atomic_inc(&mm->oom_disable_count);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	tsk->mm = mm;
 	tsk->active_mm = mm;
 	return 0;
@@ -919,7 +1052,11 @@ static int copy_fs(unsigned long clone_flags, struct task_struct *tsk)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int copy_files(unsigned long clone_flags, struct task_struct *tsk)
+=======
+static int copy_files(unsigned long clone_flags, struct task_struct * tsk)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct files_struct *oldf, *newf;
 	int error = 0;
@@ -950,7 +1087,10 @@ static int copy_io(unsigned long clone_flags, struct task_struct *tsk)
 {
 #ifdef CONFIG_BLOCK
 	struct io_context *ioc = current->io_context;
+<<<<<<< HEAD
 	struct io_context *new_ioc;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!ioc)
 		return 0;
@@ -962,12 +1102,20 @@ static int copy_io(unsigned long clone_flags, struct task_struct *tsk)
 		if (unlikely(!tsk->io_context))
 			return -ENOMEM;
 	} else if (ioprio_valid(ioc->ioprio)) {
+<<<<<<< HEAD
 		new_ioc = get_task_io_context(tsk, GFP_KERNEL, NUMA_NO_NODE);
 		if (unlikely(!new_ioc))
 			return -ENOMEM;
 
 		new_ioc->ioprio = ioc->ioprio;
 		put_io_context(new_ioc);
+=======
+		tsk->io_context = alloc_io_context(GFP_KERNEL, -1);
+		if (unlikely(!tsk->io_context))
+			return -ENOMEM;
+
+		tsk->io_context->ioprio = ioc->ioprio;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 #endif
 	return 0;
@@ -1056,16 +1204,26 @@ static int copy_signal(unsigned long clone_flags, struct task_struct *tsk)
 	sched_autogroup_fork(sig);
 
 #ifdef CONFIG_CGROUPS
+<<<<<<< HEAD
 	init_rwsem(&sig->group_rwsem);
+=======
+	init_rwsem(&sig->threadgroup_fork_lock);
+#endif
+#ifdef CONFIG_CPUSETS
+	seqcount_init(&tsk->mems_allowed_seq);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 
 	sig->oom_adj = current->signal->oom_adj;
 	sig->oom_score_adj = current->signal->oom_score_adj;
 	sig->oom_score_adj_min = current->signal->oom_score_adj_min;
 
+<<<<<<< HEAD
 	sig->has_child_subreaper = current->signal->has_child_subreaper ||
 				   current->signal->is_child_subreaper;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	mutex_init(&sig->cred_guard_mutex);
 
 	return 0;
@@ -1077,7 +1235,13 @@ static void copy_flags(unsigned long clone_flags, struct task_struct *p)
 
 	new_flags &= ~(PF_SUPERPRIV | PF_WQ_WORKER);
 	new_flags |= PF_FORKNOEXEC;
+<<<<<<< HEAD
 	p->flags = new_flags;
+=======
+	new_flags |= PF_STARTING;
+	p->flags = new_flags;
+	clear_freeze_flag(p);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 SYSCALL_DEFINE1(set_tid_address, int __user *, tidptr)
@@ -1108,8 +1272,13 @@ void mm_init_owner(struct mm_struct *mm, struct task_struct *p)
  */
 static void posix_cpu_timers_init(struct task_struct *tsk)
 {
+<<<<<<< HEAD
 	tsk->cputime_expires.prof_exp = 0;
 	tsk->cputime_expires.virt_exp = 0;
+=======
+	tsk->cputime_expires.prof_exp = cputime_zero;
+	tsk->cputime_expires.virt_exp = cputime_zero;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	tsk->cputime_expires.sched_exp = 0;
 	INIT_LIST_HEAD(&tsk->cpu_timers[0]);
 	INIT_LIST_HEAD(&tsk->cpu_timers[1]);
@@ -1188,7 +1357,10 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 		    p->real_cred->user != INIT_USER)
 			goto bad_fork_free;
 	}
+<<<<<<< HEAD
 	current->flags &= ~PF_NPROC_EXCEEDED;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	retval = copy_creds(p, clone_flags);
 	if (retval < 0)
@@ -1217,10 +1389,21 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 
 	init_sigpending(&p->pending);
 
+<<<<<<< HEAD
 	p->utime = p->stime = p->gtime = 0;
 	p->utimescaled = p->stimescaled = 0;
 #ifndef CONFIG_VIRT_CPU_ACCOUNTING
 	p->prev_utime = p->prev_stime = 0;
+=======
+	p->utime = cputime_zero;
+	p->stime = cputime_zero;
+	p->gtime = cputime_zero;
+	p->utimescaled = cputime_zero;
+	p->stimescaled = cputime_zero;
+#ifndef CONFIG_VIRT_CPU_ACCOUNTING
+	p->prev_utime = cputime_zero;
+	p->prev_stime = cputime_zero;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 #if defined(SPLIT_RSS_COUNTING)
 	memset(&p->rss_stat, 0, sizeof(p->rss_stat));
@@ -1239,6 +1422,7 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	p->io_context = NULL;
 	p->audit_context = NULL;
 	if (clone_flags & CLONE_THREAD)
+<<<<<<< HEAD
 		threadgroup_change_begin(current);
 	cgroup_fork(p);
 #ifdef CONFIG_NUMA
@@ -1255,6 +1439,19 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	p->cpuset_slab_spread_rotor = NUMA_NO_NODE;
 	seqcount_init(&p->mems_allowed_seq);
 #endif
+=======
+		threadgroup_fork_read_lock(current);
+	cgroup_fork(p);
+#ifdef CONFIG_NUMA
+	p->mempolicy = mpol_dup(p->mempolicy);
+ 	if (IS_ERR(p->mempolicy)) {
+ 		retval = PTR_ERR(p->mempolicy);
+ 		p->mempolicy = NULL;
+ 		goto bad_fork_cleanup_cgroup;
+ 	}
+	mpol_fix_fork_child_flag(p);
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_TRACE_IRQFLAGS
 	p->irq_events = 0;
 #ifdef __ARCH_WANT_INTERRUPTS_ON_CTXSW
@@ -1294,6 +1491,7 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	retval = perf_event_init_task(p);
 	if (retval)
 		goto bad_fork_cleanup_policy;
+<<<<<<< HEAD
 	retval = audit_alloc(p);
 	if (retval)
 		goto bad_fork_cleanup_policy;
@@ -1321,6 +1519,27 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 		goto bad_fork_cleanup_mm;
 	retval = copy_io(clone_flags, p);
 	if (retval)
+=======
+
+	if ((retval = audit_alloc(p)))
+		goto bad_fork_cleanup_policy;
+	/* copy all the process information */
+	if ((retval = copy_semundo(clone_flags, p)))
+		goto bad_fork_cleanup_audit;
+	if ((retval = copy_files(clone_flags, p)))
+		goto bad_fork_cleanup_semundo;
+	if ((retval = copy_fs(clone_flags, p)))
+		goto bad_fork_cleanup_files;
+	if ((retval = copy_sighand(clone_flags, p)))
+		goto bad_fork_cleanup_fs;
+	if ((retval = copy_signal(clone_flags, p)))
+		goto bad_fork_cleanup_sighand;
+	if ((retval = copy_mm(clone_flags, p)))
+		goto bad_fork_cleanup_signal;
+	if ((retval = copy_namespaces(clone_flags, p)))
+		goto bad_fork_cleanup_mm;
+	if ((retval = copy_io(clone_flags, p)))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		goto bad_fork_cleanup_namespaces;
 	retval = copy_thread(clone_flags, stack_start, stack_size, p, regs);
 	if (retval)
@@ -1342,7 +1561,11 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	/*
 	 * Clear TID on mm_release()?
 	 */
+<<<<<<< HEAD
 	p->clear_child_tid = (clone_flags & CLONE_CHILD_CLEARTID) ? child_tidptr : NULL;
+=======
+	p->clear_child_tid = (clone_flags & CLONE_CHILD_CLEARTID) ? child_tidptr: NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_BLOCK
 	p->plug = NULL;
 #endif
@@ -1372,6 +1595,7 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	clear_all_latency_tracing(p);
 
 	/* ok, now we should be set up.. */
+<<<<<<< HEAD
 	if (clone_flags & CLONE_THREAD)
 		p->exit_signal = -1;
 	else if (clone_flags & CLONE_PARENT)
@@ -1386,6 +1610,12 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	p->nr_dirtied_pause = 128 >> (PAGE_SHIFT - 10);
 	p->dirty_paused_when = 0;
 
+=======
+	p->exit_signal = (clone_flags & CLONE_THREAD) ? -1 : (clone_flags & CSIGNAL);
+	p->pdeath_signal = 0;
+	p->exit_state = 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * Ok, make it visible to the rest of the system.
 	 * We dont wake it up yet.
@@ -1420,7 +1650,11 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	 * it's process group.
 	 * A fatal signal pending means that current will exit, so the new
 	 * thread can't slip out of an OOM kill (or normal SIGKILL).
+<<<<<<< HEAD
 	*/
+=======
+ 	 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	recalc_sigpending();
 	if (signal_pending(current)) {
 		spin_unlock(&current->sighand->siglock);
@@ -1438,7 +1672,11 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	}
 
 	if (likely(p->pid)) {
+<<<<<<< HEAD
 		ptrace_init_task(p, (clone_flags & CLONE_PTRACE) || trace);
+=======
+		tracehook_finish_clone(p, clone_flags, trace);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		if (thread_group_leader(p)) {
 			if (is_child_reaper(pid))
@@ -1462,11 +1700,16 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	proc_fork_connector(p);
 	cgroup_post_fork(p);
 	if (clone_flags & CLONE_THREAD)
+<<<<<<< HEAD
 		threadgroup_change_end(current);
 	perf_event_fork(p);
 
 	trace_task_newtask(p, clone_flags);
 
+=======
+		threadgroup_fork_read_unlock(current);
+	perf_event_fork(p);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return p;
 
 bad_fork_free_pid:
@@ -1480,8 +1723,18 @@ bad_fork_cleanup_namespaces:
 		pid_ns_release_proc(p->nsproxy->pid_ns);
 	exit_task_namespaces(p);
 bad_fork_cleanup_mm:
+<<<<<<< HEAD
 	if (p->mm)
 		mmput(p->mm);
+=======
+	if (p->mm) {
+		task_lock(p);
+		if (p->signal->oom_score_adj == OOM_SCORE_ADJ_MIN)
+			atomic_dec(&p->mm->oom_disable_count);
+		task_unlock(p);
+		mmput(p->mm);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 bad_fork_cleanup_signal:
 	if (!(clone_flags & CLONE_THREAD))
 		free_signal_struct(p->signal);
@@ -1502,7 +1755,11 @@ bad_fork_cleanup_policy:
 bad_fork_cleanup_cgroup:
 #endif
 	if (clone_flags & CLONE_THREAD)
+<<<<<<< HEAD
 		threadgroup_change_end(current);
+=======
+		threadgroup_fork_read_unlock(current);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	cgroup_exit(p, cgroup_callbacks_done);
 	delayacct_tsk_free(p);
 	module_put(task_thread_info(p)->exec_domain->module);
@@ -1579,6 +1836,7 @@ long do_fork(unsigned long clone_flags,
 	}
 
 	/*
+<<<<<<< HEAD
 	 * Determine whether and which event to report to ptracer.  When
 	 * called from kernel_thread or CLONE_UNTRACED is explicitly
 	 * requested, no event is reported; otherwise, report if the event
@@ -1595,6 +1853,12 @@ long do_fork(unsigned long clone_flags,
 		if (likely(!ptrace_event_enabled(current, trace)))
 			trace = 0;
 	}
+=======
+	 * When called from kernel_thread, don't do user tracing stuff.
+	 */
+	if (likely(user_mode(regs)))
+		trace = tracehook_prepare_clone(clone_flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	p = copy_process(clone_flags, stack_start, regs, stack_size,
 			 child_tidptr, NULL, trace);
@@ -1615,6 +1879,7 @@ long do_fork(unsigned long clone_flags,
 		if (clone_flags & CLONE_VFORK) {
 			p->vfork_done = &vfork;
 			init_completion(&vfork);
+<<<<<<< HEAD
 			get_task_struct(p);
 		}
 
@@ -1627,6 +1892,31 @@ long do_fork(unsigned long clone_flags,
 		if (clone_flags & CLONE_VFORK) {
 			if (!wait_for_vfork_done(p, &vfork))
 				ptrace_event(PTRACE_EVENT_VFORK_DONE, nr);
+=======
+		}
+
+		audit_finish_fork(p);
+		tracehook_report_clone(regs, clone_flags, nr, p);
+
+		/*
+		 * We set PF_STARTING at creation in case tracing wants to
+		 * use this to distinguish a fully live task from one that
+		 * hasn't gotten to tracehook_report_clone() yet.  Now we
+		 * clear it and set the child going.
+		 */
+		p->flags &= ~PF_STARTING;
+
+		wake_up_new_task(p);
+
+		tracehook_report_clone_complete(trace, regs,
+						clone_flags, nr, p);
+
+		if (clone_flags & CLONE_VFORK) {
+			freezer_do_not_count();
+			wait_for_completion(&vfork);
+			freezer_count();
+			tracehook_report_vfork_done(p, nr);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 	} else {
 		nr = PTR_ERR(p);
@@ -1673,7 +1963,10 @@ void __init proc_caches_init(void)
 			SLAB_HWCACHE_ALIGN|SLAB_PANIC|SLAB_NOTRACK, NULL);
 	vm_area_cachep = KMEM_CACHE(vm_area_struct, SLAB_PANIC);
 	mmap_init();
+<<<<<<< HEAD
 	nsproxy_cache_init();
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -1770,6 +2063,7 @@ SYSCALL_DEFINE1(unshare, unsigned long, unshare_flags)
 	 */
 	if (unshare_flags & (CLONE_NEWIPC|CLONE_SYSVSEM))
 		do_sysvsem = 1;
+<<<<<<< HEAD
 	err = unshare_fs(unshare_flags, &new_fs);
 	if (err)
 		goto bad_unshare_out;
@@ -1778,6 +2072,14 @@ SYSCALL_DEFINE1(unshare, unsigned long, unshare_flags)
 		goto bad_unshare_cleanup_fs;
 	err = unshare_nsproxy_namespaces(unshare_flags, &new_nsproxy, new_fs);
 	if (err)
+=======
+	if ((err = unshare_fs(unshare_flags, &new_fs)))
+		goto bad_unshare_out;
+	if ((err = unshare_fd(unshare_flags, &new_fd)))
+		goto bad_unshare_cleanup_fs;
+	if ((err = unshare_nsproxy_namespaces(unshare_flags, &new_nsproxy,
+			new_fs)))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		goto bad_unshare_cleanup_fd;
 
 	if (new_fs || new_fd || do_sysvsem || new_nsproxy) {

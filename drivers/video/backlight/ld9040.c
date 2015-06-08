@@ -30,8 +30,11 @@
 #include <linux/kernel.h>
 #include <linux/lcd.h>
 #include <linux/backlight.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 #include <linux/regulator/consumer.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "ld9040_gamma.h"
 
@@ -54,6 +57,7 @@ struct ld9040 {
 	struct lcd_device		*ld;
 	struct backlight_device		*bd;
 	struct lcd_platform_data	*lcd_pd;
+<<<<<<< HEAD
 
 	struct mutex			lock;
 	bool  enabled;
@@ -99,6 +103,10 @@ out:
 	mutex_unlock(&lcd->lock);
 }
 
+=======
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static const unsigned short seq_swreset[] = {
 	0x01, COMMAND_ONLY,
 	ENDDEF, 0x00
@@ -576,8 +584,18 @@ static int ld9040_power_on(struct ld9040 *lcd)
 		return -EFAULT;
 	}
 
+<<<<<<< HEAD
 	/* lcd power on */
 	ld9040_regulator_enable(lcd);
+=======
+	if (!pd->power_on) {
+		dev_err(lcd->dev, "power_on is NULL.\n");
+		return -EFAULT;
+	} else {
+		pd->power_on(lcd->ld, 1);
+		mdelay(pd->power_on_delay);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!pd->reset) {
 		dev_err(lcd->dev, "reset is NULL.\n");
@@ -621,8 +639,16 @@ static int ld9040_power_off(struct ld9040 *lcd)
 
 	mdelay(pd->power_off_delay);
 
+<<<<<<< HEAD
 	/* lcd power off */
 	ld9040_regulator_disable(lcd);
+=======
+	if (!pd->power_on) {
+		dev_err(lcd->dev, "power_on is NULL.\n");
+		return -EFAULT;
+	} else
+		pd->power_on(lcd->ld, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -705,7 +731,10 @@ static int ld9040_probe(struct spi_device *spi)
 	struct ld9040 *lcd = NULL;
 	struct lcd_device *ld = NULL;
 	struct backlight_device *bd = NULL;
+<<<<<<< HEAD
 	struct backlight_properties props;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	lcd = kzalloc(sizeof(struct ld9040), GFP_KERNEL);
 	if (!lcd)
@@ -729,6 +758,7 @@ static int ld9040_probe(struct spi_device *spi)
 		goto out_free_lcd;
 	}
 
+<<<<<<< HEAD
 	mutex_init(&lcd->lock);
 
 	ret = regulator_bulk_get(lcd->dev, ARRAY_SIZE(supplies), supplies);
@@ -737,6 +767,8 @@ static int ld9040_probe(struct spi_device *spi)
 		goto out_free_lcd;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ld = lcd_device_register("ld9040", &spi->dev, lcd, &ld9040_lcd_ops);
 	if (IS_ERR(ld)) {
 		ret = PTR_ERR(ld);
@@ -745,6 +777,7 @@ static int ld9040_probe(struct spi_device *spi)
 
 	lcd->ld = ld;
 
+<<<<<<< HEAD
 	memset(&props, 0, sizeof(struct backlight_properties));
 	props.type = BACKLIGHT_RAW;
 	props.max_brightness = MAX_BRIGHTNESS;
@@ -756,6 +789,16 @@ static int ld9040_probe(struct spi_device *spi)
 		goto out_unregister_lcd;
 	}
 
+=======
+	bd = backlight_device_register("ld9040-bl", &spi->dev,
+		lcd, &ld9040_backlight_ops, NULL);
+	if (IS_ERR(ld)) {
+		ret = PTR_ERR(ld);
+		goto out_free_lcd;
+	}
+
+	bd->props.max_brightness = MAX_BRIGHTNESS;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	bd->props.brightness = MAX_BRIGHTNESS;
 	lcd->bd = bd;
 
@@ -780,11 +823,15 @@ static int ld9040_probe(struct spi_device *spi)
 	dev_info(&spi->dev, "ld9040 panel driver has been probed.\n");
 	return 0;
 
+<<<<<<< HEAD
 out_unregister_lcd:
 	lcd_device_unregister(lcd->ld);
 out_free_lcd:
 	regulator_bulk_free(ARRAY_SIZE(supplies), supplies);
 
+=======
+out_free_lcd:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(lcd);
 	return ret;
 }
@@ -794,9 +841,13 @@ static int __devexit ld9040_remove(struct spi_device *spi)
 	struct ld9040 *lcd = dev_get_drvdata(&spi->dev);
 
 	ld9040_power(lcd, FB_BLANK_POWERDOWN);
+<<<<<<< HEAD
 	backlight_device_unregister(lcd->bd);
 	lcd_device_unregister(lcd->ld);
 	regulator_bulk_free(ARRAY_SIZE(supplies), supplies);
+=======
+	lcd_device_unregister(lcd->ld);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(lcd);
 
 	return 0;
@@ -856,7 +907,22 @@ static struct spi_driver ld9040_driver = {
 	.resume		= ld9040_resume,
 };
 
+<<<<<<< HEAD
 module_spi_driver(ld9040_driver);
+=======
+static int __init ld9040_init(void)
+{
+	return spi_register_driver(&ld9040_driver);
+}
+
+static void __exit ld9040_exit(void)
+{
+	spi_unregister_driver(&ld9040_driver);
+}
+
+module_init(ld9040_init);
+module_exit(ld9040_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Donghwa Lee <dh09.lee@samsung.com>");
 MODULE_DESCRIPTION("ld9040 LCD Driver");

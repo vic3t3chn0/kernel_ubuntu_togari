@@ -543,8 +543,13 @@ static int gxt4500_pan_display(struct fb_var_screeninfo *var,
 
 	if (var->xoffset & 7)
 		return -EINVAL;
+<<<<<<< HEAD
 	if (var->xoffset + info->var.xres > info->var.xres_virtual ||
 	    var->yoffset + info->var.yres > info->var.yres_virtual)
+=======
+	if (var->xoffset + var->xres > var->xres_virtual ||
+	    var->yoffset + var->yres > var->yres_virtual)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -EINVAL;
 
 	writereg(par, REFRESH_START, (var->xoffset << 16) | var->yoffset);

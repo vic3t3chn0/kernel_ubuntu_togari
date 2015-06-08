@@ -428,7 +428,11 @@ static struct ed *ed_get (
 		ed->type = usb_pipetype(pipe);
 
 		info |= (ep->desc.bEndpointAddress & ~USB_DIR_IN) << 7;
+<<<<<<< HEAD
 		info |= usb_endpoint_maxp(&ep->desc) << 16;
+=======
+		info |= le16_to_cpu(ep->desc.wMaxPacketSize) << 16;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (udev->speed == USB_SPEED_LOW)
 			info |= ED_LOWSPEED;
 		/* only control transfers store pids in tds */
@@ -444,7 +448,11 @@ static struct ed *ed_get (
 				ed->load = usb_calc_bus_time (
 					udev->speed, !is_out,
 					ed->type == PIPE_ISOCHRONOUS,
+<<<<<<< HEAD
 					usb_endpoint_maxp(&ep->desc))
+=======
+					le16_to_cpu(ep->desc.wMaxPacketSize))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						/ 1000;
 			}
 		}
@@ -912,7 +920,11 @@ rescan_all:
 		/* only take off EDs that the HC isn't using, accounting for
 		 * frame counter wraps and EDs with partially retired TDs
 		 */
+<<<<<<< HEAD
 		if (likely(ohci->rh_state == OHCI_RH_RUNNING)) {
+=======
+		if (likely (HC_IS_RUNNING(ohci_to_hcd(ohci)->state))) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			if (tick_before (tick, ed->tick)) {
 skip_ed:
 				last = &ed->ed_next;
@@ -1012,7 +1024,11 @@ rescan_this:
 
 		/* but if there's work queued, reschedule */
 		if (!list_empty (&ed->td_list)) {
+<<<<<<< HEAD
 			if (ohci->rh_state == OHCI_RH_RUNNING)
+=======
+			if (HC_IS_RUNNING(ohci_to_hcd(ohci)->state))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				ed_schedule (ohci, ed);
 		}
 
@@ -1021,7 +1037,13 @@ rescan_this:
 	}
 
 	/* maybe reenable control and bulk lists */
+<<<<<<< HEAD
 	if (ohci->rh_state == OHCI_RH_RUNNING && !ohci->ed_rm_list) {
+=======
+	if (HC_IS_RUNNING(ohci_to_hcd(ohci)->state)
+			&& ohci_to_hcd(ohci)->state != HC_STATE_QUIESCING
+			&& !ohci->ed_rm_list) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		u32	command = 0, control = 0;
 
 		if (ohci->ed_controltail) {
@@ -1128,6 +1150,28 @@ dl_done_list (struct ohci_hcd *ohci)
 
 	while (td) {
 		struct td	*td_next = td->next_dl_td;
+<<<<<<< HEAD
+=======
+		struct ed	*ed = td->ed;
+
+		/*
+		 * Some OHCI controllers (NVIDIA for sure, maybe others)
+		 * occasionally forget to add TDs to the done queue.  Since
+		 * TDs for a given endpoint are always processed in order,
+		 * if we find a TD on the donelist then all of its
+		 * predecessors must be finished as well.
+		 */
+		for (;;) {
+			struct td	*td2;
+
+			td2 = list_first_entry(&ed->td_list, struct td,
+					td_list);
+			if (td2 == td)
+				break;
+			takeback_td(ohci, td2);
+		}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		takeback_td(ohci, td);
 		td = td_next;
 	}

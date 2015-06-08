@@ -2,8 +2,22 @@
 # Near Field Communication (NFC) devices
 #
 
+<<<<<<< HEAD
 menu "Near Field Communication (NFC) devices"
 	depends on NFC
+=======
+menuconfig NFC_DEVICES
+	bool "Near Field Communication (NFC) devices"
+	default n
+	---help---
+	  You'll have to say Y if your computer contains an NFC device that
+	  you want to use under Linux.
+
+	  You can say N here if you don't have any Near Field Communication
+	  devices connected to your computer.
+
+if NFC_DEVICES
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config PN544_NFC
 	tristate "PN544 NFC driver"
@@ -17,6 +31,7 @@ config PN544_NFC
 	  To compile this driver as a module, choose m here. The module will
 	  be called pn544.
 
+<<<<<<< HEAD
 config NFC_PN533
 	tristate "NXP PN533 USB driver"
 	depends on USB
@@ -48,3 +63,18 @@ config NFC_QNCI
 	  This enables the NFC driver for QCA199x based devices.
 	  This is for i2c connected version. NCI protocol logic
 	  resides in the usermode and it has no other NFC dependencies.
+=======
+config PN65N_NFC
+    tristate "PN65N NFC driver"
+	depends on I2C
+	select CRC_CCITT
+	default n
+	---help---
+	  Say yes if you want PN65N Near Field Communication driver.
+	  This is for i2c connected version. If unsure, say N here.
+
+	  To compile this driver as a module, choose m here. The module will
+	  be called pn65n.
+
+endif # NFC_DEVICES
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

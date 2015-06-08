@@ -15,7 +15,10 @@
  * (at your option) any later version.
  */
 
+<<<<<<< HEAD
 #include <linux/pci.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 struct m32r_sio_probe {
 	struct module	*owner;

@@ -31,7 +31,10 @@
 
 #include <linux/platform_device.h>
 #include <plat/usb.h>
+<<<<<<< HEAD
 #include <linux/pm_runtime.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*-------------------------------------------------------------------------*/
 
@@ -135,7 +138,11 @@ static int __devinit ohci_hcd_omap3_probe(struct platform_device *pdev)
 	int			irq;
 
 	if (usb_disabled())
+<<<<<<< HEAD
 		return -ENODEV;
+=======
+		goto err_end;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!dev->parent) {
 		dev_err(dev, "Missing parent device\n");
@@ -150,7 +157,11 @@ static int __devinit ohci_hcd_omap3_probe(struct platform_device *pdev)
 
 	res = platform_get_resource_byname(pdev,
 				IORESOURCE_MEM, "ohci");
+<<<<<<< HEAD
 	if (!res) {
+=======
+	if (!ret) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		dev_err(dev, "UHH OHCI get resource failed\n");
 		return -ENOMEM;
 	}
@@ -173,12 +184,24 @@ static int __devinit ohci_hcd_omap3_probe(struct platform_device *pdev)
 	hcd->rsrc_len = resource_size(res);
 	hcd->regs =  regs;
 
+<<<<<<< HEAD
 	pm_runtime_enable(dev);
 	pm_runtime_get_sync(dev);
 
 	ohci_hcd_init(hcd_to_ohci(hcd));
 
 	ret = usb_add_hcd(hcd, irq, 0);
+=======
+	ret = omap_usbhs_enable(dev);
+	if (ret) {
+		dev_dbg(dev, "failed to start ohci\n");
+		goto err_end;
+	}
+
+	ohci_hcd_init(hcd_to_ohci(hcd));
+
+	ret = usb_add_hcd(hcd, irq, IRQF_DISABLED);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret) {
 		dev_dbg(dev, "failed to add hcd with err %d\n", ret);
 		goto err_add_hcd;
@@ -187,7 +210,13 @@ static int __devinit ohci_hcd_omap3_probe(struct platform_device *pdev)
 	return 0;
 
 err_add_hcd:
+<<<<<<< HEAD
 	pm_runtime_put_sync(dev);
+=======
+	omap_usbhs_disable(dev);
+
+err_end:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	usb_put_hcd(hcd);
 
 err_io:
@@ -216,9 +245,15 @@ static int __devexit ohci_hcd_omap3_remove(struct platform_device *pdev)
 
 	iounmap(hcd->regs);
 	usb_remove_hcd(hcd);
+<<<<<<< HEAD
 	pm_runtime_put_sync(dev);
 	pm_runtime_disable(dev);
 	usb_put_hcd(hcd);
+=======
+	omap_usbhs_disable(dev);
+	usb_put_hcd(hcd);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 

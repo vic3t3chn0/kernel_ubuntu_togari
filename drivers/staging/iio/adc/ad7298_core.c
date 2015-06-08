@@ -14,16 +14,25 @@
 #include <linux/regulator/consumer.h>
 #include <linux/err.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
 #include "../sysfs.h"
 #include "../buffer.h"
+=======
+
+#include "../iio.h"
+#include "../sysfs.h"
+#include "../ring_generic.h"
+#include "adc.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "ad7298.h"
 
 static struct iio_chan_spec ad7298_channels[] = {
 	IIO_CHAN(IIO_TEMP, 0, 1, 0, NULL, 0, 0,
+<<<<<<< HEAD
 		 IIO_CHAN_INFO_SCALE_SEPARATE_BIT,
 		 9, AD7298_CH_TEMP, IIO_ST('s', 32, 32, 0), 0),
 	IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 0, 0,
@@ -49,6 +58,33 @@ static struct iio_chan_spec ad7298_channels[] = {
 		 6, 6, IIO_ST('u', 12, 16, 0), 0),
 	IIO_CHAN(IIO_VOLTAGE, 0, 1, 0, NULL, 7, 0,
 		 IIO_CHAN_INFO_SCALE_SHARED_BIT,
+=======
+		 (1 << IIO_CHAN_INFO_SCALE_SEPARATE),
+		 9, AD7298_CH_TEMP, IIO_ST('s', 32, 32, 0), 0),
+	IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+		 (1 << IIO_CHAN_INFO_SCALE_SHARED),
+		 0, 0, IIO_ST('u', 12, 16, 0), 0),
+	IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+		 (1 << IIO_CHAN_INFO_SCALE_SHARED),
+		 1, 1, IIO_ST('u', 12, 16, 0), 0),
+	IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 2, 0,
+		 (1 << IIO_CHAN_INFO_SCALE_SHARED),
+		 2, 2, IIO_ST('u', 12, 16, 0), 0),
+	IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 3, 0,
+		 (1 << IIO_CHAN_INFO_SCALE_SHARED),
+		 3, 3, IIO_ST('u', 12, 16, 0), 0),
+	IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 4, 0,
+		 (1 << IIO_CHAN_INFO_SCALE_SHARED),
+		 4, 4, IIO_ST('u', 12, 16, 0), 0),
+	IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 5, 0,
+		 (1 << IIO_CHAN_INFO_SCALE_SHARED),
+		 5, 5, IIO_ST('u', 12, 16, 0), 0),
+	IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 6, 0,
+		 (1 << IIO_CHAN_INFO_SCALE_SHARED),
+		 6, 6, IIO_ST('u', 12, 16, 0), 0),
+	IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 7, 0,
+		 (1 << IIO_CHAN_INFO_SCALE_SHARED),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		 7, 7, IIO_ST('u', 12, 16, 0), 0),
 	IIO_CHAN_SOFT_TIMESTAMP(8),
 };
@@ -69,6 +105,7 @@ static int ad7298_scan_direct(struct ad7298_state *st, unsigned ch)
 static int ad7298_scan_temp(struct ad7298_state *st, int *val)
 {
 	int tmp, ret;
+<<<<<<< HEAD
 	__be16 buf;
 
 	buf = cpu_to_be16(AD7298_WRITE | AD7298_TSENSE |
@@ -81,16 +118,37 @@ static int ad7298_scan_temp(struct ad7298_state *st, int *val)
 	buf = cpu_to_be16(0);
 
 	ret = spi_write(st->spi, (u8 *)&buf, 2);
+=======
+
+	tmp = cpu_to_be16(AD7298_WRITE | AD7298_TSENSE |
+			  AD7298_TAVG | st->ext_ref);
+
+	ret = spi_write(st->spi, (u8 *)&tmp, 2);
+	if (ret)
+		return ret;
+
+	tmp = 0;
+
+	ret = spi_write(st->spi, (u8 *)&tmp, 2);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret)
 		return ret;
 
 	usleep_range(101, 1000); /* sleep > 100us */
 
+<<<<<<< HEAD
 	ret = spi_read(st->spi, (u8 *)&buf, 2);
 	if (ret)
 		return ret;
 
 	tmp = be16_to_cpu(buf) & RES_MASK(AD7298_BITS);
+=======
+	ret = spi_read(st->spi, (u8 *)&tmp, 2);
+	if (ret)
+		return ret;
+
+	tmp = be16_to_cpu(tmp) & RES_MASK(AD7298_BITS);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * One LSB of the ADC corresponds to 0.25 deg C.
@@ -110,28 +168,50 @@ static int ad7298_scan_temp(struct ad7298_state *st, int *val)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int ad7298_read_raw(struct iio_dev *indio_dev,
+=======
+static int ad7298_read_raw(struct iio_dev *dev_info,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			   struct iio_chan_spec const *chan,
 			   int *val,
 			   int *val2,
 			   long m)
 {
 	int ret;
+<<<<<<< HEAD
 	struct ad7298_state *st = iio_priv(indio_dev);
+=======
+	struct ad7298_state *st = iio_priv(dev_info);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned int scale_uv;
 
 	switch (m) {
 	case 0:
+<<<<<<< HEAD
 		mutex_lock(&indio_dev->mlock);
 		if (indio_dev->currentmode == INDIO_BUFFER_TRIGGERED) {
 			ret = -EBUSY;
+=======
+		mutex_lock(&dev_info->mlock);
+		if (iio_ring_enabled(dev_info)) {
+			if (chan->address == AD7298_CH_TEMP)
+				ret = -ENODEV;
+			else
+				ret = ad7298_scan_from_ring(dev_info,
+							    chan->address);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} else {
 			if (chan->address == AD7298_CH_TEMP)
 				ret = ad7298_scan_temp(st, val);
 			else
 				ret = ad7298_scan_direct(st, chan->address);
 		}
+<<<<<<< HEAD
 		mutex_unlock(&indio_dev->mlock);
+=======
+		mutex_unlock(&dev_info->mlock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		if (ret < 0)
 			return ret;
@@ -140,6 +220,7 @@ static int ad7298_read_raw(struct iio_dev *indio_dev,
 			*val = ret & RES_MASK(AD7298_BITS);
 
 		return IIO_VAL_INT;
+<<<<<<< HEAD
 	case IIO_CHAN_INFO_SCALE:
 		switch (chan->type) {
 		case IIO_VOLTAGE:
@@ -154,6 +235,17 @@ static int ad7298_read_raw(struct iio_dev *indio_dev,
 		default:
 			return -EINVAL;
 		}
+=======
+	case (1 << IIO_CHAN_INFO_SCALE_SHARED):
+		scale_uv = (st->int_vref_mv * 1000) >> AD7298_BITS;
+		*val =  scale_uv / 1000;
+		*val2 = (scale_uv % 1000) * 1000;
+		return IIO_VAL_INT_PLUS_MICRO;
+	case (1 << IIO_CHAN_INFO_SCALE_SEPARATE):
+		*val =  1;
+		*val2 = 0;
+		return IIO_VAL_INT_PLUS_MICRO;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return -EINVAL;
 }
@@ -167,7 +259,11 @@ static int __devinit ad7298_probe(struct spi_device *spi)
 {
 	struct ad7298_platform_data *pdata = spi->dev.platform_data;
 	struct ad7298_state *st;
+<<<<<<< HEAD
 	int ret;
+=======
+	int ret, regdone = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct iio_dev *indio_dev = iio_allocate_device(sizeof(*st));
 
 	if (indio_dev == NULL)
@@ -220,6 +316,7 @@ static int __devinit ad7298_probe(struct spi_device *spi)
 	if (ret)
 		goto error_disable_reg;
 
+<<<<<<< HEAD
 	ret = iio_buffer_register(indio_dev,
 				  &ad7298_channels[1], /* skip temp0 */
 				  ARRAY_SIZE(ad7298_channels) - 1);
@@ -233,6 +330,21 @@ static int __devinit ad7298_probe(struct spi_device *spi)
 
 error_unregister_ring:
 	iio_buffer_unregister(indio_dev);
+=======
+	ret = iio_device_register(indio_dev);
+	if (ret)
+		goto error_disable_reg;
+	regdone = 1;
+
+	ret = iio_ring_buffer_register_ex(indio_dev->ring, 0,
+					  &ad7298_channels[1], /* skip temp0 */
+					  ARRAY_SIZE(ad7298_channels) - 1);
+	if (ret)
+		goto error_cleanup_ring;
+
+	return 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 error_cleanup_ring:
 	ad7298_ring_cleanup(indio_dev);
 error_disable_reg:
@@ -241,7 +353,15 @@ error_disable_reg:
 error_put_reg:
 	if (!IS_ERR(st->reg))
 		regulator_put(st->reg);
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
+=======
+
+	if (regdone)
+		iio_device_unregister(indio_dev);
+	else
+		iio_free_device(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ret;
 }
@@ -251,14 +371,24 @@ static int __devexit ad7298_remove(struct spi_device *spi)
 	struct iio_dev *indio_dev = spi_get_drvdata(spi);
 	struct ad7298_state *st = iio_priv(indio_dev);
 
+<<<<<<< HEAD
 	iio_device_unregister(indio_dev);
 	iio_buffer_unregister(indio_dev);
 	ad7298_ring_cleanup(indio_dev);
+=======
+	iio_ring_buffer_unregister(indio_dev->ring);
+	ad7298_ring_cleanup(indio_dev);
+	iio_device_unregister(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!IS_ERR(st->reg)) {
 		regulator_disable(st->reg);
 		regulator_put(st->reg);
 	}
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
+=======
+	iio_device_unregister(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -267,19 +397,45 @@ static const struct spi_device_id ad7298_id[] = {
 	{"ad7298", 0},
 	{}
 };
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(spi, ad7298_id);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static struct spi_driver ad7298_driver = {
 	.driver = {
 		.name	= "ad7298",
+<<<<<<< HEAD
+=======
+		.bus	= &spi_bus_type,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.owner	= THIS_MODULE,
 	},
 	.probe		= ad7298_probe,
 	.remove		= __devexit_p(ad7298_remove),
 	.id_table	= ad7298_id,
 };
+<<<<<<< HEAD
 module_spi_driver(ad7298_driver);
+=======
+
+static int __init ad7298_init(void)
+{
+	return spi_register_driver(&ad7298_driver);
+}
+module_init(ad7298_init);
+
+static void __exit ad7298_exit(void)
+{
+	spi_unregister_driver(&ad7298_driver);
+}
+module_exit(ad7298_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD7298 ADC");
 MODULE_LICENSE("GPL v2");
+<<<<<<< HEAD
+=======
+MODULE_ALIAS("spi:ad7298");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

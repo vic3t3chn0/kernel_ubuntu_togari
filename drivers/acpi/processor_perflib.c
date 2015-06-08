@@ -240,6 +240,7 @@ void acpi_processor_ppc_exit(void)
 	acpi_processor_ppc_status &= ~PPC_REGISTERED;
 }
 
+<<<<<<< HEAD
 /*
  * Do a quick check if the systems looks like it should use ACPI
  * cpufreq. We look at a _PCT method being available, but don't
@@ -262,6 +263,8 @@ void acpi_processor_load_module(struct acpi_processor *pr)
 	kfree(buffer.pointer);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int acpi_processor_get_performance_control(struct acpi_processor *pr)
 {
 	int result = 0;

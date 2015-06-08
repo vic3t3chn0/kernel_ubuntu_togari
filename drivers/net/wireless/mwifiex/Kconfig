@@ -10,11 +10,16 @@ config MWIFIEX
 	  mwifiex.
 
 config MWIFIEX_SDIO
+<<<<<<< HEAD
 	tristate "Marvell WiFi-Ex Driver for SD8787/SD8797"
+=======
+	tristate "Marvell WiFi-Ex Driver for SD8787"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	depends on MWIFIEX && MMC
 	select FW_LOADER
 	---help---
 	  This adds support for wireless adapters based on Marvell
+<<<<<<< HEAD
 	  8787/8797 chipsets with SDIO interface.
 
 	  If you choose to build it as a module, it will be called
@@ -30,3 +35,9 @@ config MWIFIEX_PCIE
 
 	  If you choose to build it as a module, it will be called
 	  mwifiex_pcie.
+=======
+	  8787 chipset with SDIO interface.
+
+	  If you choose to build it as a module, it will be called
+	  mwifiex_sdio.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

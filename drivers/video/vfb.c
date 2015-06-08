@@ -35,6 +35,7 @@
 static void *videomemory;
 static u_long videomemorysize = VIDEOMEMSIZE;
 module_param(videomemorysize, ulong, 0);
+<<<<<<< HEAD
 static char *mode_option __devinitdata;
 static int bpp __devinitdata = 8;
 
@@ -42,6 +43,8 @@ module_param(mode_option, charp, 0);
 MODULE_PARM_DESC(mode_option, "Initial video mode e.g. '648x480-8@60'");
 module_param(bpp, int, 0);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**********************************************************************
  *
@@ -117,7 +120,11 @@ static struct fb_fix_screeninfo vfb_fix __devinitdata = {
 	.accel =	FB_ACCEL_NONE,
 };
 
+<<<<<<< HEAD
 static bool vfb_enable __initdata = 0;	/* disabled by default */
+=======
+static int vfb_enable __initdata = 0;	/* disabled by default */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(vfb_enable, bool, 0);
 
 static int vfb_check_var(struct fb_var_screeninfo *var,
@@ -402,8 +409,13 @@ static int vfb_pan_display(struct fb_var_screeninfo *var,
 		    || var->xoffset)
 			return -EINVAL;
 	} else {
+<<<<<<< HEAD
 		if (var->xoffset + info->var.xres > info->var.xres_virtual ||
 		    var->yoffset + info->var.yres > info->var.yres_virtual)
+=======
+		if (var->xoffset + var->xres > info->var.xres_virtual ||
+		    var->yoffset + var->yres > info->var.yres_virtual)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return -EINVAL;
 	}
 	info->var.xoffset = var->xoffset;
@@ -476,6 +488,7 @@ static int __init vfb_setup(char *options)
 		/* Test disable for backwards compatibility */
 		if (!strcmp(this_opt, "disable"))
 			vfb_enable = 0;
+<<<<<<< HEAD
 		else if (!strncmp(this_opt, "bpp=", 4)) {
 			if (kstrtoint(this_opt + 4, 0, &bpp) < 0)
 				bpp = 8;
@@ -484,6 +497,8 @@ static int __init vfb_setup(char *options)
 				videomemorysize = VIDEOMEMSIZE;
 		} else
 			mode_option = this_opt;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return 1;
 }
@@ -519,8 +534,13 @@ static int __devinit vfb_probe(struct platform_device *dev)
 	info->screen_base = (char __iomem *)videomemory;
 	info->fbops = &vfb_ops;
 
+<<<<<<< HEAD
 	retval = fb_find_mode(&info->var, info, mode_option,
 			      NULL, 0, NULL, bpp);
+=======
+	retval = fb_find_mode(&info->var, info, NULL,
+			      NULL, 0, NULL, 8);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!retval || (retval == 4))
 		info->var = vfb_default;

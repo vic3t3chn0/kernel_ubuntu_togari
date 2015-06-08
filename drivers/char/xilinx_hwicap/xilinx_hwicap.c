@@ -89,6 +89,10 @@
 
 #include <asm/io.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_OF
 /* For open firmware. */
@@ -620,7 +624,11 @@ static int __devinit hwicap_setup(struct device *dev, int id,
 
 	drvdata->mem_start = regs_res->start;
 	drvdata->mem_end = regs_res->end;
+<<<<<<< HEAD
 	drvdata->mem_size = resource_size(regs_res);
+=======
+	drvdata->mem_size = regs_res->end - regs_res->start + 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!request_mem_region(drvdata->mem_start,
 					drvdata->mem_size, DRIVER_NAME)) {

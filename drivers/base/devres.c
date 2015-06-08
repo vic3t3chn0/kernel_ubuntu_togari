@@ -397,7 +397,10 @@ static int remove_nodes(struct device *dev,
 
 static int release_nodes(struct device *dev, struct list_head *first,
 			 struct list_head *end, unsigned long flags)
+<<<<<<< HEAD
 	__releases(&dev->devres_lock)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	LIST_HEAD(todo);
 	int cnt;
@@ -639,7 +642,11 @@ EXPORT_SYMBOL_GPL(devm_kzalloc);
  * @dev: Device this memory belongs to
  * @p: Memory to free
  *
+<<<<<<< HEAD
  * Free memory allocated with devm_kzalloc().
+=======
+ * Free memory allocated with dev_kzalloc().
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 void devm_kfree(struct device *dev, void *p)
 {

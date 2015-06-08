@@ -50,6 +50,7 @@ config USB_TMC
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called usbtmc.
+<<<<<<< HEAD
 
 config USB_CCID_BRIDGE
 	tristate "USB  Smart Card Class (CCID) support"
@@ -62,3 +63,5 @@ config USB_CCID_BRIDGE
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called ccid_bridge.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

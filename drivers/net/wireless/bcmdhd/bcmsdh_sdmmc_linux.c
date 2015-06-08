@@ -21,7 +21,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: bcmsdh_sdmmc_linux.c 312783 2012-02-03 22:53:56Z $
+=======
+ * $Id: bcmsdh_sdmmc_linux.c 381717 2013-01-29 07:10:21Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #include <typedefs.h>
@@ -109,6 +113,7 @@ static int bcmsdh_sdmmc_probe(struct sdio_func *func,
 {
 	int ret = 0;
 	static struct sdio_func sdio_func_0;
+<<<<<<< HEAD
 	sd_trace(("bcmsdh_sdmmc: %s Enter\n", __FUNCTION__));
 	sd_trace(("sdio_bcmsdh: func->class=%x\n", func->class));
 	sd_trace(("sdio_vendor: 0x%04x\n", func->vendor));
@@ -134,6 +139,40 @@ static int bcmsdh_sdmmc_probe(struct sdio_func *func,
 #endif
 		sd_trace(("F2 found, calling bcmsdh_probe...\n"));
 		ret = bcmsdh_probe(&func->dev);
+=======
+
+	if (func) {
+		sd_trace(("bcmsdh_sdmmc: %s Enter\n", __FUNCTION__));
+		sd_trace(("sdio_bcmsdh: func->class=%x\n", func->class));
+		sd_trace(("sdio_vendor: 0x%04x\n", func->vendor));
+		sd_trace(("sdio_device: 0x%04x\n", func->device));
+		sd_trace(("Function#: 0x%04x\n", func->num));
+
+		if (func->num == 1) {
+			sdio_func_0.num = 0;
+			sdio_func_0.card = func->card;
+			gInstance->func[0] = &sdio_func_0;
+			if(func->device == 0x4) { /* 4318 */
+				gInstance->func[2] = NULL;
+				sd_trace(("NIC found, calling bcmsdh_probe...\n"));
+				ret = bcmsdh_probe(&func->dev);
+			}
+		}
+
+		gInstance->func[func->num] = func;
+
+		if (func->num == 2) {
+	#ifdef WL_CFG80211
+			wl_cfg80211_set_parent_dev(&func->dev);
+	#endif
+			sd_trace(("F2 found, calling bcmsdh_probe...\n"));
+			ret = bcmsdh_probe(&func->dev);
+			if (ret < 0 && gInstance)
+				gInstance->func[2] = NULL;
+		}
+	} else {
+		ret = -ENODEV;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	return ret;
@@ -141,6 +180,7 @@ static int bcmsdh_sdmmc_probe(struct sdio_func *func,
 
 static void bcmsdh_sdmmc_remove(struct sdio_func *func)
 {
+<<<<<<< HEAD
 	sd_trace(("bcmsdh_sdmmc: %s Enter\n", __FUNCTION__));
 	sd_info(("sdio_bcmsdh: func->class=%x\n", func->class));
 	sd_info(("sdio_vendor: 0x%04x\n", func->vendor));
@@ -155,6 +195,26 @@ static void bcmsdh_sdmmc_remove(struct sdio_func *func)
 		sdio_disable_func(func);
 		sdio_release_host(func);
 		gInstance->func[1] = NULL;
+=======
+	if (func) {
+		sd_trace(("bcmsdh_sdmmc: %s Enter\n", __FUNCTION__));
+		sd_info(("sdio_bcmsdh: func->class=%x\n", func->class));
+		sd_info(("sdio_vendor: 0x%04x\n", func->vendor));
+		sd_info(("sdio_device: 0x%04x\n", func->device));
+		sd_info(("Function#: 0x%04x\n", func->num));
+
+		if (gInstance->func[2]) {
+			sd_trace(("F2 found, calling bcmsdh_remove...\n"));
+			bcmsdh_remove(&func->dev);
+			gInstance->func[2] = NULL;
+		}
+		if (func->num == 1) {
+			sdio_claim_host(func);
+			sdio_disable_func(func);
+			sdio_release_host(func);
+			gInstance->func[1] = NULL;
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 }
 
@@ -185,8 +245,16 @@ static int bcmsdh_sdmmc_suspend(struct device *pdev)
 	if (func->num != 2)
 		return 0;
 
+<<<<<<< HEAD
 	sd_trace(("%s Enter\n", __FUNCTION__));
 
+=======
+#ifdef CUSTOMER_HW4
+	sd_err(("%s Enter\n", __FUNCTION__));
+#else
+	sd_trace(("%s Enter\n", __FUNCTION__));
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (dhd_os_check_wakelock(bcmsdh_get_drvdata()))
 		return -EBUSY;
 	sdio_flags = sdio_get_host_pm_caps(func);
@@ -202,9 +270,15 @@ static int bcmsdh_sdmmc_suspend(struct device *pdev)
 		sd_err(("%s: error while trying to keep power\n", __FUNCTION__));
 		return ret;
 	}
+<<<<<<< HEAD
 #if defined(OOB_INTR_ONLY)
 	bcmsdh_oob_intr_set(0);
 #endif	/* defined(OOB_INTR_ONLY) */
+=======
+#if defined(OOB_INTR_ONLY) && !defined(CUSTOMER_HW4)
+	bcmsdh_oob_intr_set(0);
+#endif /* OOB_INTR_ONLY && !CUSTOMER_HW4 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dhd_mmc_suspend = TRUE;
 	smp_mb();
 
@@ -213,6 +287,7 @@ static int bcmsdh_sdmmc_suspend(struct device *pdev)
 
 static int bcmsdh_sdmmc_resume(struct device *pdev)
 {
+<<<<<<< HEAD
 #if defined(OOB_INTR_ONLY)
 	struct sdio_func *func = dev_to_sdio_func(pdev);
 #endif
@@ -222,6 +297,21 @@ static int bcmsdh_sdmmc_resume(struct device *pdev)
 	if ((func->num == 2) && dhd_os_check_if_up(bcmsdh_get_drvdata()))
 		bcmsdh_oob_intr_set(1);
 #endif /* (OOB_INTR_ONLY) */
+=======
+#if defined(OOB_INTR_ONLY) && !defined(CUSTOMER_HW4)
+	struct sdio_func *func = dev_to_sdio_func(pdev);
+#endif /* OOB_INTR_ONLY && !CUSTOMER_HW4 */
+#ifdef CUSTOMER_HW4
+	sd_err(("%s Enter\n", __FUNCTION__));
+#else
+	sd_trace(("%s Enter\n", __FUNCTION__));
+#endif
+	dhd_mmc_suspend = FALSE;
+#if defined(OOB_INTR_ONLY) && !defined(CUSTOMER_HW4)
+	if ((func->num == 2) && dhd_os_check_if_up(bcmsdh_get_drvdata()))
+		bcmsdh_oob_intr_set(1);
+#endif /* OOB_INTR_ONLY && !CUSTOMER_HW4 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	smp_mb();
 	return 0;
@@ -291,6 +381,12 @@ sdioh_sdmmc_osinit(sdioh_info_t *sd)
 {
 	struct sdos_info *sdos;
 
+<<<<<<< HEAD
+=======
+	if (!sd)
+		return BCME_BADARG;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	sdos = (struct sdos_info*)MALLOC(sd->osh, sizeof(struct sdos_info));
 	sd->sdos_info = (void*)sdos;
 	if (sdos == NULL)
@@ -318,6 +414,12 @@ sdioh_interrupt_set(sdioh_info_t *sd, bool enable)
 	ulong flags;
 	struct sdos_info *sdos;
 
+<<<<<<< HEAD
+=======
+	if (!sd)
+		return BCME_BADARG;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	sd_trace(("%s: %s\n", __FUNCTION__, enable ? "Enabling" : "Disabling"));
 
 	sdos = (struct sdos_info *)sd->sdos_info;
@@ -351,7 +453,11 @@ static int __init
 bcmsdh_module_init(void)
 {
 	int error = 0;
+<<<<<<< HEAD
 	sdio_function_init();
+=======
+	error = sdio_function_init();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return error;
 }
 
@@ -382,6 +488,13 @@ int sdio_function_init(void)
 		return -ENOMEM;
 
 	error = sdio_register_driver(&bcmsdh_sdmmc_driver);
+<<<<<<< HEAD
+=======
+	if (error && gInstance) {
+		kfree(gInstance);
+		gInstance = NULL;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return error;
 }
@@ -397,6 +510,13 @@ void sdio_function_cleanup(void)
 
 	sdio_unregister_driver(&bcmsdh_sdmmc_driver);
 
+<<<<<<< HEAD
 	if (gInstance)
 		kfree(gInstance);
+=======
+	if (gInstance) {
+		kfree(gInstance);
+		gInstance = NULL;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }

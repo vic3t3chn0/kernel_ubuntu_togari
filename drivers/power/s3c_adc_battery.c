@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
  *	iPAQ h1930/h1940/rx1950 battery controller driver
  *	Copyright (c) Vasily Khoruzhick
  *	Based on h1940_battery.c by Arnaud Patard
@@ -6,6 +7,17 @@
  * This file is subject to the terms and conditions of the GNU General Public
  * License.  See the file COPYING in the main directory of this archive for
  * more details.
+=======
+ * linux/drivers/power/s3c_adc_battery.c
+ *
+ * Battery measurement code for samsung smdk platform.
+ *
+ * Copyright (C) 2011 Samsung Electronics.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  */
 
@@ -20,7 +32,10 @@
 #include <linux/s3c_adc_battery.h>
 #include <linux/errno.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <plat/adc.h>
 
@@ -47,6 +62,7 @@ static void s3c_adc_bat_ext_power_changed(struct power_supply *psy)
 		msecs_to_jiffies(JITTER_DELAY));
 }
 
+<<<<<<< HEAD
 static int gather_samples(struct s3c_adc_client *client, int num, int channel)
 {
 	int value, i;
@@ -63,6 +79,8 @@ static int gather_samples(struct s3c_adc_client *client, int num, int channel)
 	return value;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static enum power_supply_property s3c_adc_backup_bat_props[] = {
 	POWER_SUPPLY_PROP_VOLTAGE_NOW,
 	POWER_SUPPLY_PROP_VOLTAGE_MIN,
@@ -83,8 +101,12 @@ static int s3c_adc_backup_bat_get_property(struct power_supply *psy,
 	if (bat->volt_value < 0 ||
 		jiffies_to_msecs(jiffies - bat->timestamp) >
 			BAT_POLL_INTERVAL) {
+<<<<<<< HEAD
 		bat->volt_value = gather_samples(bat->client,
 			bat->pdata->backup_volt_samples,
+=======
+		bat->volt_value = s3c_adc_read(bat->client,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			bat->pdata->backup_volt_channel);
 		bat->volt_value *= bat->pdata->backup_volt_mult;
 		bat->timestamp = jiffies;
@@ -156,11 +178,17 @@ static int s3c_adc_bat_get_property(struct power_supply *psy,
 	if (bat->volt_value < 0 || bat->cur_value < 0 ||
 		jiffies_to_msecs(jiffies - bat->timestamp) >
 			BAT_POLL_INTERVAL) {
+<<<<<<< HEAD
 		bat->volt_value = gather_samples(bat->client,
 			bat->pdata->volt_samples,
 			bat->pdata->volt_channel) * bat->pdata->volt_mult;
 		bat->cur_value = gather_samples(bat->client,
 			bat->pdata->current_samples,
+=======
+		bat->volt_value = s3c_adc_read(bat->client,
+			bat->pdata->volt_channel) * bat->pdata->volt_mult;
+		bat->cur_value = s3c_adc_read(bat->client,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			bat->pdata->current_channel) * bat->pdata->current_mult;
 		bat->timestamp = jiffies;
 	}
@@ -440,7 +468,21 @@ static struct platform_driver s3c_adc_bat_driver = {
 	.resume		= s3c_adc_bat_resume,
 };
 
+<<<<<<< HEAD
 module_platform_driver(s3c_adc_bat_driver);
+=======
+static int __init s3c_adc_bat_init(void)
+{
+	return platform_driver_register(&s3c_adc_bat_driver);
+}
+module_init(s3c_adc_bat_init);
+
+static void __exit s3c_adc_bat_exit(void)
+{
+	platform_driver_unregister(&s3c_adc_bat_driver);
+}
+module_exit(s3c_adc_bat_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Vasily Khoruzhick <anarsoul@gmail.com>");
 MODULE_DESCRIPTION("iPAQ H1930/H1940/RX1950 battery controller driver");

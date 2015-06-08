@@ -5,7 +5,11 @@
  *****************************************************************************/
 
 /*
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +45,10 @@
  * POSSIBILITY OF SUCH DAMAGES.
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <acpi/acpi.h>
 #include "accommon.h"
 #include "acevents.h"
@@ -50,7 +57,10 @@
 #define _COMPONENT          ACPI_EVENTS
 ACPI_MODULE_NAME("evxfgpe")
 
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)	/* Entire module */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /******************************************************************************
  *
  * FUNCTION:    acpi_update_all_gpes
@@ -696,4 +706,7 @@ acpi_get_gpe_device(u32 index, acpi_handle *gpe_device)
 }
 
 ACPI_EXPORT_SYMBOL(acpi_get_gpe_device)
+<<<<<<< HEAD
 #endif				/* !ACPI_REDUCED_HARDWARE */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

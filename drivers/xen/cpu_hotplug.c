@@ -30,8 +30,12 @@ static int vcpu_online(unsigned int cpu)
 	sprintf(dir, "cpu/%u", cpu);
 	err = xenbus_scanf(XBT_NIL, dir, "availability", "%s", state);
 	if (err != 1) {
+<<<<<<< HEAD
 		if (!xen_initial_domain())
 			printk(KERN_ERR "XENBUS: Unable to read cpu state\n");
+=======
+		printk(KERN_ERR "XENBUS: Unable to read cpu state\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return err;
 	}
 

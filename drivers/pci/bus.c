@@ -18,6 +18,7 @@
 
 #include "pci.h"
 
+<<<<<<< HEAD
 void pci_add_resource_offset(struct list_head *resources, struct resource *res,
 			     resource_size_t offset)
 {
@@ -52,6 +53,8 @@ void pci_free_resource_list(struct list_head *resources)
 }
 EXPORT_SYMBOL(pci_free_resource_list);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void pci_bus_add_resource(struct pci_bus *bus, struct resource *res,
 			  unsigned int flags)
 {
@@ -86,12 +89,23 @@ EXPORT_SYMBOL_GPL(pci_bus_resource_n);
 
 void pci_bus_remove_resources(struct pci_bus *bus)
 {
+<<<<<<< HEAD
+=======
+	struct pci_bus_resource *bus_res, *tmp;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int i;
 
 	for (i = 0; i < PCI_BRIDGE_RESOURCE_NUM; i++)
 		bus->resource[i] = NULL;
 
+<<<<<<< HEAD
 	pci_free_resource_list(&bus->resources);
+=======
+	list_for_each_entry_safe(bus_res, tmp, &bus->resources, list) {
+		list_del(&bus_res->list);
+		kfree(bus_res);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**

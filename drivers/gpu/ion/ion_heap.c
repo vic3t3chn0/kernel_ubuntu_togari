@@ -2,7 +2,10 @@
  * drivers/gpu/ion/ion_heap.c
  *
  * Copyright (C) 2011 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -16,6 +19,7 @@
  */
 
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/freezer.h>
 #include <linux/ion.h>
 #include <linux/kthread.h>
@@ -393,6 +397,11 @@ int ion_heap_init_deferred_free(struct ion_heap *heap)
 	return 0;
 }
 
+=======
+#include <linux/ion.h>
+#include "ion_priv.h"
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 struct ion_heap *ion_heap_create(struct ion_platform_heap *heap_data)
 {
 	struct ion_heap *heap = NULL;
@@ -407,9 +416,12 @@ struct ion_heap *ion_heap_create(struct ion_platform_heap *heap_data)
 	case ION_HEAP_TYPE_CARVEOUT:
 		heap = ion_carveout_heap_create(heap_data);
 		break;
+<<<<<<< HEAD
 	case ION_HEAP_TYPE_CHUNK:
 		heap = ion_chunk_heap_create(heap_data);
 		break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default:
 		pr_err("%s: Invalid heap type %d\n", __func__,
 		       heap_data->type);
@@ -417,15 +429,24 @@ struct ion_heap *ion_heap_create(struct ion_platform_heap *heap_data)
 	}
 
 	if (IS_ERR_OR_NULL(heap)) {
+<<<<<<< HEAD
 		pr_err("%s: error creating heap %s type %d base %pa size %u\n",
 		       __func__, heap_data->name, heap_data->type,
 		       &heap_data->base, heap_data->size);
+=======
+		pr_err("%s: error creating heap %s type %d base %lu size %u\n",
+		       __func__, heap_data->name, heap_data->type,
+		       heap_data->base, heap_data->size);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return ERR_PTR(-EINVAL);
 	}
 
 	heap->name = heap_data->name;
 	heap->id = heap_data->id;
+<<<<<<< HEAD
 	heap->priv = heap_data->priv;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return heap;
 }
 
@@ -444,9 +465,12 @@ void ion_heap_destroy(struct ion_heap *heap)
 	case ION_HEAP_TYPE_CARVEOUT:
 		ion_carveout_heap_destroy(heap);
 		break;
+<<<<<<< HEAD
 	case ION_HEAP_TYPE_CHUNK:
 		ion_chunk_heap_destroy(heap);
 		break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default:
 		pr_err("%s: Invalid heap type %d\n", __func__,
 		       heap->type);

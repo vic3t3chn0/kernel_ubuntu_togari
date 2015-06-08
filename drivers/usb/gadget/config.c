@@ -7,6 +7,18 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
+<<<<<<< HEAD
+=======
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #include <linux/errno.h>
@@ -19,6 +31,7 @@
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
 
+<<<<<<< HEAD
 /**
  * usb_find_descriptor_fillbuf - fill buffer with the requested descriptor
  * @buf: Buffer to be filled
@@ -53,6 +66,8 @@ usb_find_descriptor_fillbuf(void *buf, unsigned buflen,
 
 	return -ENOENT;
 }
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * usb_descriptor_fillbuf - fill buffer with descriptors
@@ -190,3 +205,31 @@ usb_copy_descriptors(struct usb_descriptor_header **src)
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+/**
+ * usb_find_endpoint - find a copy of an endpoint descriptor
+ * @src: original vector of descriptors
+ * @copy: copy of @src
+ * @match: endpoint descriptor found in @src
+ *
+ * This returns the copy of the @match descriptor made for @copy.  Its
+ * intended use is to help remembering the endpoint descriptor to use
+ * when enabling a given endpoint.
+ */
+struct usb_endpoint_descriptor *
+usb_find_endpoint(
+	struct usb_descriptor_header **src,
+	struct usb_descriptor_header **copy,
+	struct usb_endpoint_descriptor *match
+)
+{
+	while (*src) {
+		if (*src == (void *) match)
+			return (void *)*copy;
+		src++;
+		copy++;
+	}
+	return NULL;
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

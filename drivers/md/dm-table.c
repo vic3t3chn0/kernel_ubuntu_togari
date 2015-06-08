@@ -17,7 +17,11 @@
 #include <linux/interrupt.h>
 #include <linux/mutex.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define DM_MSG_PREFIX "table"
 
@@ -54,9 +58,14 @@ struct dm_table {
 	sector_t *highs;
 	struct dm_target *targets;
 
+<<<<<<< HEAD
 	struct target_type *immutable_target_type;
 	unsigned integrity_supported:1;
 	unsigned singleton:1;
+=======
+	unsigned discards_supported:1;
+	unsigned integrity_supported:1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Indicates the rw permissions for the new logical
@@ -155,11 +164,20 @@ void *dm_vcalloc(unsigned long nmemb, unsigned long elem_size)
 		return NULL;
 
 	size = nmemb * elem_size;
+<<<<<<< HEAD
 	addr = vzalloc(size);
 
 	return addr;
 }
 EXPORT_SYMBOL(dm_vcalloc);
+=======
+	addr = vmalloc(size);
+	if (addr)
+		memset(addr, 0, size);
+
+	return addr;
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * highs, and targets are managed as dynamic arrays during a
@@ -209,6 +227,10 @@ int dm_table_create(struct dm_table **result, fmode_t mode,
 	INIT_LIST_HEAD(&t->devices);
 	INIT_LIST_HEAD(&t->target_callbacks);
 	atomic_set(&t->holders, 0);
+<<<<<<< HEAD
+=======
+	t->discards_supported = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!num_targets)
 		num_targets = KEYS_PER_NODE;
@@ -268,7 +290,12 @@ void dm_table_destroy(struct dm_table *t)
 	vfree(t->highs);
 
 	/* free the device list */
+<<<<<<< HEAD
 	free_devices(&t->devices);
+=======
+	if (t->devices.next != &t->devices)
+		free_devices(&t->devices);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	dm_free_md_mempools(t->mempools);
 
@@ -279,7 +306,10 @@ void dm_table_get(struct dm_table *t)
 {
 	atomic_inc(&t->holders);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(dm_table_get);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 void dm_table_put(struct dm_table *t)
 {
@@ -289,7 +319,10 @@ void dm_table_put(struct dm_table *t)
 	smp_mb__before_atomic_dec();
 	atomic_dec(&t->holders);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(dm_table_put);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * Checks to see if we need to extend highs or targets.
@@ -455,19 +488,31 @@ static int upgrade_mode(struct dm_dev_internal *dd, fmode_t new_mode,
  * Add a device to the list, or just increment the usage count if
  * it's already present.
  */
+<<<<<<< HEAD
 int dm_get_device(struct dm_target *ti, const char *path, fmode_t mode,
 		  struct dm_dev **result)
+=======
+static int __table_get_device(struct dm_table *t, struct dm_target *ti,
+		      const char *path, fmode_t mode, struct dm_dev **result)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	int r;
 	dev_t uninitialized_var(dev);
 	struct dm_dev_internal *dd;
 	unsigned int major, minor;
+<<<<<<< HEAD
 	struct dm_table *t = ti->table;
 	char dummy;
 
 	BUG_ON(!t);
 
 	if (sscanf(path, "%u:%u%c", &major, &minor, &dummy) == 2) {
+=======
+
+	BUG_ON(!t);
+
+	if (sscanf(path, "%u:%u", &major, &minor) == 2) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* Extract the major/minor numbers */
 		dev = MKDEV(major, minor);
 		if (MAJOR(dev) != major || MINOR(dev) != minor)
@@ -511,7 +556,10 @@ int dm_get_device(struct dm_target *ti, const char *path, fmode_t mode,
 	*result = &dd->dm_dev;
 	return 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(dm_get_device);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int dm_set_device_limits(struct dm_target *ti, struct dm_dev *dev,
 			 sector_t start, sector_t len, void *data)
@@ -542,15 +590,32 @@ int dm_set_device_limits(struct dm_target *ti, struct dm_dev *dev,
 	 * If not we'll force DM to use PAGE_SIZE or
 	 * smaller I/O, just to be safe.
 	 */
+<<<<<<< HEAD
 	if (dm_queue_merge_is_compulsory(q) && !ti->type->merge)
+=======
+
+	if (q->merge_bvec_fn && !ti->type->merge)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		blk_limits_max_hw_sectors(limits,
 					  (unsigned int) (PAGE_SIZE >> 9));
 	return 0;
 }
 EXPORT_SYMBOL_GPL(dm_set_device_limits);
 
+<<<<<<< HEAD
 /*
  * Decrement a device's use count and remove it if necessary.
+=======
+int dm_get_device(struct dm_target *ti, const char *path, fmode_t mode,
+		  struct dm_dev **result)
+{
+	return __table_get_device(ti->table, ti, path, mode, result);
+}
+
+
+/*
+ * Decrement a devices use count and remove it if necessary.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 void dm_put_device(struct dm_target *ti, struct dm_dev *d)
 {
@@ -563,7 +628,10 @@ void dm_put_device(struct dm_target *ti, struct dm_dev *d)
 		kfree(dd);
 	}
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(dm_put_device);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * Checks to see if the target joins onto the end of the table.
@@ -699,7 +767,11 @@ static int validate_hardware_logical_block_alignment(struct dm_table *table,
 	while (i < dm_table_get_num_targets(table)) {
 		ti = dm_table_get_target(table, i++);
 
+<<<<<<< HEAD
 		blk_set_stacking_limits(&ti_limits);
+=======
+		blk_set_default_limits(&ti_limits);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		/* combine all target devices' limits */
 		if (ti->type->iterate_devices)
@@ -742,12 +814,15 @@ int dm_table_add_target(struct dm_table *t, const char *type,
 	char **argv;
 	struct dm_target *tgt;
 
+<<<<<<< HEAD
 	if (t->singleton) {
 		DMERR("%s: target type %s must appear alone in table",
 		      dm_device_name(t->md), t->targets->type->name);
 		return -EINVAL;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if ((r = check_space(t)))
 		return r;
 
@@ -766,6 +841,7 @@ int dm_table_add_target(struct dm_table *t, const char *type,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	if (dm_target_needs_singleton(tgt->type)) {
 		if (t->num_targets) {
 			DMERR("%s: target type %s must appear alone in table",
@@ -796,6 +872,8 @@ int dm_table_add_target(struct dm_table *t, const char *type,
 		t->immutable_target_type = tgt->type;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	tgt->table = t;
 	tgt->begin = start;
 	tgt->len = len;
@@ -823,9 +901,14 @@ int dm_table_add_target(struct dm_table *t, const char *type,
 
 	t->highs[t->num_targets++] = tgt->begin + tgt->len - 1;
 
+<<<<<<< HEAD
 	if (!tgt->num_discard_requests && tgt->discards_supported)
 		DMWARN("%s: %s: ignoring discards_supported because num_discard_requests is zero.",
 		       dm_device_name(t->md), type);
+=======
+	if (!tgt->num_discard_requests)
+		t->discards_supported = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 
@@ -835,6 +918,7 @@ int dm_table_add_target(struct dm_table *t, const char *type,
 	return r;
 }
 
+<<<<<<< HEAD
 /*
  * Target argument parsing helpers.
  */
@@ -893,6 +977,8 @@ void dm_consume_args(struct dm_arg_set *as, unsigned num_args)
 }
 EXPORT_SYMBOL(dm_consume_args);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int dm_table_set_type(struct dm_table *t)
 {
 	unsigned i;
@@ -954,11 +1040,14 @@ unsigned dm_table_get_type(struct dm_table *t)
 	return t->type;
 }
 
+<<<<<<< HEAD
 struct target_type *dm_table_get_immutable_target_type(struct dm_table *t)
 {
 	return t->immutable_target_type;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 bool dm_table_request_based(struct dm_table *t)
 {
 	return dm_table_get_type(t) == DM_TYPE_REQUEST_BASED;
@@ -1173,13 +1262,19 @@ void dm_table_event(struct dm_table *t)
 		t->event_fn(t->event_context);
 	mutex_unlock(&_event_lock);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(dm_table_event);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 sector_t dm_table_get_size(struct dm_table *t)
 {
 	return t->num_targets ? (t->highs[t->num_targets - 1] + 1) : 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(dm_table_get_size);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 struct dm_target *dm_table_get_target(struct dm_table *t, unsigned int index)
 {
@@ -1222,10 +1317,17 @@ int dm_calculate_queue_limits(struct dm_table *table,
 	struct queue_limits ti_limits;
 	unsigned i = 0;
 
+<<<<<<< HEAD
 	blk_set_stacking_limits(limits);
 
 	while (i < dm_table_get_num_targets(table)) {
 		blk_set_stacking_limits(&ti_limits);
+=======
+	blk_set_default_limits(limits);
+
+	while (i < dm_table_get_num_targets(table)) {
+		blk_set_default_limits(&ti_limits);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		ti = dm_table_get_target(table, i++);
 
@@ -1293,6 +1395,7 @@ static void dm_table_set_integrity(struct dm_table *t)
 		       dm_device_name(t->md));
 }
 
+<<<<<<< HEAD
 static int device_flush_capable(struct dm_target *ti, struct dm_dev *dev,
 				sector_t start, sector_t len, void *data)
 {
@@ -1373,6 +1476,11 @@ void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
 {
 	unsigned flush = 0;
 
+=======
+void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
+			       struct queue_limits *limits)
+{
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * Copy table's limits to the DM device's request_queue
 	 */
@@ -1383,6 +1491,7 @@ void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
 	else
 		queue_flag_set_unlocked(QUEUE_FLAG_DISCARD, q);
 
+<<<<<<< HEAD
 	if (dm_table_supports_flush(t, REQ_FLUSH)) {
 		flush |= REQ_FLUSH;
 		if (dm_table_supports_flush(t, REQ_FUA))
@@ -1398,6 +1507,8 @@ void dm_table_set_restrictions(struct dm_table *t, struct request_queue *q,
 	else
 		queue_flag_clear_unlocked(QUEUE_FLAG_NONROT, q);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dm_table_set_integrity(t);
 
 	/*
@@ -1428,7 +1539,10 @@ fmode_t dm_table_get_mode(struct dm_table *t)
 {
 	return t->mode;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(dm_table_get_mode);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static void suspend_targets(struct dm_table *t, unsigned postsuspend)
 {
@@ -1537,7 +1651,10 @@ struct mapped_device *dm_table_get_md(struct dm_table *t)
 {
 	return t->md;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(dm_table_get_md);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int device_discard_capable(struct dm_target *ti, struct dm_dev *dev,
 				  sector_t start, sector_t len, void *data)
@@ -1552,19 +1669,32 @@ bool dm_table_supports_discards(struct dm_table *t)
 	struct dm_target *ti;
 	unsigned i = 0;
 
+<<<<<<< HEAD
+=======
+	if (!t->discards_supported)
+		return 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * Unless any target used by the table set discards_supported,
 	 * require at least one underlying device to support discards.
 	 * t->devices includes internal dm devices such as mirror logs
 	 * so we need to use iterate_devices here, which targets
+<<<<<<< HEAD
 	 * supporting discard selectively must provide.
+=======
+	 * supporting discard must provide.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 */
 	while (i < dm_table_get_num_targets(t)) {
 		ti = dm_table_get_target(t, i++);
 
+<<<<<<< HEAD
 		if (!ti->num_discard_requests)
 			continue;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (ti->discards_supported)
 			return 1;
 
@@ -1575,3 +1705,16 @@ bool dm_table_supports_discards(struct dm_table *t)
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+
+EXPORT_SYMBOL(dm_vcalloc);
+EXPORT_SYMBOL(dm_get_device);
+EXPORT_SYMBOL(dm_put_device);
+EXPORT_SYMBOL(dm_table_event);
+EXPORT_SYMBOL(dm_table_get_size);
+EXPORT_SYMBOL(dm_table_get_mode);
+EXPORT_SYMBOL(dm_table_get_md);
+EXPORT_SYMBOL(dm_table_put);
+EXPORT_SYMBOL(dm_table_get);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

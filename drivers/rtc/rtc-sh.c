@@ -666,7 +666,11 @@ static int __init sh_rtc_probe(struct platform_device *pdev)
 	if (rtc->carry_irq <= 0) {
 		/* register shared periodic/carry/alarm irq */
 		ret = request_irq(rtc->periodic_irq, sh_rtc_shared,
+<<<<<<< HEAD
 				  0, "sh-rtc", rtc);
+=======
+				  IRQF_DISABLED, "sh-rtc", rtc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (unlikely(ret)) {
 			dev_err(&pdev->dev,
 				"request IRQ failed with %d, IRQ %d\n", ret,
@@ -676,7 +680,11 @@ static int __init sh_rtc_probe(struct platform_device *pdev)
 	} else {
 		/* register periodic/carry/alarm irqs */
 		ret = request_irq(rtc->periodic_irq, sh_rtc_periodic,
+<<<<<<< HEAD
 				  0, "sh-rtc period", rtc);
+=======
+				  IRQF_DISABLED, "sh-rtc period", rtc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (unlikely(ret)) {
 			dev_err(&pdev->dev,
 				"request period IRQ failed with %d, IRQ %d\n",
@@ -685,7 +693,11 @@ static int __init sh_rtc_probe(struct platform_device *pdev)
 		}
 
 		ret = request_irq(rtc->carry_irq, sh_rtc_interrupt,
+<<<<<<< HEAD
 				  0, "sh-rtc carry", rtc);
+=======
+				  IRQF_DISABLED, "sh-rtc carry", rtc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (unlikely(ret)) {
 			dev_err(&pdev->dev,
 				"request carry IRQ failed with %d, IRQ %d\n",
@@ -695,7 +707,11 @@ static int __init sh_rtc_probe(struct platform_device *pdev)
 		}
 
 		ret = request_irq(rtc->alarm_irq, sh_rtc_alarm,
+<<<<<<< HEAD
 				  0, "sh-rtc alarm", rtc);
+=======
+				  IRQF_DISABLED, "sh-rtc alarm", rtc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (unlikely(ret)) {
 			dev_err(&pdev->dev,
 				"request alarm IRQ failed with %d, IRQ %d\n",

@@ -43,8 +43,13 @@
 #define ERR(fmt, args...) yprintk(KERN_ERR, fmt, ## args)
 
 #ifdef CONFIG_DEBUG_FS
+<<<<<<< HEAD
 int musb_init_debugfs(struct musb *musb);
 void musb_exit_debugfs(struct musb *musb);
+=======
+extern int musb_init_debugfs(struct musb *musb);
+extern void musb_exit_debugfs(struct musb *musb);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #else
 static inline int musb_init_debugfs(struct musb *musb)
 {

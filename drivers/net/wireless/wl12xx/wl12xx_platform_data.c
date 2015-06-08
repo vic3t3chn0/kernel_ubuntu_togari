@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * This file is part of wl12xx
  *
@@ -19,11 +20,17 @@
  *
  */
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/module.h>
 #include <linux/err.h>
 #include <linux/wl12xx.h>
 
+<<<<<<< HEAD
 static struct wl12xx_platform_data *platform_data;
+=======
+static const struct wl12xx_platform_data *platform_data;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int __init wl12xx_set_platform_data(const struct wl12xx_platform_data *data)
 {
@@ -39,7 +46,11 @@ int __init wl12xx_set_platform_data(const struct wl12xx_platform_data *data)
 	return 0;
 }
 
+<<<<<<< HEAD
 struct wl12xx_platform_data *wl12xx_get_platform_data(void)
+=======
+const struct wl12xx_platform_data *wl12xx_get_platform_data(void)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	if (!platform_data)
 		return ERR_PTR(-ENODEV);

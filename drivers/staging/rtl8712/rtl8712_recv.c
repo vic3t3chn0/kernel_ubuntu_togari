@@ -55,6 +55,11 @@ int r8712_init_recv_priv(struct recv_priv *precvpriv, struct _adapter *padapter)
 	int alignment = 0;
 	struct sk_buff *pskb = NULL;
 
+<<<<<<< HEAD
+=======
+	sema_init(&precvpriv->recv_sema, 0);
+	sema_init(&precvpriv->terminate_recvthread_sema, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*init recv_buf*/
 	_init_queue(&precvpriv->free_recv_buf_queue);
 	precvpriv->pallocated_recv_buf = _malloc(NR_RECVBUFF *
@@ -190,7 +195,11 @@ static void update_recvframe_attrib_from_recvstat(struct rx_pkt_attrib *pattrib,
 	} else
 		pattrib->tcpchk_valid = 0; /* invalid */
 	pattrib->mcs_rate = (u8)((le32_to_cpu(prxstat->rxdw3)) & 0x3f);
+<<<<<<< HEAD
 	pattrib->htc = (u8)((le32_to_cpu(prxstat->rxdw3) >> 14) & 0x1);
+=======
+	pattrib->htc = (u8)((le32_to_cpu(prxstat->rxdw3) >> 6) & 0x1);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*Offset 16*/
 	/*Offset 20*/
 	/*phy_info*/
@@ -205,7 +214,11 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 				   struct  __queue *defrag_q)
 {
 	struct list_head *plist, *phead;
+<<<<<<< HEAD
 	u8	*data, wlanhdr_offset;
+=======
+	u8	wlanhdr_offset;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u8	curfragnum;
 	struct recv_frame_hdr *pfhdr, *pnfhdr;
 	union recv_frame *prframe, *pnextrframe;
@@ -222,6 +235,7 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 		/*the first fragment number must be 0
 		 *free the whole queue*/
 		r8712_free_recvframe(prframe, pfree_recv_queue);
+<<<<<<< HEAD
 		r8712_free_recvframe_queue(defrag_q, pfree_recv_queue);
 		return NULL;
 	}
@@ -233,14 +247,31 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 		pnextrframe = LIST_CONTAINOR(plist, union recv_frame, u);
 		pnfhdr = &pnextrframe->u.hdr;
 		/*check the fragment sequence  (2nd ~n fragment frame) */
+=======
+		prframe = NULL;
+		goto exit;
+	}
+	plist = get_next(phead);
+	while (end_of_queue_search(phead, plist) == false) {
+		pnextrframe = LIST_CONTAINOR(plist, union recv_frame, u);
+		/*check the fragment sequence  (2nd ~n fragment frame) */
+		pnfhdr = &pnextrframe->u.hdr;
+		curfragnum++;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (curfragnum != pnfhdr->attrib.frag_num) {
 			/* the fragment number must increase  (after decache)
 			 * release the defrag_q & prframe */
 			r8712_free_recvframe(prframe, pfree_recv_queue);
+<<<<<<< HEAD
 			r8712_free_recvframe_queue(defrag_q, pfree_recv_queue);
 			return NULL;
 		}
 		curfragnum++;
+=======
+			prframe = NULL;
+			goto exit;
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* copy the 2nd~n fragment frame's payload to the first fragment
 		 * get the 2nd~last fragment frame's payload */
 		wlanhdr_offset = pnfhdr->attrib.hdrlen + pnfhdr->attrib.iv_len;
@@ -253,6 +284,10 @@ static union recv_frame *recvframe_defrag(struct _adapter *adapter,
 		pfhdr->attrib.icv_len = pnfhdr->attrib.icv_len;
 		plist = get_next(plist);
 	}
+<<<<<<< HEAD
+=======
+exit:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* free the defrag_q queue and return the prframe */
 	r8712_free_recvframe_queue(defrag_q, pfree_recv_queue);
 	return prframe;
@@ -1074,7 +1109,11 @@ static int recvbuf2recvframe(struct _adapter *padapter, struct sk_buff *pskb)
 		/* for first fragment packet, driver need allocate 1536 +
 		 * drvinfo_sz + RXDESC_SIZE to defrag packet. */
 		if ((mf == 1) && (frag == 0))
+<<<<<<< HEAD
 			alloc_sz = 1658;/*1658+6=1664, 1664 is 128 alignment.*/
+=======
+			alloc_sz = 1658;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		else
 			alloc_sz = tmp_len;
 		/* 2 is for IP header 4 bytes alignment in QoS packet case.

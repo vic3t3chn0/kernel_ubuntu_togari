@@ -19,25 +19,39 @@ struct s3c24xx_uart_info {
 	unsigned long		tx_fifomask;
 	unsigned long		tx_fifoshift;
 	unsigned long		tx_fifofull;
+<<<<<<< HEAD
 	unsigned int		def_clk_sel;
 	unsigned long		num_clks;
 	unsigned long		clksel_mask;
 	unsigned long		clksel_shift;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* uart port features */
 
 	unsigned int		has_divslot:1;
 
+<<<<<<< HEAD
+=======
+	/* clock source control */
+
+	int (*get_clksrc)(struct uart_port *, struct s3c24xx_uart_clksrc *clk);
+	int (*set_clksrc)(struct uart_port *, struct s3c24xx_uart_clksrc *clk);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* uart controls */
 	int (*reset_port)(struct uart_port *, struct s3c2410_uartcfg *);
 };
 
+<<<<<<< HEAD
 struct s3c24xx_serial_drv_data {
 	struct s3c24xx_uart_info	*info;
 	struct s3c2410_uartcfg		*def_cfg;
 	unsigned int			fifosize[CONFIG_SERIAL_SAMSUNG_UARTS];
 };
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 struct s3c24xx_uart_port {
 	unsigned char			rx_claimed;
 	unsigned char			tx_claimed;
@@ -48,6 +62,7 @@ struct s3c24xx_uart_port {
 	unsigned int			tx_irq;
 
 	struct s3c24xx_uart_info	*info;
+<<<<<<< HEAD
 	struct clk			*clk;
 	struct clk			*baudclk;
 	struct uart_port		port;
@@ -55,6 +70,12 @@ struct s3c24xx_uart_port {
 
 	/* reference to platform data */
 	struct s3c2410_uartcfg		*cfg;
+=======
+	struct s3c24xx_uart_clksrc	*clksrc;
+	struct clk			*clk;
+	struct clk			*baudclk;
+	struct uart_port		port;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_CPU_FREQ
 	struct notifier_block		freq_transition;
@@ -64,11 +85,18 @@ struct s3c24xx_uart_port {
 /* conversion functions */
 
 #define s3c24xx_dev_to_port(__dev) (struct uart_port *)dev_get_drvdata(__dev)
+<<<<<<< HEAD
+=======
+#define s3c24xx_dev_to_cfg(__dev) (struct s3c2410_uartcfg *)((__dev)->platform_data)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* register access controls */
 
 #define portaddr(port, reg) ((port)->membase + (reg))
+<<<<<<< HEAD
 #define portaddrl(port, reg) ((unsigned long *)((port)->membase + (reg)))
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define rd_regb(port, reg) (__raw_readb(portaddr(port, reg)))
 #define rd_regl(port, reg) (__raw_readl(portaddr(port, reg)))
@@ -76,6 +104,20 @@ struct s3c24xx_uart_port {
 #define wr_regb(port, reg, val) __raw_writeb(val, portaddr(port, reg))
 #define wr_regl(port, reg, val) __raw_writel(val, portaddr(port, reg))
 
+<<<<<<< HEAD
+=======
+extern int s3c24xx_serial_probe(struct platform_device *dev,
+				struct s3c24xx_uart_info *uart);
+
+extern int __devexit s3c24xx_serial_remove(struct platform_device *dev);
+
+extern int s3c24xx_serial_initconsole(struct platform_driver *drv,
+				      struct s3c24xx_uart_info **uart);
+
+extern int s3c24xx_serial_init(struct platform_driver *drv,
+			       struct s3c24xx_uart_info *info);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_SERIAL_SAMSUNG_DEBUG
 
 extern void printascii(const char *);

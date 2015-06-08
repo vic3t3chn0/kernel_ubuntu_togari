@@ -22,7 +22,20 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: hndpmu.c 324060 2012-03-27 23:26:47Z $
+=======
+ * $Id: hndpmu.c 367414 2012-11-08 00:40:54Z $
+ */
+
+/*
+ * Note: this file contains PLL/FLL related functions. A chip can contain multiple PLLs/FLLs.
+ * However, in the context of this file the baseband ('BB') PLL/FLL is referred to.
+ *
+ * Throughout this code, the prefixes 'pmu0_', 'pmu1_' and 'pmu2_' are used.
+ * They refer to different revisions of the PMU (which is at revision 18 @ Apr 25, 2012)
+ * pmu2_ marks the transition from PLL to ADFLL (Digital Frequency Locked Loop)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #include <bcm_cfg.h>
@@ -109,6 +122,15 @@ static const sdiod_drive_str_t sdiod_drive_strength_tab5_1v8[] = {
 
 /* SDIO Drive Strength to sel value table for PMU Rev 13 (3.3v) */
 
+<<<<<<< HEAD
+=======
+/* SDIO Drive Strength to sel value table for PMU Rev 17 (1.8v) */
+static const sdiod_drive_str_t sdiod_drive_strength_tab6_1v8[] = {
+	{3, 0x3},
+	{2, 0x2},
+	{1, 0x1},
+	{0, 0x0} };
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define SDIOD_DRVSTR_KEY(chip, pmu)	(((chip) << 16) | (pmu))
 
@@ -162,6 +184,14 @@ si_sdiod_drive_strength_init(si_t *sih, osl_t *osh, uint32 drivestrength)
 		str_mask = 0x00003800;
 		str_shift = 11;
 		break;
+<<<<<<< HEAD
+=======
+	case SDIOD_DRVSTR_KEY(BCM4334_CHIP_ID, 17):
+		str_tab = (sdiod_drive_str_t *)&sdiod_drive_strength_tab6_1v8;
+		str_mask = 0x00001800;
+		str_shift = 11;
+		break;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default:
 		PMU_MSG(("No SDIO Drive strength init done for chip %s rev %d pmurev %d\n",
 		         bcm_chipname(sih->chip, chn, 8), sih->chiprev, sih->pmurev));
@@ -169,7 +199,11 @@ si_sdiod_drive_strength_init(si_t *sih, osl_t *osh, uint32 drivestrength)
 		break;
 	}
 
+<<<<<<< HEAD
 	if (str_tab != NULL) {
+=======
+	if (str_tab != NULL && cc != NULL) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		uint32 cc_data_temp;
 		int i;
 

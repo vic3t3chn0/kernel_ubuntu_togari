@@ -25,6 +25,11 @@ struct ath_softc;
 
 #define ATH_RATE_MAX     30
 #define RATE_TABLE_SIZE  72
+<<<<<<< HEAD
+=======
+#define MAX_TX_RATE_PHY  48
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define RC_INVALID	0x0000
 #define RC_LEGACY	0x0001
@@ -219,6 +224,15 @@ struct ath_rate_priv {
 	struct ath_rc_stats rcstats[RATE_TABLE_SIZE];
 };
 
+<<<<<<< HEAD
+=======
+enum ath9k_internal_frame_type {
+	ATH9K_IFT_NOT_INTERNAL,
+	ATH9K_IFT_PAUSE,
+	ATH9K_IFT_UNPAUSE
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_ATH9K_RATE_CONTROL
 int ath_rate_control_register(void);
 void ath_rate_control_unregister(void);

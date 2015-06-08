@@ -154,7 +154,21 @@ static struct usb_driver plusb_driver = {
 	.resume =	usbnet_resume,
 };
 
+<<<<<<< HEAD
 module_usb_driver(plusb_driver);
+=======
+static int __init plusb_init(void)
+{
+	return usb_register(&plusb_driver);
+}
+module_init(plusb_init);
+
+static void __exit plusb_exit(void)
+{
+	usb_deregister(&plusb_driver);
+}
+module_exit(plusb_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("David Brownell");
 MODULE_DESCRIPTION("Prolific PL-2301/2302/25A1 USB Host to Host Link Driver");

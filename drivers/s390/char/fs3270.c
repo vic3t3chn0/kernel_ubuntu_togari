@@ -11,11 +11,18 @@
 #include <linux/console.h>
 #include <linux/init.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <linux/compat.h>
 #include <linux/module.h>
 #include <linux/list.h>
 #include <linux/slab.h>
 #include <linux/types.h>
+=======
+#include <linux/list.h>
+#include <linux/slab.h>
+#include <linux/types.h>
+#include <linux/compat.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <asm/compat.h>
 #include <asm/ccwdev.h>

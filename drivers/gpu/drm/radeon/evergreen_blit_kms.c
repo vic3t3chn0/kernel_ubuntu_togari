@@ -226,7 +226,11 @@ set_scissors(struct radeon_device *rdev, int x1, int y1,
 		x1 = 1;
 	if (y2 == 0)
 		y1 = 1;
+<<<<<<< HEAD
 	if (rdev->family >= CHIP_CAYMAN) {
+=======
+	if (rdev->family == CHIP_CAYMAN) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if ((x2 == 1) && (y2 == 1))
 			x2 = 2;
 	}

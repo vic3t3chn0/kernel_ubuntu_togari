@@ -45,7 +45,10 @@
 #include <linux/pci.h>
 #include <linux/vmalloc.h>
 #include <linux/fs.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/uaccess.h>
 
 #include "ipath_kernel.h"

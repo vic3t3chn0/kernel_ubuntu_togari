@@ -213,6 +213,10 @@ static struct ata_port_operations radisys_pata_ops = {
 
 static int radisys_init_one (struct pci_dev *pdev, const struct pci_device_id *ent)
 {
+<<<<<<< HEAD
+=======
+	static int printed_version;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	static const struct ata_port_info info = {
 		.flags		= ATA_FLAG_SLAVE_POSS,
 		.pio_mask	= ATA_PIO4,
@@ -222,7 +226,13 @@ static int radisys_init_one (struct pci_dev *pdev, const struct pci_device_id *e
 	};
 	const struct ata_port_info *ppi[] = { &info, NULL };
 
+<<<<<<< HEAD
 	ata_print_version_once(&pdev->dev, DRV_VERSION);
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &pdev->dev,
+			   "version " DRV_VERSION "\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ata_pci_bmdma_init_one(pdev, ppi, &radisys_sht, NULL, 0);
 }

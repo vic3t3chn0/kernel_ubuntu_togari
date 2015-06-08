@@ -57,7 +57,11 @@
 		   ZR36057_ISR_GIRQ1 | \
 		   ZR36057_ISR_JPEGRepIRQ )
 
+<<<<<<< HEAD
 static bool lml33dpath;		/* default = 0
+=======
+static int lml33dpath;		/* default = 0
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				 * 1 will use digital path in capture
 				 * mode instead of analog. It can be
 				 * used for picture adjustments using

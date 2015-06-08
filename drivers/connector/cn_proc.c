@@ -28,9 +28,13 @@
 #include <linux/init.h>
 #include <linux/connector.h>
 #include <linux/gfp.h>
+<<<<<<< HEAD
 #include <linux/ptrace.h>
 #include <linux/atomic.h>
 
+=======
+#include <asm/atomic.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/unaligned.h>
 
 #include <linux/cn_proc.h>
@@ -57,7 +61,10 @@ void proc_fork_connector(struct task_struct *task)
 	struct proc_event *ev;
 	__u8 buffer[CN_PROC_MSG_SIZE];
 	struct timespec ts;
+<<<<<<< HEAD
 	struct task_struct *parent;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (atomic_read(&proc_event_num_listeners) < 1)
 		return;
@@ -68,11 +75,16 @@ void proc_fork_connector(struct task_struct *task)
 	ktime_get_ts(&ts); /* get high res monotonic timestamp */
 	put_unaligned(timespec_to_ns(&ts), (__u64 *)&ev->timestamp_ns);
 	ev->what = PROC_EVENT_FORK;
+<<<<<<< HEAD
 	rcu_read_lock();
 	parent = rcu_dereference(task->real_parent);
 	ev->event_data.fork.parent_pid = parent->pid;
 	ev->event_data.fork.parent_tgid = parent->tgid;
 	rcu_read_unlock();
+=======
+	ev->event_data.fork.parent_pid = task->real_parent->pid;
+	ev->event_data.fork.parent_tgid = task->real_parent->tgid;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ev->event_data.fork.child_pid = task->pid;
 	ev->event_data.fork.child_tgid = task->tgid;
 
@@ -172,6 +184,7 @@ void proc_sid_connector(struct task_struct *task)
 	cn_netlink_send(msg, CN_IDX_PROC, GFP_KERNEL);
 }
 
+<<<<<<< HEAD
 void proc_ptrace_connector(struct task_struct *task, int ptrace_id)
 {
 	struct cn_msg *msg;
@@ -231,6 +244,8 @@ void proc_comm_connector(struct task_struct *task)
 	cn_netlink_send(msg, CN_IDX_PROC, GFP_KERNEL);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void proc_exit_connector(struct task_struct *task)
 {
 	struct cn_msg *msg;

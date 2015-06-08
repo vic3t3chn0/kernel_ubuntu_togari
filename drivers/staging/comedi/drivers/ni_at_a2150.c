@@ -69,7 +69,10 @@ TRIG_WAKE_EOS
 #include "../comedidev.h"
 
 #include <linux/ioport.h>
+<<<<<<< HEAD
 #include <linux/io.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/dma.h>
 
 #include "8253.h"
@@ -731,8 +734,14 @@ static int a2150_ai_cmd(struct comedi_device *dev, struct comedi_subdevice *s)
 	outw(trigger_bits, dev->iobase + TRIGGER_REG);
 
 	/*  start acquisition for soft trigger */
+<<<<<<< HEAD
 	if (cmd->start_src == TRIG_NOW)
 		outw(0, dev->iobase + FIFO_START_REG);
+=======
+	if (cmd->start_src == TRIG_NOW) {
+		outw(0, dev->iobase + FIFO_START_REG);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef A2150_DEBUG
 	ni_dump_regs(dev);
 #endif
@@ -859,10 +868,18 @@ static int a2150_get_timing(struct comedi_device *dev, unsigned int *period,
 	case TRIG_ROUND_NEAREST:
 	default:
 		/*  if least upper bound is better approximation */
+<<<<<<< HEAD
 		if (lub - *period < *period - glb)
 			*period = lub;
 		else
 			*period = glb;
+=======
+		if (lub - *period < *period - glb) {
+			*period = lub;
+		} else {
+			*period = glb;
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 	case TRIG_ROUND_UP:
 		*period = lub;

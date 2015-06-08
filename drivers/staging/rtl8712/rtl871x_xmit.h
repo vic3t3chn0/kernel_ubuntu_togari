@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -23,6 +24,8 @@
  * Larry Finger <Larry.Finger@lwfinger.net>
  *
  ******************************************************************************/
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifndef _RTL871X_XMIT_H_
 #define _RTL871X_XMIT_H_
 
@@ -30,6 +33,7 @@
 #include "drv_types.h"
 #include "xmit_osdep.h"
 
+<<<<<<< HEAD
 #ifdef CONFIG_R8712_TX_AGGR
 #define MAX_XMITBUF_SZ  (16384)
 #else
@@ -43,6 +47,10 @@
 #define AGGR_NR_LOW_BOUND       (2)
 #endif
 
+=======
+#define MAX_XMITBUF_SZ	(2048)
+#define NR_XMITBUFF	(4)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define XMITBUF_ALIGN_SZ 512
 #define TX_GUARD_BAND		5
 #define MAX_NUMBLKS		(1)
@@ -104,9 +112,15 @@ struct pkt_attrib {
 
 	u16	seqnum;
 	u16	ether_type;
+<<<<<<< HEAD
 	u16	pktlen;		/* the original 802.3 pkt raw_data len
 				 * (not include ether_hdr data) */
 	u16	last_txcmdsz;
+=======
+	u32	pktlen;		/* the original 802.3 pkt raw_data len
+				 * (not include ether_hdr data) */
+	u32	last_txcmdsz;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	u8	pkt_hdrlen;	/*the original 802.3 pkt header len*/
 	u8	hdrlen;		/*the WLAN Header Len*/
@@ -146,9 +160,13 @@ struct xmit_buf {
 
 	u8 *pallocated_buf;
 	u8 *pbuf;
+<<<<<<< HEAD
 	void *priv_data;
 	struct urb *pxmit_urb[8];
 	u32 aggr_nr;
+=======
+	struct urb *pxmit_urb[8];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 struct xmit_frame {
@@ -202,6 +220,11 @@ struct	hw_txqueue {
 
 struct	xmit_priv {
 	spinlock_t lock;
+<<<<<<< HEAD
+=======
+	struct semaphore xmit_sema;
+	struct semaphore terminate_xmitthread_sema;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct  __queue	be_pending;
 	struct  __queue	bk_pending;
 	struct  __queue	vi_pending;
@@ -231,11 +254,17 @@ struct	xmit_priv {
 	uint	tx_drop;
 	struct hw_xmit *hwxmits;
 	u8	hwxmit_entry;
+<<<<<<< HEAD
 	u8	txirp_cnt;
 	struct tasklet_struct xmit_tasklet;
 	_workitem xmit_pipe4_reset_wi;
 	_workitem xmit_pipe6_reset_wi;
 	_workitem xmit_piped_reset_wi;
+=======
+	struct semaphore tx_retevt;/*all tx return event;*/
+	u8	txirp_cnt;
+	struct tasklet_struct xmit_tasklet;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*per AC pending irp*/
 	int beq_cnt;
 	int bkq_cnt;
@@ -293,9 +322,12 @@ int r8712_xmit_enqueue(struct _adapter *padapter,
 int r8712_xmit_direct(struct _adapter *padapter, struct xmit_frame *pxmitframe);
 void r8712_xmit_bh(void *priv);
 
+<<<<<<< HEAD
 void xmitframe_xmitbuf_attach(struct xmit_frame *pxmitframe,
 			struct xmit_buf *pxmitbuf);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "rtl8712_xmit.h"
 
 #endif	/*_RTL871X_XMIT_H_*/

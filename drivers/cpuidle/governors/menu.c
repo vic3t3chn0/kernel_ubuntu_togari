@@ -12,14 +12,21 @@
 
 #include <linux/kernel.h>
 #include <linux/cpuidle.h>
+<<<<<<< HEAD
 #include <linux/pm_qos.h>
+=======
+#include <linux/pm_qos_params.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/time.h>
 #include <linux/ktime.h>
 #include <linux/hrtimer.h>
 #include <linux/tick.h>
 #include <linux/sched.h>
 #include <linux/math64.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define BUCKETS 12
 #define INTERVALS 8
@@ -126,6 +133,17 @@ struct menu_device {
 #define LOAD_INT(x) ((x) >> FSHIFT)
 #define LOAD_FRAC(x) LOAD_INT(((x) & (FIXED_1-1)) * 100)
 
+<<<<<<< HEAD
+=======
+static int get_loadavg(void)
+{
+	unsigned long this = this_cpu_load();
+
+
+	return LOAD_INT(this) * 10 + LOAD_FRAC(this) / 10;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline int which_bucket(unsigned int duration)
 {
 	int bucket = 0;
@@ -163,6 +181,18 @@ static inline int performance_multiplier(void)
 {
 	int mult = 1;
 
+<<<<<<< HEAD
+=======
+	/* for higher loadavg, we are more reluctant */
+
+	/*
+	 * this doesn't work as intended - it is almost always 0, but can
+	 * sometimes, depending on workload, spike very high into the hundreds
+	 * even when the average cpu load is under 10%.
+	 */
+	/* mult += 2 * get_loadavg(); */
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* for IO wait tasks (per cpu!) we add 5x each */
 	mult += 10 * nr_iowait_cpu(smp_processor_id());
 
@@ -171,7 +201,11 @@ static inline int performance_multiplier(void)
 
 static DEFINE_PER_CPU(struct menu_device, menu_devices);
 
+<<<<<<< HEAD
 static void menu_update(struct cpuidle_driver *drv, struct cpuidle_device *dev);
+=======
+static void menu_update(struct cpuidle_device *dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* This implements DIV_ROUND_CLOSEST but avoids 64 bit division */
 static u64 div_round64(u64 dividend, u32 divisor)
@@ -217,6 +251,7 @@ static void detect_repeating_patterns(struct menu_device *data)
 
 /**
  * menu_select - selects the next idle state to enter
+<<<<<<< HEAD
  * @drv: cpuidle driver containing state data
  * @dev: the CPU
  */
@@ -225,12 +260,25 @@ static int menu_select(struct cpuidle_driver *drv, struct cpuidle_device *dev)
 	struct menu_device *data = &__get_cpu_var(menu_devices);
 	int latency_req = pm_qos_request(PM_QOS_CPU_DMA_LATENCY);
 	int power_usage = -1;
+=======
+ * @dev: the CPU
+ */
+static int menu_select(struct cpuidle_device *dev)
+{
+	struct menu_device *data = &__get_cpu_var(menu_devices);
+	int latency_req = pm_qos_request(PM_QOS_CPU_DMA_LATENCY);
+	unsigned int power_usage = -1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int i;
 	int multiplier;
 	struct timespec t;
 
 	if (data->needs_update) {
+<<<<<<< HEAD
 		menu_update(drv, dev);
+=======
+		menu_update(dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		data->needs_update = 0;
 	}
 
@@ -268,18 +316,29 @@ static int menu_select(struct cpuidle_driver *drv, struct cpuidle_device *dev)
 	 * We want to default to C1 (hlt), not to busy polling
 	 * unless the timer is happening really really soon.
 	 */
+<<<<<<< HEAD
 	if (data->expected_us > 5 &&
 		drv->states[CPUIDLE_DRIVER_STATE_START].disable == 0)
+=======
+	if (data->expected_us > 5)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		data->last_state_idx = CPUIDLE_DRIVER_STATE_START;
 
 	/*
 	 * Find the idle state with the lowest power while satisfying
 	 * our constraints.
 	 */
+<<<<<<< HEAD
 	for (i = CPUIDLE_DRIVER_STATE_START; i < drv->state_count; i++) {
 		struct cpuidle_state *s = &drv->states[i];
 
 		if (s->disable)
+=======
+	for (i = CPUIDLE_DRIVER_STATE_START; i < dev->state_count; i++) {
+		struct cpuidle_state *s = &dev->states[i];
+
+		if (s->flags & CPUIDLE_FLAG_IGNORE)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			continue;
 		if (s->target_residency > data->predicted_us)
 			continue;
@@ -301,30 +360,50 @@ static int menu_select(struct cpuidle_driver *drv, struct cpuidle_device *dev)
 /**
  * menu_reflect - records that data structures need update
  * @dev: the CPU
+<<<<<<< HEAD
  * @index: the index of actual entered state
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * NOTE: it's important to be fast here because this operation will add to
  *       the overall exit latency.
  */
+<<<<<<< HEAD
 static void menu_reflect(struct cpuidle_device *dev, int index)
 {
 	struct menu_device *data = &__get_cpu_var(menu_devices);
 	data->last_state_idx = index;
 	if (index >= 0)
 		data->needs_update = 1;
+=======
+static void menu_reflect(struct cpuidle_device *dev)
+{
+	struct menu_device *data = &__get_cpu_var(menu_devices);
+	data->needs_update = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
  * menu_update - attempts to guess what happened after entry
+<<<<<<< HEAD
  * @drv: cpuidle driver containing state data
  * @dev: the CPU
  */
 static void menu_update(struct cpuidle_driver *drv, struct cpuidle_device *dev)
+=======
+ * @dev: the CPU
+ */
+static void menu_update(struct cpuidle_device *dev)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct menu_device *data = &__get_cpu_var(menu_devices);
 	int last_idx = data->last_state_idx;
 	unsigned int last_idle_us = cpuidle_get_last_residency(dev);
+<<<<<<< HEAD
 	struct cpuidle_state *target = &drv->states[last_idx];
+=======
+	struct cpuidle_state *target = &dev->states[last_idx];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned int measured_us;
 	u64 new_factor;
 
@@ -378,11 +457,17 @@ static void menu_update(struct cpuidle_driver *drv, struct cpuidle_device *dev)
 
 /**
  * menu_enable_device - scans a CPU's states and does setup
+<<<<<<< HEAD
  * @drv: cpuidle driver
  * @dev: the CPU
  */
 static int menu_enable_device(struct cpuidle_driver *drv,
 				struct cpuidle_device *dev)
+=======
+ * @dev: the CPU
+ */
+static int menu_enable_device(struct cpuidle_device *dev)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct menu_device *data = &per_cpu(menu_devices, dev->cpu);
 

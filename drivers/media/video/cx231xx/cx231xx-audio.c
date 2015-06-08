@@ -111,9 +111,12 @@ static void cx231xx_audio_isocirq(struct urb *urb)
 	struct snd_pcm_substream *substream;
 	struct snd_pcm_runtime *runtime;
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
 		return;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	switch (urb->status) {
 	case 0:		/* success */
 	case -ETIMEDOUT:	/* NAK */
@@ -199,9 +202,12 @@ static void cx231xx_audio_bulkirq(struct urb *urb)
 	struct snd_pcm_substream *substream;
 	struct snd_pcm_runtime *runtime;
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
 		return;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	switch (urb->status) {
 	case 0:		/* success */
 	case -ETIMEDOUT:	/* NAK */
@@ -279,9 +285,12 @@ static int cx231xx_init_audio_isoc(struct cx231xx *dev)
 
 	cx231xx_info("%s: Starting ISO AUDIO transfers\n", __func__);
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
 		return -ENODEV;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	sb_size = CX231XX_ISO_NUM_AUDIO_PACKETS * dev->adev.max_pkt_size;
 
 	for (i = 0; i < CX231XX_AUDIO_BUFS; i++) {
@@ -307,7 +316,11 @@ static int cx231xx_init_audio_isoc(struct cx231xx *dev)
 		urb->context = dev;
 		urb->pipe = usb_rcvisocpipe(dev->udev,
 						dev->adev.end_point_addr);
+<<<<<<< HEAD
 		urb->transfer_flags = URB_ISO_ASAP | URB_NO_TRANSFER_DMA_MAP;
+=======
+		urb->transfer_flags = URB_ISO_ASAP;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		urb->transfer_buffer = dev->adev.transfer_buffer[i];
 		urb->interval = 1;
 		urb->complete = cx231xx_audio_isocirq;
@@ -340,9 +353,12 @@ static int cx231xx_init_audio_bulk(struct cx231xx *dev)
 
 	cx231xx_info("%s: Starting BULK AUDIO transfers\n", __func__);
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
 		return -ENODEV;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	sb_size = CX231XX_NUM_AUDIO_PACKETS * dev->adev.max_pkt_size;
 
 	for (i = 0; i < CX231XX_AUDIO_BUFS; i++) {
@@ -368,7 +384,11 @@ static int cx231xx_init_audio_bulk(struct cx231xx *dev)
 		urb->context = dev;
 		urb->pipe = usb_rcvbulkpipe(dev->udev,
 						dev->adev.end_point_addr);
+<<<<<<< HEAD
 		urb->transfer_flags = URB_NO_TRANSFER_DMA_MAP;
+=======
+		urb->transfer_flags = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		urb->transfer_buffer = dev->adev.transfer_buffer[i];
 		urb->complete = cx231xx_audio_bulkirq;
 		urb->transfer_buffer_length = sb_size;
@@ -444,11 +464,14 @@ static int snd_cx231xx_capture_open(struct snd_pcm_substream *substream)
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED) {
 		cx231xx_errdev("Can't open. the device was removed.\n");
 		return -ENODEV;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Sets volume, mute, etc */
 	dev->mute = 0;
 
@@ -588,9 +611,12 @@ static int snd_cx231xx_capture_trigger(struct snd_pcm_substream *substream,
 	struct cx231xx *dev = snd_pcm_substream_chip(substream);
 	int retval;
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
 		return -ENODEV;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_lock(&dev->adev.slock);
 	switch (cmd) {
 	case SNDRV_PCM_TRIGGER_START:

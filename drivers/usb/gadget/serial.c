@@ -123,11 +123,19 @@ MODULE_AUTHOR("Al Borchers");
 MODULE_AUTHOR("David Brownell");
 MODULE_LICENSE("GPL");
 
+<<<<<<< HEAD
 static bool use_acm = true;
 module_param(use_acm, bool, 0);
 MODULE_PARM_DESC(use_acm, "Use CDC ACM, default=yes");
 
 static bool use_obex = false;
+=======
+static int use_acm = true;
+module_param(use_acm, bool, 0);
+MODULE_PARM_DESC(use_acm, "Use CDC ACM, default=yes");
+
+static int use_obex = false;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(use_obex, bool, 0);
 MODULE_PARM_DESC(use_obex, "Use CDC OBEX, default=no");
 
@@ -242,7 +250,10 @@ static struct usb_composite_driver gserial_driver = {
 	.name		= "g_serial",
 	.dev		= &device_desc,
 	.strings	= dev_strings,
+<<<<<<< HEAD
 	.max_speed	= USB_SPEED_SUPER,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int __init init(void)

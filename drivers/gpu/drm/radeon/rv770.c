@@ -151,6 +151,11 @@ int rv770_pcie_gart_enable(struct radeon_device *rdev)
 	WREG32(MC_VM_MD_L1_TLB0_CNTL, tmp);
 	WREG32(MC_VM_MD_L1_TLB1_CNTL, tmp);
 	WREG32(MC_VM_MD_L1_TLB2_CNTL, tmp);
+<<<<<<< HEAD
+=======
+	if (rdev->family == CHIP_RV740)
+		WREG32(MC_VM_MD_L1_TLB3_CNTL, tmp);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	WREG32(MC_VM_MB_L1_TLB0_CNTL, tmp);
 	WREG32(MC_VM_MB_L1_TLB1_CNTL, tmp);
 	WREG32(MC_VM_MB_L1_TLB2_CNTL, tmp);
@@ -969,7 +974,11 @@ void r700_vram_gtt_location(struct radeon_device *rdev, struct radeon_mc *mc)
 	}
 	if (rdev->flags & RADEON_IS_AGP) {
 		size_bf = mc->gtt_start;
+<<<<<<< HEAD
 		size_af = 0xFFFFFFFF - mc->gtt_end;
+=======
+		size_af = 0xFFFFFFFF - mc->gtt_end + 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (size_bf > size_af) {
 			if (mc->mc_vram_size > size_bf) {
 				dev_warn(rdev->dev, "limiting VRAM\n");
@@ -983,7 +992,11 @@ void r700_vram_gtt_location(struct radeon_device *rdev, struct radeon_mc *mc)
 				mc->real_vram_size = size_af;
 				mc->mc_vram_size = size_af;
 			}
+<<<<<<< HEAD
 			mc->vram_start = mc->gtt_end + 1;
+=======
+			mc->vram_start = mc->gtt_end;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 		mc->vram_end = mc->vram_start + mc->mc_vram_size - 1;
 		dev_info(rdev->dev, "VRAM: %lluM 0x%08llX - 0x%08llX (%lluM used)\n",

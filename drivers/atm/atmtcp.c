@@ -11,7 +11,11 @@
 #include <linux/init.h>
 #include <linux/slab.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 extern int atm_init_aal5(struct atm_vcc *vcc); /* "raw" AAL5 transport */

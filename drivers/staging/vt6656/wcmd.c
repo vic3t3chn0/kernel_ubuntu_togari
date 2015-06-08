@@ -316,6 +316,7 @@ s_MgrMakeProbeRequest(
     return pTxPacket;
 }
 
+<<<<<<< HEAD
 void vCommandTimerWait(void *hDeviceContext, unsigned int MSecond)
 {
     PSDevice        pDevice = (PSDevice)hDeviceContext;
@@ -327,6 +328,21 @@ void vCommandTimerWait(void *hDeviceContext, unsigned int MSecond)
     pDevice->sTimerCommand.expires = (unsigned int)RUN_AT((MSecond * HZ) >> 10);
     add_timer(&pDevice->sTimerCommand);
     return;
+=======
+void vCommandTimerWait(void *hDeviceContext, unsigned long MSecond)
+{
+	PSDevice pDevice = (PSDevice)hDeviceContext;
+
+	init_timer(&pDevice->sTimerCommand);
+
+	pDevice->sTimerCommand.data = (unsigned long)pDevice;
+	pDevice->sTimerCommand.function = (TimerFunction)vRunCommand;
+	pDevice->sTimerCommand.expires = RUN_AT((MSecond * HZ) / 1000);
+
+	add_timer(&pDevice->sTimerCommand);
+
+	return;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 void vRunCommand(void *hDeviceContext)

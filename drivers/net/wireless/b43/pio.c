@@ -4,7 +4,11 @@
 
   PIO data transfer
 
+<<<<<<< HEAD
   Copyright (c) 2005-2008 Michael Buesch <m@bues.ch>
+=======
+  Copyright (c) 2005-2008 Michael Buesch <mb@bu3sch.de>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -111,7 +115,11 @@ static u16 index_to_pioqueue_base(struct b43_wldev *dev,
 		B43_MMIO_PIO11_BASE5,
 	};
 
+<<<<<<< HEAD
 	if (dev->dev->core_rev >= 11) {
+=======
+	if (dev->sdev->id.revision >= 11) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		B43_WARN_ON(index >= ARRAY_SIZE(bases_rev11));
 		return bases_rev11[index];
 	}
@@ -121,14 +129,22 @@ static u16 index_to_pioqueue_base(struct b43_wldev *dev,
 
 static u16 pio_txqueue_offset(struct b43_wldev *dev)
 {
+<<<<<<< HEAD
 	if (dev->dev->core_rev >= 11)
+=======
+	if (dev->sdev->id.revision >= 11)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return 0x18;
 	return 0;
 }
 
 static u16 pio_rxqueue_offset(struct b43_wldev *dev)
 {
+<<<<<<< HEAD
 	if (dev->dev->core_rev >= 11)
+=======
+	if (dev->sdev->id.revision >= 11)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return 0x38;
 	return 8;
 }
@@ -144,7 +160,11 @@ static struct b43_pio_txqueue *b43_setup_pioqueue_tx(struct b43_wldev *dev,
 	if (!q)
 		return NULL;
 	q->dev = dev;
+<<<<<<< HEAD
 	q->rev = dev->dev->core_rev;
+=======
+	q->rev = dev->sdev->id.revision;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	q->mmio_base = index_to_pioqueue_base(dev, index) +
 		       pio_txqueue_offset(dev);
 	q->index = index;
@@ -178,7 +198,11 @@ static struct b43_pio_rxqueue *b43_setup_pioqueue_rx(struct b43_wldev *dev,
 	if (!q)
 		return NULL;
 	q->dev = dev;
+<<<<<<< HEAD
 	q->rev = dev->dev->core_rev;
+=======
+	q->rev = dev->sdev->id.revision;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	q->mmio_base = index_to_pioqueue_base(dev, index) +
 		       pio_rxqueue_offset(dev);
 
@@ -539,7 +563,11 @@ int b43_pio_tx(struct b43_wldev *dev, struct sk_buff *skb)
 		/* Not enough memory on the queue. */
 		err = -EBUSY;
 		ieee80211_stop_queue(dev->wl->hw, skb_get_queue_mapping(skb));
+<<<<<<< HEAD
 		q->stopped = true;
+=======
+		q->stopped = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		goto out;
 	}
 
@@ -566,7 +594,11 @@ int b43_pio_tx(struct b43_wldev *dev, struct sk_buff *skb)
 	    (q->free_packet_slots == 0)) {
 		/* The queue is full. */
 		ieee80211_stop_queue(dev->wl->hw, skb_get_queue_mapping(skb));
+<<<<<<< HEAD
 		q->stopped = true;
+=======
+		q->stopped = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 out:
@@ -601,7 +633,11 @@ void b43_pio_handle_txstatus(struct b43_wldev *dev,
 
 	if (q->stopped) {
 		ieee80211_wake_queue(dev->wl->hw, q->queue_prio);
+<<<<<<< HEAD
 		q->stopped = false;
+=======
+		q->stopped = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 }
 
@@ -611,12 +647,17 @@ static bool pio_rx_frame(struct b43_pio_rxqueue *q)
 	struct b43_wldev *dev = q->dev;
 	struct b43_wl *wl = dev->wl;
 	u16 len;
+<<<<<<< HEAD
 	u32 macstat = 0;
+=======
+	u32 macstat;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned int i, padding;
 	struct sk_buff *skb;
 	const char *err_msg = NULL;
 	struct b43_rxhdr_fw4 *rxhdr =
 		(struct b43_rxhdr_fw4 *)wl->pio_scratchspace;
+<<<<<<< HEAD
 	size_t rxhdr_size = sizeof(*rxhdr);
 
 	BUILD_BUG_ON(sizeof(wl->pio_scratchspace) < sizeof(*rxhdr));
@@ -630,6 +671,11 @@ static bool pio_rx_frame(struct b43_pio_rxqueue *q)
 		break;
 	}
 	memset(rxhdr, 0, rxhdr_size);
+=======
+
+	BUILD_BUG_ON(sizeof(wl->pio_scratchspace) < sizeof(*rxhdr));
+	memset(rxhdr, 0, sizeof(*rxhdr));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* Check if we have data and wait for it to get ready. */
 	if (q->rev >= 8) {
@@ -667,11 +713,19 @@ data_ready:
 
 	/* Get the preamble (RX header) */
 	if (q->rev >= 8) {
+<<<<<<< HEAD
 		b43_block_read(dev, rxhdr, rxhdr_size,
 			       q->mmio_base + B43_PIO8_RXDATA,
 			       sizeof(u32));
 	} else {
 		b43_block_read(dev, rxhdr, rxhdr_size,
+=======
+		b43_block_read(dev, rxhdr, sizeof(*rxhdr),
+			       q->mmio_base + B43_PIO8_RXDATA,
+			       sizeof(u32));
+	} else {
+		b43_block_read(dev, rxhdr, sizeof(*rxhdr),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			       q->mmio_base + B43_PIO_RXDATA,
 			       sizeof(u16));
 	}
@@ -686,6 +740,7 @@ data_ready:
 		goto rx_error;
 	}
 
+<<<<<<< HEAD
 	switch (dev->fw.hdr_format) {
 	case B43_FW_HDR_598:
 		macstat = le32_to_cpu(rxhdr->format_598.mac_status);
@@ -695,6 +750,9 @@ data_ready:
 		macstat = le32_to_cpu(rxhdr->format_351.mac_status);
 		break;
 	}
+=======
+	macstat = le32_to_cpu(rxhdr->mac_status);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (macstat & B43_RX_MAC_FCSERR) {
 		if (!(q->dev->wl->filter_flags & FIF_FCSFAIL)) {
 			/* Drop frames with failed FCS. */

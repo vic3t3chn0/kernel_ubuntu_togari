@@ -5,7 +5,11 @@
 #ifndef __DRIVER_CPUIDLE_H
 #define __DRIVER_CPUIDLE_H
 
+<<<<<<< HEAD
 #include <linux/device.h>
+=======
+#include <linux/sysdev.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* For internal use only */
 extern struct cpuidle_governor *cpuidle_curr_governor;
@@ -13,9 +17,12 @@ extern struct list_head cpuidle_governors;
 extern struct list_head cpuidle_detected_devices;
 extern struct mutex cpuidle_lock;
 extern spinlock_t cpuidle_driver_lock;
+<<<<<<< HEAD
 extern int cpuidle_disabled(void);
 extern int cpuidle_enter_state(struct cpuidle_device *dev,
 		struct cpuidle_driver *drv, int next_state);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* idle loop */
 extern void cpuidle_install_idle_handler(void);
@@ -25,6 +32,7 @@ extern void cpuidle_uninstall_idle_handler(void);
 extern int cpuidle_switch_governor(struct cpuidle_governor *gov);
 
 /* sysfs */
+<<<<<<< HEAD
 extern int cpuidle_add_interface(struct device *dev);
 extern void cpuidle_remove_interface(struct device *dev);
 extern int cpuidle_add_state_sysfs(struct cpuidle_device *device);
@@ -61,5 +69,13 @@ static inline void cpuidle_coupled_unregister_device(struct cpuidle_device *dev)
 {
 }
 #endif
+=======
+extern int cpuidle_add_class_sysfs(struct sysdev_class *cls);
+extern void cpuidle_remove_class_sysfs(struct sysdev_class *cls);
+extern int cpuidle_add_state_sysfs(struct cpuidle_device *device);
+extern void cpuidle_remove_state_sysfs(struct cpuidle_device *device);
+extern int cpuidle_add_sysfs(struct sys_device *sysdev);
+extern void cpuidle_remove_sysfs(struct sys_device *sysdev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #endif /* __DRIVER_CPUIDLE_H */

@@ -23,7 +23,10 @@
 #include <linux/security.h>
 #include <linux/delay.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <net/sock.h>
 #include <net/netlink.h>
 
@@ -112,7 +115,11 @@ scsi_nl_rcv_msg(struct sk_buff *skb)
 			goto next_msg;
 		}
 
+<<<<<<< HEAD
 		if (!capable(CAP_SYS_ADMIN)) {
+=======
+		if (security_netlink_recv(skb, CAP_SYS_ADMIN)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			err = -EPERM;
 			goto next_msg;
 		}

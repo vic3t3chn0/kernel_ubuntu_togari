@@ -21,10 +21,16 @@ obj-$(CONFIG_IMX_SDMA) += imx-sdma.o
 obj-$(CONFIG_IMX_DMA) += imx-dma.o
 obj-$(CONFIG_MXS_DMA) += mxs-dma.o
 obj-$(CONFIG_TIMB_DMA) += timb_dma.o
+<<<<<<< HEAD
 obj-$(CONFIG_SIRF_DMA) += sirf-dma.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_STE_DMA40) += ste_dma40.o ste_dma40_ll.o
 obj-$(CONFIG_PL330_DMA) += pl330.o
 obj-$(CONFIG_PCH_DMA) += pch_dma.o
 obj-$(CONFIG_AMBA_PL08X) += amba-pl08x.o
+<<<<<<< HEAD
 obj-$(CONFIG_EP93XX_DMA) += ep93xx_dma.o
 obj-$(CONFIG_DMA_SA11X0) += sa11x0-dma.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

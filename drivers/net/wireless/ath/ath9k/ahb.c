@@ -19,7 +19,10 @@
 #include <linux/nl80211.h>
 #include <linux/platform_device.h>
 #include <linux/ath9k_platform.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "ath9k.h"
 
 static const struct platform_device_id ath9k_platform_id_table[] = {
@@ -28,10 +31,13 @@ static const struct platform_device_id ath9k_platform_id_table[] = {
 		.driver_data = AR5416_AR9100_DEVID,
 	},
 	{
+<<<<<<< HEAD
 		.name = "ar933x_wmac",
 		.driver_data = AR9300_DEVID_AR9330,
 	},
 	{
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.name = "ar934x_wmac",
 		.driver_data = AR9300_DEVID_AR9340,
 	},
@@ -134,7 +140,11 @@ static int ath_ahb_probe(struct platform_device *pdev)
 		goto err_free_hw;
 	}
 
+<<<<<<< HEAD
 	ret = ath9k_init_device(id->driver_data, sc, &ath_ahb_bus_ops);
+=======
+	ret = ath9k_init_device(id->driver_data, sc, 0x0, &ath_ahb_bus_ops);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret) {
 		dev_err(&pdev->dev, "failed to initialize device\n");
 		goto err_irq;

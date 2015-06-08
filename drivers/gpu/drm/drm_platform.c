@@ -3,7 +3,11 @@
  *
  * Copyright 2003 José Fonseca.
  * Copyright 2003 Leif Delgass.
+<<<<<<< HEAD
  * Copyright (c) 2009, The Linux Foundation.
+=======
+ * Copyright (c) 2009, Code Aurora Forum.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -25,7 +29,10 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "drmP.h"
 
 /**

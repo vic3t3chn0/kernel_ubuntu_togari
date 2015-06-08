@@ -78,9 +78,12 @@ struct r600_cs_track {
 	bool			cb_dirty;
 	bool			db_dirty;
 	bool			streamout_dirty;
+<<<<<<< HEAD
 	struct radeon_bo	*htile_bo;
 	u64			htile_offset;
 	u32			htile_surface;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 #define FMT_8_BIT(fmt, vc)   [fmt] = { 1, 1, 1, vc, CHIP_R600 }
@@ -324,9 +327,12 @@ static void r600_cs_track_init(struct r600_cs_track *track)
 	track->db_depth_size_idx = 0;
 	track->db_depth_control = 0xFFFFFFFF;
 	track->db_dirty = true;
+<<<<<<< HEAD
 	track->htile_bo = NULL;
 	track->htile_offset = 0xFFFFFFFF;
 	track->htile_surface = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	for (i = 0; i < 4; i++) {
 		track->vgt_strmout_size[i] = 0;
@@ -461,6 +467,7 @@ static int r600_cs_track_validate_cb(struct radeon_cs_parser *p, int i)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int r600_cs_track_validate_db(struct radeon_cs_parser *p)
 {
 	struct r600_cs_track *track = p->track;
@@ -706,11 +713,17 @@ static int r600_cs_track_validate_db(struct radeon_cs_parser *p)
 	return 0;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int r600_cs_track_check(struct radeon_cs_parser *p)
 {
 	struct r600_cs_track *track = p->track;
 	u32 tmp;
 	int r, i;
+<<<<<<< HEAD
+=======
+	volatile u32 *ib = p->ib->ptr;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* on legacy kernel we don't perform advanced check */
 	if (p->rdev == NULL)
@@ -763,6 +776,7 @@ static int r600_cs_track_check(struct radeon_cs_parser *p)
 		track->cb_dirty = false;
 	}
 
+<<<<<<< HEAD
 	/* Check depth buffer */
 	if (track->db_dirty && (G_028800_STENCIL_ENABLE(track->db_depth_control) ||
 		G_028800_Z_ENABLE(track->db_depth_control))) {
@@ -771,6 +785,126 @@ static int r600_cs_track_check(struct radeon_cs_parser *p)
 			return r;
 	}
 
+=======
+	if (track->db_dirty) {
+		/* Check depth buffer */
+		if (G_028800_STENCIL_ENABLE(track->db_depth_control) ||
+			G_028800_Z_ENABLE(track->db_depth_control)) {
+			u32 nviews, bpe, ntiles, size, slice_tile_max;
+			u32 height, height_align, pitch, pitch_align, depth_align;
+			u64 base_offset, base_align;
+			struct array_mode_checker array_check;
+			int array_mode;
+
+			if (track->db_bo == NULL) {
+				dev_warn(p->dev, "z/stencil with no depth buffer\n");
+				return -EINVAL;
+			}
+			if (G_028010_TILE_SURFACE_ENABLE(track->db_depth_info)) {
+				dev_warn(p->dev, "this kernel doesn't support z/stencil htile\n");
+				return -EINVAL;
+			}
+			switch (G_028010_FORMAT(track->db_depth_info)) {
+			case V_028010_DEPTH_16:
+				bpe = 2;
+				break;
+			case V_028010_DEPTH_X8_24:
+			case V_028010_DEPTH_8_24:
+			case V_028010_DEPTH_X8_24_FLOAT:
+			case V_028010_DEPTH_8_24_FLOAT:
+			case V_028010_DEPTH_32_FLOAT:
+				bpe = 4;
+				break;
+			case V_028010_DEPTH_X24_8_32_FLOAT:
+				bpe = 8;
+				break;
+			default:
+				dev_warn(p->dev, "z/stencil with invalid format %d\n", G_028010_FORMAT(track->db_depth_info));
+				return -EINVAL;
+			}
+			if ((track->db_depth_size & 0xFFFFFC00) == 0xFFFFFC00) {
+				if (!track->db_depth_size_idx) {
+					dev_warn(p->dev, "z/stencil buffer size not set\n");
+					return -EINVAL;
+				}
+				tmp = radeon_bo_size(track->db_bo) - track->db_offset;
+				tmp = (tmp / bpe) >> 6;
+				if (!tmp) {
+					dev_warn(p->dev, "z/stencil buffer too small (0x%08X %d %d %ld)\n",
+							track->db_depth_size, bpe, track->db_offset,
+							radeon_bo_size(track->db_bo));
+					return -EINVAL;
+				}
+				ib[track->db_depth_size_idx] = S_028000_SLICE_TILE_MAX(tmp - 1) | (track->db_depth_size & 0x3FF);
+			} else {
+				size = radeon_bo_size(track->db_bo);
+				/* pitch in pixels */
+				pitch = (G_028000_PITCH_TILE_MAX(track->db_depth_size) + 1) * 8;
+				slice_tile_max = G_028000_SLICE_TILE_MAX(track->db_depth_size) + 1;
+				slice_tile_max *= 64;
+				height = slice_tile_max / pitch;
+				if (height > 8192)
+					height = 8192;
+				base_offset = track->db_bo_mc + track->db_offset;
+				array_mode = G_028010_ARRAY_MODE(track->db_depth_info);
+				array_check.array_mode = array_mode;
+				array_check.group_size = track->group_size;
+				array_check.nbanks = track->nbanks;
+				array_check.npipes = track->npipes;
+				array_check.nsamples = track->nsamples;
+				array_check.blocksize = bpe;
+				if (r600_get_array_mode_alignment(&array_check,
+								  &pitch_align, &height_align, &depth_align, &base_align)) {
+					dev_warn(p->dev, "%s invalid tiling %d (0x%08X)\n", __func__,
+						 G_028010_ARRAY_MODE(track->db_depth_info),
+						 track->db_depth_info);
+					return -EINVAL;
+				}
+				switch (array_mode) {
+				case V_028010_ARRAY_1D_TILED_THIN1:
+					/* don't break userspace */
+					height &= ~0x7;
+					break;
+				case V_028010_ARRAY_2D_TILED_THIN1:
+					break;
+				default:
+					dev_warn(p->dev, "%s invalid tiling %d (0x%08X)\n", __func__,
+						 G_028010_ARRAY_MODE(track->db_depth_info),
+						 track->db_depth_info);
+					return -EINVAL;
+				}
+
+				if (!IS_ALIGNED(pitch, pitch_align)) {
+					dev_warn(p->dev, "%s:%d db pitch (%d, 0x%x, %d) invalid\n",
+						 __func__, __LINE__, pitch, pitch_align, array_mode);
+					return -EINVAL;
+				}
+				if (!IS_ALIGNED(height, height_align)) {
+					dev_warn(p->dev, "%s:%d db height (%d, 0x%x, %d) invalid\n",
+						 __func__, __LINE__, height, height_align, array_mode);
+					return -EINVAL;
+				}
+				if (!IS_ALIGNED(base_offset, base_align)) {
+					dev_warn(p->dev, "%s offset[%d] 0x%llx, 0x%llx, %d not aligned\n", __func__, i,
+						 base_offset, base_align, array_mode);
+					return -EINVAL;
+				}
+
+				ntiles = G_028000_SLICE_TILE_MAX(track->db_depth_size) + 1;
+				nviews = G_028004_SLICE_MAX(track->db_depth_view) + 1;
+				tmp = ntiles * bpe * 64 * nviews;
+				if ((tmp + track->db_offset) > radeon_bo_size(track->db_bo)) {
+					dev_warn(p->dev, "z/stencil buffer (%d) too small (0x%08X %d %d %d -> %u have %lu)\n",
+						 array_mode,
+						 track->db_depth_size, ntiles, nviews, bpe, tmp + track->db_offset,
+						 radeon_bo_size(track->db_bo));
+					return -EINVAL;
+				}
+			}
+		}
+		track->db_dirty = false;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -1384,6 +1518,7 @@ static int r600_cs_check_reg(struct radeon_cs_parser *p, u32 reg, u32 idx)
 		track->db_dirty = true;
 		break;
 	case DB_HTILE_DATA_BASE:
+<<<<<<< HEAD
 		r = r600_cs_packet_next_reloc(p, &reloc);
 		if (r) {
 			dev_warn(p->dev, "bad SET_CONTEXT_REG "
@@ -1399,6 +1534,8 @@ static int r600_cs_check_reg(struct radeon_cs_parser *p, u32 reg, u32 idx)
 		track->htile_surface = radeon_get_ib_value(p, idx);
 		track->db_dirty = true;
 		break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	case SQ_PGM_START_FS:
 	case SQ_PGM_START_ES:
 	case SQ_PGM_START_VS:

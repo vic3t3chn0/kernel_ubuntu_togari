@@ -118,6 +118,7 @@ static void swap_buffer(u32 *p, u32 len)
 	}
 }
 
+<<<<<<< HEAD
 /* start of filler packet */
 static u8 fill_ts[] = { 0x47, 0x1f, 0xff, 0x10, TS_FILLER };
 
@@ -128,6 +129,8 @@ static u32 overflow;
 static u32 stripped;
 #endif
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void *tsin_exchange(void *priv, void *buf, u32 len, u32 clock, u32 flags)
 {
 	struct ngene_channel *chan = priv;
@@ -136,6 +139,7 @@ void *tsin_exchange(void *priv, void *buf, u32 len, u32 clock, u32 flags)
 
 	if (flags & DF_SWAP32)
 		swap_buffer(buf, len);
+<<<<<<< HEAD
 
 	if (dev->ci.en && chan->number == 2) {
 		while (len >= 188) {
@@ -171,6 +175,23 @@ void *tsin_exchange(void *priv, void *buf, u32 len, u32 clock, u32 flags)
 	return NULL;
 }
 
+=======
+	if (dev->ci.en && chan->number == 2) {
+		if (dvb_ringbuffer_free(&dev->tsin_rbuf) > len) {
+			dvb_ringbuffer_write(&dev->tsin_rbuf, buf, len);
+			wake_up_interruptible(&dev->tsin_rbuf.queue);
+		}
+		return 0;
+	}
+	if (chan->users > 0) {
+		dvb_dmx_swfilter(&chan->demux, buf, len);
+	}
+	return NULL;
+}
+
+u8 fill_ts[188] = { 0x47, 0x1f, 0xff, 0x10 };
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void *tsout_exchange(void *priv, void *buf, u32 len, u32 clock, u32 flags)
 {
 	struct ngene_channel *chan = priv;

@@ -37,7 +37,11 @@
 #include <linux/serial.h>
 #include "usb-wwan.h"
 
+<<<<<<< HEAD
 static bool debug;
+=======
+static int debug;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 void usb_wwan_dtr_rts(struct usb_serial_port *port, int on)
 {
@@ -219,6 +223,14 @@ int usb_wwan_write(struct tty_struct *tty, struct usb_serial_port *port,
 
 	dbg("%s: write (%d chars)", __func__, count);
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MDM_HSIC_PM
+	if (port->serial->dev->actconfig->desc.bNumInterfaces == 9)
+		pr_info("%s: write (%d chars)", __func__, count);
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	i = 0;
 	left = count;
 	for (i = 0; left > 0 && i < N_OUT_URB; i++) {
@@ -237,6 +249,11 @@ int usb_wwan_write(struct tty_struct *tty, struct usb_serial_port *port,
 		dbg("%s: endpoint %d buf %d", __func__,
 		    usb_pipeendpoint(this_urb->pipe), i);
 
+<<<<<<< HEAD
+=======
+		usb_mark_last_busy(
+				interface_to_usbdev(port->serial->interface));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		err = usb_autopm_get_interface_async(port->serial->interface);
 		if (err < 0)
 			break;
@@ -252,12 +269,18 @@ int usb_wwan_write(struct tty_struct *tty, struct usb_serial_port *port,
 		} else {
 			intfdata->in_flight++;
 			spin_unlock_irqrestore(&intfdata->susp_lock, flags);
+<<<<<<< HEAD
 			usb_anchor_urb(this_urb, &portdata->submitted);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			err = usb_submit_urb(this_urb, GFP_ATOMIC);
 			if (err) {
 				dbg("usb_submit_urb %p (write bulk) failed "
 				    "(%d)", this_urb, err);
+<<<<<<< HEAD
 				usb_unanchor_urb(this_urb);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				clear_bit(i, &portdata->out_busy);
 				spin_lock_irqsave(&intfdata->susp_lock, flags);
 				intfdata->in_flight--;
@@ -279,6 +302,7 @@ int usb_wwan_write(struct tty_struct *tty, struct usb_serial_port *port,
 }
 EXPORT_SYMBOL(usb_wwan_write);
 
+<<<<<<< HEAD
 static void usb_wwan_in_work(struct work_struct *w)
 {
 	struct usb_wwan_port_private *portdata =
@@ -355,20 +379,32 @@ static void usb_wwan_in_work(struct work_struct *w)
 	spin_unlock_irqrestore(&portdata->in_lock, flags);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void usb_wwan_indat_callback(struct urb *urb)
 {
 	int err;
 	int endpoint;
+<<<<<<< HEAD
 	struct usb_wwan_port_private *portdata;
 	struct usb_wwan_intf_private *intfdata;
 	struct usb_serial_port *port;
 	int status = urb->status;
 	unsigned long flags;
+=======
+	struct usb_serial_port *port;
+	struct tty_struct *tty;
+	unsigned char *data = urb->transfer_buffer;
+	int status = urb->status;
+	int rx_len = urb->actual_length;
+	struct usb_wwan_intf_private *intfdata;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	dbg("%s: %p", __func__, urb);
 
 	endpoint = usb_pipeendpoint(urb->pipe);
 	port = urb->context;
+<<<<<<< HEAD
 	portdata = usb_get_serial_port_data(port);
 	intfdata = port->serial->private;
 
@@ -403,6 +439,71 @@ static void usb_wwan_indat_callback(struct urb *urb)
 				pr_err("%s: submit read urb failed:%d",
 						__func__, err);
 		}
+=======
+	intfdata = port->serial->private;
+
+	usb_mark_last_busy(interface_to_usbdev(port->serial->interface));
+	if (status) {
+		dbg("%s: nonzero status: %d on endpoint %02x.",
+		    __func__, status, endpoint);
+#ifdef CONFIG_MDM_HSIC_PM
+		if (status == -ENOENT && (urb->actual_length > 0)) {
+			pr_info("%s: handle dropped packet\n", __func__);
+			goto handle_rx;
+		}
+#endif
+	} else {
+#ifdef CONFIG_MDM_HSIC_PM
+handle_rx:
+#endif
+		tty = tty_port_tty_get(&port->port);
+		if (tty) {
+			if (urb->actual_length > 0) {
+#ifdef CONFIG_MDM_HSIC_PM
+				struct usb_device *udev = port->serial->dev;
+				/* corner case : efs packet rx at rpm suspend
+				 * it can control twice in racing condition
+				 * rx call back and suspend, both of then ca
+				 * call this function , so clear the packet
+				 * length once it handled
+				 */
+				urb->status = -EINPROGRESS;
+				urb->actual_length = 0;
+				if (udev->actconfig->desc.bNumInterfaces == 9)
+					pr_info("%s: read urb received : %d\n",
+						__func__, rx_len);
+#endif
+				tty_insert_flip_string(tty, data, rx_len);
+				tty_flip_buffer_push(tty);
+			} else
+				dbg("%s: empty read urb received", __func__);
+			tty_kref_put(tty);
+		} else
+			return;
+
+#ifdef CONFIG_MDM_HSIC_PM
+		/* do not re-submit urb for no entry status */
+		if (status == -ENOENT)
+			return;
+#endif
+		/* Resubmit urb so we continue receiving */
+		if (status != -ESHUTDOWN || !intfdata->suspended) {
+			err = usb_submit_urb(urb, GFP_ATOMIC);
+			if (err) {
+				if (err != -EPERM) {
+					printk(KERN_ERR "%s: resubmit read urb failed. "
+						"(%d)", __func__, err);
+					/* busy also in error unless we are killed */
+					usb_mark_last_busy(port->serial->dev);
+				}
+			} else {
+				usb_mark_last_busy(port->serial->dev);
+			}
+			usb_mark_last_busy(
+				interface_to_usbdev(port->serial->interface));
+		}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 }
 
@@ -420,6 +521,10 @@ static void usb_wwan_outdat_callback(struct urb *urb)
 
 	usb_serial_port_softint(port);
 	usb_autopm_put_interface_async(port->serial->interface);
+<<<<<<< HEAD
+=======
+	usb_mark_last_busy(interface_to_usbdev(port->serial->interface));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	portdata = usb_get_serial_port_data(port);
 	spin_lock(&intfdata->susp_lock);
 	intfdata->in_flight--;
@@ -477,6 +582,7 @@ int usb_wwan_chars_in_buffer(struct tty_struct *tty)
 }
 EXPORT_SYMBOL(usb_wwan_chars_in_buffer);
 
+<<<<<<< HEAD
 void usb_wwan_throttle(struct tty_struct *tty)
 {
 	struct usb_serial_port *port = tty->driver_data;
@@ -502,6 +608,8 @@ void usb_wwan_unthrottle(struct tty_struct *tty)
 }
 EXPORT_SYMBOL(usb_wwan_unthrottle);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int usb_wwan_open(struct tty_struct *tty, struct usb_serial_port *port)
 {
 	struct usb_wwan_port_private *portdata;
@@ -512,6 +620,10 @@ int usb_wwan_open(struct tty_struct *tty, struct usb_serial_port *port)
 
 	portdata = usb_get_serial_port_data(port);
 	intfdata = serial->private;
+<<<<<<< HEAD
+=======
+	intfdata->suspended = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* explicitly set the driver mode to raw */
 	tty->raw = 1;
@@ -525,10 +637,15 @@ int usb_wwan_open(struct tty_struct *tty, struct usb_serial_port *port)
 		urb = portdata->in_urbs[i];
 		if (!urb)
 			continue;
+<<<<<<< HEAD
 		usb_anchor_urb(urb, &portdata->submitted);
 		err = usb_submit_urb(urb, GFP_KERNEL);
 		if (err) {
 			usb_unanchor_urb(urb);
+=======
+		err = usb_submit_urb(urb, GFP_KERNEL);
+		if (err) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			dbg("%s: submit urb %d failed (%d) %d",
 			    __func__, i, err, urb->transfer_buffer_length);
 		}
@@ -660,10 +777,13 @@ int usb_wwan_startup(struct usb_serial *serial)
 			return 1;
 		}
 		init_usb_anchor(&portdata->delayed);
+<<<<<<< HEAD
 		init_usb_anchor(&portdata->submitted);
 		INIT_WORK(&portdata->in_work, usb_wwan_in_work);
 		INIT_LIST_HEAD(&portdata->in_urb_list);
 		spin_lock_init(&portdata->in_lock);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		for (j = 0; j < N_IN_URB; j++) {
 			buffer = kmalloc(IN_BUFLEN, GFP_KERNEL);
@@ -703,7 +823,11 @@ EXPORT_SYMBOL(usb_wwan_startup);
 
 static void stop_read_write_urbs(struct usb_serial *serial)
 {
+<<<<<<< HEAD
 	int i;
+=======
+	int i, j;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct usb_serial_port *port;
 	struct usb_wwan_port_private *portdata;
 
@@ -711,14 +835,28 @@ static void stop_read_write_urbs(struct usb_serial *serial)
 	for (i = 0; i < serial->num_ports; ++i) {
 		port = serial->port[i];
 		portdata = usb_get_serial_port_data(port);
+<<<<<<< HEAD
 		usb_kill_anchored_urbs(&portdata->submitted);
+=======
+		for (j = 0; j < N_IN_URB; j++)
+			usb_kill_urb(portdata->in_urbs[j]);
+		for (j = 0; j < N_OUT_URB; j++)
+			usb_kill_urb(portdata->out_urbs[j]);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 }
 
 void usb_wwan_disconnect(struct usb_serial *serial)
 {
+<<<<<<< HEAD
 	dbg("%s", __func__);
 
+=======
+	struct usb_wwan_intf_private *intfdata = serial->private;
+	dbg("%s", __func__);
+
+	intfdata->suspended = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	stop_read_write_urbs(serial);
 }
 EXPORT_SYMBOL(usb_wwan_disconnect);
@@ -728,15 +866,21 @@ void usb_wwan_release(struct usb_serial *serial)
 	int i, j;
 	struct usb_serial_port *port;
 	struct usb_wwan_port_private *portdata;
+<<<<<<< HEAD
 	struct urb *urb;
 	struct list_head *q;
 	unsigned long flags;
+=======
+
+	dbg("%s", __func__);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* Now free them */
 	for (i = 0; i < serial->num_ports; ++i) {
 		port = serial->port[i];
 		portdata = usb_get_serial_port_data(port);
 
+<<<<<<< HEAD
 		cancel_work_sync(&portdata->in_work);
 		/* TBD: do we really need this */
 		spin_lock_irqsave(&portdata->in_lock, flags);
@@ -747,6 +891,8 @@ void usb_wwan_release(struct usb_serial *serial)
 		}
 		spin_unlock_irqrestore(&portdata->in_lock, flags);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		for (j = 0; j < N_IN_URB; j++) {
 			usb_free_urb(portdata->in_urbs[j]);
 			kfree(portdata->in_buffer[j]);
@@ -775,12 +921,20 @@ int usb_wwan_suspend(struct usb_serial *serial, pm_message_t message)
 
 	dbg("%s entered", __func__);
 
+<<<<<<< HEAD
 	if (PMSG_IS_AUTO(message)) {
+=======
+	if (message.event & PM_EVENT_AUTO) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spin_lock_irq(&intfdata->susp_lock);
 		b = intfdata->in_flight;
 		spin_unlock_irq(&intfdata->susp_lock);
 
+<<<<<<< HEAD
 		if (b || pm_runtime_autosuspend_expiration(&serial->dev->dev))
+=======
+		if (b)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return -EBUSY;
 	}
 
@@ -815,12 +969,18 @@ static void play_delayed(struct usb_serial_port *port)
 	portdata = usb_get_serial_port_data(port);
 	data = port->serial->private;
 	while ((urb = usb_get_from_anchor(&portdata->delayed))) {
+<<<<<<< HEAD
 		usb_anchor_urb(urb, &portdata->submitted);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		err = usb_submit_urb(urb, GFP_ATOMIC);
 		if (!err) {
 			data->in_flight++;
 		} else {
+<<<<<<< HEAD
 			usb_unanchor_urb(urb);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			/* we have to throw away the rest */
 			do {
 				unbusy_queued_urb(urb, portdata);
@@ -859,12 +1019,18 @@ int usb_wwan_resume(struct usb_serial *serial)
 
 	spin_lock_irq(&intfdata->susp_lock);
 	intfdata->suspended = 0;
+<<<<<<< HEAD
+=======
+	spin_unlock_irq(&intfdata->susp_lock);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (i = 0; i < serial->num_ports; i++) {
 		/* walk all ports */
 		port = serial->port[i];
 		portdata = usb_get_serial_port_data(port);
 
 		/* skip closed ports */
+<<<<<<< HEAD
 		if (!portdata->opened)
 			continue;
 
@@ -883,14 +1049,33 @@ int usb_wwan_resume(struct usb_serial *serial)
 				    __func__, err, j, urb, i);
 				usb_unanchor_urb(urb);
 				intfdata->suspended = 1;
+=======
+		spin_lock_irq(&intfdata->susp_lock);
+		if (!portdata->opened) {
+			spin_unlock_irq(&intfdata->susp_lock);
+			continue;
+		}
+
+		for (j = 0; j < N_IN_URB; j++) {
+			urb = portdata->in_urbs[j];
+			err = usb_submit_urb(urb, GFP_ATOMIC);
+			if (err < 0) {
+				err("%s: Error %d for bulk URB %d",
+				    __func__, err, i);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				spin_unlock_irq(&intfdata->susp_lock);
 				goto err_out;
 			}
 		}
 		play_delayed(port);
+<<<<<<< HEAD
 	}
 	spin_unlock_irq(&intfdata->susp_lock);
 
+=======
+		spin_unlock_irq(&intfdata->susp_lock);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 err_out:
 	return err;
 }

@@ -815,9 +815,16 @@ static int if_cs_probe(struct pcmcia_device *p_dev)
 	lbs_deb_enter(LBS_DEB_CS);
 
 	card = kzalloc(sizeof(struct if_cs_card), GFP_KERNEL);
+<<<<<<< HEAD
 	if (!card)
 		goto out;
 
+=======
+	if (!card) {
+		pr_err("error in kzalloc\n");
+		goto out;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	card->p_dev = p_dev;
 	p_dev->priv = card;
 
@@ -858,7 +865,11 @@ static int if_cs_probe(struct pcmcia_device *p_dev)
 	 * Most of the libertas cards can do unaligned register access, but some
 	 * weird ones cannot. That's especially true for the CF8305 card.
 	 */
+<<<<<<< HEAD
 	card->align_regs = false;
+=======
+	card->align_regs = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	card->model = get_model(p_dev->manf_id, p_dev->card_id);
 	if (card->model == MODEL_UNKNOWN) {
@@ -870,7 +881,11 @@ static int if_cs_probe(struct pcmcia_device *p_dev)
 	/* Check if we have a current silicon */
 	prod_id = if_cs_read8(card, IF_CS_PRODUCT_ID);
 	if (card->model == MODEL_8305) {
+<<<<<<< HEAD
 		card->align_regs = true;
+=======
+		card->align_regs = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (prod_id < IF_CS_CF8305_B1_REV) {
 			pr_err("8305 rev B0 and older are not supported\n");
 			ret = -ENODEV;

@@ -1,6 +1,10 @@
 /******************************************************************************
  *
+<<<<<<< HEAD
  * Copyright(c) 2009-2012  Realtek Corporation.
+=======
+ * Copyright(c) 2009-2010  Realtek Corporation.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Tmis program is free software; you can redistribute it and/or modify it
  * under the terms of version 2 of the GNU General Public License as
@@ -28,13 +32,21 @@
 
 #include "wifi.h"
 
+<<<<<<< HEAD
 #include <linux/moduleparam.h>
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void rtl_dbgp_flag_init(struct ieee80211_hw *hw)
 {
 	struct rtl_priv *rtlpriv = rtl_priv(hw);
 	u8 i;
 
+<<<<<<< HEAD
+=======
+	rtlpriv->dbg.global_debuglevel = DBG_EMERG;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	rtlpriv->dbg.global_debugcomponents =
 	    COMP_ERR | COMP_FW | COMP_INIT | COMP_RECV | COMP_SEND |
 	    COMP_MLME | COMP_SCAN | COMP_INTR | COMP_LED | COMP_SEC |

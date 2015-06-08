@@ -22,7 +22,10 @@
 #include <linux/miscdevice.h>
 #include <linux/slab.h>
 #include <linux/uaccess.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <asm/lv1call.h>
 #include <asm/ps3stor.h>
@@ -102,16 +105,22 @@ static loff_t ps3flash_llseek(struct file *file, loff_t offset, int origin)
 
 	mutex_lock(&file->f_mapping->host->i_mutex);
 	switch (origin) {
+<<<<<<< HEAD
 	case 0:
 		break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	case 1:
 		offset += file->f_pos;
 		break;
 	case 2:
 		offset += dev->regions[dev->region_idx].size*dev->blk_size;
 		break;
+<<<<<<< HEAD
 	default:
 		offset = -1;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	if (offset < 0) {
 		res = -EINVAL;
@@ -310,6 +319,7 @@ static int ps3flash_flush(struct file *file, fl_owner_t id)
 	return ps3flash_writeback(ps3flash_dev);
 }
 
+<<<<<<< HEAD
 static int ps3flash_fsync(struct file *file, loff_t start, loff_t end, int datasync)
 {
 	struct inode *inode = file->f_path.dentry->d_inode;
@@ -318,6 +328,11 @@ static int ps3flash_fsync(struct file *file, loff_t start, loff_t end, int datas
 	err = ps3flash_writeback(ps3flash_dev);
 	mutex_unlock(&inode->i_mutex);
 	return err;
+=======
+static int ps3flash_fsync(struct file *file, int datasync)
+{
+	return ps3flash_writeback(ps3flash_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static irqreturn_t ps3flash_interrupt(int irq, void *data)

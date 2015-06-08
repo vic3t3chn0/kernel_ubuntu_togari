@@ -73,10 +73,13 @@ struct hv_ops {
 	int (*notifier_add)(struct hvc_struct *hp, int irq);
 	void (*notifier_del)(struct hvc_struct *hp, int irq);
 	void (*notifier_hangup)(struct hvc_struct *hp, int irq);
+<<<<<<< HEAD
 
 	/* tiocmget/set implementation */
 	int (*tiocmget)(struct hvc_struct *hp);
 	int (*tiocmset)(struct hvc_struct *hp, unsigned int set, unsigned int clear);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /* Register a vterm and a slot index for use as a console (console_init) */

@@ -42,8 +42,11 @@
  *  daemon always getting scheduled within that time frame.
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/types.h>
@@ -58,8 +61,15 @@
 #include <linux/init.h>
 #include <linux/io.h>
 #include <linux/uaccess.h>
+<<<<<<< HEAD
 
 #define OUR_NAME "w83877f_wdt"
+=======
+#include <asm/system.h>
+
+#define OUR_NAME "w83877f_wdt"
+#define PFX OUR_NAME ": "
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define ENABLE_W83877F_PORT 0x3F0
 #define ENABLE_W83877F 0x87
@@ -91,8 +101,13 @@ MODULE_PARM_DESC(timeout,
 				__MODULE_STRING(WATCHDOG_TIMEOUT) ")");
 
 
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_PARM_DESC(nowayout,
 		"Watchdog cannot be stopped once started (default="
 				__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
@@ -126,7 +141,12 @@ static void wdt_timer_ping(unsigned long data)
 		spin_unlock(&wdt_spinlock);
 
 	} else
+<<<<<<< HEAD
 		pr_warn("Heartbeat lost! Will not ping the watchdog\n");
+=======
+		printk(KERN_WARNING PFX
+			"Heartbeat lost! Will not ping the watchdog\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -164,7 +184,11 @@ static void wdt_startup(void)
 
 	wdt_change(WDT_ENABLE);
 
+<<<<<<< HEAD
 	pr_info("Watchdog timer is now enabled\n");
+=======
+	printk(KERN_INFO PFX "Watchdog timer is now enabled.\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void wdt_turnoff(void)
@@ -174,7 +198,11 @@ static void wdt_turnoff(void)
 
 	wdt_change(WDT_DISABLE);
 
+<<<<<<< HEAD
 	pr_info("Watchdog timer is now disabled...\n");
+=======
+	printk(KERN_INFO PFX "Watchdog timer is now disabled...\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void wdt_keepalive(void)
@@ -233,7 +261,12 @@ static int fop_close(struct inode *inode, struct file *file)
 		wdt_turnoff();
 	else {
 		del_timer(&timer);
+<<<<<<< HEAD
 		pr_crit("device file closed unexpectedly. Will not stop the WDT!\n");
+=======
+		printk(KERN_CRIT PFX
+		  "device file closed unexpectedly. Will not stop the WDT!\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	clear_bit(0, &wdt_is_open);
 	wdt_expect_close = 0;
@@ -355,6 +388,7 @@ static int __init w83877f_wdt_init(void)
 
 	if (timeout < 1 || timeout > 3600) { /* arbitrary upper limit */
 		timeout = WATCHDOG_TIMEOUT;
+<<<<<<< HEAD
 		pr_info("timeout value must be 1 <= x <= 3600, using %d\n",
 			timeout);
 	}
@@ -362,30 +396,61 @@ static int __init w83877f_wdt_init(void)
 	if (!request_region(ENABLE_W83877F_PORT, 2, "W83877F WDT")) {
 		pr_err("I/O address 0x%04x already in use\n",
 		       ENABLE_W83877F_PORT);
+=======
+		printk(KERN_INFO PFX
+			"timeout value must be 1 <= x <= 3600, using %d\n",
+							timeout);
+	}
+
+	if (!request_region(ENABLE_W83877F_PORT, 2, "W83877F WDT")) {
+		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
+			ENABLE_W83877F_PORT);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		rc = -EIO;
 		goto err_out;
 	}
 
 	if (!request_region(WDT_PING, 1, "W8387FF WDT")) {
+<<<<<<< HEAD
 		pr_err("I/O address 0x%04x already in use\n", WDT_PING);
+=======
+		printk(KERN_ERR PFX "I/O address 0x%04x already in use\n",
+			WDT_PING);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		rc = -EIO;
 		goto err_out_region1;
 	}
 
 	rc = register_reboot_notifier(&wdt_notifier);
 	if (rc) {
+<<<<<<< HEAD
 		pr_err("cannot register reboot notifier (err=%d)\n", rc);
+=======
+		printk(KERN_ERR PFX
+			"cannot register reboot notifier (err=%d)\n", rc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		goto err_out_region2;
 	}
 
 	rc = misc_register(&wdt_miscdev);
 	if (rc) {
+<<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       wdt_miscdev.minor, rc);
 		goto err_out_reboot;
 	}
 
 	pr_info("WDT driver for W83877F initialised. timeout=%d sec (nowayout=%d)\n",
+=======
+		printk(KERN_ERR PFX
+			"cannot register miscdev on minor=%d (err=%d)\n",
+							wdt_miscdev.minor, rc);
+		goto err_out_reboot;
+	}
+
+	printk(KERN_INFO PFX
+	  "WDT driver for W83877F initialised. timeout=%d sec (nowayout=%d)\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		timeout, nowayout);
 
 	return 0;

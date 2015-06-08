@@ -57,11 +57,19 @@
  */
 static int hwcursor = 1;
 static char *mode_option __devinitdata;
+<<<<<<< HEAD
 static bool noaccel __devinitdata;
 
 /* mtrr option */
 #ifdef CONFIG_MTRR
 static bool nomtrr __devinitdata;
+=======
+static int noaccel __devinitdata;
+
+/* mtrr option */
+#ifdef CONFIG_MTRR
+static int nomtrr __devinitdata;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 
 /*
@@ -1147,9 +1155,15 @@ static int pm3fb_pan_display(struct fb_var_screeninfo *var,
 				 struct fb_info *info)
 {
 	struct pm3_par *par = info->par;
+<<<<<<< HEAD
 	const u32 xres = (info->var.xres + 31) & ~31;
 
 	par->base = pm3fb_shift_bpp(info->var.bits_per_pixel,
+=======
+	const u32 xres = (var->xres + 31) & ~31;
+
+	par->base = pm3fb_shift_bpp(var->bits_per_pixel,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					(var->yoffset * xres)
 					+ var->xoffset);
 	PM3_WAIT(par, 1);
@@ -1525,7 +1539,11 @@ static int __init pm3fb_setup(char *options)
 {
 	char *this_opt;
 
+<<<<<<< HEAD
 	/* Parse user specified options (`video=pm3fb:') */
+=======
+	/* Parse user speficied options (`video=pm3fb:') */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!options || !*options)
 		return 0;
 

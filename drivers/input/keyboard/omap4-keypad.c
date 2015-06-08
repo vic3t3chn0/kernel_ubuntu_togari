@@ -31,7 +31,11 @@
 #include <linux/slab.h>
 #include <linux/pm_runtime.h>
 
+<<<<<<< HEAD
 #include <linux/platform_data/omap4-keypad.h>
+=======
+#include <plat/omap4-keypad.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* OMAP4 registers */
 #define OMAP4_KBD_REVISION		0x00
@@ -335,7 +339,22 @@ static struct platform_driver omap4_keypad_driver = {
 		.owner	= THIS_MODULE,
 	},
 };
+<<<<<<< HEAD
 module_platform_driver(omap4_keypad_driver);
+=======
+
+static int __init omap4_keypad_init(void)
+{
+	return platform_driver_register(&omap4_keypad_driver);
+}
+module_init(omap4_keypad_init);
+
+static void __exit omap4_keypad_exit(void)
+{
+	platform_driver_unregister(&omap4_keypad_driver);
+}
+module_exit(omap4_keypad_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Texas Instruments");
 MODULE_DESCRIPTION("OMAP4 Keypad Driver");

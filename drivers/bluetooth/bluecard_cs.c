@@ -930,7 +930,11 @@ static void bluecard_release(struct pcmcia_device *link)
 	pcmcia_disable_device(link);
 }
 
+<<<<<<< HEAD
 static struct pcmcia_device_id bluecard_ids[] = {
+=======
+static const struct pcmcia_device_id bluecard_ids[] = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	PCMCIA_DEVICE_PROD_ID12("BlueCard", "LSE041", 0xbaf16fbf, 0x657cc15e),
 	PCMCIA_DEVICE_PROD_ID12("BTCFCARD", "LSE139", 0xe3987764, 0x2524b59c),
 	PCMCIA_DEVICE_PROD_ID12("WSS", "LSE039", 0x0a0736ec, 0x24e6dfab),

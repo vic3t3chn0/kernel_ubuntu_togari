@@ -8,6 +8,10 @@
  *	it under the terms of the GNU General Public License as published by
  *	the Free Software Foundation; either version 2 of the License, or
  *	(at your option) any later version.
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #include <linux/kernel.h>
@@ -15,6 +19,10 @@
 #include <linux/errno.h>
 #include <linux/list.h>
 #include <linux/mutex.h>
+<<<<<<< HEAD
+=======
+#include <linux/version.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/videodev2.h>
 #include <linux/vmalloc.h>
 #include <linux/wait.h>
@@ -122,12 +130,31 @@ uvc_v4l2_open(struct file *file)
 	struct video_device *vdev = video_devdata(file);
 	struct uvc_device *uvc = video_get_drvdata(vdev);
 	struct uvc_file_handle *handle;
+<<<<<<< HEAD
+=======
+	int ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	handle = kzalloc(sizeof(*handle), GFP_KERNEL);
 	if (handle == NULL)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 	v4l2_fh_init(&handle->vfh, vdev);
+=======
+	ret = v4l2_fh_init(&handle->vfh, vdev);
+	if (ret < 0)
+		goto error;
+
+	ret = v4l2_event_init(&handle->vfh);
+	if (ret < 0)
+		goto error;
+
+	ret = v4l2_event_alloc(&handle->vfh, 8);
+	if (ret < 0)
+		goto error;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	v4l2_fh_add(&handle->vfh);
 
 	handle->device = &uvc->video;
@@ -135,6 +162,13 @@ uvc_v4l2_open(struct file *file)
 
 	uvc_function_connect(uvc);
 	return 0;
+<<<<<<< HEAD
+=======
+
+error:
+	v4l2_fh_exit(&handle->vfh);
+	return ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int
@@ -296,7 +330,11 @@ uvc_v4l2_do_ioctl(struct file *file, unsigned int cmd, void *arg)
 		if (sub->type < UVC_EVENT_FIRST || sub->type > UVC_EVENT_LAST)
 			return -EINVAL;
 
+<<<<<<< HEAD
 		return v4l2_event_subscribe(&handle->vfh, arg, 2);
+=======
+		return v4l2_event_subscribe(&handle->vfh, arg);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	case VIDIOC_UNSUBSCRIBE_EVENT:
@@ -336,7 +374,11 @@ uvc_v4l2_poll(struct file *file, poll_table *wait)
 	struct uvc_file_handle *handle = to_uvc_file_handle(file->private_data);
 	unsigned int mask = 0;
 
+<<<<<<< HEAD
 	poll_wait(file, &handle->vfh.wait, wait);
+=======
+	poll_wait(file, &handle->vfh.events->wait, wait);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (v4l2_event_pending(&handle->vfh))
 		mask |= POLLPRI;
 

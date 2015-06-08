@@ -33,7 +33,11 @@
 #define DRIVER_VERSION	"v0.10"
 #define DRIVER_DESC 	"SPCP8x5 USB to serial adaptor driver"
 
+<<<<<<< HEAD
 static bool debug;
+=======
+static int debug;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define SPCP8x5_007_VID		0x04FC
 #define SPCP8x5_007_PID		0x0201
@@ -156,6 +160,10 @@ static struct usb_driver spcp8x5_driver = {
 	.probe =		usb_serial_probe,
 	.disconnect =		usb_serial_disconnect,
 	.id_table =		id_table,
+<<<<<<< HEAD
+=======
+	.no_dynamic_id =	1,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 
@@ -648,6 +656,10 @@ static struct usb_serial_driver spcp8x5_device = {
 		.name =		"SPCP8x5",
 	},
 	.id_table		= id_table,
+<<<<<<< HEAD
+=======
+	.usb_driver		= &spcp8x5_driver,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.num_ports		= 1,
 	.open 			= spcp8x5_open,
 	.dtr_rts		= spcp8x5_dtr_rts,
@@ -662,11 +674,40 @@ static struct usb_serial_driver spcp8x5_device = {
 	.process_read_urb	= spcp8x5_process_read_urb,
 };
 
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&spcp8x5_device, NULL
 };
 
 module_usb_serial_driver(spcp8x5_driver, serial_drivers);
+=======
+static int __init spcp8x5_init(void)
+{
+	int retval;
+	retval = usb_serial_register(&spcp8x5_device);
+	if (retval)
+		goto failed_usb_serial_register;
+	retval = usb_register(&spcp8x5_driver);
+	if (retval)
+		goto failed_usb_register;
+	printk(KERN_INFO KBUILD_MODNAME ": " DRIVER_VERSION ":"
+	       DRIVER_DESC "\n");
+	return 0;
+failed_usb_register:
+	usb_serial_deregister(&spcp8x5_device);
+failed_usb_serial_register:
+	return retval;
+}
+
+static void __exit spcp8x5_exit(void)
+{
+	usb_deregister(&spcp8x5_driver);
+	usb_serial_deregister(&spcp8x5_device);
+}
+
+module_init(spcp8x5_init);
+module_exit(spcp8x5_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_VERSION(DRIVER_VERSION);

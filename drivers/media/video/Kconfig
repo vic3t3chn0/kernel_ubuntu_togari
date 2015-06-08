@@ -67,11 +67,34 @@ config VIDEOBUF2_DMA_SG
 	select VIDEOBUF2_MEMOPS
 	tristate
 
+<<<<<<< HEAD
 config VIDEOBUF2_MSM_MEM
 	tristate "MSM videobuf2 extensions"
 	select VIDEOBUF2_DMA_SG
 	select VIDEOBUF2_DMA_CONTIG
 	select VIDEOBUF2_VMALLOC
+=======
+choice
+prompt "Select Videobuf2 allocator"
+default VIDEOBUF2_CMA_PHYS
+config VIDEOBUF2_CMA_PHYS
+	bool "CMA_PHYS"
+	depends on CMA
+	select VIDEOBUF2_CORE
+	select VIDEOBUF2_MEMOPS
+	help
+	  Use videobuf2 CMA-phys allocator
+
+config VIDEOBUF2_ION
+	bool "Android ION"
+	depends on ION_EXYNOS
+	select VIDEOBUF2_CORE
+	select VIDEOBUF2_MEMOPS
+	help
+	  Use videobuf2 Android ION allocator
+endchoice
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #
 # Multimedia Video device configuration
 #
@@ -279,6 +302,7 @@ config VIDEO_ADV7180
 	  To compile this driver as a module, choose M here: the
 	  module will be called adv7180.
 
+<<<<<<< HEAD
 config VIDEO_ADV7183
 	tristate "Analog Devices ADV7183 decoder"
 	depends on VIDEO_V4L2 && I2C
@@ -289,6 +313,8 @@ config VIDEO_ADV7183
 	  To compile this driver as a module, choose M here: the
 	  module will be called adv7183.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config VIDEO_BT819
 	tristate "BT819A VideoStream decoder"
 	depends on VIDEO_V4L2 && I2C
@@ -393,6 +419,311 @@ config VIDEO_VPX3220
 	  To compile this driver as a module, choose M here: the
 	  module will be called vpx3220.
 
+<<<<<<< HEAD
+=======
+config VIDEO_S5K3H2
+        tristate "S5K3H2 supporting camera driver"
+	depends on VIDEO_V4L2 && (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS) && VIDEO_EXYNOS_FIMC_IS
+        ---help---
+          This driver supports S5K3H2 sensor.
+choice
+depends on VIDEO_S5K3H2
+prompt "MIPI Camera port for S5K3H2"
+default S5K3H2_CSI_C
+config S5K3H2_CSI_C
+	bool "CSI Camera A port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS)
+	help
+	  This enables support for CSI A port
+config S5K3H2_CSI_D
+	bool "CSI Camera B port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS)
+	help
+	  This enables support for CSI B port
+endchoice
+
+config VIDEO_S5K3H7
+        tristate "S5K3H7 supporting camera driver"
+	depends on VIDEO_V4L2 && (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS) && VIDEO_EXYNOS_FIMC_IS
+        ---help---
+          This driver supports S5K3H7 sensor.
+choice
+depends on VIDEO_S5K3H7
+prompt "MIPI Camera port for S5K3H7"
+default S5K3H7_CSI_C
+config S5K3H7_CSI_C
+	bool "CSI Camera A port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS)
+	help
+	  This enables support for CSI A port
+config S5K3H7_CSI_D
+	bool "CSI Camera B port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS)
+	help
+	  This enables support for CSI B port
+endchoice
+
+config VIDEO_S5K4E5
+        tristate "S5K4E5 supporting camera driver"
+	depends on VIDEO_V4L2 && ((VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS) && VIDEO_EXYNOS_FIMC_IS) || VIDEO_EXYNOS5_FIMC_IS
+        ---help---
+          This driver supports S5K4E5 sensor.
+choice
+depends on VIDEO_S5K4E5
+prompt "MIPI Camera port for S5K4E5"
+default S5K4E5_CSI_C
+config S5K4E5_CSI_C
+	bool "CSI Camera A port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS || VIDEO_EXYNOS5_FIMC_IS)
+	help
+	  This enables support for CSI A port
+config S5K4E5_CSI_D
+	bool "CSI Camera B port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS || VIDEO_EXYNOS5_FIMC_IS)
+	help
+	  This enables support for CSI B port
+endchoice
+choice
+depends on (VIDEO_S5K4E5 && VIDEO_EXYNOS5_FIMC_IS)
+prompt "Camera position for S5K4E5"
+default S5K4E5_POSITION_REAR
+config S5K4E5_POSITION_FRONT
+	bool "front camera"
+	depends on VIDEO_EXYNOS5_FIMC_IS
+	help
+	  This set as front camera
+config S5K4E5_POSITION_REAR
+	bool "rear camera"
+	depends on VIDEO_EXYNOS5_FIMC_IS
+	help
+	  This set as rear camera
+endchoice
+
+config VIDEO_S5K6A3
+	tristate "S5K6A3 supporting camera driver"
+	depends on VIDEO_V4L2 && ((VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS) && VIDEO_EXYNOS_FIMC_IS) || VIDEO_EXYNOS5_FIMC_IS
+	---help---
+	  This driver supports S5K6A3 sensor.
+choice
+depends on VIDEO_S5K6A3
+prompt "MIPI Camera port for S5K6A3"
+default S5K6A3_CSI_D
+config S5K6A3_CSI_C
+	bool "CSI Camera A port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS || VIDEO_EXYNOS5_FIMC_IS)
+	help
+	  This enables support for CSI A port
+config S5K6A3_CSI_D
+	bool "CSI Camera B port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS || VIDEO_EXYNOS5_FIMC_IS)
+	help
+	  This enalbes support for CSI B port
+endchoice
+choice
+depends on (VIDEO_S5K6A3 && VIDEO_EXYNOS5_FIMC_IS)
+prompt "Camera position for S5K6A3"
+default S5K6A3_POSITION_FRONT
+config S5K6A3_POSITION_FRONT
+	bool "front camera"
+	depends on VIDEO_EXYNOS5_FIMC_IS
+	help
+	  This set as front camera
+config S5K6A3_POSITION_REAR
+	bool "rear camera"
+	depends on VIDEO_EXYNOS5_FIMC_IS
+	help
+	  This set as rear camera
+endchoice
+
+config VIDEO_M5MO
+        tristate "M5MO supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && VIDEO_FIMC_MIPI
+        ---help---
+          This driver supports M5MO SoC camera module
+
+config VIDEO_M9MO
+        tristate "M9MO supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && VIDEO_FIMC_MIPI
+        ---help---
+          This driver supports M9MO SoC camera module
+
+config VIDEO_S5K5BAFX
+	tristate "S5K5BAFX supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && VIDEO_FIMC_MIPI
+	---help---
+	  This driver supports S5K5BAFX SoC camera module
+
+config VIDEO_S5K5BBGX
+	tristate "S5K5BBGX supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && TARGET_LOCALE_NA && VIDEO_FIMC_MIPI
+	---help---
+	  This driver supports S5K5BBGX SoC camera module
+
+config VIDEO_S5K5CCGX_COMMON
+	tristate "S5K5CCGX supporting camera driver"
+	depends on I2C && VIDEO_V4L2
+	---help---
+	  This driver supports S5K5CCGX SoC camera module
+	  S5K5CCGX camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_S5K5CCGX_P2
+	tristate "S5K5CCGX supporting camera driver for P2"
+	depends on VIDEO_S5K5CCGX_COMMON
+	---help---
+	  This driver supports S5K5CCGX SoC camera module
+	  S5K5CCGX camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_S5K5CCGX_P4W
+	tristate "S5K5CCGX supporting camera driver for P4W"
+	depends on VIDEO_S5K5CCGX_COMMON
+	---help---
+	  This driver supports S5K5CCGX SoC camera module
+	  S5K5CCGX camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_S5K5CCGX_P8
+	tristate "S5K5CCGX supporting camera driver for P8"
+	depends on VIDEO_S5K5CCGX_COMMON
+	---help---
+	  This driver supports S5K5CCGX SoC camera module
+	  S5K5CCGX camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_SR200PC20
+	tristate "SR200PC20 supporting camera driver"
+	depends on I2C && VIDEO_V4L2
+	---help---
+	  This driver supports SR200PC20 SoC camera module
+	  SR200PC20 camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_SR200PC20_P2
+	tristate "SR200PC20 supporting camera driver"
+	depends on VIDEO_SR200PC20
+	---help---
+	  This driver supports SR200PC20 SoC camera module
+	  SR200PC20 camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_SR200PC20_P4W
+	tristate "SR200PC20 supporting camera driver"
+	depends on VIDEO_SR200PC20
+	---help---
+	  This driver supports SR200PC20 SoC camera module.
+	  SR200PC20 camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_SR200PC20M
+	tristate "SR200PC20M supporting camera driver"
+	depends on I2C && VIDEO_V4L2
+	---help---
+	  This driver supports SR200PC20M SoC camera module
+	  SR200PC20M camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_ISX012
+	tristate "ISX012 supporting camera driver"
+	depends on I2C && VIDEO_V4L2
+	---help---
+	  This driver supports ISX012 SoC camera module
+	  ISX012 camera module is SONY camera sensor supporting 5M capture
+	  and Full-HD recording with 30 fps.
+
+config VIDEO_SLP_S5K4ECGX
+	tristate "S5K4ECGX supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && VIDEO_FIMC_MIPI
+	---help---
+	  This driver supports S5K4ECGX SoC camera module
+
+config VIDEO_SLP_DB8131M
+	tristate "DB8131M supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && VIDEO_FIMC_MIPI
+	---help---
+	  This driver supports DB8131M SoC camera module
+
+config VIDEO_S5K4BA
+	tristate "S5K4BA supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && (VIDEO_FIMC || VIDEO_SAMSUNG_S5P_FIMC) && !(VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS)
+	---help---
+	  This driver supports s5k4ba SoC camera module
+
+config VIDEO_S5K4EA
+	tristate "S5K4EA MIPI CSI-2 supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS)
+	---help---
+	  This driver supports s5k4ea SoC camera module with
+	  MIPI CSI-2 as well
+
+config VIDEO_S5C73M3
+	tristate "S5C73M3 MIPI CSI-2 supporting camera driver"
+	depends on I2C && VIDEO_V4L2 && VIDEO_FIMC_MIPI
+	---help---
+	  This driver supports s5c73m3 ISP camera module with
+	  MIPI CSI-2 as well
+
+config VIDEO_S5C73M3_SPI
+	tristate "S5C73M3 SPI driver"
+	depends on SPI && (VIDEO_S5C73M3 || VIDEO_SLP_S5C73M3)
+	---help---
+	  This driver supports s5c73m3 SPI
+
+config VIDEO_SLP_S5C73M3
+	tristate "S5C73M3 MIPI CSI-2 supporting camera driver for slp"
+	depends on I2C && VIDEO_V4L2 && VIDEO_FIMC_MIPI
+	---help---
+	  This driver supports s5c73m3 ISP camera module with MIPI CSI-2 as well
+
+config VIDEO_IMPROVE_STREAMOFF
+	bool "Improve shtter lag"
+	depends on VIDEO_FIMC_MIPI
+	---help---
+	  This improve shutter lag as resulf of reducing steam off delay.
+	  S5K5CCGX camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+config VIDEO_HD_SUPPORT
+	bool "Support HD of S5K5CCGX module"
+	depends on VIDEO_S5K5CCGX_COMMON
+	---help---
+	  This improve shutter lag as resulf of reducing steam off delay
+	  S5K5CCGX camera module is manufactured by Silliconfile coporate
+	  and it's maximum resolution is 2MP.
+
+#source "drivers/media/video/m5mols/Kconfig"
+
+choice
+depends on VIDEO_S5K4BA || VIDEO_S5K4EA || VIDEO_M5MO || VIDEO_M5MOLS
+prompt "Select ITU / MIPI Camera port"
+default ITU_A
+config ITU_A
+	bool "ITU Camera A port"
+	depends on !(VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS ||\
+			VIDEO_EXYNOS_MIPI_CSIS)
+	help
+	  This enables support for ITU A port
+config ITU_B
+	bool "ITU Camera B port"
+	depends on !(VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS ||\
+			VIDEO_EXYNOS_MIPI_CSIS)
+	help
+	  This enables support for ITU B port
+config CSI_C
+	bool "CSI Camera A port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS ||\
+			VIDEO_EXYNOS_MIPI_CSIS)
+	help
+	  This enables support for CSI A port
+config CSI_D
+	bool "CSI Camera B port"
+	depends on (VIDEO_FIMC_MIPI || VIDEO_S5P_MIPI_CSIS ||\
+			VIDEO_EXYNOS_MIPI_CSIS)
+	help
+	  This enables support for CSI B port
+endchoice
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 comment "Video and audio decoders"
 
 config VIDEO_SAA717X
@@ -475,9 +806,12 @@ config VIDEO_AK881X
 
 comment "Camera sensor devices"
 
+<<<<<<< HEAD
 config VIDEO_APTINA_PLL
 	tristate
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config VIDEO_OV7670
 	tristate "OmniVision OV7670 sensor support"
 	depends on I2C && VIDEO_V4L2
@@ -486,6 +820,7 @@ config VIDEO_OV7670
 	  OV7670 VGA camera.  It currently only works with the M88ALP01
 	  controller.
 
+<<<<<<< HEAD
 config VIDEO_VS6624
 	tristate "ST VS6624 sensor support"
 	depends on VIDEO_V4L2 && I2C
@@ -519,6 +854,8 @@ config VIDEO_MT9T001
 	  This is a Video4Linux2 sensor-level driver for the Aptina
 	  (Micron) mt0t001 3 Mpixel camera.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config VIDEO_MT9V011
 	tristate "Micron mt9v011 sensor support"
 	depends on I2C && VIDEO_V4L2
@@ -541,6 +878,7 @@ config VIDEO_TCM825X
 	  This is a driver for the Toshiba TCM825x VGA camera sensor.
 	  It is used for example in Nokia N800.
 
+<<<<<<< HEAD
 config VIDEO_SR030PC30
 	tristate "Siliconfile SR030PC30 sensor support"
 	depends on I2C && VIDEO_V4L2
@@ -578,6 +916,8 @@ config VIDEO_AS3645A
 	  This is a driver for the AS3645A and LM3555 flash controllers. It has
 	  build in control for flash, torch and indicator LEDs.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 comment "Video improvement chips"
 
 config VIDEO_UPD64031A
@@ -625,6 +965,28 @@ config VIDEO_M52790
 
 endmenu # encoder / decoder chips
 
+<<<<<<< HEAD
+=======
+config VIDEO_SH_VOU
+	tristate "SuperH VOU video output driver"
+	depends on VIDEO_DEV && ARCH_SHMOBILE
+	select VIDEOBUF_DMA_CONTIG
+	help
+	  Support for the Video Output Unit (VOU) on SuperH SoCs.
+
+config VIDEO_VIU
+	tristate "Freescale VIU Video Driver"
+	depends on VIDEO_V4L2 && PPC_MPC512x
+	select VIDEOBUF_DMA_CONTIG
+	default y
+	---help---
+	  Support for Freescale VIU video driver. This device captures
+	  video data, or overlays video on DIU frame buffer.
+
+	  Say Y here if you want to enable VIU device on MPC5121e Rev2+.
+	  In doubt, say N.
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config VIDEO_VIVI
 	tristate "Virtual Video Driver"
 	depends on VIDEO_DEV && VIDEO_V4L2 && !SPARC32 && !SPARC64
@@ -639,6 +1001,7 @@ config VIDEO_VIVI
 	  Say Y here if you want to test video apps or debug V4L devices.
 	  In doubt, say N.
 
+<<<<<<< HEAD
 #
 # USB Multimedia device configuration
 #
@@ -738,6 +1101,111 @@ source "drivers/media/video/cx23885/Kconfig"
 source "drivers/media/video/cx25821/Kconfig"
 
 source "drivers/media/video/cx88/Kconfig"
+=======
+source "drivers/media/video/davinci/Kconfig"
+
+source "drivers/media/video/omap/Kconfig"
+
+source "drivers/media/video/bt8xx/Kconfig"
+
+config VIDEO_PMS
+	tristate "Mediavision Pro Movie Studio Video For Linux"
+	depends on ISA && VIDEO_V4L2
+	help
+	  Say Y if you have such a thing.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called pms.
+
+config VIDEO_BWQCAM
+	tristate "Quickcam BW Video For Linux"
+	depends on PARPORT && VIDEO_V4L2
+	help
+	  Say Y have if you the black and white version of the QuickCam
+	  camera. See the next option for the color version.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called bw-qcam.
+
+config VIDEO_CQCAM
+	tristate "QuickCam Colour Video For Linux (EXPERIMENTAL)"
+	depends on EXPERIMENTAL && PARPORT && VIDEO_V4L2
+	help
+	  This is the video4linux driver for the colour version of the
+	  Connectix QuickCam.  If you have one of these cameras, say Y here,
+	  otherwise say N.  This driver does not work with the original
+	  monochrome QuickCam, QuickCam VC or QuickClip.  It is also available
+	  as a module (c-qcam).
+	  Read <file:Documentation/video4linux/CQcam.txt> for more information.
+
+config VIDEO_W9966
+	tristate "W9966CF Webcam (FlyCam Supra and others) Video For Linux"
+	depends on PARPORT_1284 && PARPORT && VIDEO_V4L2
+	help
+	  Video4linux driver for Winbond's w9966 based Webcams.
+	  Currently tested with the LifeView FlyCam Supra.
+	  If you have one of these cameras, say Y here
+	  otherwise say N.
+	  This driver is also available as a module (w9966).
+
+	  Check out <file:Documentation/video4linux/w9966.txt> for more
+	  information.
+
+source "drivers/media/video/cpia2/Kconfig"
+
+config VIDEO_VINO
+	tristate "SGI Vino Video For Linux (EXPERIMENTAL)"
+	depends on I2C && SGI_IP22 && EXPERIMENTAL && VIDEO_V4L2
+	select VIDEO_SAA7191 if VIDEO_HELPER_CHIPS_AUTO
+	help
+	  Say Y here to build in support for the Vino video input system found
+	  on SGI Indy machines.
+
+source "drivers/media/video/zoran/Kconfig"
+
+config VIDEO_MEYE
+	tristate "Sony Vaio Picturebook Motion Eye Video For Linux"
+	depends on PCI && SONY_LAPTOP && VIDEO_V4L2
+	---help---
+	  This is the video4linux driver for the Motion Eye camera found
+	  in the Vaio Picturebook laptops. Please read the material in
+	  <file:Documentation/video4linux/meye.txt> for more information.
+
+	  If you say Y or M here, you need to say Y or M to "Sony Laptop
+	  Extras" in the misc device section.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called meye.
+
+source "drivers/media/video/saa7134/Kconfig"
+
+config VIDEO_MXB
+	tristate "Siemens-Nixdorf 'Multimedia eXtension Board'"
+	depends on PCI && VIDEO_V4L2 && I2C
+	select VIDEO_SAA7146_VV
+	select VIDEO_TUNER
+	select VIDEO_SAA711X if VIDEO_HELPER_CHIPS_AUTO
+	select VIDEO_TDA9840 if VIDEO_HELPER_CHIPS_AUTO
+	select VIDEO_TEA6415C if VIDEO_HELPER_CHIPS_AUTO
+	select VIDEO_TEA6420 if VIDEO_HELPER_CHIPS_AUTO
+	---help---
+	  This is a video4linux driver for the 'Multimedia eXtension Board'
+	  TV card by Siemens-Nixdorf.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called mxb.
+
+config VIDEO_HEXIUM_ORION
+	tristate "Hexium HV-PCI6 and Orion frame grabber"
+	depends on PCI && VIDEO_V4L2 && I2C
+	select VIDEO_SAA7146_VV
+	---help---
+	  This is a video4linux driver for the Hexium HV-PCI6 and
+	  Orion frame grabber cards by Hexium.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called hexium_orion.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config VIDEO_HEXIUM_GEMINI
 	tristate "Hexium Gemini frame grabber"
@@ -751,6 +1219,7 @@ config VIDEO_HEXIUM_GEMINI
 	  To compile this driver as a module, choose M here: the
 	  module will be called hexium_gemini.
 
+<<<<<<< HEAD
 config VIDEO_HEXIUM_ORION
 	tristate "Hexium HV-PCI6 and Orion frame grabber"
 	depends on PCI && VIDEO_V4L2 && I2C
@@ -910,6 +1379,8 @@ config VIDEO_VIU
 	  Say Y here if you want to enable VIU device on MPC5121e Rev2+.
 	  In doubt, say N.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config VIDEO_TIMBERDALE
 	tristate "Support for timberdale Video In/LogiWIN"
 	depends on VIDEO_V4L2 && I2C && DMADEVICES
@@ -920,6 +1391,7 @@ config VIDEO_TIMBERDALE
 	---help---
 	  Add support for the Video In peripherial of the timberdale FPGA.
 
+<<<<<<< HEAD
 config VIDEO_VINO
 	tristate "SGI Vino Video For Linux"
 	depends on I2C && SGI_IP22 && VIDEO_V4L2
@@ -927,6 +1399,19 @@ config VIDEO_VINO
 	help
 	  Say Y here to build in support for the Vino video input system found
 	  on SGI Indy machines.
+=======
+source "drivers/media/video/cx88/Kconfig"
+
+source "drivers/media/video/cx23885/Kconfig"
+
+source "drivers/media/video/au0828/Kconfig"
+
+source "drivers/media/video/ivtv/Kconfig"
+
+source "drivers/media/video/cx18/Kconfig"
+
+source "drivers/media/video/saa7164/Kconfig"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config VIDEO_M32R_AR
 	tristate "AR devices"
@@ -947,9 +1432,49 @@ config VIDEO_M32R_AR_M64278
 	  To compile this driver as a module, choose M here: the
 	  module will be called arv.
 
+<<<<<<< HEAD
 config VIDEO_OMAP3
 	tristate "OMAP 3 Camera support (EXPERIMENTAL)"
 	depends on OMAP_IOVMM && VIDEO_V4L2 && I2C && VIDEO_V4L2_SUBDEV_API && ARCH_OMAP3 && EXPERIMENTAL
+=======
+config VIDEO_CAFE_CCIC
+	tristate "Marvell 88ALP01 (Cafe) CMOS Camera Controller support"
+	depends on PCI && I2C && VIDEO_V4L2
+	select VIDEO_OV7670
+	---help---
+	  This is a video4linux2 driver for the Marvell 88ALP01 integrated
+	  CMOS camera controller.  This is the controller found on first-
+	  generation OLPC systems.
+
+config VIDEO_SR030PC30
+	tristate "SR030PC30 VGA camera sensor support"
+	depends on I2C && VIDEO_V4L2
+	---help---
+	  This driver supports SR030PC30 VGA camera from Siliconfile
+
+config VIDEO_VIA_CAMERA
+	tristate "VIAFB camera controller support"
+	depends on FB_VIA
+	select VIDEOBUF_DMA_SG
+	select VIDEO_OV7670
+	help
+	   Driver support for the integrated camera controller in VIA
+	   Chrome9 chipsets.  Currently only tested on OLPC xo-1.5 systems
+	   with ov7670 sensors.
+
+config VIDEO_NOON010PC30
+	tristate "NOON010PC30 CIF camera sensor support"
+	depends on I2C && VIDEO_V4L2
+	---help---
+	  This driver supports NOON010PC30 CIF camera from Siliconfile
+
+source "drivers/media/video/m5mols/Kconfig"
+
+config VIDEO_OMAP3
+	tristate "OMAP 3 Camera support (EXPERIMENTAL)"
+	select OMAP_IOMMU
+	depends on VIDEO_V4L2 && I2C && VIDEO_V4L2_SUBDEV_API && ARCH_OMAP3 && EXPERIMENTAL
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	---help---
 	  Driver for an OMAP 3 camera controller.
 
@@ -1033,12 +1558,15 @@ config SOC_CAMERA_OV2640
 	help
 	  This is a ov2640 camera driver
 
+<<<<<<< HEAD
 config SOC_CAMERA_OV5642
 	tristate "ov5642 camera support"
 	depends on SOC_CAMERA && I2C
 	help
 	  This is a V4L2 camera driver for the OmniVision OV5642 sensor
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config SOC_CAMERA_OV6650
 	tristate "ov6650 sensor support"
 	depends on SOC_CAMERA && I2C
@@ -1127,16 +1655,25 @@ config VIDEO_MX2_HOSTSUPPORT
 config VIDEO_MX2
 	tristate "i.MX27/i.MX25 Camera Sensor Interface driver"
 	depends on VIDEO_DEV && SOC_CAMERA && (MACH_MX27 || ARCH_MX25)
+<<<<<<< HEAD
 	select VIDEOBUF2_DMA_CONTIG
+=======
+	select VIDEOBUF_DMA_CONTIG
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	select VIDEO_MX2_HOSTSUPPORT
 	---help---
 	  This is a v4l2 driver for the i.MX27 and the i.MX25 Camera Sensor
 	  Interface
 
 config  VIDEO_SAMSUNG_S5P_FIMC
+<<<<<<< HEAD
 	tristate "Samsung S5P and EXYNOS4 camera interface driver (EXPERIMENTAL)"
 	depends on VIDEO_V4L2 && I2C && PLAT_S5P && PM_RUNTIME && \
 		VIDEO_V4L2_SUBDEV_API && EXPERIMENTAL
+=======
+	tristate "Samsung S5P and EXYNOS4 camera host interface driver"
+	depends on VIDEO_DEV && VIDEO_V4L2 && PLAT_S5P
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	select VIDEOBUF2_DMA_CONTIG
 	select V4L2_MEM2MEM_DEV
 	---help---
@@ -1146,6 +1683,7 @@ config  VIDEO_SAMSUNG_S5P_FIMC
 	  To compile this driver as a module, choose M here: the
 	  module will be called s5p-fimc.
 
+<<<<<<< HEAD
 config VIDEO_ATMEL_ISI
 	tristate "ATMEL Image Sensor Interface (ISI) support"
 	depends on VIDEO_DEV && SOC_CAMERA && ARCH_AT91
@@ -1158,17 +1696,152 @@ config VIDEO_S5P_MIPI_CSIS
 	tristate "Samsung S5P and EXYNOS4 MIPI CSI receiver driver"
 	depends on VIDEO_V4L2 && PM_RUNTIME && PLAT_S5P
 	depends on VIDEO_V4L2_SUBDEV_API && REGULATOR
+=======
+config VIDEO_S5P_MIPI_CSIS
+	tristate "Samsung S5P and EXYNOS4 MIPI CSI receiver driver"
+	depends on VIDEO_V4L2 && PM_RUNTIME && PLAT_S5P && VIDEO_V4L2_SUBDEV_API
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	---help---
 	  This is a v4l2 driver for Samsung S5P/EXYNOS4 MIPI-CSI receiver.
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called s5p-csis.
 
+<<<<<<< HEAD
 source "drivers/media/video/s5p-tv/Kconfig"
 
 
 
 endif # V4L_PLATFORM_DRIVERS
+=======
+config SAMSUNG_MFC_DRIVERS
+	bool "Samsung EXYNOS MFC driver"
+	---help---
+	  This is a v4l2 driver for Samsung EXYNOS4/EXYNOS5 MFC.
+
+if SAMSUNG_MFC_DRIVERS
+
+choice
+	prompt "Select MFC driver type"
+	default USE_LEGACY_MFC
+config USE_LEGACY_MFC
+	bool "Legacy style MFC"
+	depends on VIDEO_SAMSUNG && ARCH_EXYNOS4
+	select VIDEO_MFC5X
+	---help---
+	  Use MFC legacy style driver.
+
+config USE_V4L2_MFC
+	bool "V4L2 style MFC"
+	depends on VIDEO_V4L2 && PLAT_S5P
+	select VIDEO_SAMSUNG_S5P_MFC
+	select VIDEO_FIXED_MINOR_RANGES
+	---help---
+	  Use MFC V4L2 style driver.
+
+endchoice
+
+config VIDEO_SAMSUNG_S5P_MFC
+	bool
+	depends on USE_V4L2_MFC
+	select VIDEOBUF2_CORE
+	---help---
+	  MFC driver for V4L2.
+
+choice
+	prompt "MFC V4L2 Driver"
+	default S5P_MFC_V5
+	depends on USE_V4L2_MFC
+	---help---
+	  Select version of MFC driver
+
+config S5P_MFC_V5
+	bool "MFC 5.x"
+	---help---
+	  Use MFC 5.x V4L2 Driver
+
+config S5P_MFC_V6
+	bool "MFC 6.x"
+	---help---
+	  Use MFC 6.x V4L2 Driver
+endchoice
+endif
+
+#
+# USB Multimedia device configuration
+#
+
+menuconfig V4L_USB_DRIVERS
+	bool "V4L USB devices"
+	depends on USB
+	default y
+
+if V4L_USB_DRIVERS && USB
+
+source "drivers/media/video/uvc/Kconfig"
+
+source "drivers/media/video/gspca/Kconfig"
+
+source "drivers/media/video/pvrusb2/Kconfig"
+
+source "drivers/media/video/hdpvr/Kconfig"
+
+source "drivers/media/video/em28xx/Kconfig"
+
+source "drivers/media/video/tlg2300/Kconfig"
+
+source "drivers/media/video/cx231xx/Kconfig"
+
+source "drivers/media/video/usbvision/Kconfig"
+
+source "drivers/media/video/et61x251/Kconfig"
+
+source "drivers/media/video/sn9c102/Kconfig"
+
+source "drivers/media/video/pwc/Kconfig"
+
+config USB_ZR364XX
+	tristate "USB ZR364XX Camera support"
+	depends on VIDEO_V4L2
+	select VIDEOBUF_GEN
+	select VIDEOBUF_VMALLOC
+	---help---
+	  Say Y here if you want to connect this type of camera to your
+	  computer's USB port.
+	  See <file:Documentation/video4linux/zr364xx.txt> for more info
+	  and list of supported cameras.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called zr364xx.
+
+config USB_STKWEBCAM
+	tristate "USB Syntek DC1125 Camera support"
+	depends on VIDEO_V4L2 && EXPERIMENTAL
+	---help---
+	  Say Y here if you want to use this type of camera.
+	  Supported devices are typically found in some Asus laptops,
+	  with USB id 174f:a311 and 05e1:0501. Other Syntek cameras
+	  may be supported by the stk11xx driver, from which this is
+	  derived, see <http://sourceforge.net/projects/syntekdriver/>
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called stkwebcam.
+
+config USB_S2255
+	tristate "USB Sensoray 2255 video capture device"
+	depends on VIDEO_V4L2
+	select VIDEOBUF_VMALLOC
+	default n
+	help
+	  Say Y here if you want support for the Sensoray 2255 USB device.
+	  This driver can be compiled as a module, called s2255drv.
+
+endif # V4L_USB_DRIVERS
+
+source "drivers/media/video/samsung/Kconfig"
+source "drivers/media/video/exynos/Kconfig"
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 endif # VIDEO_CAPTURE_DRIVERS
 
 menuconfig V4L_MEM2MEM_DRIVERS
@@ -1193,6 +1866,7 @@ config VIDEO_MEM2MEM_TESTDEV
 	  This is a virtual test device for the memory-to-memory driver
 	  framework.
 
+<<<<<<< HEAD
 config VIDEO_SAMSUNG_S5P_G2D
 	tristate "Samsung S5P and EXYNOS4 G2D 2d graphics accelerator driver"
 	depends on VIDEO_DEV && VIDEO_V4L2 && PLAT_S5P
@@ -1230,3 +1904,8 @@ config VIDEO_MX2_EMMAPRP
 	    conversion.
 
 endif # V4L_MEM2MEM_DRIVERS
+=======
+endif # V4L_MEM2MEM_DRIVERS
+
+source "drivers/media/video/mhl/Kconfig"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

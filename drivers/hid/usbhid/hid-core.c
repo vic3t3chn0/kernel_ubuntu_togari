@@ -6,8 +6,11 @@
  *  Copyright (c) 2005 Michael Haboustak <mike-@cinci.rr.com> for Concept2, Inc
  *  Copyright (c) 2007-2008 Oliver Neukum
  *  Copyright (c) 2006-2010 Jiri Kosina
+<<<<<<< HEAD
  *  Copyright 2011,2012 Sony Corporation
  *  Copyright (c) 2012 Sony Mobile Communications AB.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 /*
@@ -199,13 +202,17 @@ static int usbhid_restart_out_queue(struct usbhid_device *usbhid)
 {
 	struct hid_device *hid = usb_get_intfdata(usbhid->intf);
 	int kicked;
+<<<<<<< HEAD
 	int r;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!hid)
 		return 0;
 
 	if ((kicked = (usbhid->outhead != usbhid->outtail))) {
 		dbg("Kicking head %d tail %d", usbhid->outhead, usbhid->outtail);
+<<<<<<< HEAD
 
 		r = usb_autopm_get_interface_async(usbhid->intf);
 		if (r < 0)
@@ -217,6 +224,12 @@ static int usbhid_restart_out_queue(struct usbhid_device *usbhid)
 			usb_autopm_put_interface_async(usbhid->intf);
 		}
 		wake_up(&usbhid->wait);
+=======
+		if (hid_submit_out(hid)) {
+			clear_bit(HID_OUT_RUNNING, &usbhid->iofl);
+			wake_up(&usbhid->wait);
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return kicked;
 }
@@ -225,7 +238,10 @@ static int usbhid_restart_ctrl_queue(struct usbhid_device *usbhid)
 {
 	struct hid_device *hid = usb_get_intfdata(usbhid->intf);
 	int kicked;
+<<<<<<< HEAD
 	int r;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	WARN_ON(hid == NULL);
 	if (!hid)
@@ -233,6 +249,7 @@ static int usbhid_restart_ctrl_queue(struct usbhid_device *usbhid)
 
 	if ((kicked = (usbhid->ctrlhead != usbhid->ctrltail))) {
 		dbg("Kicking head %d tail %d", usbhid->ctrlhead, usbhid->ctrltail);
+<<<<<<< HEAD
 
 		r = usb_autopm_get_interface_async(usbhid->intf);
 		if (r < 0)
@@ -244,6 +261,12 @@ static int usbhid_restart_ctrl_queue(struct usbhid_device *usbhid)
 			usb_autopm_put_interface_async(usbhid->intf);
 		}
 		wake_up(&usbhid->wait);
+=======
+		if (hid_submit_ctrl(hid)) {
+			clear_bit(HID_CTRL_RUNNING, &usbhid->iofl);
+			wake_up(&usbhid->wait);
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return kicked;
 }
@@ -322,6 +345,7 @@ static int hid_submit_out(struct hid_device *hid)
 	report = usbhid->out[usbhid->outtail].report;
 	raw_report = usbhid->out[usbhid->outtail].raw_report;
 
+<<<<<<< HEAD
 	usbhid->urbout->transfer_buffer_length = ((report->size - 1) >> 3) +
 						 1 + (report->id > 0);
 	usbhid->urbout->dev = hid_to_usb_dev(hid);
@@ -337,6 +361,32 @@ static int hid_submit_out(struct hid_device *hid)
 		return r;
 	}
 	usbhid->last_out = jiffies;
+=======
+	r = usb_autopm_get_interface_async(usbhid->intf);
+	if (r < 0)
+		return -1;
+
+	/*
+	 * if the device hasn't been woken, we leave the output
+	 * to resume()
+	 */
+	if (!test_bit(HID_REPORTED_IDLE, &usbhid->iofl)) {
+		usbhid->urbout->transfer_buffer_length = ((report->size - 1) >> 3) + 1 + (report->id > 0);
+		usbhid->urbout->dev = hid_to_usb_dev(hid);
+		memcpy(usbhid->outbuf, raw_report, usbhid->urbout->transfer_buffer_length);
+		kfree(raw_report);
+
+		dbg_hid("submitting out urb\n");
+
+		if (usb_submit_urb(usbhid->urbout, GFP_ATOMIC)) {
+			hid_err(hid, "usb_submit_urb(out) failed\n");
+			usb_autopm_put_interface_async(usbhid->intf);
+			return -1;
+		}
+		usbhid->last_out = jiffies;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -352,6 +402,7 @@ static int hid_submit_ctrl(struct hid_device *hid)
 	raw_report = usbhid->ctrl[usbhid->ctrltail].raw_report;
 	dir = usbhid->ctrl[usbhid->ctrltail].dir;
 
+<<<<<<< HEAD
 	len = ((report->size - 1) >> 3) + 1 + (report->id > 0);
 	if (dir == USB_DIR_OUT) {
 		usbhid->urbctrl->pipe = usb_sndctrlpipe(hid_to_usb_dev(hid), 0);
@@ -394,6 +445,52 @@ static int hid_submit_ctrl(struct hid_device *hid)
 		return r;
 	}
 	usbhid->last_ctrl = jiffies;
+=======
+	r = usb_autopm_get_interface_async(usbhid->intf);
+	if (r < 0)
+		return -1;
+	if (!test_bit(HID_REPORTED_IDLE, &usbhid->iofl)) {
+		len = ((report->size - 1) >> 3) + 1 + (report->id > 0);
+		if (dir == USB_DIR_OUT) {
+			usbhid->urbctrl->pipe = usb_sndctrlpipe(hid_to_usb_dev(hid), 0);
+			usbhid->urbctrl->transfer_buffer_length = len;
+			memcpy(usbhid->ctrlbuf, raw_report, len);
+			kfree(raw_report);
+		} else {
+			int maxpacket, padlen;
+
+			usbhid->urbctrl->pipe = usb_rcvctrlpipe(hid_to_usb_dev(hid), 0);
+			maxpacket = usb_maxpacket(hid_to_usb_dev(hid), usbhid->urbctrl->pipe, 0);
+			if (maxpacket > 0) {
+				padlen = DIV_ROUND_UP(len, maxpacket);
+				padlen *= maxpacket;
+				if (padlen > usbhid->bufsize)
+					padlen = usbhid->bufsize;
+			} else
+				padlen = 0;
+			usbhid->urbctrl->transfer_buffer_length = padlen;
+		}
+		usbhid->urbctrl->dev = hid_to_usb_dev(hid);
+
+		usbhid->cr->bRequestType = USB_TYPE_CLASS | USB_RECIP_INTERFACE | dir;
+		usbhid->cr->bRequest = (dir == USB_DIR_OUT) ? HID_REQ_SET_REPORT : HID_REQ_GET_REPORT;
+		usbhid->cr->wValue = cpu_to_le16(((report->type + 1) << 8) | report->id);
+		usbhid->cr->wIndex = cpu_to_le16(usbhid->ifnum);
+		usbhid->cr->wLength = cpu_to_le16(len);
+
+		dbg_hid("submitting ctrl urb: %s wValue=0x%04x wIndex=0x%04x wLength=%u\n",
+			usbhid->cr->bRequest == HID_REQ_SET_REPORT ? "Set_Report" : "Get_Report",
+			usbhid->cr->wValue, usbhid->cr->wIndex, usbhid->cr->wLength);
+
+		if (usb_submit_urb(usbhid->urbctrl, GFP_ATOMIC)) {
+			usb_autopm_put_interface_async(usbhid->intf);
+			hid_err(hid, "usb_submit_urb(ctrl) failed\n");
+			return -1;
+		}
+		usbhid->last_ctrl = jiffies;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -430,8 +527,16 @@ static void hid_irq_out(struct urb *urb)
 	else
 		usbhid->outtail = (usbhid->outtail + 1) & (HID_OUTPUT_FIFO_SIZE - 1);
 
+<<<<<<< HEAD
 	if (usbhid->outhead != usbhid->outtail && !hid_submit_out(hid)) {
 		/* Successfully submitted next urb in queue */
+=======
+	if (usbhid->outhead != usbhid->outtail) {
+		if (hid_submit_out(hid)) {
+			clear_bit(HID_OUT_RUNNING, &usbhid->iofl);
+			wake_up(&usbhid->wait);
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spin_unlock_irqrestore(&usbhid->lock, flags);
 		return;
 	}
@@ -478,9 +583,19 @@ static void hid_ctrl(struct urb *urb)
 	else
 		usbhid->ctrltail = (usbhid->ctrltail + 1) & (HID_CONTROL_FIFO_SIZE - 1);
 
+<<<<<<< HEAD
 	if (usbhid->ctrlhead != usbhid->ctrltail && !hid_submit_ctrl(hid)) {
 		/* Successfully submitted next urb in queue */
 		spin_unlock(&usbhid->lock);
+=======
+	if (usbhid->ctrlhead != usbhid->ctrltail) {
+		if (hid_submit_ctrl(hid)) {
+			clear_bit(HID_CTRL_RUNNING, &usbhid->iofl);
+			wake_up(&usbhid->wait);
+		}
+		spin_unlock(&usbhid->lock);
+		usb_autopm_put_interface_async(usbhid->intf);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return;
 	}
 
@@ -515,6 +630,7 @@ static void __usbhid_submit_report(struct hid_device *hid, struct hid_report *re
 		usbhid->out[usbhid->outhead].report = report;
 		usbhid->outhead = head;
 
+<<<<<<< HEAD
 		/* Try to awake from autosuspend... */
 		if (usb_autopm_get_interface_async(usbhid->intf) < 0)
 			return;
@@ -532,6 +648,11 @@ static void __usbhid_submit_report(struct hid_device *hid, struct hid_report *re
 				usb_autopm_put_interface_async(usbhid->intf);
 			}
 			wake_up(&usbhid->wait);
+=======
+		if (!test_and_set_bit(HID_OUT_RUNNING, &usbhid->iofl)) {
+			if (hid_submit_out(hid))
+				clear_bit(HID_OUT_RUNNING, &usbhid->iofl);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} else {
 			/*
 			 * the queue is known to run
@@ -563,6 +684,7 @@ static void __usbhid_submit_report(struct hid_device *hid, struct hid_report *re
 	usbhid->ctrl[usbhid->ctrlhead].dir = dir;
 	usbhid->ctrlhead = head;
 
+<<<<<<< HEAD
 	/* Try to awake from autosuspend... */
 	if (usb_autopm_get_interface_async(usbhid->intf) < 0)
 		return;
@@ -580,6 +702,11 @@ static void __usbhid_submit_report(struct hid_device *hid, struct hid_report *re
 			usb_autopm_put_interface_async(usbhid->intf);
 		}
 		wake_up(&usbhid->wait);
+=======
+	if (!test_and_set_bit(HID_CTRL_RUNNING, &usbhid->iofl)) {
+		if (hid_submit_ctrl(hid))
+			clear_bit(HID_CTRL_RUNNING, &usbhid->iofl);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} else {
 		/*
 		 * the queue is known to run
@@ -604,6 +731,7 @@ void usbhid_submit_report(struct hid_device *hid, struct hid_report *report, uns
 }
 EXPORT_SYMBOL_GPL(usbhid_submit_report);
 
+<<<<<<< HEAD
 /* Workqueue routine to send requests to change LEDs */
 static void hid_led(struct work_struct *work)
 {
@@ -628,6 +756,8 @@ static void hid_led(struct work_struct *work)
 	spin_unlock_irqrestore(&usbhid->lock, flags);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int usb_hidinput_input_event(struct input_dev *dev, unsigned int type, unsigned int code, int value)
 {
 	struct hid_device *hid = input_get_drvdata(dev);
@@ -647,6 +777,7 @@ static int usb_hidinput_input_event(struct input_dev *dev, unsigned int type, un
 		return -1;
 	}
 
+<<<<<<< HEAD
 	spin_lock_irqsave(&usbhid->lock, flags);
 	hid_set_field(field, offset, value);
 	spin_unlock_irqrestore(&usbhid->lock, flags);
@@ -656,6 +787,19 @@ static int usb_hidinput_input_event(struct input_dev *dev, unsigned int type, un
 	 * This is more likely gather all LED changes into a single URB.
 	 */
 	schedule_work(&usbhid->led_work);
+=======
+	hid_set_field(field, offset, value);
+	if (value) {
+		spin_lock_irqsave(&usbhid->lock, flags);
+		usbhid->ledcount++;
+		spin_unlock_irqrestore(&usbhid->lock, flags);
+	} else {
+		spin_lock_irqsave(&usbhid->lock, flags);
+		usbhid->ledcount--;
+		spin_unlock_irqrestore(&usbhid->lock, flags);
+	}
+	usbhid_submit_report(hid, field->report, USB_DIR_OUT);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -892,6 +1036,7 @@ static int usbhid_output_raw_report(struct hid_device *hid, __u8 *buf, size_t co
 	struct usb_host_interface *interface = intf->cur_altsetting;
 	int ret;
 
+<<<<<<< HEAD
 #ifndef CONFIG_HID_SONY_PS3_CTRL_BT
 	if (usbhid->urbout && report_type != HID_FEATURE_REPORT) {
 #else
@@ -899,6 +1044,9 @@ static int usbhid_output_raw_report(struct hid_device *hid, __u8 *buf, size_t co
 			report_type != HID_FEATREP_SKIPREPID &&
 			report_type != HID_OUTREP_SKIPREPID) {
 #endif
+=======
+	if (usbhid->urbout && report_type != HID_FEATURE_REPORT) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		int actual_length;
 		int skipped_report_id = 0;
 
@@ -927,6 +1075,7 @@ static int usbhid_output_raw_report(struct hid_device *hid, __u8 *buf, size_t co
 			count--;
 			skipped_report_id = 1;
 		}
+<<<<<<< HEAD
 #ifdef CONFIG_HID_SONY_PS3_CTRL_BT
 		if (report_type == HID_FEATREP_SKIPREPID ||
 			report_type == HID_OUTREP_SKIPREPID) {
@@ -946,6 +1095,8 @@ static int usbhid_output_raw_report(struct hid_device *hid, __u8 *buf, size_t co
 			}
 		}
 #endif
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ret = usb_control_msg(dev, usb_sndctrlpipe(dev, 0),
 			HID_REQ_SET_REPORT,
 			USB_DIR_OUT | USB_TYPE_CLASS | USB_RECIP_INTERFACE,
@@ -1175,7 +1326,11 @@ static void usbhid_stop(struct hid_device *hid)
 		return;
 
 	clear_bit(HID_STARTED, &usbhid->iofl);
+<<<<<<< HEAD
 	spin_lock_irq(&usbhid->lock);	/* Sync with error and led handlers */
+=======
+	spin_lock_irq(&usbhid->lock);	/* Sync with error handler */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	set_bit(HID_DISCONNECTED, &usbhid->iofl);
 	spin_unlock_irq(&usbhid->lock);
 	usb_kill_urb(usbhid->urbin);
@@ -1266,8 +1421,11 @@ static int usbhid_probe(struct usb_interface *intf, const struct usb_device_id *
 	if (intf->cur_altsetting->desc.bInterfaceProtocol ==
 			USB_INTERFACE_PROTOCOL_MOUSE)
 		hid->type = HID_TYPE_USBMOUSE;
+<<<<<<< HEAD
 	else if (intf->cur_altsetting->desc.bInterfaceProtocol == 0)
 		hid->type = HID_TYPE_USBNONE;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (dev->manufacturer)
 		strlcpy(hid->name, dev->manufacturer, sizeof(hid->name));
@@ -1309,8 +1467,11 @@ static int usbhid_probe(struct usb_interface *intf, const struct usb_device_id *
 	setup_timer(&usbhid->io_retry, hid_retry_timeout, (unsigned long) hid);
 	spin_lock_init(&usbhid->lock);
 
+<<<<<<< HEAD
 	INIT_WORK(&usbhid->led_work, hid_led);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ret = hid_add_device(hid);
 	if (ret) {
 		if (ret != -ENODEV)
@@ -1343,12 +1504,19 @@ static void hid_cancel_delayed_stuff(struct usbhid_device *usbhid)
 {
 	del_timer_sync(&usbhid->io_retry);
 	cancel_work_sync(&usbhid->reset_work);
+<<<<<<< HEAD
 	cancel_work_sync(&usbhid->led_work);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void hid_cease_io(struct usbhid_device *usbhid)
 {
+<<<<<<< HEAD
 	del_timer_sync(&usbhid->io_retry);
+=======
+	del_timer(&usbhid->io_retry);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	usb_kill_urb(usbhid->urbin);
 	usb_kill_urb(usbhid->urbctrl);
 	usb_kill_urb(usbhid->urbout);
@@ -1410,7 +1578,11 @@ static int hid_suspend(struct usb_interface *intf, pm_message_t message)
 	struct usbhid_device *usbhid = hid->driver_data;
 	int status;
 
+<<<<<<< HEAD
 	if (PMSG_IS_AUTO(message)) {
+=======
+	if (message.event & PM_EVENT_AUTO) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spin_lock_irq(&usbhid->lock);	/* Sync with error handler */
 		if (!test_bit(HID_RESET_PENDING, &usbhid->iofl)
 		    && !test_bit(HID_CLEAR_HALT, &usbhid->iofl)
@@ -1445,10 +1617,28 @@ static int hid_suspend(struct usb_interface *intf, pm_message_t message)
 			return -EIO;
 	}
 
+<<<<<<< HEAD
 	hid_cancel_delayed_stuff(usbhid);
 	hid_cease_io(usbhid);
 
 	if (PMSG_IS_AUTO(message) && test_bit(HID_KEYS_PRESSED, &usbhid->iofl)) {
+=======
+	if (!ignoreled && (message.event & PM_EVENT_AUTO)) {
+		spin_lock_irq(&usbhid->lock);
+		if (test_bit(HID_LED_ON, &usbhid->iofl)) {
+			spin_unlock_irq(&usbhid->lock);
+			usbhid_mark_busy(usbhid);
+			return -EBUSY;
+		}
+		spin_unlock_irq(&usbhid->lock);
+	}
+
+	hid_cancel_delayed_stuff(usbhid);
+	hid_cease_io(usbhid);
+
+	if ((message.event & PM_EVENT_AUTO) &&
+			test_bit(HID_KEYS_PRESSED, &usbhid->iofl)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* lost race against keypresses */
 		status = hid_start_in(hid);
 		if (status < 0)

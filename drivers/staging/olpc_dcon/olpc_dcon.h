@@ -84,7 +84,11 @@ struct dcon_platform_data {
 	int (*init)(struct dcon_priv *);
 	void (*bus_stabilize_wiggle)(void);
 	void (*set_dconload)(int);
+<<<<<<< HEAD
 	int (*read_status)(u8 *);
+=======
+	u8 (*read_status)(void);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 #include <linux/interrupt.h>

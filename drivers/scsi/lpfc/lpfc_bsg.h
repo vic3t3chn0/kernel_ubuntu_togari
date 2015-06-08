@@ -96,7 +96,11 @@ struct get_mgmt_rev {
 };
 
 #define MANAGEMENT_MAJOR_REV   1
+<<<<<<< HEAD
 #define MANAGEMENT_MINOR_REV   1
+=======
+#define MANAGEMENT_MINOR_REV   0
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* the MgmtRevInfo structure */
 struct MgmtRevInfo {
@@ -248,7 +252,10 @@ struct lpfc_sli_config_emb1_subsys {
 #define COMN_OPCODE_WRITE_OBJECT	0xAC
 #define COMN_OPCODE_READ_OBJECT_LIST	0xAD
 #define COMN_OPCODE_DELETE_OBJECT	0xAE
+<<<<<<< HEAD
 #define COMN_OPCODE_GET_CNTL_ADDL_ATTRIBUTES	0x79
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	uint32_t timeout;
 	uint32_t request_length;
 	uint32_t word9;

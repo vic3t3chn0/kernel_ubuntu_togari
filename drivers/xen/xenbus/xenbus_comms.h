@@ -31,8 +31,11 @@
 #ifndef _XENBUS_COMMS_H
 #define _XENBUS_COMMS_H
 
+<<<<<<< HEAD
 #include <linux/fs.h>
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int xs_init(void);
 int xb_init_comms(void);
 
@@ -45,6 +48,9 @@ int xs_input_avail(void);
 extern struct xenstore_domain_interface *xen_store_interface;
 extern int xen_store_evtchn;
 
+<<<<<<< HEAD
 extern const struct file_operations xen_xenbus_fops;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* _XENBUS_COMMS_H */

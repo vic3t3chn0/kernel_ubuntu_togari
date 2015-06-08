@@ -2,9 +2,15 @@ menu "Diag Support"
 
 config DIAG_CHAR
 	tristate "char driver interface and diag forwarding to/from modem"
+<<<<<<< HEAD
 	default m
 	depends on USB_G_ANDROID || USB_FUNCTION_DIAG || USB_QCOM_MAEMO
 	depends on ARCH_MSM
+=======
+	default n
+#	depends on USB_G_ANDROID || USB_FUNCTION_DIAG || USB_QCOM_MAEMO
+#	depends on ARCH_MSM
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	 Char driver interface for diag user space and diag-forwarding to modem ARM and back.
 	 This enables diagchar for maemo usb gadget or android usb gadget based on config selected.
@@ -14,7 +20,12 @@ menu "DIAG traffic over USB"
 
 config DIAG_OVER_USB
 	bool "Enable DIAG traffic to go over USB"
+<<<<<<< HEAD
         depends on ARCH_MSM
+=======
+#	depends on ARCH_MSM
+	depends on USB_QCOM_DIAG_BRIDGE
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default y
 	help
 	 This feature helps segregate code required for DIAG traffic to go over USB.
@@ -30,6 +41,7 @@ config DIAG_SDIO_PIPE
 	 SDIO Transport Layer for DIAG Router
 endmenu
 
+<<<<<<< HEAD
 menu "HSIC/SMUX support for DIAG"
 
 config DIAGFWD_BRIDGE_CODE
@@ -38,4 +50,14 @@ config DIAGFWD_BRIDGE_CODE
 	bool "Enable QSC/9K DIAG traffic over SMUX/HSIC"
 	help
 	 SMUX/HSIC Transport Layer for DIAG Router
+=======
+menu "HSIC support for DIAG"
+
+config DIAG_HSIC_PIPE
+	depends on USB_QCOM_DIAG_BRIDGE
+	default y
+	bool "Enable 9K DIAG traffic over HSIC"
+	help
+	 HSIC Transport Layer for DIAG Router
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 endmenu

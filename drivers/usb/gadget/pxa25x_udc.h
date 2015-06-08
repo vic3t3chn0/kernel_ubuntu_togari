@@ -9,6 +9,18 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
+<<<<<<< HEAD
+=======
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef __LINUX_USB_GADGET_PXA25X_H
@@ -119,7 +131,11 @@ struct pxa25x_udc {
 	struct device				*dev;
 	struct clk				*clk;
 	struct pxa2xx_udc_mach_info		*mach;
+<<<<<<< HEAD
 	struct usb_phy				*transceiver;
+=======
+	struct otg_transceiver			*transceiver;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u64					dma_mask;
 	struct pxa25x_ep			ep [PXA_UDC_NUM_ENDPOINTS];
 
@@ -152,6 +168,11 @@ static struct pxa25x_udc *the_controller;
 
 #ifdef DEBUG
 
+<<<<<<< HEAD
+=======
+static int is_vbus_present(void);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static const char *state_name[] = {
 	"EP0_IDLE",
 	"EP0_IN_DATA_PHASE", "EP0_OUT_DATA_PHASE",
@@ -203,7 +224,12 @@ dump_state(struct pxa25x_udc *dev)
 	u32		tmp;
 	unsigned	i;
 
+<<<<<<< HEAD
 	DMSG("%s, uicr %02X.%02X, usir %02X.%02x, ufnr %02X.%02X\n",
+=======
+	DMSG("%s %s, uicr %02X.%02X, usir %02X.%02x, ufnr %02X.%02X\n",
+		is_vbus_present() ? "host " : "disconnected",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		state_name[dev->ep0state],
 		UICR1, UICR0, USIR1, USIR0, UFNRH, UFNRL);
 	dump_udccr("udccr");
@@ -220,6 +246,12 @@ dump_state(struct pxa25x_udc *dev)
 	} else
 		DMSG("ep0 driver '%s'\n", dev->driver->driver.name);
 
+<<<<<<< HEAD
+=======
+	if (!is_vbus_present())
+		return;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dump_udccs0 ("udccs0");
 	DMSG("ep0 IN %lu/%lu, OUT %lu/%lu\n",
 		dev->stats.write.bytes, dev->stats.write.ops,

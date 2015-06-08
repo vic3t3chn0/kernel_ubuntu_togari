@@ -2,6 +2,7 @@
 menu "Bluetooth device drivers"
 	depends on BT
 
+<<<<<<< HEAD
 config BT_HCISMD
 	tristate "HCI SMD driver"
 	help
@@ -12,6 +13,8 @@ config BT_HCISMD
 	  Say Y here to compile support for Bluetooth USB devices into the
           kernel or say M to compile is as a module (hci_smd).
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config BT_HCIBTUSB
 	tristate "HCI USB driver"
 	depends on USB
@@ -91,6 +94,7 @@ config BT_HCIUART_LL
 
 	  Say Y here to compile support for HCILL protocol.
 
+<<<<<<< HEAD
 config BT_HCIUART_IBS
 	bool "HCI_IBS protocol support"
 	depends on BT_HCIUART
@@ -102,6 +106,8 @@ config BT_HCIUART_IBS
 
 	  Say Y here to compile support for HCI_IBS protocol.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config BT_HCIBCM203X
 	tristate "HCI BCM203x USB driver"
 	depends on USB
@@ -125,6 +131,7 @@ config BT_HCIBPA10X
 	  Say Y here to compile support for HCI BPA10x devices into the
 	  kernel or say M to compile it as module (bpa10x).
 
+<<<<<<< HEAD
 config BT_MSM_SLEEP
 	tristate "MSM Bluesleep driver"
 	depends on BT && SERIAL_MSM_HS
@@ -133,6 +140,8 @@ config BT_MSM_SLEEP
 	  Bluetooth MSM bluesleep driver.
 	  This driver provides support for BTS sleep.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config BT_HCIBFUSB
 	tristate "HCI BlueFRITZ! USB driver"
 	depends on USB
@@ -236,6 +245,7 @@ config BT_MRVL_SDIO
 	  Say Y here to compile support for Marvell BT-over-SDIO driver
 	  into the kernel or say M to compile it as module.
 
+<<<<<<< HEAD
 config MSM_BT_POWER
 	tristate "MSM Bluetooth Power Control"
 	depends on ARCH_MSM && RFKILL
@@ -244,6 +254,8 @@ config MSM_BT_POWER
 	  Provides a parameter to switch on/off power from PMIC
 	  to Bluetooth device.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config BT_ATH3K
 	tristate "Atheros firmware download driver"
 	depends on BT_HCIBTUSB

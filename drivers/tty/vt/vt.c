@@ -99,6 +99,10 @@
 #include <linux/notifier.h>
 #include <linux/device.h>
 #include <linux/io.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/uaccess.h>
 #include <linux/kdb.h>
 #include <linux/ctype.h>
@@ -258,7 +262,11 @@ EXPORT_SYMBOL_GPL(unregister_vt_notifier);
 
 static void notify_write(struct vc_data *vc, unsigned int unicode)
 {
+<<<<<<< HEAD
 	struct vt_notifier_param param = { .vc = vc, .c = unicode };
+=======
+	struct vt_notifier_param param = { .vc = vc, unicode = unicode };
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	atomic_notifier_call_chain(&vt_notifier_list, VT_WRITE, &param);
 }
 
@@ -1027,9 +1035,15 @@ void vc_deallocate(unsigned int currcons)
  *	VT102 emulator
  */
 
+<<<<<<< HEAD
 #define set_kbd(vc, x)	vt_set_kbd_mode_bit((vc)->vc_num, (x))
 #define clr_kbd(vc, x)	vt_clr_kbd_mode_bit((vc)->vc_num, (x))
 #define is_kbd(vc, x)	vt_get_kbd_mode_bit((vc)->vc_num, (x))
+=======
+#define set_kbd(vc, x)	set_vc_kbd_mode(kbd_table + (vc)->vc_num, (x))
+#define clr_kbd(vc, x)	clr_vc_kbd_mode(kbd_table + (vc)->vc_num, (x))
+#define is_kbd(vc, x)	vc_kbd_mode(kbd_table + (vc)->vc_num, (x))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define decarm		VC_REPEAT
 #define decckm		VC_CKMODE
@@ -1651,7 +1665,20 @@ static void reset_terminal(struct vc_data *vc, int do_clear)
 	vc->vc_deccm		= global_cursor_default;
 	vc->vc_decim		= 0;
 
+<<<<<<< HEAD
 	vt_reset_keyboard(vc->vc_num);
+=======
+	set_kbd(vc, decarm);
+	clr_kbd(vc, decckm);
+	clr_kbd(vc, kbdapplic);
+	clr_kbd(vc, lnm);
+	kbd_table[vc->vc_num].lockstate = 0;
+	kbd_table[vc->vc_num].slockstate = 0;
+	kbd_table[vc->vc_num].ledmode = LED_SHOW_FLAGS;
+	kbd_table[vc->vc_num].ledflagstate = kbd_table[vc->vc_num].default_ledflagstate;
+	/* do not do set_leds here because this causes an endless tasklet loop
+	   when the keyboard hasn't been initialized yet */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	vc->vc_cursor_type = cur_default;
 	vc->vc_complement_mask = vc->vc_s_complement_mask;
@@ -1969,7 +1996,11 @@ static void do_con_trol(struct tty_struct *tty, struct vc_data *vc, int c)
 		case 'q': /* DECLL - but only 3 leds */
 			/* map 0,1,2,3 to 0,1,2,4 */
 			if (vc->vc_par[0] < 4)
+<<<<<<< HEAD
 				vt_set_led_state(vc->vc_num,
+=======
+				setledstate(kbd_table + vc->vc_num,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					    (vc->vc_par[0] < 3) ? vc->vc_par[0] : 4);
 			return;
 		case 'r':
@@ -2622,9 +2653,13 @@ int tioclinux(struct tty_struct *tty, unsigned long arg)
 			console_unlock();
 			break;
 		case TIOCL_SELLOADLUT:
+<<<<<<< HEAD
 			console_lock();
 			ret = sel_loadlut(p);
 			console_unlock();
+=======
+			ret = sel_loadlut(p);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		case TIOCL_GETSHIFTSTATE:
 
@@ -2634,6 +2669,7 @@ int tioclinux(struct tty_struct *tty, unsigned long arg)
 	 * kernel-internal variable; programs not closely
 	 * related to the kernel should not use this.
 	 */
+<<<<<<< HEAD
 			data = vt_get_shift_state();
 			ret = __put_user(data, p);
 			break;
@@ -2647,6 +2683,17 @@ int tioclinux(struct tty_struct *tty, unsigned long arg)
 			console_lock();
 			ret = set_vesa_blanking(p);
 			console_unlock();
+=======
+	 		data = shift_state;
+			ret = __put_user(data, p);
+			break;
+		case TIOCL_GETMOUSEREPORTING:
+			data = mouse_reporting();
+			ret = __put_user(data, p);
+			break;
+		case TIOCL_SETVESABLANK:
+			ret = set_vesa_blanking(p);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		case TIOCL_GETKMSGREDIRECT:
 			data = vt_get_kmsg_redirect();
@@ -2663,21 +2710,28 @@ int tioclinux(struct tty_struct *tty, unsigned long arg)
 			}
 			break;
 		case TIOCL_GETFGCONSOLE:
+<<<<<<< HEAD
 			/* No locking needed as this is a transiently
 			   correct return anyway if the caller hasn't
 			   disabled switching */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			ret = fg_console;
 			break;
 		case TIOCL_SCROLLCONSOLE:
 			if (get_user(lines, (s32 __user *)(p+4))) {
 				ret = -EFAULT;
 			} else {
+<<<<<<< HEAD
 				/* Need the console lock here. Note that lots
 				   of other calls need fixing before the lock
 				   is actually useful ! */
 				console_lock();
 				scrollfront(vc_cons[fg_console].d, lines);
 				console_unlock();
+=======
+				scrollfront(vc_cons[fg_console].d, lines);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				ret = 0;
 			}
 			break;
@@ -2757,7 +2811,12 @@ static void con_stop(struct tty_struct *tty)
 	console_num = tty->index;
 	if (!vc_cons_allocated(console_num))
 		return;
+<<<<<<< HEAD
 	vt_kbd_con_stop(console_num);
+=======
+	set_vc_kbd_led(kbd_table + console_num, VC_SCROLLOCK);
+	set_leds();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -2771,7 +2830,12 @@ static void con_start(struct tty_struct *tty)
 	console_num = tty->index;
 	if (!vc_cons_allocated(console_num))
 		return;
+<<<<<<< HEAD
 	vt_kbd_con_start(console_num);
+=======
+	clr_vc_kbd_led(kbd_table + console_num, VC_SCROLLOCK);
+	set_leds();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void con_flush_chars(struct tty_struct *tty)
@@ -2932,10 +2996,18 @@ static int __init con_init(void)
 	gotoxy(vc, vc->vc_x, vc->vc_y);
 	csi_J(vc, 0);
 	update_screen(vc);
+<<<<<<< HEAD
 	pr_info("Console: %s %s %dx%d\n",
 		vc->vc_can_do_color ? "colour" : "mono",
 		display_desc, vc->vc_cols, vc->vc_rows);
 	printable = 1;
+=======
+	pr_info("Console: %s %s %dx%d",
+		vc->vc_can_do_color ? "colour" : "mono",
+		display_desc, vc->vc_cols, vc->vc_rows);
+	printable = 1;
+	printk("\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	console_unlock();
 
@@ -2992,7 +3064,11 @@ int __init vty_init(const struct file_operations *console_fops)
 	console_driver = alloc_tty_driver(MAX_NR_CONSOLES);
 	if (!console_driver)
 		panic("Couldn't allocate console driver\n");
+<<<<<<< HEAD
 
+=======
+	console_driver->owner = THIS_MODULE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	console_driver->name = "tty";
 	console_driver->name_base = 1;
 	console_driver->major = TTY_MAJOR;
@@ -3017,7 +3093,11 @@ int __init vty_init(const struct file_operations *console_fops)
 
 static struct class *vtconsole_class;
 
+<<<<<<< HEAD
 static int bind_con_driver(const struct consw *csw, int first, int last,
+=======
+static int do_bind_con_driver(const struct consw *csw, int first, int last,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			   int deflt)
 {
 	struct module *owner = csw->owner;
@@ -3028,7 +3108,11 @@ static int bind_con_driver(const struct consw *csw, int first, int last,
 	if (!try_module_get(owner))
 		return -ENODEV;
 
+<<<<<<< HEAD
 	console_lock();
+=======
+	WARN_CONSOLE_UNLOCKED();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* check if driver is registered */
 	for (i = 0; i < MAX_NR_CON_DRIVER; i++) {
@@ -3113,11 +3197,29 @@ static int bind_con_driver(const struct consw *csw, int first, int last,
 
 	retval = 0;
 err:
+<<<<<<< HEAD
 	console_unlock();
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	module_put(owner);
 	return retval;
 };
 
+<<<<<<< HEAD
+=======
+
+static int bind_con_driver(const struct consw *csw, int first, int last,
+			   int deflt)
+{
+	int ret;
+
+	console_lock();
+	ret = do_bind_con_driver(csw, first, last, deflt);
+	console_unlock();
+	return ret;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_VT_HW_CONSOLE_BINDING
 static int con_is_graphics(const struct consw *csw, int first, int last)
 {
@@ -3154,6 +3256,21 @@ static int con_is_graphics(const struct consw *csw, int first, int last)
  */
 int unbind_con_driver(const struct consw *csw, int first, int last, int deflt)
 {
+<<<<<<< HEAD
+=======
+	int retval;
+
+	console_lock();
+	retval = do_unbind_con_driver(csw, first, last, deflt);
+	console_unlock();
+	return retval;
+}
+EXPORT_SYMBOL(unbind_con_driver);
+
+/* unlocked version of unbind_con_driver() */
+int do_unbind_con_driver(const struct consw *csw, int first, int last, int deflt)
+{
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct module *owner = csw->owner;
 	const struct consw *defcsw = NULL;
 	struct con_driver *con_driver = NULL, *con_back = NULL;
@@ -3162,7 +3279,11 @@ int unbind_con_driver(const struct consw *csw, int first, int last, int deflt)
 	if (!try_module_get(owner))
 		return -ENODEV;
 
+<<<<<<< HEAD
 	console_lock();
+=======
+	WARN_CONSOLE_UNLOCKED();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* check if driver is registered and if it is unbindable */
 	for (i = 0; i < MAX_NR_CON_DRIVER; i++) {
@@ -3175,10 +3296,15 @@ int unbind_con_driver(const struct consw *csw, int first, int last, int deflt)
 		}
 	}
 
+<<<<<<< HEAD
 	if (retval) {
 		console_unlock();
 		goto err;
 	}
+=======
+	if (retval)
+		goto err;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	retval = -ENODEV;
 
@@ -3194,6 +3320,7 @@ int unbind_con_driver(const struct consw *csw, int first, int last, int deflt)
 		}
 	}
 
+<<<<<<< HEAD
 	if (retval) {
 		console_unlock();
 		goto err;
@@ -3203,6 +3330,13 @@ int unbind_con_driver(const struct consw *csw, int first, int last, int deflt)
 		console_unlock();
 		goto err;
 	}
+=======
+	if (retval)
+		goto err;
+
+	if (!con_is_bound(csw))
+		goto err;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	first = max(first, con_driver->first);
 	last = min(last, con_driver->last);
@@ -3229,15 +3363,24 @@ int unbind_con_driver(const struct consw *csw, int first, int last, int deflt)
 	if (!con_is_bound(csw))
 		con_driver->flag &= ~CON_DRIVER_FLAG_INIT;
 
+<<<<<<< HEAD
 	console_unlock();
 	/* ignore return value, binding should not fail */
 	bind_con_driver(defcsw, first, last, deflt);
+=======
+	/* ignore return value, binding should not fail */
+	do_bind_con_driver(defcsw, first, last, deflt);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 err:
 	module_put(owner);
 	return retval;
 
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(unbind_con_driver);
+=======
+EXPORT_SYMBOL_GPL(do_unbind_con_driver);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int vt_bind(struct con_driver *con)
 {
@@ -3509,6 +3652,7 @@ int con_debug_leave(void)
 }
 EXPORT_SYMBOL_GPL(con_debug_leave);
 
+<<<<<<< HEAD
 /**
  * register_con_driver - register console driver to console layer
  * @csw: console driver
@@ -3520,17 +3664,28 @@ EXPORT_SYMBOL_GPL(con_debug_leave);
  * also initialize the console driver by calling con_startup().
  */
 int register_con_driver(const struct consw *csw, int first, int last)
+=======
+static int do_register_con_driver(const struct consw *csw, int first, int last)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct module *owner = csw->owner;
 	struct con_driver *con_driver;
 	const char *desc;
 	int i, retval = 0;
 
+<<<<<<< HEAD
 	if (!try_module_get(owner))
 		return -ENODEV;
 
 	console_lock();
 
+=======
+	WARN_CONSOLE_UNLOCKED();
+
+	if (!try_module_get(owner))
+		return -ENODEV;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (i = 0; i < MAX_NR_CON_DRIVER; i++) {
 		con_driver = &registered_con_driver[i];
 
@@ -3583,10 +3738,36 @@ int register_con_driver(const struct consw *csw, int first, int last)
 	}
 
 err:
+<<<<<<< HEAD
 	console_unlock();
 	module_put(owner);
 	return retval;
 }
+=======
+	module_put(owner);
+	return retval;
+}
+
+/**
+ * register_con_driver - register console driver to console layer
+ * @csw: console driver
+ * @first: the first console to take over, minimum value is 0
+ * @last: the last console to take over, maximum value is MAX_NR_CONSOLES -1
+ *
+ * DESCRIPTION: This function registers a console driver which can later
+ * bind to a range of consoles specified by @first and @last. It will
+ * also initialize the console driver by calling con_startup().
+ */
+int register_con_driver(const struct consw *csw, int first, int last)
+{
+	int retval;
+
+	console_lock();
+	retval = do_register_con_driver(csw, first, last);
+	console_unlock();
+	return retval;
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 EXPORT_SYMBOL(register_con_driver);
 
 /**
@@ -3602,9 +3783,24 @@ EXPORT_SYMBOL(register_con_driver);
  */
 int unregister_con_driver(const struct consw *csw)
 {
+<<<<<<< HEAD
 	int i, retval = -ENODEV;
 
 	console_lock();
+=======
+	int retval;
+
+	console_lock();
+	retval = do_unregister_con_driver(csw);
+	console_unlock();
+	return retval;
+}
+EXPORT_SYMBOL(unregister_con_driver);
+
+int do_unregister_con_driver(const struct consw *csw)
+{
+	int i, retval = -ENODEV;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* cannot unregister a bound driver */
 	if (con_is_bound(csw))
@@ -3630,27 +3826,71 @@ int unregister_con_driver(const struct consw *csw)
 		}
 	}
 err:
+<<<<<<< HEAD
 	console_unlock();
 	return retval;
 }
 EXPORT_SYMBOL(unregister_con_driver);
+=======
+	return retval;
+}
+EXPORT_SYMBOL_GPL(do_unregister_con_driver);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  *	If we support more console drivers, this function is used
  *	when a driver wants to take over some existing consoles
  *	and become default driver for newly opened ones.
  *
+<<<<<<< HEAD
  *      take_over_console is basically a register followed by unbind
+=======
+ *	take_over_console is basically a register followed by unbind
+ */
+int do_take_over_console(const struct consw *csw, int first, int last, int deflt)
+{
+	int err;
+
+	err = do_register_con_driver(csw, first, last);
+	/*
+	 * If we get an busy error we still want to bind the console driver
+	 * and return success, as we may have unbound the console driver
+	 * but not unregistered it.
+	 */
+	if (err == -EBUSY)
+		err = 0;
+	if (!err)
+		do_bind_con_driver(csw, first, last, deflt);
+
+	return err;
+}
+EXPORT_SYMBOL_GPL(do_take_over_console);
+
+/*
+ *	If we support more console drivers, this function is used
+ *	when a driver wants to take over some existing consoles
+ *	and become default driver for newly opened ones.
+ *
+ *	take_over_console is basically a register followed by unbind
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 int take_over_console(const struct consw *csw, int first, int last, int deflt)
 {
 	int err;
 
 	err = register_con_driver(csw, first, last);
+<<<<<<< HEAD
 	/* if we get an busy error we still want to bind the console driver
 	 * and return success, as we may have unbound the console driver
 	 * but not unregistered it.
 	*/
+=======
+	/*
+	 * If we get an busy error we still want to bind the console driver
+	 * and return success, as we may have unbound the console driver
+	 * but not unregistered it.
+	 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (err == -EBUSY)
 		err = 0;
 	if (!err)
@@ -3981,6 +4221,12 @@ static int con_font_get(struct vc_data *vc, struct console_font_op *op)
 	int rc = -EINVAL;
 	int c;
 
+<<<<<<< HEAD
+=======
+	if (vc->vc_mode != KD_TEXT)
+		return -EINVAL;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (op->data) {
 		font.data = kmalloc(max_font_size, GFP_KERNEL);
 		if (!font.data)
@@ -3989,9 +4235,13 @@ static int con_font_get(struct vc_data *vc, struct console_font_op *op)
 		font.data = NULL;
 
 	console_lock();
+<<<<<<< HEAD
 	if (vc->vc_mode != KD_TEXT)
 		rc = -EINVAL;
 	else if (vc->vc_sw->con_font_get)
+=======
+	if (vc->vc_sw->con_font_get)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		rc = vc->vc_sw->con_font_get(vc, &font);
 	else
 		rc = -ENOSYS;
@@ -4073,9 +4323,13 @@ static int con_font_set(struct vc_data *vc, struct console_font_op *op)
 	if (IS_ERR(font.data))
 		return PTR_ERR(font.data);
 	console_lock();
+<<<<<<< HEAD
 	if (vc->vc_mode != KD_TEXT)
 		rc = -EINVAL;
 	else if (vc->vc_sw->con_font_set)
+=======
+	if (vc->vc_sw->con_font_set)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		rc = vc->vc_sw->con_font_set(vc, &font, op->flags);
 	else
 		rc = -ENOSYS;
@@ -4091,6 +4345,11 @@ static int con_font_default(struct vc_data *vc, struct console_font_op *op)
 	char *s = name;
 	int rc;
 
+<<<<<<< HEAD
+=======
+	if (vc->vc_mode != KD_TEXT)
+		return -EINVAL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!op->data)
 		s = NULL;
@@ -4100,10 +4359,13 @@ static int con_font_default(struct vc_data *vc, struct console_font_op *op)
 		name[MAX_FONT_NAME - 1] = 0;
 
 	console_lock();
+<<<<<<< HEAD
 	if (vc->vc_mode != KD_TEXT) {
 		console_unlock();
 		return -EINVAL;
 	}
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (vc->vc_sw->con_font_default)
 		rc = vc->vc_sw->con_font_default(vc, &font, s);
 	else
@@ -4121,11 +4383,19 @@ static int con_font_copy(struct vc_data *vc, struct console_font_op *op)
 	int con = op->height;
 	int rc;
 
+<<<<<<< HEAD
 
 	console_lock();
 	if (vc->vc_mode != KD_TEXT)
 		rc = -EINVAL;
 	else if (!vc->vc_sw->con_font_copy)
+=======
+	if (vc->vc_mode != KD_TEXT)
+		return -EINVAL;
+
+	console_lock();
+	if (!vc->vc_sw->con_font_copy)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		rc = -ENOSYS;
 	else if (con < 0 || !vc_cons_allocated(con))
 		rc = -ENOTTY;

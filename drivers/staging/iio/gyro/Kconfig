@@ -1,7 +1,11 @@
 #
 # IIO Digital Gyroscope Sensor drivers configuration
 #
+<<<<<<< HEAD
 menu "Digital gyroscope sensors"
+=======
+comment "Digital gyroscope sensors"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config ADIS16060
 	tristate "Analog Devices ADIS16060 Yaw Rate Gyroscope with SPI driver"
@@ -27,8 +31,13 @@ config ADIS16130
 config ADIS16260
 	tristate "Analog Devices ADIS16260 Digital Gyroscope Sensor SPI driver"
 	depends on SPI
+<<<<<<< HEAD
 	select IIO_TRIGGER if IIO_BUFFER
 	select IIO_SW_RING if IIO_BUFFER
+=======
+	select IIO_TRIGGER if IIO_RING_BUFFER
+	select IIO_SW_RING if IIO_RING_BUFFER
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  Say yes here to build support for Analog Devices ADIS16260 ADIS16265
 	  ADIS16250 ADIS16255 and ADIS16251 programmable digital gyroscope sensors.
@@ -37,13 +46,33 @@ config ADIS16260
 	  will be called adis16260.
 
 config ADXRS450
+<<<<<<< HEAD
 	tristate "Analog Devices ADXRS450/3 Digital Output Gyroscope SPI driver"
 	depends on SPI
 	help
 	  Say yes here to build support for Analog Devices ADXRS450 and ADXRS453
 	  programmable digital output gyroscope.
+=======
+	tristate "Analog Devices ADXRS450 Digital Output Gyroscope SPI driver"
+	depends on SPI
+	help
+	  Say yes here to build support for Analog Devices ADXRS450 programmable
+	  digital output gyroscope.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	  This driver can also be built as a module.  If so, the module
 	  will be called adxrs450.
 
+<<<<<<< HEAD
 endmenu
+=======
+config K3G
+	tristate "ST K3G gyroscope sensor"
+	depends on I2C
+	depends on IIO_RING_BUFFER
+	help
+	  Say yes here to build support for ST K3G gyroscope sensor. These devices use a hardware ring buffer.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called k3g.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

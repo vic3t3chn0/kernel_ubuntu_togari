@@ -38,6 +38,10 @@
 #include <linux/dma-mapping.h>
 
 #include <asm/dma.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/io.h>
 
 #include <scsi/scsi.h>
@@ -58,11 +62,19 @@ MODULE_PARM_DESC(trans_mode, "transfer mode (0: BIOS(default) 1: Async 2: Ultra2
 #define ASYNC_MODE    1
 #define ULTRA20M_MODE 2
 
+<<<<<<< HEAD
 static bool      auto_param = 0;	/* default: ON */
 module_param     (auto_param, bool, 0);
 MODULE_PARM_DESC(auto_param, "AutoParameter mode (0: ON(default) 1: OFF)");
 
 static bool      disc_priv  = 1;	/* default: OFF */
+=======
+static int       auto_param = 0;	/* default: ON */
+module_param     (auto_param, bool, 0);
+MODULE_PARM_DESC(auto_param, "AutoParameter mode (0: ON(default) 1: OFF)");
+
+static int       disc_priv  = 1;	/* default: OFF */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param     (disc_priv, bool, 0);
 MODULE_PARM_DESC(disc_priv,  "disconnection privilege mode (0: ON 1: OFF(default))");
 

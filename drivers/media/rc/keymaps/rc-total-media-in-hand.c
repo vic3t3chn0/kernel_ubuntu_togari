@@ -19,7 +19,10 @@
  */
 
 #include <media/rc-map.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Uses NEC extended 0x02bd */
 static struct rc_map_table total_media_in_hand[] = {

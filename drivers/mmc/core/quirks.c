@@ -11,7 +11,10 @@
 
 #include <linux/types.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/mmc/card.h>
 
 #ifndef SDIO_VENDOR_ID_TI
@@ -22,6 +25,7 @@
 #define SDIO_DEVICE_ID_TI_WL1271	0x4076
 #endif
 
+<<<<<<< HEAD
 #ifndef SDIO_VENDOR_ID_STE
 #define SDIO_VENDOR_ID_STE		0x0020
 #endif
@@ -48,6 +52,22 @@
 
 #ifndef SDIO_DEVICE_ID_MSM_QCA_AR6003_2
 #define SDIO_DEVICE_ID_MSM_QCA_AR6003_2	0x301
+=======
+#ifndef SDIO_VENDOR_ID_BRCM
+#define SDIO_VENDOR_ID_BRCM		0x02D0
+#endif
+
+#ifndef SDIO_DEVICE_ID_BRCM_BCM4330
+#define SDIO_DEVICE_ID_BRCM_BCM4330	0x4330
+#endif
+
+#ifndef SDIO_DEVICE_ID_BRCM_BCM4334
+#define SDIO_DEVICE_ID_BRCM_BCM4334	0x4334
+#endif
+
+#ifndef SDIO_DEVICE_ID_BRCM_BCM43241
+#define SDIO_DEVICE_ID_BRCM_BCM43241	0x4324
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 
 /*
@@ -69,6 +89,7 @@ static const struct mmc_fixup mmc_fixup_methods[] = {
 	SDIO_FIXUP(SDIO_VENDOR_ID_TI, SDIO_DEVICE_ID_TI_WL1271,
 		   remove_quirk, MMC_QUIRK_BROKEN_CLK_GATING),
 
+<<<<<<< HEAD
 	SDIO_FIXUP(SDIO_VENDOR_ID_MSM, SDIO_DEVICE_ID_MSM_WCN1314,
 		   remove_quirk, MMC_QUIRK_BROKEN_CLK_GATING),
 
@@ -78,14 +99,27 @@ static const struct mmc_fixup mmc_fixup_methods[] = {
 	SDIO_FIXUP(SDIO_VENDOR_ID_MSM_QCA, SDIO_DEVICE_ID_MSM_QCA_AR6003_2,
 		   remove_quirk, MMC_QUIRK_BROKEN_CLK_GATING),
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	SDIO_FIXUP(SDIO_VENDOR_ID_TI, SDIO_DEVICE_ID_TI_WL1271,
 		   add_quirk, MMC_QUIRK_NONSTD_FUNC_IF),
 
 	SDIO_FIXUP(SDIO_VENDOR_ID_TI, SDIO_DEVICE_ID_TI_WL1271,
 		   add_quirk, MMC_QUIRK_DISABLE_CD),
 
+<<<<<<< HEAD
 	SDIO_FIXUP(SDIO_VENDOR_ID_STE, SDIO_DEVICE_ID_STE_CW1200,
 		   add_quirk, MMC_QUIRK_BROKEN_BYTE_MODE_512),
+=======
+	SDIO_FIXUP(SDIO_VENDOR_ID_BRCM, SDIO_DEVICE_ID_BRCM_BCM4330,
+			remove_quirk, MMC_QUIRK_BROKEN_CLK_GATING),
+
+	SDIO_FIXUP(SDIO_VENDOR_ID_BRCM, SDIO_DEVICE_ID_BRCM_BCM4334,
+		   remove_quirk, MMC_QUIRK_BROKEN_CLK_GATING),
+
+	SDIO_FIXUP(SDIO_VENDOR_ID_BRCM, SDIO_DEVICE_ID_BRCM_BCM43241,
+		   remove_quirk, MMC_QUIRK_BROKEN_CLK_GATING),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	END_FIXUP
 };
@@ -107,8 +141,11 @@ void mmc_fixup_device(struct mmc_card *card, const struct mmc_fixup *table)
 		    (f->name == CID_NAME_ANY ||
 		     !strncmp(f->name, card->cid.prod_name,
 			      sizeof(card->cid.prod_name))) &&
+<<<<<<< HEAD
 		    (f->ext_csd_rev == EXT_CSD_REV_ANY ||
 		     f->ext_csd_rev == card->ext_csd.rev) &&
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		    (f->cis_vendor == card->cis.vendor ||
 		     f->cis_vendor == (u16) SDIO_ANY_ID) &&
 		    (f->cis_device == card->cis.device ||

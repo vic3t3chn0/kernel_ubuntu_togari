@@ -23,5 +23,8 @@ obj-$(CONFIG_DP83640_PHY)	+= dp83640.o
 obj-$(CONFIG_STE10XP)		+= ste10Xp.o
 obj-$(CONFIG_MICREL_PHY)	+= micrel.o
 obj-$(CONFIG_MDIO_OCTEON)	+= mdio-octeon.o
+<<<<<<< HEAD
 obj-$(CONFIG_MICREL_KS8995MA)	+= spi_ks8995.o
 obj-$(CONFIG_AMD_PHY)		+= amd.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

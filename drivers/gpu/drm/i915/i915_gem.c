@@ -1087,9 +1087,17 @@ i915_gem_mmap_ioctl(struct drm_device *dev, void *data,
 	if (obj == NULL)
 		return -ENOENT;
 
+<<<<<<< HEAD
 	addr = vm_mmap(obj->filp, 0, args->size,
 		       PROT_READ | PROT_WRITE, MAP_SHARED,
 		       args->offset);
+=======
+	down_write(&current->mm->mmap_sem);
+	addr = do_mmap(obj->filp, 0, args->size,
+		       PROT_READ | PROT_WRITE, MAP_SHARED,
+		       args->offset);
+	up_write(&current->mm->mmap_sem);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	drm_gem_object_unreference_unlocked(obj);
 	if (IS_ERR((void *)addr))
 		return addr;
@@ -1185,6 +1193,14 @@ out:
 	case 0:
 	case -ERESTARTSYS:
 	case -EINTR:
+<<<<<<< HEAD
+=======
+	case -EBUSY:
+		/*
+		 * EBUSY is ok: this just means that another thread
+		 * already did the job.
+		 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return VM_FAULT_NOPAGE;
 	case -ENOMEM:
 		return VM_FAULT_OOM;
@@ -1470,6 +1486,7 @@ i915_gem_object_move_to_active(struct drm_i915_gem_object *obj,
 	list_move_tail(&obj->ring_list, &ring->active_list);
 
 	obj->last_rendering_seqno = seqno;
+<<<<<<< HEAD
 
 	if (obj->fenced_gpu_access) {
 		obj->last_fenced_seqno = seqno;
@@ -1483,6 +1500,18 @@ i915_gem_object_move_to_active(struct drm_i915_gem_object *obj,
 			list_move_tail(&reg->lru_list,
 				       &dev_priv->mm.fence_list);
 		}
+=======
+	if (obj->fenced_gpu_access) {
+		struct drm_i915_fence_reg *reg;
+
+		BUG_ON(obj->fence_reg == I915_FENCE_REG_NONE);
+
+		obj->last_fenced_seqno = seqno;
+		obj->last_fenced_ring = ring;
+
+		reg = &dev_priv->fence_regs[obj->fence_reg];
+		list_move_tail(&reg->lru_list, &dev_priv->mm.fence_list);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 }
 
@@ -1491,7 +1520,10 @@ i915_gem_object_move_off_active(struct drm_i915_gem_object *obj)
 {
 	list_del_init(&obj->ring_list);
 	obj->last_rendering_seqno = 0;
+<<<<<<< HEAD
 	obj->last_fenced_seqno = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void
@@ -1520,7 +1552,10 @@ i915_gem_object_move_to_inactive(struct drm_i915_gem_object *obj)
 	BUG_ON(!list_empty(&obj->gpu_write_list));
 	BUG_ON(!obj->active);
 	obj->ring = NULL;
+<<<<<<< HEAD
 	obj->last_fenced_ring = NULL;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	i915_gem_object_move_off_active(obj);
 	obj->fenced_gpu_access = false;
@@ -3757,14 +3792,18 @@ void i915_gem_init_ppgtt(struct drm_device *dev)
 	drm_i915_private_t *dev_priv = dev->dev_private;
 	uint32_t pd_offset;
 	struct intel_ring_buffer *ring;
+<<<<<<< HEAD
 	struct i915_hw_ppgtt *ppgtt = dev_priv->mm.aliasing_ppgtt;
 	uint32_t __iomem *pd_addr;
 	uint32_t pd_entry;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int i;
 
 	if (!dev_priv->mm.aliasing_ppgtt)
 		return;
 
+<<<<<<< HEAD
 
 	pd_addr = dev_priv->mm.gtt->gtt + ppgtt->pd_offset/sizeof(uint32_t);
 	for (i = 0; i < ppgtt->num_pd_entries; i++) {
@@ -3783,6 +3822,9 @@ void i915_gem_init_ppgtt(struct drm_device *dev)
 	readl(pd_addr);
 
 	pd_offset = ppgtt->pd_offset;
+=======
+	pd_offset = dev_priv->mm.aliasing_ppgtt->pd_offset;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	pd_offset /= 64; /* in cachelines, */
 	pd_offset <<= 16;
 

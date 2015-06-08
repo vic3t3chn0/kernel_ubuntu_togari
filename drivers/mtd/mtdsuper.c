@@ -14,7 +14,10 @@
 
 #include <linux/mtd/super.h>
 #include <linux/namei.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/ctype.h>
 #include <linux/slab.h>
 
@@ -27,12 +30,20 @@ static int get_sb_mtd_compare(struct super_block *sb, void *_mtd)
 	struct mtd_info *mtd = _mtd;
 
 	if (sb->s_mtd == mtd) {
+<<<<<<< HEAD
 		pr_debug("MTDSB: Match on device %d (\"%s\")\n",
+=======
+		DEBUG(2, "MTDSB: Match on device %d (\"%s\")\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		      mtd->index, mtd->name);
 		return 1;
 	}
 
+<<<<<<< HEAD
 	pr_debug("MTDSB: No match, device %d (\"%s\"), device %d (\"%s\")\n",
+=======
+	DEBUG(2, "MTDSB: No match, device %d (\"%s\"), device %d (\"%s\")\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	      sb->s_mtd->index, sb->s_mtd->name, mtd->index, mtd->name);
 	return 0;
 }
@@ -71,7 +82,11 @@ static struct dentry *mount_mtd_aux(struct file_system_type *fs_type, int flags,
 		goto already_mounted;
 
 	/* fresh new superblock */
+<<<<<<< HEAD
 	pr_debug("MTDSB: New superblock for device %d (\"%s\")\n",
+=======
+	DEBUG(1, "MTDSB: New superblock for device %d (\"%s\")\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	      mtd->index, mtd->name);
 
 	sb->s_flags = flags;
@@ -88,7 +103,11 @@ static struct dentry *mount_mtd_aux(struct file_system_type *fs_type, int flags,
 
 	/* new mountpoint for an already mounted superblock */
 already_mounted:
+<<<<<<< HEAD
 	pr_debug("MTDSB: Device %d (\"%s\") is already mounted\n",
+=======
+	DEBUG(1, "MTDSB: Device %d (\"%s\") is already mounted\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	      mtd->index, mtd->name);
 	put_mtd_device(mtd);
 	return dget(sb->s_root);
@@ -109,7 +128,11 @@ static struct dentry *mount_mtd_nr(struct file_system_type *fs_type, int flags,
 
 	mtd = get_mtd_device(NULL, mtdnr);
 	if (IS_ERR(mtd)) {
+<<<<<<< HEAD
 		pr_debug("MTDSB: Device #%u doesn't appear to exist\n", mtdnr);
+=======
+		DEBUG(0, "MTDSB: Device #%u doesn't appear to exist\n", mtdnr);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return ERR_CAST(mtd);
 	}
 
@@ -132,7 +155,11 @@ struct dentry *mount_mtd(struct file_system_type *fs_type, int flags,
 	if (!dev_name)
 		return ERR_PTR(-EINVAL);
 
+<<<<<<< HEAD
 	pr_debug("MTDSB: dev_name \"%s\"\n", dev_name);
+=======
+	DEBUG(2, "MTDSB: dev_name \"%s\"\n", dev_name);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* the preferred way of mounting in future; especially when
 	 * CONFIG_BLOCK=n - we specify the underlying MTD device by number or
@@ -143,7 +170,11 @@ struct dentry *mount_mtd(struct file_system_type *fs_type, int flags,
 			struct mtd_info *mtd;
 
 			/* mount by MTD device name */
+<<<<<<< HEAD
 			pr_debug("MTDSB: mtd:%%s, name \"%s\"\n",
+=======
+			DEBUG(1, "MTDSB: mtd:%%s, name \"%s\"\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			      dev_name + 4);
 
 			mtd = get_mtd_device_nm(dev_name + 4);
@@ -164,7 +195,11 @@ struct dentry *mount_mtd(struct file_system_type *fs_type, int flags,
 			mtdnr = simple_strtoul(dev_name + 3, &endptr, 0);
 			if (!*endptr) {
 				/* It was a valid number */
+<<<<<<< HEAD
 				pr_debug("MTDSB: mtd%%d, mtdnr %d\n",
+=======
+				DEBUG(1, "MTDSB: mtd%%d, mtdnr %d\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				      mtdnr);
 				return mount_mtd_nr(fs_type, flags,
 						     dev_name, data,
@@ -180,10 +215,17 @@ struct dentry *mount_mtd(struct file_system_type *fs_type, int flags,
 	bdev = lookup_bdev(dev_name);
 	if (IS_ERR(bdev)) {
 		ret = PTR_ERR(bdev);
+<<<<<<< HEAD
 		pr_debug("MTDSB: lookup_bdev() returned %d\n", ret);
 		return ERR_PTR(ret);
 	}
 	pr_debug("MTDSB: lookup_bdev() returned 0\n");
+=======
+		DEBUG(1, "MTDSB: lookup_bdev() returned %d\n", ret);
+		return ERR_PTR(ret);
+	}
+	DEBUG(1, "MTDSB: lookup_bdev() returned 0\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	ret = -EINVAL;
 

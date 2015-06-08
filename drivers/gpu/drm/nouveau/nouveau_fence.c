@@ -93,6 +93,7 @@ nouveau_fence_update(struct nouveau_channel *chan)
 	}
 
 	list_for_each_entry_safe(fence, tmp, &chan->fence.pending, entry) {
+<<<<<<< HEAD
 		if (fence->sequence > chan->fence.sequence_ack)
 			break;
 
@@ -104,6 +105,20 @@ nouveau_fence_update(struct nouveau_channel *chan)
 		kref_put(&fence->refcount, nouveau_fence_del);
 	}
 
+=======
+		sequence = fence->sequence;
+		fence->signalled = true;
+		list_del(&fence->entry);
+
+		if (unlikely(fence->work))
+			fence->work(fence->priv, true);
+
+		kref_put(&fence->refcount, nouveau_fence_del);
+
+		if (sequence == chan->fence.sequence_ack)
+			break;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 out:
 	spin_unlock(&chan->fence.lock);
 }
@@ -164,9 +179,15 @@ nouveau_fence_emit(struct nouveau_fence *fence)
 
 	if (USE_REFCNT(dev)) {
 		if (dev_priv->card_type < NV_C0)
+<<<<<<< HEAD
 			BEGIN_RING(chan, 0, NV10_SUBCHAN_REF_CNT, 1);
 		else
 			BEGIN_NVC0(chan, 2, 0, NV10_SUBCHAN_REF_CNT, 1);
+=======
+			BEGIN_RING(chan, NvSubSw, 0x0050, 1);
+		else
+			BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0050, 1);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} else {
 		BEGIN_RING(chan, NvSubSw, 0x0150, 1);
 	}
@@ -343,7 +364,11 @@ semaphore_acquire(struct nouveau_channel *chan, struct nouveau_semaphore *sema)
 		if (ret)
 			return ret;
 
+<<<<<<< HEAD
 		BEGIN_RING(chan, 0, NV11_SUBCHAN_DMA_SEMAPHORE, 3);
+=======
+		BEGIN_RING(chan, NvSubSw, NV_SW_DMA_SEMAPHORE, 3);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		OUT_RING  (chan, NvSema);
 		OUT_RING  (chan, offset);
 		OUT_RING  (chan, 1);
@@ -353,9 +378,15 @@ semaphore_acquire(struct nouveau_channel *chan, struct nouveau_semaphore *sema)
 		if (ret)
 			return ret;
 
+<<<<<<< HEAD
 		BEGIN_RING(chan, 0, NV11_SUBCHAN_DMA_SEMAPHORE, 1);
 		OUT_RING  (chan, chan->vram_handle);
 		BEGIN_RING(chan, 0, NV84_SUBCHAN_SEMAPHORE_ADDRESS_HIGH, 4);
+=======
+		BEGIN_RING(chan, NvSubSw, NV_SW_DMA_SEMAPHORE, 1);
+		OUT_RING  (chan, chan->vram_handle);
+		BEGIN_RING(chan, NvSubSw, 0x0010, 4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		OUT_RING  (chan, upper_32_bits(offset));
 		OUT_RING  (chan, lower_32_bits(offset));
 		OUT_RING  (chan, 1);
@@ -365,7 +396,11 @@ semaphore_acquire(struct nouveau_channel *chan, struct nouveau_semaphore *sema)
 		if (ret)
 			return ret;
 
+<<<<<<< HEAD
 		BEGIN_NVC0(chan, 2, 0, NV84_SUBCHAN_SEMAPHORE_ADDRESS_HIGH, 4);
+=======
+		BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0010, 4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		OUT_RING  (chan, upper_32_bits(offset));
 		OUT_RING  (chan, lower_32_bits(offset));
 		OUT_RING  (chan, 1);
@@ -396,10 +431,17 @@ semaphore_release(struct nouveau_channel *chan, struct nouveau_semaphore *sema)
 		if (ret)
 			return ret;
 
+<<<<<<< HEAD
 		BEGIN_RING(chan, 0, NV11_SUBCHAN_DMA_SEMAPHORE, 2);
 		OUT_RING  (chan, NvSema);
 		OUT_RING  (chan, offset);
 		BEGIN_RING(chan, 0, NV11_SUBCHAN_SEMAPHORE_RELEASE, 1);
+=======
+		BEGIN_RING(chan, NvSubSw, NV_SW_DMA_SEMAPHORE, 2);
+		OUT_RING  (chan, NvSema);
+		OUT_RING  (chan, offset);
+		BEGIN_RING(chan, NvSubSw, NV_SW_SEMAPHORE_RELEASE, 1);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		OUT_RING  (chan, 1);
 	} else
 	if (dev_priv->chipset < 0xc0) {
@@ -407,9 +449,15 @@ semaphore_release(struct nouveau_channel *chan, struct nouveau_semaphore *sema)
 		if (ret)
 			return ret;
 
+<<<<<<< HEAD
 		BEGIN_RING(chan, 0, NV11_SUBCHAN_DMA_SEMAPHORE, 1);
 		OUT_RING  (chan, chan->vram_handle);
 		BEGIN_RING(chan, 0, NV84_SUBCHAN_SEMAPHORE_ADDRESS_HIGH, 4);
+=======
+		BEGIN_RING(chan, NvSubSw, NV_SW_DMA_SEMAPHORE, 1);
+		OUT_RING  (chan, chan->vram_handle);
+		BEGIN_RING(chan, NvSubSw, 0x0010, 4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		OUT_RING  (chan, upper_32_bits(offset));
 		OUT_RING  (chan, lower_32_bits(offset));
 		OUT_RING  (chan, 1);
@@ -419,7 +467,11 @@ semaphore_release(struct nouveau_channel *chan, struct nouveau_semaphore *sema)
 		if (ret)
 			return ret;
 
+<<<<<<< HEAD
 		BEGIN_NVC0(chan, 2, 0, NV84_SUBCHAN_SEMAPHORE_ADDRESS_HIGH, 4);
+=======
+		BEGIN_NVC0(chan, 2, NvSubM2MF, 0x0010, 4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		OUT_RING  (chan, upper_32_bits(offset));
 		OUT_RING  (chan, lower_32_bits(offset));
 		OUT_RING  (chan, 1);
@@ -509,7 +561,11 @@ nouveau_fence_channel_init(struct nouveau_channel *chan)
 		if (ret)
 			return ret;
 
+<<<<<<< HEAD
 		BEGIN_RING(chan, NvSubSw, NV01_SUBCHAN_OBJECT, 1);
+=======
+		BEGIN_RING(chan, NvSubSw, 0, 1);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		OUT_RING  (chan, NvSw);
 		FIRE_RING (chan);
 	}

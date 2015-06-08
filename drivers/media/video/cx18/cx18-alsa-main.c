@@ -192,7 +192,10 @@ static int snd_cx18_init(struct v4l2_device *v4l2_dev)
 err_exit_free:
 	if (sc != NULL)
 		snd_card_free(sc);
+<<<<<<< HEAD
 	kfree(cxsc);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 err_exit:
 	return ret;
 }
@@ -285,6 +288,10 @@ static void __exit cx18_alsa_exit(void)
 
 	drv = driver_find("cx18", &pci_bus_type);
 	ret = driver_for_each_device(drv, NULL, NULL, cx18_alsa_exit_callback);
+<<<<<<< HEAD
+=======
+	put_driver(drv);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	cx18_ext_init = NULL;
 	printk(KERN_INFO "cx18-alsa: module unload complete\n");

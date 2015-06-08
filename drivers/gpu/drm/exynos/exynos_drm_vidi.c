@@ -437,8 +437,13 @@ static void vidi_fake_vblank_handler(struct work_struct *work)
 	if (manager->pipe < 0)
 		return;
 
+<<<<<<< HEAD
 	/* refresh rate is about 50Hz. */
 	usleep_range(16000, 20000);
+=======
+	/* FIXME!!! */
+	msleep(20);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	drm_handle_vblank(subdrv->drm_dev, manager->pipe);
 	vidi_finish_pageflip(subdrv->drm_dev, manager->pipe);
@@ -468,7 +473,11 @@ static int vidi_subdrv_probe(struct drm_device *drm_dev, struct device *dev)
 	return 0;
 }
 
+<<<<<<< HEAD
 static void vidi_subdrv_remove(struct drm_device *drm_dev)
+=======
+static void vidi_subdrv_remove(struct drm_device *drm_dev, struct device *dev)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
@@ -549,6 +558,11 @@ int vidi_connection_ioctl(struct drm_device *drm_dev, void *data,
 	struct exynos_drm_manager *manager;
 	struct exynos_drm_display_ops *display_ops;
 	struct drm_exynos_vidi_connection *vidi = data;
+<<<<<<< HEAD
+=======
+	struct edid *raw_edid;
+	int edid_len;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
@@ -557,11 +571,14 @@ int vidi_connection_ioctl(struct drm_device *drm_dev, void *data,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	if (!vidi->edid) {
 		DRM_DEBUG_KMS("edid data is null.\n");
 		return -EINVAL;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (vidi->connection > 1) {
 		DRM_DEBUG_KMS("connection should be 0 or 1.\n");
 		return -EINVAL;
@@ -588,8 +605,28 @@ int vidi_connection_ioctl(struct drm_device *drm_dev, void *data,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	if (vidi->connection)
 		ctx->raw_edid = (struct edid *)vidi->edid;
+=======
+	if (vidi->connection) {
+		if (!vidi->edid) {
+			DRM_DEBUG_KMS("edid data is null.\n");
+			return -EINVAL;
+		}
+		raw_edid = (struct edid *)vidi->edid;
+		edid_len = (1 + raw_edid->extensions) * EDID_LENGTH;
+		ctx->raw_edid = kzalloc(edid_len, GFP_KERNEL);
+		if (!ctx->raw_edid) {
+			DRM_DEBUG_KMS("failed to allocate raw_edid.\n");
+			return -ENOMEM;
+		}
+		memcpy(ctx->raw_edid, raw_edid, edid_len);
+	} else {
+		kfree(ctx->raw_edid);
+		ctx->raw_edid = NULL;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	ctx->connected = vidi->connection;
 	drm_helper_hpd_irq_event(ctx->subdrv.drm_dev);
@@ -644,6 +681,10 @@ static int __devexit vidi_remove(struct platform_device *pdev)
 
 	exynos_drm_subdrv_unregister(&ctx->subdrv);
 
+<<<<<<< HEAD
+=======
+	kfree(ctx->raw_edid);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(ctx);
 
 	return 0;

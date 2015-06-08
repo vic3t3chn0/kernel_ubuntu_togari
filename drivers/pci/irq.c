@@ -7,7 +7,10 @@
 #include <linux/acpi.h>
 #include <linux/device.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/pci.h>
 
 static void pci_note_irq_problem(struct pci_dev *pdev, const char *reason)

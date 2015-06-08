@@ -11,6 +11,7 @@
 #include <linux/device.h>
 #include <linux/kernel.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/spi/spi.h>
 
 #include "../iio.h"
@@ -24,16 +25,64 @@
  * ad7476_ring_preenable() setup the parameters of the ring before enabling
  *
  * The complex nature of the setting of the number of bytes per datum is due
+=======
+#include <linux/sysfs.h>
+#include <linux/spi/spi.h>
+
+#include "../iio.h"
+#include "../ring_generic.h"
+#include "../ring_sw.h"
+#include "../trigger.h"
+#include "../sysfs.h"
+
+#include "ad7476.h"
+
+int ad7476_scan_from_ring(struct ad7476_state *st)
+{
+	struct iio_ring_buffer *ring = st->indio_dev->ring;
+	int ret;
+	u8 *ring_data;
+
+	ring_data = kmalloc(ring->access->get_bytes_per_datum(ring),
+			    GFP_KERNEL);
+	if (ring_data == NULL) {
+		ret = -ENOMEM;
+		goto error_ret;
+	}
+	ret = ring->access->read_last(ring, ring_data);
+	if (ret)
+		goto error_free_ring_data;
+
+	ret = (ring_data[0] << 8) | ring_data[1];
+
+error_free_ring_data:
+	kfree(ring_data);
+error_ret:
+	return ret;
+}
+
+/**
+ * ad7476_ring_preenable() setup the parameters of the ring before enabling
+ *
+ * The complex nature of the setting of the nuber of bytes per datum is due
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * to this driver currently ensuring that the timestamp is stored at an 8
  * byte boundary.
  **/
 static int ad7476_ring_preenable(struct iio_dev *indio_dev)
 {
+<<<<<<< HEAD
 	struct ad7476_state *st = iio_priv(indio_dev);
 	struct iio_buffer *ring = indio_dev->buffer;
 
 	st->d_size = bitmap_weight(indio_dev->active_scan_mask,
 				   indio_dev->masklength) *
+=======
+	struct ad7476_state *st = indio_dev->dev_data;
+	struct iio_ring_buffer *ring = indio_dev->ring;
+
+	st->d_size = ring->scan_count *
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		st->chip_info->channel[0].scan_type.storagebits / 8;
 
 	if (ring->scan_timestamp) {
@@ -43,9 +92,15 @@ static int ad7476_ring_preenable(struct iio_dev *indio_dev)
 			st->d_size += sizeof(s64) - (st->d_size % sizeof(s64));
 	}
 
+<<<<<<< HEAD
 	if (indio_dev->buffer->access->set_bytes_per_datum)
 		indio_dev->buffer->access->
 			set_bytes_per_datum(indio_dev->buffer, st->d_size);
+=======
+	if (indio_dev->ring->access->set_bytes_per_datum)
+		indio_dev->ring->access->set_bytes_per_datum(indio_dev->ring,
+							    st->d_size);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -53,8 +108,13 @@ static int ad7476_ring_preenable(struct iio_dev *indio_dev)
 static irqreturn_t ad7476_trigger_handler(int irq, void  *p)
 {
 	struct iio_poll_func *pf = p;
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = pf->indio_dev;
 	struct ad7476_state *st = iio_priv(indio_dev);
+=======
+	struct iio_dev *indio_dev = pf->private_data;
+	struct ad7476_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	s64 time_ns;
 	__u8 *rxbuf;
 	int b_sent;
@@ -70,11 +130,19 @@ static irqreturn_t ad7476_trigger_handler(int irq, void  *p)
 
 	time_ns = iio_get_time_ns();
 
+<<<<<<< HEAD
 	if (indio_dev->buffer->scan_timestamp)
 		memcpy(rxbuf + st->d_size - sizeof(s64),
 			&time_ns, sizeof(time_ns));
 
 	indio_dev->buffer->access->store_to(indio_dev->buffer, rxbuf, time_ns);
+=======
+	if (indio_dev->ring->scan_timestamp)
+		memcpy(rxbuf + st->d_size - sizeof(s64),
+			&time_ns, sizeof(time_ns));
+
+	indio_dev->ring->access->store_to(indio_dev->ring, rxbuf, time_ns);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 done:
 	iio_trigger_notify_done(indio_dev->trig);
 	kfree(rxbuf);
@@ -82,14 +150,22 @@ done:
 	return IRQ_HANDLED;
 }
 
+<<<<<<< HEAD
 static const struct iio_buffer_setup_ops ad7476_ring_setup_ops = {
 	.preenable = &ad7476_ring_preenable,
 	.postenable = &iio_triggered_buffer_postenable,
 	.predisable = &iio_triggered_buffer_predisable,
+=======
+static const struct iio_ring_setup_ops ad7476_ring_setup_ops = {
+	.preenable = &ad7476_ring_preenable,
+	.postenable = &iio_triggered_ring_postenable,
+	.predisable = &iio_triggered_ring_predisable,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 int ad7476_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 {
+<<<<<<< HEAD
 	struct ad7476_state *st = iio_priv(indio_dev);
 	int ret = 0;
 
@@ -98,6 +174,18 @@ int ad7476_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 		ret = -ENOMEM;
 		goto error_ret;
 	}
+=======
+	struct ad7476_state *st = indio_dev->dev_data;
+	int ret = 0;
+
+	indio_dev->ring = iio_sw_rb_allocate(indio_dev);
+	if (!indio_dev->ring) {
+		ret = -ENOMEM;
+		goto error_ret;
+	}
+	/* Effectively select the ring buffer implementation */
+	indio_dev->ring->access = &ring_sw_access_funcs;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	indio_dev->pollfunc
 		= iio_alloc_pollfunc(NULL,
 				     &ad7476_trigger_handler,
@@ -112,6 +200,7 @@ int ad7476_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 	}
 
 	/* Ring buffer functions - here trigger setup related */
+<<<<<<< HEAD
 	indio_dev->setup_ops = &ad7476_ring_setup_ops;
 	indio_dev->buffer->scan_timestamp = true;
 
@@ -121,12 +210,34 @@ int ad7476_register_ring_funcs_and_init(struct iio_dev *indio_dev)
 
 error_deallocate_sw_rb:
 	iio_sw_rb_free(indio_dev->buffer);
+=======
+	indio_dev->ring->setup_ops = &ad7476_ring_setup_ops;
+	indio_dev->ring->scan_timestamp = true;
+
+	/* Flag that polled ring buffering is possible */
+	indio_dev->modes |= INDIO_RING_TRIGGERED;
+	return 0;
+
+error_deallocate_sw_rb:
+	iio_sw_rb_free(indio_dev->ring);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 error_ret:
 	return ret;
 }
 
 void ad7476_ring_cleanup(struct iio_dev *indio_dev)
 {
+<<<<<<< HEAD
 	iio_dealloc_pollfunc(indio_dev->pollfunc);
 	iio_sw_rb_free(indio_dev->buffer);
+=======
+	/* ensure that the trigger has been detached */
+	if (indio_dev->trig) {
+		iio_put_trigger(indio_dev->trig);
+		iio_trigger_dettach_poll_func(indio_dev->trig,
+					      indio_dev->pollfunc);
+	}
+	iio_dealloc_pollfunc(indio_dev->pollfunc);
+	iio_sw_rb_free(indio_dev->ring);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }

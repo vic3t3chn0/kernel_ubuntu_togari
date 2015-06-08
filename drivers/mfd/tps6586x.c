@@ -197,7 +197,11 @@ int tps6586x_set_bits(struct device *dev, int reg, uint8_t bit_mask)
 	if (ret)
 		goto out;
 
+<<<<<<< HEAD
 	if ((reg_val & bit_mask) != bit_mask) {
+=======
+	if ((reg_val & bit_mask) == 0) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		reg_val |= bit_mask;
 		ret = __tps6586x_write(to_i2c_client(dev), reg, reg_val);
 	}

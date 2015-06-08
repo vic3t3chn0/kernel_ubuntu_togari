@@ -10,7 +10,10 @@
  * option) any later version.
  */
 
+<<<<<<< HEAD
 #include <linux/stat.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/rio.h>
 #include <linux/rio_drv.h>
 #include <linux/rio_ids.h>

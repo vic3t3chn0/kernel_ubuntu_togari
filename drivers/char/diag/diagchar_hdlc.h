@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2008-2009, 2012-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2008-2009, Code Aurora Forum. All rights reserved.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -53,9 +57,14 @@ void diag_hdlc_encode(struct diag_send_desc_type *src_desc,
 
 int diag_hdlc_decode(struct diag_hdlc_decode_type *hdlc);
 
+<<<<<<< HEAD
 int crc_check(uint8_t *buf, uint16_t len);
 
 #define ESC_CHAR     0x7D
+=======
+#define ESC_CHAR     0x7D
+#define CONTROL_CHAR 0x7E
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define ESC_MASK     0x20
 
 #endif

@@ -35,6 +35,10 @@
 #include <scsi/scsi_ioctl.h>
 
 #include <asm/byteorder.h>
+<<<<<<< HEAD
+=======
+#include <linux/irq.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/uaccess.h>
 #include <linux/io.h>
 #include <asm/unaligned.h>

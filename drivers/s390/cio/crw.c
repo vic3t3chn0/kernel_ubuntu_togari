@@ -13,7 +13,10 @@
 #include <linux/init.h>
 #include <linux/wait.h>
 #include <asm/crw.h>
+<<<<<<< HEAD
 #include <asm/ctl_reg.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static DEFINE_MUTEX(crw_handler_mutex);
 static crw_handler_t crw_handlers[NR_RSCS];

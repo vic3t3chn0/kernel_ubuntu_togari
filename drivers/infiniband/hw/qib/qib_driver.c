@@ -37,7 +37,10 @@
 #include <linux/delay.h>
 #include <linux/netdevice.h>
 #include <linux/vmalloc.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "qib.h"
 
@@ -280,10 +283,17 @@ bail:
  */
 static inline void *qib_get_egrbuf(const struct qib_ctxtdata *rcd, u32 etail)
 {
+<<<<<<< HEAD
 	const u32 chunk = etail >> rcd->rcvegrbufs_perchunk_shift;
 	const u32 idx =  etail & ((u32)rcd->rcvegrbufs_perchunk - 1);
 
 	return rcd->rcvegrbuf[chunk] + (idx << rcd->dd->rcvegrbufsize_shift);
+=======
+	const u32 chunk = etail / rcd->rcvegrbufs_perchunk;
+	const u32 idx =  etail % rcd->rcvegrbufs_perchunk;
+
+	return rcd->rcvegrbuf[chunk] + idx * rcd->dd->rcvegrbufsize;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -311,6 +321,10 @@ static u32 qib_rcv_hdrerr(struct qib_ctxtdata *rcd, struct qib_pportdata *ppd,
 		u32 opcode;
 		u32 psn;
 		int diff;
+<<<<<<< HEAD
+=======
+		unsigned long flags;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		/* Sanity check packet */
 		if (tlen < 24)
@@ -365,14 +379,27 @@ static u32 qib_rcv_hdrerr(struct qib_ctxtdata *rcd, struct qib_pportdata *ppd,
 
 			switch (qp->ibqp.qp_type) {
 			case IB_QPT_RC:
+<<<<<<< HEAD
+=======
+				spin_lock_irqsave(&qp->s_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				ruc_res =
 					qib_ruc_check_hdr(
 						ibp, hdr,
 						lnh == QIB_LRH_GRH,
 						qp,
 						be32_to_cpu(ohdr->bth[0]));
+<<<<<<< HEAD
 				if (ruc_res)
 					goto unlock;
+=======
+				if (ruc_res) {
+					spin_unlock_irqrestore(&qp->s_lock,
+							       flags);
+					goto unlock;
+				}
+				spin_unlock_irqrestore(&qp->s_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 				/* Only deal with RDMA Writes for now */
 				if (opcode <
@@ -542,6 +569,7 @@ move_along:
 			updegr = 0;
 		}
 	}
+<<<<<<< HEAD
 	/*
 	 * Notify qib_destroy_qp() if it is waiting
 	 * for lookaside_qp to finish.
@@ -551,6 +579,8 @@ move_along:
 			wake_up(&rcd->lookaside_qp->wait);
 		rcd->lookaside_qp = NULL;
 	}
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	rcd->head = l;
 	rcd->pkt_count += i;

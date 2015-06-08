@@ -105,10 +105,13 @@
 #define INTEL_MODE_PIXEL_MULTIPLIER_SHIFT (0x0)
 #define INTEL_MODE_PIXEL_MULTIPLIER_MASK (0xf << INTEL_MODE_PIXEL_MULTIPLIER_SHIFT)
 #define INTEL_MODE_DP_FORCE_6BPC (0x10)
+<<<<<<< HEAD
 /* This flag must be set by the encoder's mode_fixup if it changes the crtc
  * timings in the mode to prevent the crtc fixup from overwriting them.
  * Currently only lvds needs that. */
 #define INTEL_MODE_CRTC_TIMINGS_SET (0x20)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static inline void
 intel_mode_set_pixel_multiplier(struct drm_display_mode *mode,

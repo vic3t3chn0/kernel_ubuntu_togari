@@ -10,11 +10,15 @@
  */
 
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/device.h>
 
 #include <linux/usb/otg.h>
 
+<<<<<<< HEAD
 static struct usb_phy *phy;
 
 /**
@@ -43,20 +47,59 @@ EXPORT_SYMBOL(usb_get_transceiver);
  * For use by USB host and peripheral drivers.
  */
 void usb_put_transceiver(struct usb_phy *x)
+=======
+static struct otg_transceiver *xceiv;
+
+/**
+ * otg_get_transceiver - find the (single) OTG transceiver
+ *
+ * Returns the transceiver driver, after getting a refcount to it; or
+ * null if there is no such transceiver.  The caller is responsible for
+ * calling otg_put_transceiver() to release that count.
+ *
+ * For use by USB host and peripheral drivers.
+ */
+struct otg_transceiver *otg_get_transceiver(void)
+{
+	if (xceiv)
+		get_device(xceiv->dev);
+	return xceiv;
+}
+EXPORT_SYMBOL(otg_get_transceiver);
+
+/**
+ * otg_put_transceiver - release the (single) OTG transceiver
+ * @x: the transceiver returned by otg_get_transceiver()
+ *
+ * Releases a refcount the caller received from otg_get_transceiver().
+ *
+ * For use by USB host and peripheral drivers.
+ */
+void otg_put_transceiver(struct otg_transceiver *x)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	if (x)
 		put_device(x->dev);
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(usb_put_transceiver);
 
 /**
  * usb_set_transceiver - declare the (single) USB transceiver
  * @x: the USB transceiver to be used; or NULL
+=======
+EXPORT_SYMBOL(otg_put_transceiver);
+
+/**
+ * otg_set_transceiver - declare the (single) OTG transceiver
+ * @x: the USB OTG transceiver to be used; or NULL
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This call is exclusively for use by transceiver drivers, which
  * coordinate the activities of drivers for host and peripheral
  * controllers, and in some cases for VBUS current regulation.
  */
+<<<<<<< HEAD
 int usb_set_transceiver(struct usb_phy *x)
 {
 	if (phy && x)
@@ -65,6 +108,16 @@ int usb_set_transceiver(struct usb_phy *x)
 	return 0;
 }
 EXPORT_SYMBOL(usb_set_transceiver);
+=======
+int otg_set_transceiver(struct otg_transceiver *x)
+{
+	if (xceiv && x)
+		return -EBUSY;
+	xceiv = x;
+	return 0;
+}
+EXPORT_SYMBOL(otg_set_transceiver);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 const char *otg_state_string(enum usb_otg_state state)
 {
@@ -100,6 +153,7 @@ const char *otg_state_string(enum usb_otg_state state)
 	}
 }
 EXPORT_SYMBOL(otg_state_string);
+<<<<<<< HEAD
 
 int otg_send_event(enum usb_otg_event event)
 {
@@ -115,3 +169,5 @@ int otg_send_event(enum usb_otg_event event)
 	return ret;
 }
 EXPORT_SYMBOL(otg_send_event);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

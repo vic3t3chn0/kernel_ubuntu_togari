@@ -24,6 +24,13 @@
 
 #include "main.h"
 
+<<<<<<< HEAD
 int mwifiex_register_cfg80211(struct mwifiex_private *);
 
+=======
+int mwifiex_register_cfg80211(struct net_device *, u8 *,
+				struct mwifiex_private *);
+
+void mwifiex_cfg80211_results(struct work_struct *work);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif

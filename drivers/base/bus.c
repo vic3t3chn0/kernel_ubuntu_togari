@@ -16,6 +16,7 @@
 #include <linux/slab.h>
 #include <linux/init.h>
 #include <linux/string.h>
+<<<<<<< HEAD
 #include <linux/mutex.h>
 #include "base.h"
 #include "power/power.h"
@@ -24,6 +25,11 @@
 /* FIXME: make static after drivers/base/sys.c is deleted */
 struct kset *system_kset;
 
+=======
+#include "base.h"
+#include "power/power.h"
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define to_bus_attr(_attr) container_of(_attr, struct bus_attribute, attr)
 
 /*
@@ -294,7 +300,11 @@ int bus_for_each_dev(struct bus_type *bus, struct device *start,
 	struct device *dev;
 	int error = 0;
 
+<<<<<<< HEAD
 	if (!bus)
+=======
+	if (!bus || !bus->p)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -EINVAL;
 
 	klist_iter_init_node(&bus->p->klist_devices, &i,
@@ -328,7 +338,11 @@ struct device *bus_find_device(struct bus_type *bus,
 	struct klist_iter i;
 	struct device *dev;
 
+<<<<<<< HEAD
 	if (!bus)
+=======
+	if (!bus || !bus->p)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return NULL;
 
 	klist_iter_init_node(&bus->p->klist_devices, &i,
@@ -365,6 +379,7 @@ struct device *bus_find_device_by_name(struct bus_type *bus,
 }
 EXPORT_SYMBOL_GPL(bus_find_device_by_name);
 
+<<<<<<< HEAD
 /**
  * subsys_find_device_by_id - find a device with a specific enumeration number
  * @subsys: subsystem
@@ -406,6 +421,8 @@ struct device *subsys_find_device_by_id(struct bus_type *subsys, unsigned int id
 }
 EXPORT_SYMBOL_GPL(subsys_find_device_by_id);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct device_driver *next_driver(struct klist_iter *i)
 {
 	struct klist_node *n = klist_next(i);
@@ -533,6 +550,7 @@ out_put:
 void bus_probe_device(struct device *dev)
 {
 	struct bus_type *bus = dev->bus;
+<<<<<<< HEAD
 	struct subsys_interface *sif;
 	int ret;
 
@@ -549,20 +567,33 @@ void bus_probe_device(struct device *dev)
 		if (sif->add_dev)
 			sif->add_dev(dev, sif);
 	mutex_unlock(&bus->p->mutex);
+=======
+	int ret;
+
+	if (bus && bus->p->drivers_autoprobe) {
+		ret = device_attach(dev);
+		WARN_ON(ret < 0);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
  * bus_remove_device - remove device from bus
  * @dev: device to be removed
  *
+<<<<<<< HEAD
  * - Remove device from all interfaces.
  * - Remove symlink from bus' directory.
+=======
+ * - Remove symlink from bus's directory.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * - Delete device from bus's list.
  * - Detach from its driver.
  * - Drop reference taken in bus_add_device().
  */
 void bus_remove_device(struct device *dev)
 {
+<<<<<<< HEAD
 	struct bus_type *bus = dev->bus;
 	struct subsys_interface *sif;
 
@@ -586,6 +617,21 @@ void bus_remove_device(struct device *dev)
 		 dev->bus->name, dev_name(dev));
 	device_release_driver(dev);
 	bus_put(dev->bus);
+=======
+	if (dev->bus) {
+		sysfs_remove_link(&dev->kobj, "subsystem");
+		sysfs_remove_link(&dev->bus->p->devices_kset->kobj,
+				  dev_name(dev));
+		device_remove_attrs(dev->bus, dev);
+		if (klist_node_attached(&dev->p->knode_bus))
+			klist_del(&dev->p->knode_bus);
+
+		pr_debug("bus: '%s': remove device %s\n",
+			 dev->bus->name, dev_name(dev));
+		device_release_driver(dev);
+		bus_put(dev->bus);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int driver_add_attrs(struct bus_type *bus, struct device_driver *drv)
@@ -715,12 +761,19 @@ int bus_add_driver(struct device_driver *drv)
 	if (error)
 		goto out_unregister;
 
+<<<<<<< HEAD
 	klist_add_tail(&priv->knode_bus, &bus->p->klist_drivers);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (drv->bus->p->drivers_autoprobe) {
 		error = driver_attach(drv);
 		if (error)
 			goto out_unregister;
 	}
+<<<<<<< HEAD
+=======
+	klist_add_tail(&priv->knode_bus, &bus->p->klist_drivers);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	module_add_driver(drv->owner, drv);
 
 	error = driver_create_file(drv, &driver_attr_uevent);
@@ -914,6 +967,7 @@ static ssize_t bus_uevent_store(struct bus_type *bus,
 static BUS_ATTR(uevent, S_IWUSR, NULL, bus_uevent_store);
 
 /**
+<<<<<<< HEAD
  * __bus_register - register a driver-core subsystem
  * @bus: bus to register
  * @key: lockdep class key
@@ -923,6 +977,16 @@ static BUS_ATTR(uevent, S_IWUSR, NULL, bus_uevent_store);
  * the devices and drivers that belong to the subsystem.
  */
 int __bus_register(struct bus_type *bus, struct lock_class_key *key)
+=======
+ * bus_register - register a bus with the system.
+ * @bus: bus.
+ *
+ * Once we have that, we registered the bus with the kobject
+ * infrastructure, then register the children subsystems it has:
+ * the devices and drivers that belong to the bus.
+ */
+int bus_register(struct bus_type *bus)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	int retval;
 	struct subsys_private *priv;
@@ -966,8 +1030,11 @@ int __bus_register(struct bus_type *bus, struct lock_class_key *key)
 		goto bus_drivers_fail;
 	}
 
+<<<<<<< HEAD
 	INIT_LIST_HEAD(&priv->interfaces);
 	__mutex_init(&priv->mutex, "subsys mutex", key);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	klist_init(&priv->klist_devices, klist_devices_get, klist_devices_put);
 	klist_init(&priv->klist_drivers, NULL, NULL);
 
@@ -997,7 +1064,11 @@ out:
 	bus->p = NULL;
 	return retval;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(__bus_register);
+=======
+EXPORT_SYMBOL_GPL(bus_register);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * bus_unregister - remove a bus from the system
@@ -1009,8 +1080,11 @@ EXPORT_SYMBOL_GPL(__bus_register);
 void bus_unregister(struct bus_type *bus)
 {
 	pr_debug("bus: '%s': unregistering\n", bus->name);
+<<<<<<< HEAD
 	if (bus->dev_root)
 		device_unregister(bus->dev_root);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	bus_remove_attrs(bus);
 	remove_probe_files(bus);
 	kset_unregister(bus->p->drivers_kset);
@@ -1100,6 +1174,7 @@ void bus_sort_breadthfirst(struct bus_type *bus,
 }
 EXPORT_SYMBOL_GPL(bus_sort_breadthfirst);
 
+<<<<<<< HEAD
 /**
  * subsys_dev_iter_init - initialize subsys device iterator
  * @iter: subsys iterator to initialize
@@ -1281,15 +1356,20 @@ err_dev:
 }
 EXPORT_SYMBOL_GPL(subsys_system_register);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int __init buses_init(void)
 {
 	bus_kset = kset_create_and_add("bus", &bus_uevent_ops, NULL);
 	if (!bus_kset)
 		return -ENOMEM;
+<<<<<<< HEAD
 
 	system_kset = kset_create_and_add("system", NULL, &devices_kset->kobj);
 	if (!system_kset)
 		return -ENOMEM;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }

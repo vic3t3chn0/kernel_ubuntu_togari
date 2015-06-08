@@ -46,7 +46,10 @@ struct ves1x93_state {
 	u8 *init_1x93_wtab;
 	u8 tab_size;
 	u8 demod_type;
+<<<<<<< HEAD
 	u32 frequency;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int debug;
@@ -385,6 +388,7 @@ static int ves1x93_read_ucblocks(struct dvb_frontend* fe, u32* ucblocks)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int ves1x93_set_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
@@ -399,20 +403,45 @@ static int ves1x93_set_frontend(struct dvb_frontend *fe)
 	ves1x93_set_symbolrate(state, p->symbol_rate);
 	state->inversion = p->inversion;
 	state->frequency = p->frequency;
+=======
+static int ves1x93_set_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+	struct ves1x93_state* state = fe->demodulator_priv;
+
+	if (fe->ops.tuner_ops.set_params) {
+		fe->ops.tuner_ops.set_params(fe, p);
+		if (fe->ops.i2c_gate_ctrl) fe->ops.i2c_gate_ctrl(fe, 0);
+	}
+	ves1x93_set_inversion (state, p->inversion);
+	ves1x93_set_fec (state, p->u.qpsk.fec_inner);
+	ves1x93_set_symbolrate (state, p->u.qpsk.symbol_rate);
+	state->inversion = p->inversion;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
 
+<<<<<<< HEAD
 static int ves1x93_get_frontend(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *p = &fe->dtv_property_cache;
+=======
+static int ves1x93_get_frontend(struct dvb_frontend* fe, struct dvb_frontend_parameters *p)
+{
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct ves1x93_state* state = fe->demodulator_priv;
 	int afc;
 
 	afc = ((int)((char)(ves1x93_readreg (state, 0x0a) << 1)))/2;
+<<<<<<< HEAD
 	afc = (afc * (int)(p->symbol_rate/1000/8))/16;
 
 	p->frequency = state->frequency - afc;
+=======
+	afc = (afc * (int)(p->u.qpsk.symbol_rate/1000/8))/16;
+
+	p->frequency -= afc;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * inversion indicator is only valid
@@ -421,7 +450,11 @@ static int ves1x93_get_frontend(struct dvb_frontend *fe)
 	if (state->inversion == INVERSION_AUTO)
 		p->inversion = (ves1x93_readreg (state, 0x0f) & 2) ?
 				INVERSION_OFF : INVERSION_ON;
+<<<<<<< HEAD
 	p->fec_inner = ves1x93_get_fec(state);
+=======
+	p->u.qpsk.fec_inner = ves1x93_get_fec (state);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*  XXX FIXME: timing offset !! */
 
 	return 0;
@@ -510,9 +543,16 @@ error:
 }
 
 static struct dvb_frontend_ops ves1x93_ops = {
+<<<<<<< HEAD
 	.delsys = { SYS_DVBS },
 	.info = {
 		.name			= "VLSI VES1x93 DVB-S",
+=======
+
+	.info = {
+		.name			= "VLSI VES1x93 DVB-S",
+		.type			= FE_QPSK,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.frequency_min		= 950000,
 		.frequency_max		= 2150000,
 		.frequency_stepsize	= 125,		 /* kHz for QPSK frontends */

@@ -24,10 +24,23 @@
 #include <linux/sched.h>
 #include <linux/circ_buf.h>
 #include <net/cfg80211.h>
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_HAS_EARLYSUSPEND
+#include <linux/earlysuspend.h>
+#endif
+#ifdef CONFIG_HAS_WAKELOCK
+#include <linux/wakelock.h>
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "htc.h"
 #include "wmi.h"
 #include "bmi.h"
 #include "target.h"
+<<<<<<< HEAD
+=======
+#include "wmi_btcoex.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define MAX_ATH6KL                        1
 #define ATH6KL_MAX_RX_BUFFERS             16
@@ -62,7 +75,61 @@
 #define DISCON_TIMER_INTVAL               10000  /* in msec */
 
 /* Channel dwell time in fg scan */
+<<<<<<< HEAD
 #define ATH6KL_FG_SCAN_INTERVAL		50 /* in ms */
+=======
+#define ATH6KL_FG_SCAN_INTERVAL				60 /* in ms */
+
+/*
+ * background scan interval (sec)
+ * disable background scan interval: 65535
+ * default: 60 sec
+ * to restore the default value: 0
+ *
+ * For P2P and PMKID cache, bg scan should be enabled.
+ */
+#ifdef CONFIG_MACH_PX
+#define WLAN_CONFIG_BG_SCAN_INTERVAL         65535
+#else
+#define WLAN_CONFIG_BG_SCAN_INTERVAL         0
+#endif
+/*
+ * maximum active dwell time (ms)
+ * default: 20 ms
+ * to restore the default value: 0
+ */
+#ifdef CONFIG_MACH_PX
+#define WLAN_CONFIG_MAXACT_CHDWELL_TIME      60
+#else
+#define WLAN_CONFIG_MAXACT_CHDWELL_TIME      20
+#endif
+/*
+ * passive dwell time (ms)
+ * default: 50 ms
+ * to restore the default value: 0
+ */
+#ifdef CONFIG_MACH_PX
+#define WLAN_CONFIG_PASSIVE_CHDWELL_TIME     120
+#else
+#define WLAN_CONFIG_PASSIVE_CHDWELL_TIME     50
+#endif
+#define WMI_SHORTSCANRATIO_DEFAULT           3
+#define DEFAULT_SCAN_CTRL_FLAGS              (CONNECT_SCAN_CTRL_FLAGS | \
+			SCAN_CONNECTED_CTRL_FLAGS | ACTIVE_SCAN_CTRL_FLAGS | \
+			ROAM_SCAN_CTRL_FLAGS | ENABLE_AUTO_CTRL_FLAGS)
+
+/*
+ * 0: to disable sending ps-poll in TIM interrupt
+ * 1: to send one ps-poll (the default)
+ */
+#ifdef CONFIG_MACH_PX
+#define WLAN_CONFIG_PSPOLL_NUM              0
+#else
+#define WLAN_CONFIG_PSPOLL_NUM              1
+#endif
+
+#define WLAN_CONFIG_MCAST_RATE              60
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* includes also the null byte */
 #define ATH6KL_FIRMWARE_MAGIC               "QCA-ATH6KL"
@@ -91,6 +158,13 @@ enum ath6kl_fw_capability {
 	 */
 	ATH6KL_FW_CAPABILITY_STA_P2PDEV_DUPLEX,
 
+<<<<<<< HEAD
+=======
+	ATH6KL_FW_CAPABILITY_INACTIVITY_TIMEOUT,
+
+	ATH6KL_FW_CAPABILITY_RSN_CAP_OVERRIDE,
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* this needs to be last */
 	ATH6KL_FW_CAPABILITY_MAX,
 };
@@ -134,6 +208,14 @@ struct ath6kl_fw_ie {
 #define AR6003_HW_2_1_1_DEFAULT_BOARD_DATA_FILE	\
 			"ath6k/AR6003/hw2.1.1/bdata.SD31.bin"
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_PX
+#define AR6003_HW_2_1_1_TCMD_BOARD_DATA_FILE \
+			"ath6k/AR6003/hw2.1.1/bdata.tcmd.bin"
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* AR6004 1.0 definitions */
 #define AR6004_HW_1_0_VERSION                 0x30000623
 #define AR6004_HW_1_0_FW_DIR			"ath6k/AR6004/hw1.0"
@@ -179,7 +261,15 @@ struct ath6kl_fw_ie {
 
 #define AGGR_NUM_OF_FREE_NETBUFS    16
 
+<<<<<<< HEAD
 #define AGGR_RX_TIMEOUT     400	/* in ms */
+=======
+#ifdef CONFIG_MACH_PX
+#define AGGR_RX_TIMEOUT     100	/* in ms */
+#else
+#define AGGR_RX_TIMEOUT     400	/* in ms */
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define WMI_TIMEOUT (2 * HZ)
 
@@ -205,6 +295,11 @@ struct ath6kl_fw_ie {
 #define ATH6KL_CONF_ENABLE_TX_BURST		BIT(3)
 #define ATH6KL_CONF_UART_DEBUG			BIT(4)
 
+<<<<<<< HEAD
+=======
+#define P2P_WILDCARD_SSID_LEN			7 /* DIRECT- */
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 enum wlan_low_pwr_state {
 	WLAN_POWER_STATE_ON,
 	WLAN_POWER_STATE_CUT_PWR,
@@ -233,12 +328,15 @@ struct rxtid {
 	u32 hold_q_sz;
 	struct skb_hold_q *hold_q;
 	struct sk_buff_head q;
+<<<<<<< HEAD
 
 	/*
 	 * FIXME: No clue what this should protect. Apparently it should
 	 * protect some of the fields above but they are also accessed
 	 * without taking the lock.
 	 */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spinlock_t lock;
 };
 
@@ -317,10 +415,14 @@ struct ath6kl_sta {
 	u8 auth;
 	u8 wpa_ie[ATH6KL_MAX_IE];
 	struct sk_buff_head psq;
+<<<<<<< HEAD
 
 	/* protects psq, mgmt_psq, apsdq, and mgmt_psq_len fields */
 	spinlock_t psq_lock;
 
+=======
+	spinlock_t psq_lock;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct list_head mgmt_psq;
 	size_t mgmt_psq_len;
 	u8 apsd_info;
@@ -449,6 +551,19 @@ struct ath6kl_req_key {
 	u8 key_len;
 };
 
+<<<<<<< HEAD
+=======
+/*
+ * Bluetooth WiFi co-ex information.
+ * This structure keeps track of the Bluetooth related status.
+ * This involves the Bluetooth ACL link role, Bluetooth remote lmp version.
+ */
+struct ath6kl_btcoex {
+	u32 acl_role; /* Master/slave role of Bluetooth ACL link */
+	u32 remote_lmp_ver; /* LMP version of the remote device. */
+	u32 bt_vendor; /* Keeps track of the Bluetooth chip vendor */
+};
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 enum ath6kl_hif_type {
 	ATH6KL_HIF_TYPE_SDIO,
 	ATH6KL_HIF_TYPE_USB,
@@ -480,6 +595,10 @@ enum ath6kl_vif_state {
 	WLAN_ENABLED,
 	STATS_UPDATE_PEND,
 	HOST_SLEEP_MODE_CMD_PROCESSED,
+<<<<<<< HEAD
+=======
+	SLEEP_POLICY_ENABLED,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 struct ath6kl_vif {
@@ -522,6 +641,11 @@ struct ath6kl_vif {
 	bool probe_req_report;
 	u16 next_chan;
 	u16 assoc_bss_beacon_int;
+<<<<<<< HEAD
+=======
+	u16 bg_scan_period;
+	u8 scan_ctrl_flag;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u16 listen_intvl_t;
 	u16 bmiss_time_t;
 	u8 assoc_bss_dtim_period;
@@ -529,6 +653,15 @@ struct ath6kl_vif {
 	struct target_stats target_stats;
 
 	struct list_head mc_filter;
+<<<<<<< HEAD
+=======
+
+	struct wmi_scan_params_cmd scparams;
+	unsigned int pspoll_num;
+	u16 mcastrate;
+	bool force_reload;
+	bool sdio_remove;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 #define WOW_LIST_ID		0
@@ -546,6 +679,10 @@ enum ath6kl_dev_state {
 	SKIP_SCAN,
 	ROAM_TBL_PEND,
 	FIRST_BOOT,
+<<<<<<< HEAD
+=======
+	WOW_RESUME_PRINT,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 enum ath6kl_state {
@@ -564,7 +701,10 @@ struct ath6kl {
 	struct wiphy *wiphy;
 
 	enum ath6kl_state state;
+<<<<<<< HEAD
 	unsigned int testmode;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	struct ath6kl_bmi bmi;
 	const struct ath6kl_hif_ops *hif_ops;
@@ -581,6 +721,7 @@ struct ath6kl {
 	unsigned int vif_max;
 	u8 max_norm_iface;
 	u8 avail_idx_map;
+<<<<<<< HEAD
 
 	/*
 	 * Protects at least amsdu_rx_buffer_queue, ath6kl_alloc_cookie()
@@ -588,6 +729,9 @@ struct ath6kl {
 	 */
 	spinlock_t lock;
 
+=======
+	spinlock_t lock;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct semaphore sem;
 	u8 lrssi_roam_threshold;
 	struct ath6kl_version version;
@@ -614,6 +758,7 @@ struct ath6kl {
 	u8 sta_list_index;
 	struct ath6kl_req_key ap_mode_bkey;
 	struct sk_buff_head mcastpsq;
+<<<<<<< HEAD
 
 	/*
 	 * FIXME: protects access to mcastpsq but is actually useless as
@@ -621,6 +766,9 @@ struct ath6kl {
 	 */
 	spinlock_t mcastpsq_lock;
 
+=======
+	spinlock_t mcastpsq_lock;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u8 intra_bss;
 	struct wmi_ap_mode_stat ap_stats;
 	u8 ap_country_code[3];
@@ -694,7 +842,13 @@ struct ath6kl {
 
 	bool p2p;
 
+<<<<<<< HEAD
 	bool wiphy_registered;
+=======
+	struct ath6kl_btcoex btcoex_info;
+
+	unsigned int psminfo;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_ATH6KL_DEBUG
 	struct {
@@ -719,8 +873,41 @@ struct ath6kl {
 		u8 disc_timeout;
 	} debug;
 #endif /* CONFIG_ATH6KL_DEBUG */
+<<<<<<< HEAD
 };
 
+=======
+
+#ifdef CONFIG_HAS_EARLYSUSPEND
+	struct early_suspend early_suspend;
+	bool screen_off;
+#endif /* CONFIG_HAS_EARLYSUSPEND */
+
+#ifdef CONFIG_HAS_WAKELOCK
+	struct wake_lock wake_lock;
+	struct wake_lock p2p_wake_lock;
+#endif /* CONFIG_HAS_WAKELOCK */
+
+};
+
+#ifdef CONFIG_MACH_PX
+/*
+   For this 3.2.0.4402 image:
+   00561734 g	  O .bss   00000004 epc1
+   00561738 g	   O .bss  00000004 epc2
+   0056173c g	   O .bss  00000004 epc3
+   00561740 g	   O .bss  00000004 epc4
+
+   For this 3.2.0.64 image:
+   00561fa4 g	  O .bss   00000004 epc1
+*/
+
+#define EPC1_ADDR       0x00
+
+void ath6kl_print_ar6k_registers(struct ath6kl *ar);
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline struct ath6kl *ath6kl_priv(struct net_device *dev)
 {
 	return ((struct ath6kl_vif *) netdev_priv(dev))->ar;
@@ -775,10 +962,17 @@ struct htc_packet *ath6kl_alloc_amsdu_rxbuf(struct htc_target *target,
 void aggr_module_destroy(struct aggr_info *aggr_info);
 void aggr_reset_state(struct aggr_info_conn *aggr_conn);
 
+<<<<<<< HEAD
 struct ath6kl_sta *ath6kl_find_sta(struct ath6kl_vif *vif, u8 *node_addr);
 struct ath6kl_sta *ath6kl_find_sta_by_aid(struct ath6kl *ar, u8 aid);
 
 void ath6kl_ready_event(void *devt, u8 *datap, u32 sw_ver, u32 abi_ver);
+=======
+struct ath6kl_sta *ath6kl_find_sta(struct ath6kl_vif *vif, u8 * node_addr);
+struct ath6kl_sta *ath6kl_find_sta_by_aid(struct ath6kl *ar, u8 aid);
+
+void ath6kl_ready_event(void *devt, u8 * datap, u32 sw_ver, u32 abi_ver);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int ath6kl_control_tx(void *devt, struct sk_buff *skb,
 		      enum htc_endpoint_id eid);
 void ath6kl_connect_event(struct ath6kl_vif *vif, u16 channel,
@@ -812,10 +1006,16 @@ void ath6kl_wakeup_event(void *dev);
 void ath6kl_reset_device(struct ath6kl *ar, u32 target_type,
 			 bool wait_fot_compltn, bool cold_reset);
 void ath6kl_init_control_info(struct ath6kl_vif *vif);
+<<<<<<< HEAD
+=======
+void ath6kl_deinit_if_data(struct ath6kl_vif *vif);
+void ath6kl_core_free(struct ath6kl *ar);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 struct ath6kl_vif *ath6kl_vif_first(struct ath6kl *ar);
 void ath6kl_cleanup_vif(struct ath6kl_vif *vif, bool wmi_ready);
 int ath6kl_init_hw_start(struct ath6kl *ar);
 int ath6kl_init_hw_stop(struct ath6kl *ar);
+<<<<<<< HEAD
 int ath6kl_init_fetch_firmwares(struct ath6kl *ar);
 int ath6kl_init_hw_params(struct ath6kl *ar);
 
@@ -825,5 +1025,17 @@ struct ath6kl *ath6kl_core_create(struct device *dev);
 int ath6kl_core_init(struct ath6kl *ar);
 void ath6kl_core_cleanup(struct ath6kl *ar);
 void ath6kl_core_destroy(struct ath6kl *ar);
+=======
+void ath6kl_check_wow_status(struct ath6kl *ar, struct sk_buff *skb,
+			     bool is_event_pkt);
+#ifdef CONFIG_MACH_PX
+void ath6kl_sdio_init_c210(void);
+void ath6kl_sdio_exit_c210(void);
+#else
+void ath6kl_sdio_init_msm(void);
+void ath6kl_sdio_exit_msm(void);
+#endif
+void ath6kl_mangle_mac_address(struct ath6kl *ar);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #endif /* CORE_H */

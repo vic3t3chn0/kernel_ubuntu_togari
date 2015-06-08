@@ -3,13 +3,19 @@
 #
 
 obj-$(CONFIG_IIO) += industrialio.o
+<<<<<<< HEAD
 industrialio-y := industrialio-core.o industrialio-event.o inkern.o
 industrialio-$(CONFIG_IIO_BUFFER) += industrialio-buffer.o
+=======
+industrialio-y := industrialio-core.o
+industrialio-$(CONFIG_IIO_RING_BUFFER) += industrialio-ring.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 industrialio-$(CONFIG_IIO_TRIGGER) += industrialio-trigger.o
 
 obj-$(CONFIG_IIO_SW_RING) += ring_sw.o
 obj-$(CONFIG_IIO_KFIFO_BUF) += kfifo_buf.o
 
+<<<<<<< HEAD
 obj-$(CONFIG_IIO_SIMPLE_DUMMY) += iio_dummy.o
 iio_dummy-y := iio_simple_dummy.o
 iio_dummy-$(CONFIG_IIO_SIMPLE_DUMMY_EVENTS) += iio_simple_dummy_events.o
@@ -27,6 +33,14 @@ obj-y += dac/
 obj-y += dds/
 obj-y += gyro/
 obj-y += impedance-analyzer/
+=======
+obj-y += accel/
+obj-y += adc/
+obj-y += addac/
+obj-y += dac/
+obj-y += dds/
+obj-y += gyro/
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-y += imu/
 obj-y += light/
 obj-y += magnetometer/

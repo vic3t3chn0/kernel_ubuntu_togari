@@ -16,7 +16,10 @@
 
 #include <linux/module.h>
 #include <linux/tty.h>
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/ioport.h>
 #include <linux/init.h>
 #include <linux/serial.h>
@@ -577,7 +580,11 @@ static int __devinit apbuart_probe(struct platform_device *op)
 	return 0;
 }
 
+<<<<<<< HEAD
 static struct of_device_id apbuart_match[] = {
+=======
+static struct of_device_id __initdata apbuart_match[] = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{
 	 .name = "GAISLER_APBUART",
 	 },
@@ -597,7 +604,11 @@ static struct platform_driver grlib_apbuart_of_driver = {
 };
 
 
+<<<<<<< HEAD
 static int __init grlib_apbuart_configure(void)
+=======
+static int grlib_apbuart_configure(void)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct device_node *np;
 	int line = 0;

@@ -218,6 +218,7 @@ config USB_TEST
 	  See <http://www.linux-usb.org/usbtest/> for more information,
 	  including sample test device firmware and "how to use it".
 
+<<<<<<< HEAD
 config USB_EHSET_TEST_FIXTURE
 	tristate "USB EHSET Test Fixture Driver"
 	depends on USB && USB_EHCI_EHSET
@@ -233,6 +234,8 @@ config USB_EHSET_TEST_FIXTURE
 	  for more information.
 
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config USB_ISIGHTFW
 	tristate "iSight firmware loading support"
 	depends on USB
@@ -259,6 +262,17 @@ config USB_YUREX
 	  To compile this driver as a module, choose M here: the
 	  module will be called yurex.
 
+<<<<<<< HEAD
+=======
+config USB_EXYNOS_SWITCH
+	bool "EXYNOS USB SWITCH driver"
+	depends on USB_EHCI_S5P || USB_OHCI_S5P || USB_XHCI_EXYNOS
+	depends on USB_SUSPEND
+	depends on S5P_DEV_USB_SWITCH
+	help
+	  This driver is for switching host & device controller software.
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config USB_QCOM_DIAG_BRIDGE
 	tristate "USB Qualcomm diagnostic bridge driver"
 	depends on USB
@@ -293,6 +307,7 @@ config USB_QCOM_MDM_BRIDGE
 	  driver for dial up network and RMNET.
 	  To compile this driver as a module, choose M here: the module
 	  will be called mdm_bridge. If unsure, choose N.
+<<<<<<< HEAD
 
 config USB_QCOM_KS_BRIDGE
 	tristate "USB Qualcomm kick start bridge"
@@ -303,3 +318,5 @@ config USB_QCOM_KS_BRIDGE
 	  boot images, ram-dumps and efs sync
 	  To compile this driver as a module, choose M here: the module
 	  will be called ks_bridge. If unsure, choose N.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

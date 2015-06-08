@@ -33,10 +33,17 @@ config KEYBOARD_ADP5588
 	  module will be called adp5588-keys.
 
 config KEYBOARD_ADP5589
+<<<<<<< HEAD
 	tristate "ADP5585/ADP5589 I2C QWERTY Keypad and IO Expander"
 	depends on I2C
 	help
 	  Say Y here if you want to use a ADP5585/ADP5589 attached to your
+=======
+	tristate "ADP5589 I2C QWERTY Keypad and IO Expander"
+	depends on I2C
+	help
+	  Say Y here if you want to use a ADP5589 attached to your
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	  system I2C bus.
 
 	  To compile this driver as a module, choose M here: the
@@ -221,6 +228,7 @@ config KEYBOARD_TCA6416
 	  To compile this driver as a module, choose M here: the
 	  module will be called tca6416_keypad.
 
+<<<<<<< HEAD
 config KEYBOARD_TCA8418
 	tristate "TCA8418 Keypad Support"
 	depends on I2C
@@ -237,6 +245,8 @@ config KEYBOARD_TCA8418
 	  To compile this driver as a module, choose M here: the
 	  module will be called tca8418_keypad.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config KEYBOARD_MATRIX
 	tristate "GPIO driven matrix keypad support"
 	depends on GENERIC_GPIO
@@ -394,7 +404,10 @@ config KEYBOARD_NOMADIK
 config KEYBOARD_TEGRA
 	tristate "NVIDIA Tegra internal matrix keyboard controller support"
 	depends on ARCH_TEGRA
+<<<<<<< HEAD
 	select INPUT_OF_MATRIX_KEYMAP if USE_OF
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  Say Y here if you want to use a matrix keyboard connected directly
 	  to the internal keyboard controller on Tegra SoCs.
@@ -440,6 +453,7 @@ config KEYBOARD_PMIC8XXX
 	  To compile this driver as a module, choose M here: the module will
 	  be called pmic8xxx-keypad.
 
+<<<<<<< HEAD
 config KEYBOARD_QPNP
 	tristate "Qualcomm QPNP PMIC keypad support"
 	depends on OF_SPMI && SPMI && MSM_QPNP_INT
@@ -457,6 +471,13 @@ config KEYBOARD_SAMSUNG
 	help
 	  Say Y here if you want to use the keypad on your Samsung mobile
 	  device.
+=======
+config KEYBOARD_SAMSUNG
+	tristate "Samsung keypad support"
+	depends on SAMSUNG_DEV_KEYPAD
+	help
+	  Say Y here if you want to use the Samsung keypad.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	  To compile this driver as a module, choose M here: the
 	  module will be called samsung-keypad.
@@ -524,6 +545,10 @@ config KEYBOARD_OMAP
 
 config KEYBOARD_OMAP4
 	tristate "TI OMAP4 keypad support"
+<<<<<<< HEAD
+=======
+	depends on ARCH_OMAP4
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  Say Y here if you want to use the OMAP4 keypad.
 
@@ -581,6 +606,7 @@ config KEYBOARD_XTKBD
 	  To compile this driver as a module, choose M here: the
 	  module will be called xtkbd.
 
+<<<<<<< HEAD
 config KEYBOARD_QCIKBD
    tristate "Quanta Computer Inc. keyboard"
    depends on I2C
@@ -605,6 +631,8 @@ config KEYBOARD_QCIKBD_LID
 	  Say Y here if you want to register lid event in Quanta keyboard
 	  driver.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config KEYBOARD_W90P910
 	tristate "W90P910 Matrix Keypad support"
 	depends on ARCH_W90X900
@@ -615,4 +643,9 @@ config KEYBOARD_W90P910
 	  To compile this driver as a module, choose M here: the
 	  module will be called w90p910_keypad.
 
+<<<<<<< HEAD
+=======
+source "drivers/input/keyboard/cypress/Kconfig"
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 endif

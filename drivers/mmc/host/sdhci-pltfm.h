@@ -12,6 +12,7 @@
 #define _DRIVERS_MMC_SDHCI_PLTFM_H
 
 #include <linux/clk.h>
+<<<<<<< HEAD
 #include <linux/platform_device.h>
 #include "sdhci.h"
 
@@ -19,10 +20,15 @@ struct sdhci_pltfm_data {
 	struct sdhci_ops *ops;
 	unsigned int quirks;
 };
+=======
+#include <linux/types.h>
+#include <linux/mmc/sdhci-pltfm.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 struct sdhci_pltfm_host {
 	struct clk *clk;
 	void *priv; /* to handle quirks across io-accessor calls */
+<<<<<<< HEAD
 
 	/* migrate from sdhci_of_host */
 	unsigned int clock;
@@ -104,5 +110,13 @@ extern const struct dev_pm_ops sdhci_pltfm_pmops;
 #else
 #define SDHCI_PLTFM_PMOPS NULL
 #endif
+=======
+};
+
+extern struct sdhci_pltfm_data sdhci_cns3xxx_pdata;
+extern struct sdhci_pltfm_data sdhci_esdhc_imx_pdata;
+extern struct sdhci_pltfm_data sdhci_dove_pdata;
+extern struct sdhci_pltfm_data sdhci_tegra_pdata;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #endif /* _DRIVERS_MMC_SDHCI_PLTFM_H */

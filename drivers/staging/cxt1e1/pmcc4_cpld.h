@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+/*
+ * $Id: pmcc4_cpld.h,v 1.0 2005/09/28 00:10:08 rickd PMCC4_3_1B $
+ */
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifndef _INC_PMCC4_CPLD_H_
 #define _INC_PMCC4_CPLD_H_
 
@@ -19,9 +26,40 @@
  * For further information, contact via email: support@sbei.com
  * SBE, Inc.  San Ramon, California  U.S.A.
  *-----------------------------------------------------------------------------
+<<<<<<< HEAD
  */
 
 #include <linux/types.h>
+=======
+ * RCS info:
+ * RCS revision: $Revision: 1.0 $
+ * Last changed on $Date: 2005/09/28 00:10:08 $
+ * Changed by $Author: rickd $
+ *-----------------------------------------------------------------------------
+ * $Log: pmcc4_cpld.h,v $
+ * Revision 1.0  2005/09/28 00:10:08  rickd
+ * Initial revision
+ *
+ *-----------------------------------------------------------------------------
+ */
+
+
+#if defined(__FreeBSD__) || defined(__NetBSD__)
+#include <sys/types.h>
+#else
+#ifndef __KERNEL__
+#include <sys/types.h>
+#else
+#include <linux/types.h>
+#endif
+#endif
+
+#ifdef __cplusplus
+extern      "C"
+{
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /********************************/
 /* iSPLD control chip registers */
@@ -88,4 +126,11 @@
 #define PMCC4_CPLD_INTR_CMT_3   0x04
 #define PMCC4_CPLD_INTR_CMT_4   0x08
 
+<<<<<<< HEAD
+=======
+#ifdef __cplusplus
+}
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif                          /* _INC_PMCC4_CPLD_H_ */

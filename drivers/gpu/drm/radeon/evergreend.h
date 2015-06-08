@@ -232,6 +232,10 @@
 #define	MC_VM_MD_L1_TLB0_CNTL				0x2654
 #define	MC_VM_MD_L1_TLB1_CNTL				0x2658
 #define	MC_VM_MD_L1_TLB2_CNTL				0x265C
+<<<<<<< HEAD
+=======
+#define	MC_VM_MD_L1_TLB3_CNTL				0x2698
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define	FUS_MC_VM_MD_L1_TLB0_CNTL			0x265C
 #define	FUS_MC_VM_MD_L1_TLB1_CNTL			0x2660
@@ -459,6 +463,13 @@
 #       define LATENCY_LOW_WATERMARK(x)                   ((x) << 0)
 #       define LATENCY_HIGH_WATERMARK(x)                  ((x) << 16)
 
+<<<<<<< HEAD
+=======
+#define	PIPE0_DMIF_BUFFER_CONTROL			  0x0ca0
+#       define DMIF_BUFFERS_ALLOCATED(x)                  ((x) << 0)
+#       define DMIF_BUFFERS_ALLOCATED_COMPLETED           (1 << 4)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define IH_RB_CNTL                                        0x3e00
 #       define IH_RB_ENABLE                               (1 << 0)
 #       define IH_IB_SIZE(x)                              ((x) << 1) /* log2 */
@@ -991,6 +1002,7 @@
 #define   G_028008_SLICE_MAX(x)                        (((x) >> 13) & 0x7FF)
 #define   C_028008_SLICE_MAX                           0xFF001FFF
 #define DB_HTILE_DATA_BASE				0x28014
+<<<<<<< HEAD
 #define DB_HTILE_SURFACE				0x28abc
 #define   S_028ABC_HTILE_WIDTH(x)                      (((x) & 0x1) << 0)
 #define   G_028ABC_HTILE_WIDTH(x)                      (((x) >> 0) & 0x1)
@@ -999,6 +1011,8 @@
 #define   G_028ABC_HTILE_HEIGHT(x)                      (((x) >> 1) & 0x1)
 #define   C_028ABC_HTILE_HEIGHT                         0xFFFFFFFD
 #define   G_028ABC_LINEAR(x)                           (((x) >> 2) & 0x1)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define DB_Z_INFO					0x28040
 #       define Z_ARRAY_MODE(x)                          ((x) << 4)
 #       define DB_TILE_SPLIT(x)                         (((x) & 0x7) << 8)

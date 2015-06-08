@@ -341,7 +341,14 @@ static int __devinit s6i2c_probe(struct platform_device *dev)
 	i2c_wr16(iface, S6_I2C_TXTL, 0);
 
 	platform_set_drvdata(dev, iface);
+<<<<<<< HEAD
 	rc = i2c_add_numbered_adapter(p_adap);
+=======
+	if (bus_num < 0)
+		rc = i2c_add_adapter(p_adap);
+	else
+		rc = i2c_add_numbered_adapter(p_adap);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (rc)
 		goto err_irq_free;
 	return 0;

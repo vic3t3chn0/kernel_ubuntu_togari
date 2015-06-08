@@ -13,9 +13,16 @@
 #include <linux/module.h>
 #include <linux/slab.h>
 #include <linux/dma-mapping.h>
+<<<<<<< HEAD
 
 #include <media/videobuf2-core.h>
 #include <media/videobuf2-dma-contig.h>
+=======
+#include <linux/scatterlist.h>
+#include <linux/dma-buf.h>
+
+#include <media/videobuf2-core.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <media/videobuf2-memops.h>
 
 struct vb2_dc_conf {
@@ -28,16 +35,32 @@ struct vb2_dc_buf {
 	dma_addr_t			dma_addr;
 	unsigned long			size;
 	struct vm_area_struct		*vma;
+<<<<<<< HEAD
+=======
+	struct dma_buf_attachment	*db_attach;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	atomic_t			refcount;
 	struct vb2_vmarea_handler	handler;
 };
 
+<<<<<<< HEAD
+=======
+struct vb2_dc_db_attach {
+	struct vb2_dc_buf		*buf;
+	struct dma_buf_attachment	db_attach;
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void vb2_dma_contig_put(void *buf_priv);
 
 static void *vb2_dma_contig_alloc(void *alloc_ctx, unsigned long size)
 {
 	struct vb2_dc_conf *conf = alloc_ctx;
 	struct vb2_dc_buf *buf;
+<<<<<<< HEAD
+=======
+	/* TODO: add db_attach processing while adding DMABUF as exporter */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	buf = kzalloc(sizeof *buf, GFP_KERNEL);
 	if (!buf)
@@ -86,7 +109,11 @@ static void *vb2_dma_contig_vaddr(void *buf_priv)
 {
 	struct vb2_dc_buf *buf = buf_priv;
 	if (!buf)
+<<<<<<< HEAD
 		return NULL;
+=======
+		return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return buf->vaddr;
 }
@@ -107,6 +134,11 @@ static int vb2_dma_contig_mmap(void *buf_priv, struct vm_area_struct *vma)
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
+=======
+	WARN_ON(buf->db_attach);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return vb2_mmap_pfn_range(vma, buf->dma_addr, buf->size,
 				  &vb2_common_vm_ops, &buf->handler);
 }
@@ -149,6 +181,113 @@ static void vb2_dma_contig_put_userptr(void *mem_priv)
 	kfree(buf);
 }
 
+<<<<<<< HEAD
+=======
+static void vb2_dma_contig_map_dmabuf(void *mem_priv)
+{
+	struct vb2_dc_buf *buf = mem_priv;
+	struct dma_buf *dmabuf;
+	struct sg_table *sg;
+	enum dma_data_direction dir;
+
+	if (!buf || !buf->db_attach)
+		return;
+
+	WARN_ON(buf->dma_addr);
+
+	dmabuf = buf->db_attach->dmabuf;
+
+	/* TODO need a way to know if we are camera or display, etc.. */
+	dir = DMA_BIDIRECTIONAL;
+
+	/* get the associated sg for this buffer */
+	sg = dma_buf_map_attachment(buf->db_attach, dir);
+	if (!sg)
+		return;
+
+	/*
+	 *  convert sglist to paddr:
+	 *  Assumption: for dma-contig, dmabuf would map to single entry
+	 *  Will print a warning if it has more than one.
+	 */
+	if (sg->nents > 1)
+		printk(KERN_WARNING
+			"dmabuf scatterlist has more than 1 entry\n");
+
+	buf->dma_addr = sg_dma_address(sg->sgl);
+	buf->size = sg_dma_len(sg->sgl);
+
+	/* save this sg in dmabuf for put_scatterlist */
+	dmabuf->priv = sg;
+}
+
+static void vb2_dma_contig_unmap_dmabuf(void *mem_priv)
+{
+	struct vb2_dc_buf *buf = mem_priv;
+	struct dma_buf *dmabuf;
+	struct sg_table *sg;
+
+	if (!buf || !buf->db_attach)
+		return;
+
+	WARN_ON(!buf->dma_addr);
+
+	dmabuf = buf->db_attach->dmabuf;
+	sg = dmabuf->priv;
+
+	/*
+	 * Put the sg for this buffer:
+	 */
+	dma_buf_unmap_attachment(buf->db_attach, sg, DMA_FROM_DEVICE);
+
+	buf->dma_addr = 0;
+	buf->size = 0;
+}
+
+static void *vb2_dma_contig_attach_dmabuf(void *alloc_ctx, struct dma_buf *dbuf)
+{
+	struct vb2_dc_conf *conf = alloc_ctx;
+	struct vb2_dc_buf *buf;
+	struct dma_buf_attachment *dba;
+
+	buf = kzalloc(sizeof *buf, GFP_KERNEL);
+	if (!buf)
+		return ERR_PTR(-ENOMEM);
+
+	/* create attachment for the dmabuf with the user device */
+	dba = dma_buf_attach(dbuf, conf->dev);
+	if (IS_ERR(dba)) {
+		printk(KERN_ERR "failed to attach dmabuf\n");
+		kfree(buf);
+		return dba;
+	}
+
+	buf->conf = conf;
+	buf->size = dba->dmabuf->size;
+	buf->db_attach = dba;
+	buf->dma_addr = 0; /* dma_addr is available only after acquire */
+
+	return buf;
+}
+
+static void vb2_dma_contig_detach_dmabuf(void *mem_priv)
+{
+	struct vb2_dc_buf *buf = mem_priv;
+
+	if (!buf)
+		return;
+
+	if (buf->dma_addr)
+		vb2_dma_contig_unmap_dmabuf(buf);
+
+	/* detach this attachment */
+	dma_buf_detach(buf->db_attach->dmabuf, buf->db_attach);
+	buf->db_attach = NULL;
+
+	kfree(buf);
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 const struct vb2_mem_ops vb2_dma_contig_memops = {
 	.alloc		= vb2_dma_contig_alloc,
 	.put		= vb2_dma_contig_put,
@@ -157,6 +296,13 @@ const struct vb2_mem_ops vb2_dma_contig_memops = {
 	.mmap		= vb2_dma_contig_mmap,
 	.get_userptr	= vb2_dma_contig_get_userptr,
 	.put_userptr	= vb2_dma_contig_put_userptr,
+<<<<<<< HEAD
+=======
+	.map_dmabuf	= vb2_dma_contig_map_dmabuf,
+	.unmap_dmabuf	= vb2_dma_contig_unmap_dmabuf,
+	.attach_dmabuf	= vb2_dma_contig_attach_dmabuf,
+	.detach_dmabuf	= vb2_dma_contig_detach_dmabuf,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.num_users	= vb2_dma_contig_num_users,
 };
 EXPORT_SYMBOL_GPL(vb2_dma_contig_memops);

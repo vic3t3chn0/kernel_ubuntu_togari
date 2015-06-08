@@ -309,7 +309,11 @@ static struct i2c_algorithm smbus_algorithm = {
 };
 
 
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(nforce2_ids) = {
+=======
+static const struct pci_device_id nforce2_ids[] = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ PCI_DEVICE(PCI_VENDOR_ID_NVIDIA, PCI_DEVICE_ID_NVIDIA_NFORCE2_SMBUS) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_NVIDIA, PCI_DEVICE_ID_NVIDIA_NFORCE2S_SMBUS) },
 	{ PCI_DEVICE(PCI_VENDOR_ID_NVIDIA, PCI_DEVICE_ID_NVIDIA_NFORCE3_SMBUS) },

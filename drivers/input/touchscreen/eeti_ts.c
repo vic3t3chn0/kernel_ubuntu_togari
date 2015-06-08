@@ -35,11 +35,19 @@
 #include <linux/input/eeti_ts.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
 static bool flip_x;
 module_param(flip_x, bool, 0644);
 MODULE_PARM_DESC(flip_x, "flip x coordinate");
 
 static bool flip_y;
+=======
+static int flip_x;
+module_param(flip_x, bool, 0644);
+MODULE_PARM_DESC(flip_x, "flip x coordinate");
+
+static int flip_y;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(flip_y, bool, 0644);
 MODULE_PARM_DESC(flip_y, "flip y coordinate");
 
@@ -320,8 +328,27 @@ static struct i2c_driver eeti_ts_driver = {
 	.id_table = eeti_ts_id,
 };
 
+<<<<<<< HEAD
 module_i2c_driver(eeti_ts_driver);
+=======
+static int __init eeti_ts_init(void)
+{
+	return i2c_add_driver(&eeti_ts_driver);
+}
+
+static void __exit eeti_ts_exit(void)
+{
+	i2c_del_driver(&eeti_ts_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_DESCRIPTION("EETI Touchscreen driver");
 MODULE_AUTHOR("Daniel Mack <daniel@caiaq.de>");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
+=======
+
+module_init(eeti_ts_init);
+module_exit(eeti_ts_exit);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

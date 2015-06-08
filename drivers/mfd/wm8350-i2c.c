@@ -63,7 +63,11 @@ static int wm8350_i2c_probe(struct i2c_client *i2c,
 	struct wm8350 *wm8350;
 	int ret = 0;
 
+<<<<<<< HEAD
 	wm8350 = devm_kzalloc(&i2c->dev, sizeof(struct wm8350), GFP_KERNEL);
+=======
+	wm8350 = kzalloc(sizeof(struct wm8350), GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (wm8350 == NULL)
 		return -ENOMEM;
 
@@ -80,6 +84,10 @@ static int wm8350_i2c_probe(struct i2c_client *i2c,
 	return ret;
 
 err:
+<<<<<<< HEAD
+=======
+	kfree(wm8350);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return ret;
 }
 
@@ -88,6 +96,10 @@ static int wm8350_i2c_remove(struct i2c_client *i2c)
 	struct wm8350 *wm8350 = i2c_get_clientdata(i2c);
 
 	wm8350_device_exit(wm8350);
+<<<<<<< HEAD
+=======
+	kfree(wm8350);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }

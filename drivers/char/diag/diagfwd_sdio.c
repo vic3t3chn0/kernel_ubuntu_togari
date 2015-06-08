@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2011, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2011, Code Aurora Forum. All rights reserved.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -105,8 +109,13 @@ int diagfwd_connect_sdio(void)
 {
 	int err;
 
+<<<<<<< HEAD
 	err = usb_diag_alloc_req(driver->mdm_ch, N_MDM_SDIO_WRITE,
 							 N_MDM_SDIO_READ);
+=======
+	err = usb_diag_alloc_req(driver->mdm_ch, N_MDM_WRITE,
+							 N_MDM_READ);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (err)
 		pr_err("diag: unable to alloc USB req on mdm ch\n");
 

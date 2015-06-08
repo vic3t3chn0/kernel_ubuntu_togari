@@ -59,10 +59,17 @@ int orinoco_mic(struct crypto_hash *tfm_michael, u8 *key,
 	/* Copy header into buffer. We need the padding on the end zeroed */
 	memcpy(&hdr[0], da, ETH_ALEN);
 	memcpy(&hdr[ETH_ALEN], sa, ETH_ALEN);
+<<<<<<< HEAD
 	hdr[ETH_ALEN * 2] = priority;
 	hdr[ETH_ALEN * 2 + 1] = 0;
 	hdr[ETH_ALEN * 2 + 2] = 0;
 	hdr[ETH_ALEN * 2 + 3] = 0;
+=======
+	hdr[ETH_ALEN*2] = priority;
+	hdr[ETH_ALEN*2+1] = 0;
+	hdr[ETH_ALEN*2+2] = 0;
+	hdr[ETH_ALEN*2+3] = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* Use scatter gather to MIC header and data in one go */
 	sg_init_table(sg, 2);

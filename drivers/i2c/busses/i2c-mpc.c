@@ -454,7 +454,11 @@ static int mpc_write(struct mpc_i2c *i2c, int target,
 }
 
 static int mpc_read(struct mpc_i2c *i2c, int target,
+<<<<<<< HEAD
 		    u8 *data, int length, int restart, bool recv_len)
+=======
+		    u8 *data, int length, int restart)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	unsigned timeout = i2c->adap.timeout;
 	int i, result;
@@ -470,7 +474,11 @@ static int mpc_read(struct mpc_i2c *i2c, int target,
 		return result;
 
 	if (length) {
+<<<<<<< HEAD
 		if (length == 1 && !recv_len)
+=======
+		if (length == 1)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			writeccr(i2c, CCR_MIEN | CCR_MEN | CCR_MSTA | CCR_TXAK);
 		else
 			writeccr(i2c, CCR_MIEN | CCR_MEN | CCR_MSTA);
@@ -479,12 +487,16 @@ static int mpc_read(struct mpc_i2c *i2c, int target,
 	}
 
 	for (i = 0; i < length; i++) {
+<<<<<<< HEAD
 		u8 byte;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		result = i2c_wait(i2c, timeout, 0);
 		if (result < 0)
 			return result;
 
+<<<<<<< HEAD
 		/*
 		 * For block reads, we have to know the total length (1st byte)
 		 * before we can determine if we are done.
@@ -519,6 +531,15 @@ static int mpc_read(struct mpc_i2c *i2c, int target,
 					 | CCR_TXAK);
 		}
 		data[i] = byte;
+=======
+		/* Generate txack on next to last byte */
+		if (i == length - 2)
+			writeccr(i2c, CCR_MIEN | CCR_MEN | CCR_MSTA | CCR_TXAK);
+		/* Do not generate stop on last byte */
+		if (i == length - 1)
+			writeccr(i2c, CCR_MIEN | CCR_MEN | CCR_MSTA | CCR_MTX);
+		data[i] = readb(i2c->base + MPC_I2C_DR);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	return length;
@@ -561,6 +582,7 @@ static int mpc_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
 			"Doing %s %d bytes to 0x%02x - %d of %d messages\n",
 			pmsg->flags & I2C_M_RD ? "read" : "write",
 			pmsg->len, pmsg->addr, i + 1, num);
+<<<<<<< HEAD
 		if (pmsg->flags & I2C_M_RD) {
 			bool recv_len = pmsg->flags & I2C_M_RECV_LEN;
 
@@ -572,6 +594,14 @@ static int mpc_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
 			ret =
 			    mpc_write(i2c, pmsg->addr, pmsg->buf, pmsg->len, i);
 		}
+=======
+		if (pmsg->flags & I2C_M_RD)
+			ret =
+			    mpc_read(i2c, pmsg->addr, pmsg->buf, pmsg->len, i);
+		else
+			ret =
+			    mpc_write(i2c, pmsg->addr, pmsg->buf, pmsg->len, i);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	mpc_i2c_stop(i2c);
 	return (ret < 0) ? ret : num;
@@ -579,8 +609,12 @@ static int mpc_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
 
 static u32 mpc_functionality(struct i2c_adapter *adap)
 {
+<<<<<<< HEAD
 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL
 	  | I2C_FUNC_SMBUS_READ_BLOCK_DATA | I2C_FUNC_SMBUS_BLOCK_PROC_CALL;
+=======
+	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static const struct i2c_algorithm mpc_algo = {
@@ -750,7 +784,22 @@ static struct platform_driver mpc_i2c_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(mpc_i2c_driver);
+=======
+static int __init fsl_i2c_init(void)
+{
+	return platform_driver_register(&mpc_i2c_driver);
+}
+
+static void __exit fsl_i2c_exit(void)
+{
+	platform_driver_unregister(&mpc_i2c_driver);
+}
+
+module_init(fsl_i2c_init);
+module_exit(fsl_i2c_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Adrian Cox <adrian@humboldt.co.uk>");
 MODULE_DESCRIPTION("I2C-Bus adapter for MPC107 bridge and "

@@ -46,6 +46,10 @@
 
 #define PREFIX "ACPI: "
 
+<<<<<<< HEAD
+=======
+#define ACPI_VIDEO_CLASS		"video"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define ACPI_VIDEO_BUS_NAME		"Video Bus"
 #define ACPI_VIDEO_DEVICE_NAME		"Video Device"
 #define ACPI_VIDEO_NOTIFY_SWITCH	0x80
@@ -69,21 +73,33 @@ MODULE_AUTHOR("Bruno Ducrot");
 MODULE_DESCRIPTION("ACPI Video Driver");
 MODULE_LICENSE("GPL");
 
+<<<<<<< HEAD
 static bool brightness_switch_enabled = 1;
+=======
+static int brightness_switch_enabled = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(brightness_switch_enabled, bool, 0644);
 
 /*
  * By default, we don't allow duplicate ACPI video bus devices
  * under the same VGA controller
  */
+<<<<<<< HEAD
 static bool allow_duplicates;
+=======
+static int allow_duplicates;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(allow_duplicates, bool, 0644);
 
 /*
  * Some BIOSes claim they use minimum backlight at boot,
  * and this may bring dimming screen after boot
  */
+<<<<<<< HEAD
 static bool use_bios_initial_backlight = 1;
+=======
+static int use_bios_initial_backlight = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(use_bios_initial_backlight, bool, 0644);
 
 static int register_count = 0;
@@ -307,7 +323,11 @@ video_set_cur_state(struct thermal_cooling_device *cooling_dev, unsigned long st
 	return acpi_video_device_lcd_set_level(video, level);
 }
 
+<<<<<<< HEAD
 static const struct thermal_cooling_device_ops video_cooling_ops = {
+=======
+static struct thermal_cooling_device_ops video_cooling_ops = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.get_max_state = video_get_max_state,
 	.get_cur_state = video_get_cur_state,
 	.set_cur_state = video_set_cur_state,
@@ -389,6 +409,15 @@ static int __init video_set_bqc_offset(const struct dmi_system_id *d)
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+static int video_ignore_initial_backlight(const struct dmi_system_id *d)
+{
+	use_bios_initial_backlight = 0;
+	return 0;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct dmi_system_id video_dmi_table[] __initdata = {
 	/*
 	 * Broken _BQC workaround http://bugzilla.kernel.org/show_bug.cgi?id=13121
@@ -433,6 +462,33 @@ static struct dmi_system_id video_dmi_table[] __initdata = {
 		DMI_MATCH(DMI_PRODUCT_NAME, "Aspire 7720"),
 		},
 	},
+<<<<<<< HEAD
+=======
+	{
+	 .callback = video_ignore_initial_backlight,
+	 .ident = "HP Folio 13-2000",
+	 .matches = {
+		DMI_MATCH(DMI_BOARD_VENDOR, "Hewlett-Packard"),
+		DMI_MATCH(DMI_PRODUCT_NAME, "HP Folio 13 - 2000 Notebook PC"),
+		},
+	},
+	{
+	 .callback = video_ignore_initial_backlight,
+	 .ident = "HP Pavilion g6 Notebook PC",
+	 .matches = {
+		 DMI_MATCH(DMI_BOARD_VENDOR, "Hewlett-Packard"),
+		 DMI_MATCH(DMI_PRODUCT_NAME, "HP Pavilion g6 Notebook PC"),
+		},
+	},
+	{
+	 .callback = video_ignore_initial_backlight,
+	 .ident = "HP Pavilion m4",
+	 .matches = {
+		DMI_MATCH(DMI_BOARD_VENDOR, "Hewlett-Packard"),
+		DMI_MATCH(DMI_PRODUCT_NAME, "HP Pavilion m4 Notebook PC"),
+		},
+	},
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{}
 };
 
@@ -548,17 +604,26 @@ acpi_video_device_EDID(struct acpi_video_device *device,
  *		1. 	The system BIOS should NOT automatically control the brightness 
  *			level of the LCD when the power changes from AC to DC.
  * Return Value:
+<<<<<<< HEAD
  *		-EINVAL	wrong arg.
+=======
+ * 		-1	wrong arg.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 static int
 acpi_video_bus_DOS(struct acpi_video_bus *video, int bios_flag, int lcd_flag)
 {
+<<<<<<< HEAD
 	acpi_status status;
+=======
+	u64 status = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	union acpi_object arg0 = { ACPI_TYPE_INTEGER };
 	struct acpi_object_list args = { 1, &arg0 };
 
 
+<<<<<<< HEAD
 	if (bios_flag < 0 || bios_flag > 3 || lcd_flag < 0 || lcd_flag > 1)
 		return -EINVAL;
 	arg0.integer.value = (lcd_flag << 2) | bios_flag;
@@ -569,6 +634,18 @@ acpi_video_bus_DOS(struct acpi_video_bus *video, int bios_flag, int lcd_flag)
 		return -EIO;
 
 	return 0;
+=======
+	if (bios_flag < 0 || bios_flag > 3 || lcd_flag < 0 || lcd_flag > 1) {
+		status = -1;
+		goto Failed;
+	}
+	arg0.integer.value = (lcd_flag << 2) | bios_flag;
+	video->dos_setting = arg0.integer.value;
+	acpi_evaluate_object(video->device->handle, "_DOS", &args, NULL);
+
+      Failed:
+	return status;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -1343,17 +1420,28 @@ static int
 acpi_video_bus_get_devices(struct acpi_video_bus *video,
 			   struct acpi_device *device)
 {
+<<<<<<< HEAD
 	int status;
 	struct acpi_device *dev;
 
 	status = acpi_video_device_enumerate(video);
 	if (status)
 		return status;
+=======
+	int status = 0;
+	struct acpi_device *dev;
+
+	acpi_video_device_enumerate(video);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	list_for_each_entry(dev, &device->children, node) {
 
 		status = acpi_video_bus_get_one_device(dev, video);
+<<<<<<< HEAD
 		if (status) {
+=======
+		if (ACPI_FAILURE(status)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			printk(KERN_WARNING PREFIX
 					"Can't attach device\n");
 			continue;
@@ -1446,8 +1534,12 @@ static void acpi_video_bus_notify(struct acpi_device *device, u32 event)
 	case ACPI_VIDEO_NOTIFY_SWITCH:	/* User requested a switch,
 					 * most likely via hotkey. */
 		acpi_bus_generate_proc_event(device, event, 0);
+<<<<<<< HEAD
 		if (!acpi_notifier_call_chain(device, event, 0))
 			keycode = KEY_SWITCHVIDEOMODE;
+=======
+		keycode = KEY_SWITCHVIDEOMODE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 
 	case ACPI_VIDEO_NOTIFY_PROBE:	/* User plugged in or removed a video
@@ -1477,8 +1569,12 @@ static void acpi_video_bus_notify(struct acpi_device *device, u32 event)
 		break;
 	}
 
+<<<<<<< HEAD
 	if (event != ACPI_VIDEO_NOTIFY_SWITCH)
 		acpi_notifier_call_chain(device, event, 0);
+=======
+	acpi_notifier_call_chain(device, event, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (keycode) {
 		input_report_key(input, keycode, 1);
@@ -1655,13 +1751,19 @@ static int acpi_video_bus_add(struct acpi_device *device)
 	mutex_init(&video->device_list_lock);
 	INIT_LIST_HEAD(&video->video_device_list);
 
+<<<<<<< HEAD
 	error = acpi_video_bus_get_devices(video, device);
 	if (error)
 		goto err_free_video;
+=======
+	acpi_video_bus_get_devices(video, device);
+	acpi_video_bus_start_devices(video);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	video->input = input = input_allocate_device();
 	if (!input) {
 		error = -ENOMEM;
+<<<<<<< HEAD
 		goto err_put_video;
 	}
 
@@ -1669,6 +1771,11 @@ static int acpi_video_bus_add(struct acpi_device *device)
 	if (error)
 		goto err_free_input_dev;
 
+=======
+		goto err_stop_video;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	snprintf(video->phys, sizeof(video->phys),
 		"%s/video/input0", acpi_device_hid(video->device));
 
@@ -1689,7 +1796,11 @@ static int acpi_video_bus_add(struct acpi_device *device)
 
 	error = input_register_device(input);
 	if (error)
+<<<<<<< HEAD
 		goto err_stop_video;
+=======
+		goto err_free_input_dev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	printk(KERN_INFO PREFIX "%s [%s] (multi-head: %s  rom: %s  post: %s)\n",
 	       ACPI_VIDEO_DEVICE_NAME, acpi_device_bid(device),
@@ -1699,6 +1810,7 @@ static int acpi_video_bus_add(struct acpi_device *device)
 
 	video->pm_nb.notifier_call = acpi_video_resume;
 	video->pm_nb.priority = 0;
+<<<<<<< HEAD
 	error = register_pm_notifier(&video->pm_nb);
 	if (error)
 		goto err_unregister_input_dev;
@@ -1712,6 +1824,16 @@ static int acpi_video_bus_add(struct acpi_device *device)
  err_free_input_dev:
 	input_free_device(input);
  err_put_video:
+=======
+	register_pm_notifier(&video->pm_nb);
+
+	return 0;
+
+ err_free_input_dev:
+	input_free_device(input);
+ err_stop_video:
+	acpi_video_bus_stop_devices(video);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	acpi_video_bus_put_devices(video);
 	kfree(video->attached_array);
  err_free_video:
@@ -1745,6 +1867,10 @@ static int acpi_video_bus_remove(struct acpi_device *device, int type)
 
 static int __init intel_opregion_present(void)
 {
+<<<<<<< HEAD
+=======
+	int i915 = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #if defined(CONFIG_DRM_I915) || defined(CONFIG_DRM_I915_MODULE)
 	struct pci_dev *dev = NULL;
 	u32 address;
@@ -1757,10 +1883,17 @@ static int __init intel_opregion_present(void)
 		pci_read_config_dword(dev, 0xfc, &address);
 		if (!address)
 			continue;
+<<<<<<< HEAD
 		return 1;
 	}
 #endif
 	return 0;
+=======
+		i915 = 1;
+	}
+#endif
+	return i915;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 int acpi_video_register(void)

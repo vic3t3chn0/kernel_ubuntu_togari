@@ -14,7 +14,10 @@
 #include <linux/platform_device.h>
 
 #include <linux/i2c/dm355evm_msp.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 /*
@@ -161,6 +164,20 @@ static struct platform_driver rtc_dm355evm_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(rtc_dm355evm_driver);
+=======
+static int __init dm355evm_rtc_init(void)
+{
+	return platform_driver_register(&rtc_dm355evm_driver);
+}
+module_init(dm355evm_rtc_init);
+
+static void __exit dm355evm_rtc_exit(void)
+{
+	platform_driver_unregister(&rtc_dm355evm_driver);
+}
+module_exit(dm355evm_rtc_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_LICENSE("GPL");

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /******************************************************************************
  *
  * Copyright(c) 2007 - 2010 Realtek Corporation. All rights reserved.
@@ -23,6 +24,8 @@
  * Larry Finger <Larry.Finger@lwfinger.net>
  *
  ******************************************************************************/
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifndef __RTL871X_PWRCTRL_H_
 #define __RTL871X_PWRCTRL_H_
 
@@ -133,6 +136,10 @@ struct	pwrctrl_priv {
 	u8	rpwm_retry;
 	uint	bSetPSModeWorkItemInProgress;
 
+<<<<<<< HEAD
+=======
+	struct semaphore pnp_pwr_mgnt_sema;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spinlock_t pnp_pwr_mgnt_lock;
 	s32	pnp_current_pwr_state;
 	u8	pnp_bstop_trx;

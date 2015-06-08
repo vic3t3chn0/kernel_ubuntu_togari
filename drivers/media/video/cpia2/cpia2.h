@@ -31,6 +31,10 @@
 #ifndef __CPIA2_H__
 #define __CPIA2_H__
 
+<<<<<<< HEAD
+=======
+#include <linux/version.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/videodev2.h>
 #include <media/v4l2-common.h>
 #include <linux/usb.h>
@@ -42,6 +46,13 @@
 /* define for verbose debug output */
 //#define _CPIA2_DEBUG_
 
+<<<<<<< HEAD
+=======
+#define CPIA2_MAJ_VER	3
+#define CPIA2_MIN_VER   0
+#define CPIA2_PATCH_VER	0
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /***
  * Image defines
  ***/

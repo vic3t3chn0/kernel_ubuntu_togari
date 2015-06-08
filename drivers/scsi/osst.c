@@ -54,6 +54,10 @@ static const char * osst_version = "0.99.4";
 #include <linux/mutex.h>
 #include <asm/uaccess.h>
 #include <asm/dma.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* The driver prints some debugging information on the console if DEBUG
    is defined and non-zero. */

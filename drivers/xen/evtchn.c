@@ -268,7 +268,11 @@ static int evtchn_bind_to_user(struct per_user_data *u, int port)
 	rc = bind_evtchn_to_irqhandler(port, evtchn_interrupt, IRQF_DISABLED,
 				       u->name, (void *)(unsigned long)port);
 	if (rc >= 0)
+<<<<<<< HEAD
 		rc = evtchn_make_refcounted(port);
+=======
+		rc = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return rc;
 }
@@ -367,6 +371,7 @@ static long evtchn_ioctl(struct file *file,
 		if (unbind.port >= NR_EVENT_CHANNELS)
 			break;
 
+<<<<<<< HEAD
 		spin_lock_irq(&port_user_lock);
 
 		rc = -ENOTCONN;
@@ -379,6 +384,14 @@ static long evtchn_ioctl(struct file *file,
 
 		spin_unlock_irq(&port_user_lock);
 
+=======
+		rc = -ENOTCONN;
+		if (get_port_user(unbind.port) != u)
+			break;
+
+		disable_irq(irq_from_evtchn(unbind.port));
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		evtchn_unbind_from_user(u, unbind.port);
 
 		rc = 0;
@@ -478,15 +491,19 @@ static int evtchn_release(struct inode *inode, struct file *filp)
 	int i;
 	struct per_user_data *u = filp->private_data;
 
+<<<<<<< HEAD
 	spin_lock_irq(&port_user_lock);
 
 	free_page((unsigned long)u->ring);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (i = 0; i < NR_EVENT_CHANNELS; i++) {
 		if (get_port_user(i) != u)
 			continue;
 
 		disable_irq(irq_from_evtchn(i));
+<<<<<<< HEAD
 	}
 
 	spin_unlock_irq(&port_user_lock);
@@ -498,6 +515,12 @@ static int evtchn_release(struct inode *inode, struct file *filp)
 		evtchn_unbind_from_user(get_port_user(i), i);
 	}
 
+=======
+		evtchn_unbind_from_user(get_port_user(i), i);
+	}
+
+	free_page((unsigned long)u->ring);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(u->name);
 	kfree(u);
 

@@ -51,7 +51,10 @@
 #include <linux/rcupdate.h>
 #include <linux/timer.h>
 #include <linux/workqueue.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/unaligned.h>
 
 #include <scsi/libfc.h>
@@ -154,6 +157,21 @@ static struct fc_rport_priv *fc_rport_create(struct fc_lport *lport,
 }
 
 /**
+<<<<<<< HEAD
+=======
+ * fc_rport_free_rcu() - Free a remote port
+ * @rcu: The rcu_head structure inside the remote port
+ */
+static void fc_rport_free_rcu(struct rcu_head *rcu)
+{
+	struct fc_rport_priv *rdata;
+
+	rdata = container_of(rcu, struct fc_rport_priv, rcu);
+	kfree(rdata);
+}
+
+/**
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * fc_rport_destroy() - Free a remote port after last reference is released
  * @kref: The remote port's kref
  */
@@ -162,7 +180,11 @@ static void fc_rport_destroy(struct kref *kref)
 	struct fc_rport_priv *rdata;
 
 	rdata = container_of(kref, struct fc_rport_priv, kref);
+<<<<<<< HEAD
 	kfree_rcu(rdata, rcu);
+=======
+	call_rcu(&rdata->rcu, fc_rport_free_rcu);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -391,7 +413,11 @@ static void fc_rport_work(struct work_struct *work)
  * If it appears we are already logged in, ADISC is used to verify
  * the setup.
  */
+<<<<<<< HEAD
 static int fc_rport_login(struct fc_rport_priv *rdata)
+=======
+int fc_rport_login(struct fc_rport_priv *rdata)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	mutex_lock(&rdata->rp_mutex);
 
@@ -451,7 +477,11 @@ static void fc_rport_enter_delete(struct fc_rport_priv *rdata,
  * function will hold the rport lock, call an _enter_*
  * function and then unlock the rport.
  */
+<<<<<<< HEAD
 static int fc_rport_logoff(struct fc_rport_priv *rdata)
+=======
+int fc_rport_logoff(struct fc_rport_priv *rdata)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	mutex_lock(&rdata->rp_mutex);
 
@@ -653,8 +683,13 @@ static int fc_rport_login_complete(struct fc_rport_priv *rdata,
  * @fp:	    The FLOGI response frame
  * @rp_arg: The remote port that received the FLOGI response
  */
+<<<<<<< HEAD
 static void fc_rport_flogi_resp(struct fc_seq *sp, struct fc_frame *fp,
 				void *rp_arg)
+=======
+void fc_rport_flogi_resp(struct fc_seq *sp, struct fc_frame *fp,
+			 void *rp_arg)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct fc_rport_priv *rdata = rp_arg;
 	struct fc_lport *lport = rdata->local_port;
@@ -1520,7 +1555,11 @@ reject:
  *
  * Locking Note: Called with the lport lock held.
  */
+<<<<<<< HEAD
 static void fc_rport_recv_req(struct fc_lport *lport, struct fc_frame *fp)
+=======
+void fc_rport_recv_req(struct fc_lport *lport, struct fc_frame *fp)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct fc_seq_els_data els_data;
 

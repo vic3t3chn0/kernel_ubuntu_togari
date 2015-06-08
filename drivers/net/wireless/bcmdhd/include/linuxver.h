@@ -22,7 +22,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: linuxver.h 315203 2012-02-16 00:58:00Z $
+=======
+ * $Id: linuxver.h 367714 2012-11-09 03:26:01Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef _linuxver_h_
@@ -95,18 +99,33 @@
 #ifndef flush_scheduled_work
 #define flush_scheduled_work() flush_scheduled_tasks()
 #endif
+<<<<<<< HEAD
 #endif
+=======
+#endif	
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 0))
 #define DAEMONIZE(a) daemonize(a); \
 	allow_signal(SIGKILL); \
 	allow_signal(SIGTERM);
+<<<<<<< HEAD
 #else /* Linux 2.4 (w/o preemption patch) */
 #define DAEMONIZE(a) daemonize(); \
 	do { if (a) \
 		strncpy(current->comm, a, MIN(sizeof(current->comm), (strlen(a)
 	} while (0);
 #endif /* LINUX_VERSION_CODE  */
+=======
+#else 
+#define RAISE_RX_SOFTIRQ() \
+	cpu_raise_softirq(smp_processor_id(), NET_RX_SOFTIRQ)
+#define DAEMONIZE(a) daemonize(); \
+	do { if (a) \
+		strncpy(current->comm, a, MIN(sizeof(current->comm), (strlen(a)))); \
+	} while (0);
+#endif 
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 19)
 #define	MY_INIT_WORK(_work, _func)	INIT_WORK(_work, _func)
@@ -162,6 +181,13 @@ typedef irqreturn_t(*FN_ISR) (int irq, void *dev_id, struct pt_regs *ptregs);
 #endif 
 
 
+<<<<<<< HEAD
+=======
+#ifdef CUSTOMER_HW4
+#include <linux/kthread.h>
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifndef __exit
 #define __exit
 #endif
@@ -505,7 +531,23 @@ typedef struct {
 #endif
 
 
+<<<<<<< HEAD
 #define PROC_START(thread_func, owner, tsk_ctl, flags) \
+=======
+#ifdef USE_KTHREAD_API
+#define PROC_START(thread_func, owner, tsk_ctl, flags, name) \
+{ \
+	sema_init(&((tsk_ctl)->sema), 0); \
+	init_completion(&((tsk_ctl)->completed)); \
+	(tsk_ctl)->parent = owner; \
+	(tsk_ctl)->terminated = FALSE; \
+	(tsk_ctl)->p_task  = kthread_run(thread_func, tsk_ctl, (char*)name); \
+	(tsk_ctl)->thr_pid = (tsk_ctl)->p_task->pid; \
+	DBG_THR(("%s thr:%lx created\n", __FUNCTION__, (tsk_ctl)->thr_pid)); \
+}
+#else
+#define PROC_START(thread_func, owner, tsk_ctl, flags, name) \
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 { \
 	sema_init(&((tsk_ctl)->sema), 0); \
 	init_completion(&((tsk_ctl)->completed)); \
@@ -516,6 +558,10 @@ typedef struct {
 		wait_for_completion(&((tsk_ctl)->completed)); \
 	DBG_THR(("%s thr:%lx started\n", __FUNCTION__, (tsk_ctl)->thr_pid)); \
 }
+<<<<<<< HEAD
+=======
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define PROC_STOP(tsk_ctl) \
 { \

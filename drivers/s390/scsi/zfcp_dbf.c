@@ -9,7 +9,10 @@
 #define KMSG_COMPONENT "zfcp"
 #define pr_fmt(fmt) KMSG_COMPONENT ": " fmt
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/ctype.h>
 #include <linux/slab.h>
 #include <asm/debug.h>
@@ -165,6 +168,7 @@ void zfcp_dbf_hba_bit_err(char *tag, struct zfcp_fsf_req *req)
 }
 
 /**
+<<<<<<< HEAD
  * zfcp_dbf_hba_def_err - trace event for deferred error messages
  * @adapter: pointer to struct zfcp_adapter
  * @req_id: request id which caused the deferred error message
@@ -198,6 +202,25 @@ void zfcp_dbf_hba_def_err(struct zfcp_adapter *adapter, u64 req_id, u16 scount,
 	}
 
 	spin_unlock_irqrestore(&dbf->pay_lock, flags);
+=======
+ * zfcp_dbf_hba_basic - trace event for basic adapter events
+ * @adapter: pointer to struct zfcp_adapter
+ */
+void zfcp_dbf_hba_basic(char *tag, struct zfcp_adapter *adapter)
+{
+	struct zfcp_dbf *dbf = adapter->dbf;
+	struct zfcp_dbf_hba *rec = &dbf->hba_buf;
+	unsigned long flags;
+
+	spin_lock_irqsave(&dbf->hba_lock, flags);
+	memset(rec, 0, sizeof(*rec));
+
+	memcpy(rec->tag, tag, ZFCP_DBF_TAG_LEN);
+	rec->id = ZFCP_DBF_HBA_BASIC;
+
+	debug_event(dbf->hba, 1, rec, sizeof(*rec));
+	spin_unlock_irqrestore(&dbf->hba_lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void zfcp_dbf_set_common(struct zfcp_dbf_rec *rec,

@@ -18,7 +18,10 @@
 #include <linux/input.h>
 #include <linux/slab.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "rc-core-priv.h"
 
 /* Sizes are in bytes, 256 bytes allows for 32 entries on x64 */
@@ -715,7 +718,11 @@ static void ir_close(struct input_dev *idev)
 }
 
 /* class for /sys/class/rc */
+<<<<<<< HEAD
 static char *ir_devnode(struct device *dev, umode_t *mode)
+=======
+static char *ir_devnode(struct device *dev, mode_t *mode)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	return kasprintf(GFP_KERNEL, "rc/%s", dev_name(dev));
 }
@@ -736,8 +743,11 @@ static struct {
 	{ RC_TYPE_JVC,		"jvc"		},
 	{ RC_TYPE_SONY,		"sony"		},
 	{ RC_TYPE_RC5_SZ,	"rc-5-sz"	},
+<<<<<<< HEAD
 	{ RC_TYPE_SANYO,	"sanyo"		},
 	{ RC_TYPE_MCE_KBD,	"mce_kbd"	},
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ RC_TYPE_LIRC,		"lirc"		},
 	{ RC_TYPE_OTHER,	"other"		},
 };
@@ -775,9 +785,18 @@ static ssize_t show_protocols(struct device *device,
 	if (dev->driver_type == RC_DRIVER_SCANCODE) {
 		enabled = dev->rc_map.rc_type;
 		allowed = dev->allowed_protos;
+<<<<<<< HEAD
 	} else {
 		enabled = dev->raw->enabled_protocols;
 		allowed = ir_raw_get_allowed_protocols();
+=======
+	} else if (dev->raw) {
+		enabled = dev->raw->enabled_protocols;
+		allowed = ir_raw_get_allowed_protocols();
+	} else {
+		mutex_unlock(&dev->lock);
+		return -ENODEV;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	IR_dprintk(1, "allowed - 0x%llx, enabled - 0x%llx\n",
@@ -930,6 +949,13 @@ out:
 
 static void rc_dev_release(struct device *device)
 {
+<<<<<<< HEAD
+=======
+	struct rc_dev *dev = to_rc_dev(device);
+
+	kfree(dev);
+	module_put(THIS_MODULE);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 #define ADD_HOTPLUG_VAR(fmt, val...)					\
@@ -943,9 +969,12 @@ static int rc_dev_uevent(struct device *device, struct kobj_uevent_env *env)
 {
 	struct rc_dev *dev = to_rc_dev(device);
 
+<<<<<<< HEAD
 	if (!dev || !dev->input_dev)
 		return -ENODEV;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (dev->rc_map.name)
 		ADD_HOTPLUG_VAR("NAME=%s", dev->rc_map.name);
 	if (dev->driver_name)
@@ -1014,6 +1043,7 @@ EXPORT_SYMBOL_GPL(rc_allocate_device);
 
 void rc_free_device(struct rc_dev *dev)
 {
+<<<<<<< HEAD
 	if (!dev)
 		return;
 
@@ -1024,12 +1054,21 @@ void rc_free_device(struct rc_dev *dev)
 
 	kfree(dev);
 	module_put(THIS_MODULE);
+=======
+	if (dev) {
+		input_free_device(dev->input_dev);
+		put_device(&dev->dev);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 EXPORT_SYMBOL_GPL(rc_free_device);
 
 int rc_register_device(struct rc_dev *dev)
 {
+<<<<<<< HEAD
 	static bool raw_init = false; /* raw decoders loaded? */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	static atomic_t devno = ATOMIC_INIT(0);
 	struct rc_map *rc_map;
 	const char *path;
@@ -1104,16 +1143,23 @@ int rc_register_device(struct rc_dev *dev)
 	kfree(path);
 
 	if (dev->driver_type == RC_DRIVER_IR_RAW) {
+<<<<<<< HEAD
 		/* Load raw decoders, if they aren't already */
 		if (!raw_init) {
 			IR_dprintk(1, "Loading raw decoders\n");
 			ir_raw_init();
 			raw_init = true;
 		}
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		rc = ir_raw_event_register(dev);
 		if (rc < 0)
 			goto out_input;
 	}
+<<<<<<< HEAD
+=======
+	mutex_unlock(&dev->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (dev->change_protocol) {
 		rc = dev->change_protocol(dev, rc_map->rc_type);
@@ -1121,8 +1167,11 @@ int rc_register_device(struct rc_dev *dev)
 			goto out_raw;
 	}
 
+<<<<<<< HEAD
 	mutex_unlock(&dev->lock);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	IR_dprintk(1, "Registered rc%ld (driver: %s, remote: %s, mode %s)\n",
 		   dev->devno,
 		   dev->driver_name ? dev->driver_name : "unknown",
@@ -1142,7 +1191,12 @@ out_table:
 out_dev:
 	device_del(&dev->dev);
 out_unlock:
+<<<<<<< HEAD
 	mutex_unlock(&dev->lock);
+=======
+	if (mutex_is_locked(&dev->lock))
+		mutex_unlock(&dev->lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return rc;
 }
 EXPORT_SYMBOL_GPL(rc_register_device);
@@ -1157,6 +1211,7 @@ void rc_unregister_device(struct rc_dev *dev)
 	if (dev->driver_type == RC_DRIVER_IR_RAW)
 		ir_raw_event_unregister(dev);
 
+<<<<<<< HEAD
 	/* Freeing the table should also call the stop callback */
 	ir_free_table(&dev->rc_map);
 	IR_dprintk(1, "Freed keycode table\n");
@@ -1169,6 +1224,16 @@ void rc_unregister_device(struct rc_dev *dev)
 	rc_free_device(dev);
 }
 
+=======
+	input_unregister_device(dev->input_dev);
+	dev->input_dev = NULL;
+
+	ir_free_table(&dev->rc_map);
+	IR_dprintk(1, "Freed keycode table\n");
+
+	device_unregister(&dev->dev);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 EXPORT_SYMBOL_GPL(rc_unregister_device);
 
 /*
@@ -1183,6 +1248,11 @@ static int __init rc_core_init(void)
 		return rc;
 	}
 
+<<<<<<< HEAD
+=======
+	/* Initialize/load the decoders/keymap code that will be used */
+	ir_raw_init();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	rc_map_register(&empty_map);
 
 	return 0;

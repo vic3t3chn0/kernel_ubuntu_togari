@@ -31,6 +31,7 @@
 #include <linux/slab.h>
 #include <linux/types.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 
 #include "../iio.h"
@@ -38,6 +39,14 @@
 #include "../events.h"
 #include "../buffer.h"
 
+=======
+
+#include "../iio.h"
+#include "../sysfs.h"
+
+#include "../ring_generic.h"
+#include "adc.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "ad799x.h"
 
 /*
@@ -137,18 +146,27 @@ static int ad799x_scan_direct(struct ad799x_state *st, unsigned ch)
 	return rxbuf;
 }
 
+<<<<<<< HEAD
 static int ad799x_read_raw(struct iio_dev *indio_dev,
+=======
+static int ad799x_read_raw(struct iio_dev *dev_info,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			   struct iio_chan_spec const *chan,
 			   int *val,
 			   int *val2,
 			   long m)
 {
 	int ret;
+<<<<<<< HEAD
 	struct ad799x_state *st = iio_priv(indio_dev);
+=======
+	struct ad799x_state *st = dev_info->dev_data;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned int scale_uv;
 
 	switch (m) {
 	case 0:
+<<<<<<< HEAD
 		mutex_lock(&indio_dev->mlock);
 		if (iio_buffer_enabled(indio_dev))
 			ret = -EBUSY;
@@ -163,12 +181,31 @@ static int ad799x_read_raw(struct iio_dev *indio_dev,
 		return IIO_VAL_INT;
 	case IIO_CHAN_INFO_SCALE:
 		scale_uv = (st->int_vref_mv * 1000) >> chan->scan_type.realbits;
+=======
+		mutex_lock(&dev_info->mlock);
+		if (iio_ring_enabled(dev_info))
+			ret = ad799x_single_channel_from_ring(st,
+				1 << chan->address);
+		else
+			ret = ad799x_scan_direct(st, chan->address);
+		mutex_unlock(&dev_info->mlock);
+
+		if (ret < 0)
+			return ret;
+		*val = (ret >> st->chip_info->channel[0].scan_type.shift) &
+			RES_MASK(st->chip_info->channel[0].scan_type.realbits);
+		return IIO_VAL_INT;
+	case (1 << IIO_CHAN_INFO_SCALE_SHARED):
+		scale_uv = (st->int_vref_mv * 1000)
+			>> st->chip_info->channel[0].scan_type.realbits;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		*val =  scale_uv / 1000;
 		*val2 = (scale_uv % 1000) * 1000;
 		return IIO_VAL_INT_PLUS_MICRO;
 	}
 	return -EINVAL;
 }
+<<<<<<< HEAD
 static const unsigned int ad7998_frequencies[] = {
 	[AD7998_CYC_DIS]	= 0,
 	[AD7998_CYC_TCONF_32]	= 15625,
@@ -178,14 +215,24 @@ static const unsigned int ad7998_frequencies[] = {
 	[AD7998_CYC_TCONF_1024]	= 488,
 	[AD7998_CYC_TCONF_2048]	= 244,
 };
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static ssize_t ad799x_read_frequency(struct device *dev,
 					struct device_attribute *attr,
 					char *buf)
 {
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad799x_state *st = iio_priv(indio_dev);
 
 	int ret;
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad799x_state *st = iio_dev_get_devdata(dev_info);
+
+	int ret, len = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u8 val;
 	ret = ad799x_i2c_read8(st, AD7998_CYCLE_TMR_REG, &val);
 	if (ret)
@@ -193,7 +240,37 @@ static ssize_t ad799x_read_frequency(struct device *dev,
 
 	val &= AD7998_CYC_MASK;
 
+<<<<<<< HEAD
 	return sprintf(buf, "%u\n", ad7998_frequencies[val]);
+=======
+	switch (val) {
+	case AD7998_CYC_DIS:
+		len = sprintf(buf, "0\n");
+		break;
+	case AD7998_CYC_TCONF_32:
+		len = sprintf(buf, "15625\n");
+		break;
+	case AD7998_CYC_TCONF_64:
+		len = sprintf(buf, "7812\n");
+		break;
+	case AD7998_CYC_TCONF_128:
+		len = sprintf(buf, "3906\n");
+		break;
+	case AD7998_CYC_TCONF_256:
+		len = sprintf(buf, "1953\n");
+		break;
+	case AD7998_CYC_TCONF_512:
+		len = sprintf(buf, "976\n");
+		break;
+	case AD7998_CYC_TCONF_1024:
+		len = sprintf(buf, "488\n");
+		break;
+	case AD7998_CYC_TCONF_2048:
+		len = sprintf(buf, "244\n");
+		break;
+	}
+	return len;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static ssize_t ad799x_write_frequency(struct device *dev,
@@ -201,24 +278,37 @@ static ssize_t ad799x_write_frequency(struct device *dev,
 					 const char *buf,
 					 size_t len)
 {
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad799x_state *st = iio_priv(indio_dev);
 
 	long val;
 	int ret, i;
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad799x_state *st = iio_dev_get_devdata(dev_info);
+
+	long val;
+	int ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u8 t;
 
 	ret = strict_strtol(buf, 10, &val);
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
 	mutex_lock(&indio_dev->mlock);
+=======
+	mutex_lock(&dev_info->mlock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ret = ad799x_i2c_read8(st, AD7998_CYCLE_TMR_REG, &t);
 	if (ret)
 		goto error_ret_mutex;
 	/* Wipe the bits clean */
 	t &= ~AD7998_CYC_MASK;
 
+<<<<<<< HEAD
 	for (i = 0; i < ARRAY_SIZE(ad7998_frequencies); i++)
 		if (val == ad7998_frequencies[i])
 			break;
@@ -231,10 +321,47 @@ static ssize_t ad799x_write_frequency(struct device *dev,
 
 error_ret_mutex:
 	mutex_unlock(&indio_dev->mlock);
+=======
+	switch (val) {
+	case 15625:
+		t |= AD7998_CYC_TCONF_32;
+		break;
+	case 7812:
+		t |= AD7998_CYC_TCONF_64;
+		break;
+	case 3906:
+		t |= AD7998_CYC_TCONF_128;
+		break;
+	case 1953:
+		t |= AD7998_CYC_TCONF_256;
+		break;
+	case 976:
+		t |= AD7998_CYC_TCONF_512;
+		break;
+	case 488:
+		t |= AD7998_CYC_TCONF_1024;
+		break;
+	case 244:
+		t |= AD7998_CYC_TCONF_2048;
+		break;
+	case  0:
+		t |= AD7998_CYC_DIS;
+		break;
+	default:
+		ret = -EINVAL;
+		goto error_ret_mutex;
+	}
+
+	ret = ad799x_i2c_write8(st, AD7998_CYCLE_TMR_REG, t);
+
+error_ret_mutex:
+	mutex_unlock(&dev_info->mlock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ret ? ret : len;
 }
 
+<<<<<<< HEAD
 static int ad799x_read_event_config(struct iio_dev *indio_dev,
 				    u64 event_code)
 {
@@ -290,12 +417,19 @@ static int ad799x_read_event_value(struct iio_dev *indio_dev,
 	return 0;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static ssize_t ad799x_read_channel_config(struct device *dev,
 					struct device_attribute *attr,
 					char *buf)
 {
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad799x_state *st = iio_priv(indio_dev);
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad799x_state *st = iio_dev_get_devdata(dev_info);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 
 	int ret;
@@ -312,8 +446,13 @@ static ssize_t ad799x_write_channel_config(struct device *dev,
 					 const char *buf,
 					 size_t len)
 {
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
 	struct ad799x_state *st = iio_priv(indio_dev);
+=======
+	struct iio_dev *dev_info = dev_get_drvdata(dev);
+	struct ad799x_state *st = iio_dev_get_devdata(dev_info);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
 
 	long val;
@@ -323,9 +462,15 @@ static ssize_t ad799x_write_channel_config(struct device *dev,
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
 	mutex_lock(&indio_dev->mlock);
 	ret = ad799x_i2c_write16(st, this_attr->address, val);
 	mutex_unlock(&indio_dev->mlock);
+=======
+	mutex_lock(&dev_info->mlock);
+	ret = ad799x_i2c_write16(st, this_attr->address, val);
+	mutex_unlock(&dev_info->mlock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ret ? ret : len;
 }
@@ -333,7 +478,11 @@ static ssize_t ad799x_write_channel_config(struct device *dev,
 static irqreturn_t ad799x_event_handler(int irq, void *private)
 {
 	struct iio_dev *indio_dev = private;
+<<<<<<< HEAD
 	struct ad799x_state *st = iio_priv(private);
+=======
+	struct ad799x_state *st = iio_dev_get_devdata(private);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u8 status;
 	int i, ret;
 
@@ -348,6 +497,7 @@ static irqreturn_t ad799x_event_handler(int irq, void *private)
 
 	for (i = 0; i < 8; i++) {
 		if (status & (1 << i))
+<<<<<<< HEAD
 			iio_push_event(indio_dev,
 				       i & 0x1 ?
 				       IIO_UNMOD_EVENT_CODE(IIO_VOLTAGE,
@@ -358,31 +508,101 @@ static irqreturn_t ad799x_event_handler(int irq, void *private)
 							    (i >> 1),
 							    IIO_EV_TYPE_THRESH,
 							    IIO_EV_DIR_FALLING),
+=======
+			iio_push_event(indio_dev, 0,
+				       i & 0x1 ?
+				       IIO_EVENT_CODE_IN_HIGH_THRESH(i >> 1) :
+				       IIO_EVENT_CODE_IN_LOW_THRESH(i >> 1),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				       iio_get_time_ns());
 	}
 
 	return IRQ_HANDLED;
 }
 
+<<<<<<< HEAD
 static IIO_DEVICE_ATTR(in_voltage0_thresh_both_hyst_raw,
+=======
+static IIO_DEVICE_ATTR(in0_thresh_low_value,
+		       S_IRUGO | S_IWUSR,
+		       ad799x_read_channel_config,
+		       ad799x_write_channel_config,
+		       AD7998_DATALOW_CH1_REG);
+
+static IIO_DEVICE_ATTR(in0_thresh_high_value,
+		       S_IRUGO | S_IWUSR,
+		       ad799x_read_channel_config,
+		       ad799x_write_channel_config,
+		       AD7998_DATAHIGH_CH1_REG);
+
+static IIO_DEVICE_ATTR(in0_thresh_both_hyst_raw,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		       S_IRUGO | S_IWUSR,
 		       ad799x_read_channel_config,
 		       ad799x_write_channel_config,
 		       AD7998_HYST_CH1_REG);
 
+<<<<<<< HEAD
 static IIO_DEVICE_ATTR(in_voltage1_thresh_both_hyst_raw,
+=======
+static IIO_DEVICE_ATTR(in1_thresh_low_value,
+		       S_IRUGO | S_IWUSR,
+		       ad799x_read_channel_config,
+		       ad799x_write_channel_config,
+		       AD7998_DATALOW_CH2_REG);
+
+static IIO_DEVICE_ATTR(in1_thresh_high_value,
+		       S_IRUGO | S_IWUSR,
+		       ad799x_read_channel_config,
+		       ad799x_write_channel_config,
+		       AD7998_DATAHIGH_CH2_REG);
+
+static IIO_DEVICE_ATTR(in1_thresh_both_hyst_raw,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		       S_IRUGO | S_IWUSR,
 		       ad799x_read_channel_config,
 		       ad799x_write_channel_config,
 		       AD7998_HYST_CH2_REG);
 
+<<<<<<< HEAD
 static IIO_DEVICE_ATTR(in_voltage2_thresh_both_hyst_raw,
+=======
+static IIO_DEVICE_ATTR(in2_thresh_low_value,
+		       S_IRUGO | S_IWUSR,
+		       ad799x_read_channel_config,
+		       ad799x_write_channel_config,
+		       AD7998_DATALOW_CH3_REG);
+
+static IIO_DEVICE_ATTR(in2_thresh_high_value,
+		       S_IRUGO | S_IWUSR,
+		       ad799x_read_channel_config,
+		       ad799x_write_channel_config,
+		       AD7998_DATAHIGH_CH3_REG);
+
+static IIO_DEVICE_ATTR(in2_thresh_both_hyst_raw,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		       S_IRUGO | S_IWUSR,
 		       ad799x_read_channel_config,
 		       ad799x_write_channel_config,
 		       AD7998_HYST_CH3_REG);
 
+<<<<<<< HEAD
 static IIO_DEVICE_ATTR(in_voltage3_thresh_both_hyst_raw,
+=======
+static IIO_DEVICE_ATTR(in3_thresh_low_value,
+		       S_IRUGO | S_IWUSR,
+		       ad799x_read_channel_config,
+		       ad799x_write_channel_config,
+		       AD7998_DATALOW_CH4_REG);
+
+static IIO_DEVICE_ATTR(in3_thresh_high_value,
+		       S_IRUGO | S_IWUSR,
+		       ad799x_read_channel_config,
+		       ad799x_write_channel_config,
+		       AD7998_DATAHIGH_CH4_REG);
+
+static IIO_DEVICE_ATTR(in3_thresh_both_hyst_raw,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		       S_IRUGO | S_IWUSR,
 		       ad799x_read_channel_config,
 		       ad799x_write_channel_config,
@@ -394,10 +614,25 @@ static IIO_DEV_ATTR_SAMP_FREQ(S_IWUSR | S_IRUGO,
 static IIO_CONST_ATTR_SAMP_FREQ_AVAIL("15625 7812 3906 1953 976 488 244 0");
 
 static struct attribute *ad7993_4_7_8_event_attributes[] = {
+<<<<<<< HEAD
 	&iio_dev_attr_in_voltage0_thresh_both_hyst_raw.dev_attr.attr,
 	&iio_dev_attr_in_voltage1_thresh_both_hyst_raw.dev_attr.attr,
 	&iio_dev_attr_in_voltage2_thresh_both_hyst_raw.dev_attr.attr,
 	&iio_dev_attr_in_voltage3_thresh_both_hyst_raw.dev_attr.attr,
+=======
+	&iio_dev_attr_in0_thresh_low_value.dev_attr.attr,
+	&iio_dev_attr_in0_thresh_high_value.dev_attr.attr,
+	&iio_dev_attr_in0_thresh_both_hyst_raw.dev_attr.attr,
+	&iio_dev_attr_in1_thresh_low_value.dev_attr.attr,
+	&iio_dev_attr_in1_thresh_high_value.dev_attr.attr,
+	&iio_dev_attr_in1_thresh_both_hyst_raw.dev_attr.attr,
+	&iio_dev_attr_in2_thresh_low_value.dev_attr.attr,
+	&iio_dev_attr_in2_thresh_high_value.dev_attr.attr,
+	&iio_dev_attr_in2_thresh_both_hyst_raw.dev_attr.attr,
+	&iio_dev_attr_in3_thresh_low_value.dev_attr.attr,
+	&iio_dev_attr_in3_thresh_high_value.dev_attr.attr,
+	&iio_dev_attr_in3_thresh_both_hyst_raw.dev_attr.attr,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	&iio_dev_attr_sampling_frequency.dev_attr.attr,
 	&iio_const_attr_sampling_frequency_available.dev_attr.attr,
 	NULL,
@@ -405,12 +640,24 @@ static struct attribute *ad7993_4_7_8_event_attributes[] = {
 
 static struct attribute_group ad7993_4_7_8_event_attrs_group = {
 	.attrs = ad7993_4_7_8_event_attributes,
+<<<<<<< HEAD
 	.name = "events",
 };
 
 static struct attribute *ad7992_event_attributes[] = {
 	&iio_dev_attr_in_voltage0_thresh_both_hyst_raw.dev_attr.attr,
 	&iio_dev_attr_in_voltage1_thresh_both_hyst_raw.dev_attr.attr,
+=======
+};
+
+static struct attribute *ad7992_event_attributes[] = {
+	&iio_dev_attr_in0_thresh_low_value.dev_attr.attr,
+	&iio_dev_attr_in0_thresh_high_value.dev_attr.attr,
+	&iio_dev_attr_in0_thresh_both_hyst_raw.dev_attr.attr,
+	&iio_dev_attr_in1_thresh_low_value.dev_attr.attr,
+	&iio_dev_attr_in1_thresh_high_value.dev_attr.attr,
+	&iio_dev_attr_in1_thresh_both_hyst_raw.dev_attr.attr,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	&iio_dev_attr_sampling_frequency.dev_attr.attr,
 	&iio_const_attr_sampling_frequency_available.dev_attr.attr,
 	NULL,
@@ -418,7 +665,10 @@ static struct attribute *ad7992_event_attributes[] = {
 
 static struct attribute_group ad7992_event_attrs_group = {
 	.attrs = ad7992_event_attributes,
+<<<<<<< HEAD
 	.name = "events",
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static const struct iio_info ad7991_info = {
@@ -428,15 +678,21 @@ static const struct iio_info ad7991_info = {
 
 static const struct iio_info ad7992_info = {
 	.read_raw = &ad799x_read_raw,
+<<<<<<< HEAD
 	.event_attrs = &ad7992_event_attrs_group,
 	.read_event_config = &ad799x_read_event_config,
 	.read_event_value = &ad799x_read_event_value,
 	.write_event_value = &ad799x_write_event_value,
+=======
+	.num_interrupt_lines = 1,
+	.event_attrs = &ad7992_event_attrs_group,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.driver_module = THIS_MODULE,
 };
 
 static const struct iio_info ad7993_4_7_8_info = {
 	.read_raw = &ad799x_read_raw,
+<<<<<<< HEAD
 	.event_attrs = &ad7993_4_7_8_event_attrs_group,
 	.read_event_config = &ad799x_read_event_config,
 	.read_event_value = &ad799x_read_event_value,
@@ -480,11 +736,34 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 			},
 			[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
 		},
+=======
+	.num_interrupt_lines = 1,
+	.event_attrs = &ad7993_4_7_8_event_attrs_group,
+	.driver_module = THIS_MODULE,
+};
+
+static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
+	[ad7991] = {
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       0, 0, IIO_ST('u', 12, 16, 0), 0),
+		.channel[1] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       1, 1, IIO_ST('u', 12, 16, 0), 0),
+		.channel[2] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 2, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       2, 2, IIO_ST('u', 12, 16, 0), 0),
+		.channel[3] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 3, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       3, 3, IIO_ST('u', 12, 16, 0), 0),
+		.channel[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.num_channels = 5,
 		.int_vref_mv = 4096,
 		.info = &ad7991_info,
 	},
 	[ad7995] = {
+<<<<<<< HEAD
 		.channel = {
 			[0] = {
 				.type = IIO_VOLTAGE,
@@ -516,11 +795,27 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 			},
 			[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
 		},
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       0, 0, IIO_ST('u', 10, 16, 0), 0),
+		.channel[1] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       1, 1, IIO_ST('u', 10, 16, 0), 0),
+		.channel[2] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 2, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       2, 2, IIO_ST('u', 10, 16, 0), 0),
+		.channel[3] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 3, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       3, 3, IIO_ST('u', 10, 16, 0), 0),
+		.channel[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.num_channels = 5,
 		.int_vref_mv = 1024,
 		.info = &ad7991_info,
 	},
 	[ad7999] = {
+<<<<<<< HEAD
 		.channel = {
 			[0] = {
 				.type = IIO_VOLTAGE,
@@ -552,11 +847,27 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 			},
 			[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
 		},
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       0, 0, IIO_ST('u', 10, 16, 0), 0),
+		.channel[1] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       1, 1, IIO_ST('u', 10, 16, 0), 0),
+		.channel[2] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 2, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       2, 2, IIO_ST('u', 10, 16, 0), 0),
+		.channel[3] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 3, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       3, 3, IIO_ST('u', 10, 16, 0), 0),
+		.channel[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.num_channels = 5,
 		.int_vref_mv = 1024,
 		.info = &ad7991_info,
 	},
 	[ad7992] = {
+<<<<<<< HEAD
 		.channel = {
 			[0] = {
 				.type = IIO_VOLTAGE,
@@ -576,12 +887,22 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 			},
 			[2] = IIO_CHAN_SOFT_TIMESTAMP(2),
 		},
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       0, 0, IIO_ST('u', 12, 16, 0), 0),
+		.channel[1] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       1, 1, IIO_ST('u', 12, 16, 0), 0),
+		.channel[2] = IIO_CHAN_SOFT_TIMESTAMP(2),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.num_channels = 3,
 		.int_vref_mv = 4096,
 		.default_config = AD7998_ALERT_EN,
 		.info = &ad7992_info,
 	},
 	[ad7993] = {
+<<<<<<< HEAD
 		.channel = {
 			[0] = {
 				.type = IIO_VOLTAGE,
@@ -617,12 +938,28 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 			},
 			[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
 		},
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       0, 0, IIO_ST('u', 10, 16, 0), 0),
+		.channel[1] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       1, 1, IIO_ST('u', 10, 16, 0), 0),
+		.channel[2] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 2, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       2, 2, IIO_ST('u', 10, 16, 0), 0),
+		.channel[3] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 3, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       3, 3, IIO_ST('u', 10, 16, 0), 0),
+		.channel[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.num_channels = 5,
 		.int_vref_mv = 1024,
 		.default_config = AD7998_ALERT_EN,
 		.info = &ad7993_4_7_8_info,
 	},
 	[ad7994] = {
+<<<<<<< HEAD
 		.channel = {
 			[0] = {
 				.type = IIO_VOLTAGE,
@@ -658,12 +995,28 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 			},
 			[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
 		},
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       0, 0, IIO_ST('u', 12, 16, 0), 0),
+		.channel[1] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       1, 1, IIO_ST('u', 12, 16, 0), 0),
+		.channel[2] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 2, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       2, 2, IIO_ST('u', 12, 16, 0), 0),
+		.channel[3] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 3, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       3, 3, IIO_ST('u', 12, 16, 0), 0),
+		.channel[4] = IIO_CHAN_SOFT_TIMESTAMP(4),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.num_channels = 5,
 		.int_vref_mv = 4096,
 		.default_config = AD7998_ALERT_EN,
 		.info = &ad7993_4_7_8_info,
 	},
 	[ad7997] = {
+<<<<<<< HEAD
 		.channel = {
 			[0] = {
 				.type = IIO_VOLTAGE,
@@ -727,12 +1080,40 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 			},
 			[8] = IIO_CHAN_SOFT_TIMESTAMP(8),
 		},
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  0, 0, IIO_ST('u', 10, 16, 0), 0),
+		.channel[1] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  1, 1, IIO_ST('u', 10, 16, 0), 0),
+		.channel[2] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 2, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  2, 2, IIO_ST('u', 10, 16, 0), 0),
+		.channel[3] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 3, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  3, 3, IIO_ST('u', 10, 16, 0), 0),
+		.channel[4] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 4, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  4, 4, IIO_ST('u', 10, 16, 0), 0),
+		.channel[5] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 5, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  5, 5, IIO_ST('u', 10, 16, 0), 0),
+		.channel[6] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 6, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  6, 6, IIO_ST('u', 10, 16, 0), 0),
+		.channel[7] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 7, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  7, 7, IIO_ST('u', 10, 16, 0), 0),
+		.channel[8] = IIO_CHAN_SOFT_TIMESTAMP(8),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.num_channels = 9,
 		.int_vref_mv = 1024,
 		.default_config = AD7998_ALERT_EN,
 		.info = &ad7993_4_7_8_info,
 	},
 	[ad7998] = {
+<<<<<<< HEAD
 		.channel = {
 			[0] = {
 				.type = IIO_VOLTAGE,
@@ -796,6 +1177,33 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 			},
 			[8] = IIO_CHAN_SOFT_TIMESTAMP(8),
 		},
+=======
+		.channel[0] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 0, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       0, 0, IIO_ST('u', 12, 16, 0), 0),
+		.channel[1] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 1, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       1, 1, IIO_ST('u', 12, 16, 0), 0),
+		.channel[2] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 2, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       2, 2, IIO_ST('u', 12, 16, 0), 0),
+		.channel[3] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 3, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       3, 3, IIO_ST('u', 12, 16, 0), 0),
+		.channel[4] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 4, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       4, 4, IIO_ST('u', 12, 16, 0), 0),
+		.channel[5] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 5, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       5, 5, IIO_ST('u', 12, 16, 0), 0),
+		.channel[6] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 6, 0,
+				       (1 << IIO_CHAN_INFO_SCALE_SHARED),
+				       6, 6, IIO_ST('u', 12, 16, 0), 0),
+		.channel[7] = IIO_CHAN(IIO_IN, 0, 1, 0, NULL, 7, 0,
+					  (1 << IIO_CHAN_INFO_SCALE_SHARED),
+					  7, 7, IIO_ST('u', 12, 16, 0), 0),
+		.channel[8] = IIO_CHAN_SOFT_TIMESTAMP(8),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.num_channels = 9,
 		.int_vref_mv = 4096,
 		.default_config = AD7998_ALERT_EN,
@@ -806,7 +1214,11 @@ static const struct ad799x_chip_info ad799x_chip_info_tbl[] = {
 static int __devinit ad799x_probe(struct i2c_client *client,
 				   const struct i2c_device_id *id)
 {
+<<<<<<< HEAD
 	int ret;
+=======
+	int ret, regdone = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct ad799x_platform_data *pdata = client->dev.platform_data;
 	struct ad799x_state *st;
 	struct iio_dev *indio_dev = iio_allocate_device(sizeof(*st));
@@ -840,6 +1252,11 @@ static int __devinit ad799x_probe(struct i2c_client *client,
 	indio_dev->dev.parent = &client->dev;
 	indio_dev->name = id->name;
 	indio_dev->info = st->chip_info->info;
+<<<<<<< HEAD
+=======
+	indio_dev->name = id->name;
+	indio_dev->dev_data = (void *)(st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	indio_dev->modes = INDIO_DIRECT_MODE;
 	indio_dev->channels = st->chip_info->channel;
@@ -849,9 +1266,20 @@ static int __devinit ad799x_probe(struct i2c_client *client,
 	if (ret)
 		goto error_disable_reg;
 
+<<<<<<< HEAD
 	ret = iio_buffer_register(indio_dev,
 				  indio_dev->channels,
 				  indio_dev->num_channels);
+=======
+	ret = iio_device_register(indio_dev);
+	if (ret)
+		goto error_cleanup_ring;
+	regdone = 1;
+
+	ret = iio_ring_buffer_register_ex(indio_dev->ring, 0,
+					  indio_dev->channels,
+					  indio_dev->num_channels);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret)
 		goto error_cleanup_ring;
 
@@ -866,6 +1294,7 @@ static int __devinit ad799x_probe(struct i2c_client *client,
 		if (ret)
 			goto error_cleanup_ring;
 	}
+<<<<<<< HEAD
 	ret = iio_device_register(indio_dev);
 	if (ret)
 		goto error_free_irq;
@@ -874,6 +1303,11 @@ static int __devinit ad799x_probe(struct i2c_client *client,
 
 error_free_irq:
 	free_irq(client->irq, indio_dev);
+=======
+
+	return 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 error_cleanup_ring:
 	ad799x_ring_cleanup(indio_dev);
 error_disable_reg:
@@ -882,7 +1316,14 @@ error_disable_reg:
 error_put_reg:
 	if (!IS_ERR(st->reg))
 		regulator_put(st->reg);
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
+=======
+	if (regdone)
+		iio_device_unregister(indio_dev);
+	else
+		iio_free_device(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ret;
 }
@@ -892,17 +1333,28 @@ static __devexit int ad799x_remove(struct i2c_client *client)
 	struct iio_dev *indio_dev = i2c_get_clientdata(client);
 	struct ad799x_state *st = iio_priv(indio_dev);
 
+<<<<<<< HEAD
 	iio_device_unregister(indio_dev);
 	if (client->irq > 0)
 		free_irq(client->irq, indio_dev);
 
 	iio_buffer_unregister(indio_dev);
+=======
+	if (client->irq > 0)
+		free_irq(client->irq, indio_dev);
+
+	iio_ring_buffer_unregister(indio_dev->ring);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ad799x_ring_cleanup(indio_dev);
 	if (!IS_ERR(st->reg)) {
 		regulator_disable(st->reg);
 		regulator_put(st->reg);
 	}
+<<<<<<< HEAD
 	iio_free_device(indio_dev);
+=======
+	iio_device_unregister(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -929,8 +1381,28 @@ static struct i2c_driver ad799x_driver = {
 	.remove = __devexit_p(ad799x_remove),
 	.id_table = ad799x_id,
 };
+<<<<<<< HEAD
 module_i2c_driver(ad799x_driver);
+=======
+
+static __init int ad799x_init(void)
+{
+	return i2c_add_driver(&ad799x_driver);
+}
+
+static __exit void ad799x_exit(void)
+{
+	i2c_del_driver(&ad799x_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Michael Hennerich <hennerich@blackfin.uclinux.org>");
 MODULE_DESCRIPTION("Analog Devices AD799x ADC");
 MODULE_LICENSE("GPL v2");
+<<<<<<< HEAD
+=======
+MODULE_ALIAS("i2c:ad799x");
+
+module_init(ad799x_init);
+module_exit(ad799x_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

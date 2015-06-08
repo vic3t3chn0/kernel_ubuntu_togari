@@ -32,11 +32,16 @@
 #include <linux/spinlock.h>
 #include <linux/workqueue.h>
 
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/byteorder.h>
 
 #include "core.h"
 
+<<<<<<< HEAD
 #define define_fw_printk_level(func, kern_level)		\
 void func(const struct fw_card *card, const char *fmt, ...)	\
 {								\
@@ -53,6 +58,8 @@ void func(const struct fw_card *card, const char *fmt, ...)	\
 define_fw_printk_level(fw_err, KERN_ERR);
 define_fw_printk_level(fw_notice, KERN_NOTICE);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int fw_compute_block_crc(__be32 *block)
 {
 	int length;
@@ -276,7 +283,11 @@ static void allocate_broadcast_channel(struct fw_card *card, int generation)
 		fw_iso_resource_manage(card, generation, 1ULL << 31,
 				       &channel, &bandwidth, true);
 		if (channel != 31) {
+<<<<<<< HEAD
 			fw_notice(card, "failed to allocate broadcast channel\n");
+=======
+			fw_notify("failed to allocate broadcast channel\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return;
 		}
 		card->broadcast_channel_allocated = true;
@@ -359,14 +370,22 @@ static void bm_work(struct work_struct *work)
 
 		if (!card->irm_node->link_on) {
 			new_root_id = local_id;
+<<<<<<< HEAD
 			fw_notice(card, "%s, making local node (%02x) root\n",
+=======
+			fw_notify("%s, making local node (%02x) root.\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				  "IRM has link off", new_root_id);
 			goto pick_me;
 		}
 
 		if (irm_is_1394_1995_only && !keep_this_irm) {
 			new_root_id = local_id;
+<<<<<<< HEAD
 			fw_notice(card, "%s, making local node (%02x) root\n",
+=======
+			fw_notify("%s, making local node (%02x) root.\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				  "IRM is not 1394a compliant", new_root_id);
 			goto pick_me;
 		}
@@ -421,7 +440,11 @@ static void bm_work(struct work_struct *work)
 			 * root, and thus, IRM.
 			 */
 			new_root_id = local_id;
+<<<<<<< HEAD
 			fw_notice(card, "%s, making local node (%02x) root\n",
+=======
+			fw_notify("%s, making local node (%02x) root.\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				  "BM lock failed", new_root_id);
 			goto pick_me;
 		}
@@ -494,8 +517,13 @@ static void bm_work(struct work_struct *work)
 	spin_unlock_irq(&card->lock);
 
 	if (do_reset) {
+<<<<<<< HEAD
 		fw_notice(card, "phy config: new root=%x, gap_count=%d\n",
 			  new_root_id, gap_count);
+=======
+		fw_notify("phy config: card %d, new root=%x, gap_count=%d\n",
+			  card->index, new_root_id, gap_count);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		fw_send_phy_config(card, new_root_id, generation, gap_count);
 		reset_bus(card, true);
 		/* Will allocate broadcast channel after the reset. */
@@ -650,11 +678,14 @@ static void dummy_flush_queue_iso(struct fw_iso_context *ctx)
 {
 }
 
+<<<<<<< HEAD
 static int dummy_flush_iso_completions(struct fw_iso_context *ctx)
 {
 	return -ENODEV;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static const struct fw_card_driver dummy_driver_template = {
 	.read_phy_reg		= dummy_read_phy_reg,
 	.update_phy_reg		= dummy_update_phy_reg,
@@ -667,7 +698,10 @@ static const struct fw_card_driver dummy_driver_template = {
 	.set_iso_channels	= dummy_set_iso_channels,
 	.queue_iso		= dummy_queue_iso,
 	.flush_queue_iso	= dummy_flush_queue_iso,
+<<<<<<< HEAD
 	.flush_iso_completions	= dummy_flush_iso_completions,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 void fw_card_release(struct kref *kref)

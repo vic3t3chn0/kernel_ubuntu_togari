@@ -421,6 +421,10 @@ static int acpi_memory_device_add(struct acpi_device *device)
 	/* Get the range from the _CRS */
 	result = acpi_memory_get_device_resources(mem_device);
 	if (result) {
+<<<<<<< HEAD
+=======
+		device->driver_data = NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		kfree(mem_device);
 		return result;
 	}

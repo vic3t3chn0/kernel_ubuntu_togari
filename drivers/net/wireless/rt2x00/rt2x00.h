@@ -29,7 +29,10 @@
 #define RT2X00_H
 
 #include <linux/bitops.h>
+<<<<<<< HEAD
 #include <linux/interrupt.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/skbuff.h>
 #include <linux/workqueue.h>
 #include <linux/firmware.h>
@@ -38,7 +41,11 @@
 #include <linux/etherdevice.h>
 #include <linux/input-polldev.h>
 #include <linux/kfifo.h>
+<<<<<<< HEAD
 #include <linux/hrtimer.h>
+=======
+#include <linux/timer.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <net/mac80211.h>
 
@@ -189,10 +196,16 @@ struct rt2x00_chip {
 #define RT3090		0x3090	/* 2.4GHz PCIe */
 #define RT3390		0x3390
 #define RT3572		0x3572
+<<<<<<< HEAD
 #define RT3593		0x3593
 #define RT3883		0x3883	/* WSOC */
 #define RT5390		0x5390  /* 2.4GHz */
 #define RT5392		0x5392  /* 2.4GHz */
+=======
+#define RT3593		0x3593	/* PCIe */
+#define RT3883		0x3883	/* WSOC */
+#define RT5390         0x5390  /* 2.4GHz */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	u16 rf;
 	u16 rev;
@@ -356,11 +369,14 @@ struct link {
 	 * Work structure for scheduling periodic AGC adjustments.
 	 */
 	struct delayed_work agc_work;
+<<<<<<< HEAD
 
 	/*
 	 * Work structure for scheduling periodic VCO calibration.
 	 */
 	struct delayed_work vco_work;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 enum rt2x00_delayed_flags {
@@ -484,8 +500,11 @@ struct rt2x00lib_crypto {
 	u8 key[16];
 	u8 tx_mic[8];
 	u8 rx_mic[8];
+<<<<<<< HEAD
 
 	int wcid;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /*
@@ -520,6 +539,7 @@ struct rt2x00intf_conf {
 };
 
 /*
+<<<<<<< HEAD
  * Private structure for storing STA details
  * wcid: Wireless Client ID
  */
@@ -533,6 +553,8 @@ static inline struct rt2x00_sta* sta_to_rt2x00_sta(struct ieee80211_sta *sta)
 }
 
 /*
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * rt2x00lib callback functions.
  */
 struct rt2x00lib_ops {
@@ -585,7 +607,10 @@ struct rt2x00lib_ops {
 	void (*link_tuner) (struct rt2x00_dev *rt2x00dev,
 			    struct link_qual *qual, const u32 count);
 	void (*gain_calibration) (struct rt2x00_dev *rt2x00dev);
+<<<<<<< HEAD
 	void (*vco_calibration) (struct rt2x00_dev *rt2x00dev);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Data queue handlers.
@@ -642,11 +667,14 @@ struct rt2x00lib_ops {
 	void (*config) (struct rt2x00_dev *rt2x00dev,
 			struct rt2x00lib_conf *libconf,
 			const unsigned int changed_flags);
+<<<<<<< HEAD
 	int (*sta_add) (struct rt2x00_dev *rt2x00dev,
 			struct ieee80211_vif *vif,
 			struct ieee80211_sta *sta);
 	int (*sta_remove) (struct rt2x00_dev *rt2x00dev,
 			   int wcid);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /*
@@ -654,7 +682,10 @@ struct rt2x00lib_ops {
  */
 struct rt2x00_ops {
 	const char *name;
+<<<<<<< HEAD
 	const unsigned int drv_data_size;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	const unsigned int max_sta_intf;
 	const unsigned int max_ap_intf;
 	const unsigned int eeprom_size;
@@ -692,12 +723,15 @@ enum rt2x00_state_flags {
 	 */
 	CONFIG_CHANNEL_HT40,
 	CONFIG_POWERSAVING,
+<<<<<<< HEAD
 
 	/*
 	 * Mark we currently are sequentially reading TX_STA_FIFO register
 	 * FIXME: this is for only rt2800usb, should go to private data
 	 */
 	TX_STATUS_READING,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /*
@@ -735,7 +769,10 @@ enum rt2x00_capability_flags {
 	CAPABILITY_EXTERNAL_LNA_BG,
 	CAPABILITY_DOUBLE_ANTENNA,
 	CAPABILITY_BT_COEXIST,
+<<<<<<< HEAD
 	CAPABILITY_VCO_RECALIBRATION,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /*
@@ -757,11 +794,14 @@ struct rt2x00_dev {
 	const struct rt2x00_ops *ops;
 
 	/*
+<<<<<<< HEAD
 	 * Driver data.
 	 */
 	void *drv_data;
 
 	/*
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 * IEEE80211 control structure.
 	 */
 	struct ieee80211_hw *hw;
@@ -906,11 +946,25 @@ struct rt2x00_dev {
 	u8 rssi_offset;
 
 	/*
+<<<<<<< HEAD
 	 * Frequency offset.
+=======
+	 * Frequency offset (for rt61pci & rt73usb).
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 */
 	u8 freq_offset;
 
 	/*
+<<<<<<< HEAD
+=======
+	 * Calibration information (for rt2800usb & rt2800pci).
+	 * [0] -> BW20
+	 * [1] -> BW40
+	 */
+	u8 calibration[2];
+
+	/*
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 * Association id.
 	 */
 	u16 aid;
@@ -980,7 +1034,11 @@ struct rt2x00_dev {
 	/*
 	 * Timer to ensure tx status reports are read (rt2800usb).
 	 */
+<<<<<<< HEAD
 	struct hrtimer txstatus_timer;
+=======
+	struct timer_list txstatus_timer;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Tasklet for processing tx status reports (rt2800pci).
@@ -992,11 +1050,14 @@ struct rt2x00_dev {
 	struct tasklet_struct autowake_tasklet;
 
 	/*
+<<<<<<< HEAD
 	 * Used for VCO periodic calibration.
 	 */
 	int rf_channel;
 
 	/*
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 * Protect the interrupt mask register.
 	 */
 	spinlock_t irqmask_lock;
@@ -1265,12 +1326,15 @@ static inline void rt2x00debug_dump_frame(struct rt2x00_dev *rt2x00dev,
 #endif /* CONFIG_RT2X00_LIB_DEBUGFS */
 
 /*
+<<<<<<< HEAD
  * Utility functions.
  */
 u32 rt2x00lib_get_bssidx(struct rt2x00_dev *rt2x00dev,
 			 struct ieee80211_vif *vif);
 
 /*
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * Interrupt context handlers.
  */
 void rt2x00lib_beacondone(struct rt2x00_dev *rt2x00dev);
@@ -1306,10 +1370,13 @@ int rt2x00mac_set_key(struct ieee80211_hw *hw, enum set_key_cmd cmd,
 #else
 #define rt2x00mac_set_key	NULL
 #endif /* CONFIG_RT2X00_LIB_CRYPTO */
+<<<<<<< HEAD
 int rt2x00mac_sta_add(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 		      struct ieee80211_sta *sta);
 int rt2x00mac_sta_remove(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 			 struct ieee80211_sta *sta);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void rt2x00mac_sw_scan_start(struct ieee80211_hw *hw);
 void rt2x00mac_sw_scan_complete(struct ieee80211_hw *hw);
 int rt2x00mac_get_stats(struct ieee80211_hw *hw,
@@ -1318,8 +1385,12 @@ void rt2x00mac_bss_info_changed(struct ieee80211_hw *hw,
 				struct ieee80211_vif *vif,
 				struct ieee80211_bss_conf *bss_conf,
 				u32 changes);
+<<<<<<< HEAD
 int rt2x00mac_conf_tx(struct ieee80211_hw *hw,
 		      struct ieee80211_vif *vif, u16 queue,
+=======
+int rt2x00mac_conf_tx(struct ieee80211_hw *hw, u16 queue,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		      const struct ieee80211_tx_queue_params *params);
 void rt2x00mac_rfkill_poll(struct ieee80211_hw *hw);
 void rt2x00mac_flush(struct ieee80211_hw *hw, bool drop);
@@ -1327,7 +1398,10 @@ int rt2x00mac_set_antenna(struct ieee80211_hw *hw, u32 tx_ant, u32 rx_ant);
 int rt2x00mac_get_antenna(struct ieee80211_hw *hw, u32 *tx_ant, u32 *rx_ant);
 void rt2x00mac_get_ringparam(struct ieee80211_hw *hw,
 			     u32 *tx, u32 *tx_max, u32 *rx, u32 *rx_max);
+<<<<<<< HEAD
 bool rt2x00mac_tx_frames_pending(struct ieee80211_hw *hw);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * Driver allocation handlers.

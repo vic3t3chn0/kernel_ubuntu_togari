@@ -273,6 +273,7 @@ config WIFI_CONTROL_FUNC
 	help
 	  Enables Power/Reset/Carddetect function abstraction
 
+<<<<<<< HEAD
 config LIBRA_SDIOIF
 	tristate "Qualcomm libra wlan SDIO driver"
 	select WIRELESS_EXT
@@ -329,6 +330,15 @@ source "drivers/net/wireless/b43/Kconfig"
 source "drivers/net/wireless/b43legacy/Kconfig"
 source "drivers/net/wireless/bcmdhd/Kconfig"
 source "drivers/net/wireless/brcm80211/Kconfig"
+=======
+source "drivers/net/wireless/ath/Kconfig"
+source "drivers/net/wireless/b43/Kconfig"
+source "drivers/net/wireless/b43legacy/Kconfig"
+#source "drivers/net/wireless/bcm4329/Kconfig"
+source "drivers/net/wireless/bcmdhd/Kconfig"
+#source "drivers/net/wireless/bcm4330/Kconfig"
+#source "drivers/net/wireless/bcm4334/Kconfig"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/net/wireless/hostap/Kconfig"
 source "drivers/net/wireless/ipw2x00/Kconfig"
 source "drivers/net/wireless/iwlwifi/Kconfig"

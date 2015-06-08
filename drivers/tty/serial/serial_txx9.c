@@ -28,8 +28,11 @@
 #include <linux/pci.h>
 #include <linux/serial_core.h>
 #include <linux/serial.h>
+<<<<<<< HEAD
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <asm/io.h>
 

@@ -22,7 +22,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: sbhnddma.h 309193 2012-01-19 00:03:57Z $
+=======
+ * $Id: sbhnddma.h 348178 2012-07-31 22:27:41Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef	_sbhnddma_h_
@@ -233,11 +237,24 @@ typedef volatile struct {
 
 #define D64RINGALIGN_BITS	13
 #define	D64MAXRINGSZ		(1 << D64RINGALIGN_BITS)
+<<<<<<< HEAD
 #define	D64RINGALIGN		(1 << D64RINGALIGN_BITS)
+=======
+#define	D64RINGBOUNDARY		(1 << D64RINGALIGN_BITS)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define	D64MAXDD	(D64MAXRINGSZ / sizeof (dma64dd_t))
 
 
+<<<<<<< HEAD
+=======
+#define	D64MAXDD_LARGE		((1 << 16) / sizeof (dma64dd_t))
+
+
+#define	D64RINGBOUNDARY_LARGE	(1 << 16)
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define	D64_XC_XE		0x00000001	
 #define	D64_XC_SE		0x00000002	
 #define	D64_XC_LE		0x00000004	
@@ -258,7 +275,11 @@ typedef volatile struct {
 #define	D64_XP_LD_MASK		0x00001fff	
 
 
+<<<<<<< HEAD
 #define	D64_XS0_CD_MASK		0x00001fff	
+=======
+#define	D64_XS0_CD_MASK		(di->d64_xs0_cd_mask)	
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define	D64_XS0_XS_MASK		0xf0000000     	
 #define	D64_XS0_XS_SHIFT		28
 #define	D64_XS0_XS_DISABLED	0x00000000	
@@ -267,7 +288,11 @@ typedef volatile struct {
 #define	D64_XS0_XS_STOPPED	0x30000000	
 #define	D64_XS0_XS_SUSP		0x40000000	
 
+<<<<<<< HEAD
 #define	D64_XS1_AD_MASK		0x00001fff	
+=======
+#define	D64_XS1_AD_MASK		(di->d64_xs1_ad_mask)	
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define	D64_XS1_XE_MASK		0xf0000000     	
 #define	D64_XS1_XE_SHIFT		28
 #define	D64_XS1_XE_NOERR	0x00000000	
@@ -306,7 +331,11 @@ typedef volatile struct {
 #define	D64_RP_LD_MASK		0x00001fff	
 
 
+<<<<<<< HEAD
 #define	D64_RS0_CD_MASK		0x00001fff	
+=======
+#define	D64_RS0_CD_MASK		(di->d64_rs0_cd_mask)	
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define	D64_RS0_RS_MASK		0xf0000000     	
 #define	D64_RS0_RS_SHIFT		28
 #define	D64_RS0_RS_DISABLED	0x00000000	

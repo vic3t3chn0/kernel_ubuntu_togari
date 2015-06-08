@@ -22,7 +22,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: sdioh.h 299859 2011-12-01 03:53:27Z $
+=======
+ * $Id: sdioh.h 345499 2012-07-18 06:59:05Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef	_SDIOH_H
@@ -89,6 +93,13 @@
 #define SD3_PresetVal_SDR50		0x06a
 #define SD3_PresetVal_SDR104	0x06c
 #define SD3_PresetVal_DDR50		0x06e
+<<<<<<< HEAD
+=======
+/* SDIO3.0 Revx specific Registers */
+#define SD3_Tuning_Info_Register 0x0EC
+#define SD3_WL_BT_reset_register 0x0F0
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* preset value indices */
 #define SD3_PRESETVAL_INITIAL_IX	0

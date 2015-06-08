@@ -21,7 +21,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: wl_cfgp2p.h 316197 2012-02-21 13:16:39Z $
+=======
+ * $Id: wl_cfgp2p.h 383351 2013-02-06 13:05:50Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 #ifndef _wl_cfgp2p_h_
 #define _wl_cfgp2p_h_
@@ -43,6 +47,7 @@ typedef enum {
 	P2PAPI_BSSCFG_MAX
 } p2p_bsscfg_type_t;
 
+<<<<<<< HEAD
 #define IE_MAX_LEN 300
 /* Structure to hold all saved P2P and WPS IEs for a BSSCFG */
 struct p2p_saved_ie {
@@ -51,6 +56,20 @@ struct p2p_saved_ie {
 	u8  p2p_assoc_req_ie[IE_MAX_LEN];
 	u8  p2p_assoc_res_ie[IE_MAX_LEN];
 	u8  p2p_beacon_ie[IE_MAX_LEN];
+=======
+/* vendor ies max buffer length for probe response or beacon */
+#define VNDR_IES_MAX_BUF_LEN	1400
+/* normal vendor ies buffer length */
+#define VNDR_IES_BUF_LEN 		512
+
+/* Structure to hold all saved P2P and WPS IEs for a BSSCFG */
+struct p2p_saved_ie {
+	u8  p2p_probe_req_ie[VNDR_IES_BUF_LEN];
+	u8  p2p_probe_res_ie[VNDR_IES_MAX_BUF_LEN];
+	u8  p2p_assoc_req_ie[VNDR_IES_BUF_LEN];
+	u8  p2p_assoc_res_ie[VNDR_IES_BUF_LEN];
+	u8  p2p_beacon_ie[VNDR_IES_MAX_BUF_LEN];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u32 p2p_probe_req_ie_len;
 	u32 p2p_probe_res_ie_len;
 	u32 p2p_assoc_req_ie_len;
@@ -68,17 +87,41 @@ struct p2p_bss {
 struct p2p_info {
 	bool on;    /* p2p on/off switch */
 	bool scan;
+<<<<<<< HEAD
+=======
+	int16 search_state;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	bool vif_created;
 	s8 vir_ifname[IFNAMSIZ];
 	unsigned long status;
 	struct ether_addr dev_addr;
 	struct ether_addr int_addr;
+<<<<<<< HEAD
 	struct p2p_bss bss_idx[P2PAPI_BSSCFG_MAX];
+=======
+	struct p2p_bss bss[P2PAPI_BSSCFG_MAX];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct timer_list listen_timer;
 	wl_p2p_sched_t noa;
 	wl_p2p_ops_t ops;
 	wlc_ssid_t ssid;
+<<<<<<< HEAD
 	spinlock_t timer_lock;
+=======
+};
+
+#define MAX_VNDR_IE_NUMBER	5
+
+struct parsed_vndr_ie_info {
+	char *ie_ptr;
+	u32 ie_len;	/* total length including id & length field */
+	vndr_ie_t vndrie;
+};
+
+struct parsed_vndr_ies {
+	u32 count;
+	struct parsed_vndr_ie_info ie_info[MAX_VNDR_IE_NUMBER];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /* dongle status */
@@ -93,6 +136,7 @@ enum wl_cfgp2p_status {
 	WLP2P_STATUS_LISTEN_EXPIRED,
 	WLP2P_STATUS_ACTION_TX_COMPLETED,
 	WLP2P_STATUS_ACTION_TX_NOACK,
+<<<<<<< HEAD
 	WLP2P_STATUS_SCANNING
 };
 
@@ -102,6 +146,19 @@ enum wl_cfgp2p_status {
 #define wl_to_p2p_bss_saved_ie(w, type) 	((wl)->p2p->bss_idx[type].saved_ie)
 #define wl_to_p2p_bss_private(w, type) 	((wl)->p2p->bss_idx[type].private_data)
 #define wl_to_p2p_bss(wl, type) ((wl)->p2p->bss_idx[type])
+=======
+	WLP2P_STATUS_SCANNING,
+	WLP2P_STATUS_GO_NEG_PHASE,
+	WLP2P_STATUS_DISC_IN_PROGRESS
+};
+
+
+#define wl_to_p2p_bss_ndev(wl, type)		((wl)->p2p->bss[type].dev)
+#define wl_to_p2p_bss_bssidx(wl, type)		((wl)->p2p->bss[type].bssidx)
+#define wl_to_p2p_bss_saved_ie(wl, type)	((wl)->p2p->bss[type].saved_ie)
+#define wl_to_p2p_bss_private(wl, type)		((wl)->p2p->bss[type].private_data)
+#define wl_to_p2p_bss(wl, type)			((wl)->p2p->bss[type])
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define wl_get_p2p_status(wl, stat) ((!(wl)->p2p_supported) ? 0 : test_bit(WLP2P_STATUS_ ## stat, \
 									&(wl)->p2p->status))
 #define wl_set_p2p_status(wl, stat) ((!(wl)->p2p_supported) ? 0 : set_bit(WLP2P_STATUS_ ## stat, \
@@ -116,31 +173,73 @@ enum wl_cfgp2p_status {
 
 /* dword align allocation */
 #define WLC_IOCTL_MAXLEN 8192
+<<<<<<< HEAD
 #define MAC2STR(a) (a)[0], (a)[1], (a)[2], (a)[3], (a)[4], (a)[5]
 #define MACSTR "%02x:%02x:%02x:%02x:%02x:%02x"
+=======
+
+#ifdef CUSTOMER_HW4
+#define CFGP2P_ERROR_TEXT		"CFGP2P-INFO2) "
+#else
+#define CFGP2P_ERROR_TEXT		"CFGP2P-ERROR) "
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define CFGP2P_ERR(args)									\
 	do {										\
 		if (wl_dbg_level & WL_DBG_ERR) {				\
+<<<<<<< HEAD
 			printk(KERN_ERR "CFGP2P-ERROR) %s : ", __func__);	\
+=======
+			printk(KERN_INFO CFGP2P_ERROR_TEXT "%s : ", __func__);	\
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			printk args;						\
 		}									\
 	} while (0)
 #define	CFGP2P_INFO(args)									\
 	do {										\
 		if (wl_dbg_level & WL_DBG_INFO) {				\
+<<<<<<< HEAD
 			printk(KERN_ERR "CFGP2P-INFO) %s : ", __func__);	\
+=======
+			printk(KERN_INFO "CFGP2P-INFO) %s : ", __func__);	\
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			printk args;						\
 		}									\
 	} while (0)
 #define	CFGP2P_DBG(args)								\
 	do {									\
 		if (wl_dbg_level & WL_DBG_DBG) {			\
+<<<<<<< HEAD
 			printk(KERN_ERR "CFGP2P-DEBUG) %s :", __func__);	\
+=======
+			printk(KERN_DEBUG "CFGP2P-DEBUG) %s :", __func__);	\
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			printk args;							\
 		}									\
 	} while (0)
 
+<<<<<<< HEAD
+=======
+#define	CFGP2P_ACTION(args)								\
+	do {									\
+		if (wl_dbg_level & WL_DBG_P2P_ACTION) {			\
+			printk(KERN_DEBUG "CFGP2P-ACTION) %s :", __func__);	\
+			printk args;							\
+		}									\
+	} while (0)
+#define INIT_TIMER(timer, func, duration, extra_delay)	\
+	do {				   \
+		init_timer(timer); \
+		timer->function = func; \
+		timer->expires = jiffies + msecs_to_jiffies(duration + extra_delay); \
+		timer->data = (unsigned long) wl; \
+		add_timer(timer); \
+	} while (0);
+extern void
+wl_cfgp2p_listen_expired(unsigned long data);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 extern bool
 wl_cfgp2p_is_pub_action(void *frame, u32 frame_len);
 extern bool
@@ -148,7 +247,11 @@ wl_cfgp2p_is_p2p_action(void *frame, u32 frame_len);
 extern bool
 wl_cfgp2p_is_gas_action(void *frame, u32 frame_len);
 extern void
+<<<<<<< HEAD
 wl_cfgp2p_print_actframe(bool tx, void *frame, u32 frame_len);
+=======
+wl_cfgp2p_print_actframe(bool tx, void *frame, u32 frame_len, u32 channel);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 extern s32
 wl_cfgp2p_init_priv(struct wl_priv *wl);
 extern void
@@ -162,6 +265,11 @@ extern s32
 wl_cfgp2p_ifadd(struct wl_priv *wl, struct ether_addr *mac, u8 if_type,
             chanspec_t chspec);
 extern s32
+<<<<<<< HEAD
+=======
+wl_cfgp2p_ifdisable(struct wl_priv *wl, struct ether_addr *mac);
+extern s32
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 wl_cfgp2p_ifdel(struct wl_priv *wl, struct ether_addr *mac);
 extern s32
 wl_cfgp2p_ifchange(struct wl_priv *wl, struct ether_addr *mac, u8 if_type, chanspec_t chspec);
@@ -178,11 +286,19 @@ wl_cfgp2p_disable_discovery(struct wl_priv *wl);
 extern s32
 wl_cfgp2p_escan(struct wl_priv *wl, struct net_device *dev, u16 active, u32 num_chans,
 	u16 *channels,
+<<<<<<< HEAD
 	s32 search_state, u16 action, u32 bssidx);
 
 extern s32
 wl_cfgp2p_act_frm_search(struct wl_priv *wl, struct net_device *ndev,
 	s32 bssidx, s32 channel);
+=======
+	s32 search_state, u16 action, u32 bssidx, struct ether_addr *tx_dst_addr);
+
+extern s32
+wl_cfgp2p_act_frm_search(struct wl_priv *wl, struct net_device *ndev,
+	s32 bssidx, s32 channel, struct ether_addr *tx_dst_addr);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 extern wpa_ie_fixed_t *
 wl_cfgp2p_find_wpaie(u8 *parse, u32 len);
@@ -202,7 +318,15 @@ extern s32
 wl_cfgp2p_clear_management_ie(struct wl_priv *wl, s32 bssidx);
 
 extern s32
+<<<<<<< HEAD
 wl_cfgp2p_find_idx(struct wl_priv *wl, struct net_device *ndev);
+=======
+wl_cfgp2p_find_idx(struct wl_priv *wl, struct net_device *ndev, s32 *index);
+extern struct net_device *
+wl_cfgp2p_find_ndev(struct wl_priv *wl, s32 bssidx);
+extern s32
+wl_cfgp2p_find_type(struct wl_priv *wl, s32 bssidx, s32 *type);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 extern s32
@@ -261,24 +385,62 @@ wl_cfgp2p_register_ndev(struct wl_priv *wl);
 extern s32
 wl_cfgp2p_unregister_ndev(struct wl_priv *wl);
 
+<<<<<<< HEAD
+=======
+extern bool
+wl_cfgp2p_is_ifops(const struct net_device_ops *if_ops);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* WiFi Direct */
 #define SOCIAL_CHAN_1 1
 #define SOCIAL_CHAN_2 6
 #define SOCIAL_CHAN_3 11
+<<<<<<< HEAD
 #define SOCIAL_CHAN_CNT 3
+=======
+#define IS_P2P_SOCIAL_CHANNEL(channel) ((channel == SOCIAL_CHAN_1) || \
+					(channel == SOCIAL_CHAN_2) || \
+					(channel == SOCIAL_CHAN_3))
+#define SOCIAL_CHAN_CNT 3
+#define AF_PEER_SEARCH_CNT 2
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define WL_P2P_WILDCARD_SSID "DIRECT-"
 #define WL_P2P_WILDCARD_SSID_LEN 7
 #define WL_P2P_INTERFACE_PREFIX "p2p"
 #define WL_P2P_TEMP_CHAN 11
 
+<<<<<<< HEAD
+=======
+/* If the provision discovery is for JOIN operations,
+ * then we need not do an internal scan to find GO.
+*/
+#define IS_PROV_DISC_WITHOUT_GROUP_ID(p2p_ie, len) \
+	(wl_cfgp2p_retreive_p2pattrib(p2p_ie, P2P_SEID_GROUP_ID) == NULL)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define IS_GAS_REQ(frame, len) (wl_cfgp2p_is_gas_action(frame, len) && \
 					((frame->action == P2PSD_ACTION_ID_GAS_IREQ) || \
 					(frame->action == P2PSD_ACTION_ID_GAS_CREQ)))
+<<<<<<< HEAD
 #define IS_P2P_PUB_ACT_REQ(frame, len) (wl_cfgp2p_is_pub_action(frame, len) && \
 						((frame->subtype == P2P_PAF_GON_REQ) || \
 						(frame->subtype == P2P_PAF_INVITE_REQ) || \
 						(frame->subtype == P2P_PAF_PROVDIS_REQ)))
 #define IS_P2P_SOCIAL(ch) ((ch == SOCIAL_CHAN_1) || (ch == SOCIAL_CHAN_2) || (ch == SOCIAL_CHAN_3))
 #define IS_P2P_SSID(ssid) (memcmp(ssid, WL_P2P_WILDCARD_SSID, WL_P2P_WILDCARD_SSID_LEN) == 0)
+=======
+#define IS_P2P_PUB_ACT_REQ(frame, p2p_ie, len) \
+					(wl_cfgp2p_is_pub_action(frame, len) && \
+						((frame->subtype == P2P_PAF_GON_REQ) || \
+						(frame->subtype == P2P_PAF_INVITE_REQ) || \
+						((frame->subtype == P2P_PAF_PROVDIS_REQ) && \
+						IS_PROV_DISC_WITHOUT_GROUP_ID(p2p_ie, len))))
+#define IS_P2P_PUB_ACT_RSP_SUBTYPE(subtype) ((subtype == P2P_PAF_GON_RSP) || \
+							((subtype == P2P_PAF_GON_CONF) || \
+							(subtype == P2P_PAF_INVITE_RSP) || \
+							(subtype == P2P_PAF_PROVDIS_RSP)))
+#define IS_P2P_SOCIAL(ch) ((ch == SOCIAL_CHAN_1) || (ch == SOCIAL_CHAN_2) || (ch == SOCIAL_CHAN_3))
+#define IS_P2P_SSID(ssid, len) (!memcmp(ssid, WL_P2P_WILDCARD_SSID, WL_P2P_WILDCARD_SSID_LEN) && \
+					(len == WL_P2P_WILDCARD_SSID_LEN))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif				/* _wl_cfgp2p_h_ */

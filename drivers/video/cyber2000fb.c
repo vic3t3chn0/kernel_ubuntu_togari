@@ -51,6 +51,10 @@
 #include <linux/i2c-algo-bit.h>
 
 #include <asm/pgtable.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef __arm__
 #include <asm/mach-types.h>

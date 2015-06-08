@@ -55,6 +55,10 @@ struct logger_entry {
 #define LOGGER_LOG_EVENTS	"log_events"	/* system/hardware events */
 #define LOGGER_LOG_SYSTEM	"log_system"	/* system/framework messages */
 #define LOGGER_LOG_MAIN		"log_main"	/* everything else */
+<<<<<<< HEAD
+=======
+#define LOGGER_LOG_SF		"log_sf"	/* surfaceflinger */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define LOGGER_ENTRY_MAX_PAYLOAD	4076
 

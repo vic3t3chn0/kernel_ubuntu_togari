@@ -13,6 +13,7 @@
  *
  */
 
+<<<<<<< HEAD
 #include <linux/earlysuspend.h>
 #include <linux/module.h>
 #include <linux/wait.h>
@@ -23,6 +24,18 @@
 
 static wait_queue_head_t fb_state_wq;
 static int display = 1;
+=======
+#include <linux/delay.h>
+#include <linux/earlysuspend.h>
+#include <linux/module.h>
+#include <linux/wait.h>
+#include <linux/err.h>
+
+#include "power.h"
+
+static int fbearlysuspend_delay = 0;
+static wait_queue_head_t fb_state_wq;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static DEFINE_SPINLOCK(fb_state_lock);
 static enum {
 	FB_STATE_STOPPED_DRAWING,
@@ -36,6 +49,12 @@ static void stop_drawing_early_suspend(struct early_suspend *h)
 	int ret;
 	unsigned long irq_flags;
 
+<<<<<<< HEAD
+=======
+	if(fbearlysuspend_delay)
+		msleep(fbearlysuspend_delay);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_lock_irqsave(&fb_state_lock, irq_flags);
 	fb_state = FB_STATE_REQUEST_STOP_DRAWING;
 	spin_unlock_irqrestore(&fb_state_lock, irq_flags);
@@ -74,6 +93,7 @@ static ssize_t wait_for_fb_sleep_show(struct kobject *kobj,
 
 	ret = wait_event_interruptible(fb_state_wq,
 				       fb_state != FB_STATE_DRAWING_OK);
+<<<<<<< HEAD
 	if (ret && fb_state == FB_STATE_DRAWING_OK) {
 		return ret;
 	} else {
@@ -84,6 +104,12 @@ static ssize_t wait_for_fb_sleep_show(struct kobject *kobj,
 		}
 	}
 
+=======
+	if (ret && fb_state == FB_STATE_DRAWING_OK)
+		return ret;
+	else
+		s += sprintf(buf, "sleeping");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return s - buf;
 }
 
@@ -105,6 +131,7 @@ static ssize_t wait_for_fb_wake_show(struct kobject *kobj,
 				       fb_state == FB_STATE_DRAWING_OK);
 	if (ret && fb_state != FB_STATE_DRAWING_OK)
 		return ret;
+<<<<<<< HEAD
 	else {
 		s += sprintf(buf, "awake");
 		if (display == 0) {
@@ -141,11 +168,66 @@ static ssize_t wait_for_fb_status_show(struct kobject *kobj,
 power_ro_attr(wait_for_fb_sleep);
 power_ro_attr(wait_for_fb_wake);
 power_ro_attr(wait_for_fb_status);
+=======
+	else
+		s += sprintf(buf, "awake");
+
+	return s - buf;
+}
+
+static ssize_t fbdelay_show(struct kobject *kobj,
+			    struct kobj_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d", fbearlysuspend_delay);
+}
+
+static ssize_t fbearlysuspend_delay_show(struct kobject *kobj,
+			    struct kobj_attribute *attr, char *buf)
+{
+	return sprintf(buf, "%d", fbearlysuspend_delay);
+}
+
+static ssize_t fbearlysuspend_delay_store(struct kobject *kobj,
+			     struct kobj_attribute *attr,
+			     const char *buf, size_t n)
+{
+	int val;
+	if (sscanf(buf, "%d", &val) != 1)
+		return -EINVAL;
+
+	if(val < 0)
+		val = 0;
+	if(val > 1000)
+		val = 1000;
+	
+	fbearlysuspend_delay = val;
+	
+	return n;
+}
+
+#define power_ro_attr(_name) \
+static struct kobj_attribute _name##_attr = {	\
+	.attr	= {				\
+		.name = __stringify(_name),	\
+		.mode = 0444,			\
+	},					\
+	.show	= _name##_show,			\
+	.store	= NULL,		\
+}
+
+power_ro_attr(wait_for_fb_sleep);
+power_ro_attr(wait_for_fb_wake);
+power_attr(fbearlysuspend_delay);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static struct attribute *g[] = {
 	&wait_for_fb_sleep_attr.attr,
 	&wait_for_fb_wake_attr.attr,
+<<<<<<< HEAD
 	&wait_for_fb_status_attr.attr,
+=======
+	&fbearlysuspend_delay_attr.attr,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	NULL,
 };
 

@@ -25,6 +25,13 @@
  * Contact Cavium Networks for more information
 *********************************************************************/
 
+<<<<<<< HEAD
+=======
+#define DEBUGPRINT(format, ...) do { if (printk_ratelimit()) 		\
+					printk(format, ##__VA_ARGS__);	\
+				} while (0)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * cvm_oct_get_buffer_ptr - convert packet data address to pointer
  * @packet_ptr: Packet data hardware address

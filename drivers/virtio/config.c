@@ -9,4 +9,8 @@
 #include <linux/virtio.h>
 #include <linux/virtio_config.h>
 #include <linux/bug.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 

@@ -11,8 +11,11 @@
  * Licensed under the GPL-2 or later.
  */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/platform_device.h>
 #include <linux/module.h>
 #include <linux/moduleparam.h>
@@ -30,8 +33,20 @@
 #define stamp(fmt, args...) \
 	pr_debug("%s:%i: " fmt "\n", __func__, __LINE__, ## args)
 #define stampit() stamp("here i am")
+<<<<<<< HEAD
 
 #define WATCHDOG_NAME "bfin-wdt"
+=======
+#define pr_devinit(fmt, args...) \
+	({ static const __devinitconst char __fmt[] = fmt; \
+	printk(__fmt, ## args); })
+#define pr_init(fmt, args...) \
+	({ static const __initconst char __fmt[] = fmt; \
+	printk(__fmt, ## args); })
+
+#define WATCHDOG_NAME "bfin-wdt"
+#define PFX WATCHDOG_NAME ": "
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* The BF561 has two watchdogs (one per core), but since Linux
  * only runs on core A, we'll just work with that one.
@@ -49,7 +64,11 @@
 #define WATCHDOG_TIMEOUT 20
 
 static unsigned int timeout = WATCHDOG_TIMEOUT;
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static const struct watchdog_info bfin_wdt_info;
 static unsigned long open_check;
 static char expect_close;
@@ -121,7 +140,11 @@ static int bfin_wdt_set_timeout(unsigned long t)
 	stamp("maxtimeout=%us newtimeout=%lus (cnt=%#x)", max_t, t, cnt);
 
 	if (t > max_t) {
+<<<<<<< HEAD
 		pr_warn("timeout value is too large\n");
+=======
+		printk(KERN_WARNING PFX "timeout value is too large\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -EINVAL;
 	}
 
@@ -177,7 +200,12 @@ static int bfin_wdt_release(struct inode *inode, struct file *file)
 	if (expect_close == 42)
 		bfin_wdt_stop();
 	else {
+<<<<<<< HEAD
 		pr_crit("Unexpected close, not stopping watchdog!\n");
+=======
+		printk(KERN_CRIT PFX
+			"Unexpected close, not stopping watchdog!\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		bfin_wdt_keepalive();
 	}
 	expect_close = 0;
@@ -362,6 +390,7 @@ static int __devinit bfin_wdt_probe(struct platform_device *pdev)
 
 	ret = misc_register(&bfin_wdt_miscdev);
 	if (ret) {
+<<<<<<< HEAD
 		pr_err("cannot register miscdev on minor=%d (err=%d)\n",
 		       WATCHDOG_MINOR, ret);
 		return ret;
@@ -369,6 +398,16 @@ static int __devinit bfin_wdt_probe(struct platform_device *pdev)
 
 	pr_info("initialized: timeout=%d sec (nowayout=%d)\n",
 		timeout, nowayout);
+=======
+		pr_devinit(KERN_ERR PFX
+			"cannot register miscdev on minor=%d (err=%d)\n",
+				WATCHDOG_MINOR, ret);
+		return ret;
+	}
+
+	pr_devinit(KERN_INFO PFX "initialized: timeout=%d sec (nowayout=%d)\n",
+	       timeout, nowayout);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -432,14 +471,22 @@ static int __init bfin_wdt_init(void)
 	 */
 	ret = platform_driver_register(&bfin_wdt_driver);
 	if (ret) {
+<<<<<<< HEAD
 		pr_err("unable to register driver\n");
+=======
+		pr_init(KERN_ERR PFX "unable to register driver\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return ret;
 	}
 
 	bfin_wdt_device = platform_device_register_simple(WATCHDOG_NAME,
 								-1, NULL, 0);
 	if (IS_ERR(bfin_wdt_device)) {
+<<<<<<< HEAD
 		pr_err("unable to register device\n");
+=======
+		pr_init(KERN_ERR PFX "unable to register device\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		platform_driver_unregister(&bfin_wdt_driver);
 		return PTR_ERR(bfin_wdt_device);
 	}
@@ -472,7 +519,11 @@ MODULE_PARM_DESC(timeout,
 	"Watchdog timeout in seconds. (1<=timeout<=((2^32)/SCLK), default="
 		__MODULE_STRING(WATCHDOG_TIMEOUT) ")");
 
+<<<<<<< HEAD
 module_param(nowayout, bool, 0);
+=======
+module_param(nowayout, int, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_PARM_DESC(nowayout,
 	"Watchdog cannot be stopped once started (default="
 		__MODULE_STRING(WATCHDOG_NOWAYOUT) ")");

@@ -40,7 +40,11 @@ static int softsynth_is_alive(struct spk_synth *synth);
 static unsigned char get_index(void);
 
 static struct miscdevice synth_device;
+<<<<<<< HEAD
 static int initialized;
+=======
+static int init_pos;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int misc_registered;
 
 static struct var_t vars[] = {
@@ -194,7 +198,11 @@ static int softsynth_close(struct inode *inode, struct file *fp)
 	unsigned long flags;
 	spk_lock(flags);
 	synth_soft.alive = 0;
+<<<<<<< HEAD
 	initialized = 0;
+=======
+	init_pos = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spk_unlock(flags);
 	/* Make sure we let applications go before leaving */
 	speakup_start_ttys();
@@ -239,6 +247,7 @@ static ssize_t softsynth_read(struct file *fp, char *buf, size_t count,
 			ch = '\x18';
 		} else if (synth_buffer_empty()) {
 			break;
+<<<<<<< HEAD
 		} else if (!initialized) {
 			if (*init) {
 				ch = *init;
@@ -246,6 +255,10 @@ static ssize_t softsynth_read(struct file *fp, char *buf, size_t count,
 			} else {
 				initialized = 1;
 			}
+=======
+		} else if (init[init_pos]) {
+			ch = init[init_pos++];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} else {
 			ch = synth_buffer_getc();
 		}
@@ -273,8 +286,20 @@ static ssize_t softsynth_write(struct file *fp, const char *buf, size_t count,
 {
 	unsigned long supplied_index = 0;
 	int converted;
+<<<<<<< HEAD
 
 	converted = kstrtoul_from_user(buf, count, 0, &supplied_index);
+=======
+	char indbuf[5];
+	if (count >= sizeof(indbuf))
+		return -EINVAL;
+
+	if (copy_from_user(indbuf, buf, count))
+		return -EFAULT;
+	indbuf[count] = '\0';
+
+	converted = strict_strtoul(indbuf, 0, &supplied_index);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (converted < 0)
 		return converted;

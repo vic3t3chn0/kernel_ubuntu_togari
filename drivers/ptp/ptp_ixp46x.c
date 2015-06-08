@@ -327,6 +327,10 @@ no_master:
 module_init(ptp_ixp_init);
 module_exit(ptp_ixp_exit);
 
+<<<<<<< HEAD
 MODULE_AUTHOR("Richard Cochran <richardcochran@gmail.com>");
+=======
+MODULE_AUTHOR("Richard Cochran <richard.cochran@omicron.at>");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_DESCRIPTION("PTP clock using the IXP46X timer");
 MODULE_LICENSE("GPL");

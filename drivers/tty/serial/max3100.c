@@ -43,13 +43,19 @@
 #include <linux/delay.h>
 #include <linux/slab.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/serial_core.h>
 #include <linux/serial.h>
 #include <linux/spi/spi.h>
 #include <linux/freezer.h>
+<<<<<<< HEAD
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <linux/serial_max3100.h>
 
@@ -901,6 +907,10 @@ static int max3100_resume(struct spi_device *spi)
 static struct spi_driver max3100_driver = {
 	.driver = {
 		.name		= "max3100",
+<<<<<<< HEAD
+=======
+		.bus		= &spi_bus_type,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.owner		= THIS_MODULE,
 	},
 

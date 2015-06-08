@@ -206,7 +206,11 @@ static const struct usb_device_id moschip_port_id_table[] = {
 	{}			/* terminating entry */
 };
 
+<<<<<<< HEAD
 static const struct usb_device_id moschip_id_table_combined[] __devinitconst = {
+=======
+static const struct usb_device_id moschip_id_table_combined[] = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{USB_DEVICE(USB_VENDOR_ID_MOSCHIP, MOSCHIP_DEVICE_ID_7840)},
 	{USB_DEVICE(USB_VENDOR_ID_MOSCHIP, MOSCHIP_DEVICE_ID_7820)},
 	{USB_DEVICE(USB_VENDOR_ID_BANDB, BANDB_DEVICE_ID_USO9ML2_2)},
@@ -235,12 +239,18 @@ struct moschip_port {
 	int port_num;		/*Actual port number in the device(1,2,etc) */
 	struct urb *write_urb;	/* write URB for this port */
 	struct urb *read_urb;	/* read URB for this port */
+<<<<<<< HEAD
 	struct urb *int_urb;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	__u8 shadowLCR;		/* last LCR value received */
 	__u8 shadowMCR;		/* last MCR value received */
 	char open;
 	char open_ports;
+<<<<<<< HEAD
 	char zombie;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	wait_queue_head_t wait_chase;	/* for handling sleeping while waiting for chase to finish */
 	wait_queue_head_t delta_msr_wait;	/* for handling sleeping while waiting for msr change to happen */
 	int delta_msr_cond;
@@ -264,7 +274,11 @@ struct moschip_port {
 };
 
 
+<<<<<<< HEAD
 static bool debug;
+=======
+static int debug;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * mos7840_set_reg_sync
@@ -505,7 +519,10 @@ static void mos7840_control_callback(struct urb *urb)
 	unsigned char *data;
 	struct moschip_port *mos7840_port;
 	__u8 regval = 0x0;
+<<<<<<< HEAD
 	int result = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int status = urb->status;
 
 	mos7840_port = urb->context;
@@ -524,7 +541,11 @@ static void mos7840_control_callback(struct urb *urb)
 	default:
 		dbg("%s - nonzero urb status received: %d", __func__,
 		    status);
+<<<<<<< HEAD
 		goto exit;
+=======
+		return;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	dbg("%s urb buffer size is %d", __func__, urb->actual_length);
@@ -537,6 +558,7 @@ static void mos7840_control_callback(struct urb *urb)
 		mos7840_handle_new_msr(mos7840_port, regval);
 	else if (mos7840_port->MsrLsr == 1)
 		mos7840_handle_new_lsr(mos7840_port, regval);
+<<<<<<< HEAD
 
 exit:
 	spin_lock(&mos7840_port->pool_lock);
@@ -548,6 +570,8 @@ exit:
 			"%s - Error %d submitting interrupt urb\n",
 			__func__, result);
 	}
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int mos7840_get_reg(struct moschip_port *mcs, __u16 Wval, __u16 reg,
@@ -655,6 +679,7 @@ static void mos7840_interrupt_callback(struct urb *urb)
 					wreg = MODEM_STATUS_REGISTER;
 					break;
 				}
+<<<<<<< HEAD
 				spin_lock(&mos7840_port->pool_lock);
 				if (!mos7840_port->zombie) {
 					rv = mos7840_get_reg(mos7840_port, wval, wreg, &Data);
@@ -663,6 +688,9 @@ static void mos7840_interrupt_callback(struct urb *urb)
 					return;
 				}
 				spin_unlock(&mos7840_port->pool_lock);
+=======
+				rv = mos7840_get_reg(mos7840_port, wval, wreg, &Data);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			}
 		}
 	}
@@ -793,6 +821,11 @@ static void mos7840_bulk_in_callback(struct urb *urb)
 	}
 
 
+<<<<<<< HEAD
+=======
+	mos7840_port->read_urb->dev = serial->dev;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	mos7840_port->read_urb_busy = true;
 	retval = usb_submit_urb(mos7840_port->read_urb, GFP_ATOMIC);
 
@@ -1189,9 +1222,18 @@ static int mos7840_chars_in_buffer(struct tty_struct *tty)
 	}
 
 	spin_lock_irqsave(&mos7840_port->pool_lock, flags);
+<<<<<<< HEAD
 	for (i = 0; i < NUM_URBS; ++i)
 		if (mos7840_port->busy[i])
 			chars += URB_TRANSFER_BUFFER_SIZE;
+=======
+	for (i = 0; i < NUM_URBS; ++i) {
+		if (mos7840_port->busy[i]) {
+			struct urb *urb = mos7840_port->write_urb_pool[i];
+			chars += urb->transfer_buffer_length;
+		}
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_unlock_irqrestore(&mos7840_port->pool_lock, flags);
 	dbg("%s - returns %d", __func__, chars);
 	return chars;
@@ -1521,7 +1563,11 @@ static int mos7840_write(struct tty_struct *tty, struct usb_serial_port *port,
 		    kmalloc(URB_TRANSFER_BUFFER_SIZE, GFP_KERNEL);
 
 		if (urb->transfer_buffer == NULL) {
+<<<<<<< HEAD
 			dev_err_console(port, "%s no more kernel memory...\n",
+=======
+			dev_err(&port->dev, "%s no more kernel memory...\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				__func__);
 			goto exit;
 		}
@@ -1559,7 +1605,11 @@ static int mos7840_write(struct tty_struct *tty, struct usb_serial_port *port,
 
 	if (status) {
 		mos7840_port->busy[i] = 0;
+<<<<<<< HEAD
 		dev_err_console(port, "%s - usb_submit_urb(write bulk) failed "
+=======
+		dev_err(&port->dev, "%s - usb_submit_urb(write bulk) failed "
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			"with status = %d\n", __func__, status);
 		bytes_sent = status;
 		goto exit;
@@ -2080,6 +2130,10 @@ static void mos7840_change_port_settings(struct tty_struct *tty,
 	mos7840_set_uart_reg(port, INTERRUPT_ENABLE_REGISTER, Data);
 
 	if (mos7840_port->read_urb_busy == false) {
+<<<<<<< HEAD
+=======
+		mos7840_port->read_urb->dev = serial->dev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mos7840_port->read_urb_busy = true;
 		status = usb_submit_urb(mos7840_port->read_urb, GFP_ATOMIC);
 		if (status) {
@@ -2151,6 +2205,10 @@ static void mos7840_set_termios(struct tty_struct *tty,
 	}
 
 	if (mos7840_port->read_urb_busy == false) {
+<<<<<<< HEAD
+=======
+		mos7840_port->read_urb->dev = serial->dev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mos7840_port->read_urb_busy = true;
 		status = usb_submit_urb(mos7840_port->read_urb, GFP_ATOMIC);
 		if (status) {
@@ -2283,6 +2341,10 @@ static int mos7840_ioctl(struct tty_struct *tty,
 	case TIOCSERGETLSR:
 		dbg("%s (%d) TIOCSERGETLSR", __func__, port->number);
 		return mos7840_get_lsr_info(tty, argp);
+<<<<<<< HEAD
+=======
+		return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	case TIOCGSERIAL:
 		dbg("%s (%d) TIOCGSERIAL", __func__, port->number);
@@ -2587,7 +2649,10 @@ error:
 		kfree(mos7840_port->ctrl_buf);
 		usb_free_urb(mos7840_port->control_urb);
 		kfree(mos7840_port);
+<<<<<<< HEAD
 		serial->port[i] = NULL;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return status;
 }
@@ -2600,7 +2665,10 @@ error:
 static void mos7840_disconnect(struct usb_serial *serial)
 {
 	int i;
+<<<<<<< HEAD
 	unsigned long flags;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct moschip_port *mos7840_port;
 	dbg("%s", " disconnect :entering..........");
 
@@ -2618,9 +2686,12 @@ static void mos7840_disconnect(struct usb_serial *serial)
 		mos7840_port = mos7840_get_port_private(serial->port[i]);
 		dbg ("mos7840_port %d = %p", i, mos7840_port);
 		if (mos7840_port) {
+<<<<<<< HEAD
 			spin_lock_irqsave(&mos7840_port->pool_lock, flags);
 			mos7840_port->zombie = 1;
 			spin_unlock_irqrestore(&mos7840_port->pool_lock, flags);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			usb_kill_urb(mos7840_port->control_urb);
 		}
 	}
@@ -2654,6 +2725,10 @@ static void mos7840_release(struct usb_serial *serial)
 		mos7840_port = mos7840_get_port_private(serial->port[i]);
 		dbg("mos7840_port %d = %p", i, mos7840_port);
 		if (mos7840_port) {
+<<<<<<< HEAD
+=======
+			usb_free_urb(mos7840_port->control_urb);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			kfree(mos7840_port->ctrl_buf);
 			kfree(mos7840_port->dr);
 			kfree(mos7840_port);
@@ -2669,6 +2744,10 @@ static struct usb_driver io_driver = {
 	.probe = usb_serial_probe,
 	.disconnect = usb_serial_disconnect,
 	.id_table = moschip_id_table_combined,
+<<<<<<< HEAD
+=======
+	.no_dynamic_id = 1,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static struct usb_serial_driver moschip7840_4port_device = {
@@ -2677,6 +2756,10 @@ static struct usb_serial_driver moschip7840_4port_device = {
 		   .name = "mos7840",
 		   },
 	.description = DRIVER_DESC,
+<<<<<<< HEAD
+=======
+	.usb_driver = &io_driver,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.id_table = moschip_port_id_table,
 	.num_ports = 4,
 	.open = mos7840_open,
@@ -2703,12 +2786,66 @@ static struct usb_serial_driver moschip7840_4port_device = {
 	.read_int_callback = mos7840_interrupt_callback,
 };
 
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&moschip7840_4port_device, NULL
 };
 
 module_usb_serial_driver(io_driver, serial_drivers);
 
+=======
+/****************************************************************************
+ * moschip7840_init
+ *	This is called by the module subsystem, or on startup to initialize us
+ ****************************************************************************/
+static int __init moschip7840_init(void)
+{
+	int retval;
+
+	dbg("%s", " mos7840_init :entering..........");
+
+	/* Register with the usb serial */
+	retval = usb_serial_register(&moschip7840_4port_device);
+
+	if (retval)
+		goto failed_port_device_register;
+
+	dbg("%s", "Entering...");
+	printk(KERN_INFO KBUILD_MODNAME ": " DRIVER_VERSION ":"
+	       DRIVER_DESC "\n");
+
+	/* Register with the usb */
+	retval = usb_register(&io_driver);
+	if (retval == 0) {
+		dbg("%s", "Leaving...");
+		return 0;
+	}
+	usb_serial_deregister(&moschip7840_4port_device);
+failed_port_device_register:
+	return retval;
+}
+
+/****************************************************************************
+ * moschip7840_exit
+ *	Called when the driver is about to be unloaded.
+ ****************************************************************************/
+static void __exit moschip7840_exit(void)
+{
+
+	dbg("%s", " mos7840_exit :entering..........");
+
+	usb_deregister(&io_driver);
+
+	usb_serial_deregister(&moschip7840_4port_device);
+
+	dbg("%s", "Entering...");
+}
+
+module_init(moschip7840_init);
+module_exit(moschip7840_exit);
+
+/* Module information */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");
 

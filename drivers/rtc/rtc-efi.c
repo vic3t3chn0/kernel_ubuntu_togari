@@ -213,6 +213,10 @@ static struct platform_driver efi_rtc_driver = {
 		.name = "rtc-efi",
 		.owner = THIS_MODULE,
 	},
+<<<<<<< HEAD
+=======
+	.probe = efi_rtc_probe,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.remove = __exit_p(efi_rtc_remove),
 };
 

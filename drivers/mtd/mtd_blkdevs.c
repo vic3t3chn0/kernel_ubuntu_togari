@@ -233,7 +233,10 @@ static int blktrans_open(struct block_device *bdev, fmode_t mode)
 	ret = __get_mtd_device(dev->mtd);
 	if (ret)
 		goto error_release;
+<<<<<<< HEAD
 	dev->file_mode = mode;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 unlock:
 	dev->open++;
@@ -426,6 +429,7 @@ int add_mtd_blktrans_dev(struct mtd_blktrans_dev *new)
 		goto error3;
 
 	new->rq->queuedata = new;
+<<<<<<< HEAD
 
 	/*
 	 * Empirical measurements revealed that read ahead values larger than
@@ -437,6 +441,10 @@ int add_mtd_blktrans_dev(struct mtd_blktrans_dev *new)
 
 	queue_flag_set_unlocked(QUEUE_FLAG_NONROT, new->rq);
 
+=======
+	blk_queue_logical_block_size(new->rq, tr->blksize);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (tr->discard) {
 		queue_flag_set_unlocked(QUEUE_FLAG_DISCARD, new->rq);
 		new->rq->limits.max_discard_sectors = UINT_MAX;

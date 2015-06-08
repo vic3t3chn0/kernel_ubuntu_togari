@@ -11,7 +11,10 @@
 #include <linux/kernel.h>
 #include <linux/i2c.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "adt7316.h"
 
@@ -110,7 +113,11 @@ static int __devinit adt7316_i2c_probe(struct i2c_client *client,
 
 static int __devexit adt7316_i2c_remove(struct i2c_client *client)
 {
+<<<<<<< HEAD
 	return adt7316_remove(&client->dev);
+=======
+	return adt7316_remove(&client->dev);;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static const struct i2c_device_id adt7316_i2c_id[] = {
@@ -125,19 +132,63 @@ static const struct i2c_device_id adt7316_i2c_id[] = {
 
 MODULE_DEVICE_TABLE(i2c, adt7316_i2c_id);
 
+<<<<<<< HEAD
 static struct i2c_driver adt7316_driver = {
 	.driver = {
 		.name = "adt7316",
 		.pm = ADT7316_PM_OPS,
+=======
+#ifdef CONFIG_PM
+static int adt7316_i2c_suspend(struct i2c_client *client, pm_message_t message)
+{
+	return adt7316_disable(&client->dev);
+}
+
+static int adt7316_i2c_resume(struct i2c_client *client)
+{
+	return adt7316_enable(&client->dev);
+}
+#else
+# define adt7316_i2c_suspend NULL
+# define adt7316_i2c_resume  NULL
+#endif
+
+static struct i2c_driver adt7316_driver = {
+	.driver = {
+		.name = "adt7316",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.owner  = THIS_MODULE,
 	},
 	.probe = adt7316_i2c_probe,
 	.remove = __devexit_p(adt7316_i2c_remove),
+<<<<<<< HEAD
 	.id_table = adt7316_i2c_id,
 };
 module_i2c_driver(adt7316_driver);
+=======
+	.suspend = adt7316_i2c_suspend,
+	.resume = adt7316_i2c_resume,
+	.id_table = adt7316_i2c_id,
+};
+
+static __init int adt7316_i2c_init(void)
+{
+	return i2c_add_driver(&adt7316_driver);
+}
+
+static __exit void adt7316_i2c_exit(void)
+{
+	i2c_del_driver(&adt7316_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Sonic Zhang <sonic.zhang@analog.com>");
 MODULE_DESCRIPTION("I2C bus driver for Analog Devices ADT7316/7/9 and"
 			"ADT7516/7/8 digital temperature sensor, ADC and DAC");
 MODULE_LICENSE("GPL v2");
+<<<<<<< HEAD
+=======
+
+module_init(adt7316_i2c_init);
+module_exit(adt7316_i2c_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

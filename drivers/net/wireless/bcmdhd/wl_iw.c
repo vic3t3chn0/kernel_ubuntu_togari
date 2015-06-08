@@ -21,7 +21,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: wl_iw.c 312290 2012-02-02 02:52:18Z $
+=======
+ * $Id: wl_iw.c 367054 2012-11-06 15:06:04Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #if defined(USE_IW)
@@ -73,6 +77,27 @@ typedef const struct si_pub	si_t;
 #endif
 #endif 
 
+<<<<<<< HEAD
+=======
+
+#ifndef IW_AUTH_KEY_MGMT_FT_802_1X
+#define IW_AUTH_KEY_MGMT_FT_802_1X 0x04
+#endif
+
+#ifndef IW_AUTH_KEY_MGMT_FT_PSK
+#define IW_AUTH_KEY_MGMT_FT_PSK 0x08
+#endif
+
+
+#ifndef IW_ENCODE_ALG_PMK
+#define IW_ENCODE_ALG_PMK 4
+#endif
+#ifndef IW_ENC_CAPA_4WAY_HANDSHAKE
+#define IW_ENC_CAPA_4WAY_HANDSHAKE 0x00000010
+#endif
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 27))
 #include <linux/rtnetlink.h>
 #endif
@@ -260,6 +285,10 @@ dev_iw_iovar_setbuf(
 
 	iolen = bcm_mkiovar(iovar, param, paramlen, bufptr, buflen);
 	ASSERT(iolen);
+<<<<<<< HEAD
+=======
+	BCM_REFERENCE(iolen);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return (dev_wlc_ioctl(dev, WLC_SET_VAR, bufptr, iolen));
 }
@@ -668,6 +697,10 @@ wl_iw_get_range(
 		{14, 29, 43, 58, 87, 116, 130, 144},
 		{27, 54, 81, 108, 162, 216, 243, 270},
 		{30, 60, 90, 120, 180, 240, 270, 300}};
+<<<<<<< HEAD
+=======
+	int fbt_cap = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	WL_TRACE(("%s: SIOCGIWRANGE\n", dev->name));
 
@@ -723,6 +756,7 @@ wl_iw_get_range(
 	range->num_bitrates = rateset.count;
 	for (i = 0; i < rateset.count && i < IW_MAX_BITRATES; i++)
 		range->bitrate[i] = (rateset.rates[i] & 0x7f) * 500000; 
+<<<<<<< HEAD
 	dev_wlc_intvar_get(dev, "nmode", &nmode);
 	if ((error = dev_wlc_ioctl(dev, WLC_GET_PHYTYPE, &phytype, sizeof(phytype))))
 		return error;
@@ -732,6 +766,20 @@ wl_iw_get_range(
 		dev_wlc_intvar_get(dev, "mimo_bw_cap", &bw_cap);
 		dev_wlc_intvar_get(dev, "sgi_tx", &sgi_tx);
 		dev_wlc_ioctl(dev, WLC_GET_CHANNEL, &ci, sizeof(channel_info_t));
+=======
+	if ((error = dev_wlc_intvar_get(dev, "nmode", &nmode)))
+		return error;
+	if ((error = dev_wlc_ioctl(dev, WLC_GET_PHYTYPE, &phytype, sizeof(phytype))))
+		return error;
+	if (nmode == 1 && ((phytype == WLC_PHY_TYPE_SSN) || (phytype == WLC_PHY_TYPE_LCN) ||
+		(phytype == WLC_PHY_TYPE_LCN40))) {
+		if ((error = dev_wlc_intvar_get(dev, "mimo_bw_cap", &bw_cap)))
+			return error;
+		if ((error = dev_wlc_intvar_get(dev, "sgi_tx", &sgi_tx)))
+			return error;
+		if ((error = dev_wlc_ioctl(dev, WLC_GET_CHANNEL, &ci, sizeof(channel_info_t))))
+			return error;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ci.hw_channel = dtoh32(ci.hw_channel);
 
 		if (bw_cap == 0 ||
@@ -816,10 +864,21 @@ wl_iw_get_range(
 	range->enc_capa |= IW_ENC_CAPA_CIPHER_TKIP;
 	range->enc_capa |= IW_ENC_CAPA_CIPHER_CCMP;
 	range->enc_capa |= IW_ENC_CAPA_WPA2;
+<<<<<<< HEAD
 #if (defined(BCMSUP_PSK) && defined(WLFBT))
 	
 	range->enc_capa |= IW_ENC_CAPA_4WAY_HANDSHAKE;
 #endif 
+=======
+
+	
+	if (dev_wlc_intvar_get(dev, "fbt_cap", &fbt_cap) == 0) {
+		if (fbt_cap == WLC_FBT_CAP_DRV_4WAY_AND_REASSOC) {
+			
+			range->enc_capa |= IW_ENC_CAPA_4WAY_HANDSHAKE;
+		}
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	
 	IW_EVENT_CAPA_SET_KERNEL(range->event_capa);
@@ -1227,7 +1286,11 @@ wl_iw_iscan_set_scan(
 	wl_iw_set_event_mask(dev);
 	wl_iw_iscan(iscan, &ssid, WL_SCAN_ACTION_START);
 
+<<<<<<< HEAD
 	iscan->timer.expires = jiffies + iscan->timer_ms*HZ/1000;
+=======
+	iscan->timer.expires = jiffies + msecs_to_jiffies(iscan->timer_ms);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	add_timer(&iscan->timer);
 	iscan->timer_on = 1;
 
@@ -1336,14 +1399,20 @@ wl_iw_handle_scanresults_ies(char **event_p, char *end,
 		}
 		ptr = ((uint8 *)bi) + sizeof(wl_bss_info_t);
 
+<<<<<<< HEAD
 #if defined(WLFBT)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if ((ie = bcm_parse_tlvs(ptr, ptr_len, DOT11_MNG_MDIE_ID))) {
 			iwe.cmd = IWEVGENIE;
 			iwe.u.data.length = ie->len + 2;
 			event = IWE_STREAM_ADD_POINT(info, event, end, &iwe, (char *)ie);
 		}
 		ptr = ((uint8 *)bi) + sizeof(wl_bss_info_t);
+<<<<<<< HEAD
 #endif 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		while ((ie = bcm_parse_tlvs(ptr, ptr_len, DOT11_MNG_WPA_ID))) {
 			
@@ -1393,6 +1462,10 @@ wl_iw_handle_scanresults_ies(char **event_p, char *end,
 			wpa_snprintf_hex(buf + 10, 2+1, &(ie->len), 1);
 			wpa_snprintf_hex(buf + 12, 2*ie->len+1, ie->data, ie->len);
 			event = IWE_STREAM_ADD_POINT(info, event, end, &iwe, buf);
+<<<<<<< HEAD
+=======
+			kfree(buf);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif 
 			break;
 		}
@@ -1625,7 +1698,11 @@ wl_iw_iscan_get_scan(
 		event = IWE_STREAM_ADD_POINT(info, event, end, &iwe, (char *)event);
 
 		
+<<<<<<< HEAD
 		if (bi->rateset.count) {
+=======
+		if (bi->rateset.count <= sizeof(bi->rateset.rates)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			if (event + IW_MAX_BITRATES*IW_EV_PARAM_LEN >= end)
 				return -E2BIG;
 
@@ -2387,7 +2464,10 @@ wl_iw_set_encodeext(
 				return error;
 		}
 	}
+<<<<<<< HEAD
 #if (defined(BCMSUP_PSK) && defined(WLFBT))
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	
 	else if (iwe->alg == IW_ENCODE_ALG_PMK) {
 		int j;
@@ -2410,7 +2490,10 @@ wl_iw_set_encodeext(
 		if (error)
 			return error;
 	}
+<<<<<<< HEAD
 #endif 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	else {
 		if (iwe->key_len > sizeof(key.data))
@@ -2624,7 +2707,12 @@ wl_iw_set_wpaauth(
 		break;
 
 	case IW_AUTH_CIPHER_PAIRWISE:
+<<<<<<< HEAD
 	case IW_AUTH_CIPHER_GROUP:
+=======
+	case IW_AUTH_CIPHER_GROUP: {
+		int fbt_cap = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		if (paramid == IW_AUTH_CIPHER_PAIRWISE) {
 			iw->pwsec = paramval;
@@ -2666,6 +2754,7 @@ wl_iw_set_wpaauth(
 
 		if ((error = dev_wlc_intvar_set(dev, "wsec", val)))
 			return error;
+<<<<<<< HEAD
 #ifdef WLFBT
 		if ((paramid == IW_AUTH_CIPHER_PAIRWISE) && (val | AES_ENABLED)) {
 			if ((error = dev_wlc_intvar_set(dev, "sup_wpa", 1)))
@@ -2677,12 +2766,31 @@ wl_iw_set_wpaauth(
 		}
 #endif 
 		break;
+=======
+
+		
+		if (dev_wlc_intvar_get(dev, "fbt_cap", &fbt_cap) == 0) {
+			if (fbt_cap == WLC_FBT_CAP_DRV_4WAY_AND_REASSOC) {
+				if ((paramid == IW_AUTH_CIPHER_PAIRWISE) && (val & AES_ENABLED)) {
+					if ((error = dev_wlc_intvar_set(dev, "sup_wpa", 1)))
+						return error;
+				}
+				else if (val == 0) {
+					if ((error = dev_wlc_intvar_set(dev, "sup_wpa", 0)))
+						return error;
+				}
+			}
+		}
+		break;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	case IW_AUTH_KEY_MGMT:
 		if ((error = dev_wlc_intvar_get(dev, "wpa_auth", &val)))
 			return error;
 
 		if (val & (WPA_AUTH_PSK | WPA_AUTH_UNSPECIFIED)) {
+<<<<<<< HEAD
 			if (paramval & IW_AUTH_KEY_MGMT_PSK)
 				val = WPA_AUTH_PSK;
 			else
@@ -2693,6 +2801,22 @@ wl_iw_set_wpaauth(
 				val = WPA2_AUTH_PSK;
 			else
 				val = WPA2_AUTH_UNSPECIFIED;
+=======
+			if (paramval & (IW_AUTH_KEY_MGMT_FT_PSK | IW_AUTH_KEY_MGMT_PSK))
+				val = WPA_AUTH_PSK;
+			else
+				val = WPA_AUTH_UNSPECIFIED;
+			if (paramval & (IW_AUTH_KEY_MGMT_FT_802_1X | IW_AUTH_KEY_MGMT_FT_PSK))
+				val |= WPA2_AUTH_FT;
+		}
+		else if (val & (WPA2_AUTH_PSK | WPA2_AUTH_UNSPECIFIED)) {
+			if (paramval & (IW_AUTH_KEY_MGMT_FT_PSK | IW_AUTH_KEY_MGMT_PSK))
+				val = WPA2_AUTH_PSK;
+			else
+				val = WPA2_AUTH_UNSPECIFIED;
+			if (paramval & (IW_AUTH_KEY_MGMT_FT_802_1X | IW_AUTH_KEY_MGMT_FT_PSK))
+				val |= WPA2_AUTH_FT;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 #ifdef BCMWAPI_WPI
 		if (paramval & (IW_AUTH_KEY_MGMT_WAPI_PSK | IW_AUTH_KEY_MGMT_WAPI_CERT))
@@ -3610,11 +3734,19 @@ wl_iw_iscan_get(iscan_info_t *iscan)
 static void wl_iw_send_scan_complete(iscan_info_t *iscan)
 {
 	union iwreq_data wrqu;
+<<<<<<< HEAD
 	char extra[IW_CUSTOM_MAX + 1];
 
 	memset(&wrqu, 0, sizeof(wrqu));
 	memset(extra, 0, sizeof(extra));
 	wireless_send_event(iscan->dev, SIOCGIWSCAN, &wrqu, extra);
+=======
+
+	memset(&wrqu, 0, sizeof(wrqu));
+
+	
+	wireless_send_event(iscan->dev, SIOCGIWSCAN, &wrqu, NULL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int
@@ -3652,7 +3784,11 @@ _iscan_sysioc_thread(void *data)
 				rtnl_unlock();
 #endif
 				
+<<<<<<< HEAD
 				iscan->timer.expires = jiffies + iscan->timer_ms*HZ/1000;
+=======
+				iscan->timer.expires = jiffies + msecs_to_jiffies(iscan->timer_ms);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				add_timer(&iscan->timer);
 				iscan->timer_on = 1;
 				break;
@@ -3664,7 +3800,11 @@ _iscan_sysioc_thread(void *data)
 			case WL_SCAN_RESULTS_PENDING:
 				WL_TRACE(("iscanresults pending\n"));
 				
+<<<<<<< HEAD
 				iscan->timer.expires = jiffies + iscan->timer_ms*HZ/1000;
+=======
+				iscan->timer.expires = jiffies + msecs_to_jiffies(iscan->timer_ms);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				add_timer(&iscan->timer);
 				iscan->timer_on = 1;
 				break;

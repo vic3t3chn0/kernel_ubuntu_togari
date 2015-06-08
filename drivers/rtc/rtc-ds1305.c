@@ -17,7 +17,10 @@
 
 #include <linux/spi/spi.h>
 #include <linux/spi/ds1305.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 /*
@@ -814,7 +817,21 @@ static struct spi_driver ds1305_driver = {
 	/* REVISIT add suspend/resume */
 };
 
+<<<<<<< HEAD
 module_spi_driver(ds1305_driver);
+=======
+static int __init ds1305_init(void)
+{
+	return spi_register_driver(&ds1305_driver);
+}
+module_init(ds1305_init);
+
+static void __exit ds1305_exit(void)
+{
+	spi_unregister_driver(&ds1305_driver);
+}
+module_exit(ds1305_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_DESCRIPTION("RTC driver for DS1305 and DS1306 chips");
 MODULE_LICENSE("GPL");

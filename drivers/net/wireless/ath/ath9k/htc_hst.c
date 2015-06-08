@@ -342,6 +342,11 @@ void ath9k_htc_txcompletion_cb(struct htc_target *htc_handle,
 			endpoint->ep_callbacks.tx(endpoint->ep_callbacks.priv,
 						  skb, htc_hdr->endpoint_id,
 						  txok);
+<<<<<<< HEAD
+=======
+		} else {
+			kfree_skb(skb);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 	}
 
@@ -431,8 +436,16 @@ struct htc_target *ath9k_htc_hw_alloc(void *hif_handle,
 	struct htc_target *target;
 
 	target = kzalloc(sizeof(struct htc_target), GFP_KERNEL);
+<<<<<<< HEAD
 	if (!target)
 		return NULL;
+=======
+	if (!target) {
+		printk(KERN_ERR "Unable to allocate memory for"
+			"target device\n");
+		return NULL;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	init_completion(&target->target_wait);
 	init_completion(&target->cmd_wait);

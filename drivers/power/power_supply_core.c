@@ -25,6 +25,7 @@ EXPORT_SYMBOL_GPL(power_supply_class);
 
 static struct device_type power_supply_dev_type;
 
+<<<<<<< HEAD
 /**
  * power_supply_set_current_limit - set current limit
  * @psy:	the power supply to control
@@ -167,6 +168,8 @@ int power_supply_set_charge_type(struct power_supply *psy, int charge_type)
 }
 EXPORT_SYMBOL_GPL(power_supply_set_charge_type);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int __power_supply_changed_work(struct device *dev, void *data)
 {
 	struct power_supply *psy = (struct power_supply *)data;
@@ -257,9 +260,13 @@ static int __power_supply_is_system_supplied(struct device *dev, void *data)
 {
 	union power_supply_propval ret = {0,};
 	struct power_supply *psy = dev_get_drvdata(dev);
+<<<<<<< HEAD
 	unsigned int *count = data;
 
 	(*count)++;
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (psy->type != POWER_SUPPLY_TYPE_BATTERY) {
 		if (psy->get_property(psy, POWER_SUPPLY_PROP_ONLINE, &ret))
 			return 0;
@@ -272,6 +279,7 @@ static int __power_supply_is_system_supplied(struct device *dev, void *data)
 int power_supply_is_system_supplied(void)
 {
 	int error;
+<<<<<<< HEAD
 	unsigned int count = 0;
 
 	error = class_for_each_device(power_supply_class, NULL, &count,
@@ -284,6 +292,12 @@ int power_supply_is_system_supplied(void)
 	if (count == 0)
 		return 1;
 
+=======
+
+	error = class_for_each_device(power_supply_class, NULL, NULL,
+				      __power_supply_is_system_supplied);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return error;
 }
 EXPORT_SYMBOL_GPL(power_supply_is_system_supplied);
@@ -316,12 +330,15 @@ struct power_supply *power_supply_get_by_name(char *name)
 }
 EXPORT_SYMBOL_GPL(power_supply_get_by_name);
 
+<<<<<<< HEAD
 int power_supply_powers(struct power_supply *psy, struct device *dev)
 {
 	return sysfs_create_link(&psy->dev->kobj, &dev->kobj, "powers");
 }
 EXPORT_SYMBOL_GPL(power_supply_powers);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void power_supply_dev_release(struct device *dev)
 {
 	pr_debug("device: '%s': %s\n", dev_name(dev), __func__);
@@ -381,7 +398,10 @@ EXPORT_SYMBOL_GPL(power_supply_register);
 void power_supply_unregister(struct power_supply *psy)
 {
 	cancel_work_sync(&psy->changed_work);
+<<<<<<< HEAD
 	sysfs_remove_link(&psy->dev->kobj, "powers");
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	power_supply_remove_triggers(psy);
 	wake_lock_destroy(&psy->work_wake_lock);
 	device_unregister(psy->dev);

@@ -48,23 +48,34 @@
  * - Handle requests which spawns into several TDs
  * - GET_STATUS(device) - always reports 0
  * - Gadget API (majority of optional features)
+<<<<<<< HEAD
+=======
+ * - Suspend & Remote Wakeup
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 #include <linux/delay.h>
 #include <linux/device.h>
 #include <linux/dmapool.h>
 #include <linux/dma-mapping.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/ratelimit.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/interrupt.h>
 #include <linux/io.h>
 #include <linux/irq.h>
 #include <linux/kernel.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/pm_runtime.h>
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
 #include <linux/usb/otg.h>
+<<<<<<< HEAD
 #include <linux/usb/msm_hsusb.h>
 #include <linux/tracepoint.h>
 #include <mach/usb_trace.h>
@@ -79,6 +90,15 @@
 #define EP_PRIME_CHECK_DELAY	(jiffies + msecs_to_jiffies(1000))
 #define MAX_PRIME_CHECK_RETRY	3 /*Wait for 3sec for EP prime failure */
 
+=======
+
+#include "ci13xxx_udc.h"
+
+
+/******************************************************************************
+ * DEFINE
+ *****************************************************************************/
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* ctrl register bank access */
 static DEFINE_SPINLOCK(udc_lock);
 
@@ -136,6 +156,7 @@ static int ffs_nr(u32 x)
 	return n ? n-1 : 32;
 }
 
+<<<<<<< HEAD
 struct ci13xxx_ebi_err_entry {
 	u32 *usb_req_buf;
 	u32 usb_req_length;
@@ -151,6 +172,8 @@ struct ci13xxx_ebi_err_data {
 };
 static struct ci13xxx_ebi_err_data *ebi_err_data;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /******************************************************************************
  * HW block
  *****************************************************************************/
@@ -178,7 +201,10 @@ static struct {
 #define CAP_ENDPTLISTADDR   (0x018UL)
 #define CAP_PORTSC          (0x044UL)
 #define CAP_DEVLC           (0x084UL)
+<<<<<<< HEAD
 #define CAP_ENDPTPIPEID     (0x0BCUL)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define CAP_USBMODE         (hw_bank.lpm ? 0x0C8UL : 0x068UL)
 #define CAP_ENDPTSETUPSTAT  (hw_bank.lpm ? 0x0D8UL : 0x06CUL)
 #define CAP_ENDPTPRIME      (hw_bank.lpm ? 0x0DCUL : 0x070UL)
@@ -188,12 +214,18 @@ static struct {
 #define CAP_ENDPTCTRL       (hw_bank.lpm ? 0x0ECUL : 0x080UL)
 #define CAP_LAST            (hw_bank.lpm ? 0x12CUL : 0x0C0UL)
 
+<<<<<<< HEAD
 #define REMOTE_WAKEUP_DELAY	msecs_to_jiffies(200)
 
 /* maximum number of enpoints: valid only after hw_device_reset() */
 static unsigned hw_ep_max;
 static void dbg_usb_op_fail(u8 addr, const char *name,
 				const struct ci13xxx_ep *mep);
+=======
+/* maximum number of enpoints: valid only after hw_device_reset() */
+static unsigned hw_ep_max;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * hw_ep_bit: calculates the bit number
  * @num: endpoint number
@@ -206,6 +238,7 @@ static inline int hw_ep_bit(int num, int dir)
 	return num + (dir ? 16 : 0);
 }
 
+<<<<<<< HEAD
 static int ep_to_bit(int n)
 {
 	int fill = 16 - hw_ep_max / 2;
@@ -216,6 +249,8 @@ static int ep_to_bit(int n)
 	return n;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * hw_aread: reads from register bitfield
  * @addr: address relative to bus map
@@ -334,27 +369,43 @@ static int hw_device_init(void __iomem *base)
  */
 static int hw_device_reset(struct ci13xxx *udc)
 {
+<<<<<<< HEAD
 	int delay_count = 25; /* 250 usec */
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* should flush & stop before reset */
 	hw_cwrite(CAP_ENDPTFLUSH, ~0, ~0);
 	hw_cwrite(CAP_USBCMD, USBCMD_RS, 0);
 
 	hw_cwrite(CAP_USBCMD, USBCMD_RST, USBCMD_RST);
+<<<<<<< HEAD
 	while (delay_count--  && hw_cread(CAP_USBCMD, USBCMD_RST))
 		udelay(10);
 	if (delay_count < 0)
 		pr_err("USB controller reset failed\n");
+=======
+	while (hw_cread(CAP_USBCMD, USBCMD_RST))
+		udelay(10);             /* not RTOS friendly */
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (udc->udc_driver->notify_event)
 		udc->udc_driver->notify_event(udc,
 			CI13XXX_CONTROLLER_RESET_EVENT);
 
+<<<<<<< HEAD
+=======
+	if (udc->udc_driver->flags & CI13XXX_DISABLE_STREAMING)
+		hw_cwrite(CAP_USBMODE, USBMODE_SDIS, USBMODE_SDIS);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* USBMODE should be configured step by step */
 	hw_cwrite(CAP_USBMODE, USBMODE_CM, USBMODE_CM_IDLE);
 	hw_cwrite(CAP_USBMODE, USBMODE_CM, USBMODE_CM_DEVICE);
 	hw_cwrite(CAP_USBMODE, USBMODE_SLOM, USBMODE_SLOM);  /* HW >= 2.3 */
 
+<<<<<<< HEAD
 	/*
 	 * ITC (Interrupt Threshold Control) field is to set the maximum
 	 * rate at which the device controller will issue interrupts.
@@ -369,6 +420,8 @@ static int hw_device_reset(struct ci13xxx *udc)
 	else if (udc->udc_driver->flags & CI13XXX_ZERO_ITC)
 		hw_cwrite(CAP_USBCMD, USBCMD_ITC_MASK, USBCMD_ITC(0));
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (hw_cread(CAP_USBMODE, USBMODE_CM) != USBMODE_CM_DEVICE) {
 		pr_err("cannot enter in device mode");
 		pr_err("lpm = %i", hw_bank.lpm);
@@ -387,6 +440,7 @@ static int hw_device_reset(struct ci13xxx *udc)
  */
 static int hw_device_state(u32 dma)
 {
+<<<<<<< HEAD
 	struct ci13xxx *udc = _udc;
 	struct usb_gadget *gadget = &udc->gadget;
 
@@ -414,6 +468,10 @@ static int hw_device_state(u32 dma)
 					__func__, hw_aread(ABS_AHBMODE, ~0));
 		}
 
+=======
+	if (dma) {
+		hw_cwrite(CAP_ENDPTLISTADDR, ~0, dma);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* interrupt, error, port change, reset, sleep/suspend */
 		hw_cwrite(CAP_USBINTR, ~0,
 			     USBi_UI|USBi_UEI|USBi_PCI|USBi_URI|USBi_SLI);
@@ -421,16 +479,20 @@ static int hw_device_state(u32 dma)
 	} else {
 		hw_cwrite(CAP_USBCMD, USBCMD_RS, 0);
 		hw_cwrite(CAP_USBINTR, ~0, 0);
+<<<<<<< HEAD
 		/* Clear BIT(31) to disable AHB2AHB Bypass functionality */
 		if (udc->udc_driver->flags & CI13XXX_ENABLE_AHB2AHB_BYPASS) {
 			hw_awrite(ABS_AHBMODE, AHB2AHB_BYPASS, 0);
 			pr_debug("%s(): ByPass Mode is disabled. AHBMODE:%x\n",
 					__func__, hw_aread(ABS_AHBMODE, ~0));
 		}
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return 0;
 }
 
+<<<<<<< HEAD
 static void debug_ept_flush_info(int ep_num, int dir)
 {
 	struct ci13xxx *udc = _udc;
@@ -452,6 +514,8 @@ static void debug_ept_flush_info(int ep_num, int dir)
 
 	dbg_usb_op_fail(0xFF, "FLUSHF", mep);
 }
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * hw_ep_flush: flush endpoint fifo (execute without interruption)
  * @num: endpoint number
@@ -461,6 +525,7 @@ static void debug_ept_flush_info(int ep_num, int dir)
  */
 static int hw_ep_flush(int num, int dir)
 {
+<<<<<<< HEAD
 	ktime_t start, diff;
 	int n = hw_ep_bit(num, dir);
 	struct ci13xxx_ep *mEp = &_udc->ci13xxx_ep[n];
@@ -486,6 +551,15 @@ static int hw_ep_flush(int num, int dir)
 				return 0;
 			}
 		}
+=======
+	int n = hw_ep_bit(num, dir);
+
+	do {
+		/* flush any pending transfer */
+		hw_cwrite(CAP_ENDPTFLUSH, BIT(n), BIT(n));
+		while (hw_cread(CAP_ENDPTFLUSH, BIT(n)))
+			cpu_relax();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} while (hw_cread(CAP_ENDPTSTAT, BIT(n)));
 
 	return 0;
@@ -500,6 +574,10 @@ static int hw_ep_flush(int num, int dir)
  */
 static int hw_ep_disable(int num, int dir)
 {
+<<<<<<< HEAD
+=======
+	hw_ep_flush(num, dir);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	hw_cwrite(CAP_ENDPTCTRL + num * sizeof(u32),
 		  dir ? ENDPTCTRL_TXE : ENDPTCTRL_RXE, 0);
 	return 0;
@@ -537,10 +615,13 @@ static int hw_ep_enable(int num, int dir, int type)
 		data |= ENDPTCTRL_RXE;
 	}
 	hw_cwrite(CAP_ENDPTCTRL + num * sizeof(u32), mask, data);
+<<<<<<< HEAD
 
 	/* make sure endpoint is enabled before returning */
 	mb();
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -561,13 +642,20 @@ static int hw_ep_get_halt(int num, int dir)
 /**
  * hw_test_and_clear_setup_status: test & clear setup status (execute without
  *                                 interruption)
+<<<<<<< HEAD
  * @n: endpoint number
+=======
+ * @n: bit number (endpoint)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This function returns setup status
  */
 static int hw_test_and_clear_setup_status(int n)
 {
+<<<<<<< HEAD
 	n = ep_to_bit(n);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return hw_ctest_and_clear(CAP_ENDPTSETUPSTAT, BIT(n));
 }
 
@@ -588,6 +676,11 @@ static int hw_ep_prime(int num, int dir, int is_ctrl)
 
 	hw_cwrite(CAP_ENDPTPRIME, BIT(n), BIT(n));
 
+<<<<<<< HEAD
+=======
+	while (hw_cread(CAP_ENDPTPRIME, BIT(n)))
+		cpu_relax();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (is_ctrl && dir == RX  && hw_cread(CAP_ENDPTSETUPSTAT, BIT(num)))
 		return -EAGAIN;
 
@@ -606,18 +699,27 @@ static int hw_ep_prime(int num, int dir, int is_ctrl)
  */
 static int hw_ep_set_halt(int num, int dir, int value)
 {
+<<<<<<< HEAD
 	u32 addr, mask_xs, mask_xr;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (value != 0 && value != 1)
 		return -EINVAL;
 
 	do {
+<<<<<<< HEAD
 		if (hw_cread(CAP_ENDPTSETUPSTAT, BIT(num)))
 			return 0;
 
 		addr = CAP_ENDPTCTRL + num * sizeof(u32);
 		mask_xs = dir ? ENDPTCTRL_TXS : ENDPTCTRL_RXS;
 		mask_xr = dir ? ENDPTCTRL_TXR : ENDPTCTRL_RXR;
+=======
+		u32 addr = CAP_ENDPTCTRL + num * sizeof(u32);
+		u32 mask_xs = dir ? ENDPTCTRL_TXS : ENDPTCTRL_RXS;
+		u32 mask_xr = dir ? ENDPTCTRL_TXR : ENDPTCTRL_RXR;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		/* data toggle - reserved for EP0 but it's in ESS */
 		hw_cwrite(addr, mask_xs|mask_xr, value ? mask_xs : mask_xr);
@@ -766,13 +868,20 @@ static int hw_register_write(u16 addr, u32 data)
 /**
  * hw_test_and_clear_complete: test & clear complete status (execute without
  *                             interruption)
+<<<<<<< HEAD
  * @n: endpoint number
+=======
+ * @n: bit number (endpoint)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This function returns complete status
  */
 static int hw_test_and_clear_complete(int n)
 {
+<<<<<<< HEAD
 	n = ep_to_bit(n);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return hw_ctest_and_clear(CAP_ENDPTCOMPLETE, BIT(n));
 }
 
@@ -834,8 +943,11 @@ static int hw_usb_set_address(u8 value)
  */
 static int hw_usb_reset(void)
 {
+<<<<<<< HEAD
 	int delay_count = 10; /* 100 usec delay */
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	hw_usb_set_address(0);
 
 	/* ESS flushes only at end?!? */
@@ -848,10 +960,15 @@ static int hw_usb_reset(void)
 	hw_cwrite(CAP_ENDPTCOMPLETE,  0,  0);   /* writes its content */
 
 	/* wait until all bits cleared */
+<<<<<<< HEAD
 	while (delay_count-- && hw_cread(CAP_ENDPTPRIME, ~0))
 		udelay(10);
 	if (delay_count < 0)
 		pr_err("ENDPTPRIME is not cleared during bus reset\n");
+=======
+	while (hw_cread(CAP_ENDPTPRIME, ~0))
+		udelay(10);             /* not RTOS friendly */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* reset all endpoints ? */
 
@@ -884,11 +1001,16 @@ static ssize_t show_device(struct device *dev, struct device_attribute *attr,
 
 	n += scnprintf(buf + n, PAGE_SIZE - n, "speed             = %d\n",
 		       gadget->speed);
+<<<<<<< HEAD
 	n += scnprintf(buf + n, PAGE_SIZE - n, "max_speed         = %d\n",
 		       gadget->max_speed);
 	/* TODO: Scheduled for removal in 3.8. */
 	n += scnprintf(buf + n, PAGE_SIZE - n, "is_dualspeed      = %d\n",
 		       gadget_is_dualspeed(gadget));
+=======
+	n += scnprintf(buf + n, PAGE_SIZE - n, "is_dualspeed      = %d\n",
+		       gadget->is_dualspeed);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	n += scnprintf(buf + n, PAGE_SIZE - n, "is_otg            = %d\n",
 		       gadget->is_otg);
 	n += scnprintf(buf + n, PAGE_SIZE - n, "is_a_peripheral   = %d\n",
@@ -931,7 +1053,11 @@ static ssize_t show_driver(struct device *dev, struct device_attribute *attr,
 	n += scnprintf(buf + n, PAGE_SIZE - n, "function  = %s\n",
 		       (driver->function ? driver->function : ""));
 	n += scnprintf(buf + n, PAGE_SIZE - n, "max speed = %d\n",
+<<<<<<< HEAD
 		       driver->max_speed);
+=======
+		       driver->speed);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return n;
 }
@@ -973,6 +1099,7 @@ static void dbg_inc(unsigned *idx)
 	*idx = (*idx + 1) & (DBG_DATA_MAX-1);
 }
 
+<<<<<<< HEAD
 
 static unsigned int ep_addr_txdbg_mask;
 module_param(ep_addr_txdbg_mask, uint, S_IRUGO | S_IWUSR);
@@ -999,6 +1126,8 @@ static int allow_dbg_print(u8 addr)
 	return 0;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * dbg_print:  prints the common part of the event
  * @addr:   endpoint address
@@ -1012,9 +1141,12 @@ static void dbg_print(u8 addr, const char *name, int status, const char *extra)
 	unsigned int stamp;
 	unsigned long flags;
 
+<<<<<<< HEAD
 	if (!allow_dbg_print(addr))
 		return;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	write_lock_irqsave(&dbg_data.lck, flags);
 
 	do_gettimeofday(&tval);
@@ -1022,7 +1154,11 @@ static void dbg_print(u8 addr, const char *name, int status, const char *extra)
 	stamp = stamp * 1000000 + tval.tv_usec;
 
 	scnprintf(dbg_data.buf[dbg_data.idx], DBG_DATA_MSG,
+<<<<<<< HEAD
 		  "%04X\t? %02X %-7.7s %4i ?\t%s\n",
+=======
+		  "%04X\t» %02X %-7.7s %4i «\t%s\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		  stamp, addr, name, status, extra);
 
 	dbg_inc(&dbg_data.idx);
@@ -1030,7 +1166,11 @@ static void dbg_print(u8 addr, const char *name, int status, const char *extra)
 	write_unlock_irqrestore(&dbg_data.lck, flags);
 
 	if (dbg_data.tty != 0)
+<<<<<<< HEAD
 		pr_notice("%04X\t? %02X %-7.7s %4i ?\t%s\n",
+=======
+		pr_notice("%04X\t» %02X %-7.7s %4i «\t%s\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			  stamp, addr, name, status, extra);
 }
 
@@ -1098,6 +1238,7 @@ static void dbg_setup(u8 addr, const struct usb_ctrlrequest *req)
 }
 
 /**
+<<<<<<< HEAD
  * dbg_usb_op_fail: prints USB Operation FAIL event
  * @addr: endpoint address
  * @mEp:  endpoint structure
@@ -1137,6 +1278,8 @@ static void dbg_usb_op_fail(u8 addr, const char *name,
 }
 
 /**
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * show_events: displays the event buffer
  *
  * Check "device.h" for details
@@ -1229,6 +1372,7 @@ static ssize_t show_inters(struct device *dev, struct device_attribute *attr,
 
 	n += scnprintf(buf + n, PAGE_SIZE - n, "*test = %d\n",
 		       isr_statistics.test);
+<<<<<<< HEAD
 	n += scnprintf(buf + n, PAGE_SIZE - n, "? ui  = %d\n",
 		       isr_statistics.ui);
 	n += scnprintf(buf + n, PAGE_SIZE - n, "? uei = %d\n",
@@ -1238,6 +1382,17 @@ static ssize_t show_inters(struct device *dev, struct device_attribute *attr,
 	n += scnprintf(buf + n, PAGE_SIZE - n, "? uri = %d\n",
 		       isr_statistics.uri);
 	n += scnprintf(buf + n, PAGE_SIZE - n, "? sli = %d\n",
+=======
+	n += scnprintf(buf + n, PAGE_SIZE - n, "» ui  = %d\n",
+		       isr_statistics.ui);
+	n += scnprintf(buf + n, PAGE_SIZE - n, "» uei = %d\n",
+		       isr_statistics.uei);
+	n += scnprintf(buf + n, PAGE_SIZE - n, "» pci = %d\n",
+		       isr_statistics.pci);
+	n += scnprintf(buf + n, PAGE_SIZE - n, "» uri = %d\n",
+		       isr_statistics.uri);
+	n += scnprintf(buf + n, PAGE_SIZE - n, "» sli = %d\n",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		       isr_statistics.sli);
 	n += scnprintf(buf + n, PAGE_SIZE - n, "*none = %d\n",
 		       isr_statistics.none);
@@ -1418,13 +1573,20 @@ static DEVICE_ATTR(qheads, S_IRUSR, show_qheads, NULL);
  *
  * Check "device.h" for details
  */
+<<<<<<< HEAD
 #define DUMP_ENTRIES	512
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static ssize_t show_registers(struct device *dev,
 			      struct device_attribute *attr, char *buf)
 {
 	struct ci13xxx *udc = container_of(dev, struct ci13xxx, gadget.dev);
 	unsigned long flags;
+<<<<<<< HEAD
 	u32 *dump;
+=======
+	u32 dump[512];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned i, k, n = 0;
 
 	dbg_trace("[%s] %p\n", __func__, buf);
@@ -1433,6 +1595,7 @@ static ssize_t show_registers(struct device *dev,
 		return 0;
 	}
 
+<<<<<<< HEAD
 	dump = kmalloc(sizeof(u32) * DUMP_ENTRIES, GFP_KERNEL);
 	if (!dump) {
 		dev_err(dev, "%s: out of memory\n", __func__);
@@ -1441,6 +1604,10 @@ static ssize_t show_registers(struct device *dev,
 
 	spin_lock_irqsave(udc->lock, flags);
 	k = hw_register_read(dump, DUMP_ENTRIES);
+=======
+	spin_lock_irqsave(udc->lock, flags);
+	k = hw_register_read(dump, sizeof(dump)/sizeof(u32));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_unlock_irqrestore(udc->lock, flags);
 
 	for (i = 0; i < k; i++) {
@@ -1448,7 +1615,10 @@ static ssize_t show_registers(struct device *dev,
 			       "reg[0x%04X] = 0x%08X\n",
 			       i * (unsigned)sizeof(u32), dump[i]);
 	}
+<<<<<<< HEAD
 	kfree(dump);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return n;
 }
@@ -1529,6 +1699,7 @@ static ssize_t show_requests(struct device *dev, struct device_attribute *attr,
 }
 static DEVICE_ATTR(requests, S_IRUSR, show_requests, NULL);
 
+<<<<<<< HEAD
 /* EP# and Direction */
 static ssize_t prime_ept(struct device *dev,
 			       struct device_attribute *attr,
@@ -1685,6 +1856,8 @@ static ssize_t usb_remote_wakeup(struct device *dev,
 }
 static DEVICE_ATTR(wakeup, S_IWUSR, 0, usb_remote_wakeup);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * dbg_create_files: initializes the attribute interface
  * @dev: device
@@ -1721,6 +1894,7 @@ __maybe_unused static int dbg_create_files(struct device *dev)
 	retval = device_create_file(dev, &dev_attr_requests);
 	if (retval)
 		goto rm_registers;
+<<<<<<< HEAD
 	retval = device_create_file(dev, &dev_attr_wakeup);
 	if (retval)
 		goto rm_remote_wakeup;
@@ -1739,6 +1913,10 @@ rm_prime:
 	device_remove_file(dev, &dev_attr_prime);
 rm_remote_wakeup:
 	device_remove_file(dev, &dev_attr_wakeup);
+=======
+	return 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  rm_registers:
 	device_remove_file(dev, &dev_attr_registers);
  rm_qheads:
@@ -1775,6 +1953,7 @@ __maybe_unused static int dbg_remove_files(struct device *dev)
 	device_remove_file(dev, &dev_attr_events);
 	device_remove_file(dev, &dev_attr_driver);
 	device_remove_file(dev, &dev_attr_device);
+<<<<<<< HEAD
 	device_remove_file(dev, &dev_attr_wakeup);
 	return 0;
 }
@@ -1845,6 +2024,11 @@ static void dump_usb_info(void *ignore, unsigned int ebi_addr,
 	spin_unlock_irqrestore(udc->lock, flags);
 }
 
+=======
+	return 0;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /******************************************************************************
  * UTIL block
  *****************************************************************************/
@@ -1857,6 +2041,7 @@ static inline u8 _usb_addr(struct ci13xxx_ep *ep)
 	return ((ep->dir == TX) ? USB_ENDPOINT_DIR_MASK : 0) | ep->num;
 }
 
+<<<<<<< HEAD
 static void ep_prime_timer_func(unsigned long data)
 {
 	struct ci13xxx_ep *mep = (struct ci13xxx_ep *)data;
@@ -1916,6 +2101,8 @@ out:
 
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * _hardware_queue: configures a request at hardware level
  * @gadget: gadget
@@ -1928,7 +2115,10 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 	unsigned i;
 	int ret = 0;
 	unsigned length = mReq->req.length;
+<<<<<<< HEAD
 	struct ci13xxx *udc = _udc;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	trace("%p, %p", mEp, mReq);
 
@@ -1937,7 +2127,11 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 		return -EALREADY;
 
 	mReq->req.status = -EALREADY;
+<<<<<<< HEAD
 	if (length && mReq->req.dma == DMA_ADDR_INVALID) {
+=======
+	if (length && !mReq->req.dma) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mReq->req.dma = \
 			dma_map_single(mEp->device, mReq->req.buf,
 				       length, mEp->dir ? DMA_TO_DEVICE :
@@ -1956,7 +2150,11 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 				dma_unmap_single(mEp->device, mReq->req.dma,
 					length, mEp->dir ? DMA_TO_DEVICE :
 					DMA_FROM_DEVICE);
+<<<<<<< HEAD
 				mReq->req.dma = DMA_ADDR_INVALID;
+=======
+				mReq->req.dma = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				mReq->map     = 0;
 			}
 			return -ENOMEM;
@@ -1982,6 +2180,7 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 		if (!mReq->req.no_interrupt)
 			mReq->ptr->token  |= TD_IOC;
 	}
+<<<<<<< HEAD
 
 	/* MSM Specific: updating the request as required for
 	 * SPS mode. Enable MSM proprietary DMA engine acording
@@ -2017,12 +2216,21 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 		usb_phy_set_suspend(udc->transceiver, 0);
 		schedule_delayed_work(&udc->rw_work, REMOTE_WAKEUP_DELAY);
 	}
+=======
+	mReq->ptr->page[0]  = mReq->req.dma;
+	for (i = 1; i < 5; i++)
+		mReq->ptr->page[i] =
+			(mReq->req.dma + i * CI13XXX_PAGE_SIZE) & ~TD_RESERVED_MASK;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!list_empty(&mEp->qh.queue)) {
 		struct ci13xxx_req *mReqPrev;
 		int n = hw_ep_bit(mEp->num, mEp->dir);
 		int tmp_stat;
+<<<<<<< HEAD
 		ktime_t start, diff;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		mReqPrev = list_entry(mEp->qh.queue.prev,
 				struct ci13xxx_req, queue);
@@ -2033,6 +2241,7 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 		wmb();
 		if (hw_cread(CAP_ENDPTPRIME, BIT(n)))
 			goto done;
+<<<<<<< HEAD
 		start = ktime_get();
 		do {
 			hw_cwrite(CAP_USBCMD, USBCMD_ATDTW, USBCMD_ATDTW);
@@ -2047,6 +2256,11 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 				 __func__, mEp->num, mEp->dir ? "IN" : "OUT");
 				return -EAGAIN;
 			}
+=======
+		do {
+			hw_cwrite(CAP_USBCMD, USBCMD_ATDTW, USBCMD_ATDTW);
+			tmp_stat = hw_cread(CAP_ENDPTSTAT, BIT(n));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} while (!hw_cread(CAP_USBCMD, USBCMD_ATDTW));
 		hw_cwrite(CAP_USBCMD, USBCMD_ATDTW, 0);
 		if (tmp_stat)
@@ -2054,6 +2268,7 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 	}
 
 	/*  QH configuration */
+<<<<<<< HEAD
 	if (!list_empty(&mEp->qh.queue)) {
 		struct ci13xxx_req *mReq = \
 			list_entry(mEp->qh.queue.next,
@@ -2104,12 +2319,21 @@ static int _hardware_enqueue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 	mEp->qh.ptr->cap |=  QH_ZLT;
 
 prime:
+=======
+	mEp->qh.ptr->td.next   = mReq->dma;    /* TERMINATE = 0 */
+	mEp->qh.ptr->td.token &= ~TD_STATUS;   /* clear status */
+	mEp->qh.ptr->cap |=  QH_ZLT;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	wmb();   /* synchronize before ep prime */
 
 	ret = hw_ep_prime(mEp->num, mEp->dir,
 			   mEp->type == USB_ENDPOINT_XFER_CONTROL);
+<<<<<<< HEAD
 	if (!ret)
 		mod_timer(&mEp->prime_timer, EP_PRIME_CHECK_DELAY);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 done:
 	return ret;
 }
@@ -2128,6 +2352,7 @@ static int _hardware_dequeue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 	if (mReq->req.status != -EALREADY)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	/* clean speculative fetches on req->ptr->token */
 	mb();
 
@@ -2153,6 +2378,15 @@ static int _hardware_dequeue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 		mEp->last_zptr = mReq->zptr;
 		mEp->last_zdma = mReq->zdma;
 
+=======
+	if ((TD_STATUS_ACTIVE & mReq->ptr->token) != 0)
+		return -EBUSY;
+
+	if (mReq->zptr) {
+		if ((TD_STATUS_ACTIVE & mReq->zptr->token) != 0)
+			return -EBUSY;
+		dma_pool_free(mEp->td_pool, mReq->zptr, mReq->zdma);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mReq->zptr = NULL;
 	}
 
@@ -2161,7 +2395,11 @@ static int _hardware_dequeue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 	if (mReq->map) {
 		dma_unmap_single(mEp->device, mReq->req.dma, mReq->req.length,
 				 mEp->dir ? DMA_TO_DEVICE : DMA_FROM_DEVICE);
+<<<<<<< HEAD
 		mReq->req.dma = DMA_ADDR_INVALID;
+=======
+		mReq->req.dma = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mReq->map     = 0;
 	}
 
@@ -2182,6 +2420,7 @@ static int _hardware_dequeue(struct ci13xxx_ep *mEp, struct ci13xxx_req *mReq)
 }
 
 /**
+<<<<<<< HEAD
  * restore_original_req: Restore original req's attributes
  * @mReq: Request
  *
@@ -2201,6 +2440,8 @@ static void restore_original_req(struct ci13xxx_req *mReq)
 }
 
 /**
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * _ep_nuke: dequeues all endpoint requests
  * @mEp: endpoint
  *
@@ -2211,17 +2452,23 @@ static int _ep_nuke(struct ci13xxx_ep *mEp)
 __releases(mEp->lock)
 __acquires(mEp->lock)
 {
+<<<<<<< HEAD
 	struct ci13xxx_ep *mEpTemp = mEp;
 	unsigned val;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	trace("%p", mEp);
 
 	if (mEp == NULL)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	del_timer(&mEp->prime_timer);
 	mEp->prime_timer_count = 0;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	hw_ep_flush(mEp->num, mEp->dir);
 
 	while (!list_empty(&mEp->qh.queue)) {
@@ -2231,6 +2478,7 @@ __acquires(mEp->lock)
 			list_entry(mEp->qh.queue.next,
 				   struct ci13xxx_req, queue);
 		list_del_init(&mReq->queue);
+<<<<<<< HEAD
 
 		/* MSM Specific: Clear end point proprietary register */
 		if (CI13XX_REQ_VENDOR_ID(mReq->req.udc_priv) == MSM_VENDOR_ID) {
@@ -2269,6 +2517,13 @@ __acquires(mEp->lock)
 			mReq->req.complete(&mEpTemp->ep, &mReq->req);
 			if (mEp->type == USB_ENDPOINT_XFER_CONTROL)
 				mReq->req.complete = NULL;
+=======
+		mReq->req.status = -ESHUTDOWN;
+
+		if (mReq->req.complete != NULL) {
+			spin_unlock(mEp->lock);
+			mReq->req.complete(&mEp->ep, &mReq->req);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			spin_lock(mEp->lock);
 		}
 	}
@@ -2280,9 +2535,17 @@ __acquires(mEp->lock)
  * @gadget: gadget
  *
  * This function returns an error code
+<<<<<<< HEAD
  */
 static int _gadget_stop_activity(struct usb_gadget *gadget)
 {
+=======
+ * Caller must hold lock
+ */
+static int _gadget_stop_activity(struct usb_gadget *gadget)
+{
+	struct usb_ep *ep;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct ci13xxx    *udc = container_of(gadget, struct ci13xxx, gadget);
 	unsigned long flags;
 
@@ -2295,6 +2558,7 @@ static int _gadget_stop_activity(struct usb_gadget *gadget)
 	udc->gadget.speed = USB_SPEED_UNKNOWN;
 	udc->remote_wakeup = 0;
 	udc->suspended = 0;
+<<<<<<< HEAD
 	udc->configured = 0;
 	spin_unlock_irqrestore(udc->lock, flags);
 
@@ -2314,6 +2578,27 @@ static int _gadget_stop_activity(struct usb_gadget *gadget)
 		dma_pool_free(udc->ep0in.td_pool, udc->ep0in.last_zptr,
 				udc->ep0in.last_zdma);
 		udc->ep0in.last_zptr = NULL;
+=======
+	spin_unlock_irqrestore(udc->lock, flags);
+
+	/* flush all endpoints */
+	gadget_for_each_ep(ep, gadget) {
+		usb_ep_fifo_flush(ep);
+	}
+	usb_ep_fifo_flush(&udc->ep0out.ep);
+	usb_ep_fifo_flush(&udc->ep0in.ep);
+
+	udc->driver->disconnect(gadget);
+
+	/* make sure to disable all endpoints */
+	gadget_for_each_ep(ep, gadget) {
+		usb_ep_disable(ep);
+	}
+
+	if (udc->status != NULL) {
+		usb_ep_free_request(&udc->ep0in.ep, udc->status);
+		udc->status = NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	return 0;
@@ -2344,6 +2629,7 @@ __acquires(udc->lock)
 	dbg_event(0xFF, "BUS RST", 0);
 
 	spin_unlock(udc->lock);
+<<<<<<< HEAD
 
 	if (udc->suspended) {
 		if (udc->udc_driver->notify_event)
@@ -2359,15 +2645,27 @@ __acquires(udc->lock)
 	if (udc->transceiver)
 		usb_phy_set_power(udc->transceiver, 100);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	retval = _gadget_stop_activity(&udc->gadget);
 	if (retval)
 		goto done;
 
+<<<<<<< HEAD
 	_udc->skip_flush = false;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	retval = hw_usb_reset();
 	if (retval)
 		goto done;
 
+<<<<<<< HEAD
+=======
+	udc->status = usb_ep_alloc_request(&udc->ep0in.ep, GFP_ATOMIC);
+	if (udc->status == NULL)
+		retval = -ENOMEM;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_lock(udc->lock);
 
  done:
@@ -2376,6 +2674,7 @@ __acquires(udc->lock)
 }
 
 /**
+<<<<<<< HEAD
  * isr_resume_handler: USB PCI interrupt handler
  * @udc: UDC device
  *
@@ -2421,6 +2720,8 @@ static void isr_suspend_handler(struct ci13xxx *udc)
 }
 
 /**
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * isr_get_status_complete: get_status request complete function
  * @ep:  endpoint
  * @req: request handled
@@ -2436,8 +2737,13 @@ static void isr_get_status_complete(struct usb_ep *ep, struct usb_request *req)
 		return;
 	}
 
+<<<<<<< HEAD
 	if (req->status)
 		err("GET_STATUS failed");
+=======
+	kfree(req->buf);
+	usb_ep_free_request(ep, req);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -2453,7 +2759,12 @@ __releases(mEp->lock)
 __acquires(mEp->lock)
 {
 	struct ci13xxx_ep *mEp = &udc->ep0in;
+<<<<<<< HEAD
 	struct usb_request *req = udc->status;
+=======
+	struct usb_request *req = NULL;
+	gfp_t gfp_flags = GFP_ATOMIC;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int dir, num, retval;
 
 	trace("%p, %p", mEp, setup);
@@ -2461,6 +2772,7 @@ __acquires(mEp->lock)
 	if (mEp == NULL || setup == NULL)
 		return -EINVAL;
 
+<<<<<<< HEAD
 	req->complete = isr_get_status_complete;
 	req->length   = 2;
 	req->buf      = udc->status_buf;
@@ -2475,6 +2787,25 @@ __acquires(mEp->lock)
 			*((u16 *)req->buf) = _udc->remote_wakeup << 1;
 		}
 		/* TODO: D1 - Remote Wakeup; D0 - Self Powered */
+=======
+	spin_unlock(mEp->lock);
+	req = usb_ep_alloc_request(&mEp->ep, gfp_flags);
+	spin_lock(mEp->lock);
+	if (req == NULL)
+		return -ENOMEM;
+
+	req->complete = isr_get_status_complete;
+	req->length   = 2;
+	req->buf      = kzalloc(req->length, gfp_flags);
+	if (req->buf == NULL) {
+		retval = -ENOMEM;
+		goto err_free_req;
+	}
+
+	if ((setup->bRequestType & USB_RECIP_MASK) == USB_RECIP_DEVICE) {
+		/* Assume that device is bus powered for now. */
+		*((u16 *)req->buf) = _udc->remote_wakeup << 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		retval = 0;
 	} else if ((setup->bRequestType & USB_RECIP_MASK) \
 		   == USB_RECIP_ENDPOINT) {
@@ -2486,7 +2817,22 @@ __acquires(mEp->lock)
 	/* else do nothing; reserved for future use */
 
 	spin_unlock(mEp->lock);
+<<<<<<< HEAD
 	retval = usb_ep_queue(&mEp->ep, req, GFP_ATOMIC);
+=======
+	retval = usb_ep_queue(&mEp->ep, req, gfp_flags);
+	spin_lock(mEp->lock);
+	if (retval)
+		goto err_free_buf;
+
+	return 0;
+
+ err_free_buf:
+	kfree(req->buf);
+ err_free_req:
+	spin_unlock(mEp->lock);
+	usb_ep_free_request(&mEp->ep, req);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_lock(mEp->lock);
 	return retval;
 }
@@ -2531,7 +2877,10 @@ __acquires(mEp->lock)
 	mEp = (udc->ep0_dir == TX) ? &udc->ep0out : &udc->ep0in;
 	udc->status->context = udc;
 	udc->status->complete = isr_setup_status_complete;
+<<<<<<< HEAD
 	udc->status->length = 0;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	spin_unlock(mEp->lock);
 	retval = usb_ep_queue(&mEp->ep, udc->status, GFP_ATOMIC);
@@ -2554,12 +2903,16 @@ __acquires(mEp->lock)
 	struct ci13xxx_req *mReq, *mReqTemp;
 	struct ci13xxx_ep *mEpTemp = mEp;
 	int uninitialized_var(retval);
+<<<<<<< HEAD
 	int req_dequeue = 1;
 	struct ci13xxx *udc = _udc;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	trace("%p", mEp);
 
 	if (list_empty(&mEp->qh.queue))
+<<<<<<< HEAD
 		return 0;
 
 	del_timer(&mEp->prime_timer);
@@ -2624,6 +2977,17 @@ done:
 
 		dbg_done(_usb_addr(mEp), mReq->ptr->token, retval);
 
+=======
+		return -EINVAL;
+
+	list_for_each_entry_safe(mReq, mReqTemp, &mEp->qh.queue,
+			queue) {
+		retval = _hardware_dequeue(mEp, mReq);
+		if (retval < 0)
+			break;
+		list_del_init(&mReq->queue);
+		dbg_done(_usb_addr(mEp), mReq->ptr->token, retval);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (mReq->req.complete != NULL) {
 			spin_unlock(mEp->lock);
 			if ((mEp->type == USB_ENDPOINT_XFER_CONTROL) &&
@@ -2706,8 +3070,11 @@ __acquires(udc->lock)
 		do {
 			hw_test_and_set_setup_guard();
 			memcpy(&req, &mEp->qh.ptr->setup, sizeof(req));
+<<<<<<< HEAD
 			/* Ensure buffer is read before acknowledging to h/w */
 			mb();
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} while (!hw_test_and_clear_setup_guard());
 
 		type = req.bRequestType;
@@ -2753,7 +3120,12 @@ __acquires(udc->lock)
 			    type != (USB_DIR_IN|USB_RECIP_ENDPOINT) &&
 			    type != (USB_DIR_IN|USB_RECIP_INTERFACE))
 				goto delegate;
+<<<<<<< HEAD
 			if (le16_to_cpu(req.wValue)  != 0)
+=======
+			if (le16_to_cpu(req.wLength) != 2 ||
+			    le16_to_cpu(req.wValue)  != 0)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				break;
 			err = isr_get_status_response(udc, &req);
 			break;
@@ -2768,10 +3140,13 @@ __acquires(udc->lock)
 				break;
 			err = isr_setup_status_phase(udc);
 			break;
+<<<<<<< HEAD
 		case USB_REQ_SET_CONFIGURATION:
 			if (type == (USB_DIR_OUT|USB_TYPE_STANDARD))
 				udc->configured = !!req.wValue;
 			goto delegate;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		case USB_REQ_SET_FEATURE:
 			if (type == (USB_DIR_OUT|USB_RECIP_ENDPOINT) &&
 					le16_to_cpu(req.wValue) ==
@@ -2797,6 +3172,7 @@ __acquires(udc->lock)
 					udc->remote_wakeup = 1;
 					err = isr_setup_status_phase(udc);
 					break;
+<<<<<<< HEAD
 				case USB_DEVICE_B_HNP_ENABLE:
 					udc->gadget.b_hnp_enable = 1;
 					err = isr_setup_status_phase(udc);
@@ -2807,6 +3183,8 @@ __acquires(udc->lock)
 					break;
 				case USB_DEVICE_A_ALT_HNP_SUPPORT:
 					break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				case USB_DEVICE_TEST_MODE:
 					tmode = le16_to_cpu(req.wIndex) >> 8;
 					switch (tmode) {
@@ -2819,6 +3197,7 @@ __acquires(udc->lock)
 						err = isr_setup_status_phase(
 								udc);
 						break;
+<<<<<<< HEAD
 					case TEST_OTG_SRP_REQD:
 						udc->gadget.otg_srp_reqd = 1;
 						err = isr_setup_status_phase(
@@ -2829,11 +3208,17 @@ __acquires(udc->lock)
 						err = isr_setup_status_phase(
 								udc);
 						break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					default:
 						break;
 					}
 				default:
+<<<<<<< HEAD
 					break;
+=======
+					goto delegate;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				}
 			} else {
 				goto delegate;
@@ -2875,9 +3260,14 @@ static int ep_enable(struct usb_ep *ep,
 	struct ci13xxx_ep *mEp = container_of(ep, struct ci13xxx_ep, ep);
 	int retval = 0;
 	unsigned long flags;
+<<<<<<< HEAD
 	unsigned mult = 0;
 
 	trace("ep = %p, desc = %p", ep, desc);
+=======
+
+	trace("%p, %p", ep, desc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (ep == NULL || desc == NULL)
 		return -EINVAL;
@@ -2895,12 +3285,17 @@ static int ep_enable(struct usb_ep *ep,
 	mEp->num  = usb_endpoint_num(desc);
 	mEp->type = usb_endpoint_type(desc);
 
+<<<<<<< HEAD
 	mEp->ep.maxpacket = usb_endpoint_maxp(desc);
+=======
+	mEp->ep.maxpacket = __constant_le16_to_cpu(desc->wMaxPacketSize);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	dbg_event(_usb_addr(mEp), "ENABLE", 0);
 
 	mEp->qh.ptr->cap = 0;
 
+<<<<<<< HEAD
 	if (mEp->type == USB_ENDPOINT_XFER_CONTROL) {
 		mEp->qh.ptr->cap |=  QH_IOS;
 	} else if (mEp->type == USB_ENDPOINT_XFER_ISOC) {
@@ -2910,14 +3305,25 @@ static int ep_enable(struct usb_ep *ep,
 	} else {
 		mEp->qh.ptr->cap |= QH_ZLT;
 	}
+=======
+	if (mEp->type == USB_ENDPOINT_XFER_CONTROL)
+		mEp->qh.ptr->cap |=  QH_IOS;
+	else if (mEp->type == USB_ENDPOINT_XFER_ISOC)
+		mEp->qh.ptr->cap &= ~QH_MULT;
+	else
+		mEp->qh.ptr->cap &= ~QH_ZLT;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	mEp->qh.ptr->cap |=
 		(mEp->ep.maxpacket << ffs_nr(QH_MAX_PKT)) & QH_MAX_PKT;
 	mEp->qh.ptr->td.next |= TD_TERMINATE;   /* needed? */
 
+<<<<<<< HEAD
 	/* complete all the updates to ept->head before enabling endpoint*/
 	mb();
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * Enable endpoints in the HW other than ep0 as ep0
 	 * is always enabled
@@ -2963,6 +3369,7 @@ static int ep_disable(struct usb_ep *ep)
 
 	} while (mEp->dir != direction);
 
+<<<<<<< HEAD
 	if (mEp->last_zptr) {
 		dma_pool_free(mEp->td_pool, mEp->last_zptr,
 				mEp->last_zdma);
@@ -2972,6 +3379,9 @@ static int ep_disable(struct usb_ep *ep)
 	mEp->desc = NULL;
 	mEp->ep.desc = NULL;
 	mEp->ep.maxpacket = USHRT_MAX;
+=======
+	mEp->desc = NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	spin_unlock_irqrestore(mEp->lock, flags);
 	return retval;
@@ -2997,7 +3407,10 @@ static struct usb_request *ep_alloc_request(struct usb_ep *ep, gfp_t gfp_flags)
 	mReq = kzalloc(sizeof(struct ci13xxx_req), gfp_flags);
 	if (mReq != NULL) {
 		INIT_LIST_HEAD(&mReq->queue);
+<<<<<<< HEAD
 		mReq->req.dma = DMA_ADDR_INVALID;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		mReq->ptr = dma_pool_alloc(mEp->td_pool, gfp_flags,
 					   &mReq->dma);
@@ -3056,6 +3469,7 @@ static int ep_queue(struct usb_ep *ep, struct usb_request *req,
 	struct ci13xxx_req *mReq = container_of(req, struct ci13xxx_req, req);
 	int retval = 0;
 	unsigned long flags;
+<<<<<<< HEAD
 	struct ci13xxx *udc = _udc;
 
 	trace("%p, %p, %X", ep, req, gfp_flags);
@@ -3079,6 +3493,15 @@ static int ep_queue(struct usb_ep *ep, struct usb_request *req,
 		retval = -ESHUTDOWN;
 		goto done;
 	}
+=======
+
+	trace("%p, %p, %X", ep, req, gfp_flags);
+
+	if (ep == NULL || req == NULL || mEp->desc == NULL)
+		return -EINVAL;
+
+	spin_lock_irqsave(mEp->lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (mEp->type == USB_ENDPOINT_XFER_CONTROL) {
 		if (req->length)
@@ -3097,6 +3520,7 @@ static int ep_queue(struct usb_ep *ep, struct usb_request *req,
 		err("request already in queue");
 		goto done;
 	}
+<<<<<<< HEAD
 	if (mEp->multi_req) {
 		retval = -EAGAIN;
 		err("Large request is in progress. come again");
@@ -3119,6 +3543,13 @@ static int ep_queue(struct usb_ep *ep, struct usb_request *req,
 		mReq->multi.len = req->length;
 		mReq->multi.buf = req->buf;
 		req->length = (4 * CI13XXX_PAGE_SIZE);
+=======
+
+	if (req->length > (4 * CI13XXX_PAGE_SIZE)) {
+		req->length = (4 * CI13XXX_PAGE_SIZE);
+		retval = -EMSGSIZE;
+		warn("request length truncated");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	dbg_queue(_usb_addr(mEp), req, retval);
@@ -3135,8 +3566,11 @@ static int ep_queue(struct usb_ep *ep, struct usb_request *req,
 	}
 	if (!retval)
 		list_add_tail(&mReq->queue, &mEp->qh.queue);
+<<<<<<< HEAD
 	else if (mEp->multi_req)
 		mEp->multi_req = false;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
  done:
 	spin_unlock_irqrestore(mEp->lock, flags);
@@ -3151,12 +3585,16 @@ static int ep_queue(struct usb_ep *ep, struct usb_request *req,
 static int ep_dequeue(struct usb_ep *ep, struct usb_request *req)
 {
 	struct ci13xxx_ep  *mEp  = container_of(ep,  struct ci13xxx_ep, ep);
+<<<<<<< HEAD
 	struct ci13xxx_ep *mEpTemp = mEp;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct ci13xxx_req *mReq = container_of(req, struct ci13xxx_req, req);
 	unsigned long flags;
 
 	trace("%p, %p", ep, req);
 
+<<<<<<< HEAD
 	spin_lock_irqsave(mEp->lock, flags);
 	/*
 	 * Only ep0 IN is exposed to composite.  When a req is dequeued
@@ -3179,12 +3617,25 @@ static int ep_dequeue(struct usb_ep *ep, struct usb_request *req)
 	} else {
 		hw_ep_flush(mEp->num, mEp->dir);
 	}
+=======
+	if (ep == NULL || req == NULL || mReq->req.status != -EALREADY ||
+		mEp->desc == NULL || list_empty(&mReq->queue) ||
+		list_empty(&mEp->qh.queue))
+		return -EINVAL;
+
+	spin_lock_irqsave(mEp->lock, flags);
+
+	dbg_event(_usb_addr(mEp), "DEQUEUE", 0);
+
+	hw_ep_flush(mEp->num, mEp->dir);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* pop request */
 	list_del_init(&mReq->queue);
 	if (mReq->map) {
 		dma_unmap_single(mEp->device, mReq->req.dma, mReq->req.length,
 				 mEp->dir ? DMA_TO_DEVICE : DMA_FROM_DEVICE);
+<<<<<<< HEAD
 		mReq->req.dma = DMA_ADDR_INVALID;
 		mReq->map     = 0;
 	}
@@ -3202,6 +3653,16 @@ static int ep_dequeue(struct usb_ep *ep, struct usb_request *req)
 		mReq->req.complete(&mEpTemp->ep, &mReq->req);
 		if (mEp->type == USB_ENDPOINT_XFER_CONTROL)
 			mReq->req.complete = NULL;
+=======
+		mReq->req.dma = 0;
+		mReq->map     = 0;
+	}
+	req->status = -ECONNRESET;
+
+	if (mReq->req.complete != NULL) {
+		spin_unlock(mEp->lock);
+		mReq->req.complete(&mEp->ep, &mReq->req);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spin_lock(mEp->lock);
 	}
 
@@ -3209,12 +3670,15 @@ static int ep_dequeue(struct usb_ep *ep, struct usb_request *req)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int is_sps_req(struct ci13xxx_req *mReq)
 {
 	return (CI13XX_REQ_VENDOR_ID(mReq->req.udc_priv) == MSM_VENDOR_ID &&
 			mReq->req.udc_priv & MSM_SPS_MODE);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * ep_set_halt: sets the endpoint halt feature
  *
@@ -3236,9 +3700,13 @@ static int ep_set_halt(struct usb_ep *ep, int value)
 #ifndef STALL_IN
 	/* g_file_storage MS compliant but g_zero fails chapter 9 compliance */
 	if (value && mEp->type == USB_ENDPOINT_XFER_BULK && mEp->dir == TX &&
+<<<<<<< HEAD
 		!list_empty(&mEp->qh.queue) &&
 		!is_sps_req(list_entry(mEp->qh.queue.next, struct ci13xxx_req,
 							   queue))){
+=======
+	    !list_empty(&mEp->qh.queue)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spin_unlock_irqrestore(mEp->lock, flags);
 		return -EAGAIN;
 	}
@@ -3306,6 +3774,7 @@ static void ep_fifo_flush(struct usb_ep *ep)
 	spin_lock_irqsave(mEp->lock, flags);
 
 	dbg_event(_usb_addr(mEp), "FFLUSH", 0);
+<<<<<<< HEAD
 	/*
 	 * _ep_nuke() takes care of flushing the endpoint.
 	 * some function drivers expect udc to retire all
@@ -3313,6 +3782,9 @@ static void ep_fifo_flush(struct usb_ep *ep)
 	 * is no harm in doing it.
 	 */
 	_ep_nuke(mEp);
+=======
+	hw_ep_flush(mEp->num, mEp->dir);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	spin_unlock_irqrestore(mEp->lock, flags);
 }
@@ -3355,6 +3827,7 @@ static int ci13xxx_vbus_session(struct usb_gadget *_gadget, int is_active)
 		if (is_active) {
 			pm_runtime_get_sync(&_gadget->dev);
 			hw_device_reset(udc);
+<<<<<<< HEAD
 			if (udc->softconnect)
 				hw_device_state(udc->ep0out.qh.dma);
 		} else {
@@ -3363,6 +3836,15 @@ static int ci13xxx_vbus_session(struct usb_gadget *_gadget, int is_active)
 			if (udc->udc_driver->notify_event)
 				udc->udc_driver->notify_event(udc,
 					CI13XXX_CONTROLLER_DISCONNECT_EVENT);
+=======
+			hw_device_state(udc->ep0out.qh.dma);
+		} else {
+			hw_device_state(0);
+			if (udc->udc_driver->notify_event)
+				udc->udc_driver->notify_event(udc,
+				CI13XXX_CONTROLLER_STOPPED_EVENT);
+			_gadget_stop_activity(&udc->gadget);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			pm_runtime_put_sync(&_gadget->dev);
 		}
 	}
@@ -3370,6 +3852,7 @@ static int ci13xxx_vbus_session(struct usb_gadget *_gadget, int is_active)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int ci13xxx_vbus_draw(struct usb_gadget *_gadget, unsigned mA)
 {
 	struct ci13xxx *udc = container_of(_gadget, struct ci13xxx, gadget);
@@ -3405,6 +3888,42 @@ static int ci13xxx_start(struct usb_gadget_driver *driver,
 		int (*bind)(struct usb_gadget *));
 static int ci13xxx_stop(struct usb_gadget_driver *driver);
 
+=======
+static int ci13xxx_wakeup(struct usb_gadget *_gadget)
+{
+	struct ci13xxx *udc = container_of(_gadget, struct ci13xxx, gadget);
+	unsigned long flags;
+	int ret = 0;
+
+	trace();
+
+	spin_lock_irqsave(udc->lock, flags);
+	if (!udc->remote_wakeup) {
+		ret = -EOPNOTSUPP;
+		dbg_trace("remote wakeup feature is not enabled\n");
+		goto out;
+	}
+	if (!hw_cread(CAP_PORTSC, PORTSC_SUSP)) {
+		ret = -EINVAL;
+		dbg_trace("port is not suspended\n");
+		goto out;
+	}
+	hw_cwrite(CAP_PORTSC, PORTSC_FPR, PORTSC_FPR);
+out:
+	spin_unlock_irqrestore(udc->lock, flags);
+	return ret;
+}
+
+static int ci13xxx_vbus_draw(struct usb_gadget *_gadget, unsigned mA)
+{
+	struct ci13xxx *udc = container_of(_gadget, struct ci13xxx, gadget);
+
+	if (udc->transceiver)
+		return otg_set_power(udc->transceiver, mA);
+	return -ENOTSUPP;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * Device operations part of the API to the USB controller hardware,
  * which don't involve endpoints (or i/o)
@@ -3414,6 +3933,7 @@ static const struct usb_gadget_ops usb_gadget_ops = {
 	.vbus_session	= ci13xxx_vbus_session,
 	.wakeup		= ci13xxx_wakeup,
 	.vbus_draw	= ci13xxx_vbus_draw,
+<<<<<<< HEAD
 	.pullup		= ci13xxx_pullup,
 	.start		= ci13xxx_start,
 	.stop		= ci13xxx_stop,
@@ -3428,20 +3948,42 @@ static const struct usb_gadget_ops usb_gadget_ops = {
  * Interrupts are enabled here.
  */
 static int ci13xxx_start(struct usb_gadget_driver *driver,
+=======
+};
+
+/**
+ * usb_gadget_probe_driver: register a gadget driver
+ * @driver: the driver being registered
+ * @bind: the driver's bind callback
+ *
+ * Check usb_gadget_probe_driver() at <linux/usb/gadget.h> for details.
+ * Interrupts are enabled here.
+ */
+int usb_gadget_probe_driver(struct usb_gadget_driver *driver,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		int (*bind)(struct usb_gadget *))
 {
 	struct ci13xxx *udc = _udc;
 	unsigned long flags;
 	int i, j;
 	int retval = -ENOMEM;
+<<<<<<< HEAD
 	bool put = false;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	trace("%p", driver);
 
 	if (driver             == NULL ||
 	    bind               == NULL ||
 	    driver->setup      == NULL ||
+<<<<<<< HEAD
 	    driver->disconnect == NULL)
+=======
+	    driver->disconnect == NULL ||
+	    driver->suspend    == NULL ||
+	    driver->resume     == NULL)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -EINVAL;
 	else if (udc         == NULL)
 		return -ENODEV;
@@ -3485,8 +4027,12 @@ static int ci13xxx_start(struct usb_gadget_driver *driver,
 
 			mEp->ep.name      = mEp->name;
 			mEp->ep.ops       = &usb_ep_ops;
+<<<<<<< HEAD
 			mEp->ep.maxpacket =
 				k ? USHRT_MAX : CTRL_PAYLOAD_MAX;
+=======
+			mEp->ep.maxpacket = CTRL_PAYLOAD_MAX;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 			INIT_LIST_HEAD(&mEp->qh.queue);
 			spin_unlock_irqrestore(udc->lock, flags);
@@ -3508,6 +4054,7 @@ static int ci13xxx_start(struct usb_gadget_driver *driver,
 	if (retval)
 		goto done;
 	spin_unlock_irqrestore(udc->lock, flags);
+<<<<<<< HEAD
 	udc->ep0out.ep.desc = &ctrl_endpt_out_desc;
 	retval = usb_ep_enable(&udc->ep0out.ep);
 	if (retval)
@@ -3525,16 +4072,29 @@ static int ci13xxx_start(struct usb_gadget_driver *driver,
 		usb_ep_free_request(&udc->ep0in.ep, udc->status);
 		return -ENOMEM;
 	}
+=======
+	retval = usb_ep_enable(&udc->ep0out.ep, &ctrl_endpt_out_desc);
+	if (retval)
+		return retval;
+	retval = usb_ep_enable(&udc->ep0in.ep, &ctrl_endpt_in_desc);
+	if (retval)
+		return retval;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_lock_irqsave(udc->lock, flags);
 
 	udc->gadget.ep0 = &udc->ep0in.ep;
 	/* bind gadget */
 	driver->driver.bus     = NULL;
 	udc->gadget.dev.driver = &driver->driver;
+<<<<<<< HEAD
 	udc->softconnect = 1;
 
 	spin_unlock_irqrestore(udc->lock, flags);
 	pm_runtime_get_sync(&udc->gadget.dev);
+=======
+
+	spin_unlock_irqrestore(udc->lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	retval = bind(&udc->gadget);                /* MAY SLEEP */
 	spin_lock_irqsave(udc->lock, flags);
 
@@ -3544,16 +4104,25 @@ static int ci13xxx_start(struct usb_gadget_driver *driver,
 	}
 
 	udc->driver = driver;
+<<<<<<< HEAD
+=======
+	pm_runtime_get_sync(&udc->gadget.dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (udc->udc_driver->flags & CI13XXX_PULLUP_ON_VBUS) {
 		if (udc->vbus_active) {
 			if (udc->udc_driver->flags & CI13XXX_REGS_SHARED)
 				hw_device_reset(udc);
 		} else {
+<<<<<<< HEAD
 			put = true;
+=======
+			pm_runtime_put_sync(&udc->gadget.dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			goto done;
 		}
 	}
 
+<<<<<<< HEAD
 	if (!udc->softconnect) {
 		put = true;
 		goto done;
@@ -3579,6 +4148,24 @@ static int ci13xxx_start(struct usb_gadget_driver *driver,
  * Check usb_gadget_unregister_driver() at "usb_gadget.h" for details
  */
 static int ci13xxx_stop(struct usb_gadget_driver *driver)
+=======
+	retval = hw_device_state(udc->ep0out.qh.dma);
+	if (retval)
+		pm_runtime_put_sync(&udc->gadget.dev);
+
+ done:
+	spin_unlock_irqrestore(udc->lock, flags);
+	return retval;
+}
+EXPORT_SYMBOL(usb_gadget_probe_driver);
+
+/**
+ * usb_gadget_unregister_driver: unregister a gadget driver
+ *
+ * Check usb_gadget_unregister_driver() at "usb_gadget.h" for details
+ */
+int usb_gadget_unregister_driver(struct usb_gadget_driver *driver)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct ci13xxx *udc = _udc;
 	unsigned long i, flags;
@@ -3589,6 +4176,11 @@ static int ci13xxx_stop(struct usb_gadget_driver *driver)
 	    driver->unbind     == NULL ||
 	    driver->setup      == NULL ||
 	    driver->disconnect == NULL ||
+<<<<<<< HEAD
+=======
+	    driver->suspend    == NULL ||
+	    driver->resume     == NULL ||
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	    driver             != udc->driver)
 		return -EINVAL;
 
@@ -3597,9 +4189,16 @@ static int ci13xxx_stop(struct usb_gadget_driver *driver)
 	if (!(udc->udc_driver->flags & CI13XXX_PULLUP_ON_VBUS) ||
 			udc->vbus_active) {
 		hw_device_state(0);
+<<<<<<< HEAD
 		spin_unlock_irqrestore(udc->lock, flags);
 		_gadget_stop_activity(&udc->gadget);
 		spin_lock_irqsave(udc->lock, flags);
+=======
+		if (udc->udc_driver->notify_event)
+			udc->udc_driver->notify_event(udc,
+			CI13XXX_CONTROLLER_STOPPED_EVENT);
+		_gadget_stop_activity(&udc->gadget);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		pm_runtime_put(&udc->gadget.dev);
 	}
 
@@ -3608,9 +4207,12 @@ static int ci13xxx_stop(struct usb_gadget_driver *driver)
 	driver->unbind(&udc->gadget);               /* MAY SLEEP */
 	spin_lock_irqsave(udc->lock, flags);
 
+<<<<<<< HEAD
 	usb_ep_free_request(&udc->ep0in.ep, udc->status);
 	kfree(udc->status_buf);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	udc->gadget.dev.driver = NULL;
 
 	/* free resources */
@@ -3640,6 +4242,10 @@ static int ci13xxx_stop(struct usb_gadget_driver *driver)
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+EXPORT_SYMBOL(usb_gadget_unregister_driver);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /******************************************************************************
  * BUS block
@@ -3685,7 +4291,18 @@ static irqreturn_t udc_irq(void)
 		}
 		if (USBi_PCI & intr) {
 			isr_statistics.pci++;
+<<<<<<< HEAD
 			isr_resume_handler(udc);
+=======
+			udc->gadget.speed = hw_port_is_high_speed() ?
+				USB_SPEED_HIGH : USB_SPEED_FULL;
+			if (udc->suspended) {
+				spin_unlock(udc->lock);
+				udc->driver->resume(&udc->gadget);
+				spin_lock(udc->lock);
+				udc->suspended = 0;
+			}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 		if (USBi_UEI & intr)
 			isr_statistics.uei++;
@@ -3694,7 +4311,16 @@ static irqreturn_t udc_irq(void)
 			isr_tr_complete_handler(udc);
 		}
 		if (USBi_SLI & intr) {
+<<<<<<< HEAD
 			isr_suspend_handler(udc);
+=======
+			if (udc->gadget.speed != USB_SPEED_UNKNOWN) {
+				udc->suspended = 1;
+				spin_unlock(udc->lock);
+				udc->driver->suspend(&udc->gadget);
+				spin_lock(udc->lock);
+			}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			isr_statistics.sli++;
 		}
 		retval = IRQ_HANDLED;
@@ -3735,10 +4361,16 @@ static int udc_probe(struct ci13xxx_udc_driver *driver, struct device *dev,
 		void __iomem *regs)
 {
 	struct ci13xxx *udc;
+<<<<<<< HEAD
 	struct ci13xxx_platform_data *pdata;
 	int retval = 0, i;
 
 	trace("%p, %p, %p", dev, regs, driver->name);
+=======
+	int retval = 0;
+
+	trace("%p, %p, %p", dev, regs, name);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (dev == NULL || regs == NULL || driver == NULL ||
 			driver->name == NULL)
@@ -3754,34 +4386,53 @@ static int udc_probe(struct ci13xxx_udc_driver *driver, struct device *dev,
 
 	udc->gadget.ops          = &usb_gadget_ops;
 	udc->gadget.speed        = USB_SPEED_UNKNOWN;
+<<<<<<< HEAD
 	udc->gadget.max_speed    = USB_SPEED_HIGH;
 	if (udc->udc_driver->flags & CI13XXX_IS_OTG)
 		udc->gadget.is_otg       = 1;
 	else
 		udc->gadget.is_otg       = 0;
+=======
+	udc->gadget.is_dualspeed = 1;
+	udc->gadget.is_otg       = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	udc->gadget.name         = driver->name;
 
 	INIT_LIST_HEAD(&udc->gadget.ep_list);
 	udc->gadget.ep0 = NULL;
 
+<<<<<<< HEAD
 	pdata = dev->platform_data;
 	if (pdata)
 		udc->gadget.usb_core_id = pdata->usb_core_id;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dev_set_name(&udc->gadget.dev, "gadget");
 	udc->gadget.dev.dma_mask = dev->dma_mask;
 	udc->gadget.dev.coherent_dma_mask = dev->coherent_dma_mask;
 	udc->gadget.dev.parent   = dev;
 	udc->gadget.dev.release  = udc_release;
 
+<<<<<<< HEAD
 	if (udc->udc_driver->flags & CI13XXX_REQUIRE_TRANSCEIVER) {
 		udc->transceiver = usb_get_transceiver();
+=======
+	retval = hw_device_init(regs);
+	if (retval < 0)
+		goto free_udc;
+
+	udc->transceiver = otg_get_transceiver();
+
+	if (udc->udc_driver->flags & CI13XXX_REQUIRE_TRANSCEIVER) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (udc->transceiver == NULL) {
 			retval = -ENODEV;
 			goto free_udc;
 		}
 	}
 
+<<<<<<< HEAD
 	INIT_DELAYED_WORK(&udc->rw_work, usb_do_remote_wakeup);
 
 	retval = hw_device_init(regs);
@@ -3795,6 +4446,8 @@ static int udc_probe(struct ci13xxx_udc_driver *driver, struct device *dev,
 			(unsigned long) mEp);
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!(udc->udc_driver->flags & CI13XXX_REGS_SHARED)) {
 		retval = hw_device_reset(udc);
 		if (retval)
@@ -3814,6 +4467,7 @@ static int udc_probe(struct ci13xxx_udc_driver *driver, struct device *dev,
 		goto unreg_device;
 
 	if (udc->transceiver) {
+<<<<<<< HEAD
 		retval = otg_set_peripheral(udc->transceiver->otg,
 						&udc->gadget);
 		if (retval)
@@ -3839,6 +4493,18 @@ remove_trans:
 		usb_put_transceiver(udc->transceiver);
 	}
 
+=======
+		retval = otg_set_peripheral(udc->transceiver, &udc->gadget);
+		if (retval)
+			goto remove_dbg;
+	}
+	pm_runtime_no_callbacks(&udc->gadget.dev);
+	pm_runtime_enable(&udc->gadget.dev);
+
+	_udc = udc;
+	return retval;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	err("error = %i", retval);
 remove_dbg:
 #ifdef CONFIG_USB_GADGET_DEBUG_FILES
@@ -3848,7 +4514,11 @@ unreg_device:
 	device_unregister(&udc->gadget.dev);
 put_transceiver:
 	if (udc->transceiver)
+<<<<<<< HEAD
 		usb_put_transceiver(udc->transceiver);
+=======
+		otg_put_transceiver(udc->transceiver);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 free_udc:
 	kfree(udc);
 	_udc = NULL;
@@ -3863,12 +4533,16 @@ free_udc:
 static void udc_remove(void)
 {
 	struct ci13xxx *udc = _udc;
+<<<<<<< HEAD
 	int retval;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (udc == NULL) {
 		err("EINVAL");
 		return;
 	}
+<<<<<<< HEAD
 	retval = unregister_trace_usb_daytona_invalid_access(dump_usb_info,
 									NULL);
 	if (retval)
@@ -3879,6 +4553,12 @@ static void udc_remove(void)
 	if (udc->transceiver) {
 		otg_set_peripheral(udc->transceiver->otg, &udc->gadget);
 		usb_put_transceiver(udc->transceiver);
+=======
+
+	if (udc->transceiver) {
+		otg_set_peripheral(udc->transceiver, &udc->gadget);
+		otg_put_transceiver(udc->transceiver);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 #ifdef CONFIG_USB_GADGET_DEBUG_FILES
 	dbg_remove_files(&udc->gadget.dev);

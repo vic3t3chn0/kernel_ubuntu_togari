@@ -191,7 +191,21 @@ static struct platform_driver picoxcell_trng_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(picoxcell_trng_driver);
+=======
+static int __init picoxcell_trng_init(void)
+{
+	return platform_driver_register(&picoxcell_trng_driver);
+}
+module_init(picoxcell_trng_init);
+
+static void __exit picoxcell_trng_exit(void)
+{
+	platform_driver_unregister(&picoxcell_trng_driver);
+}
+module_exit(picoxcell_trng_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Jamie Iles");

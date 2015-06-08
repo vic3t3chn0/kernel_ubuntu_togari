@@ -10,6 +10,7 @@ obj-$(CONFIG_IR_RC6_DECODER) += ir-rc6-decoder.o
 obj-$(CONFIG_IR_JVC_DECODER) += ir-jvc-decoder.o
 obj-$(CONFIG_IR_SONY_DECODER) += ir-sony-decoder.o
 obj-$(CONFIG_IR_RC5_SZ_DECODER) += ir-rc5-sz-decoder.o
+<<<<<<< HEAD
 obj-$(CONFIG_IR_SANYO_DECODER) += ir-sanyo-decoder.o
 obj-$(CONFIG_IR_MCE_KBD_DECODER) += ir-mce_kbd-decoder.o
 obj-$(CONFIG_IR_LIRC_CODEC) += ir-lirc-codec.o
@@ -18,6 +19,11 @@ obj-$(CONFIG_USER_SP_RC_INPUT) += user-sp-rc-input.o
 
 # stand-alone IR receivers/transmitters
 obj-$(CONFIG_RC_ATI_REMOTE) += ati_remote.o
+=======
+obj-$(CONFIG_IR_LIRC_CODEC) += ir-lirc-codec.o
+
+# stand-alone IR receivers/transmitters
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_IR_IMON) += imon.o
 obj-$(CONFIG_IR_ITE_CIR) += ite-cir.o
 obj-$(CONFIG_IR_MCEUSB) += mceusb.o
@@ -28,4 +34,7 @@ obj-$(CONFIG_IR_REDRAT3) += redrat3.o
 obj-$(CONFIG_IR_STREAMZAP) += streamzap.o
 obj-$(CONFIG_IR_WINBOND_CIR) += winbond-cir.o
 obj-$(CONFIG_RC_LOOPBACK) += rc-loopback.o
+<<<<<<< HEAD
 obj-$(CONFIG_IR_GPIO_CIR) += gpio-ir-recv.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

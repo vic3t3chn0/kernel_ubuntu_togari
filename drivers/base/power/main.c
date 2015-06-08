@@ -19,7 +19,10 @@
 
 #include <linux/device.h>
 #include <linux/kallsyms.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/mutex.h>
 #include <linux/pm.h>
 #include <linux/pm_runtime.h>
@@ -33,8 +36,11 @@
 #include "../base.h"
 #include "power.h"
 
+<<<<<<< HEAD
 typedef int (*pm_callback_t)(struct device *);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * The entries in the dpm_list list are in a depth first order, simply
  * because children are guaranteed to be discovered after parents, and
@@ -48,10 +54,15 @@ typedef int (*pm_callback_t)(struct device *);
 LIST_HEAD(dpm_list);
 LIST_HEAD(dpm_prepared_list);
 LIST_HEAD(dpm_suspended_list);
+<<<<<<< HEAD
 LIST_HEAD(dpm_late_early_list);
 LIST_HEAD(dpm_noirq_list);
 
 struct suspend_stats suspend_stats;
+=======
+LIST_HEAD(dpm_noirq_list);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static DEFINE_MUTEX(dpm_list_mtx);
 static pm_message_t pm_transition;
 
@@ -77,7 +88,10 @@ void device_pm_init(struct device *dev)
 	spin_lock_init(&dev->power.lock);
 	pm_runtime_init(dev);
 	INIT_LIST_HEAD(&dev->power.entry);
+<<<<<<< HEAD
 	dev->power.power_state = PMSG_INVALID;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -109,7 +123,10 @@ void device_pm_add(struct device *dev)
 		dev_warn(dev, "parent %s should not be sleeping\n",
 			dev_name(dev->parent));
 	list_add_tail(&dev->power.entry, &dpm_list);
+<<<<<<< HEAD
 	dev_pm_qos_constraints_init(dev);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	mutex_unlock(&dpm_list_mtx);
 }
 
@@ -123,7 +140,10 @@ void device_pm_remove(struct device *dev)
 		 dev->bus ? dev->bus->name : "No Bus", dev_name(dev));
 	complete_all(&dev->power.completion);
 	mutex_lock(&dpm_list_mtx);
+<<<<<<< HEAD
 	dev_pm_qos_constraints_destroy(dev);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	list_del_init(&dev->power.entry);
 	mutex_unlock(&dpm_list_mtx);
 	device_wakeup_disable(dev);
@@ -174,9 +194,14 @@ static ktime_t initcall_debug_start(struct device *dev)
 	ktime_t calltime = ktime_set(0, 0);
 
 	if (initcall_debug) {
+<<<<<<< HEAD
 		pr_info("calling  %s+ @ %i, parent: %s\n",
 			dev_name(dev), task_pid_nr(current),
 			dev->parent ? dev_name(dev->parent) : "none");
+=======
+		pr_info("calling  %s+ @ %i\n",
+				dev_name(dev), task_pid_nr(current));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		calltime = ktime_get();
 	}
 
@@ -222,6 +247,7 @@ static void dpm_wait_for_children(struct device *dev, bool async)
 }
 
 /**
+<<<<<<< HEAD
  * pm_op - Return the PM operation appropriate for given PM event.
  * @ops: PM operations to choose from.
  * @state: PM transition of the system being carried out.
@@ -269,10 +295,41 @@ static pm_callback_t pm_late_early_op(const struct dev_pm_ops *ops,
 		return ops->suspend_late;
 	case PM_EVENT_RESUME:
 		return ops->resume_early;
+=======
+ * pm_op - Execute the PM operation appropriate for given PM event.
+ * @dev: Device to handle.
+ * @ops: PM operations to choose from.
+ * @state: PM transition of the system being carried out.
+ */
+static int pm_op(struct device *dev,
+		 const struct dev_pm_ops *ops,
+		 pm_message_t state)
+{
+	int error = 0;
+	ktime_t calltime;
+
+	calltime = initcall_debug_start(dev);
+
+	switch (state.event) {
+#ifdef CONFIG_SUSPEND
+	case PM_EVENT_SUSPEND:
+		if (ops->suspend) {
+			error = ops->suspend(dev);
+			suspend_report_result(ops->suspend, error);
+		}
+		break;
+	case PM_EVENT_RESUME:
+		if (ops->resume) {
+			error = ops->resume(dev);
+			suspend_report_result(ops->resume, error);
+		}
+		break;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* CONFIG_SUSPEND */
 #ifdef CONFIG_HIBERNATE_CALLBACKS
 	case PM_EVENT_FREEZE:
 	case PM_EVENT_QUIESCE:
+<<<<<<< HEAD
 		return ops->freeze_late;
 	case PM_EVENT_HIBERNATE:
 		return ops->poweroff_late;
@@ -289,12 +346,52 @@ static pm_callback_t pm_late_early_op(const struct dev_pm_ops *ops,
 
 /**
  * pm_noirq_op - Return the PM operation appropriate for given PM event.
+=======
+		if (ops->freeze) {
+			error = ops->freeze(dev);
+			suspend_report_result(ops->freeze, error);
+		}
+		break;
+	case PM_EVENT_HIBERNATE:
+		if (ops->poweroff) {
+			error = ops->poweroff(dev);
+			suspend_report_result(ops->poweroff, error);
+		}
+		break;
+	case PM_EVENT_THAW:
+	case PM_EVENT_RECOVER:
+		if (ops->thaw) {
+			error = ops->thaw(dev);
+			suspend_report_result(ops->thaw, error);
+		}
+		break;
+	case PM_EVENT_RESTORE:
+		if (ops->restore) {
+			error = ops->restore(dev);
+			suspend_report_result(ops->restore, error);
+		}
+		break;
+#endif /* CONFIG_HIBERNATE_CALLBACKS */
+	default:
+		error = -EINVAL;
+	}
+
+	initcall_debug_report(dev, calltime, error);
+
+	return error;
+}
+
+/**
+ * pm_noirq_op - Execute the PM operation appropriate for given PM event.
+ * @dev: Device to handle.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @ops: PM operations to choose from.
  * @state: PM transition of the system being carried out.
  *
  * The driver of @dev will not receive interrupts while this function is being
  * executed.
  */
+<<<<<<< HEAD
 static pm_callback_t pm_noirq_op(const struct dev_pm_ops *ops, pm_message_t state)
 {
 	switch (state.event) {
@@ -303,10 +400,41 @@ static pm_callback_t pm_noirq_op(const struct dev_pm_ops *ops, pm_message_t stat
 		return ops->suspend_noirq;
 	case PM_EVENT_RESUME:
 		return ops->resume_noirq;
+=======
+static int pm_noirq_op(struct device *dev,
+			const struct dev_pm_ops *ops,
+			pm_message_t state)
+{
+	int error = 0;
+	ktime_t calltime = ktime_set(0, 0), delta, rettime;
+
+	if (initcall_debug) {
+		pr_info("calling  %s+ @ %i, parent: %s\n",
+				dev_name(dev), task_pid_nr(current),
+				dev->parent ? dev_name(dev->parent) : "none");
+		calltime = ktime_get();
+	}
+
+	switch (state.event) {
+#ifdef CONFIG_SUSPEND
+	case PM_EVENT_SUSPEND:
+		if (ops->suspend_noirq) {
+			error = ops->suspend_noirq(dev);
+			suspend_report_result(ops->suspend_noirq, error);
+		}
+		break;
+	case PM_EVENT_RESUME:
+		if (ops->resume_noirq) {
+			error = ops->resume_noirq(dev);
+			suspend_report_result(ops->resume_noirq, error);
+		}
+		break;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* CONFIG_SUSPEND */
 #ifdef CONFIG_HIBERNATE_CALLBACKS
 	case PM_EVENT_FREEZE:
 	case PM_EVENT_QUIESCE:
+<<<<<<< HEAD
 		return ops->freeze_noirq;
 	case PM_EVENT_HIBERNATE:
 		return ops->poweroff_noirq;
@@ -319,6 +447,46 @@ static pm_callback_t pm_noirq_op(const struct dev_pm_ops *ops, pm_message_t stat
 	}
 
 	return NULL;
+=======
+		if (ops->freeze_noirq) {
+			error = ops->freeze_noirq(dev);
+			suspend_report_result(ops->freeze_noirq, error);
+		}
+		break;
+	case PM_EVENT_HIBERNATE:
+		if (ops->poweroff_noirq) {
+			error = ops->poweroff_noirq(dev);
+			suspend_report_result(ops->poweroff_noirq, error);
+		}
+		break;
+	case PM_EVENT_THAW:
+	case PM_EVENT_RECOVER:
+		if (ops->thaw_noirq) {
+			error = ops->thaw_noirq(dev);
+			suspend_report_result(ops->thaw_noirq, error);
+		}
+		break;
+	case PM_EVENT_RESTORE:
+		if (ops->restore_noirq) {
+			error = ops->restore_noirq(dev);
+			suspend_report_result(ops->restore_noirq, error);
+		}
+		break;
+#endif /* CONFIG_HIBERNATE_CALLBACKS */
+	default:
+		error = -EINVAL;
+	}
+
+	if (initcall_debug) {
+		rettime = ktime_get();
+		delta = ktime_sub(rettime, calltime);
+		printk("initcall %s_i+ returned %d after %Ld usecs\n",
+			dev_name(dev), error,
+			(unsigned long long)ktime_to_ns(delta) >> 10);
+	}
+
+	return error;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static char *pm_verb(int event)
@@ -376,6 +544,7 @@ static void dpm_show_time(ktime_t starttime, pm_message_t state, char *info)
 		usecs / USEC_PER_MSEC, usecs % USEC_PER_MSEC);
 }
 
+<<<<<<< HEAD
 static int dpm_run_callback(pm_callback_t cb, struct device *dev,
 			    pm_message_t state, char *info)
 {
@@ -396,6 +565,8 @@ static int dpm_run_callback(pm_callback_t cb, struct device *dev,
 	return error;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*------------------------- Resume routines -------------------------*/
 
 /**
@@ -408,13 +579,28 @@ static int dpm_run_callback(pm_callback_t cb, struct device *dev,
  */
 static int device_resume_noirq(struct device *dev, pm_message_t state)
 {
+<<<<<<< HEAD
 	pm_callback_t callback = NULL;
 	char *info = NULL;
 	int error = 0;
+=======
+	int error = 0;
+	struct timer_list timer;
+	struct dpm_drv_wd_data data;
+
+	data.dev = dev;
+	data.tsk = get_current();
+	init_timer_on_stack(&timer);
+	timer.expires = jiffies + HZ * 12;
+	timer.function = dpm_drv_timeout;
+	timer.data = (unsigned long)&data;
+	add_timer(&timer);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	TRACE_DEVICE(dev);
 	TRACE_RESUME(0);
 
+<<<<<<< HEAD
 	if (dev->pm_domain) {
 		info = "noirq power domain ";
 		callback = pm_noirq_op(&dev->pm_domain->ops, state);
@@ -435,12 +621,31 @@ static int device_resume_noirq(struct device *dev, pm_message_t state)
 	}
 
 	error = dpm_run_callback(callback, dev, state, info);
+=======
+	if (dev->pwr_domain) {
+		pm_dev_dbg(dev, state, "EARLY power domain ");
+		error = pm_noirq_op(dev, &dev->pwr_domain->ops, state);
+	} else if (dev->type && dev->type->pm) {
+		pm_dev_dbg(dev, state, "EARLY type ");
+		error = pm_noirq_op(dev, dev->type->pm, state);
+	} else if (dev->class && dev->class->pm) {
+		pm_dev_dbg(dev, state, "EARLY class ");
+		error = pm_noirq_op(dev, dev->class->pm, state);
+	} else if (dev->bus && dev->bus->pm) {
+		pm_dev_dbg(dev, state, "EARLY ");
+		error = pm_noirq_op(dev, dev->bus->pm, state);
+	}
+
+	del_timer_sync(&timer);
+	destroy_timer_on_stack(&timer);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	TRACE_RESUME(error);
 	return error;
 }
 
 /**
+<<<<<<< HEAD
  * dpm_resume_noirq - Execute "noirq resume" callbacks for all devices.
  * @state: PM transition of the system being carried out.
  *
@@ -448,6 +653,15 @@ static int device_resume_noirq(struct device *dev, pm_message_t state)
  * enable device drivers to receive interrupts.
  */
 static void dpm_resume_noirq(pm_message_t state)
+=======
+ * dpm_resume_noirq - Execute "early resume" callbacks for non-sysdev devices.
+ * @state: PM transition of the system being carried out.
+ *
+ * Call the "noirq" resume handlers for all devices marked as DPM_OFF_IRQ and
+ * enable device drivers to receive interrupts.
+ */
+void dpm_resume_noirq(pm_message_t state)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	ktime_t starttime = ktime_get();
 
@@ -457,6 +671,7 @@ static void dpm_resume_noirq(pm_message_t state)
 		int error;
 
 		get_device(dev);
+<<<<<<< HEAD
 		list_move_tail(&dev->power.entry, &dpm_late_early_list);
 		mutex_unlock(&dpm_list_mtx);
 
@@ -467,11 +682,20 @@ static void dpm_resume_noirq(pm_message_t state)
 			dpm_save_failed_dev(dev_name(dev));
 			pm_dev_err(dev, state, " noirq", error);
 		}
+=======
+		list_move_tail(&dev->power.entry, &dpm_suspended_list);
+		mutex_unlock(&dpm_list_mtx);
+
+		error = device_resume_noirq(dev, state);
+		if (error)
+			pm_dev_err(dev, state, " early", error);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		mutex_lock(&dpm_list_mtx);
 		put_device(dev);
 	}
 	mutex_unlock(&dpm_list_mtx);
+<<<<<<< HEAD
 	dpm_show_time(starttime, state, "noirq");
 	resume_device_irqs();
 }
@@ -514,10 +738,35 @@ static int device_resume_early(struct device *dev, pm_message_t state)
 	error = dpm_run_callback(callback, dev, state, info);
 
 	TRACE_RESUME(error);
+=======
+	dpm_show_time(starttime, state, "early");
+	resume_device_irqs();
+}
+EXPORT_SYMBOL_GPL(dpm_resume_noirq);
+
+/**
+ * legacy_resume - Execute a legacy (bus or class) resume callback for device.
+ * @dev: Device to resume.
+ * @cb: Resume callback to execute.
+ */
+static int legacy_resume(struct device *dev, int (*cb)(struct device *dev))
+{
+	int error;
+	ktime_t calltime;
+
+	calltime = initcall_debug_start(dev);
+
+	error = cb(dev);
+	suspend_report_result(cb, error);
+
+	initcall_debug_report(dev, calltime, error);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return error;
 }
 
 /**
+<<<<<<< HEAD
  * dpm_resume_early - Execute "early resume" callbacks for all devices.
  * @state: PM transition of the system being carried out.
  */
@@ -561,6 +810,8 @@ void dpm_resume_start(pm_message_t state)
 EXPORT_SYMBOL_GPL(dpm_resume_start);
 
 /**
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * device_resume - Execute "resume" callbacks for given device.
  * @dev: Device to handle.
  * @state: PM transition of the system being carried out.
@@ -568,14 +819,32 @@ EXPORT_SYMBOL_GPL(dpm_resume_start);
  */
 static int device_resume(struct device *dev, pm_message_t state, bool async)
 {
+<<<<<<< HEAD
 	pm_callback_t callback = NULL;
 	char *info = NULL;
 	int error = 0;
+=======
+	int error = 0;
+	struct timer_list timer;
+	struct dpm_drv_wd_data data;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	TRACE_DEVICE(dev);
 	TRACE_RESUME(0);
 
 	dpm_wait(dev->parent, async);
+<<<<<<< HEAD
+=======
+
+	data.dev = dev;
+	data.tsk = get_current();
+	init_timer_on_stack(&timer);
+	timer.expires = jiffies + HZ * 12;
+	timer.function = dpm_drv_timeout;
+	timer.data = (unsigned long)&data;
+	add_timer(&timer);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	device_lock(dev);
 
 	/*
@@ -587,6 +856,7 @@ static int device_resume(struct device *dev, pm_message_t state, bool async)
 	if (!dev->power.is_suspended)
 		goto Unlock;
 
+<<<<<<< HEAD
 	pm_runtime_enable(dev);
 
 	if (dev->pm_domain) {
@@ -599,22 +869,44 @@ static int device_resume(struct device *dev, pm_message_t state, bool async)
 		info = "type ";
 		callback = pm_op(dev->type->pm, state);
 		goto Driver;
+=======
+	if (dev->pwr_domain) {
+		pm_dev_dbg(dev, state, "power domain ");
+		error = pm_op(dev, &dev->pwr_domain->ops, state);
+		goto End;
+	}
+
+	if (dev->type && dev->type->pm) {
+		pm_dev_dbg(dev, state, "type ");
+		error = pm_op(dev, dev->type->pm, state);
+		goto End;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (dev->class) {
 		if (dev->class->pm) {
+<<<<<<< HEAD
 			info = "class ";
 			callback = pm_op(dev->class->pm, state);
 			goto Driver;
 		} else if (dev->class->resume) {
 			info = "legacy class ";
 			callback = dev->class->resume;
+=======
+			pm_dev_dbg(dev, state, "class ");
+			error = pm_op(dev, dev->class->pm, state);
+			goto End;
+		} else if (dev->class->resume) {
+			pm_dev_dbg(dev, state, "legacy class ");
+			error = legacy_resume(dev, dev->class->resume);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			goto End;
 		}
 	}
 
 	if (dev->bus) {
 		if (dev->bus->pm) {
+<<<<<<< HEAD
 			info = "bus ";
 			callback = pm_op(dev->bus->pm, state);
 		} else if (dev->bus->resume) {
@@ -632,14 +924,35 @@ static int device_resume(struct device *dev, pm_message_t state, bool async)
 
  End:
 	error = dpm_run_callback(callback, dev, state, info);
+=======
+			pm_dev_dbg(dev, state, "");
+			error = pm_op(dev, dev->bus->pm, state);
+		} else if (dev->bus->resume) {
+			pm_dev_dbg(dev, state, "legacy ");
+			error = legacy_resume(dev, dev->bus->resume);
+		}
+	}
+
+ End:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dev->power.is_suspended = false;
 
  Unlock:
 	device_unlock(dev);
+<<<<<<< HEAD
 	complete_all(&dev->power.completion);
 
 	TRACE_RESUME(error);
 
+=======
+
+	del_timer_sync(&timer);
+	destroy_timer_on_stack(&timer);
+
+	complete_all(&dev->power.completion);
+
+	TRACE_RESUME(error);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return error;
 }
 
@@ -719,12 +1032,17 @@ void dpm_resume(pm_message_t state)
 			mutex_unlock(&dpm_list_mtx);
 
 			error = device_resume(dev, state, false);
+<<<<<<< HEAD
 			if (error) {
 				suspend_stats.failed_resume++;
 				dpm_save_failed_step(SUSPEND_RESUME);
 				dpm_save_failed_dev(dev_name(dev));
 				pm_dev_err(dev, state, "", error);
 			}
+=======
+			if (error)
+				pm_dev_err(dev, state, "", error);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 			mutex_lock(&dpm_list_mtx);
 		}
@@ -744,6 +1062,7 @@ void dpm_resume(pm_message_t state)
  */
 static void device_complete(struct device *dev, pm_message_t state)
 {
+<<<<<<< HEAD
 	void (*callback)(struct device *) = NULL;
 	char *info = NULL;
 
@@ -776,6 +1095,29 @@ static void device_complete(struct device *dev, pm_message_t state)
 	device_unlock(dev);
 
 	pm_runtime_put_sync(dev);
+=======
+	device_lock(dev);
+
+	if (dev->pwr_domain) {
+		pm_dev_dbg(dev, state, "completing power domain ");
+		if (dev->pwr_domain->ops.complete)
+			dev->pwr_domain->ops.complete(dev);
+	} else if (dev->type && dev->type->pm) {
+		pm_dev_dbg(dev, state, "completing type ");
+		if (dev->type->pm->complete)
+			dev->type->pm->complete(dev);
+	} else if (dev->class && dev->class->pm) {
+		pm_dev_dbg(dev, state, "completing class ");
+		if (dev->class->pm->complete)
+			dev->class->pm->complete(dev);
+	} else if (dev->bus && dev->bus->pm) {
+		pm_dev_dbg(dev, state, "completing ");
+		if (dev->bus->pm->complete)
+			dev->bus->pm->complete(dev);
+	}
+
+	device_unlock(dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -858,6 +1200,7 @@ static pm_message_t resume_event(pm_message_t sleep_state)
  */
 static int device_suspend_noirq(struct device *dev, pm_message_t state)
 {
+<<<<<<< HEAD
 	pm_callback_t callback = NULL;
 	char *info = NULL;
 
@@ -885,18 +1228,68 @@ static int device_suspend_noirq(struct device *dev, pm_message_t state)
 
 /**
  * dpm_suspend_noirq - Execute "noirq suspend" callbacks for all devices.
+=======
+	int error = 0;
+	struct timer_list timer;
+	struct dpm_drv_wd_data data;
+
+	data.dev = dev;
+	data.tsk = get_current();
+	init_timer_on_stack(&timer);
+	timer.expires = jiffies + HZ * 12;
+	timer.function = dpm_drv_timeout;
+	timer.data = (unsigned long)&data;
+	add_timer(&timer);
+
+	if (dev->pwr_domain) {
+		pm_dev_dbg(dev, state, "LATE power domain ");
+		error = pm_noirq_op(dev, &dev->pwr_domain->ops, state);
+		if (error)
+			goto exit;
+	} else if (dev->type && dev->type->pm) {
+		pm_dev_dbg(dev, state, "LATE type ");
+		error = pm_noirq_op(dev, dev->type->pm, state);
+		if (error)
+			goto exit;
+	} else if (dev->class && dev->class->pm) {
+		pm_dev_dbg(dev, state, "LATE class ");
+		error = pm_noirq_op(dev, dev->class->pm, state);
+		if (error)
+			goto exit;
+	} else if (dev->bus && dev->bus->pm) {
+		pm_dev_dbg(dev, state, "LATE ");
+		error = pm_noirq_op(dev, dev->bus->pm, state);
+		if (error)
+			goto exit;
+	}
+
+exit:
+	del_timer_sync(&timer);
+	destroy_timer_on_stack(&timer);
+
+	return error;
+}
+
+/**
+ * dpm_suspend_noirq - Execute "late suspend" callbacks for non-sysdev devices.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @state: PM transition of the system being carried out.
  *
  * Prevent device drivers from receiving interrupts and call the "noirq" suspend
  * handlers for all non-sysdev devices.
  */
+<<<<<<< HEAD
 static int dpm_suspend_noirq(pm_message_t state)
+=======
+int dpm_suspend_noirq(pm_message_t state)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	ktime_t starttime = ktime_get();
 	int error = 0;
 
 	suspend_device_irqs();
 	mutex_lock(&dpm_list_mtx);
+<<<<<<< HEAD
 	while (!list_empty(&dpm_late_early_list)) {
 		struct device *dev = to_device(dpm_late_early_list.prev);
 
@@ -975,24 +1368,34 @@ static int dpm_suspend_late(pm_message_t state)
 	int error = 0;
 
 	mutex_lock(&dpm_list_mtx);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	while (!list_empty(&dpm_suspended_list)) {
 		struct device *dev = to_device(dpm_suspended_list.prev);
 
 		get_device(dev);
 		mutex_unlock(&dpm_list_mtx);
 
+<<<<<<< HEAD
 		error = device_suspend_late(dev, state);
+=======
+		error = device_suspend_noirq(dev, state);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		mutex_lock(&dpm_list_mtx);
 		if (error) {
 			pm_dev_err(dev, state, " late", error);
+<<<<<<< HEAD
 			suspend_stats.failed_suspend_late++;
 			dpm_save_failed_step(SUSPEND_SUSPEND_LATE);
 			dpm_save_failed_dev(dev_name(dev));
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			put_device(dev);
 			break;
 		}
 		if (!list_empty(&dev->power.entry))
+<<<<<<< HEAD
 			list_move(&dev->power.entry, &dpm_late_early_list);
 		put_device(dev);
 
@@ -1029,6 +1432,19 @@ int dpm_suspend_end(pm_message_t state)
 	return 0;
 }
 EXPORT_SYMBOL_GPL(dpm_suspend_end);
+=======
+			list_move(&dev->power.entry, &dpm_noirq_list);
+		put_device(dev);
+	}
+	mutex_unlock(&dpm_list_mtx);
+	if (error)
+		dpm_resume_noirq(resume_event(state));
+	else
+		dpm_show_time(starttime, state, "late");
+	return error;
+}
+EXPORT_SYMBOL_GPL(dpm_suspend_noirq);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * legacy_suspend - Execute a legacy (bus or class) suspend callback for device.
@@ -1060,14 +1476,18 @@ static int legacy_suspend(struct device *dev, pm_message_t state,
  */
 static int __device_suspend(struct device *dev, pm_message_t state, bool async)
 {
+<<<<<<< HEAD
 	pm_callback_t callback = NULL;
 	char *info = NULL;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int error = 0;
 	struct timer_list timer;
 	struct dpm_drv_wd_data data;
 
 	dpm_wait_for_children(dev, async);
 
+<<<<<<< HEAD
 	if (async_error)
 		goto Complete;
 
@@ -1085,6 +1505,8 @@ static int __device_suspend(struct device *dev, pm_message_t state, bool async)
 		goto Complete;
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	data.dev = dev;
 	data.tsk = get_current();
 	init_timer_on_stack(&timer);
@@ -1095,6 +1517,7 @@ static int __device_suspend(struct device *dev, pm_message_t state, bool async)
 
 	device_lock(dev);
 
+<<<<<<< HEAD
 	if (dev->pm_domain) {
 		info = "power domain ";
 		callback = pm_op(&dev->pm_domain->ops, state);
@@ -1105,13 +1528,41 @@ static int __device_suspend(struct device *dev, pm_message_t state, bool async)
 		info = "type ";
 		callback = pm_op(dev->type->pm, state);
 		goto Run;
+=======
+	if (async_error)
+		goto Unlock;
+
+#ifndef CONFIG_SLP
+	if (pm_wakeup_pending()) {
+		async_error = -EBUSY;
+		goto Unlock;
+	}
+#endif
+
+	if (dev->pwr_domain) {
+		pm_dev_dbg(dev, state, "power domain ");
+		error = pm_op(dev, &dev->pwr_domain->ops, state);
+		goto End;
+	}
+
+	if (dev->type && dev->type->pm) {
+		pm_dev_dbg(dev, state, "type ");
+		error = pm_op(dev, dev->type->pm, state);
+		goto End;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (dev->class) {
 		if (dev->class->pm) {
+<<<<<<< HEAD
 			info = "class ";
 			callback = pm_op(dev->class->pm, state);
 			goto Run;
+=======
+			pm_dev_dbg(dev, state, "class ");
+			error = pm_op(dev, dev->class->pm, state);
+			goto End;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} else if (dev->class->suspend) {
 			pm_dev_dbg(dev, state, "legacy class ");
 			error = legacy_suspend(dev, state, dev->class->suspend);
@@ -1121,6 +1572,7 @@ static int __device_suspend(struct device *dev, pm_message_t state, bool async)
 
 	if (dev->bus) {
 		if (dev->bus->pm) {
+<<<<<<< HEAD
 			info = "bus ";
 			callback = pm_op(dev->bus->pm, state);
 		} else if (dev->bus->suspend) {
@@ -1146,18 +1598,38 @@ static int __device_suspend(struct device *dev, pm_message_t state, bool async)
 			dev->parent->power.wakeup_path = true;
 	}
 
+=======
+			pm_dev_dbg(dev, state, "");
+			error = pm_op(dev, dev->bus->pm, state);
+		} else if (dev->bus->suspend) {
+			pm_dev_dbg(dev, state, "legacy ");
+			error = legacy_suspend(dev, state, dev->bus->suspend);
+		}
+	}
+
+ End:
+	dev->power.is_suspended = !error;
+
+ Unlock:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	device_unlock(dev);
 
 	del_timer_sync(&timer);
 	destroy_timer_on_stack(&timer);
 
+<<<<<<< HEAD
  Complete:
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	complete_all(&dev->power.completion);
 
 	if (error)
 		async_error = error;
+<<<<<<< HEAD
 	else if (dev->power.is_suspended)
 		__pm_runtime_disable(dev, false);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return error;
 }
@@ -1168,10 +1640,15 @@ static void async_suspend(void *data, async_cookie_t cookie)
 	int error;
 
 	error = __device_suspend(dev, pm_transition, true);
+<<<<<<< HEAD
 	if (error) {
 		dpm_save_failed_dev(dev_name(dev));
 		pm_dev_err(dev, pm_transition, " async", error);
 	}
+=======
+	if (error)
+		pm_dev_err(dev, pm_transition, " async", error);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	put_device(dev);
 }
@@ -1193,6 +1670,12 @@ static int device_suspend(struct device *dev)
  * dpm_suspend - Execute "suspend" callbacks for all non-sysdev devices.
  * @state: PM transition of the system being carried out.
  */
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_FAST_BOOT
+extern bool fake_shut_down;
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int dpm_suspend(pm_message_t state)
 {
 	ktime_t starttime = ktime_get();
@@ -1214,9 +1697,24 @@ int dpm_suspend(pm_message_t state)
 		mutex_lock(&dpm_list_mtx);
 		if (error) {
 			pm_dev_err(dev, state, "", error);
+<<<<<<< HEAD
 			dpm_save_failed_dev(dev_name(dev));
 			put_device(dev);
 			break;
+=======
+#ifdef CONFIG_FAST_BOOT
+			if (fake_shut_down) {
+				pr_info("%s: fake shut down\n", __func__);
+				error = 0;
+			} else {
+				put_device(dev);
+				break;
+			}
+#else
+			put_device(dev);
+			break;
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 		if (!list_empty(&dev->power.entry))
 			list_move(&dev->power.entry, &dpm_suspended_list);
@@ -1228,10 +1726,14 @@ int dpm_suspend(pm_message_t state)
 	async_synchronize_full();
 	if (!error)
 		error = async_error;
+<<<<<<< HEAD
 	if (error) {
 		suspend_stats.failed_suspend++;
 		dpm_save_failed_step(SUSPEND_SUSPEND);
 	} else
+=======
+	if (!error)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		dpm_show_time(starttime, state, NULL);
 	return error;
 }
@@ -1246,6 +1748,7 @@ int dpm_suspend(pm_message_t state)
  */
 static int device_prepare(struct device *dev, pm_message_t state)
 {
+<<<<<<< HEAD
 	int (*callback)(struct device *) = NULL;
 	char *info = NULL;
 	int error = 0;
@@ -1286,6 +1789,41 @@ static int device_prepare(struct device *dev, pm_message_t state)
 		suspend_report_result(callback, error);
 	}
 
+=======
+	int error = 0;
+
+	device_lock(dev);
+
+	if (dev->pwr_domain) {
+		pm_dev_dbg(dev, state, "preparing power domain ");
+		if (dev->pwr_domain->ops.prepare)
+			error = dev->pwr_domain->ops.prepare(dev);
+		suspend_report_result(dev->pwr_domain->ops.prepare, error);
+		if (error)
+			goto End;
+	} else if (dev->type && dev->type->pm) {
+		pm_dev_dbg(dev, state, "preparing type ");
+		if (dev->type->pm->prepare)
+			error = dev->type->pm->prepare(dev);
+		suspend_report_result(dev->type->pm->prepare, error);
+		if (error)
+			goto End;
+	} else if (dev->class && dev->class->pm) {
+		pm_dev_dbg(dev, state, "preparing class ");
+		if (dev->class->pm->prepare)
+			error = dev->class->pm->prepare(dev);
+		suspend_report_result(dev->class->pm->prepare, error);
+		if (error)
+			goto End;
+	} else if (dev->bus && dev->bus->pm) {
+		pm_dev_dbg(dev, state, "preparing ");
+		if (dev->bus->pm->prepare)
+			error = dev->bus->pm->prepare(dev);
+		suspend_report_result(dev->bus->pm->prepare, error);
+	}
+
+ End:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	device_unlock(dev);
 
 	return error;
@@ -1310,7 +1848,17 @@ int dpm_prepare(pm_message_t state)
 		get_device(dev);
 		mutex_unlock(&dpm_list_mtx);
 
+<<<<<<< HEAD
 		error = device_prepare(dev, state);
+=======
+		pm_runtime_get_noresume(dev);
+		if (pm_runtime_barrier(dev) && device_may_wakeup(dev))
+			pm_wakeup_event(dev, 0);
+
+		pm_runtime_put_sync(dev);
+		error = pm_wakeup_pending() ?
+				-EBUSY : device_prepare(dev, state);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		mutex_lock(&dpm_list_mtx);
 		if (error) {
@@ -1346,10 +1894,14 @@ int dpm_suspend_start(pm_message_t state)
 	int error;
 
 	error = dpm_prepare(state);
+<<<<<<< HEAD
 	if (error) {
 		suspend_stats.failed_prepare++;
 		dpm_save_failed_step(SUSPEND_PREPARE);
 	} else
+=======
+	if (!error)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		error = dpm_suspend(state);
 	return error;
 }

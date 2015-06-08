@@ -11,9 +11,15 @@
  *
  * Copyright (C) 2002-2005 Pavel Roskin <proski@gnu.org>
  * Portions based on orinoco_cs.c:
+<<<<<<< HEAD
  *	Copyright (C) David Gibson, Linuxcare Australia
  * Portions based on Spectrum24tDnld.c from original spectrum24 driver:
  *	Copyright (C) Symbol Technologies.
+=======
+ * 	Copyright (C) David Gibson, Linuxcare Australia
+ * Portions based on Spectrum24tDnld.c from original spectrum24 driver:
+ * 	Copyright (C) Symbol Technologies.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * See copyright notice in file main.c.
  */
@@ -125,7 +131,11 @@ failed:
 }
 
 /********************************************************************/
+<<<<<<< HEAD
 /* Device methods						    */
+=======
+/* Device methods     						    */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /********************************************************************/
 
 static int
@@ -150,7 +160,11 @@ spectrum_cs_stop_firmware(struct orinoco_private *priv, int idle)
 }
 
 /********************************************************************/
+<<<<<<< HEAD
 /* PCMCIA stuff							    */
+=======
+/* PCMCIA stuff     						    */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /********************************************************************/
 
 static int
@@ -197,7 +211,11 @@ static int
 spectrum_cs_config(struct pcmcia_device *link)
 {
 	struct orinoco_private *priv = link->priv;
+<<<<<<< HEAD
 	struct hermes *hw = &priv->hw;
+=======
+	hermes_t *hw = &priv->hw;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int ret;
 	void __iomem *mem;
 

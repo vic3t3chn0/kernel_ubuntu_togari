@@ -31,12 +31,18 @@
 #include <linux/device.h>
 #include <linux/serial_core.h>
 #include <linux/serial.h>
+<<<<<<< HEAD
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
 #include <linux/gpio.h>
 #include <linux/spi/spi.h>
 #include <linux/freezer.h>
 #include <linux/module.h>
+=======
+#include <linux/gpio.h>
+#include <linux/spi/spi.h>
+#include <linux/freezer.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "max3107.h"
 
 static const struct baud_table brg26_ext[] = {
@@ -1181,6 +1187,10 @@ static int max3107_probe_generic(struct spi_device *spi)
 static struct spi_driver max3107_driver = {
 	.driver = {
 		.name		= "max3107",
+<<<<<<< HEAD
+=======
+		.bus		= &spi_bus_type,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.owner		= THIS_MODULE,
 	},
 	.probe		= max3107_probe_generic,

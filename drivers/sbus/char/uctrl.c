@@ -19,6 +19,10 @@
 
 #include <asm/openprom.h>
 #include <asm/oplib.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/irq.h>
 #include <asm/io.h>
 #include <asm/pgtable.h>
@@ -434,6 +438,21 @@ static struct platform_driver uctrl_driver = {
 };
 
 
+<<<<<<< HEAD
 module_platform_driver(uctrl_driver);
 
+=======
+static int __init uctrl_init(void)
+{
+	return platform_driver_register(&uctrl_driver);
+}
+
+static void __exit uctrl_exit(void)
+{
+	platform_driver_unregister(&uctrl_driver);
+}
+
+module_init(uctrl_init);
+module_exit(uctrl_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_LICENSE("GPL");

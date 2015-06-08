@@ -11,7 +11,10 @@
  *
  ********************************************************************/    
 
+<<<<<<< HEAD
 #include <linux/hardirq.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/slab.h>
@@ -222,7 +225,11 @@ static void sirdev_config_fsm(struct work_struct *work)
 			break;
 
 		case SIRDEV_STATE_DONGLE_SPEED:
+<<<<<<< HEAD
 			if (dev->dongle_drv->reset) {
+=======
+			if (dev->dongle_drv->set_speed) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				ret = dev->dongle_drv->set_speed(dev, fsm->param);
 				if (ret < 0) {
 					fsm->result = ret;

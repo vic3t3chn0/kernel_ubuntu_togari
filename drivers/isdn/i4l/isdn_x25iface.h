@@ -13,9 +13,15 @@
 #define ISDN_X25IFACE_MAGIC 0x1e75a2b9
 /* #define DEBUG_ISDN_X25 if you want isdn_x25 debugging messages */
 #ifdef DEBUG_ISDN_X25
+<<<<<<< HEAD
 #   define IX25DEBUG(fmt, args...) printk(KERN_DEBUG fmt, ##args)
 #else
 #   define IX25DEBUG(fmt, args...)
+=======
+#   define IX25DEBUG(fmt,args...) printk(KERN_DEBUG fmt , ## args)
+#else
+#   define IX25DEBUG(fmt,args...)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 
 #include <linux/skbuff.h>
@@ -23,9 +29,25 @@
 #include <linux/isdn.h>
 #include <linux/concap.h>
 
+<<<<<<< HEAD
 extern struct concap_proto_ops *isdn_x25iface_concap_proto_ops_pt;
 extern struct concap_proto *isdn_x25iface_proto_new(void);
+=======
+extern struct concap_proto_ops * isdn_x25iface_concap_proto_ops_pt;
+extern struct concap_proto     * isdn_x25iface_proto_new(void);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 
 #endif
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

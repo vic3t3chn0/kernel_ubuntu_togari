@@ -42,8 +42,11 @@ extern void evergreen_irq_suspend(struct radeon_device *rdev);
 extern int evergreen_mc_init(struct radeon_device *rdev);
 extern void evergreen_fix_pci_max_read_req_size(struct radeon_device *rdev);
 extern void evergreen_pcie_gen2_enable(struct radeon_device *rdev);
+<<<<<<< HEAD
 extern void si_rlc_fini(struct radeon_device *rdev);
 extern int si_rlc_init(struct radeon_device *rdev);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define EVERGREEN_PFP_UCODE_SIZE 1120
 #define EVERGREEN_PM4_UCODE_SIZE 1376
@@ -55,8 +58,11 @@ extern int si_rlc_init(struct radeon_device *rdev);
 #define CAYMAN_RLC_UCODE_SIZE 1024
 #define CAYMAN_MC_UCODE_SIZE 6037
 
+<<<<<<< HEAD
 #define ARUBA_RLC_UCODE_SIZE 1536
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Firmware Names */
 MODULE_FIRMWARE("radeon/BARTS_pfp.bin");
 MODULE_FIRMWARE("radeon/BARTS_me.bin");
@@ -72,9 +78,12 @@ MODULE_FIRMWARE("radeon/CAYMAN_pfp.bin");
 MODULE_FIRMWARE("radeon/CAYMAN_me.bin");
 MODULE_FIRMWARE("radeon/CAYMAN_mc.bin");
 MODULE_FIRMWARE("radeon/CAYMAN_rlc.bin");
+<<<<<<< HEAD
 MODULE_FIRMWARE("radeon/ARUBA_pfp.bin");
 MODULE_FIRMWARE("radeon/ARUBA_me.bin");
 MODULE_FIRMWARE("radeon/ARUBA_rlc.bin");
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define BTC_IO_MC_REGS_SIZE 29
 
@@ -333,6 +342,7 @@ int ni_init_microcode(struct radeon_device *rdev)
 		rlc_req_size = CAYMAN_RLC_UCODE_SIZE * 4;
 		mc_req_size = CAYMAN_MC_UCODE_SIZE * 4;
 		break;
+<<<<<<< HEAD
 	case CHIP_ARUBA:
 		chip_name = "ARUBA";
 		rlc_chip_name = "ARUBA";
@@ -342,6 +352,8 @@ int ni_init_microcode(struct radeon_device *rdev)
 		rlc_req_size = ARUBA_RLC_UCODE_SIZE * 4;
 		mc_req_size = 0;
 		break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default: BUG();
 	}
 
@@ -381,6 +393,7 @@ int ni_init_microcode(struct radeon_device *rdev)
 		err = -EINVAL;
 	}
 
+<<<<<<< HEAD
 	/* no MC ucode on TN */
 	if (!(rdev->flags & RADEON_IS_IGP)) {
 		snprintf(fw_name, sizeof(fw_name), "radeon/%s_mc.bin", chip_name);
@@ -393,6 +406,17 @@ int ni_init_microcode(struct radeon_device *rdev)
 			       rdev->mc_fw->size, fw_name);
 			err = -EINVAL;
 		}
+=======
+	snprintf(fw_name, sizeof(fw_name), "radeon/%s_mc.bin", chip_name);
+	err = request_firmware(&rdev->mc_fw, fw_name, &pdev->dev);
+	if (err)
+		goto out;
+	if (rdev->mc_fw->size != mc_req_size) {
+		printk(KERN_ERR
+		       "ni_mc: Bogus length %zu in firmware \"%s\"\n",
+		       rdev->mc_fw->size, fw_name);
+		err = -EINVAL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 out:
 	platform_device_unregister(pdev);
@@ -497,7 +521,10 @@ static u32 cayman_get_tile_pipe_to_backend_map(struct radeon_device *rdev,
 	memset((uint8_t *)&swizzle_pipe[0], 0, sizeof(u32) * CAYMAN_MAX_PIPES);
 	switch (rdev->family) {
 	case CHIP_CAYMAN:
+<<<<<<< HEAD
 	case CHIP_ARUBA:
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		force_no_swizzle = true;
 		break;
 	default:
@@ -630,6 +657,10 @@ static void cayman_gpu_init(struct radeon_device *rdev)
 
 	switch (rdev->family) {
 	case CHIP_CAYMAN:
+<<<<<<< HEAD
+=======
+	default:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		rdev->config.cayman.max_shader_engines = 2;
 		rdev->config.cayman.max_pipes_per_simd = 4;
 		rdev->config.cayman.max_tile_pipes = 8;
@@ -651,6 +682,7 @@ static void cayman_gpu_init(struct radeon_device *rdev)
 		rdev->config.cayman.sc_hiz_tile_fifo_size = 0x30;
 		rdev->config.cayman.sc_earlyz_tile_fifo_size = 0x130;
 		break;
+<<<<<<< HEAD
 	case CHIP_ARUBA:
 	default:
 		rdev->config.cayman.max_shader_engines = 1;
@@ -688,6 +720,8 @@ static void cayman_gpu_init(struct radeon_device *rdev)
 		rdev->config.cayman.sc_hiz_tile_fifo_size = 0x30;
 		rdev->config.cayman.sc_earlyz_tile_fifo_size = 0x130;
 		break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	/* Initialize HDP */
@@ -708,9 +742,13 @@ static void cayman_gpu_init(struct radeon_device *rdev)
 
 	cc_rb_backend_disable = RREG32(CC_RB_BACKEND_DISABLE);
 	cc_gc_shader_pipe_config = RREG32(CC_GC_SHADER_PIPE_CONFIG);
+<<<<<<< HEAD
 	cgts_tcc_disable = 0xffff0000;
 	for (i = 0; i < rdev->config.cayman.max_texture_channel_caches; i++)
 		cgts_tcc_disable &= ~(1 << (16 + i));
+=======
+	cgts_tcc_disable = 0xff000000;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	gc_user_rb_backend_disable = RREG32(GC_USER_RB_BACKEND_DISABLE);
 	gc_user_shader_pipe_config = RREG32(GC_USER_SHADER_PIPE_CONFIG);
 	cgts_user_tcc_disable = RREG32(CGTS_USER_TCC_DISABLE);
@@ -862,6 +900,7 @@ static void cayman_gpu_init(struct radeon_device *rdev)
 		rdev->config.cayman.tile_config |= (3 << 0);
 		break;
 	}
+<<<<<<< HEAD
 
 	/* num banks is 8 on all fusion asics. 0 = 4, 1 = 8, 2 = 16 */
 	if (rdev->flags & RADEON_IS_IGP)
@@ -869,6 +908,10 @@ static void cayman_gpu_init(struct radeon_device *rdev)
 	else
 		rdev->config.cayman.tile_config |=
 			((mc_arb_ramcfg & NOOFBANK_MASK) >> NOOFBANK_SHIFT) << 4;
+=======
+	rdev->config.cayman.tile_config |=
+		((mc_arb_ramcfg & NOOFBANK_MASK) >> NOOFBANK_SHIFT) << 4;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	rdev->config.cayman.tile_config |=
 		((gb_addr_config & PIPE_INTERLEAVE_SIZE_MASK) >> PIPE_INTERLEAVE_SIZE_SHIFT) << 8;
 	rdev->config.cayman.tile_config |=
@@ -1503,6 +1546,7 @@ static int cayman_startup(struct radeon_device *rdev)
 	/* enable pcie gen2 link */
 	evergreen_pcie_gen2_enable(rdev);
 
+<<<<<<< HEAD
 	if (rdev->flags & RADEON_IS_IGP) {
 		if (!rdev->me_fw || !rdev->pfp_fw || !rdev->rlc_fw) {
 			r = ni_init_microcode(rdev);
@@ -1526,6 +1570,20 @@ static int cayman_startup(struct radeon_device *rdev)
 			return r;
 		}
 	}
+=======
+	if (!rdev->me_fw || !rdev->pfp_fw || !rdev->rlc_fw || !rdev->mc_fw) {
+		r = ni_init_microcode(rdev);
+		if (r) {
+			DRM_ERROR("Failed to load firmware!\n");
+			return r;
+		}
+	}
+	r = ni_mc_load_microcode(rdev);
+	if (r) {
+		DRM_ERROR("Failed to load MC firmware!\n");
+		return r;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	r = r600_vram_scratch_init(rdev);
 	if (r)
@@ -1544,6 +1602,7 @@ static int cayman_startup(struct radeon_device *rdev)
 		dev_warn(rdev->dev, "failed blitter (%d) falling back to memcpy\n", r);
 	}
 
+<<<<<<< HEAD
 	/* allocate rlc buffers */
 	if (rdev->flags & RADEON_IS_IGP) {
 		r = si_rlc_init(rdev);
@@ -1553,6 +1612,8 @@ static int cayman_startup(struct radeon_device *rdev)
 		}
 	}
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* allocate wb buffer */
 	r = radeon_wb_init(rdev);
 	if (r)
@@ -1737,8 +1798,11 @@ int cayman_init(struct radeon_device *rdev)
 		dev_err(rdev->dev, "disabling GPU acceleration\n");
 		cayman_cp_fini(rdev);
 		r600_irq_fini(rdev);
+<<<<<<< HEAD
 		if (rdev->flags & RADEON_IS_IGP)
 			si_rlc_fini(rdev);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		radeon_wb_fini(rdev);
 		r100_ib_fini(rdev);
 		radeon_vm_manager_fini(rdev);
@@ -1750,11 +1814,16 @@ int cayman_init(struct radeon_device *rdev)
 	/* Don't start up if the MC ucode is missing.
 	 * The default clocks and voltages before the MC ucode
 	 * is loaded are not suffient for advanced operations.
+<<<<<<< HEAD
 	 *
 	 * We can skip this check for TN, because there is no MC
 	 * ucode.
 	 */
 	if (!rdev->mc_fw && !(rdev->flags & RADEON_IS_IGP)) {
+=======
+	 */
+	if (!rdev->mc_fw) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		DRM_ERROR("radeon: MC ucode required for NI+.\n");
 		return -EINVAL;
 	}
@@ -1767,8 +1836,11 @@ void cayman_fini(struct radeon_device *rdev)
 	r600_blit_fini(rdev);
 	cayman_cp_fini(rdev);
 	r600_irq_fini(rdev);
+<<<<<<< HEAD
 	if (rdev->flags & RADEON_IS_IGP)
 		si_rlc_fini(rdev);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	radeon_wb_fini(rdev);
 	radeon_vm_manager_fini(rdev);
 	r100_ib_fini(rdev);
@@ -1792,12 +1864,16 @@ int cayman_vm_init(struct radeon_device *rdev)
 	/* number of VMs */
 	rdev->vm_manager.nvm = 8;
 	/* base offset of vram pages */
+<<<<<<< HEAD
 	if (rdev->flags & RADEON_IS_IGP) {
 		u64 tmp = RREG32(FUS_MC_VM_FB_OFFSET);
 		tmp <<= 22;
 		rdev->vm_manager.vram_base_offset = tmp;
 	} else
 		rdev->vm_manager.vram_base_offset = 0;
+=======
+	rdev->vm_manager.vram_base_offset = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 

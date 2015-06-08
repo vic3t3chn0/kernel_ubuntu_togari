@@ -1462,8 +1462,11 @@ static int video_release(struct file *file)
 	struct saa6588_command cmd;
 	unsigned long flags;
 
+<<<<<<< HEAD
 	saa7134_tvaudio_close(dev);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* turn off overlay */
 	if (res_check(fh, RESOURCE_OVERLAY)) {
 		spin_lock_irqsave(&dev->slock,flags);
@@ -1812,6 +1815,10 @@ static int saa7134_querycap(struct file *file, void  *priv,
 	strlcpy(cap->card, saa7134_boards[dev->board].name,
 		sizeof(cap->card));
 	sprintf(cap->bus_info, "PCI:%s", pci_name(dev->pci));
+<<<<<<< HEAD
+=======
+	cap->version = SAA7134_VERSION_CODE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	cap->capabilities =
 		V4L2_CAP_VIDEO_CAPTURE |
 		V4L2_CAP_VBI_CAPTURE |
@@ -2308,6 +2315,10 @@ static int radio_querycap(struct file *file, void *priv,
 	strcpy(cap->driver, "saa7134");
 	strlcpy(cap->card, saa7134_boards[dev->board].name, sizeof(cap->card));
 	sprintf(cap->bus_info, "PCI:%s", pci_name(dev->pci));
+<<<<<<< HEAD
+=======
+	cap->version = SAA7134_VERSION_CODE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	cap->capabilities = V4L2_CAP_TUNER;
 	return 0;
 }

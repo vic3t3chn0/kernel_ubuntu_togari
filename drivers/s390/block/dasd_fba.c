@@ -79,7 +79,10 @@ static struct ccw_driver dasd_fba_driver = {
 	.freeze      = dasd_generic_pm_freeze,
 	.thaw	     = dasd_generic_restore_device,
 	.restore     = dasd_generic_restore_device,
+<<<<<<< HEAD
 	.int_class   = IOINT_DAS,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static void

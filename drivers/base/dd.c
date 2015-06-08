@@ -24,11 +24,15 @@
 #include <linux/wait.h>
 #include <linux/async.h>
 #include <linux/pm_runtime.h>
+<<<<<<< HEAD
 #include <linux/pinctrl/devinfo.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "base.h"
 #include "power/power.h"
 
+<<<<<<< HEAD
 /*
  * Deferred Probe infrastructure.
  *
@@ -164,6 +168,8 @@ static int deferred_probe_initcall(void)
 	return 0;
 }
 late_initcall(deferred_probe_initcall);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static void driver_bound(struct device *dev)
 {
@@ -178,6 +184,7 @@ static void driver_bound(struct device *dev)
 
 	klist_add_tail(&dev->p->knode_driver, &dev->driver->p->klist_devices);
 
+<<<<<<< HEAD
 	/*
 	 * Make sure the device is no longer in one of the deferred lists and
 	 * kick off retrying all pending devices
@@ -185,6 +192,8 @@ static void driver_bound(struct device *dev)
 	driver_deferred_probe_del(dev);
 	driver_deferred_probe_trigger();
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (dev->bus)
 		blocking_notifier_call_chain(&dev->bus->p->bus_notifier,
 					     BUS_NOTIFY_BOUND_DRIVER, dev);
@@ -258,12 +267,15 @@ static int really_probe(struct device *dev, struct device_driver *drv)
 	WARN_ON(!list_empty(&dev->devres_head));
 
 	dev->driver = drv;
+<<<<<<< HEAD
 
 	/* If using pinctrl, bind pins now before probing */
 	ret = pinctrl_bind_pins(dev);
 	if (ret)
 		goto probe_failed;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (driver_sysfs_add(dev)) {
 		printk(KERN_ERR "%s: driver_sysfs_add(%s) failed\n",
 			__func__, dev_name(dev));
@@ -291,18 +303,25 @@ probe_failed:
 	driver_sysfs_remove(dev);
 	dev->driver = NULL;
 
+<<<<<<< HEAD
 	if (ret == -EPROBE_DEFER) {
 		/* Driver requested deferred probing */
 		dev_info(dev, "Driver %s requests probe deferral\n", drv->name);
 		driver_deferred_probe_add(dev);
 	} else if (ret != -ENODEV && ret != -ENXIO) {
+=======
+	if (ret != -ENODEV && ret != -ENXIO) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* driver matched but the probe failed */
 		printk(KERN_WARNING
 		       "%s: probe of %s failed with error %d\n",
 		       drv->name, dev_name(dev), ret);
+<<<<<<< HEAD
 	} else {
 		pr_debug("%s: probe of %s rejects match %d\n",
 		       drv->name, dev_name(dev), ret);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	/*
 	 * Ignore errors returned by ->probe so that the next driver can try

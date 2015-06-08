@@ -11,6 +11,61 @@ menuconfig INPUT_TOUCHSCREEN
 
 if INPUT_TOUCHSCREEN
 
+<<<<<<< HEAD
+=======
+config TOUCHSCREEN_MELFAS_GC
+	tristate "GC model MELFAS touchscreen driver"
+	depends on I2C
+	help
+	  Say Y here if you have a GC model MELFAS touchscreen.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called GC model MMS.
+
+config TOUCHSCREEN_MELFAS
+	tristate "MELFAS touchscreen driver"
+	depends on I2C
+	help
+	  Say Y here if you have a MELFAS touchscreen.
+
+	  If unsure, say N.
+
+config TOUCHSCREEN_MELFAS_MMS
+	tristate "MELFAS touchscreen driver"
+	depends on I2C
+	help
+	  Say Y here if you have a touchscreen interface using the
+	  Melfas touchscreen controller(MMS series),
+	  and your board-specific setup code includes that in its
+	  table of I2C devices.
+
+	  If unsure, say N.
+
+config TOUCHSCREEN_MMS152
+	tristate "MELFAS MMS152 touchscreen driver"
+	depends on I2C
+	help
+	  Say Y here if you have a MELFAS MMS152 touchscreen.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called MMS152.
+
+config TOUCHSCREEN_MELFAS_NOTE
+        tristate "NOTE model MELFAS touchscreen driver"
+        depends on I2C
+        help
+          Say Y here if you have NOTE models MELFAS touchscreen.
+
+          If unsure, say N.
+
+          To compile this driver as a module, choose M here: the
+          module will be called mms_ts_note.
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_88PM860X
 	tristate "Marvell 88PM860x touchscreen"
 	depends on MFD_88PM860X
@@ -55,6 +110,7 @@ config TOUCHSCREEN_AD7877
 	  To compile this driver as a module, choose M here: the
 	  module will be called ad7877.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_ATMEL_MAXTOUCH
        tristate "Atmel maXTouch based touchscreens"
        depends on I2C
@@ -67,6 +123,8 @@ config TOUCHSCREEN_ATMEL_MAXTOUCH
          To compile this driver as a module, choose M here: the
          module will be called maXTouch.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_AD7879
 	tristate "Analog Devices AD7879-1/AD7889-1 touchscreen interface"
 	help
@@ -110,16 +168,74 @@ config TOUCHSCREEN_ATMEL_MXT
 	  To compile this driver as a module, choose M here: the
 	  module will be called atmel_mxt_ts.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_ATMEL_MAXTOUCH_TS
 	tristate "Atmel Maxtouch Touchscreen Family"
 	depends on I2C
 	help
 	  Say Y here if you have Atmel MaXTouch Touchscreen
 	  using i2c connected to your system.
+=======
+config TOUCHSCREEN_ATMEL_MXT224_U1
+        tristate "Atmel mXT I2C Touchscreen for U1"
+        depends on I2C
+        help
+          Say Y here if you have Atmel mXT series I2C touchscreen,
+          such as AT42QT602240/ATMXT224, connected to your system.
+
+          If unsure, say N.
+
+          To compile this driver as a module, choose M here: the
+          module will be called atmel_mxt224_u1_ts.
+
+config TOUCHSCREEN_ATMEL_MXT224_GRANDE
+        tristate "Atmel mXT I2C Touchscreen for GRANDE"
+        depends on I2C
+        help
+          Say Y here if you have Atmel mXT series I2C touchscreen,
+          such as AT42QT602240/ATMXT224, connected to your system.
+
+          If unsure, say N.
+
+          To compile this driver as a module, choose M here: the
+          module will be called atmel_mxt224_u1_ts.
+
+config TOUCHSCREEN_ATMEL_MXT224S_GRANDE
+        tristate "Atmel mXT I2C Touchscreen for GRANDE"
+        depends on I2C
+        help
+          Say Y here if you have Atmel mXT series I2C touchscreen,
+          such as AT42QT602240/ATMXT224, connected to your system.
+
+          If unsure, say N.
+
+          To compile this driver as a module, choose M here: the
+          module will be called atmel_mxt224_u1_ts.
+
+config TOUCHSCREEN_ATMEL_MXT224_GC
+        tristate "Atmel mXT I2C Touchscreen for GALAXY CAMERA"
+        depends on I2C
+        help
+          Say Y here if you have Atmel mXT series I2C touchscreen,
+          such as AT42QT602240/ATMXT224, connected to your system.
+
+          If unsure, say N.
+
+          To compile this driver as a module, choose M here: the
+          module will be called atmel_mxt224_galaxy_camera_ts.
+
+config TOUCHSCREEN_ATMEL_MXT1536E
+	tristate "Atmel mXT 1536E I2C Touchscreen"
+	depends on I2C
+	help
+	  Say Y here if you have Atmel mXT series I2C touchscreen,
+	  such as ATMEL MXT1536E, connected to your system.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	  If unsure, say N.
 
 	  To compile this driver as a module, choose M here: the
+<<<<<<< HEAD
 	  module will be called atmel_maxtouch_ts.
 
 config TOUCHSCREEN_AUO_PIXCIR
@@ -129,11 +245,49 @@ config TOUCHSCREEN_AUO_PIXCIR
 	help
 	  Say Y here if you have a AUO display with in-cell touchscreen
 	  using Pixcir ICs.
+=======
+	  module will be called mxt1536e.
+
+config TOUCHSCREEN_ATMEL_MXT1664S
+	tristate "Atmel mXT 1664S I2C Touchscreen"
+	depends on I2C
+	help
+	  Say Y here if you have Atmel mXT series I2C touchscreen,
+	  such as ATMEL MXT1664S, connected to your system.
 
 	  If unsure, say N.
 
 	  To compile this driver as a module, choose M here: the
+	  module will be called mxt1664s.
+
+config TOUCHSCREEN_ATMEL_MXT540E
+        tristate "Atmel mXT I2C Touchscreen for Q1"
+        depends on I2C
+        help
+          Say Y here if you have Atmel mXT series I2C touchscreen,
+          such as ATMXT540E, connected to your system.
+
+          If unsure, say N.
+
+          To compile this driver as a module, choose M here: the
+          module will be called atmel_mxt540e_ts.
+
+config TOUCHSCREEN_ATMEL_MXT224
+	tristate "ATMEL MXT224 I2C Touchscreen"
+	depends on I2C
+	help
+	  Say Y here if you have the AT42QT602240/ATMXT224 I2C touchscreen
+	  connected to your system.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+<<<<<<< HEAD
 	  module will be called auo-pixcir-ts.
+=======
+	  module will be called mxt224.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config TOUCHSCREEN_BITSY
 	tristate "Compaq iPAQ H3600 (Bitsy) touchscreen"
@@ -163,6 +317,10 @@ config TOUCHSCREEN_CY8CTMG110
 	tristate "cy8ctmg110 touchscreen"
 	depends on I2C
 	depends on GPIOLIB
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  Say Y here if you have a cy8ctmg110 capacitive touchscreen on
 	  an AAVA device.
@@ -172,6 +330,7 @@ config TOUCHSCREEN_CY8CTMG110
 	  To compile this driver as a module, choose M here: the
 	  module will be called cy8ctmg110_ts.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_CYTTSP_CORE
 	tristate "Cypress TTSP touchscreen"
 	help
@@ -203,6 +362,8 @@ config TOUCHSCREEN_CYTTSP_SPI
 	  To compile this driver as a module, choose M here: the
 	  module will be called cyttsp_spi.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_DA9034
 	tristate "Touchscreen support for Dialog Semiconductor DA9034"
 	depends on PMIC_DA903X
@@ -244,6 +405,7 @@ config TOUCHSCREEN_EETI
 	  To compile this driver as a module, choose M here: the
 	  module will be called eeti_ts.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_EGALAX
 	tristate "EETI eGalax multi-touch panel support"
 	depends on I2C
@@ -254,6 +416,8 @@ config TOUCHSCREEN_EGALAX
 	  To compile this driver as a module, choose M here: the
 	  module will be called egalax_ts.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_FUJITSU
 	tristate "Fujitsu serial touchscreen"
 	select SERIO
@@ -267,6 +431,7 @@ config TOUCHSCREEN_FUJITSU
 	  To compile this driver as a module, choose M here: the
 	  module will be called fujitsu-ts.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_ILI210X
 	tristate "Ilitek ILI210X based touchscreen"
 	depends on I2C
@@ -286,6 +451,11 @@ config TOUCHSCREEN_S3C2410
 	tristate "Samsung S3C2410/generic touchscreen input driver"
 	depends on ARCH_S3C24XX || SAMSUNG_DEV_TS
 	select S3C_ADC
+=======
+config TOUCHSCREEN_S3C2410
+	tristate "Samsung S3C2410/generic touchscreen input driver"
+	depends on ARCH_S3C2410 || SAMSUNG_DEV_TS && S3C_ADC
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  Say Y here if you have the s3c2410 touchscreen.
 
@@ -294,6 +464,27 @@ config TOUCHSCREEN_S3C2410
 	  To compile this driver as a module, choose M here: the
 	  module will be called s3c2410_ts.
 
+<<<<<<< HEAD
+=======
+config TOUCHSCREEN_EXYNOS4
+	tristate "Samsung EXYNOS4 10.1\" touchscreen input driver"
+	depends on ARCH_EXYNOS4
+	help
+	  Say Y here if you have the EXYNOS4 touchscreen.
+
+config TOUCHSCREEN_PIXCIR
+	tristate "PIXCIR 5\" touchscreen input driver"
+	depends on ARCH_EXYNOS4
+	help
+	  Say Y here if you have the Pixcir 5" touchscreen.
+
+config TOUCHSCREEN_EGALAX
+	tristate "EGALAX 10.1\" touchscreen input driver"
+	depends on ARCH_EXYNOS5
+	help
+	  Say Y here if you have the Egalax 10.1\" touchscreen.
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_GUNZE
 	tristate "Gunze AHL-51S touchscreen"
 	select SERIO
@@ -364,6 +555,34 @@ config TOUCHSCREEN_MCS5000
 	  To compile this driver as a module, choose M here: the
 	  module will be called mcs5000_ts.
 
+<<<<<<< HEAD
+=======
+config TOUCHSCREEN_MMS114
+	tristate "MELFAS MMS114 touchscreen"
+	depends on I2C
+	help
+	  Say Y here if you have the MELFAS MMS114 touchscreen controller
+	  chip in your system.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called mms114.
+
+config MELFAS_TOUCHKEY
+	tristate "MELFAS touchkey"
+	depends on I2C
+	help
+	  Say Y here if you have the MELFAS touchkey controller
+	  chip in your system.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called only midas.
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_MTOUCH
 	tristate "MicroTouch serial touchscreens"
 	select SERIO
@@ -455,6 +674,7 @@ config TOUCHSCREEN_PENMOUNT
 	  To compile this driver as a module, choose M here: the
 	  module will be called penmount.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_MSM
 	bool "Qualcomm MSM touchscreen controller"
 	depends on ARCH_MSM7X30 && MARIMBA_TSADC
@@ -464,6 +684,8 @@ config TOUCHSCREEN_MSM
 	  connected to the TSSC touchscreen controller on a
 	  Qualcomm MSM/QSD based SoC.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_MIGOR
 	tristate "Renesas MIGO-R touchscreen"
 	depends on SH_MIGOR && I2C
@@ -490,6 +712,7 @@ config TOUCHSCREEN_SYNAPTICS_I2C_RMI
 	help
 	  This enables support for Synaptics RMI over I2C based touchscreens.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_SYNAPTICS_RMI4_I2C
 	tristate "Synaptics i2c touchscreen(ClearPad 3000)"
 	depends on I2C
@@ -534,6 +757,8 @@ config TOUCHSCREEN_MAX1187X
 	  To compile this driver as a module, choose M here: the
 	  module will be called max1187x.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_TOUCHRIGHT
 	tristate "Touchright serial touchscreen"
 	select SERIO
@@ -558,6 +783,7 @@ config TOUCHSCREEN_TOUCHWIN
 	  To compile this driver as a module, choose M here: the
 	  module will be called touchwin.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_TI_TSCADC
 	tristate "TI Touchscreen Interface"
 	depends on ARCH_OMAP2PLUS
@@ -570,6 +796,8 @@ config TOUCHSCREEN_TI_TSCADC
 	  To compile this driver as a module, choose M here: the
 	  module will be called ti_tscadc.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_ATMEL_TSADCC
 	tristate "Atmel Touchscreen Interface"
 	depends on ARCH_AT91SAM9RL || ARCH_AT91SAM9G45
@@ -598,6 +826,7 @@ config TOUCHSCREEN_UCB1400
 	  To compile this driver as a module, choose M here: the
 	  module will be called ucb1400_ts.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_PIXCIR
 	tristate "PIXCIR I2C touchscreens"
 	depends on I2C
@@ -610,6 +839,8 @@ config TOUCHSCREEN_PIXCIR
 	  To compile this driver as a module, choose M here: the
 	  module will be called pixcir_i2c_ts.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_WM831X
 	tristate "Support for WM831x touchscreen controllers"
 	depends on MFD_WM831X
@@ -716,8 +947,11 @@ config TOUCHSCREEN_USB_COMPOSITE
 	  - GoTop Super_Q2/GogoPen/PenPower tablets
 	  - JASTEC USB Touch Controller/DigiTech DTR-02U
 	  - Zytronic controllers
+<<<<<<< HEAD
 	  - Elo TouchSystems 2700 IntelliTouch
 	  - EasyTouch USB Touch Controller from Data Modul
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	  Have a look at <http://linux.chapter7.ch/touchkit/> for
 	  a usage description and the required user-space stuff.
@@ -797,11 +1031,14 @@ config TOUCHSCREEN_USB_JASTEC
 	bool "JASTEC/DigiTech DTR-02U USB touch controller device support" if EXPERT
 	depends on TOUCHSCREEN_USB_COMPOSITE
 
+<<<<<<< HEAD
 config TOUCHSCREEN_USB_ELO
 	default y
 	bool "Elo TouchSystems 2700 IntelliTouch controller device support" if EXPERT
 	depends on TOUCHSCREEN_USB_COMPOSITE
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_USB_E2I
 	default y
 	bool "e2i Touchscreen controller (e.g. from Mimo 740)"
@@ -822,6 +1059,7 @@ config TOUCHSCREEN_USB_NEXIO
 	bool "NEXIO/iNexio device support" if EXPERT
 	depends on TOUCHSCREEN_USB_COMPOSITE
 
+<<<<<<< HEAD
 config TOUCHSCREEN_USB_EASYTOUCH
 	default y
 	bool "EasyTouch USB Touch controller device support" if EMBEDDED
@@ -830,6 +1068,8 @@ config TOUCHSCREEN_USB_EASYTOUCH
 	  Say Y here if you have a EasyTouch USB Touch controller device support.
 	  If unsure, say N.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_TOUCHIT213
 	tristate "Sahara TouchIT-213 touchscreen"
 	select SERIO
@@ -841,6 +1081,7 @@ config TOUCHSCREEN_TOUCHIT213
 	  To compile this driver as a module, choose M here: the
 	  module will be called touchit213.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_TSC_SERIO
 	tristate "TSC-10/25/40 serial touchscreen support"
 	select SERIO
@@ -853,6 +1094,8 @@ config TOUCHSCREEN_TSC_SERIO
 	  To compile this driver as a module, choose M here: the
 	  module will be called tsc40.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_TSC2005
         tristate "TSC2005 based touchscreens"
         depends on SPI_MASTER && GENERIC_HARDIRQS
@@ -875,6 +1118,7 @@ config TOUCHSCREEN_TSC2007
 	  To compile this driver as a module, choose M here: the
 	  module will be called tsc2007.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_MSM_LEGACY
 	default n
 	tristate "MSM Touchscreen"
@@ -896,6 +1140,8 @@ config ANDROID_TOUCHSCREEN_MSM_HACKS
 	  to Android framework to receive adjusted x, y co-ordinates
 	  until proper calibration framework is in place.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config TOUCHSCREEN_W90X900
 	tristate "W90P910 touchscreen driver"
 	depends on HAVE_CLK
@@ -949,6 +1195,7 @@ config TOUCHSCREEN_TPS6507X
 	  To compile this driver as a module, choose M here: the
 	  module will be called tps6507x_ts.
 
+<<<<<<< HEAD
 config TOUCHSCREEN_CY8C_TS
 	tristate "Cypress TMA300-TMG200 based touchscreens"
 	depends on I2C
@@ -957,10 +1204,19 @@ config TOUCHSCREEN_CY8C_TS
 	  Say Y here if you have a Cypress TMA300/TMG200 based touchscreen.
 	  TMA300 is a multi-touch screen which can report upto 10
 	  touches at a time. TMG200 supports 2 touches.
+=======
+config TOUCHSCREEN_ZINITIX
+	tristate "ZINITIX based touchscreens"
+	depends on I2C
+	help
+	  Say Y here if you have a ZINITIX based touchscreen
+	  controller.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	  If unsure, say N.
 
 	  To compile this driver as a module, choose M here: the
+<<<<<<< HEAD
 	  module will be called cy8c_ts.
 
 config TOUCHSCREEN_CYTTSP_I2C_QC
@@ -1037,10 +1293,70 @@ config TOUCHSCREEN_SYNAPTICS_DSX_FW_UPDATE
 
 	  Say Y here if you have a Synaptics DSX I2C touchscreen
 	  connected to your system.
+=======
+	  module will be called zinitx_ts.
+
+config TOUCHSCREEN_MXT1386
+	tristate "ATMEL mXT1386 I2C touchscreen driver"
+	depends on I2C
+	default n
+	help
+	  Say Y here to enable mXT1386 I2C touchscreen support
+
+config TOUCHSCREEN_MXT768E
+	tristate "ATMEL mXT768E I2C touchscreen driver"
+	depends on I2C
+	default n
+	help
+	  Say Y here to enable mXT768E I2C touchscreen support
+
+config TOUCHSCREEN_SYNAPTICS_S7301
+	tristate "SYNAPTICS S7301 Touchscreen Interface"
+	depends on I2C
+	help
+		Say Y here if you want support for SYNAPTICS S7301
+		touchscreen controllers.
+
+		To compile this driver as a module, choose M here: the
+		module will be called melfas_ts.
+
+config TOUCHSCREEN_CYTTSP4
+	tristate "Cypress GEN4 Touchscreen Interface"
+	depends on I2C
+	help
+		Say Y her if you want support for Cypress GEN4
+		touchcreen controllers.
+
+		To compile this driver as a module, shoose M here: the
+		module will be called cyttsp4.
+
+config SEC_TOUCHSCREEN_DVFS_LOCK
+	tristate "SEC AP dvfs control"
+	depends on CPU_FREQ
+	help
+		Say Y here if you want support for lock the cpu frequency.
+
+config KEYPAD_MELFAS_TOUCH
+	tristate "Melfas touch keypad support"
+	default n
+	help
+	  Say Y here if you want to use the Cypress touch keypad.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called melfas_touchkey.
+
+config TOUCHSCREEN_ATMEL_MXT540S
+	tristate "Atmel mXT 540S I2C Touchscreen"
+	depends on I2C
+	help
+	  Say Y here if you have Atmel mXT series I2C touchscreen,
+	  such as ATMEL MXT540S, connected to your system.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	  If unsure, say N.
 
 	  To compile this driver as a module, choose M here: the
+<<<<<<< HEAD
 	  module will be called synaptics_dsx_fw_update.
 
 config SECURE_TOUCH
@@ -1063,5 +1379,23 @@ config TOUCHSCREEN_GT9XX
           If unsure, say N.
 
 source "drivers/input/touchscreen/gt9xx/Kconfig"
+=======
+	  module will be called mxt540s.
+
+source "drivers/input/touchscreen/wacom/Kconfig"
+
+config TOUCHSCREEN_GESTURES
+        bool "Enable detection of touch gestures"
+        depends on TOUCHSCREEN_ATMEL_MXT224_U1 || TOUCHSCREEN_MELFAS
+        ---help---
+          This option enables the mxt224_u1 touchscreen device to
+          detect and report touch gestures.
+          Definition of the gesture paths and reporting of the
+          detections are available through sysfs entries.
+
+config SLIDE_TO_WAKE
+        bool "Enable slide-to-wake"
+        depends on TOUCHSCREEN_ATMEL_MXT224_U1 || TOUCHSCREEN_MELFAS
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 endif

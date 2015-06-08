@@ -721,4 +721,19 @@ static struct i2c_driver ks0127_driver = {
 	.id_table	= ks0127_id,
 };
 
+<<<<<<< HEAD
 module_i2c_driver(ks0127_driver);
+=======
+static __init int init_ks0127(void)
+{
+	return i2c_add_driver(&ks0127_driver);
+}
+
+static __exit void exit_ks0127(void)
+{
+	i2c_del_driver(&ks0127_driver);
+}
+
+module_init(init_ks0127);
+module_exit(exit_ks0127);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

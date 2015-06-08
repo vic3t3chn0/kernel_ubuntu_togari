@@ -135,6 +135,12 @@ int usb_control_msg(struct usb_device *dev, unsigned int pipe, __u8 request,
 {
 	struct usb_ctrlrequest *dr;
 	int ret;
+<<<<<<< HEAD
+=======
+#if defined(CONFIG_LINK_DEVICE_HSIC) && defined(CONFIG_UMTS_MODEM_XMM6262)
+	int limit_timeout;
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	dr = kmalloc(sizeof(struct usb_ctrlrequest), GFP_NOIO);
 	if (!dr)
@@ -148,8 +154,27 @@ int usb_control_msg(struct usb_device *dev, unsigned int pipe, __u8 request,
 
 	/* dbg("usb_control_msg"); */
 
+<<<<<<< HEAD
 	ret = usb_internal_control_msg(dev, pipe, dr, data, size, timeout);
 
+=======
+#if defined(CONFIG_LINK_DEVICE_HSIC) && defined(CONFIG_UMTS_MODEM_XMM6262)
+	/* Sometimes AP can't received the HSIC descriptor when AP L3->L0
+	 * reset-resume, then got the dpm_timeout panic caused 5sec * retry
+	 * timeout. we can get the cp dump after dpm resume.
+	 * portnum 2 is HSIC phy0 for CP.
+	 */
+	limit_timeout = (dev->portnum == 2) ? min(timeout, 1500) : timeout;
+
+	/* pr_debug("%s: dev=%s, portnum=%d, timeout=%d\n", __func__,
+		dev_name(&dev->dev), dev->portnum, limit_timeout); */
+
+	ret = usb_internal_control_msg(dev, pipe, dr, data, size,
+		limit_timeout);
+#else
+	ret = usb_internal_control_msg(dev, pipe, dr, data, size, timeout);
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(dr);
 
 	return ret;
@@ -435,7 +460,11 @@ int usb_sg_init(struct usb_sg_request *io, struct usb_device *dev,
 
 			len = sg->length;
 			if (length) {
+<<<<<<< HEAD
 				len = min_t(size_t, len, length);
+=======
+				len = min_t(unsigned, len, length);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				length -= len;
 				if (length == 0)
 					io->entries = i + 1;
@@ -1535,7 +1564,11 @@ static int usb_if_uevent(struct device *dev, struct kobj_uevent_env *env)
 
 	if (add_uevent_var(env,
 		   "MODALIAS=usb:"
+<<<<<<< HEAD
 		   "v%04Xp%04Xd%04Xdc%02Xdsc%02Xdp%02Xic%02Xisc%02Xip%02Xin%02X",
+=======
+		   "v%04Xp%04Xd%04Xdc%02Xdsc%02Xdp%02Xic%02Xisc%02Xip%02X",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		   le16_to_cpu(usb_dev->descriptor.idVendor),
 		   le16_to_cpu(usb_dev->descriptor.idProduct),
 		   le16_to_cpu(usb_dev->descriptor.bcdDevice),
@@ -1544,8 +1577,12 @@ static int usb_if_uevent(struct device *dev, struct kobj_uevent_env *env)
 		   usb_dev->descriptor.bDeviceProtocol,
 		   alt->desc.bInterfaceClass,
 		   alt->desc.bInterfaceSubClass,
+<<<<<<< HEAD
 		   alt->desc.bInterfaceProtocol,
 		   alt->desc.bInterfaceNumber))
+=======
+		   alt->desc.bInterfaceProtocol))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -ENOMEM;
 
 	return 0;
@@ -1771,6 +1808,7 @@ free_interfaces:
 		goto free_interfaces;
 	}
 
+<<<<<<< HEAD
 	dev->actconfig = cp;
 	if (cp)
 		usb_notify_config_device(dev);
@@ -1796,6 +1834,10 @@ free_interfaces:
 	usb_set_device_state(dev, USB_STATE_CONFIGURED);
 
 	/* Initialize the new interface structures and the
+=======
+	/*
+	 * Initialize the new interface structures and the
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 * hc/hcd/usbcore interface/endpoint state.
 	 */
 	for (i = 0; i < nintf; ++i) {
@@ -1839,6 +1881,38 @@ free_interfaces:
 	}
 	kfree(new_interfaces);
 
+<<<<<<< HEAD
+=======
+	ret = usb_control_msg(dev, usb_sndctrlpipe(dev, 0),
+			      USB_REQ_SET_CONFIGURATION, 0, configuration, 0,
+			      NULL, 0, USB_CTRL_SET_TIMEOUT);
+	if (ret < 0 && cp) {
+		/*
+		 * All the old state is gone, so what else can we do?
+		 * The device is probably useless now anyway.
+		 */
+		usb_hcd_alloc_bandwidth(dev, NULL, NULL, NULL);
+		for (i = 0; i < nintf; ++i) {
+			usb_disable_interface(dev, cp->interface[i], true);
+			put_device(&cp->interface[i]->dev);
+			cp->interface[i] = NULL;
+		}
+		cp = NULL;
+	}
+
+	dev->actconfig = cp;
+	mutex_unlock(hcd->bandwidth_mutex);
+
+	if (!cp) {
+		usb_set_device_state(dev, USB_STATE_ADDRESS);
+
+		/* Leave LPM disabled while the device is unconfigured. */
+		usb_autosuspend_device(dev);
+		return ret;
+	}
+	usb_set_device_state(dev, USB_STATE_CONFIGURED);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (cp->string == NULL &&
 			!(dev->quirks & USB_QUIRK_CONFIG_INTF_STRINGS))
 		cp->string = usb_cache_string(dev, cp->desc.iConfiguration);
@@ -1863,6 +1937,14 @@ free_interfaces:
 				dev_name(&intf->dev), ret);
 			continue;
 		}
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_HOST_COMPLIANT_TEST
+		if (usb_get_intfdata(intf) == NULL ) {
+		       dev_info( &intf->dev, "%s : Not match interface - driver detect fail\n",__func__);
+		}
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		create_intf_ep_devs(intf);
 	}
 

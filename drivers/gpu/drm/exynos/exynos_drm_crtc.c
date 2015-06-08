@@ -29,21 +29,39 @@
 #include "drmP.h"
 #include "drm_crtc_helper.h"
 
+<<<<<<< HEAD
 #include "exynos_drm_crtc.h"
 #include "exynos_drm_drv.h"
 #include "exynos_drm_fb.h"
 #include "exynos_drm_encoder.h"
 #include "exynos_drm_gem.h"
+=======
+#include "exynos_drm_drv.h"
+#include "exynos_drm_encoder.h"
+#include "exynos_drm_plane.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define to_exynos_crtc(x)	container_of(x, struct exynos_drm_crtc,\
 				drm_crtc)
 
+<<<<<<< HEAD
+=======
+enum exynos_crtc_mode {
+	CRTC_MODE_NORMAL,	/* normal mode */
+	CRTC_MODE_BLANK,	/* The private plane of crtc is blank */
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * Exynos specific crtc structure.
  *
  * @drm_crtc: crtc object.
+<<<<<<< HEAD
  * @overlay: contain information common to display controller and hdmi and
  *	contents of this overlay object would be copied to sub driver size.
+=======
+ * @drm_plane: pointer of private plane object for this crtc
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @pipe: a crtc index created at load() with a new crtc object creation
  *	and the crtc object would be set to private->crtc array
  *	to get a crtc object corresponding to this pipe from private->crtc
@@ -52,6 +70,7 @@
  *	we can refer to the crtc to current hardware interrupt occured through
  *	this pipe value.
  * @dpms: store the crtc dpms value
+<<<<<<< HEAD
  */
 struct exynos_drm_crtc {
 	struct drm_crtc			drm_crtc;
@@ -157,6 +176,18 @@ static int exynos_drm_crtc_update(struct drm_crtc *crtc)
 	return exynos_drm_overlay_update(overlay, crtc->fb, mode, &pos);
 }
 
+=======
+ * @mode: store the crtc mode value
+ */
+struct exynos_drm_crtc {
+	struct drm_crtc			drm_crtc;
+	struct drm_plane		*plane;
+	unsigned int			pipe;
+	unsigned int			dpms;
+	enum exynos_crtc_mode		mode;
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void exynos_drm_crtc_dpms(struct drm_crtc *crtc, int mode)
 {
 	struct drm_device *dev = crtc->dev;
@@ -171,6 +202,7 @@ static void exynos_drm_crtc_dpms(struct drm_crtc *crtc, int mode)
 
 	mutex_lock(&dev->struct_mutex);
 
+<<<<<<< HEAD
 	switch (mode) {
 	case DRM_MODE_DPMS_ON:
 		exynos_drm_fn_encoder(crtc, &mode,
@@ -188,6 +220,10 @@ static void exynos_drm_crtc_dpms(struct drm_crtc *crtc, int mode)
 		DRM_ERROR("unspecified mode %d\n", mode);
 		break;
 	}
+=======
+	exynos_drm_fn_encoder(crtc, &mode, exynos_drm_encoder_crtc_dpms);
+	exynos_crtc->dpms = mode;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	mutex_unlock(&dev->struct_mutex);
 }
@@ -205,6 +241,7 @@ static void exynos_drm_crtc_commit(struct drm_crtc *crtc)
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
+<<<<<<< HEAD
 	/*
 	 * when set_crtc is requested from user or at booting time,
 	 * crtc->commit would be called without dpms call so if dpms is
@@ -229,6 +266,10 @@ static void exynos_drm_crtc_commit(struct drm_crtc *crtc)
 
 	exynos_drm_fn_encoder(crtc, &exynos_crtc->pipe,
 			exynos_drm_encoder_crtc_commit);
+=======
+	exynos_plane_commit(exynos_crtc->plane);
+	exynos_plane_dpms(exynos_crtc->plane, DRM_MODE_DPMS_ON);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static bool
@@ -247,24 +288,63 @@ exynos_drm_crtc_mode_set(struct drm_crtc *crtc, struct drm_display_mode *mode,
 			  struct drm_display_mode *adjusted_mode, int x, int y,
 			  struct drm_framebuffer *old_fb)
 {
+<<<<<<< HEAD
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
+=======
+	struct exynos_drm_crtc *exynos_crtc = to_exynos_crtc(crtc);
+	struct drm_plane *plane = exynos_crtc->plane;
+	unsigned int crtc_w;
+	unsigned int crtc_h;
+	int pipe = exynos_crtc->pipe;
+	int ret;
+
+	DRM_DEBUG_KMS("%s\n", __FILE__);
+
+	exynos_drm_crtc_dpms(crtc, DRM_MODE_DPMS_ON);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * copy the mode data adjusted by mode_fixup() into crtc->mode
 	 * so that hardware can be seet to proper mode.
 	 */
 	memcpy(&crtc->mode, adjusted_mode, sizeof(*adjusted_mode));
 
+<<<<<<< HEAD
 	return exynos_drm_crtc_update(crtc);
+=======
+	crtc_w = crtc->fb->width - x;
+	crtc_h = crtc->fb->height - y;
+
+	ret = exynos_plane_mode_set(plane, crtc, crtc->fb, 0, 0, crtc_w, crtc_h,
+				    x, y, crtc_w, crtc_h);
+	if (ret)
+		return ret;
+
+	plane->crtc = crtc;
+	plane->fb = crtc->fb;
+
+	exynos_drm_fn_encoder(crtc, &pipe, exynos_drm_encoder_crtc_pipe);
+
+	return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int exynos_drm_crtc_mode_set_base(struct drm_crtc *crtc, int x, int y,
 					  struct drm_framebuffer *old_fb)
 {
+<<<<<<< HEAD
+=======
+	struct exynos_drm_crtc *exynos_crtc = to_exynos_crtc(crtc);
+	struct drm_plane *plane = exynos_crtc->plane;
+	unsigned int crtc_w;
+	unsigned int crtc_h;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int ret;
 
 	DRM_DEBUG_KMS("%s\n", __FILE__);
 
+<<<<<<< HEAD
 	ret = exynos_drm_crtc_update(crtc);
 	if (ret)
 		return ret;
@@ -272,6 +352,19 @@ static int exynos_drm_crtc_mode_set_base(struct drm_crtc *crtc, int x, int y,
 	exynos_drm_crtc_apply(crtc);
 
 	return ret;
+=======
+	crtc_w = crtc->fb->width - x;
+	crtc_h = crtc->fb->height - y;
+
+	ret = exynos_plane_mode_set(plane, crtc, crtc->fb, 0, 0, crtc_w, crtc_h,
+				    x, y, crtc_w, crtc_h);
+	if (ret)
+		return ret;
+
+	exynos_drm_crtc_commit(crtc);
+
+	return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void exynos_drm_crtc_load_lut(struct drm_crtc *crtc)
@@ -280,6 +373,19 @@ static void exynos_drm_crtc_load_lut(struct drm_crtc *crtc)
 	/* drm framework doesn't check NULL */
 }
 
+<<<<<<< HEAD
+=======
+static void exynos_drm_crtc_disable(struct drm_crtc *crtc)
+{
+	struct exynos_drm_crtc *exynos_crtc = to_exynos_crtc(crtc);
+
+	DRM_DEBUG_KMS("%s\n", __FILE__);
+
+	exynos_plane_dpms(exynos_crtc->plane, DRM_MODE_DPMS_OFF);
+	exynos_drm_crtc_dpms(crtc, DRM_MODE_DPMS_OFF);
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct drm_crtc_helper_funcs exynos_crtc_helper_funcs = {
 	.dpms		= exynos_drm_crtc_dpms,
 	.prepare	= exynos_drm_crtc_prepare,
@@ -288,6 +394,10 @@ static struct drm_crtc_helper_funcs exynos_crtc_helper_funcs = {
 	.mode_set	= exynos_drm_crtc_mode_set,
 	.mode_set_base	= exynos_drm_crtc_mode_set_base,
 	.load_lut	= exynos_drm_crtc_load_lut,
+<<<<<<< HEAD
+=======
+	.disable	= exynos_drm_crtc_disable,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int exynos_drm_crtc_page_flip(struct drm_crtc *crtc,
@@ -323,7 +433,12 @@ static int exynos_drm_crtc_page_flip(struct drm_crtc *crtc,
 				&dev_priv->pageflip_event_list);
 
 		crtc->fb = fb;
+<<<<<<< HEAD
 		ret = exynos_drm_crtc_update(crtc);
+=======
+		ret = exynos_drm_crtc_mode_set_base(crtc, crtc->x, crtc->y,
+						    NULL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (ret) {
 			crtc->fb = old_fb;
 			drm_vblank_put(dev, exynos_crtc->pipe);
@@ -331,6 +446,7 @@ static int exynos_drm_crtc_page_flip(struct drm_crtc *crtc,
 
 			goto out;
 		}
+<<<<<<< HEAD
 
 		/*
 		 * the values related to a buffer of the drm framebuffer
@@ -339,6 +455,8 @@ static int exynos_drm_crtc_page_flip(struct drm_crtc *crtc,
 		 * real registers at vsync front porch period.
 		 */
 		exynos_drm_crtc_apply(crtc);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 out:
 	mutex_unlock(&dev->struct_mutex);
@@ -358,10 +476,50 @@ static void exynos_drm_crtc_destroy(struct drm_crtc *crtc)
 	kfree(exynos_crtc);
 }
 
+<<<<<<< HEAD
+=======
+static int exynos_drm_crtc_set_property(struct drm_crtc *crtc,
+					struct drm_property *property,
+					uint64_t val)
+{
+	struct drm_device *dev = crtc->dev;
+	struct exynos_drm_private *dev_priv = dev->dev_private;
+	struct exynos_drm_crtc *exynos_crtc = to_exynos_crtc(crtc);
+
+	DRM_DEBUG_KMS("%s\n", __func__);
+
+	if (property == dev_priv->crtc_mode_property) {
+		enum exynos_crtc_mode mode = val;
+
+		if (mode == exynos_crtc->mode)
+			return 0;
+
+		exynos_crtc->mode = mode;
+
+		switch (mode) {
+		case CRTC_MODE_NORMAL:
+			exynos_drm_crtc_commit(crtc);
+			break;
+		case CRTC_MODE_BLANK:
+			exynos_plane_dpms(exynos_crtc->plane,
+					  DRM_MODE_DPMS_OFF);
+			break;
+		default:
+			break;
+		}
+
+		return 0;
+	}
+
+	return -EINVAL;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct drm_crtc_funcs exynos_crtc_funcs = {
 	.set_config	= drm_crtc_helper_set_config,
 	.page_flip	= exynos_drm_crtc_page_flip,
 	.destroy	= exynos_drm_crtc_destroy,
+<<<<<<< HEAD
 };
 
 struct exynos_drm_overlay *get_exynos_drm_overlay(struct drm_device *dev,
@@ -370,6 +528,35 @@ struct exynos_drm_overlay *get_exynos_drm_overlay(struct drm_device *dev,
 	struct exynos_drm_crtc *exynos_crtc = to_exynos_crtc(crtc);
 
 	return &exynos_crtc->overlay;
+=======
+	.set_property	= exynos_drm_crtc_set_property,
+};
+
+static const struct drm_prop_enum_list mode_names[] = {
+	{ CRTC_MODE_NORMAL, "normal" },
+	{ CRTC_MODE_BLANK, "blank" },
+};
+
+static void exynos_drm_crtc_attach_mode_property(struct drm_crtc *crtc)
+{
+	struct drm_device *dev = crtc->dev;
+	struct exynos_drm_private *dev_priv = dev->dev_private;
+	struct drm_property *prop;
+
+	DRM_DEBUG_KMS("%s\n", __func__);
+
+	prop = dev_priv->crtc_mode_property;
+	if (!prop) {
+		prop = drm_property_create_enum(dev, 0, "mode", mode_names,
+						ARRAY_SIZE(mode_names));
+		if (!prop)
+			return;
+
+		dev_priv->crtc_mode_property = prop;
+	}
+
+	drm_object_attach_property(&crtc->base, prop, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 int exynos_drm_crtc_create(struct drm_device *dev, unsigned int nr)
@@ -387,8 +574,18 @@ int exynos_drm_crtc_create(struct drm_device *dev, unsigned int nr)
 	}
 
 	exynos_crtc->pipe = nr;
+<<<<<<< HEAD
 	exynos_crtc->dpms = DRM_MODE_DPMS_OFF;
 	exynos_crtc->overlay.zpos = DEFAULT_ZPOS;
+=======
+	exynos_crtc->dpms = DRM_MODE_DPMS_ON;
+	exynos_crtc->plane = exynos_plane_init(dev, 1 << nr, true);
+	if (!exynos_crtc->plane) {
+		kfree(exynos_crtc);
+		return -ENOMEM;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	crtc = &exynos_crtc->drm_crtc;
 
 	private->crtc[nr] = crtc;
@@ -396,6 +593,11 @@ int exynos_drm_crtc_create(struct drm_device *dev, unsigned int nr)
 	drm_crtc_init(dev, crtc, &exynos_crtc_funcs);
 	drm_crtc_helper_add(crtc, &exynos_crtc_helper_funcs);
 
+<<<<<<< HEAD
+=======
+	exynos_drm_crtc_attach_mode_property(crtc);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 

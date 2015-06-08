@@ -55,6 +55,10 @@
 #include <linux/mutex.h>
 #include <asm/io.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/byteorder.h>
 
 	/* FIXME ohci.h is ONLY for internal use by the OHCI driver.
@@ -73,7 +77,11 @@ MODULE_LICENSE("GPL");
 #define INT_MODULE_PARM(n, v) static int n = v;module_param(n, int, 0444)
 INT_MODULE_PARM(testing, 0);
 /* Some boards misreport power switching/overcurrent*/
+<<<<<<< HEAD
 static bool distrust_firmware = 1;
+=======
+static int distrust_firmware = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(distrust_firmware, bool, 0);
 MODULE_PARM_DESC(distrust_firmware, "true to distrust firmware power/overcurren"
 	"t setup");

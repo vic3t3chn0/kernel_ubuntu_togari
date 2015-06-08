@@ -41,6 +41,10 @@ static struct usb_driver hp49gp_driver = {
 	.probe =	usb_serial_probe,
 	.disconnect =	usb_serial_disconnect,
 	.id_table =	id_table,
+<<<<<<< HEAD
+=======
+	.no_dynamic_id = 	1,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static struct usb_serial_driver hp49gp_device = {
@@ -49,6 +53,7 @@ static struct usb_serial_driver hp49gp_device = {
 		.name =		"hp4X",
 	},
 	.id_table =		id_table,
+<<<<<<< HEAD
 	.num_ports =		1,
 };
 
@@ -57,6 +62,38 @@ static struct usb_serial_driver * const serial_drivers[] = {
 };
 
 module_usb_serial_driver(hp49gp_driver, serial_drivers);
+=======
+	.usb_driver = 		&hp49gp_driver,
+	.num_ports =		1,
+};
+
+static int __init hp49gp_init(void)
+{
+	int retval;
+	retval = usb_serial_register(&hp49gp_device);
+	if (retval)
+		goto failed_usb_serial_register;
+	retval = usb_register(&hp49gp_driver);
+	if (retval)
+		goto failed_usb_register;
+	printk(KERN_INFO KBUILD_MODNAME ": " DRIVER_VERSION ":"
+	       DRIVER_DESC "\n");
+	return 0;
+failed_usb_register:
+	usb_serial_deregister(&hp49gp_device);
+failed_usb_serial_register:
+	return retval;
+}
+
+static void __exit hp49gp_exit(void)
+{
+	usb_deregister(&hp49gp_driver);
+	usb_serial_deregister(&hp49gp_device);
+}
+
+module_init(hp49gp_init);
+module_exit(hp49gp_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_VERSION(DRIVER_VERSION);

@@ -1,6 +1,10 @@
 /******************************************************************************
  *
+<<<<<<< HEAD
  * Copyright(c) 2007 - 2012 Intel Corporation. All rights reserved.
+=======
+ * Copyright(c) 2007 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Portions of this file are derived from the ipw3945 project, as well
  * as portions of the ieee80211 subsystem header files.
@@ -43,7 +47,11 @@ struct iwl_power_mgr {
 	struct iwl_powertable_cmd sleep_cmd;
 	struct iwl_powertable_cmd sleep_cmd_next;
 	int debug_sleep_level_override;
+<<<<<<< HEAD
 	bool bus_pm;
+=======
+	bool pci_pm;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 int iwl_power_set_mode(struct iwl_priv *priv, struct iwl_powertable_cmd *cmd,

@@ -12,6 +12,13 @@
 #ifndef FAS216_H
 #define FAS216_H
 
+<<<<<<< HEAD
+=======
+#ifndef NO_IRQ
+#define NO_IRQ 255
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <scsi/scsi_eh.h>
 
 #include "queue.h"

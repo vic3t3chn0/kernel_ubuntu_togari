@@ -193,6 +193,21 @@ static struct platform_driver rgbfb_driver = {
 	.remove = rgbfb_remove,
 };
 
+<<<<<<< HEAD
 module_platform_driver(rgbfb_driver);
+=======
+static int __init rgbfb_init(void)
+{
+	return platform_driver_register(&rgbfb_driver);
+}
+
+static void __exit rgbfb_exit(void)
+{
+	platform_driver_unregister(&rgbfb_driver);
+}
+
+module_init(rgbfb_init);
+module_exit(rgbfb_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_LICENSE("GPL");

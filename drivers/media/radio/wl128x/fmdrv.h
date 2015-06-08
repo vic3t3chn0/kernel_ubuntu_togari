@@ -28,11 +28,21 @@
 #include <sound/core.h>
 #include <sound/initval.h>
 #include <linux/timer.h>
+<<<<<<< HEAD
+=======
+#include <linux/version.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <media/v4l2-ioctl.h>
 #include <media/v4l2-common.h>
 #include <media/v4l2-ctrls.h>
 
+<<<<<<< HEAD
 #define FM_DRV_VERSION            "0.1.1"
+=======
+#define FM_DRV_VERSION            "0.10"
+/* Should match with FM_DRV_VERSION */
+#define FM_DRV_RADIO_VERSION      KERNEL_VERSION(0, 0, 1)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define FM_DRV_NAME               "ti_fmdrv"
 #define FM_DRV_CARD_SHORT_NAME    "TI FM Radio"
 #define FM_DRV_CARD_LONG_NAME     "Texas Instruments FM Radio"

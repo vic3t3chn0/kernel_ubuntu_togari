@@ -5,7 +5,11 @@
  *****************************************************************************/
 
 /*
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,14 +45,20 @@
  * POSSIBILITY OF SUCH DAMAGES.
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <acpi/acpi.h>
 #include "accommon.h"
 #include "acevents.h"
 #include "acnamesp.h"
 #include "acdebug.h"
 #include "actables.h"
+<<<<<<< HEAD
 #include "acinterp.h"
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define _COMPONENT          ACPI_UTILITIES
 ACPI_MODULE_NAME("utxface")
@@ -145,8 +155,11 @@ acpi_status acpi_enable_subsystem(u32 flags)
 
 	ACPI_FUNCTION_TRACE(acpi_enable_subsystem);
 
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Enable ACPI mode */
 
 	if (!(flags & ACPI_NO_ACPI_ENABLE)) {
@@ -171,7 +184,10 @@ acpi_status acpi_enable_subsystem(u32 flags)
 		ACPI_WARNING((AE_INFO, "Could not map the FACS table"));
 		return_ACPI_STATUS(status);
 	}
+<<<<<<< HEAD
 #endif				/* !ACPI_REDUCED_HARDWARE */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Install the default op_region handlers. These are installed unless
@@ -187,7 +203,11 @@ acpi_status acpi_enable_subsystem(u32 flags)
 			return_ACPI_STATUS(status);
 		}
 	}
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * Initialize ACPI Event handling (Fixed and General Purpose)
 	 *
@@ -223,7 +243,10 @@ acpi_status acpi_enable_subsystem(u32 flags)
 			return_ACPI_STATUS(status);
 		}
 	}
+<<<<<<< HEAD
 #endif				/* !ACPI_REDUCED_HARDWARE */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return_ACPI_STATUS(status);
 }
@@ -645,6 +668,7 @@ acpi_status acpi_install_interface_handler(acpi_interface_handler handler)
 }
 
 ACPI_EXPORT_SYMBOL(acpi_install_interface_handler)
+<<<<<<< HEAD
 
 /*****************************************************************************
  *
@@ -682,4 +706,6 @@ acpi_check_address_range(acpi_adr_space_type space_id,
 }
 
 ACPI_EXPORT_SYMBOL(acpi_check_address_range)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif				/* !ACPI_ASL_COMPILER */

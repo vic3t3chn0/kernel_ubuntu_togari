@@ -28,7 +28,10 @@
 #include <linux/i2c.h>
 #include <linux/slab.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "drmP.h"
 #include "drm.h"
 #include "drm_crtc.h"
@@ -769,10 +772,19 @@ static void intel_sdvo_get_dtd_from_mode(struct intel_sdvo_dtd *dtd,
 		((v_sync_len & 0x30) >> 4);
 
 	dtd->part2.dtd_flags = 0x18;
+<<<<<<< HEAD
 	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
 		dtd->part2.dtd_flags |= 0x2;
 	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
 		dtd->part2.dtd_flags |= 0x4;
+=======
+	if (mode->flags & DRM_MODE_FLAG_INTERLACE)
+		dtd->part2.dtd_flags |= DTD_FLAG_INTERLACE;
+	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
+		dtd->part2.dtd_flags |= DTD_FLAG_HSYNC_POSITIVE;
+	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
+		dtd->part2.dtd_flags |= DTD_FLAG_VSYNC_POSITIVE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	dtd->part2.sdvo_flags = 0;
 	dtd->part2.v_sync_off_high = v_sync_offset & 0xc0;
@@ -806,9 +818,17 @@ static void intel_sdvo_get_mode_from_dtd(struct drm_display_mode * mode,
 	mode->clock = dtd->part1.clock * 10;
 
 	mode->flags &= ~(DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC);
+<<<<<<< HEAD
 	if (dtd->part2.dtd_flags & 0x2)
 		mode->flags |= DRM_MODE_FLAG_PHSYNC;
 	if (dtd->part2.dtd_flags & 0x4)
+=======
+	if (dtd->part2.dtd_flags & DTD_FLAG_INTERLACE)
+		mode->flags |= DRM_MODE_FLAG_INTERLACE;
+	if (dtd->part2.dtd_flags & DTD_FLAG_HSYNC_POSITIVE)
+		mode->flags |= DRM_MODE_FLAG_PHSYNC;
+	if (dtd->part2.dtd_flags & DTD_FLAG_VSYNC_POSITIVE)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mode->flags |= DRM_MODE_FLAG_PVSYNC;
 }
 
@@ -864,6 +884,7 @@ static void intel_sdvo_dump_hdmi_buf(struct intel_sdvo *intel_sdvo)
 }
 #endif
 
+<<<<<<< HEAD
 static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo)
 {
 	struct dip_infoframe avi_if = {
@@ -877,18 +898,49 @@ static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo)
 	unsigned i;
 
 	intel_dip_infoframe_csum(&avi_if);
+=======
+static bool intel_sdvo_write_infoframe(struct intel_sdvo *intel_sdvo,
+				       unsigned if_index, uint8_t tx_rate,
+				       uint8_t *data, unsigned length)
+{
+	uint8_t set_buf_index[2] = { if_index, 0 };
+	uint8_t hbuf_size, tmp[8];
+	int i;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!intel_sdvo_set_value(intel_sdvo,
 				  SDVO_CMD_SET_HBUF_INDEX,
 				  set_buf_index, 2))
 		return false;
 
+<<<<<<< HEAD
 	for (i = 0; i < sizeof(avi_if); i += 8) {
 		if (!intel_sdvo_set_value(intel_sdvo,
 					  SDVO_CMD_SET_HBUF_DATA,
 					  data, 8))
 			return false;
 		data++;
+=======
+	if (!intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_HBUF_INFO,
+				  &hbuf_size, 1))
+		return false;
+
+	/* Buffer size is 0 based, hooray! */
+	hbuf_size++;
+
+	DRM_DEBUG_KMS("writing sdvo hbuf: %i, hbuf_size %i, hbuf_size: %i\n",
+		      if_index, length, hbuf_size);
+
+	for (i = 0; i < hbuf_size; i += 8) {
+		memset(tmp, 0, 8);
+		if (i < length)
+			memcpy(tmp, data + i, min_t(unsigned, 8, length - i));
+
+		if (!intel_sdvo_set_value(intel_sdvo,
+					  SDVO_CMD_SET_HBUF_DATA,
+					  tmp, 8))
+			return false;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	return intel_sdvo_set_value(intel_sdvo,
@@ -896,6 +948,31 @@ static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo)
 				    &tx_rate, 1);
 }
 
+<<<<<<< HEAD
+=======
+static bool intel_sdvo_set_avi_infoframe(struct intel_sdvo *intel_sdvo)
+{
+	struct dip_infoframe avi_if = {
+		.type = DIP_TYPE_AVI,
+		.ver = DIP_VERSION_AVI,
+		.len = DIP_LEN_AVI,
+	};
+	uint8_t sdvo_data[4 + sizeof(avi_if.body.avi)];
+
+	intel_dip_infoframe_csum(&avi_if);
+
+	/* sdvo spec says that the ecc is handled by the hw, and it looks like
+	 * we must not send the ecc field, either. */
+	memcpy(sdvo_data, &avi_if, 3);
+	sdvo_data[3] = avi_if.checksum;
+	memcpy(&sdvo_data[4], &avi_if.body, sizeof(avi_if.body.avi));
+
+	return intel_sdvo_write_infoframe(intel_sdvo, SDVO_HBUF_INDEX_AVI_IF,
+					  SDVO_HBUF_TX_VSYNC,
+					  sdvo_data, sizeof(sdvo_data));
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static bool intel_sdvo_set_tv_format(struct intel_sdvo *intel_sdvo)
 {
 	struct intel_sdvo_tv_format format;
@@ -1220,6 +1297,7 @@ static bool intel_sdvo_get_capabilities(struct intel_sdvo *intel_sdvo, struct in
 
 static int intel_sdvo_supports_hotplug(struct intel_sdvo *intel_sdvo)
 {
+<<<<<<< HEAD
 	struct drm_device *dev = intel_sdvo->base.base.dev;
 	u8 response[2];
 
@@ -1228,6 +1306,10 @@ static int intel_sdvo_supports_hotplug(struct intel_sdvo *intel_sdvo)
 	if (IS_I945G(dev) || IS_I945GM(dev))
 		return false;
 
+=======
+	u8 response[2];
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return intel_sdvo_get_value(intel_sdvo, SDVO_CMD_GET_HOT_PLUG_SUPPORT,
 				    &response, 2) && response[0];
 }
@@ -1548,11 +1630,22 @@ static void intel_sdvo_get_lvds_modes(struct drm_connector *connector)
 	 * Assume that the preferred modes are
 	 * arranged in priority order.
 	 */
+<<<<<<< HEAD
 	intel_ddc_get_modes(connector, intel_sdvo->i2c);
 	if (list_empty(&connector->probed_modes) == false)
 		goto end;
 
 	/* Fetch modes from VBT */
+=======
+	intel_ddc_get_modes(connector, &intel_sdvo->ddc);
+
+	/*
+	 * Fetch modes from VBT. For SDVO prefer the VBT mode since some
+	 * SDVO->LVDS transcoders can't cope with the EDID mode. Since
+	 * drm_mode_probed_add adds the mode at the head of the list we add it
+	 * last.
+	 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (dev_priv->sdvo_lvds_vbt_mode != NULL) {
 		newmode = drm_mode_duplicate(connector->dev,
 					     dev_priv->sdvo_lvds_vbt_mode);
@@ -1564,7 +1657,10 @@ static void intel_sdvo_get_lvds_modes(struct drm_connector *connector)
 		}
 	}
 
+<<<<<<< HEAD
 end:
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	list_for_each_entry(newmode, &connector->probed_modes, head) {
 		if (newmode->type & DRM_MODE_TYPE_PREFERRED) {
 			intel_sdvo->sdvo_lvds_fixed_mode =

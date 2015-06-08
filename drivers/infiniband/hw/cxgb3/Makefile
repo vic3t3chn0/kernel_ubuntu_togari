@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ccflags-y := -Idrivers/net/ethernet/chelsio/cxgb3
+=======
+ccflags-y := -Idrivers/net/cxgb3
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 obj-$(CONFIG_INFINIBAND_CXGB3) += iw_cxgb3.o
 

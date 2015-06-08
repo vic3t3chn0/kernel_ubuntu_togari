@@ -6,4 +6,9 @@ subdir-ccflags-$(CONFIG_MMC_DEBUG) := -DDEBUG
 
 obj-$(CONFIG_MMC)		+= core/
 obj-$(CONFIG_MMC)		+= card/
+<<<<<<< HEAD
 obj-$(subst m,y,$(CONFIG_MMC))	+= host/
+=======
+obj-$(CONFIG_MMC)		+= host/
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

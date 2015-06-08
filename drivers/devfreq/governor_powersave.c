@@ -10,12 +10,18 @@
  */
 
 #include <linux/devfreq.h>
+<<<<<<< HEAD
 #include <linux/module.h>
 #include "governor.h"
 
 static int devfreq_powersave_func(struct devfreq *df,
 				  unsigned long *freq,
 				u32 *flag)
+=======
+
+static int devfreq_powersave_func(struct devfreq *df,
+				  unsigned long *freq)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	/*
 	 * target callback should be able to get ceiling value as
@@ -25,6 +31,7 @@ static int devfreq_powersave_func(struct devfreq *df,
 	return 0;
 }
 
+<<<<<<< HEAD
 static int devfreq_powersave_handler(struct devfreq *devfreq,
 				unsigned int event, void *data)
 {
@@ -63,3 +70,10 @@ static void __exit devfreq_powersave_exit(void)
 }
 module_exit(devfreq_powersave_exit);
 MODULE_LICENSE("GPL");
+=======
+const struct devfreq_governor devfreq_powersave = {
+	.name = "powersave",
+	.get_target_freq = devfreq_powersave_func,
+	.no_central_polling = true,
+};
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

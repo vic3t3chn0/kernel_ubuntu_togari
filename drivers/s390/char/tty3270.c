@@ -1784,6 +1784,10 @@ static int __init tty3270_init(void)
 	 * Entries in tty3270_driver that are NOT initialized:
 	 * proc_entry, set_termios, flush_buffer, set_ldisc, write_proc
 	 */
+<<<<<<< HEAD
+=======
+	driver->owner = THIS_MODULE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	driver->driver_name = "ttyTUB";
 	driver->name = "ttyTUB";
 	driver->major = IBM_TTY3270_MAJOR;

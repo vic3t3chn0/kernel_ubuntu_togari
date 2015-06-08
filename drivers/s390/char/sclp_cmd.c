@@ -21,7 +21,10 @@
 #include <asm/chpid.h>
 #include <asm/sclp.h>
 #include <asm/setup.h>
+<<<<<<< HEAD
 #include <asm/ctl_reg.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "sclp.h"
 
@@ -62,8 +65,13 @@ static int __init sclp_cmd_sync_early(sclp_cmdw_t cmd, void *sccb)
 	rc = sclp_service_call(cmd, sccb);
 	if (rc)
 		goto out;
+<<<<<<< HEAD
 	__load_psw_mask(PSW_DEFAULT_KEY | PSW_MASK_BASE | PSW_MASK_EA |
 			PSW_MASK_BA | PSW_MASK_EXT | PSW_MASK_WAIT);
+=======
+	__load_psw_mask(PSW_BASE_BITS | PSW_MASK_EXT |
+			PSW_MASK_WAIT | PSW_DEFAULT_KEY);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	local_irq_disable();
 out:
 	/* Contents of the sccb might have changed. */
@@ -384,10 +392,15 @@ static int sclp_attach_storage(u8 id)
 	switch (sccb->header.response_code) {
 	case 0x0020:
 		set_bit(id, sclp_storage_ids);
+<<<<<<< HEAD
 		for (i = 0; i < sccb->assigned; i++) {
 			if (sccb->entries[i])
 				sclp_unassign_storage(sccb->entries[i] >> 16);
 		}
+=======
+		for (i = 0; i < sccb->assigned; i++)
+			sclp_unassign_storage(sccb->entries[i] >> 16);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		break;
 	default:
 		rc = -EIO;
@@ -442,8 +455,14 @@ static int sclp_mem_notifier(struct notifier_block *nb,
 	start = arg->start_pfn << PAGE_SHIFT;
 	size = arg->nr_pages << PAGE_SHIFT;
 	mutex_lock(&sclp_mem_mutex);
+<<<<<<< HEAD
 	for_each_clear_bit(id, sclp_storage_ids, sclp_max_storage_id + 1)
 		sclp_attach_storage(id);
+=======
+	for (id = 0; id <= sclp_max_storage_id; id++)
+		if (!test_bit(id, sclp_storage_ids))
+			sclp_attach_storage(id);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	switch (action) {
 	case MEM_ONLINE:
 	case MEM_GOING_OFFLINE:
@@ -509,6 +528,11 @@ static void __init sclp_add_standby_memory(void)
 	add_memory_merged(0);
 }
 
+<<<<<<< HEAD
+=======
+#define MEM_SCT_SIZE (1UL << SECTION_SIZE_BITS)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void __init insert_increment(u16 rn, int standby, int assigned)
 {
 	struct memory_increment *incr, *new_incr;
@@ -521,7 +545,11 @@ static void __init insert_increment(u16 rn, int standby, int assigned)
 	new_incr->rn = rn;
 	new_incr->standby = standby;
 	if (!standby)
+<<<<<<< HEAD
 		new_incr->usecount = 1;
+=======
+		new_incr->usecount = rzm > MEM_SCT_SIZE ? rzm/MEM_SCT_SIZE : 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	last_rn = 0;
 	prev = &sclp_mem_list;
 	list_for_each_entry(incr, &sclp_mem_list, list) {

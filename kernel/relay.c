@@ -15,7 +15,11 @@
 #include <linux/errno.h>
 #include <linux/stddef.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/string.h>
 #include <linux/relay.h>
 #include <linux/vmalloc.h>
@@ -306,7 +310,11 @@ static void buf_unmapped_default_callback(struct rchan_buf *buf,
  */
 static struct dentry *create_buf_file_default_callback(const char *filename,
 						       struct dentry *parent,
+<<<<<<< HEAD
 						       umode_t mode,
+=======
+						       int mode,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						       struct rchan_buf *buf,
 						       int *is_global)
 {
@@ -1235,6 +1243,10 @@ static ssize_t subbuf_splice_actor(struct file *in,
 	struct splice_pipe_desc spd = {
 		.pages = pages,
 		.nr_pages = 0,
+<<<<<<< HEAD
+=======
+		.nr_pages_max = PIPE_DEF_BUFFERS,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.partial = partial,
 		.flags = flags,
 		.ops = &relay_pipe_buf_ops,
@@ -1302,8 +1314,13 @@ static ssize_t subbuf_splice_actor(struct file *in,
                 ret += padding;
 
 out:
+<<<<<<< HEAD
 	splice_shrink_spd(pipe, &spd);
         return ret;
+=======
+	splice_shrink_spd(&spd);
+	return ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static ssize_t relay_file_splice_read(struct file *in,

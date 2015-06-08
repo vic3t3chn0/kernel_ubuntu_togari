@@ -311,8 +311,15 @@ static const struct comedi_lrange pci9111_hr_ai_range = {
 };
 
 static DEFINE_PCI_DEVICE_TABLE(pci9111_pci_table) = {
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_ADLINK, PCI9111_HR_DEVICE_ID) },
 	/* { PCI_DEVICE(PCI_VENDOR_ID_ADLINK, PCI9111_HG_DEVICE_ID) }, */
+=======
+	{ PCI_VENDOR_ID_ADLINK, PCI9111_HR_DEVICE_ID, PCI_ANY_ID, PCI_ANY_ID,
+	  0, 0, 0 },
+	/* { PCI_VENDOR_ID_ADLINK, PCI9111_HG_DEVICE_ID, PCI_ANY_ID, PCI_ANY_ID,
+	 *   0, 0, 0 }, */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ 0 }
 };
 

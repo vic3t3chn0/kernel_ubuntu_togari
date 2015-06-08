@@ -12,7 +12,11 @@
 
 #include <linux/module.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <scsi/scsi_scan.h>
+=======
+#include "scsi_priv.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int __init wait_scan_init(void)
 {

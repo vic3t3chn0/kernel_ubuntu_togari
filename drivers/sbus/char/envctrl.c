@@ -1138,6 +1138,21 @@ static struct platform_driver envctrl_driver = {
 	.remove		= __devexit_p(envctrl_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(envctrl_driver);
 
+=======
+static int __init envctrl_init(void)
+{
+	return platform_driver_register(&envctrl_driver);
+}
+
+static void __exit envctrl_exit(void)
+{
+	platform_driver_unregister(&envctrl_driver);
+}
+
+module_init(envctrl_init);
+module_exit(envctrl_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_LICENSE("GPL");

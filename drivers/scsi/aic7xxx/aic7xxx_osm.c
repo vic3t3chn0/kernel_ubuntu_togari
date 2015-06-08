@@ -360,10 +360,17 @@ MODULE_PARM_DESC(aic7xxx,
 "	seltime:<int>		Selection Timeout\n"
 "				(0/256ms,1/128ms,2/64ms,3/32ms)\n"
 "\n"
+<<<<<<< HEAD
 "	Sample modprobe configuration file:\n"
 "	#	Toggle EISA/VLB probing\n"
 "	#	Set tag depth on Controller 1/Target 1 to 10 tags\n"
 "	#	Shorten the selection timeout to 128ms\n"
+=======
+"	Sample /etc/modprobe.conf line:\n"
+"		Toggle EISA/VLB probing\n"
+"		Set tag depth on Controller 1/Target 1 to 10 tags\n"
+"		Shorten the selection timeout to 128ms\n"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 "\n"
 "	options aic7xxx 'aic7xxx=probe_eisa_vl.tag_info:{{}.{.10}}.seltime:1'\n"
 );

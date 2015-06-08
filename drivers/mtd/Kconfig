@@ -1,6 +1,10 @@
 menuconfig MTD
 	tristate "Memory Technology Device (MTD) support"
+<<<<<<< HEAD
 	depends on GENERIC_IO
+=======
+	depends on HAS_IOMEM
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  Memory Technology Devices are flash, RAM and similar chips, often
 	  used for solid state file systems on embedded devices. This option
@@ -12,17 +16,38 @@ menuconfig MTD
 
 if MTD
 
+<<<<<<< HEAD
 config MTD_TESTS
 	tristate "MTD tests support (DANGEROUS)"
+=======
+config MTD_DEBUG
+	bool "Debugging"
+	help
+	  This turns on low-level debugging for the entire MTD sub-system.
+	  Normally, you should say 'N'.
+
+config MTD_DEBUG_VERBOSE
+	int "Debugging verbosity (0 = quiet, 3 = noisy)"
+	depends on MTD_DEBUG
+	default "0"
+	help
+	  Determines the verbosity level of the MTD debugging messages.
+
+config MTD_TESTS
+	tristate "MTD tests support"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	depends on m
 	help
 	  This option includes various MTD tests into compilation. The tests
 	  should normally be compiled as kernel modules. The modules perform
 	  various checks and verifications when loaded.
 
+<<<<<<< HEAD
 	  WARNING: some of the tests will ERASE entire MTD device which they
 	  test. Do not use these tests unless you really know what you do.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config MTD_REDBOOT_PARTS
 	tristate "RedBoot partition table parsing"
 	---help---
@@ -127,19 +152,28 @@ config MTD_AFS_PARTS
 	  'physmap' map driver (CONFIG_MTD_PHYSMAP) does this, for example.
 
 config MTD_OF_PARTS
+<<<<<<< HEAD
 	tristate "OpenFirmware partitioning information support"
 	default Y
+=======
+	def_bool y
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	depends on OF
 	help
 	  This provides a partition parsing function which derives
 	  the partition map from the children of the flash node,
+<<<<<<< HEAD
 	  as described in Documentation/devicetree/booting-without-of.txt.
+=======
+	  as described in Documentation/powerpc/booting-without-of.txt.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config MTD_AR7_PARTS
 	tristate "TI AR7 partitioning support"
 	---help---
 	  TI AR7 partitioning support
 
+<<<<<<< HEAD
 config MTD_BCM63XX_PARTS
 	tristate "BCM63XX CFE partitioning support"
 	depends on BCM63XX
@@ -148,6 +182,8 @@ config MTD_BCM63XX_PARTS
 	  This provides partions parsing for BCM63xx devices with CFE
 	  bootloaders.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 comment "User Modules And Translation Layers"
 
 config MTD_CHAR
@@ -304,6 +340,12 @@ config MTD_OOPS
 	  buffer in a flash partition where it can be read back at some
 	  later point.
 
+<<<<<<< HEAD
+=======
+	  To use, add console=ttyMTDx to the kernel command line,
+	  where x is the MTD device number to use.
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config MTD_SWAP
 	tristate "Swap on MTD device support"
 	depends on MTD && SWAP
@@ -314,6 +356,7 @@ config MTD_SWAP
 	  The driver provides wear leveling by storing erase counter into the
 	  OOB.
 
+<<<<<<< HEAD
 config MTD_LAZYECCSTATS
 	bool "MTD Lazy ECC Stats collection support"
 	default y
@@ -325,6 +368,8 @@ config MTD_LAZYECCSTATS
 	  This can significantly decrease boot times depending on the size of
 	  the partition.  If unsure, say 'N'.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 source "drivers/mtd/chips/Kconfig"
 
 source "drivers/mtd/maps/Kconfig"

@@ -9,12 +9,20 @@ obj-$(CONFIG_ATARI_DSP56K)	+= dsp56k.o
 obj-$(CONFIG_VIRTIO_CONSOLE)	+= virtio_console.o
 obj-$(CONFIG_RAW_DRIVER)	+= raw.o
 obj-$(CONFIG_SGI_SNSC)		+= snsc.o snsc_event.o
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_MSM_SMD_PKT)	+= msm_smd_pkt.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_MSPEC)		+= mspec.o
 obj-$(CONFIG_MMTIMER)		+= mmtimer.o
 obj-$(CONFIG_UV_MMTIMER)	+= uv_mmtimer.o
 obj-$(CONFIG_VIOTAPE)		+= viotape.o
 obj-$(CONFIG_IBM_BSR)		+= bsr.o
 obj-$(CONFIG_SGI_MBCS)		+= mbcs.o
+<<<<<<< HEAD
+=======
+obj-$(CONFIG_BRIQ_PANEL)	+= briq_panel.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_BFIN_OTP)		+= bfin-otp.o
 
 obj-$(CONFIG_PRINTER)		+= lp.o
@@ -63,8 +71,15 @@ obj-$(CONFIG_RAMOOPS)		+= ramoops.o
 obj-$(CONFIG_JS_RTC)		+= js-rtc.o
 js-rtc-y = rtc.o
 
+<<<<<<< HEAD
 obj-$(CONFIG_TILE_SROM)		+= tile-srom.o
 obj-$(CONFIG_MSM_ROTATOR)	+= msm_rotator.o
 obj-$(CONFIG_DIAG_CHAR)		+= diag/
 obj-$(CONFIG_MSM_ADSPRPC)       += adsprpc.o
 obj-$(CONFIG_MSM_RDBG)       += rdbg.o
+=======
+obj-$(CONFIG_S3C_MEM)		+= s3c_mem.o
+obj-$(CONFIG_EXYNOS_MEM)	+= exynos_mem.o
+
+obj-$(CONFIG_DIAG_CHAR)		+= diag/
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

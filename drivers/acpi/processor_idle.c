@@ -37,7 +37,11 @@
 #include <linux/dmi.h>
 #include <linux/moduleparam.h>
 #include <linux/sched.h>	/* need_resched() */
+<<<<<<< HEAD
 #include <linux/pm_qos.h>
+=======
+#include <linux/pm_qos_params.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/clockchips.h>
 #include <linux/cpuidle.h>
 #include <linux/irqflags.h>
@@ -224,6 +228,10 @@ static void lapic_timer_state_broadcast(struct acpi_processor *pr,
 /*
  * Suspend / resume control
  */
+<<<<<<< HEAD
+=======
+static int acpi_idle_suspend;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static u32 saved_bm_rld;
 
 static void acpi_idle_bm_rld_save(void)
@@ -242,13 +250,29 @@ static void acpi_idle_bm_rld_restore(void)
 
 int acpi_processor_suspend(struct acpi_device * device, pm_message_t state)
 {
+<<<<<<< HEAD
 	acpi_idle_bm_rld_save();
+=======
+	if (acpi_idle_suspend == 1)
+		return 0;
+
+	acpi_idle_bm_rld_save();
+	acpi_idle_suspend = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
 int acpi_processor_resume(struct acpi_device * device)
 {
+<<<<<<< HEAD
 	acpi_idle_bm_rld_restore();
+=======
+	if (acpi_idle_suspend == 0)
+		return 0;
+
+	acpi_idle_bm_rld_restore();
+	acpi_idle_suspend = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -732,17 +756,26 @@ static inline void acpi_idle_do_entry(struct acpi_processor_cx *cx)
 /**
  * acpi_idle_enter_c1 - enters an ACPI C1 state-type
  * @dev: the target CPU
+<<<<<<< HEAD
  * @drv: cpuidle driver containing cpuidle state info
  * @index: index of target state
+=======
+ * @state: the state data
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This is equivalent to the HALT instruction.
  */
 static int acpi_idle_enter_c1(struct cpuidle_device *dev,
+<<<<<<< HEAD
 		struct cpuidle_driver *drv, int index)
+=======
+			      struct cpuidle_state *state)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	ktime_t  kt1, kt2;
 	s64 idle_time;
 	struct acpi_processor *pr;
+<<<<<<< HEAD
 	struct cpuidle_state_usage *state_usage = &dev->states_usage[index];
 	struct acpi_processor_cx *cx = cpuidle_get_statedata(state_usage);
 
@@ -754,19 +787,41 @@ static int acpi_idle_enter_c1(struct cpuidle_device *dev,
 
 	local_irq_disable();
 
+=======
+	struct acpi_processor_cx *cx = cpuidle_get_statedata(state);
+
+	pr = __this_cpu_read(processors);
+
+	if (unlikely(!pr))
+		return 0;
+
+	local_irq_disable();
+
+	/* Do not access any ACPI IO ports in suspend path */
+	if (acpi_idle_suspend) {
+		local_irq_enable();
+		cpu_relax();
+		return 0;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	lapic_timer_state_broadcast(pr, cx, 1);
 	kt1 = ktime_get_real();
 	acpi_idle_do_entry(cx);
 	kt2 = ktime_get_real();
 	idle_time =  ktime_to_us(ktime_sub(kt2, kt1));
 
+<<<<<<< HEAD
 	/* Update device last_residency*/
 	dev->last_residency = (int)idle_time;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	local_irq_enable();
 	cx->usage++;
 	lapic_timer_state_broadcast(pr, cx, 0);
 
+<<<<<<< HEAD
 	return index;
 }
 
@@ -797,11 +852,15 @@ static int acpi_idle_play_dead(struct cpuidle_device *dev, int index)
 
 	/* Never reached */
 	return 0;
+=======
+	return idle_time;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
  * acpi_idle_enter_simple - enters an ACPI state without BM handling
  * @dev: the target CPU
+<<<<<<< HEAD
  * @drv: cpuidle driver with cpuidle state information
  * @index: the index of suggested state
  */
@@ -811,15 +870,33 @@ static int acpi_idle_enter_simple(struct cpuidle_device *dev,
 	struct acpi_processor *pr;
 	struct cpuidle_state_usage *state_usage = &dev->states_usage[index];
 	struct acpi_processor_cx *cx = cpuidle_get_statedata(state_usage);
+=======
+ * @state: the state data
+ */
+static int acpi_idle_enter_simple(struct cpuidle_device *dev,
+				  struct cpuidle_state *state)
+{
+	struct acpi_processor *pr;
+	struct acpi_processor_cx *cx = cpuidle_get_statedata(state);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ktime_t  kt1, kt2;
 	s64 idle_time_ns;
 	s64 idle_time;
 
 	pr = __this_cpu_read(processors);
+<<<<<<< HEAD
 	dev->last_residency = 0;
 
 	if (unlikely(!pr))
 		return -EINVAL;
+=======
+
+	if (unlikely(!pr))
+		return 0;
+
+	if (acpi_idle_suspend)
+		return(acpi_idle_enter_c1(dev, state));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	local_irq_disable();
 
@@ -834,7 +911,11 @@ static int acpi_idle_enter_simple(struct cpuidle_device *dev,
 		if (unlikely(need_resched())) {
 			current_thread_info()->status |= TS_POLLING;
 			local_irq_enable();
+<<<<<<< HEAD
 			return -EINVAL;
+=======
+			return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 	}
 
@@ -856,9 +937,12 @@ static int acpi_idle_enter_simple(struct cpuidle_device *dev,
 	idle_time = idle_time_ns;
 	do_div(idle_time, NSEC_PER_USEC);
 
+<<<<<<< HEAD
 	/* Update device last_residency*/
 	dev->last_residency = (int)idle_time;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Tell the scheduler how much we idled: */
 	sched_clock_idle_wakeup_event(idle_time_ns);
 
@@ -870,32 +954,52 @@ static int acpi_idle_enter_simple(struct cpuidle_device *dev,
 
 	lapic_timer_state_broadcast(pr, cx, 0);
 	cx->time += idle_time;
+<<<<<<< HEAD
 	return index;
 }
 
 static int c3_cpu_count;
 static DEFINE_RAW_SPINLOCK(c3_lock);
+=======
+	return idle_time;
+}
+
+static int c3_cpu_count;
+static DEFINE_SPINLOCK(c3_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * acpi_idle_enter_bm - enters C3 with proper BM handling
  * @dev: the target CPU
+<<<<<<< HEAD
  * @drv: cpuidle driver containing state data
  * @index: the index of suggested state
+=======
+ * @state: the state data
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * If BM is detected, the deepest non-C3 idle state is entered instead.
  */
 static int acpi_idle_enter_bm(struct cpuidle_device *dev,
+<<<<<<< HEAD
 		struct cpuidle_driver *drv, int index)
 {
 	struct acpi_processor *pr;
 	struct cpuidle_state_usage *state_usage = &dev->states_usage[index];
 	struct acpi_processor_cx *cx = cpuidle_get_statedata(state_usage);
+=======
+			      struct cpuidle_state *state)
+{
+	struct acpi_processor *pr;
+	struct acpi_processor_cx *cx = cpuidle_get_statedata(state);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ktime_t  kt1, kt2;
 	s64 idle_time_ns;
 	s64 idle_time;
 
 
 	pr = __this_cpu_read(processors);
+<<<<<<< HEAD
 	dev->last_residency = 0;
 
 	if (unlikely(!pr))
@@ -905,11 +1009,28 @@ static int acpi_idle_enter_bm(struct cpuidle_device *dev,
 		if (drv->safe_state_index >= 0) {
 			return drv->states[drv->safe_state_index].enter(dev,
 						drv, drv->safe_state_index);
+=======
+
+	if (unlikely(!pr))
+		return 0;
+
+	if (acpi_idle_suspend)
+		return(acpi_idle_enter_c1(dev, state));
+
+	if (!cx->bm_sts_skip && acpi_idle_bm_check()) {
+		if (dev->safe_state) {
+			dev->last_state = dev->safe_state;
+			return dev->safe_state->enter(dev, dev->safe_state);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} else {
 			local_irq_disable();
 			acpi_safe_halt();
 			local_irq_enable();
+<<<<<<< HEAD
 			return -EINVAL;
+=======
+			return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 	}
 
@@ -926,7 +1047,11 @@ static int acpi_idle_enter_bm(struct cpuidle_device *dev,
 		if (unlikely(need_resched())) {
 			current_thread_info()->status |= TS_POLLING;
 			local_irq_enable();
+<<<<<<< HEAD
 			return -EINVAL;
+=======
+			return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 	}
 
@@ -952,12 +1077,20 @@ static int acpi_idle_enter_bm(struct cpuidle_device *dev,
 	 * without doing anything.
 	 */
 	if (pr->flags.bm_check && pr->flags.bm_control) {
+<<<<<<< HEAD
 		raw_spin_lock(&c3_lock);
+=======
+		spin_lock(&c3_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		c3_cpu_count++;
 		/* Disable bus master arbitration when all CPUs are in C3 */
 		if (c3_cpu_count == num_online_cpus())
 			acpi_write_bit_register(ACPI_BITREG_ARB_DISABLE, 1);
+<<<<<<< HEAD
 		raw_spin_unlock(&c3_lock);
+=======
+		spin_unlock(&c3_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} else if (!pr->flags.bm_check) {
 		ACPI_FLUSH_CPU_CACHE();
 	}
@@ -966,19 +1099,29 @@ static int acpi_idle_enter_bm(struct cpuidle_device *dev,
 
 	/* Re-enable bus master arbitration */
 	if (pr->flags.bm_check && pr->flags.bm_control) {
+<<<<<<< HEAD
 		raw_spin_lock(&c3_lock);
 		acpi_write_bit_register(ACPI_BITREG_ARB_DISABLE, 0);
 		c3_cpu_count--;
 		raw_spin_unlock(&c3_lock);
+=======
+		spin_lock(&c3_lock);
+		acpi_write_bit_register(ACPI_BITREG_ARB_DISABLE, 0);
+		c3_cpu_count--;
+		spin_unlock(&c3_lock);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	kt2 = ktime_get_real();
 	idle_time_ns = ktime_to_ns(ktime_sub(kt2, kt1));
 	idle_time = idle_time_ns;
 	do_div(idle_time, NSEC_PER_USEC);
 
+<<<<<<< HEAD
 	/* Update device last_residency*/
 	dev->last_residency = (int)idle_time;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Tell the scheduler how much we idled: */
 	sched_clock_idle_wakeup_event(idle_time_ns);
 
@@ -990,7 +1133,11 @@ static int acpi_idle_enter_bm(struct cpuidle_device *dev,
 
 	lapic_timer_state_broadcast(pr, cx, 0);
 	cx->time += idle_time;
+<<<<<<< HEAD
 	return index;
+=======
+	return idle_time;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 struct cpuidle_driver acpi_idle_driver = {
@@ -999,6 +1146,7 @@ struct cpuidle_driver acpi_idle_driver = {
 };
 
 /**
+<<<<<<< HEAD
  * acpi_processor_setup_cpuidle_cx - prepares and configures CPUIDLE
  * device i.e. per-cpu data
  *
@@ -1009,6 +1157,16 @@ static int acpi_processor_setup_cpuidle_cx(struct acpi_processor *pr)
 	int i, count = CPUIDLE_DRIVER_STATE_START;
 	struct acpi_processor_cx *cx;
 	struct cpuidle_state_usage *state_usage;
+=======
+ * acpi_processor_setup_cpuidle - prepares and configures CPUIDLE
+ * @pr: the ACPI processor
+ */
+static int acpi_processor_setup_cpuidle(struct acpi_processor *pr)
+{
+	int i, count = CPUIDLE_DRIVER_STATE_START;
+	struct acpi_processor_cx *cx;
+	struct cpuidle_state *state;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct cpuidle_device *dev = &pr->power.dev;
 
 	if (!pr->flags.power_setup_done)
@@ -1018,6 +1176,7 @@ static int acpi_processor_setup_cpuidle_cx(struct acpi_processor *pr)
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	dev->cpu = pr->id;
 
 	if (max_cstate == 0)
@@ -1075,6 +1234,15 @@ static int acpi_processor_setup_cpuidle_states(struct acpi_processor *pr)
 	for (i = 0; i < CPUIDLE_STATE_MAX; i++) {
 		drv->states[i].name[0] = '\0';
 		drv->states[i].desc[0] = '\0';
+=======
+	if (!dev)
+		return -EINVAL;
+
+	dev->cpu = pr->id;
+	for (i = 0; i < CPUIDLE_STATE_MAX; i++) {
+		dev->states[i].name[0] = '\0';
+		dev->states[i].desc[0] = '\0';
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (max_cstate == 0)
@@ -1082,6 +1250,10 @@ static int acpi_processor_setup_cpuidle_states(struct acpi_processor *pr)
 
 	for (i = 1; i < ACPI_PROCESSOR_MAX_POWER && i <= max_cstate; i++) {
 		cx = &pr->power.states[i];
+<<<<<<< HEAD
+=======
+		state = &dev->states[count];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		if (!cx->valid)
 			continue;
@@ -1092,8 +1264,13 @@ static int acpi_processor_setup_cpuidle_states(struct acpi_processor *pr)
 		    !(acpi_gbl_FADT.flags & ACPI_FADT_C2_MP_SUPPORTED))
 			continue;
 #endif
+<<<<<<< HEAD
 
 		state = &drv->states[count];
+=======
+		cpuidle_set_statedata(state, cx);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		snprintf(state->name, CPUIDLE_NAME_LEN, "C%d", i);
 		strncpy(state->desc, cx->desc, CPUIDLE_DESC_LEN);
 		state->exit_latency = cx->latency;
@@ -1106,15 +1283,23 @@ static int acpi_processor_setup_cpuidle_states(struct acpi_processor *pr)
 				state->flags |= CPUIDLE_FLAG_TIME_VALID;
 
 			state->enter = acpi_idle_enter_c1;
+<<<<<<< HEAD
 			state->enter_dead = acpi_idle_play_dead;
 			drv->safe_state_index = count;
+=======
+			dev->safe_state = state;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 
 			case ACPI_STATE_C2:
 			state->flags |= CPUIDLE_FLAG_TIME_VALID;
 			state->enter = acpi_idle_enter_simple;
+<<<<<<< HEAD
 			state->enter_dead = acpi_idle_play_dead;
 			drv->safe_state_index = count;
+=======
+			dev->safe_state = state;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 
 			case ACPI_STATE_C3:
@@ -1130,7 +1315,11 @@ static int acpi_processor_setup_cpuidle_states(struct acpi_processor *pr)
 			break;
 	}
 
+<<<<<<< HEAD
 	drv->state_count = count;
+=======
+	dev->state_count = count;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!count)
 		return -EINVAL;
@@ -1138,7 +1327,11 @@ static int acpi_processor_setup_cpuidle_states(struct acpi_processor *pr)
 	return 0;
 }
 
+<<<<<<< HEAD
 int acpi_processor_hotplug(struct acpi_processor *pr)
+=======
+int acpi_processor_cst_has_changed(struct acpi_processor *pr)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	int ret = 0;
 
@@ -1159,7 +1352,11 @@ int acpi_processor_hotplug(struct acpi_processor *pr)
 	cpuidle_disable_device(&pr->power.dev);
 	acpi_processor_get_power_info(pr);
 	if (pr->flags.power) {
+<<<<<<< HEAD
 		acpi_processor_setup_cpuidle_cx(pr);
+=======
+		acpi_processor_setup_cpuidle(pr);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ret = cpuidle_enable_device(&pr->power.dev);
 	}
 	cpuidle_resume_and_unlock();
@@ -1167,6 +1364,7 @@ int acpi_processor_hotplug(struct acpi_processor *pr)
 	return ret;
 }
 
+<<<<<<< HEAD
 int acpi_processor_cst_has_changed(struct acpi_processor *pr)
 {
 	int cpu;
@@ -1227,11 +1425,16 @@ int acpi_processor_cst_has_changed(struct acpi_processor *pr)
 
 static int acpi_processor_registered;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int __cpuinit acpi_processor_power_init(struct acpi_processor *pr,
 			      struct acpi_device *device)
 {
 	acpi_status status = 0;
+<<<<<<< HEAD
 	int retval;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	static int first_run;
 
 	if (disabled_by_idle_boot_param())
@@ -1268,6 +1471,7 @@ int __cpuinit acpi_processor_power_init(struct acpi_processor *pr,
 	 * platforms that only support C1.
 	 */
 	if (pr->flags.power) {
+<<<<<<< HEAD
 		/* Register acpi_idle_driver if not already registered */
 		if (!acpi_processor_registered) {
 			acpi_processor_setup_cpuidle_states(pr);
@@ -1288,6 +1492,11 @@ int __cpuinit acpi_processor_power_init(struct acpi_processor *pr,
 			return retval;
 		}
 		acpi_processor_registered++;
+=======
+		acpi_processor_setup_cpuidle(pr);
+		if (cpuidle_register_device(&pr->power.dev))
+			return -EIO;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	return 0;
 }
@@ -1298,6 +1507,7 @@ int acpi_processor_power_exit(struct acpi_processor *pr,
 	if (disabled_by_idle_boot_param())
 		return 0;
 
+<<<<<<< HEAD
 	if (pr->flags.power) {
 		cpuidle_unregister_device(&pr->power.dev);
 		acpi_processor_registered--;
@@ -1306,5 +1516,10 @@ int acpi_processor_power_exit(struct acpi_processor *pr,
 	}
 
 	pr->flags.power_setup_done = 0;
+=======
+	cpuidle_unregister_device(&pr->power.dev);
+	pr->flags.power_setup_done = 0;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }

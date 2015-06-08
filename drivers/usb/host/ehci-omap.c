@@ -41,8 +41,11 @@
 #include <linux/usb/ulpi.h>
 #include <plat/usb.h>
 #include <linux/regulator/consumer.h>
+<<<<<<< HEAD
 #include <linux/pm_runtime.h>
 #include <linux/gpio.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* EHCI Register Set */
 #define EHCI_INSNREG04					(0xA0)
@@ -100,6 +103,7 @@ static void omap_ehci_soft_phy_reset(struct platform_device *pdev, u8 port)
 	}
 }
 
+<<<<<<< HEAD
 static void disable_put_regulator(
 		struct ehci_hcd_omap_platform_data *pdata)
 {
@@ -112,6 +116,8 @@ static void disable_put_regulator(
 		}
 	}
 }
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* configure so an HC device and id are always provided */
 /* always called with process context; sleeping is OK */
@@ -192,6 +198,7 @@ static int ehci_hcd_omap_probe(struct platform_device *pdev)
 		}
 	}
 
+<<<<<<< HEAD
 	if (pdata->phy_reset) {
 		if (gpio_is_valid(pdata->reset_gpio_port[0]))
 			gpio_request_one(pdata->reset_gpio_port[0],
@@ -208,6 +215,14 @@ static int ehci_hcd_omap_probe(struct platform_device *pdev)
 	pm_runtime_enable(dev);
 	pm_runtime_get_sync(dev);
 
+=======
+	ret = omap_usbhs_enable(dev);
+	if (ret) {
+		dev_err(dev, "failed to start usbhs with err %d\n", ret);
+		goto err_enable;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * An undocumented "feature" in the OMAP3 EHCI controller,
 	 * causes suspended ports to be taken out of suspend when
@@ -240,9 +255,13 @@ static int ehci_hcd_omap_probe(struct platform_device *pdev)
 	/* cache this readonly data; minimize chip reads */
 	omap_ehci->hcs_params = readl(&omap_ehci->caps->hcs_params);
 
+<<<<<<< HEAD
 	ehci_reset(omap_ehci);
 
 	ret = usb_add_hcd(hcd, irq, IRQF_SHARED);
+=======
+	ret = usb_add_hcd(hcd, irq, IRQF_DISABLED | IRQF_SHARED);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret) {
 		dev_err(dev, "failed to add hcd with err %d\n", ret);
 		goto err_add_hcd;
@@ -251,6 +270,7 @@ static int ehci_hcd_omap_probe(struct platform_device *pdev)
 	/* root ports should always stay powered */
 	ehci_port_power(omap_ehci, 1);
 
+<<<<<<< HEAD
 	if (pdata->phy_reset) {
 		/* Hold the PHY in RESET for enough time till
 		 * PHY is settled and ready
@@ -272,6 +292,17 @@ err_add_hcd:
 
 err_io:
 	iounmap(regs);
+=======
+	return 0;
+
+err_add_hcd:
+	omap_usbhs_disable(dev);
+
+err_enable:
+	usb_put_hcd(hcd);
+
+err_io:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return ret;
 }
 
@@ -286,6 +317,7 @@ err_io:
  */
 static int ehci_hcd_omap_remove(struct platform_device *pdev)
 {
+<<<<<<< HEAD
 	struct device *dev				= &pdev->dev;
 	struct usb_hcd *hcd				= dev_get_drvdata(dev);
 	struct ehci_hcd_omap_platform_data *pdata	= dev->platform_data;
@@ -304,6 +336,14 @@ static int ehci_hcd_omap_remove(struct platform_device *pdev)
 		if (gpio_is_valid(pdata->reset_gpio_port[1]))
 			gpio_free(pdata->reset_gpio_port[1]);
 	}
+=======
+	struct device *dev	= &pdev->dev;
+	struct usb_hcd *hcd	= dev_get_drvdata(dev);
+
+	usb_remove_hcd(hcd);
+	omap_usbhs_disable(dev);
+	usb_put_hcd(hcd);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -371,7 +411,11 @@ static const struct hc_driver ehci_omap_hc_driver = {
 	.clear_tt_buffer_complete = ehci_clear_tt_buffer_complete,
 };
 
+<<<<<<< HEAD
 MODULE_ALIAS("platform:omap-ehci");
+=======
+MODULE_ALIAS("platform:ehci-omap");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_AUTHOR("Texas Instruments, Inc.");
 MODULE_AUTHOR("Felipe Balbi <felipe.balbi@nokia.com>");
 

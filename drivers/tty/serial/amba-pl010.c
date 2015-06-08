@@ -312,16 +312,23 @@ static int pl010_startup(struct uart_port *port)
 	struct uart_amba_port *uap = (struct uart_amba_port *)port;
 	int retval;
 
+<<<<<<< HEAD
 	retval = clk_prepare(uap->clk);
 	if (retval)
 		goto out;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * Try to enable the clock producer.
 	 */
 	retval = clk_enable(uap->clk);
 	if (retval)
+<<<<<<< HEAD
 		goto clk_unprep;
+=======
+		goto out;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	uap->port.uartclk = clk_get_rate(uap->clk);
 
@@ -347,8 +354,11 @@ static int pl010_startup(struct uart_port *port)
 
  clk_dis:
 	clk_disable(uap->clk);
+<<<<<<< HEAD
  clk_unprep:
 	clk_unprepare(uap->clk);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  out:
 	return retval;
 }
@@ -376,7 +386,10 @@ static void pl010_shutdown(struct uart_port *port)
 	 * Shut down the clock producer
 	 */
 	clk_disable(uap->clk);
+<<<<<<< HEAD
 	clk_unprepare(uap->clk);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static void
@@ -633,7 +646,10 @@ static int __init pl010_console_setup(struct console *co, char *options)
 	int bits = 8;
 	int parity = 'n';
 	int flow = 'n';
+<<<<<<< HEAD
 	int ret;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * Check whether an invalid uart number has been specified, and
@@ -646,10 +662,13 @@ static int __init pl010_console_setup(struct console *co, char *options)
 	if (!uap)
 		return -ENODEV;
 
+<<<<<<< HEAD
 	ret = clk_prepare(uap->clk);
 	if (ret)
 		return ret;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	uap->port.uartclk = clk_get_rate(uap->clk);
 
 	if (options)
@@ -795,8 +814,11 @@ static struct amba_id pl010_ids[] = {
 	{ 0, 0 },
 };
 
+<<<<<<< HEAD
 MODULE_DEVICE_TABLE(amba, pl010_ids);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct amba_driver pl010_driver = {
 	.drv = {
 		.name	= "uart-pl010",

@@ -35,6 +35,10 @@
 #include "qlogicpti.h"
 
 #include <asm/dma.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/ptrace.h>
 #include <asm/pgtable.h>
 #include <asm/oplib.h>
@@ -879,7 +883,11 @@ static inline void cmd_frob(struct Command_Entry *cmd, struct scsi_cmnd *Cmnd,
 		cmd->control_flags |= CFLAG_WRITE;
 	else
 		cmd->control_flags |= CFLAG_READ;
+<<<<<<< HEAD
 	cmd->time_out = Cmnd->request->timeout/HZ;
+=======
+	cmd->time_out = 30;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	memcpy(cmd->cdb, Cmnd->cmnd, Cmnd->cmd_len);
 }
 

@@ -59,8 +59,11 @@ int lbs_allocate_cmd_buffer(struct lbs_private *priv);
 int lbs_free_cmd_buffer(struct lbs_private *priv);
 
 int lbs_execute_next_command(struct lbs_private *priv);
+<<<<<<< HEAD
 void __lbs_complete_command(struct lbs_private *priv, struct cmd_ctrl_node *cmd,
 			    int result);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 void lbs_complete_command(struct lbs_private *priv, struct cmd_ctrl_node *cmd,
 			  int result);
 int lbs_process_command_response(struct lbs_private *priv, u8 *data, u32 len);

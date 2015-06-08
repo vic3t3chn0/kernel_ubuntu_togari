@@ -1,8 +1,16 @@
 /*
+<<<<<<< HEAD
  * max8997.c - mfd core driver for the Maxim 8966 and 8997
  *
  * Copyright (C) 2011 Samsung Electronics
  * MyungJoo Ham <myungjoo.ham@smasung.com>
+=======
+ * max8997.c - mfd core driver for the Maxim 8997
+ *
+ *  Copyright (C) 2009-2010 Samsung Electronics
+ *
+ *  based on max8998.c
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +25,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<<<<<<< HEAD
  *
  * This driver is based on max8998.c
  */
@@ -26,11 +35,22 @@
 #include <linux/interrupt.h>
 #include <linux/pm_runtime.h>
 #include <linux/module.h>
+=======
+ */
+
+#include <linux/module.h>
+#include <linux/moduleparam.h>
+#include <linux/init.h>
+#include <linux/slab.h>
+#include <linux/i2c.h>
+#include <linux/interrupt.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/mutex.h>
 #include <linux/mfd/core.h>
 #include <linux/mfd/max8997.h>
 #include <linux/mfd/max8997-private.h>
 
+<<<<<<< HEAD
 #define I2C_ADDR_PMIC	(0xCC >> 1)
 #define I2C_ADDR_MUIC	(0x4A >> 1)
 #define I2C_ADDR_BATTERY	(0x6C >> 1)
@@ -45,6 +65,24 @@ static struct mfd_cell max8997_devs[] = {
 	{ .name = "max8997-muic", },
 	{ .name = "max8997-led", .id = 1 },
 	{ .name = "max8997-led", .id = 2 },
+=======
+#define RTC_I2C_ADDR		(0x0c >> 1)
+#define MUIC_I2C_ADDR		(0x4a >> 1)
+#define HMOTOR_I2C_ADDR		(0x90 >> 1)
+
+static struct mfd_cell max8997_devs[] = {
+	{
+		.name = "max8997-pmic",
+	}, {
+		.name = "max8997-charger",
+	}, {
+		.name = "max8997-rtc",
+	}, {
+		.name = "max8997-muic",
+	}, {
+		.name = "max8997-hapticmotor",
+	},
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 int max8997_read_reg(struct i2c_client *i2c, u8 reg, u8 *dest)
@@ -62,7 +100,11 @@ int max8997_read_reg(struct i2c_client *i2c, u8 reg, u8 *dest)
 	*dest = ret;
 	return 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(max8997_read_reg);
+=======
+EXPORT_SYMBOL(max8997_read_reg);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int max8997_bulk_read(struct i2c_client *i2c, u8 reg, int count, u8 *buf)
 {
@@ -77,7 +119,11 @@ int max8997_bulk_read(struct i2c_client *i2c, u8 reg, int count, u8 *buf)
 
 	return 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(max8997_bulk_read);
+=======
+EXPORT_SYMBOL(max8997_bulk_read);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int max8997_write_reg(struct i2c_client *i2c, u8 reg, u8 value)
 {
@@ -89,7 +135,11 @@ int max8997_write_reg(struct i2c_client *i2c, u8 reg, u8 value)
 	mutex_unlock(&max8997->iolock);
 	return ret;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(max8997_write_reg);
+=======
+EXPORT_SYMBOL(max8997_write_reg);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int max8997_bulk_write(struct i2c_client *i2c, u8 reg, int count, u8 *buf)
 {
@@ -104,7 +154,11 @@ int max8997_bulk_write(struct i2c_client *i2c, u8 reg, int count, u8 *buf)
 
 	return 0;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(max8997_bulk_write);
+=======
+EXPORT_SYMBOL(max8997_bulk_write);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int max8997_update_reg(struct i2c_client *i2c, u8 reg, u8 val, u8 mask)
 {
@@ -121,13 +175,22 @@ int max8997_update_reg(struct i2c_client *i2c, u8 reg, u8 val, u8 mask)
 	mutex_unlock(&max8997->iolock);
 	return ret;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(max8997_update_reg);
+=======
+EXPORT_SYMBOL(max8997_update_reg);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int max8997_i2c_probe(struct i2c_client *i2c,
 			    const struct i2c_device_id *id)
 {
+<<<<<<< HEAD
 	struct max8997_dev *max8997;
 	struct max8997_platform_data *pdata = i2c->dev.platform_data;
+=======
+	struct max8997_platform_data *pdata = i2c->dev.platform_data;
+	struct max8997_dev *max8997;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int ret = 0;
 
 	max8997 = kzalloc(sizeof(struct max8997_dev), GFP_KERNEL);
@@ -137,6 +200,7 @@ static int max8997_i2c_probe(struct i2c_client *i2c,
 	i2c_set_clientdata(i2c, max8997);
 	max8997->dev = &i2c->dev;
 	max8997->i2c = i2c;
+<<<<<<< HEAD
 	max8997->type = id->driver_data;
 	max8997->irq = i2c->irq;
 
@@ -182,6 +246,41 @@ err_mfd:
 	i2c_unregister_device(max8997->haptic);
 	i2c_unregister_device(max8997->rtc);
 err:
+=======
+	max8997->irq = i2c->irq;
+	max8997->type = id->driver_data;
+	if (pdata) {
+		max8997->ono = pdata->ono;
+		max8997->irq_base = pdata->irq_base;
+		max8997->wakeup = pdata->wakeup;
+	}
+	mutex_init(&max8997->iolock);
+
+	max8997->rtc = i2c_new_dummy(i2c->adapter, RTC_I2C_ADDR);
+	i2c_set_clientdata(max8997->rtc, max8997);
+
+	max8997->muic = i2c_new_dummy(i2c->adapter, MUIC_I2C_ADDR);
+	i2c_set_clientdata(max8997->muic, max8997);
+
+	max8997->hmotor = i2c_new_dummy(i2c->adapter, HMOTOR_I2C_ADDR);
+	i2c_set_clientdata(max8997->hmotor, max8997);
+
+	max8997_irq_init(max8997);
+
+	ret = mfd_add_devices(max8997->dev, -1,
+			      max8997_devs, ARRAY_SIZE(max8997_devs),
+			      NULL, 0);
+	if (ret < 0)
+		goto err;
+
+
+	return ret;
+
+err:
+	mfd_remove_devices(max8997->dev);
+	max8997_irq_exit(max8997);
+	i2c_unregister_device(max8997->rtc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(max8997);
 	return ret;
 }
@@ -191,8 +290,12 @@ static int max8997_i2c_remove(struct i2c_client *i2c)
 	struct max8997_dev *max8997 = i2c_get_clientdata(i2c);
 
 	mfd_remove_devices(max8997->dev);
+<<<<<<< HEAD
 	i2c_unregister_device(max8997->muic);
 	i2c_unregister_device(max8997->haptic);
+=======
+	max8997_irq_exit(max8997);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	i2c_unregister_device(max8997->rtc);
 	kfree(max8997);
 
@@ -201,6 +304,7 @@ static int max8997_i2c_remove(struct i2c_client *i2c)
 
 static const struct i2c_device_id max8997_i2c_id[] = {
 	{ "max8997", TYPE_MAX8997 },
+<<<<<<< HEAD
 	{ "max8966", TYPE_MAX8966 },
 	{ }
 };
@@ -377,10 +481,27 @@ static int max8997_freeze(struct device *dev)
 		max8997_read_reg(i2c, max8997_dumpaddr_haptic[i],
 				&max8997->reg_dump[i + MAX8997_REG_PMIC_END +
 				MAX8997_MUIC_REG_END]);
+=======
+	{ }
+};
+MODULE_DEVICE_TABLE(i2c, max8997_i2c_id);
+
+#ifdef CONFIG_PM
+static int max8997_suspend(struct device *dev)
+{
+	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
+	struct max8997_dev *max8997 = i2c_get_clientdata(i2c);
+
+	if (max8997->wakeup)
+		enable_irq_wake(max8997->irq);
+
+	disable_irq(max8997->irq);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
 
+<<<<<<< HEAD
 static int max8997_restore(struct device *dev)
 {
 	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
@@ -422,12 +543,33 @@ static int max8997_resume(struct device *dev)
 		irq_set_irq_wake(max8997->irq, 0);
 	return max8997_irq_resume(max8997);
 }
+=======
+static int max8997_resume(struct device *dev)
+{
+	struct i2c_client *i2c = container_of(dev, struct i2c_client, dev);
+	struct max8997_dev *max8997 = i2c_get_clientdata(i2c);
+
+	if (max8997->wakeup)
+		disable_irq_wake(max8997->irq);
+
+	enable_irq(max8997->irq);
+
+	return 0;
+}
+#else
+#define max8997_suspend		NULL
+#define max8997_resume		NULL
+#endif /* CONFIG_PM */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 const struct dev_pm_ops max8997_pm = {
 	.suspend = max8997_suspend,
 	.resume = max8997_resume,
+<<<<<<< HEAD
 	.freeze = max8997_freeze,
 	.restore = max8997_restore,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static struct i2c_driver max8997_i2c_driver = {
@@ -455,5 +597,9 @@ static void __exit max8997_i2c_exit(void)
 module_exit(max8997_i2c_exit);
 
 MODULE_DESCRIPTION("MAXIM 8997 multi-function core driver");
+<<<<<<< HEAD
 MODULE_AUTHOR("MyungJoo Ham <myungjoo.ham@samsung.com>");
+=======
+MODULE_AUTHOR("<ms925.kim@samsung.com>");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_LICENSE("GPL");

@@ -17,9 +17,12 @@
  * USA.
  */
 
+<<<<<<< HEAD
 #ifndef __USBIP_STUB_H
 #define __USBIP_STUB_H
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/list.h>
 #include <linux/slab.h>
 #include <linux/spinlock.h>
@@ -35,6 +38,10 @@
 struct stub_device {
 	struct usb_interface *interface;
 	struct usb_device *udev;
+<<<<<<< HEAD
+=======
+	struct list_head list;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	struct usbip_device ud;
 	__u32 devid;
@@ -78,9 +85,13 @@ struct stub_unlink {
 	__u32 status;
 };
 
+<<<<<<< HEAD
 /* same as SYSFS_BUS_ID_SIZE */
 #define BUSID_SIZE 32
 
+=======
+#define BUSID_SIZE 20
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 struct bus_id_priv {
 	char name[BUSID_SIZE];
 	char status;
@@ -108,5 +119,8 @@ void stub_enqueue_ret_unlink(struct stub_device *sdev, __u32 seqnum,
 			     __u32 status);
 void stub_complete(struct urb *urb);
 int stub_tx_loop(void *data);
+<<<<<<< HEAD
 
 #endif /* __USBIP_STUB_H */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

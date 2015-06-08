@@ -12,8 +12,11 @@
  * Infra-red driver (SIR/FIR) for the PXA2xx embedded microprocessor
  *
  */
+<<<<<<< HEAD
 #include <linux/dma-mapping.h>
 #include <linux/interrupt.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/module.h>
 #include <linux/netdevice.h>
 #include <linux/etherdevice.h>
@@ -128,20 +131,32 @@ struct pxa_irda {
 static inline void pxa_irda_disable_clk(struct pxa_irda *si)
 {
 	if (si->cur_clk)
+<<<<<<< HEAD
 		clk_disable_unprepare(si->cur_clk);
+=======
+		clk_disable(si->cur_clk);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	si->cur_clk = NULL;
 }
 
 static inline void pxa_irda_enable_firclk(struct pxa_irda *si)
 {
 	si->cur_clk = si->fir_clk;
+<<<<<<< HEAD
 	clk_prepare_enable(si->fir_clk);
+=======
+	clk_enable(si->fir_clk);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static inline void pxa_irda_enable_sirclk(struct pxa_irda *si)
 {
 	si->cur_clk = si->sir_clk;
+<<<<<<< HEAD
 	clk_prepare_enable(si->sir_clk);
+=======
+	clk_enable(si->sir_clk);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 
@@ -966,7 +981,22 @@ static struct platform_driver pxa_ir_driver = {
 	.resume		= pxa_irda_resume,
 };
 
+<<<<<<< HEAD
 module_platform_driver(pxa_ir_driver);
+=======
+static int __init pxa_irda_init(void)
+{
+	return platform_driver_register(&pxa_ir_driver);
+}
+
+static void __exit pxa_irda_exit(void)
+{
+	platform_driver_unregister(&pxa_ir_driver);
+}
+
+module_init(pxa_irda_init);
+module_exit(pxa_irda_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:pxa2xx-ir");

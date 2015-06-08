@@ -22,7 +22,10 @@
 #include <linux/slab.h>
 #include <linux/sched.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <asm/io.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "dmxdev.h"
 #include "dvbdev.h"

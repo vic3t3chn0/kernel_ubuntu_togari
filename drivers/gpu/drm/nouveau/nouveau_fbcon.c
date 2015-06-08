@@ -497,7 +497,11 @@ int nouveau_fbcon_init(struct drm_device *dev)
 	nfbdev->helper.funcs = &nouveau_fbcon_helper_funcs;
 
 	ret = drm_fb_helper_init(dev, &nfbdev->helper,
+<<<<<<< HEAD
 				 nv_two_heads(dev) ? 2 : 1, 4);
+=======
+				 dev->mode_config.num_crtc, 4);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret) {
 		kfree(nfbdev);
 		return ret;

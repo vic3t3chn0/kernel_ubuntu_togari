@@ -340,6 +340,10 @@ no_region:
 subsys_initcall(ptp_init);
 module_exit(ptp_exit);
 
+<<<<<<< HEAD
 MODULE_AUTHOR("Richard Cochran <richardcochran@gmail.com>");
+=======
+MODULE_AUTHOR("Richard Cochran <richard.cochran@omicron.at>");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_DESCRIPTION("PTP clocks support");
 MODULE_LICENSE("GPL");

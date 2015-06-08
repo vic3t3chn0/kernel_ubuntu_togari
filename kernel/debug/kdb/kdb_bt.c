@@ -15,6 +15,10 @@
 #include <linux/sched.h>
 #include <linux/kdb.h>
 #include <linux/nmi.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "kdb_private.h"
 
 
@@ -111,8 +115,14 @@ kdb_bt(int argc, const char **argv)
 	unsigned long addr;
 	long offset;
 
+<<<<<<< HEAD
 	/* Prompt after each proc in bta */
 	kdbgetintenv("BTAPROMPT", &btaprompt);
+=======
+	kdbgetintenv("BTARGS", &argcount);	/* Arguments to print */
+	kdbgetintenv("BTAPROMPT", &btaprompt);	/* Prompt after each
+						 * proc in bta */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (strcmp(argv[0], "bta") == 0) {
 		struct task_struct *g, *p;

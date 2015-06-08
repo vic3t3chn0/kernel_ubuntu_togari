@@ -31,13 +31,17 @@ static int proc_ipc_dointvec(ctl_table *table, int write,
 	void __user *buffer, size_t *lenp, loff_t *ppos)
 {
 	struct ctl_table ipc_table;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	memcpy(&ipc_table, table, sizeof(ipc_table));
 	ipc_table.data = get_ipc(table);
 
 	return proc_dointvec(&ipc_table, write, buffer, lenp, ppos);
 }
 
+<<<<<<< HEAD
 static int proc_ipc_dointvec_minmax(ctl_table *table, int write,
 	void __user *buffer, size_t *lenp, loff_t *ppos)
 {
@@ -62,6 +66,8 @@ static int proc_ipc_dointvec_minmax_orphans(ctl_table *table, int write,
 	return err;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int proc_ipc_callback_dointvec(ctl_table *table, int write,
 	void __user *buffer, size_t *lenp, loff_t *ppos)
 {
@@ -150,8 +156,11 @@ static int proc_ipcauto_dointvec_minmax(ctl_table *table, int write,
 #else
 #define proc_ipc_doulongvec_minmax NULL
 #define proc_ipc_dointvec	   NULL
+<<<<<<< HEAD
 #define proc_ipc_dointvec_minmax   NULL
 #define proc_ipc_dointvec_minmax_orphans   NULL
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define proc_ipc_callback_dointvec NULL
 #define proc_ipcauto_dointvec_minmax NULL
 #endif
@@ -182,6 +191,7 @@ static struct ctl_table ipc_kern_table[] = {
 		.proc_handler	= proc_ipc_dointvec,
 	},
 	{
+<<<<<<< HEAD
 		.procname	= "shm_rmid_forced",
 		.data		= &init_ipc_ns.shm_rmid_forced,
 		.maxlen		= sizeof(init_ipc_ns.shm_rmid_forced),
@@ -191,6 +201,8 @@ static struct ctl_table ipc_kern_table[] = {
 		.extra2		= &one,
 	},
 	{
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		.procname	= "msgmax",
 		.data		= &init_ipc_ns.msg_ctlmax,
 		.maxlen		= sizeof (init_ipc_ns.msg_ctlmax),

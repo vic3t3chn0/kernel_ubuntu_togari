@@ -246,7 +246,11 @@ EXPORT_SYMBOL_GPL(cs5535_mfgpt_write);
  * Jordan tells me that he and Mitch once played w/ it, but it's unclear
  * what the results of that were (and they experienced some instability).
  */
+<<<<<<< HEAD
 static void __devinit reset_all_timers(void)
+=======
+static void __init reset_all_timers(void)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	uint32_t val, dummy;
 

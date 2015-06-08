@@ -113,6 +113,10 @@
  
 #include <linux/module.h>
 
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/signal.h>
 #include <linux/proc_fs.h>
 #include <asm/io.h>

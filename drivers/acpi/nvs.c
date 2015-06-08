@@ -15,6 +15,7 @@
 #include <linux/acpi_io.h>
 #include <acpi/acpiosxf.h>
 
+<<<<<<< HEAD
 /* ACPI NVS regions, APEI may use it */
 
 struct nvs_region {
@@ -65,6 +66,8 @@ int acpi_nvs_for_each_region(int (*func)(__u64 start, __u64 size, void *data),
 
 
 #ifdef CONFIG_ACPI_SLEEP
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * Platforms, like ACPI, may want us to save some memory used by them during
  * suspend and to restore the contents of this memory during the subsequent
@@ -91,12 +94,21 @@ static LIST_HEAD(nvs_list);
  *	things so that the data from page-aligned addresses in this region will
  *	be copied into separate RAM pages.
  */
+<<<<<<< HEAD
 static int suspend_nvs_register(unsigned long start, unsigned long size)
 {
 	struct nvs_page *entry, *next;
 
 	pr_info("PM: Registering ACPI NVS region [mem %#010lx-%#010lx] (%ld bytes)\n",
 		start, start + size - 1, size);
+=======
+int suspend_nvs_register(unsigned long start, unsigned long size)
+{
+	struct nvs_page *entry, *next;
+
+	pr_info("PM: Registering ACPI NVS region at %lx (%ld bytes)\n",
+		start, size);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	while (size > 0) {
 		unsigned int nr_bytes;
@@ -209,4 +221,7 @@ void suspend_nvs_restore(void)
 		if (entry->data)
 			memcpy(entry->kaddr, entry->data, entry->size);
 }
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

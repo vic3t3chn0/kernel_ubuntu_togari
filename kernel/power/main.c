@@ -3,16 +3,24 @@
  *
  * Copyright (c) 2003 Patrick Mochel
  * Copyright (c) 2003 Open Source Development Lab
+<<<<<<< HEAD
  *
+=======
+ * 
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * This file is released under the GPLv2
  *
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/kobject.h>
 #include <linux/string.h>
 #include <linux/resume-trace.h>
 #include <linux/workqueue.h>
+<<<<<<< HEAD
 #include <linux/debugfs.h>
 #include <linux/seq_file.h>
 #include <linux/hrtimer.h>
@@ -20,6 +28,35 @@
 #include "power.h"
 
 #define MAX_BUF 100
+=======
+
+#if defined(CONFIG_CPU_FREQ) && defined(CONFIG_ARCH_EXYNOS4)
+#define CONFIG_DVFS_LIMIT
+#endif
+
+#if defined(CONFIG_CPU_EXYNOS4210)
+#define CONFIG_GPU_LOCK
+#define CONFIG_ROTATION_BOOSTER_SUPPORT
+#endif
+
+#ifdef CONFIG_DVFS_LIMIT
+#include <linux/cpufreq.h>
+#include <mach/cpufreq.h>
+#endif
+
+#ifdef CONFIG_GPU_LOCK
+#include <mach/gpufreq.h>
+#endif
+
+#if defined(CONFIG_CPU_EXYNOS4412) && defined(CONFIG_VIDEO_MALI400MP) \
+		&& defined(CONFIG_VIDEO_MALI400MP_DVFS)
+#define CONFIG_PEGASUS_GPU_LOCK
+extern int mali_dvfs_bottom_lock_push(int lock_step);
+extern int mali_dvfs_bottom_lock_pop(void);
+#endif
+
+#include "power.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 DEFINE_MUTEX(pm_mutex);
 
@@ -29,6 +66,7 @@ DEFINE_MUTEX(pm_mutex);
 
 static BLOCKING_NOTIFIER_HEAD(pm_chain_head);
 
+<<<<<<< HEAD
 static void touch_event_fn(struct work_struct *work);
 static DECLARE_WORK(touch_event_struct, touch_event_fn);
 
@@ -36,6 +74,8 @@ static struct hrtimer tc_ev_timer;
 static int tc_ev_processed;
 static ktime_t touch_evt_timer_val;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int register_pm_notifier(struct notifier_block *nb)
 {
 	return blocking_notifier_chain_register(&pm_chain_head, nb);
@@ -50,9 +90,14 @@ EXPORT_SYMBOL_GPL(unregister_pm_notifier);
 
 int pm_notifier_call_chain(unsigned long val)
 {
+<<<<<<< HEAD
 	int ret = blocking_notifier_call_chain(&pm_chain_head, val, NULL);
 
 	return notifier_to_errno(ret);
+=======
+	return (blocking_notifier_call_chain(&pm_chain_head, val, NULL)
+			== NOTIFY_BAD) ? -EINVAL : 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /* If set, devices may be suspended and resumed asynchronously. */
@@ -81,6 +126,7 @@ static ssize_t pm_async_store(struct kobject *kobj, struct kobj_attribute *attr,
 
 power_attr(pm_async);
 
+<<<<<<< HEAD
 static ssize_t
 touch_event_show(struct kobject *kobj,
 		 struct kobj_attribute *attr, char *buf)
@@ -156,6 +202,8 @@ static enum hrtimer_restart tc_ev_stop(struct hrtimer *hrtimer)
 	return HRTIMER_NORESTART;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_PM_DEBUG
 int pm_test_level = TEST_NONE;
 
@@ -201,7 +249,11 @@ static ssize_t pm_test_store(struct kobject *kobj, struct kobj_attribute *attr,
 	p = memchr(buf, '\n', n);
 	len = p ? p - buf : n;
 
+<<<<<<< HEAD
 	lock_system_sleep();
+=======
+	mutex_lock(&pm_mutex);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	level = TEST_FIRST;
 	for (s = &pm_tests[level]; level <= TEST_MAX; s++, level++)
@@ -211,7 +263,11 @@ static ssize_t pm_test_store(struct kobject *kobj, struct kobj_attribute *attr,
 			break;
 		}
 
+<<<<<<< HEAD
 	unlock_system_sleep();
+=======
+	mutex_unlock(&pm_mutex);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return error ? error : n;
 }
@@ -219,6 +275,7 @@ static ssize_t pm_test_store(struct kobject *kobj, struct kobj_attribute *attr,
 power_attr(pm_test);
 #endif /* CONFIG_PM_DEBUG */
 
+<<<<<<< HEAD
 #ifdef CONFIG_DEBUG_FS
 static char *suspend_step_name(enum suspend_stat_step step)
 {
@@ -318,6 +375,8 @@ static int __init pm_debugfs_init(void)
 late_initcall(pm_debugfs_init);
 #endif /* CONFIG_DEBUG_FS */
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* CONFIG_PM_SLEEP */
 
 struct kobject *power_kobj;
@@ -329,7 +388,11 @@ struct kobject *power_kobj;
  *	'standby' (Power-On Suspend), 'mem' (Suspend-to-RAM), and
  *	'disk' (Suspend-to-Disk).
  *
+<<<<<<< HEAD
  *	store() accepts one of those strings, translates it into the
+=======
+ *	store() accepts one of those strings, translates it into the 
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *	proper enumerated value, and initiates a suspend transition.
  */
 static ssize_t state_show(struct kobject *kobj, struct kobj_attribute *attr,
@@ -353,8 +416,20 @@ static ssize_t state_show(struct kobject *kobj, struct kobj_attribute *attr,
 #endif
 	return (s - buf);
 }
+<<<<<<< HEAD
 
 static suspend_state_t decode_state(const char *buf, size_t n)
+=======
+#ifdef CONFIG_FAST_BOOT
+bool fake_shut_down = false;
+EXPORT_SYMBOL(fake_shut_down);
+
+extern void wakelock_force_suspend(void);
+#endif
+
+static ssize_t state_store(struct kobject *kobj, struct kobj_attribute *attr,
+			   const char *buf, size_t n)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 #ifdef CONFIG_SUSPEND
 #ifdef CONFIG_EARLYSUSPEND
@@ -366,10 +441,15 @@ static suspend_state_t decode_state(const char *buf, size_t n)
 #endif
 	char *p;
 	int len;
+<<<<<<< HEAD
+=======
+	int error = -EINVAL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	p = memchr(buf, '\n', n);
 	len = p ? p - buf : n;
 
+<<<<<<< HEAD
 	/* Check hibernation first. */
 	if (len == 4 && !strncmp(buf, "disk", len))
 		return PM_SUSPEND_MAX;
@@ -408,6 +488,45 @@ static ssize_t state_store(struct kobject *kobj, struct kobj_attribute *attr,
 
  out:
 	pm_autosleep_unlock();
+=======
+	/* First, check if we are requested to hibernate */
+	if (len == 4 && !strncmp(buf, "disk", len)) {
+		error = hibernate();
+  goto Exit;
+	}
+
+#ifdef CONFIG_SUSPEND
+	for (s = &pm_states[state]; state < PM_SUSPEND_MAX; s++, state++) {
+		if (*s && len == strlen(*s) && !strncmp(buf, *s, len))
+			break;
+	}
+
+#ifdef CONFIG_FAST_BOOT
+	if (len == 4 && !strncmp(buf, "dmem", len)) {
+		pr_info("%s: fake shut down!!!\n", __func__);
+		fake_shut_down = true;
+		state = PM_SUSPEND_MEM;
+	}
+#endif
+
+	if (state < PM_SUSPEND_MAX && *s) {
+#ifdef CONFIG_EARLYSUSPEND
+		if (state == PM_SUSPEND_ON || valid_state(state)) {
+			error = 0;
+			request_suspend_state(state);
+		}
+#ifdef CONFIG_FAST_BOOT
+		if (fake_shut_down)
+			wakelock_force_suspend();
+#endif
+#else
+		error = enter_state(state);
+#endif
+	}
+#endif
+
+ Exit:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return error ? error : n;
 }
 
@@ -448,8 +567,12 @@ static ssize_t wakeup_count_show(struct kobject *kobj,
 {
 	unsigned int val;
 
+<<<<<<< HEAD
 	return pm_get_wakeup_count(&val, true) ?
 		sprintf(buf, "%u\n", val) : -EINTR;
+=======
+	return pm_get_wakeup_count(&val) ? sprintf(buf, "%u\n", val) : -EINTR;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static ssize_t wakeup_count_store(struct kobject *kobj,
@@ -457,6 +580,7 @@ static ssize_t wakeup_count_store(struct kobject *kobj,
 				const char *buf, size_t n)
 {
 	unsigned int val;
+<<<<<<< HEAD
 	int error;
 
 	error = pm_autosleep_lock();
@@ -557,6 +681,17 @@ static ssize_t wake_unlock_store(struct kobject *kobj,
 power_attr(wake_unlock);
 
 #endif /* CONFIG_PM_WAKELOCKS */
+=======
+
+	if (sscanf(buf, "%u", &val) == 1) {
+		if (pm_save_wakeup_count(val))
+			return n;
+	}
+	return -EINVAL;
+}
+
+power_attr(wakeup_count);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* CONFIG_PM_SLEEP */
 
 #ifdef CONFIG_PM_TRACE
@@ -606,7 +741,372 @@ power_attr(wake_lock);
 power_attr(wake_unlock);
 #endif
 
+<<<<<<< HEAD
 static struct attribute *g[] = {
+=======
+#ifdef CONFIG_DVFS_LIMIT
+static int cpufreq_max_limit_val = -1;
+static int cpufreq_min_limit_val = -1;
+DEFINE_MUTEX(cpufreq_limit_mutex);
+
+static ssize_t cpufreq_table_show(struct kobject *kobj,
+				struct kobj_attribute *attr,
+				char *buf)
+{
+	ssize_t count = 0;
+	struct cpufreq_frequency_table *table;
+	struct cpufreq_policy *policy;
+	unsigned int min_freq = ~0;
+	unsigned int max_freq = 0;
+	unsigned int i = 0;
+
+	table = cpufreq_frequency_get_table(0);
+	if (!table) {
+		printk(KERN_ERR "%s: Failed to get the cpufreq table\n",
+			__func__);
+		return sprintf(buf, "Failed to get the cpufreq table\n");
+	}
+
+	policy = cpufreq_cpu_get(0);
+	if (policy) {
+	/* /sys/devices/system/cpu/cpu0/cpufreq/scaling_min&max_freq */
+		min_freq = policy->min;
+		max_freq = policy->max;
+        #if 0  /* /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min&max_freq */
+		min_freq = policy->cpuinfo.min_freq;
+		max_freq = policy->cpuinfo.max_freq;
+	#endif
+	}
+
+	for (i = 0; (table[i].frequency != CPUFREQ_TABLE_END); i++) {
+		if ((table[i].frequency == CPUFREQ_ENTRY_INVALID) ||
+		    (table[i].frequency > max_freq) ||
+		    (table[i].frequency < min_freq))
+			continue;
+		count += sprintf(&buf[count], "%d ", table[i].frequency);
+	}
+	count += sprintf(&buf[count], "\n");
+
+	return count;
+}
+
+static ssize_t cpufreq_table_store(struct kobject *kobj,
+				struct kobj_attribute *attr,
+				const char *buf, size_t n)
+{
+	printk(KERN_ERR "%s: cpufreq_table is read-only\n", __func__);
+	return -EINVAL;
+}
+
+#define VALID_LEVEL 1
+static int get_cpufreq_level(unsigned int freq, unsigned int *level)
+{
+	struct cpufreq_frequency_table *table;
+	unsigned int i = 0;
+
+	table = cpufreq_frequency_get_table(0);
+	if (!table) {
+		printk(KERN_ERR "%s: Failed to get the cpufreq table\n",
+			__func__);
+		return -EINVAL;
+	}
+
+	for (i = 0; (table[i].frequency != CPUFREQ_TABLE_END); i++)
+		if (table[i].frequency == freq) {
+			*level = i;
+			return VALID_LEVEL;
+		}
+
+	printk(KERN_ERR "%s: %u KHz is an unsupported cpufreq\n",
+		__func__, freq);
+	return -EINVAL;
+}
+
+static ssize_t cpufreq_max_limit_show(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					char *buf)
+{
+	return sprintf(buf, "%d\n", cpufreq_max_limit_val);
+}
+
+static ssize_t cpufreq_max_limit_store(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					const char *buf, size_t n)
+{
+	int val;
+	unsigned int cpufreq_level;
+	int lock_ret;
+	ssize_t ret = -EINVAL;
+
+	mutex_lock(&cpufreq_limit_mutex);
+
+	if (sscanf(buf, "%d", &val) != 1) {
+		printk(KERN_ERR "%s: Invalid cpufreq format\n", __func__);
+		goto out;
+	}
+
+	if (val == -1) { /* Unlock request */
+		if (cpufreq_max_limit_val != -1) {
+			exynos_cpufreq_upper_limit_free(DVFS_LOCK_ID_USER);
+			cpufreq_max_limit_val = -1;
+		} else /* Already unlocked */
+			printk(KERN_ERR "%s: Unlock request is ignored\n",
+				__func__);
+	} else { /* Lock request */
+		if (get_cpufreq_level((unsigned int)val, &cpufreq_level)
+		    == VALID_LEVEL) {
+			if (cpufreq_max_limit_val != -1)
+				/* Unlock the previous lock */
+				exynos_cpufreq_upper_limit_free(
+					DVFS_LOCK_ID_USER);
+			lock_ret = exynos_cpufreq_upper_limit(
+					DVFS_LOCK_ID_USER, cpufreq_level);
+			/* ret of exynos_cpufreq_upper_limit is meaningless.
+			   0 is fail? success? */
+			cpufreq_max_limit_val = val;
+		} else /* Invalid lock request --> No action */
+			printk(KERN_ERR "%s: Lock request is invalid\n",
+				__func__);
+	}
+
+	ret = n;
+out:
+	mutex_unlock(&cpufreq_limit_mutex);
+	return ret;
+}
+
+static ssize_t cpufreq_min_limit_show(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					char *buf)
+{
+	return sprintf(buf, "%d\n", cpufreq_min_limit_val);
+}
+
+static ssize_t cpufreq_min_limit_store(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					const char *buf, size_t n)
+{
+	int val;
+	unsigned int cpufreq_level;
+	int lock_ret;
+	ssize_t ret = -EINVAL;
+
+	mutex_lock(&cpufreq_limit_mutex);
+
+	if (sscanf(buf, "%d", &val) != 1) {
+		printk(KERN_ERR "%s: Invalid cpufreq format\n", __func__);
+		goto out;
+	}
+
+	if (val == -1) { /* Unlock request */
+		if (cpufreq_min_limit_val != -1) {
+			exynos_cpufreq_lock_free(DVFS_LOCK_ID_USER);
+			cpufreq_min_limit_val = -1;
+		} else /* Already unlocked */
+			printk(KERN_ERR "%s: Unlock request is ignored\n",
+				__func__);
+	} else { /* Lock request */
+		if (get_cpufreq_level((unsigned int)val, &cpufreq_level)
+			== VALID_LEVEL) {
+			if (cpufreq_min_limit_val != -1)
+				/* Unlock the previous lock */
+				exynos_cpufreq_lock_free(DVFS_LOCK_ID_USER);
+			lock_ret = exynos_cpufreq_lock(
+					DVFS_LOCK_ID_USER, cpufreq_level);
+			/* ret of exynos_cpufreq_lock is meaningless.
+			   0 is fail? success? */
+			cpufreq_min_limit_val = val;
+		if ((cpufreq_max_limit_val != -1) &&
+			    (cpufreq_min_limit_val > cpufreq_max_limit_val))
+				printk(KERN_ERR "%s: Min lock may not work well"
+					" because of Max lock\n", __func__);
+		} else /* Invalid lock request --> No action */
+			printk(KERN_ERR "%s: Lock request is invalid\n",
+				__func__);
+	}
+
+	ret = n;
+out:
+	mutex_unlock(&cpufreq_limit_mutex);
+	return ret;
+}
+
+power_attr(cpufreq_table);
+power_attr(cpufreq_max_limit);
+power_attr(cpufreq_min_limit);
+#endif /* CONFIG_DVFS_LIMIT */
+
+#ifdef CONFIG_GPU_LOCK
+static int gpu_lock_val;
+DEFINE_MUTEX(gpu_lock_mutex);
+
+static ssize_t gpu_lock_show(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					char *buf)
+{
+	return sprintf(buf, "%d\n", gpu_lock_val);
+}
+
+static ssize_t gpu_lock_store(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					const char *buf, size_t n)
+{
+	int val;
+	ssize_t ret = -EINVAL;
+
+	mutex_lock(&gpu_lock_mutex);
+
+	if (sscanf(buf, "%d", &val) != 1) {
+		pr_info("%s: Invalid mali lock format\n", __func__);
+		goto out;
+	}
+
+	if (val == 0) {
+		if (gpu_lock_val != 0) {
+			exynos_gpufreq_unlock();
+			gpu_lock_val = 0;
+		} else {
+			pr_info("%s: Unlock request is ignored\n", __func__);
+		}
+	} else if (val == 1) {
+		if (gpu_lock_val == 0) {
+			exynos_gpufreq_lock();
+			gpu_lock_val = val;
+		} else {
+			pr_info("%s: Lock request is ignored\n", __func__);
+		}
+	} else {
+		pr_info("%s: Lock request is invalid\n", __func__);
+	}
+
+	ret = n;
+out:
+	mutex_unlock(&gpu_lock_mutex);
+	return ret;
+}
+power_attr(gpu_lock);
+#endif
+
+#ifdef CONFIG_ROTATION_BOOSTER_SUPPORT
+static inline void rotation_booster_on(void)
+{
+	exynos_cpufreq_lock(DVFS_LOCK_ID_ROTATION_BOOSTER, L0);
+	exynos4_busfreq_lock(DVFS_LOCK_ID_ROTATION_BOOSTER, BUS_L0);
+	exynos_gpufreq_lock();
+}
+
+static inline void rotation_booster_off(void)
+{
+	exynos_gpufreq_unlock();
+	exynos4_busfreq_lock_free(DVFS_LOCK_ID_ROTATION_BOOSTER);
+	exynos_cpufreq_lock_free(DVFS_LOCK_ID_ROTATION_BOOSTER);
+}
+
+static int rotation_booster_val;
+DEFINE_MUTEX(rotation_booster_mutex);
+
+static ssize_t rotation_booster_show(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					char *buf)
+{
+	return sprintf(buf, "%d\n", rotation_booster_val);
+}
+
+static ssize_t rotation_booster_store(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					const char *buf, size_t n)
+{
+	int val;
+	ssize_t ret = -EINVAL;
+
+	mutex_lock(&rotation_booster_mutex);
+
+	if (sscanf(buf, "%d", &val) != 1) {
+		pr_info("%s: Invalid rotation_booster on, off format\n", \
+			__func__);
+		goto out;
+	}
+
+	if (val == 0) {
+		if (rotation_booster_val != 0) {
+			rotation_booster_off();
+			rotation_booster_val = 0;
+		} else {
+			pr_info("%s: rotation_booster off request"
+				" is ignored\n", __func__);
+		}
+	} else if (val == 1) {
+		if (rotation_booster_val == 0) {
+			rotation_booster_on();
+			rotation_booster_val = val;
+		} else {
+			pr_info("%s: rotation_booster on request"
+				" is ignored\n", __func__);
+		}
+	} else {
+		pr_info("%s: rotation_booster request is invalid\n", __func__);
+	}
+
+	ret = n;
+out:
+	mutex_unlock(&rotation_booster_mutex);
+	return ret;
+}
+power_attr(rotation_booster);
+#else /* CONFIG_ROTATION_BOOSTER_SUPPORT */
+static inline void rotation_booster_on(void){}
+static inline void rotation_booster_off(void){}
+#endif /* CONFIG_ROTATION_BOOSTER_SUPPORT */
+
+#ifdef CONFIG_PEGASUS_GPU_LOCK
+static int mali_lock_val;
+static int mali_lock_cnt;
+DEFINE_MUTEX(mali_lock_mutex);
+
+static ssize_t mali_lock_show(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					char *buf)
+{
+	return sprintf(buf, "level = %d, count = %d\n",
+			mali_lock_val, mali_lock_cnt);
+}
+
+static ssize_t mali_lock_store(struct kobject *kobj,
+					struct kobj_attribute *attr,
+					const char *buf, size_t n)
+{
+	int val;
+	ssize_t ret = -EINVAL;
+
+	mutex_lock(&mali_lock_mutex);
+
+	if (sscanf(buf, "%d", &val) != 1) {
+		pr_info("%s: Invalid mali lock format\n", __func__);
+		goto out;
+	}
+
+	if (val == 0) {	/* unlock */
+		mali_lock_cnt = mali_dvfs_bottom_lock_pop();
+		if (mali_lock_cnt == 0)
+			mali_lock_val = 0;
+	} else if (val > 0 && val < 5) { /* lock with level */
+		mali_lock_cnt = mali_dvfs_bottom_lock_push(val);
+		if (mali_lock_val < val)
+			mali_lock_val = val;
+	} else {
+		pr_info("%s: Lock request is invalid\n", __func__);
+	}
+
+	ret = n;
+out:
+	mutex_unlock(&mali_lock_mutex);
+	return ret;
+}
+power_attr(mali_lock);
+#endif
+
+static struct attribute * g[] = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	&state_attr.attr,
 #ifdef CONFIG_PM_TRACE
 	&pm_trace_attr.attr,
@@ -615,6 +1115,7 @@ static struct attribute *g[] = {
 #ifdef CONFIG_PM_SLEEP
 	&pm_async_attr.attr,
 	&wakeup_count_attr.attr,
+<<<<<<< HEAD
 #ifdef CONFIG_PM_AUTOSLEEP
 	&autosleep_attr.attr,
 #endif
@@ -624,6 +1125,8 @@ static struct attribute *g[] = {
 #endif
 	&touch_event_attr.attr,
 	&touch_event_timer_attr.attr,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_PM_DEBUG
 	&pm_test_attr.attr,
 #endif
@@ -632,6 +1135,23 @@ static struct attribute *g[] = {
 	&wake_unlock_attr.attr,
 #endif
 #endif
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_DVFS_LIMIT
+	&cpufreq_table_attr.attr,
+	&cpufreq_max_limit_attr.attr,
+	&cpufreq_min_limit_attr.attr,
+#endif
+#ifdef CONFIG_GPU_LOCK
+	&gpu_lock_attr.attr,
+#endif
+#ifdef CONFIG_PEGASUS_GPU_LOCK
+	&mali_lock_attr.attr,
+#endif
+#ifdef CONFIG_ROTATION_BOOSTER_SUPPORT
+	&rotation_booster_attr.attr,
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	NULL,
 };
 
@@ -660,6 +1180,7 @@ static int __init pm_init(void)
 		return error;
 	hibernate_image_size_init();
 	hibernate_reserved_size_init();
+<<<<<<< HEAD
 
 	touch_evt_timer_val = ktime_set(2, 0);
 	hrtimer_init(&tc_ev_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
@@ -673,6 +1194,12 @@ static int __init pm_init(void)
 	if (error)
 		return error;
 	return pm_autosleep_init();
+=======
+	power_kobj = kobject_create_and_add("power", NULL);
+	if (!power_kobj)
+		return -ENOMEM;
+	return sysfs_create_group(power_kobj, &attr_group);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 core_initcall(pm_init);

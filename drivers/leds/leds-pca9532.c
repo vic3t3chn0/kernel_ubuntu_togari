@@ -489,8 +489,27 @@ static int pca9532_remove(struct i2c_client *client)
 	return 0;
 }
 
+<<<<<<< HEAD
 module_i2c_driver(pca9532_driver);
+=======
+static int __init pca9532_init(void)
+{
+	return i2c_add_driver(&pca9532_driver);
+}
+
+static void __exit pca9532_exit(void)
+{
+	i2c_del_driver(&pca9532_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Riku Voipio");
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("PCA 9532 LED dimmer");
+<<<<<<< HEAD
+=======
+
+module_init(pca9532_init);
+module_exit(pca9532_exit);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

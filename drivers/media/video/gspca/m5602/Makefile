@@ -8,4 +8,8 @@ gspca_m5602-objs := m5602_core.o \
 		    m5602_s5k83a.o \
 		    m5602_s5k4aa.o
 
+<<<<<<< HEAD
 ccflags-y += -I$(srctree)/drivers/media/video/gspca
+=======
+EXTRA_CFLAGS += -Idrivers/media/video/gspca
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

@@ -12,7 +12,10 @@
 #include <linux/blkdev.h>
 #include <linux/completion.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/mempool.h>
 #include <linux/slab.h>
 #include <linux/init.h>
@@ -138,7 +141,10 @@ static int __scsi_queue_insert(struct scsi_cmnd *cmd, int reason, int unbusy)
 		host->host_blocked = host->max_host_blocked;
 		break;
 	case SCSI_MLQUEUE_DEVICE_BUSY:
+<<<<<<< HEAD
 	case SCSI_MLQUEUE_EH_RETRY:
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		device->device_blocked = device->max_device_blocked;
 		break;
 	case SCSI_MLQUEUE_TARGET_BUSY:
@@ -255,10 +261,18 @@ int scsi_execute(struct scsi_device *sdev, const unsigned char *cmd,
 }
 EXPORT_SYMBOL(scsi_execute);
 
+<<<<<<< HEAD
 int scsi_execute_req_flags(struct scsi_device *sdev, const unsigned char *cmd,
 		     int data_direction, void *buffer, unsigned bufflen,
 		     struct scsi_sense_hdr *sshdr, int timeout, int retries,
 		     int *resid, int flags)
+=======
+
+int scsi_execute_req(struct scsi_device *sdev, const unsigned char *cmd,
+		     int data_direction, void *buffer, unsigned bufflen,
+		     struct scsi_sense_hdr *sshdr, int timeout, int retries,
+		     int *resid)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	char *sense = NULL;
 	int result;
@@ -269,14 +283,22 @@ int scsi_execute_req_flags(struct scsi_device *sdev, const unsigned char *cmd,
 			return DRIVER_ERROR << 24;
 	}
 	result = scsi_execute(sdev, cmd, data_direction, buffer, bufflen,
+<<<<<<< HEAD
 			      sense, timeout, retries, flags, resid);
+=======
+			      sense, timeout, retries, 0, resid);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (sshdr)
 		scsi_normalize_sense(sense, SCSI_SENSE_BUFFERSIZE, sshdr);
 
 	kfree(sense);
 	return result;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(scsi_execute_req_flags);
+=======
+EXPORT_SYMBOL(scsi_execute_req);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * Function:    scsi_init_cmd_errh()
@@ -440,8 +462,24 @@ static void scsi_run_queue(struct request_queue *q)
 		}
 
 		spin_unlock(shost->host_lock);
+<<<<<<< HEAD
 		spin_lock(sdev->request_queue->queue_lock);
 		__blk_run_queue(sdev->request_queue);
+=======
+
+		if (WARN((!sdev || !sdev->request_queue),
+				"request_queue is null."))
+				break;
+
+		spin_lock(sdev->request_queue->queue_lock);
+		__blk_run_queue(sdev->request_queue);
+
+
+		if (WARN((!sdev || !sdev->request_queue),
+				"request_queue is null."))
+				break;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spin_unlock(sdev->request_queue->queue_lock);
 		spin_lock(shost->host_lock);
 	}
@@ -482,15 +520,35 @@ void scsi_requeue_run_queue(struct work_struct *work)
  */
 static void scsi_requeue_command(struct request_queue *q, struct scsi_cmnd *cmd)
 {
+<<<<<<< HEAD
 	struct request *req = cmd->request;
 	unsigned long flags;
 
+=======
+	struct scsi_device *sdev = cmd->device;
+	struct request *req = cmd->request;
+	unsigned long flags;
+
+	/*
+	 * We need to hold a reference on the device to avoid the queue being
+	 * killed after the unlock and before scsi_run_queue is invoked which
+	 * may happen because scsi_unprep_request() puts the command which
+	 * releases its reference on the device.
+	 */
+	get_device(&sdev->sdev_gendev);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_lock_irqsave(q->queue_lock, flags);
 	scsi_unprep_request(req);
 	blk_requeue_request(q, req);
 	spin_unlock_irqrestore(q->queue_lock, flags);
 
 	scsi_run_queue(q);
+<<<<<<< HEAD
+=======
+
+	put_device(&sdev->sdev_gendev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 void scsi_next_command(struct scsi_cmnd *cmd)
@@ -681,11 +739,19 @@ static int __scsi_error_from_host_byte(struct scsi_cmnd *cmd, int result)
 		error = -ENOLINK;
 		break;
 	case DID_TARGET_FAILURE:
+<<<<<<< HEAD
 		set_host_byte(cmd, DID_OK);
 		error = -EREMOTEIO;
 		break;
 	case DID_NEXUS_FAILURE:
 		set_host_byte(cmd, DID_OK);
+=======
+		cmd->result |= (DID_OK << 16);
+		error = -EREMOTEIO;
+		break;
+	case DID_NEXUS_FAILURE:
+		cmd->result |= (DID_OK << 16);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		error = -EBADE;
 		break;
 	default:
@@ -879,7 +945,10 @@ void scsi_io_completion(struct scsi_cmnd *cmd, unsigned int good_bytes)
 				    cmd->cmnd[0] == WRITE_SAME)) {
 				description = "Discard failure";
 				action = ACTION_FAIL;
+<<<<<<< HEAD
 				error = -EREMOTEIO;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			} else
 				action = ACTION_FAIL;
 			break;
@@ -1316,10 +1385,22 @@ static inline int scsi_target_queue_ready(struct Scsi_Host *shost,
 	}
 
 	if (scsi_target_is_busy(starget)) {
+<<<<<<< HEAD
 		list_move_tail(&sdev->starved_entry, &shost->starved_list);
 		return 0;
 	}
 
+=======
+		if (list_empty(&sdev->starved_entry))
+			list_add_tail(&sdev->starved_entry,
+				      &shost->starved_list);
+		return 0;
+	}
+
+	/* We're OK to process the command, so we can't be starved */
+	if (!list_empty(&sdev->starved_entry))
+		list_del_init(&sdev->starved_entry);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 1;
 }
 
@@ -1377,16 +1458,30 @@ static int scsi_lld_busy(struct request_queue *q)
 {
 	struct scsi_device *sdev = q->queuedata;
 	struct Scsi_Host *shost;
+<<<<<<< HEAD
 	struct scsi_target *starget;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (!sdev)
 		return 0;
 
 	shost = sdev->host;
+<<<<<<< HEAD
 	starget = scsi_target(sdev);
 
 	if (scsi_host_in_recovery(shost) || scsi_host_is_busy(shost) ||
 	    scsi_target_is_busy(starget) || scsi_device_is_busy(sdev))
+=======
+
+	/*
+	 * Ignore host/starget busy state.
+	 * Since block layer does not have a concept of fairness across
+	 * multiple queues, congestion of host/starget needs to be handled
+	 * in SCSI layer.
+	 */
+	if (scsi_host_in_recovery(shost) || scsi_device_is_busy(sdev))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return 1;
 
 	return 0;
@@ -1637,7 +1732,11 @@ struct request_queue *__scsi_alloc_queue(struct Scsi_Host *shost,
 					 request_fn_proc *request_fn)
 {
 	struct request_queue *q;
+<<<<<<< HEAD
 	struct device *dev = shost->dma_dev;
+=======
+	struct device *dev = shost->shost_gendev.parent;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	q = blk_init_queue(request_fn, NULL);
 	if (!q)
@@ -2567,7 +2666,11 @@ void *scsi_kmap_atomic_sg(struct scatterlist *sgl, int sg_count,
 	if (*len > sg_len)
 		*len = sg_len;
 
+<<<<<<< HEAD
 	return kmap_atomic(page);
+=======
+	return kmap_atomic(page, KM_BIO_SRC_IRQ);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 EXPORT_SYMBOL(scsi_kmap_atomic_sg);
 
@@ -2577,6 +2680,10 @@ EXPORT_SYMBOL(scsi_kmap_atomic_sg);
  */
 void scsi_kunmap_atomic_sg(void *virt)
 {
+<<<<<<< HEAD
 	kunmap_atomic(virt);
+=======
+	kunmap_atomic(virt, KM_BIO_SRC_IRQ);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 EXPORT_SYMBOL(scsi_kunmap_atomic_sg);

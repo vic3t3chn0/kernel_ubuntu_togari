@@ -106,7 +106,10 @@
 #define		SYSTEM_ACCESS_MODE_NOT_IN_SYS			(3 << 3)
 #define		SYSTEM_APERTURE_UNMAPPED_ACCESS_PASS_THRU	(0 << 5)
 #define		ENABLE_ADVANCED_DRIVER_MODEL			(1 << 6)
+<<<<<<< HEAD
 #define	FUS_MC_VM_FB_OFFSET				0x2068
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define MC_SHARED_BLACKOUT_CNTL           		0x20ac
 #define	MC_ARB_RAMCFG					0x2760

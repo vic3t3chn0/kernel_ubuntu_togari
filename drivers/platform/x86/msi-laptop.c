@@ -89,7 +89,11 @@ static int msi_laptop_resume(struct platform_device *device);
 
 #define MSI_STANDARD_EC_DEVICES_EXISTS_ADDRESS	0x2f
 
+<<<<<<< HEAD
 static bool force;
+=======
+static int force;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(force, bool, 0);
 MODULE_PARM_DESC(force, "Force driver load, ignore DMI data");
 
@@ -538,6 +542,7 @@ static struct dmi_system_id __initdata msi_load_scm_models_dmi_table[] = {
 		},
 		.callback = dmi_check_cb
 	},
+<<<<<<< HEAD
 	{
 		.ident = "MSI U270",
 		.matches = {
@@ -547,6 +552,8 @@ static struct dmi_system_id __initdata msi_load_scm_models_dmi_table[] = {
 		},
 		.callback = dmi_check_cb
 	},
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ }
 };
 
@@ -1005,4 +1012,7 @@ MODULE_ALIAS("dmi:*:svnMICRO-STARINTERNATIONAL*:pnMS-N034:*");
 MODULE_ALIAS("dmi:*:svnMICRO-STARINTERNATIONAL*:pnMS-N051:*");
 MODULE_ALIAS("dmi:*:svnMICRO-STARINTERNATIONAL*:pnMS-N014:*");
 MODULE_ALIAS("dmi:*:svnMicro-StarInternational*:pnCR620:*");
+<<<<<<< HEAD
 MODULE_ALIAS("dmi:*:svnMicro-StarInternational*:pnU270series:*");
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

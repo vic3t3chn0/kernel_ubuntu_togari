@@ -4,10 +4,15 @@
 #include <linux/serial.h>	/* for rs_table, serial constants &
 				   serial_uart_config */
 #include <linux/serial_reg.h>	/* for more serial constants */
+<<<<<<< HEAD
+=======
+#include <linux/serialP.h>	/* for struct serial_state */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifndef __sparc__
 #include <asm/serial.h>
 #endif
 
+<<<<<<< HEAD
 /*
  * this is cut&paste from 8250.h. Get rid of the structure, the definitions
  * and this whole broken driver.
@@ -20,6 +25,8 @@ struct old_serial_port {
 	unsigned int flags; /* unused */
 };
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* countdown values for serial timeouts in us */
 #define SPK_SERIAL_TIMEOUT 100000
 /* countdown values transmitter/dsr timeouts in us */

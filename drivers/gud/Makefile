@@ -1,6 +1,7 @@
 #
 # Makefile for the kernel mobicore drivers
 #
+<<<<<<< HEAD
 GUD_ROOT_FOLDER := drivers/gud
 # add our modules to kernel.
 obj-$(CONFIG_MOBICORE_API) += mckernelapi.o
@@ -21,12 +22,30 @@ mckernelapi-objs := mobicore_kernelapi/main.o \
 
 # Release mode by default
 ccflags-y := -DNDEBUG -include $(PWD)/$(GUD_ROOT_FOLDER)/mobicore_driver/build_tag.h
+=======
+GUD_ROOT_FOLDER := drivers/gud/
+# add our modules to kernel.
+obj-$(CONFIG_MOBICORE_API) += mcKernelApi.o
+obj-$(CONFIG_MOBICORE_SUPPORT) += mcDrvModule.o
+
+mcDrvModule-objs := MobiCoreDriver/mcDrvModule.o
+
+mcKernelApi-objs := MobiCoreKernelApi/main.o \
+		MobiCoreKernelApi/clientlib.o \
+		MobiCoreKernelApi/device.o \
+		MobiCoreKernelApi/session.o \
+		MobiCoreKernelApi/connection.o
+
+# Release mode by default
+ccflags-y := -DNDEBUG
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 ccflags-y += -Wno-declaration-after-statement
 
 ccflags-$(CONFIG_MOBICORE_DEBUG) += -DDEBUG
 ccflags-$(CONFIG_MOBICORE_VERBOSE) += -DDEBUG_VERBOSE
 
 # Choose one platform from the folder
+<<<<<<< HEAD
 MOBICORE_PLATFORM := $(shell (ls -1 $(PWD)/$(GUD_ROOT_FOLDER)/mobicore_driver/platforms | tail -1) )
 # Use the available platform folder
 ccflags-y += -I$(GUD_ROOT_FOLDER)/mobicore_driver/platforms/$(MOBICORE_PLATFORM)
@@ -34,3 +53,13 @@ ccflags-y += -I$(GUD_ROOT_FOLDER)/mobicore_driver/platforms/$(MOBICORE_PLATFORM)
 
 ccflags-y += -I$(GUD_ROOT_FOLDER)/mobicore_driver/public
 ccflags-y += -I$(GUD_ROOT_FOLDER)/mobicore_kernelapi/include
+=======
+MOBICORE_PLATFORM := $(shell (ls -1 $(GUD_ROOT_FOLDER)/MobiCoreDriver/platforms | tail -1) )
+# Use the available platform folder
+ccflags-y += -I$(GUD_ROOT_FOLDER)/MobiCoreDriver/platforms/$(MOBICORE_PLATFORM)
+
+
+ccflags-y += -I$(GUD_ROOT_FOLDER)/MobiCoreDriver/public
+ccflags-y += -I$(GUD_ROOT_FOLDER)/include
+ccflags-y += -I$(GUD_ROOT_FOLDER)/include/Mci
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

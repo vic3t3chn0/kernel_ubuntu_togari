@@ -27,7 +27,10 @@
 
 #include <linux/i2c.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "drmP.h"
 #include "drm.h"
 #include "drm_crtc.h"
@@ -219,6 +222,7 @@ intel_dp_max_data_rate(int max_link_clock, int max_lanes)
 	return (max_link_clock * max_lanes * 8) / 10;
 }
 
+<<<<<<< HEAD
 static bool
 intel_dp_adjust_dithering(struct intel_dp *intel_dp,
 			  struct drm_display_mode *mode,
@@ -246,11 +250,19 @@ intel_dp_adjust_dithering(struct intel_dp *intel_dp,
 	return true;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int
 intel_dp_mode_valid(struct drm_connector *connector,
 		    struct drm_display_mode *mode)
 {
 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+<<<<<<< HEAD
+=======
+	int max_link_clock = intel_dp_link_clock(intel_dp_max_link_bw(intel_dp));
+	int max_lanes = intel_dp_max_lane_count(intel_dp);
+	int max_rate, mode_rate;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (is_edp(intel_dp) && intel_dp->panel_fixed_mode) {
 		if (mode->hdisplay > intel_dp->panel_fixed_mode->hdisplay)
@@ -260,8 +272,21 @@ intel_dp_mode_valid(struct drm_connector *connector,
 			return MODE_PANEL;
 	}
 
+<<<<<<< HEAD
 	if (!intel_dp_adjust_dithering(intel_dp, mode, NULL))
 		return MODE_CLOCK_HIGH;
+=======
+	mode_rate = intel_dp_link_required(mode->clock, 24);
+	max_rate = intel_dp_max_data_rate(max_link_clock, max_lanes);
+
+	if (mode_rate > max_rate) {
+			mode_rate = intel_dp_link_required(mode->clock, 18);
+			if (mode_rate > max_rate)
+				return MODE_CLOCK_HIGH;
+			else
+				mode->private_flags |= INTEL_MODE_DP_FORCE_6BPC;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (mode->clock < 10000)
 		return MODE_CLOCK_LOW;
@@ -620,7 +645,22 @@ intel_dp_i2c_aux_ch(struct i2c_adapter *adapter, int mode,
 			DRM_DEBUG_KMS("aux_ch native nack\n");
 			return -EREMOTEIO;
 		case AUX_NATIVE_REPLY_DEFER:
+<<<<<<< HEAD
 			udelay(100);
+=======
+			/*
+			 * For now, just give more slack to branch devices. We
+			 * could check the DPCD for I2C bit rate capabilities,
+			 * and if available, adjust the interval. We could also
+			 * be more careful with DP-to-Legacy adapters where a
+			 * long legacy cable may force very low I2C bit rates.
+			 */
+			if (intel_dp->dpcd[DP_DOWNSTREAMPORT_PRESENT] &
+			    DP_DWN_STRM_PORT_PRESENT)
+				usleep_range(500, 600);
+			else
+				usleep_range(300, 400);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			continue;
 		default:
 			DRM_ERROR("aux_ch invalid native reply 0x%02x\n",
@@ -688,7 +728,11 @@ intel_dp_mode_fixup(struct drm_encoder *encoder, struct drm_display_mode *mode,
 	int lane_count, clock;
 	int max_lane_count = intel_dp_max_lane_count(intel_dp);
 	int max_clock = intel_dp_max_link_bw(intel_dp) == DP_LINK_BW_2_7 ? 1 : 0;
+<<<<<<< HEAD
 	int bpp;
+=======
+	int bpp = mode->private_flags & INTEL_MODE_DP_FORCE_6BPC ? 18 : 24;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	static int bws[2] = { DP_LINK_BW_1_62, DP_LINK_BW_2_7 };
 
 	if (is_edp(intel_dp) && intel_dp->panel_fixed_mode) {
@@ -702,11 +746,14 @@ intel_dp_mode_fixup(struct drm_encoder *encoder, struct drm_display_mode *mode,
 		mode->clock = intel_dp->panel_fixed_mode->clock;
 	}
 
+<<<<<<< HEAD
 	if (!intel_dp_adjust_dithering(intel_dp, mode, adjusted_mode))
 		return false;
 
 	bpp = adjusted_mode->private_flags & INTEL_MODE_DP_FORCE_6BPC ? 18 : 24;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (lane_count = 1; lane_count <= max_lane_count; lane_count <<= 1) {
 		for (clock = 0; clock <= max_clock; clock++) {
 			int link_avail = intel_dp_max_data_rate(intel_dp_link_clock(bws[clock]), lane_count);

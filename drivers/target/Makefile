@@ -6,6 +6,10 @@ target_core_mod-y		:= target_core_configfs.o \
 				   target_core_hba.o \
 				   target_core_pr.o \
 				   target_core_alua.o \
+<<<<<<< HEAD
+=======
+				   target_core_scdb.o \
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				   target_core_tmr.o \
 				   target_core_tpg.o \
 				   target_core_transport.o \
@@ -23,5 +27,10 @@ obj-$(CONFIG_TCM_PSCSI)		+= target_core_pscsi.o
 
 # Fabric modules
 obj-$(CONFIG_LOOPBACK_TARGET)	+= loopback/
+<<<<<<< HEAD
 obj-$(CONFIG_TCM_FC)		+= tcm_fc/
 obj-$(CONFIG_ISCSI_TARGET)	+= iscsi/
+=======
+
+obj-$(CONFIG_TCM_FC)		+= tcm_fc/
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

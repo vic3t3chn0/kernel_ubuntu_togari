@@ -28,7 +28,11 @@ int notifier_add_irq(struct hvc_struct *hp, int irq)
 		hp->irq_requested = 0;
 		return 0;
 	}
+<<<<<<< HEAD
 	rc = request_irq(irq, hvc_handle_interrupt, 0,
+=======
+	rc = request_irq(irq, hvc_handle_interrupt, IRQF_DISABLED,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			   "hvc_console", hp);
 	if (!rc)
 		hp->irq_requested = 1;

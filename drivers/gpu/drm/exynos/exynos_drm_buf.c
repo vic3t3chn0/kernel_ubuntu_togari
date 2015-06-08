@@ -27,6 +27,10 @@
 #include "drm.h"
 #include "exynos_drm.h"
 
+<<<<<<< HEAD
+=======
+#include <linux/cma.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "exynos_drm_drv.h"
 #include "exynos_drm_gem.h"
 #include "exynos_drm_buf.h"
@@ -35,7 +39,11 @@ static int lowlevel_buffer_allocate(struct drm_device *dev,
 		unsigned int flags, struct exynos_drm_gem_buf *buf)
 {
 	dma_addr_t start_addr;
+<<<<<<< HEAD
 	unsigned int npages, page_size, i = 0;
+=======
+	unsigned int npages, i = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct scatterlist *sgl;
 	int ret = 0;
 
@@ -46,13 +54,18 @@ static int lowlevel_buffer_allocate(struct drm_device *dev,
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	if (buf->dma_addr) {
+=======
+	if (buf->paddr) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		DRM_DEBUG_KMS("already allocated.\n");
 		return 0;
 	}
 
 	if (buf->size >= SZ_1M) {
 		npages = buf->size >> SECTION_SHIFT;
+<<<<<<< HEAD
 		page_size = SECTION_SIZE;
 	} else if (buf->size >= SZ_64K) {
 		npages = buf->size >> 16;
@@ -60,6 +73,15 @@ static int lowlevel_buffer_allocate(struct drm_device *dev,
 	} else {
 		npages = buf->size >> PAGE_SHIFT;
 		page_size = PAGE_SIZE;
+=======
+		buf->page_size = SECTION_SIZE;
+	} else if (buf->size >= SZ_64K) {
+		npages = buf->size >> 16;
+		buf->page_size = SZ_64K;
+	} else {
+		npages = buf->size >> PAGE_SHIFT;
+		buf->page_size = PAGE_SIZE;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	buf->sgt = kzalloc(sizeof(struct sg_table), GFP_KERNEL);
@@ -76,14 +98,37 @@ static int lowlevel_buffer_allocate(struct drm_device *dev,
 		return -ENOMEM;
 	}
 
+<<<<<<< HEAD
 	buf->kvaddr = dma_alloc_writecombine(dev->dev, buf->size,
 			&buf->dma_addr, GFP_KERNEL);
+=======
+#ifdef CONFIG_CMA
+	buf->paddr = cma_alloc(dev->dev, "drm", buf->size,
+					buf->page_size);
+	if (IS_ERR((void *)buf->paddr)) {
+		DRM_DEBUG_KMS("cma_alloc of size %ld failed\n",
+				buf->size);
+		ret = -ENOMEM;
+		goto err1;
+	}
+
+	buf->kvaddr = phys_to_virt(buf->paddr);
+#else
+	/* align it as page size(page or section) TODO */
+
+	buf->kvaddr = dma_alloc_writecombine(dev->dev, buf->size,
+			&buf->paddr, GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!buf->kvaddr) {
 		DRM_ERROR("failed to allocate buffer.\n");
 		ret = -ENOMEM;
 		goto err1;
 	}
+<<<<<<< HEAD
 
+=======
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	buf->pages = kzalloc(sizeof(struct page) * npages, GFP_KERNEL);
 	if (!buf->pages) {
 		DRM_ERROR("failed to allocate pages.\n");
@@ -92,6 +137,7 @@ static int lowlevel_buffer_allocate(struct drm_device *dev,
 	}
 
 	sgl = buf->sgt->sgl;
+<<<<<<< HEAD
 	start_addr = buf->dma_addr;
 
 	while (i < npages) {
@@ -99,20 +145,45 @@ static int lowlevel_buffer_allocate(struct drm_device *dev,
 		sg_set_page(sgl, buf->pages[i], page_size, 0);
 		sg_dma_address(sgl) = start_addr;
 		start_addr += page_size;
+=======
+	start_addr = buf->paddr;
+
+	while (i < npages) {
+		buf->pages[i] = phys_to_page(start_addr);
+		sg_set_page(sgl, buf->pages[i], buf->page_size, 0);
+		sg_dma_address(sgl) = start_addr;
+		start_addr += buf->page_size;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		sgl = sg_next(sgl);
 		i++;
 	}
 
+<<<<<<< HEAD
 	DRM_DEBUG_KMS("vaddr(0x%lx), dma_addr(0x%lx), size(0x%lx)\n",
 			(unsigned long)buf->kvaddr,
 			(unsigned long)buf->dma_addr,
+=======
+	DRM_INFO("vaddr(0x%lx), paddr(0x%lx), size(0x%lx)\n",
+			(unsigned long)buf->kvaddr,
+			(unsigned long)buf->paddr,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			buf->size);
 
 	return ret;
 err2:
+<<<<<<< HEAD
 	dma_free_writecombine(dev->dev, buf->size, buf->kvaddr,
 			(dma_addr_t)buf->dma_addr);
 	buf->dma_addr = (dma_addr_t)NULL;
+=======
+#ifdef CONFIG_CMA
+	cma_free(buf->paddr);
+#else
+	dma_free_writecombine(dev->dev, buf->size, buf->kvaddr,
+			(dma_addr_t)buf->paddr);
+#endif
+	buf->paddr = (dma_addr_t)NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 err1:
 	sg_free_table(buf->sgt);
 	kfree(buf->sgt);
@@ -136,6 +207,7 @@ static void lowlevel_buffer_deallocate(struct drm_device *dev,
 		return;
 	}
 
+<<<<<<< HEAD
 	if (!buf->dma_addr) {
 		DRM_DEBUG_KMS("dma_addr is invalid.\n");
 		return;
@@ -150,13 +222,44 @@ static void lowlevel_buffer_deallocate(struct drm_device *dev,
 
 	kfree(buf->sgt);
 	buf->sgt = NULL;
+=======
+	if (!buf->paddr) {
+		DRM_DEBUG_KMS("paddr is invalid.\n");
+		return;
+	}
+
+	if (buf->sgt) {
+		sg_free_table(buf->sgt);
+		kfree(buf->sgt);
+		buf->sgt = NULL;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	kfree(buf->pages);
 	buf->pages = NULL;
 
+<<<<<<< HEAD
 	dma_free_writecombine(dev->dev, buf->size, buf->kvaddr,
 				(dma_addr_t)buf->dma_addr);
 	buf->dma_addr = (dma_addr_t)NULL;
+=======
+	/*
+	 * now buffer is being shared and it would be released
+	 * by original owner so ignor free action.
+	 * this buffer was imported from physical memory to gem directly
+	 * and this feature is used temporarily so removed later.
+	 */
+	if (buf->shared)
+		return;
+
+#ifdef CONFIG_CMA
+	cma_free(buf->paddr);
+#else
+	dma_free_writecombine(dev->dev, buf->size, buf->kvaddr,
+				(dma_addr_t)buf->paddr);
+#endif
+	buf->paddr = (dma_addr_t)NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 struct exynos_drm_gem_buf *exynos_drm_init_buf(struct drm_device *dev,
@@ -197,7 +300,11 @@ int exynos_drm_alloc_buf(struct drm_device *dev,
 
 	/*
 	 * allocate memory region and set the memory information
+<<<<<<< HEAD
 	 * to vaddr and dma_addr of a buffer object.
+=======
+	 * to vaddr and paddr of a buffer object.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	 */
 	if (lowlevel_buffer_allocate(dev, flags, buf) < 0)
 		return -ENOMEM;
@@ -211,3 +318,10 @@ void exynos_drm_free_buf(struct drm_device *dev,
 
 	lowlevel_buffer_deallocate(dev, flags, buffer);
 }
+<<<<<<< HEAD
+=======
+
+MODULE_AUTHOR("Inki Dae <inki.dae@samsung.com>");
+MODULE_DESCRIPTION("Samsung SoC DRM Buffer Management Module");
+MODULE_LICENSE("GPL");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

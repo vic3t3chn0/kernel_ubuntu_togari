@@ -39,3 +39,8 @@ extern int isdn_ppp_unregister_compressor(struct isdn_ppp_compressor *ipc);
 #define IPPP_ASSIGNED	0x10
 
 #define IPPP_MAX_HEADER 10
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

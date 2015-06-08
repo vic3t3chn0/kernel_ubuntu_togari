@@ -23,7 +23,10 @@
 #include <linux/mutex.h>
 #include <linux/slab.h>
 #include <linux/debugfs.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/time.h>
 #include <linux/uaccess.h>
 
@@ -207,8 +210,11 @@ static void __blk_add_trace(struct blk_trace *bt, sector_t sector, int bytes,
 	what |= MASK_TC_BIT(rw, RAHEAD);
 	what |= MASK_TC_BIT(rw, META);
 	what |= MASK_TC_BIT(rw, DISCARD);
+<<<<<<< HEAD
 	what |= MASK_TC_BIT(rw, FLUSH);
 	what |= MASK_TC_BIT(rw, FUA);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	pid = tsk->pid;
 	if (act_log_check(bt, what, sector, pid))
@@ -311,6 +317,16 @@ int blk_trace_remove(struct request_queue *q)
 }
 EXPORT_SYMBOL_GPL(blk_trace_remove);
 
+<<<<<<< HEAD
+=======
+static int blk_dropped_open(struct inode *inode, struct file *filp)
+{
+	filp->private_data = inode->i_private;
+
+	return 0;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static ssize_t blk_dropped_read(struct file *filp, char __user *buffer,
 				size_t count, loff_t *ppos)
 {
@@ -324,11 +340,25 @@ static ssize_t blk_dropped_read(struct file *filp, char __user *buffer,
 
 static const struct file_operations blk_dropped_fops = {
 	.owner =	THIS_MODULE,
+<<<<<<< HEAD
 	.open =		simple_open,
+=======
+	.open =		blk_dropped_open,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.read =		blk_dropped_read,
 	.llseek =	default_llseek,
 };
 
+<<<<<<< HEAD
+=======
+static int blk_msg_open(struct inode *inode, struct file *filp)
+{
+	filp->private_data = inode->i_private;
+
+	return 0;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static ssize_t blk_msg_write(struct file *filp, const char __user *buffer,
 				size_t count, loff_t *ppos)
 {
@@ -357,7 +387,11 @@ static ssize_t blk_msg_write(struct file *filp, const char __user *buffer,
 
 static const struct file_operations blk_msg_fops = {
 	.owner =	THIS_MODULE,
+<<<<<<< HEAD
 	.open =		simple_open,
+=======
+	.open =		blk_msg_open,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.write =	blk_msg_write,
 	.llseek =	noop_llseek,
 };
@@ -388,7 +422,11 @@ static int blk_remove_buf_file_callback(struct dentry *dentry)
 
 static struct dentry *blk_create_buf_file_callback(const char *filename,
 						   struct dentry *parent,
+<<<<<<< HEAD
 						   umode_t mode,
+=======
+						   int mode,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 						   struct rchan_buf *buf,
 						   int *is_global)
 {
@@ -1043,9 +1081,12 @@ static void fill_rwbs(char *rwbs, const struct blk_io_trace *t)
 		goto out;
 	}
 
+<<<<<<< HEAD
 	if (tc & BLK_TC_FLUSH)
 		rwbs[i++] = 'F';
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (tc & BLK_TC_DISCARD)
 		rwbs[i++] = 'D';
 	else if (tc & BLK_TC_WRITE)
@@ -1055,10 +1096,17 @@ static void fill_rwbs(char *rwbs, const struct blk_io_trace *t)
 	else
 		rwbs[i++] = 'N';
 
+<<<<<<< HEAD
 	if (tc & BLK_TC_FUA)
 		rwbs[i++] = 'F';
 	if (tc & BLK_TC_AHEAD)
 		rwbs[i++] = 'A';
+=======
+	if (tc & BLK_TC_AHEAD)
+		rwbs[i++] = 'A';
+	if (tc & BLK_TC_BARRIER)
+		rwbs[i++] = 'B';
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (tc & BLK_TC_SYNC)
 		rwbs[i++] = 'S';
 	if (tc & BLK_TC_META)
@@ -1124,7 +1172,11 @@ typedef int (blk_log_action_t) (struct trace_iterator *iter, const char *act);
 
 static int blk_log_action_classic(struct trace_iterator *iter, const char *act)
 {
+<<<<<<< HEAD
 	char rwbs[RWBS_LEN];
+=======
+	char rwbs[6];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unsigned long long ts  = iter->ts;
 	unsigned long nsec_rem = do_div(ts, NSEC_PER_SEC);
 	unsigned secs	       = (unsigned long)ts;
@@ -1140,7 +1192,11 @@ static int blk_log_action_classic(struct trace_iterator *iter, const char *act)
 
 static int blk_log_action(struct trace_iterator *iter, const char *act)
 {
+<<<<<<< HEAD
 	char rwbs[RWBS_LEN];
+=======
+	char rwbs[6];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	const struct blk_io_trace *t = te_blk_io_trace(iter->ent);
 
 	fill_rwbs(rwbs, t);
@@ -1553,7 +1609,11 @@ static const struct {
 } mask_maps[] = {
 	{ BLK_TC_READ,		"read"		},
 	{ BLK_TC_WRITE,		"write"		},
+<<<<<<< HEAD
 	{ BLK_TC_FLUSH,		"flush"		},
+=======
+	{ BLK_TC_BARRIER,	"barrier"	},
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ BLK_TC_SYNC,		"sync"		},
 	{ BLK_TC_QUEUE,		"queue"		},
 	{ BLK_TC_REQUEUE,	"requeue"	},
@@ -1565,7 +1625,10 @@ static const struct {
 	{ BLK_TC_META,		"meta"		},
 	{ BLK_TC_DISCARD,	"discard"	},
 	{ BLK_TC_DRV_DATA,	"drv_data"	},
+<<<<<<< HEAD
 	{ BLK_TC_FUA,		"fua"		},
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int blk_trace_str2mask(const char *str)
@@ -1781,22 +1844,31 @@ void blk_fill_rwbs(char *rwbs, u32 rw, int bytes)
 {
 	int i = 0;
 
+<<<<<<< HEAD
 	if (rw & REQ_FLUSH)
 		rwbs[i++] = 'F';
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (rw & WRITE)
 		rwbs[i++] = 'W';
 	else if (rw & REQ_DISCARD)
 		rwbs[i++] = 'D';
+<<<<<<< HEAD
 	else if (rw & REQ_SANITIZE)
 		rwbs[i++] = 'Z';
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	else if (bytes)
 		rwbs[i++] = 'R';
 	else
 		rwbs[i++] = 'N';
 
+<<<<<<< HEAD
 	if (rw & REQ_FUA)
 		rwbs[i++] = 'F';
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (rw & REQ_RAHEAD)
 		rwbs[i++] = 'A';
 	if (rw & REQ_SYNC)

@@ -199,6 +199,20 @@ extern int drv_create(struct drv_object **drv_obj);
 extern int drv_destroy(struct drv_object *driver_obj);
 
 /*
+<<<<<<< HEAD
+=======
+ *  ======== drv_exit ========
+ *  Purpose:
+ *      Exit the DRV module, freeing any modules initialized in drv_init.
+ *  Parameters:
+ *  Returns:
+ *  Requires:
+ *  Ensures:
+ */
+extern void drv_exit(void);
+
+/*
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *  ======== drv_get_first_dev_object ========
  *  Purpose:
  *      Returns the Ptr to the FirstDev Object in the List
@@ -283,6 +297,21 @@ extern u32 drv_get_next_dev_object(u32 hdev_obj);
 extern u32 drv_get_next_dev_extension(u32 dev_extension);
 
 /*
+<<<<<<< HEAD
+=======
+ *  ======== drv_init ========
+ *  Purpose:
+ *      Initialize the DRV module.
+ *  Parameters:
+ *  Returns:
+ *      TRUE if success; FALSE otherwise.
+ *  Requires:
+ *  Ensures:
+ */
+extern int drv_init(void);
+
+/*
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *  ======== drv_insert_dev_object ========
  *  Purpose:
  *      Insert a DeviceObject into the list of Driver object.

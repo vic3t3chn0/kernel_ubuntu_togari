@@ -12,10 +12,17 @@
  *
  */
 #include <linux/types.h>
+<<<<<<< HEAD
 /*#include <linux/crypto.h>*/
 #include "rtl_crypto.h"
 #include <linux/errno.h>
 #include <linux/scatterlist.h>
+=======
+//#include <linux/crypto.h>
+#include "rtl_crypto.h"
+#include <linux/errno.h>
+#include <asm/scatterlist.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/string.h>
 #include "internal.h"
 

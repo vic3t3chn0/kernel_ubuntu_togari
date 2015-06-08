@@ -82,7 +82,11 @@ struct otg_fsm {
 	int loc_sof;
 
 	struct otg_fsm_ops *ops;
+<<<<<<< HEAD
 	struct usb_otg *otg;
+=======
+	struct otg_transceiver *transceiver;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* Current usb protocol used: 0:undefine; 1:host; 2:client */
 	int protocol;

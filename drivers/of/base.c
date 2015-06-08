@@ -17,13 +17,17 @@
  *      as published by the Free Software Foundation; either version
  *      2 of the License, or (at your option) any later version.
  */
+<<<<<<< HEAD
 #include <linux/ctype.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/module.h>
 #include <linux/of.h>
 #include <linux/spinlock.h>
 #include <linux/slab.h>
 #include <linux/proc_fs.h>
 
+<<<<<<< HEAD
 #include "of_private.h"
 
 LIST_HEAD(aliases_lookup);
@@ -33,6 +37,10 @@ struct device_node *of_chosen;
 struct device_node *of_aliases;
 
 DEFINE_MUTEX(of_aliases_mutex);
+=======
+struct device_node *allnodes;
+struct device_node *of_chosen;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* use when traversing tree through the allnext, child, sibling,
  * or parent members of struct device_node.
@@ -71,7 +79,11 @@ int of_n_size_cells(struct device_node *np)
 }
 EXPORT_SYMBOL(of_n_size_cells);
 
+<<<<<<< HEAD
 #if defined(CONFIG_OF_DYNAMIC)
+=======
+#if !defined(CONFIG_SPARC)   /* SPARC doesn't do ref counting (yet) */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  *	of_node_get - Increment refcount of a node
  *	@node:	Node to inc refcount, NULL is supported to
@@ -144,7 +156,11 @@ void of_node_put(struct device_node *node)
 		kref_put(&node->kref, of_node_release);
 }
 EXPORT_SYMBOL(of_node_put);
+<<<<<<< HEAD
 #endif /* CONFIG_OF_DYNAMIC */
+=======
+#endif /* !CONFIG_SPARC */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 struct property *of_find_property(const struct device_node *np,
 				  const char *name,
@@ -604,6 +620,7 @@ struct device_node *of_find_node_by_phandle(phandle handle)
 EXPORT_SYMBOL(of_find_node_by_phandle);
 
 /**
+<<<<<<< HEAD
  * of_property_read_u32_array - Find and read an array of 32 bit integers
  * from a property.
  *
@@ -817,6 +834,8 @@ int of_property_count_strings(struct device_node *np, const char *propname)
 EXPORT_SYMBOL_GPL(of_property_count_strings);
 
 /**
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * of_parse_phandle - Resolve a phandle property to a device_node pointer
  * @np: Pointer to device node holding phandle property
  * @phandle_name: Name of property holding a phandle value
@@ -841,11 +860,16 @@ of_parse_phandle(struct device_node *np, const char *phandle_name, int index)
 EXPORT_SYMBOL(of_parse_phandle);
 
 /**
+<<<<<<< HEAD
  * of_parse_phandle_with_args() - Find a node pointed by phandle in a list
+=======
+ * of_parse_phandles_with_args - Find a node pointed by phandle in a list
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @np:		pointer to a device tree node containing a list
  * @list_name:	property name that contains a list
  * @cells_name:	property name that specifies phandles' arguments count
  * @index:	index of a phandle to parse out
+<<<<<<< HEAD
  * @out_args:	optional pointer to output arguments structure (will be filled)
  *
  * This function is useful to parse lists of phandles and their arguments.
@@ -854,6 +878,14 @@ EXPORT_SYMBOL(of_parse_phandle);
  *
  * Caller is responsible to call of_node_put() on the returned out_args->node
  * pointer.
+=======
+ * @out_node:	optional pointer to device_node struct pointer (will be filled)
+ * @out_args:	optional pointer to arguments pointer (will be filled)
+ *
+ * This function is useful to parse lists of phandles and their arguments.
+ * Returns 0 on success and fills out_node and out_args, on error returns
+ * appropriate errno value.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * Example:
  *
@@ -870,6 +902,7 @@ EXPORT_SYMBOL(of_parse_phandle);
  * }
  *
  * To get a device_node of the `node2' node you may call this:
+<<<<<<< HEAD
  * of_parse_phandle_with_args(node3, "list", "#list-cells", 1, &args);
  */
 int of_parse_phandle_with_args(struct device_node *np, const char *list_name,
@@ -960,6 +993,96 @@ int of_parse_phandle_with_args(struct device_node *np, const char *list_name,
 	return -EINVAL;
 }
 EXPORT_SYMBOL(of_parse_phandle_with_args);
+=======
+ * of_parse_phandles_with_args(node3, "list", "#list-cells", 2, &node2, &args);
+ */
+int of_parse_phandles_with_args(struct device_node *np, const char *list_name,
+				const char *cells_name, int index,
+				struct device_node **out_node,
+				const void **out_args)
+{
+	int ret = -EINVAL;
+	const __be32 *list;
+	const __be32 *list_end;
+	int size;
+	int cur_index = 0;
+	struct device_node *node = NULL;
+	const void *args = NULL;
+
+	list = of_get_property(np, list_name, &size);
+	if (!list) {
+		ret = -ENOENT;
+		goto err0;
+	}
+	list_end = list + size / sizeof(*list);
+
+	while (list < list_end) {
+		const __be32 *cells;
+		phandle phandle;
+
+		phandle = be32_to_cpup(list++);
+		args = list;
+
+		/* one cell hole in the list = <>; */
+		if (!phandle)
+			goto next;
+
+		node = of_find_node_by_phandle(phandle);
+		if (!node) {
+			pr_debug("%s: could not find phandle\n",
+				 np->full_name);
+			goto err0;
+		}
+
+		cells = of_get_property(node, cells_name, &size);
+		if (!cells || size != sizeof(*cells)) {
+			pr_debug("%s: could not get %s for %s\n",
+				 np->full_name, cells_name, node->full_name);
+			goto err1;
+		}
+
+		list += be32_to_cpup(cells);
+		if (list > list_end) {
+			pr_debug("%s: insufficient arguments length\n",
+				 np->full_name);
+			goto err1;
+		}
+next:
+		if (cur_index == index)
+			break;
+
+		of_node_put(node);
+		node = NULL;
+		args = NULL;
+		cur_index++;
+	}
+
+	if (!node) {
+		/*
+		 * args w/o node indicates that the loop above has stopped at
+		 * the 'hole' cell. Report this differently.
+		 */
+		if (args)
+			ret = -EEXIST;
+		else
+			ret = -ENOENT;
+		goto err0;
+	}
+
+	if (out_node)
+		*out_node = node;
+	if (out_args)
+		*out_args = args;
+
+	return 0;
+err1:
+	of_node_put(node);
+err0:
+	pr_debug("%s failed with status %d\n", __func__, ret);
+	return ret;
+}
+EXPORT_SYMBOL(of_parse_phandles_with_args);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /**
  * prom_add_property - Add a property to a node
@@ -1147,6 +1270,7 @@ out_unlock:
 }
 #endif /* defined(CONFIG_OF_DYNAMIC) */
 
+<<<<<<< HEAD
 static void of_alias_add(struct alias_prop *ap, struct device_node *np,
 			 int id, const char *stem, int stem_len)
 {
@@ -1243,3 +1367,5 @@ int of_alias_get_id(struct device_node *np, const char *stem)
 	return id;
 }
 EXPORT_SYMBOL_GPL(of_alias_get_id);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

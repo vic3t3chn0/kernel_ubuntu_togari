@@ -12,8 +12,14 @@
 
 #include <linux/module.h>
 
+<<<<<<< HEAD
 #include <asm/mach-types.h>
 #include <mach/hardware.h>
+=======
+#include <asm/system.h>
+#include <asm/mach-types.h>
+#include <mach/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int cmx255_pcmcia_init(void);
 int cmx270_pcmcia_init(void);

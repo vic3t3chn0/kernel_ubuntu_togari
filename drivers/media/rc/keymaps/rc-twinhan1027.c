@@ -1,5 +1,8 @@
 #include <media/rc-map.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static struct rc_map_table twinhan_vp1027[] = {
 	{ 0x16, KEY_POWER2 },

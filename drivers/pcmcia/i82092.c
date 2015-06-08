@@ -17,6 +17,10 @@
 
 #include <pcmcia/ss.h>
 
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/io.h>
 
 #include "i82092aa.h"
@@ -25,9 +29,20 @@
 MODULE_LICENSE("GPL");
 
 /* PCI core routines */
+<<<<<<< HEAD
 static DEFINE_PCI_DEVICE_TABLE(i82092aa_pci_ids) = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_82092AA_0) },
 	{ }
+=======
+static struct pci_device_id i82092aa_pci_ids[] = {
+	{
+	      .vendor = PCI_VENDOR_ID_INTEL,
+	      .device = PCI_DEVICE_ID_INTEL_82092AA_0,
+	      .subvendor = PCI_ANY_ID,
+	      .subdevice = PCI_ANY_ID,
+	 },
+	 {} 
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 MODULE_DEVICE_TABLE(pci, i82092aa_pci_ids);
 

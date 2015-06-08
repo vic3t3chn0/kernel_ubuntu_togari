@@ -1,7 +1,11 @@
 /*
  *	w1_log.h
  *
+<<<<<<< HEAD
  * Copyright (c) 2004 Evgeniy Polyakov <zbr@ioremap.net>
+=======
+ * Copyright (c) 2004 Evgeniy Polyakov <johnpol@2ka.mipt.ru>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  *
  * This program is free software; you can redistribute it and/or modify

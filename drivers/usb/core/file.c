@@ -66,7 +66,11 @@ static struct usb_class {
 	struct class *class;
 } *usb_class;
 
+<<<<<<< HEAD
 static char *usb_devnode(struct device *dev, umode_t *mode)
+=======
+static char *usb_devnode(struct device *dev, mode_t *mode)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct usb_class_driver *drv;
 

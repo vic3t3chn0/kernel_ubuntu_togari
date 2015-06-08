@@ -23,7 +23,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: bcmsdh.h 327460 2012-04-13 18:38:41Z $
+=======
+ * $Id: bcmsdh.h 365575 2012-10-30 05:25:07Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 /**
@@ -48,6 +52,11 @@ extern const uint bcmsdh_msglevel;
 typedef struct bcmsdh_info bcmsdh_info_t;
 typedef void (*bcmsdh_cb_fn_t)(void *);
 
+<<<<<<< HEAD
+=======
+extern struct device *pm_dev;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Attach and build an interface to the underlying SD host driver.
  *  - Allocates resources (structs, arrays, mem, OS handles, etc) needed by bcmsdh.
  *  - Returns the bcmsdh handle and virtual address base for register access.
@@ -145,6 +154,13 @@ extern int bcmsdh_recv_buf(void *sdh, uint32 addr, uint fn, uint flags,
                            uint8 *buf, uint nbytes, void *pkt,
                            bcmsdh_cmplt_fn_t complete_fn, void *handle);
 
+<<<<<<< HEAD
+=======
+extern void bcmsdh_glom_post(void *sdh, uint8 *frame, void *pkt, uint len);
+extern void bcmsdh_glom_clear(void *sdh);
+extern uint bcmsdh_set_mode(void *sdh, uint mode);
+extern bool bcmsdh_glom_enabled(void);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Flags bits */
 #define SDIO_REQ_4BYTE	0x1	/* Four-byte target (backplane) width (vs. two-byte) */
 #define SDIO_REQ_FIXED	0x2	/* Fixed address (FIFO) (vs. incrementing address) */
@@ -211,11 +227,19 @@ extern void bcmsdh_device_remove(void * sdh);
 extern int bcmsdh_reg_sdio_notify(void* semaphore);
 extern void bcmsdh_unreg_sdio_notify(void);
 
+<<<<<<< HEAD
 #if defined(OOB_INTR_ONLY)
 extern int bcmsdh_register_oob_intr(void * dhdp);
 extern void bcmsdh_unregister_oob_intr(void);
 extern void bcmsdh_oob_intr_set(bool enable);
 #endif /* defined(OOB_INTR_ONLY) */
+=======
+#if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
+extern int bcmsdh_register_oob_intr(void * dhdp);
+extern void bcmsdh_unregister_oob_intr(void);
+extern void bcmsdh_oob_intr_set(bool enable);
+#endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Function to pass device-status bits to DHD. */
 extern uint32 bcmsdh_get_dstatus(void *sdh);
@@ -226,6 +250,12 @@ extern uint32 bcmsdh_cur_sbwad(void *sdh);
 /* Function to pass chipid and rev to lower layers for controlling pr's */
 extern void bcmsdh_chipinfo(void *sdh, uint32 chip, uint32 chiprev);
 
+<<<<<<< HEAD
+=======
+#ifdef BCMSPI
+extern void bcmsdh_dwordmode(void *sdh, bool set);
+#endif /* BCMSPI */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 extern int bcmsdh_sleep(void *sdh, bool enab);
 

@@ -180,6 +180,11 @@ static const struct of_device_id altera_ps2_match[] = {
 	{},
 };
 MODULE_DEVICE_TABLE(of, altera_ps2_match);
+<<<<<<< HEAD
+=======
+#else /* CONFIG_OF */
+#define altera_ps2_match NULL
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* CONFIG_OF */
 
 /*
@@ -191,10 +196,28 @@ static struct platform_driver altera_ps2_driver = {
 	.driver	= {
 		.name	= DRV_NAME,
 		.owner	= THIS_MODULE,
+<<<<<<< HEAD
 		.of_match_table = of_match_ptr(altera_ps2_match),
 	},
 };
 module_platform_driver(altera_ps2_driver);
+=======
+		.of_match_table = altera_ps2_match,
+	},
+};
+
+static int __init altera_ps2_init(void)
+{
+	return platform_driver_register(&altera_ps2_driver);
+}
+module_init(altera_ps2_init);
+
+static void __exit altera_ps2_exit(void)
+{
+	platform_driver_unregister(&altera_ps2_driver);
+}
+module_exit(altera_ps2_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_DESCRIPTION("Altera University Program PS2 controller driver");
 MODULE_AUTHOR("Thomas Chou <thomas@wytron.com.tw>");

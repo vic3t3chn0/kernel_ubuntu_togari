@@ -221,7 +221,11 @@ static int __init ali14xx_probe(void)
 	return ide_legacy_device_add(&ali14xx_port_info, 0);
 }
 
+<<<<<<< HEAD
 static bool probe_ali14xx;
+=======
+static int probe_ali14xx;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 module_param_named(probe, probe_ali14xx, bool, 0);
 MODULE_PARM_DESC(probe, "probe for ALI M14xx chipsets");

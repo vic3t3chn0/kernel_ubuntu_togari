@@ -26,6 +26,7 @@
 #include <linux/slab.h>
 #include <linux/errno.h>
 #include <linux/iommu.h>
+<<<<<<< HEAD
 #include <linux/scatterlist.h>
 #include <linux/idr.h>
 #include <linux/notifier.h>
@@ -586,12 +587,67 @@ static int iommu_bus_notifier(struct notifier_block *nb,
 
 static struct notifier_block iommu_bus_nb = {
 	.notifier_call = iommu_bus_notifier,
+=======
+
+static ssize_t show_iommu_group(struct device *dev,
+				struct device_attribute *attr, char *buf)
+{
+	unsigned int groupid;
+
+	if (iommu_device_group(dev, &groupid))
+		return 0;
+
+	return sprintf(buf, "%u", groupid);
+}
+static DEVICE_ATTR(iommu_group, S_IRUGO, show_iommu_group, NULL);
+
+static int add_iommu_group(struct device *dev, void *data)
+{
+	unsigned int groupid;
+
+	if (iommu_device_group(dev, &groupid) == 0)
+		return device_create_file(dev, &dev_attr_iommu_group);
+
+	return 0;
+}
+
+static int remove_iommu_group(struct device *dev)
+{
+	unsigned int groupid;
+
+	if (iommu_device_group(dev, &groupid) == 0)
+		device_remove_file(dev, &dev_attr_iommu_group);
+
+	return 0;
+}
+
+static int iommu_device_notifier(struct notifier_block *nb,
+				 unsigned long action, void *data)
+{
+	struct device *dev = data;
+
+	if (action == BUS_NOTIFY_ADD_DEVICE)
+		return add_iommu_group(dev, NULL);
+	else if (action == BUS_NOTIFY_DEL_DEVICE)
+		return remove_iommu_group(dev);
+
+	return 0;
+}
+
+static struct notifier_block iommu_device_nb = {
+	.notifier_call = iommu_device_notifier,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static void iommu_bus_init(struct bus_type *bus, struct iommu_ops *ops)
 {
+<<<<<<< HEAD
 	bus_register_notifier(bus, &iommu_bus_nb);
 	bus_for_each_dev(bus, NULL, ops, add_iommu_group);
+=======
+	bus_register_notifier(bus, &iommu_device_nb);
+	bus_for_each_dev(bus, NULL, NULL, add_iommu_group);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -631,7 +687,10 @@ EXPORT_SYMBOL_GPL(iommu_present);
  * iommu_set_fault_handler() - set a fault handler for an iommu domain
  * @domain: iommu domain
  * @handler: fault handler
+<<<<<<< HEAD
  * @token: user data, will be passed back to the fault handler
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This function should be used by IOMMU users which want to be notified
  * whenever an IOMMU fault happens.
@@ -640,17 +699,28 @@ EXPORT_SYMBOL_GPL(iommu_present);
  * error code otherwise.
  */
 void iommu_set_fault_handler(struct iommu_domain *domain,
+<<<<<<< HEAD
 					iommu_fault_handler_t handler,
 					void *token)
+=======
+					iommu_fault_handler_t handler)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	BUG_ON(!domain);
 
 	domain->handler = handler;
+<<<<<<< HEAD
 	domain->handler_token = token;
 }
 EXPORT_SYMBOL_GPL(iommu_set_fault_handler);
 
 struct iommu_domain *iommu_domain_alloc(struct bus_type *bus, int flags)
+=======
+}
+EXPORT_SYMBOL_GPL(iommu_set_fault_handler);
+
+struct iommu_domain *iommu_domain_alloc(struct bus_type *bus)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct iommu_domain *domain;
 	int ret;
@@ -664,7 +734,11 @@ struct iommu_domain *iommu_domain_alloc(struct bus_type *bus, int flags)
 
 	domain->ops = bus->iommu_ops;
 
+<<<<<<< HEAD
 	ret = domain->ops->domain_init(domain, flags);
+=======
+	ret = domain->ops->domain_init(domain);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret)
 		goto out_free;
 
@@ -704,6 +778,7 @@ void iommu_detach_device(struct iommu_domain *domain, struct device *dev)
 }
 EXPORT_SYMBOL_GPL(iommu_detach_device);
 
+<<<<<<< HEAD
 /*
  * IOMMU groups are really the natrual working unit of the IOMMU, but
  * the IOMMU API works on domains and devices.  Bridge that gap by
@@ -743,6 +818,8 @@ void iommu_detach_group(struct iommu_domain *domain, struct iommu_group *group)
 }
 EXPORT_SYMBOL_GPL(iommu_detach_group);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 phys_addr_t iommu_iova_to_phys(struct iommu_domain *domain,
 			       unsigned long iova)
 {
@@ -887,6 +964,7 @@ size_t iommu_unmap(struct iommu_domain *domain, unsigned long iova, size_t size)
 }
 EXPORT_SYMBOL_GPL(iommu_unmap);
 
+<<<<<<< HEAD
 int iommu_map_range(struct iommu_domain *domain, unsigned int iova,
 		    struct scatterlist *sg, unsigned int len, int prot)
 {
@@ -932,3 +1010,13 @@ static int __init iommu_init(void)
 	return 0;
 }
 subsys_initcall(iommu_init);
+=======
+int iommu_device_group(struct device *dev, unsigned int *groupid)
+{
+	if (iommu_present(dev->bus) && dev->bus->iommu_ops->device_group)
+		return dev->bus->iommu_ops->device_group(dev, groupid);
+
+	return -ENODEV;
+}
+EXPORT_SYMBOL_GPL(iommu_device_group);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

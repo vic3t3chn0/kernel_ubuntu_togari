@@ -342,7 +342,11 @@ static int __init palm_bk3710_probe(struct platform_device *pdev)
 		return -ENODEV;
 	}
 
+<<<<<<< HEAD
 	mem_size = resource_size(mem);
+=======
+	mem_size = mem->end - mem->start + 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (request_mem_region(mem->start, mem_size, "palm_bk3710") == NULL) {
 		printk(KERN_ERR "failed to request memory region\n");
 		return -EBUSY;

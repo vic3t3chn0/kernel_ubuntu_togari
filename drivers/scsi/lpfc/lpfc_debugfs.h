@@ -39,15 +39,19 @@
 /* hbqinfo output buffer size */
 #define LPFC_HBQINFO_SIZE 8192
 
+<<<<<<< HEAD
 /*
  * For SLI4 iDiag debugfs diagnostics tool
  */
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* pciConf */
 #define LPFC_PCI_CFG_BROWSE 0xffff
 #define LPFC_PCI_CFG_RD_CMD_ARG 2
 #define LPFC_PCI_CFG_WR_CMD_ARG 3
 #define LPFC_PCI_CFG_SIZE 4096
+<<<<<<< HEAD
 #define LPFC_PCI_CFG_RD_SIZE (LPFC_PCI_CFG_SIZE/4)
 
 #define IDIAG_PCICFG_WHERE_INDX 0
@@ -84,6 +88,11 @@
 
 #define SINGLE_WORD 1
 
+=======
+#define LPFC_PCI_CFG_RD_BUF_SIZE (LPFC_PCI_CFG_SIZE/2)
+#define LPFC_PCI_CFG_RD_SIZE (LPFC_PCI_CFG_SIZE/4)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* queue info */
 #define LPFC_QUE_INFO_GET_BUF_SIZE 4096
 
@@ -100,6 +109,7 @@
 #define LPFC_IDIAG_WQ 4
 #define LPFC_IDIAG_RQ 5
 
+<<<<<<< HEAD
 #define IDIAG_QUEACC_QUETP_INDX 0
 #define IDIAG_QUEACC_QUEID_INDX 1
 #define IDIAG_QUEACC_INDEX_INDX 2
@@ -108,6 +118,9 @@
 #define IDIAG_QUEACC_VALUE_INDX 5
 
 /* doorbell register acc */
+=======
+/* doorbell acc */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define LPFC_DRB_ACC_ALL 0xffff
 #define LPFC_DRB_ACC_RD_CMD_ARG 1
 #define LPFC_DRB_ACC_WR_CMD_ARG 2
@@ -120,6 +133,7 @@
 
 #define LPFC_DRB_MAX  4
 
+<<<<<<< HEAD
 #define IDIAG_DRBACC_REGID_INDX 0
 #define IDIAG_DRBACC_VALUE_INDX 1
 
@@ -181,6 +195,8 @@
 
 #define IDIAG_EXTACC_EXMAP_INDX 0
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define SIZE_U8  sizeof(uint8_t)
 #define SIZE_U16 sizeof(uint16_t)
 #define SIZE_U32 sizeof(uint32_t)
@@ -215,11 +231,14 @@ struct lpfc_idiag_cmd {
 #define LPFC_IDIAG_CMD_PCICFG_ST 0x00000003
 #define LPFC_IDIAG_CMD_PCICFG_CL 0x00000004
 
+<<<<<<< HEAD
 #define LPFC_IDIAG_CMD_BARACC_RD 0x00000008
 #define LPFC_IDIAG_CMD_BARACC_WR 0x00000009
 #define LPFC_IDIAG_CMD_BARACC_ST 0x0000000a
 #define LPFC_IDIAG_CMD_BARACC_CL 0x0000000b
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define LPFC_IDIAG_CMD_QUEACC_RD 0x00000011
 #define LPFC_IDIAG_CMD_QUEACC_WR 0x00000012
 #define LPFC_IDIAG_CMD_QUEACC_ST 0x00000013
@@ -229,6 +248,7 @@ struct lpfc_idiag_cmd {
 #define LPFC_IDIAG_CMD_DRBACC_WR 0x00000022
 #define LPFC_IDIAG_CMD_DRBACC_ST 0x00000023
 #define LPFC_IDIAG_CMD_DRBACC_CL 0x00000024
+<<<<<<< HEAD
 
 #define LPFC_IDIAG_CMD_CTLACC_RD 0x00000031
 #define LPFC_IDIAG_CMD_CTLACC_WR 0x00000032
@@ -240,6 +260,8 @@ struct lpfc_idiag_cmd {
 
 #define LPFC_IDIAG_CMD_EXTACC_RD 0x00000051
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	uint32_t data[LPFC_IDIAG_CMD_DATA_SIZE];
 };
 

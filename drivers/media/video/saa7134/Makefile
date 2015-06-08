@@ -10,7 +10,14 @@ obj-$(CONFIG_VIDEO_SAA7134_ALSA) += saa7134-alsa.o
 
 obj-$(CONFIG_VIDEO_SAA7134_DVB) += saa7134-dvb.o
 
+<<<<<<< HEAD
 ccflags-y += -I$(srctree)/drivers/media/video
 ccflags-y += -I$(srctree)/drivers/media/common/tuners
 ccflags-y += -I$(srctree)/drivers/media/dvb/dvb-core
 ccflags-y += -I$(srctree)/drivers/media/dvb/frontends
+=======
+EXTRA_CFLAGS += -Idrivers/media/video
+EXTRA_CFLAGS += -Idrivers/media/common/tuners
+EXTRA_CFLAGS += -Idrivers/media/dvb/dvb-core
+EXTRA_CFLAGS += -Idrivers/media/dvb/frontends
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

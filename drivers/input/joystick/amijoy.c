@@ -35,6 +35,10 @@
 #include <linux/interrupt.h>
 #include <linux/mutex.h>
 
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/amigahw.h>
 #include <asm/amigaints.h>
 
@@ -107,9 +111,12 @@ static int __init amijoy_init(void)
 	int i, j;
 	int err;
 
+<<<<<<< HEAD
 	if (!MACH_IS_AMIGA)
 		return -ENODEV;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (i = 0; i < 2; i++) {
 		if (!amijoy[i])
 			continue;

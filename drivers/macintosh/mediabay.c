@@ -356,7 +356,11 @@ static void poll_media_bay(struct media_bay_info* bay)
 	static char *mb_content_types[] = {
 		"a floppy drive",
 		"a floppy drive",
+<<<<<<< HEAD
 		"an unsupported audio device",
+=======
+		"an unsuported audio device",
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		"an ATA device",
 		"an unsupported PCI device",
 		"an unknown device",

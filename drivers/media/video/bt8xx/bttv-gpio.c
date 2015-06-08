@@ -26,8 +26,11 @@
 
 */
 
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/delay.h>
@@ -101,7 +104,11 @@ int bttv_sub_add_device(struct bttv_core *core, char *name)
 		kfree(sub);
 		return err;
 	}
+<<<<<<< HEAD
 	pr_info("%d: add subdevice \"%s\"\n", core->nr, dev_name(&sub->dev));
+=======
+	printk("bttv%d: add subdevice \"%s\"\n", core->nr, dev_name(&sub->dev));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	list_add_tail(&sub->list,&core->subs);
 	return 0;
 }

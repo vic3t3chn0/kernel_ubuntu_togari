@@ -2730,7 +2730,11 @@ static int get_ms_information(struct scsi_cmnd *srb, struct rtsx_chip *chip)
 		buf_len = data_len = 0x6A;
 	}
 
+<<<<<<< HEAD
 	buf = kmalloc(buf_len, GFP_KERNEL);
+=======
+	buf = (u8 *)kmalloc(buf_len, GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!buf) {
 		TRACE_RET(chip, TRANSPORT_ERROR);
 	}

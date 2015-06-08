@@ -12,7 +12,11 @@
 #include <linux/platform_device.h>
 #include <linux/input.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <linux/mfd/abx500/ab8500.h>
+=======
+#include <linux/mfd/ab8500.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/slab.h>
 
 /**
@@ -139,7 +143,22 @@ static struct platform_driver ab8500_ponkey_driver = {
 	.probe		= ab8500_ponkey_probe,
 	.remove		= __devexit_p(ab8500_ponkey_remove),
 };
+<<<<<<< HEAD
 module_platform_driver(ab8500_ponkey_driver);
+=======
+
+static int __init ab8500_ponkey_init(void)
+{
+	return platform_driver_register(&ab8500_ponkey_driver);
+}
+module_init(ab8500_ponkey_init);
+
+static void __exit ab8500_ponkey_exit(void)
+{
+	platform_driver_unregister(&ab8500_ponkey_driver);
+}
+module_exit(ab8500_ponkey_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_LICENSE("GPL v2");
 MODULE_AUTHOR("Sundar Iyer <sundar.iyer@stericsson.com>");

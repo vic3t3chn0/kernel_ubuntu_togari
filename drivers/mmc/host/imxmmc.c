@@ -942,7 +942,11 @@ static int __init imxmci_probe(struct platform_device *pdev)
 	int ret = 0, irq;
 	u16 rev_no;
 
+<<<<<<< HEAD
 	pr_info("i.MX mmc driver\n");
+=======
+	printk(KERN_INFO "i.MX mmc driver\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	irq = platform_get_irq(pdev, 0);

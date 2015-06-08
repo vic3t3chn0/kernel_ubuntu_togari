@@ -56,7 +56,10 @@
 #include "r600_reg.h"
 #include "evergreen_reg.h"
 #include "ni_reg.h"
+<<<<<<< HEAD
 #include "si_reg.h"
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define RADEON_MC_AGP_LOCATION		0x014c
 #define		RADEON_MC_AGP_START_MASK	0x0000FFFF

@@ -132,9 +132,27 @@ static struct platform_driver palmld_pata_platform_driver = {
 	.remove		= __devexit_p(palmld_pata_remove),
 };
 
+<<<<<<< HEAD
 module_platform_driver(palmld_pata_platform_driver);
+=======
+static int __init palmld_pata_init(void)
+{
+	return platform_driver_register(&palmld_pata_platform_driver);
+}
+
+static void __exit palmld_pata_exit(void)
+{
+	platform_driver_unregister(&palmld_pata_platform_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Marek Vasut <marek.vasut@gmail.com>");
 MODULE_DESCRIPTION("PalmLD PATA driver");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS("platform:" DRV_NAME);
+<<<<<<< HEAD
+=======
+
+module_init(palmld_pata_init);
+module_exit(palmld_pata_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

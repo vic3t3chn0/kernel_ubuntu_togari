@@ -43,7 +43,11 @@ MODULE_LICENSE("GPL");
 { USB_DEVICE_VER(id_vendor, id_product, bcdDeviceMin, bcdDeviceMax), \
   .driver_info = (flags)|(USB_US_TYPE_STOR<<24) }
 
+<<<<<<< HEAD
 static struct usb_device_id cypress_usb_ids[] = {
+=======
+struct usb_device_id cypress_usb_ids[] = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #	include "unusual_cypress.h"
 	{ }		/* Terminating entry */
 };
@@ -248,14 +252,34 @@ static int cypress_probe(struct usb_interface *intf,
 {
 	struct us_data *us;
 	int result;
+<<<<<<< HEAD
+=======
+	struct usb_device *device;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	result = usb_stor_probe1(&us, intf, id,
 			(id - cypress_usb_ids) + cypress_unusual_dev_list);
 	if (result)
 		return result;
 
+<<<<<<< HEAD
 	us->protocol_name = "Transparent SCSI with Cypress ATACB";
 	us->proto_handler = cypress_atacb_passthrough;
+=======
+	/* Among CY7C68300 chips, the A revision does not support Cypress ATACB
+	 * Filter out this revision from EEPROM default descriptor values
+	 */
+	device = interface_to_usbdev(intf);
+	if (device->descriptor.iManufacturer != 0x38 ||
+	    device->descriptor.iProduct != 0x4e ||
+	    device->descriptor.iSerialNumber != 0x64) {
+		us->protocol_name = "Transparent SCSI with Cypress ATACB";
+		us->proto_handler = cypress_atacb_passthrough;
+	} else {
+		us->protocol_name = "Transparent SCSI";
+		us->proto_handler = usb_stor_transparent_scsi_command;
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	result = usb_stor_probe2(us);
 	return result;
@@ -272,7 +296,24 @@ static struct usb_driver cypress_driver = {
 	.post_reset =	usb_stor_post_reset,
 	.id_table =	cypress_usb_ids,
 	.soft_unbind =	1,
+<<<<<<< HEAD
 	.no_dynamic_id = 1,
 };
 
 module_usb_driver(cypress_driver);
+=======
+};
+
+static int __init cypress_init(void)
+{
+	return usb_register(&cypress_driver);
+}
+
+static void __exit cypress_exit(void)
+{
+	usb_deregister(&cypress_driver);
+}
+
+module_init(cypress_init);
+module_exit(cypress_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

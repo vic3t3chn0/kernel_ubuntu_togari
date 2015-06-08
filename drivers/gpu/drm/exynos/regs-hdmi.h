@@ -73,6 +73,10 @@
 #define HDMI_V13_V_SYNC_GEN_3_1		HDMI_CORE_BASE(0x0154)
 #define HDMI_V13_V_SYNC_GEN_3_2		HDMI_CORE_BASE(0x0158)
 #define HDMI_V13_ACR_CON		HDMI_CORE_BASE(0x0180)
+<<<<<<< HEAD
+=======
+#define HDMI_V13_ACR_CTS0		HDMI_CORE_BASE(0x0190)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define HDMI_V13_AVI_CON		HDMI_CORE_BASE(0x0300)
 #define HDMI_V13_AVI_BYTE(n)		HDMI_CORE_BASE(0x0320 + 4 * (n))
 #define HDMI_V13_DC_CONTROL		HDMI_CORE_BASE(0x05C0)
@@ -138,14 +142,24 @@
 #define HDMI_ASP_MASK			(1 << 2)
 #define HDMI_EN				(1 << 0)
 
+<<<<<<< HEAD
+=======
+/* HDMI_CON_2 */
+#define HDMI_VID_PREAMBLE_DIS		(1 << 5)
+#define HDMI_GUARD_BAND_DIS		(1 << 1)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* HDMI_PHY_STATUS */
 #define HDMI_PHY_STATUS_READY		(1 << 0)
 
 /* HDMI_MODE_SEL */
 #define HDMI_MODE_HDMI_EN		(1 << 1)
 #define HDMI_MODE_DVI_EN		(1 << 0)
+<<<<<<< HEAD
 #define HDMI_DVI_MODE_EN		(1)
 #define HDMI_DVI_MODE_DIS		(0)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define HDMI_MODE_MASK			(3 << 0)
 
 /* HDMI_TG_CMD */
@@ -398,8 +412,16 @@
 #define HDMI_I2S_CH_ST_SH_2		HDMI_I2S_BASE(0x044)
 #define HDMI_I2S_CH_ST_SH_3		HDMI_I2S_BASE(0x048)
 #define HDMI_I2S_CH_ST_SH_4		HDMI_I2S_BASE(0x04c)
+<<<<<<< HEAD
 #define HDMI_I2S_MUX_CH			HDMI_I2S_BASE(0x054)
 #define HDMI_I2S_MUX_CUV		HDMI_I2S_BASE(0x058)
+=======
+#define HDMI_I2S_VD_DATA		HDMI_I2S_BASE(0x050)
+#define HDMI_I2S_MUX_CH			HDMI_I2S_BASE(0x054)
+#define HDMI_I2S_MUX_CUV		HDMI_I2S_BASE(0x058)
+#define HDMI_I2S_IRQ_MASK		HDMI_I2S_BASE(0x05c)
+#define HDMI_I2S_IRQ_STATUS		HDMI_I2S_BASE(0x060)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* I2S bit definition */
 
@@ -431,6 +453,7 @@
 
 /* I2S_PIN_SEL_0 */
 #define HDMI_I2S_SEL_SCLK(x)		(((x) & 0x7) << 4)
+<<<<<<< HEAD
 #define HDMI_I2S_SEL_LRCK(x)		((x) & 0x7)
 
 /* I2S_PIN_SEL_1 */
@@ -443,6 +466,27 @@
 
 /* I2S_PIN_SEL_3 */
 #define HDMI_I2S_SEL_DSD(x)		((x) & 0x7)
+=======
+#define HDMI_I2S_SEL_SCLK_DEFAULT_1	(0x7 << 4)
+#define HDMI_I2S_SEL_LRCK(x)		((x) & 0x7)
+#define HDMI_I2S_SEL_LRCK_DEFAULT_0	(0x7)
+
+/* I2S_PIN_SEL_1 */
+#define HDMI_I2S_SEL_SDATA1(x)		(((x) & 0x7) << 4)
+#define HDMI_I2S_SEL_SDATA1_DEFAULT_3	(0x7 << 4)
+#define HDMI_I2S_SEL_SDATA2(x)		((x) & 0x7)
+#define HDMI_I2S_SEL_SDATA2_DEFAULT_2	(0x7)
+
+/* I2S_PIN_SEL_2 */
+#define HDMI_I2S_SEL_SDATA3(x)		(((x) & 0x7) << 4)
+#define HDMI_I2S_SEL_SDATA3_DEFAULT_5	(0x7 << 4)
+#define HDMI_I2S_SEL_SDATA2(x)		((x) & 0x7)
+#define HDMI_I2S_SEL_SDATA2_DEFAULT_4	(0x7)
+
+/* I2S_PIN_SEL_3 */
+#define HDMI_I2S_SEL_DSD(x)		((x) & 0x7)
+#define HDMI_I2S_SEL_DSD_DEFAULT_6	(0x7)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* I2S_DSD_CON */
 #define HDMI_I2S_DSD_CLK_RI_EDGE	(1 << 1)
@@ -525,6 +569,13 @@
 #define HDMI_I2S_WORD_LEN_MAX_24BITS	(1)
 #define HDMI_I2S_WORD_LEN_MAX_20BITS	(0)
 
+<<<<<<< HEAD
+=======
+/* I2S_VD_DATA */
+#define HDMI_I2S_VD_AUD_SMP_RELIABLE	(0)
+#define HDMI_I2S_VD_AUD_SMP_UNRELIABLE	(1)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* I2S_MUX_CH */
 #define HDMI_I2S_CH3_R_EN		(1 << 7)
 #define HDMI_I2S_CH3_L_EN		(1 << 6)
@@ -546,10 +597,161 @@
 #define HDMI_I2S_CUV_L_EN		(1)
 #define HDMI_I2S_CUV_RL_EN		(0x03)
 
+<<<<<<< HEAD
+=======
+/* I2S_IRQ_MASK */
+#define HDMI_I2S_INT2_DIS		(0 << 1)
+#define HDMI_I2S_INT2_EN		(1 << 1)
+
+/* I2S_IRQ_STATUS */
+#define HDMI_I2S_INT2_STATUS		(1 << 1)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* I2S_CUV_L_R */
 #define HDMI_I2S_CUV_R_DATA_MASK	(0x7 << 4)
 #define HDMI_I2S_CUV_L_DATA_MASK	(0x7)
 
+<<<<<<< HEAD
+=======
+/* Audio Related Packet bit definition */
+
+/* ASP_CON */
+#define HDMI_AUD_DST_DOUBLE		(1 << 7)
+#define HDMI_AUD_NO_DST_DOUBLE		(0 << 7)
+#define HDMI_AUD_TYPE_SAMPLE		(0 << 5)
+#define HDMI_AUD_TYPE_ONE_BIT		(1 << 5)
+#define HDMI_AUD_TYPE_HBR		(2 << 5)
+#define HDMI_AUD_TYPE_DST		(3 << 5)
+#define HDMI_AUD_MODE_TWO_CH		(0 << 4)
+#define HDMI_AUD_MODE_MULTI_CH		(1 << 4)
+#define HDMI_AUD_SP_AUD3_EN		(1 << 3)
+#define HDMI_AUD_SP_AUD2_EN		(1 << 2)
+#define HDMI_AUD_SP_AUD1_EN		(1 << 1)
+#define HDMI_AUD_SP_AUD0_EN		(1 << 0)
+#define HDMI_AUD_SP_ALL_DIS		(0 << 0)
+
+#define HDMI_AUD_SET_SP_PRE(x)		((x) & 0xF)
+
+/* ASP_SP_FLAT */
+#define HDMI_ASP_SP_FLAT_AUD_SAMPLE	(0)
+
+/* ASP_CHCFG0/1/2/3 */
+#define HDMI_SPK3R_SEL_I_PCM0L		(0 << 27)
+#define HDMI_SPK3R_SEL_I_PCM0R		(1 << 27)
+#define HDMI_SPK3R_SEL_I_PCM1L		(2 << 27)
+#define HDMI_SPK3R_SEL_I_PCM1R		(3 << 27)
+#define HDMI_SPK3R_SEL_I_PCM2L		(4 << 27)
+#define HDMI_SPK3R_SEL_I_PCM2R		(5 << 27)
+#define HDMI_SPK3R_SEL_I_PCM3L		(6 << 27)
+#define HDMI_SPK3R_SEL_I_PCM3R		(7 << 27)
+#define HDMI_SPK3L_SEL_I_PCM0L		(0 << 24)
+#define HDMI_SPK3L_SEL_I_PCM0R		(1 << 24)
+#define HDMI_SPK3L_SEL_I_PCM1L		(2 << 24)
+#define HDMI_SPK3L_SEL_I_PCM1R		(3 << 24)
+#define HDMI_SPK3L_SEL_I_PCM2L		(4 << 24)
+#define HDMI_SPK3L_SEL_I_PCM2R		(5 << 24)
+#define HDMI_SPK3L_SEL_I_PCM3L		(6 << 24)
+#define HDMI_SPK3L_SEL_I_PCM3R		(7 << 24)
+#define HDMI_SPK2R_SEL_I_PCM0L		(0 << 19)
+#define HDMI_SPK2R_SEL_I_PCM0R		(1 << 19)
+#define HDMI_SPK2R_SEL_I_PCM1L		(2 << 19)
+#define HDMI_SPK2R_SEL_I_PCM1R		(3 << 19)
+#define HDMI_SPK2R_SEL_I_PCM2L		(4 << 19)
+#define HDMI_SPK2R_SEL_I_PCM2R		(5 << 19)
+#define HDMI_SPK2R_SEL_I_PCM3L		(6 << 19)
+#define HDMI_SPK2R_SEL_I_PCM3R		(7 << 19)
+#define HDMI_SPK2L_SEL_I_PCM0L		(0 << 16)
+#define HDMI_SPK2L_SEL_I_PCM0R		(1 << 16)
+#define HDMI_SPK2L_SEL_I_PCM1L		(2 << 16)
+#define HDMI_SPK2L_SEL_I_PCM1R		(3 << 16)
+#define HDMI_SPK2L_SEL_I_PCM2L		(4 << 16)
+#define HDMI_SPK2L_SEL_I_PCM2R		(5 << 16)
+#define HDMI_SPK2L_SEL_I_PCM3L		(6 << 16)
+#define HDMI_SPK2L_SEL_I_PCM3R		(7 << 16)
+#define HDMI_SPK1R_SEL_I_PCM0L		(0 << 11)
+#define HDMI_SPK1R_SEL_I_PCM0R		(1 << 11)
+#define HDMI_SPK1R_SEL_I_PCM1L		(2 << 11)
+#define HDMI_SPK1R_SEL_I_PCM1R		(3 << 11)
+#define HDMI_SPK1R_SEL_I_PCM2L		(4 << 11)
+#define HDMI_SPK1R_SEL_I_PCM2R		(5 << 11)
+#define HDMI_SPK1R_SEL_I_PCM3L		(6 << 11)
+#define HDMI_SPK1R_SEL_I_PCM3R		(7 << 11)
+#define HDMI_SPK1L_SEL_I_PCM0L		(0 << 8)
+#define HDMI_SPK1L_SEL_I_PCM0R		(1 << 8)
+#define HDMI_SPK1L_SEL_I_PCM1L		(2 << 8)
+#define HDMI_SPK1L_SEL_I_PCM1R		(3 << 8)
+#define HDMI_SPK1L_SEL_I_PCM2L		(4 << 8)
+#define HDMI_SPK1L_SEL_I_PCM2R		(5 << 8)
+#define HDMI_SPK1L_SEL_I_PCM3L		(6 << 8)
+#define HDMI_SPK1L_SEL_I_PCM3R		(7 << 8)
+#define HDMI_SPK0R_SEL_I_PCM0L		(0 << 3)
+#define HDMI_SPK0R_SEL_I_PCM0R		(1 << 3)
+#define HDMI_SPK0R_SEL_I_PCM1L		(2 << 3)
+#define HDMI_SPK0R_SEL_I_PCM1R		(3 << 3)
+#define HDMI_SPK0R_SEL_I_PCM2L		(4 << 3)
+#define HDMI_SPK0R_SEL_I_PCM2R		(5 << 3)
+#define HDMI_SPK0R_SEL_I_PCM3L		(6 << 3)
+#define HDMI_SPK0R_SEL_I_PCM3R		(7 << 3)
+#define HDMI_SPK0L_SEL_I_PCM0L		(0)
+#define HDMI_SPK0L_SEL_I_PCM0R		(1)
+#define HDMI_SPK0L_SEL_I_PCM1L		(2)
+#define HDMI_SPK0L_SEL_I_PCM1R		(3)
+#define HDMI_SPK0L_SEL_I_PCM2L		(4)
+#define HDMI_SPK0L_SEL_I_PCM2R		(5)
+#define HDMI_SPK0L_SEL_I_PCM3L		(6)
+#define HDMI_SPK0L_SEL_I_PCM3R		(7)
+
+/* ACR_CON */
+#define HDMI_ALT_CTS_RATE_CTS_1		(0 << 3)
+#define HDMI_ALT_CTS_RATE_CTS_11	(1 << 3)
+#define HDMI_ALT_CTS_RATE_CTS_21	(2 << 3)
+#define HDMI_ALT_CTS_RATE_CTS_31	(3 << 3)
+#define HDMI_ACR_TX_MODE_NO_TX		(0)
+#define HDMI_ACR_TX_MODE_TX_ONCE	(1)
+#define HDMI_ACR_TX_MODE_TXCNT_VBI	(2)
+#define HDMI_ACR_TX_MODE_TX_VPC		(3)
+#define HDMI_ACR_TX_MODE_MESURE_CTS	(4)
+
+/* ACR_MCTS0/1/2 */
+
+/* ACR_CTS0/1/2 */
+
+/* ACR_N0/1/2 */
+
+/* ACR_LSB2 */
+#define HDMI_ACR_LSB2_MASK		(0xFF)
+
+/* ACR_TXCNT */
+#define HDMI_ACR_TXCNT_MASK		(0x1F)
+
+/* ACR_TXINTERNAL */
+#define HDMI_ACR_TX_INTERNAL_MASK	(0xFF)
+
+/* ACR_CTS_OFFSET */
+#define HDMI_ACR_CTS_OFFSET_MASK	(0xFF)
+
+/* GCP_CON */
+#define HDMI_GCP_CON_EN_1ST_VSYNC	(1 << 3)
+#define HDMI_GCP_CON_EN_2ST_VSYNC	(1 << 2)
+#define HDMI_GCP_CON_TRANS_EVERY_VSYNC	(2)
+#define HDMI_GCP_CON_NO_TRAN		(0)
+#define HDMI_GCP_CON_TRANS_ONCE		(1)
+#define HDMI_GCP_CON_TRANS_EVERY_VSYNC	(2)
+
+/* GCP_BYTE1 */
+#define HDMI_GCP_BYTE1_MASK		(0xFF)
+
+/* GCP_BYTE2 */
+#define HDMI_GCP_BYTE2_PP_MASK		(0xF << 4)
+#define HDMI_GCP_24BPP			(1 << 2)
+#define HDMI_GCP_30BPP			(1 << 0 | 1 << 2)
+#define HDMI_GCP_36BPP			(1 << 1 | 1 << 2)
+#define HDMI_GCP_48BPP			(1 << 0 | 1 << 1 | 1 << 2)
+
+/* GCP_BYTE3 */
+#define HDMI_GCP_BYTE3_MASK		(0xFF)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Timing generator registers */
 /* TG configure/status registers */
 #define HDMI_TG_VACT_ST3_L		HDMI_TG_BASE(0x0068)

@@ -2,7 +2,10 @@
  *  linux/drivers/mmc/host/msmsdcc.h - QCT MSM7K SDC Controller
  *
  *  Copyright (C) 2008 Google, All Rights Reserved.
+<<<<<<< HEAD
  *  Copyright (c) 2009-2013, The Linux Foundation. All rights reserved.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -14,6 +17,7 @@
 #ifndef _MSM_SDCC_H
 #define _MSM_SDCC_H
 
+<<<<<<< HEAD
 #include <linux/types.h>
 
 #include <linux/ioport.h>
@@ -31,18 +35,28 @@
 #include <asm/sizes.h>
 #include <asm/mach/mmc.h>
 #include <mach/dma.h>
+=======
+#define MSMSDCC_CRCI_SDC1	6
+#define MSMSDCC_CRCI_SDC2	7
+#define MSMSDCC_CRCI_SDC3	12
+#define MSMSDCC_CRCI_SDC4	13
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define MMCIPOWER		0x000
 #define MCI_PWR_OFF		0x00
 #define MCI_PWR_UP		0x02
 #define MCI_PWR_ON		0x03
 #define MCI_OD			(1 << 6)
+<<<<<<< HEAD
 #define MCI_SW_RST		(1 << 7)
 #define MCI_SW_RST_CFG		(1 << 8)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define MMCICLOCK		0x004
 #define MCI_CLK_ENABLE		(1 << 8)
 #define MCI_CLK_PWRSAVE		(1 << 9)
+<<<<<<< HEAD
 #define MCI_CLK_WIDEBUS_1	(0 << 10)
 #define MCI_CLK_WIDEBUS_4	(2 << 10)
 #define MCI_CLK_WIDEBUS_8	(3 << 10)
@@ -50,6 +64,12 @@
 #define MCI_CLK_INVERTOUT	(1 << 13)
 #define MCI_CLK_SELECTIN	(1 << 15)
 #define IO_PAD_PWR_SWITCH	(1 << 21)
+=======
+#define MCI_CLK_WIDEBUS		(1 << 10)
+#define MCI_CLK_FLOWENA		(1 << 12)
+#define MCI_CLK_INVERTOUT	(1 << 13)
+#define MCI_CLK_SELECTIN	(1 << 14)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define MMCIARGUMENT		0x008
 #define MMCICOMMAND		0x00c
@@ -63,8 +83,11 @@
 #define MCI_CSPM_MCIABORT	(1 << 13)
 #define MCI_CSPM_CCSENABLE	(1 << 14)
 #define MCI_CSPM_CCSDISABLE	(1 << 15)
+<<<<<<< HEAD
 #define MCI_CSPM_AUTO_CMD19	(1 << 16)
 #define MCI_CSPM_AUTO_CMD21	(1 << 21)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 
 #define MMCIRESPCMD		0x010
@@ -80,9 +103,12 @@
 #define MCI_DPSM_DIRECTION	(1 << 1)
 #define MCI_DPSM_MODE		(1 << 2)
 #define MCI_DPSM_DMAENABLE	(1 << 3)
+<<<<<<< HEAD
 #define MCI_DATA_PEND		(1 << 17)
 #define MCI_AUTO_PROG_DONE	(1 << 19)
 #define MCI_RX_DATA_PEND	(1 << 20)
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define MMCIDATACNT		0x030
 #define MMCISTATUS		0x034
@@ -110,9 +136,14 @@
 #define MCI_SDIOINTR		(1 << 22)
 #define MCI_PROGDONE		(1 << 23)
 #define MCI_ATACMDCOMPL		(1 << 24)
+<<<<<<< HEAD
 #define MCI_SDIOINTROPE		(1 << 25)
 #define MCI_CCSTIMEOUT		(1 << 26)
 #define MCI_AUTOCMD19TIMEOUT	(1 << 30)
+=======
+#define MCI_SDIOINTOPER		(1 << 25)
+#define MCI_CCSTIMEOUT		(1 << 26)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define MMCICLEAR		0x038
 #define MCI_CMDCRCFAILCLR	(1 << 0)
@@ -124,6 +155,7 @@
 #define MCI_CMDRESPENDCLR	(1 << 6)
 #define MCI_CMDSENTCLR		(1 << 7)
 #define MCI_DATAENDCLR		(1 << 8)
+<<<<<<< HEAD
 #define MCI_STARTBITERRCLR	(1 << 9)
 #define MCI_DATABLOCKENDCLR	(1 << 10)
 
@@ -141,6 +173,10 @@
 	MCI_SDIOINTROPECLR|MCI_PROGDONECLR|MCI_ATACMDCOMPLCLR|	\
 	MCI_CCSTIMEOUTCLR)
 
+=======
+#define MCI_DATABLOCKENDCLR	(1 << 10)
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define MMCIMASK0		0x03c
 #define MCI_CMDCRCFAILMASK	(1 << 0)
 #define MCI_DATACRCFAILMASK	(1 << 1)
@@ -168,6 +204,7 @@
 #define MCI_ATACMDCOMPLMASK	(1 << 24)
 #define MCI_SDIOINTOPERMASK	(1 << 25)
 #define MCI_CCSTIMEOUTMASK	(1 << 26)
+<<<<<<< HEAD
 #define MCI_AUTOCMD19TIMEOUTMASK (1 << 30)
 
 #define MMCIMASK1		0x040
@@ -212,6 +249,19 @@
 	MCI_RXFIFOEMPTYMASK | MCI_TXFIFOEMPTYMASK | MCI_RXFIFOFULLMASK |\
 	MCI_TXFIFOFULLMASK | MCI_RXFIFOHALFFULLMASK |			\
 	MCI_TXFIFOHALFEMPTYMASK | MCI_RXACTIVEMASK | MCI_TXACTIVEMASK)
+=======
+
+#define MMCIMASK1		0x040
+#define MMCIFIFOCNT		0x044
+#define MCICCSTIMER		0x058
+
+#define MMCIFIFO		0x080 /* to 0x0bc */
+
+#define MCI_IRQENABLE	\
+	(MCI_CMDCRCFAILMASK|MCI_DATACRCFAILMASK|MCI_CMDTIMEOUTMASK|	\
+	MCI_DATATIMEOUTMASK|MCI_TXUNDERRUNMASK|MCI_RXOVERRUNMASK|	\
+	MCI_CMDRESPENDMASK|MCI_CMDSENTMASK|MCI_DATAENDMASK|MCI_PROGDONEMASK)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /*
  * The size of the FIFO in bytes.
@@ -220,6 +270,7 @@
 
 #define MCI_FIFOHALFSIZE (MCI_FIFOSIZE / 2)
 
+<<<<<<< HEAD
 #define NR_SG		128
 
 #define MSM_MMC_DEFAULT_IDLE_TIMEOUT	5000 /* msecs */
@@ -267,11 +318,18 @@
  */
 #define MSMSDCC_BUS_VOTE_MAX_RATE	64000000 /* Hz */
 #define MSMSDCC_BUS_VOTE_MIN_RATE	32000000 /* Hz */
+=======
+#define NR_SG		32
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 struct clk;
 
 struct msmsdcc_nc_dmadata {
+<<<<<<< HEAD
 	dmov_box	cmd[MMC_MAX_DMA_CMDS];
+=======
+	dmov_box	cmd[NR_SG];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	uint32_t	cmdptr;
 };
 
@@ -288,18 +346,31 @@ struct msmsdcc_dma_data {
 	int				num_ents;
 
 	int				channel;
+<<<<<<< HEAD
 	int				crci;
 	struct msmsdcc_host		*host;
 	int				busy; /* Set if DM is busy */
 	unsigned int 			result;
+=======
+	struct msmsdcc_host		*host;
+	int				busy; /* Set if DM is busy */
+	int				active;
+	unsigned int			result;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct msm_dmov_errdata		err;
 };
 
 struct msmsdcc_pio_data {
+<<<<<<< HEAD
 	struct sg_mapping_iter		sg_miter;
 	char				bounce_buf[4];
 	/* valid bytes in bounce_buf */
 	int				bounce_buf_len;
+=======
+	struct scatterlist	*sg;
+	unsigned int		sg_len;
+	unsigned int		sg_off;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 struct msmsdcc_curr_req {
@@ -310,6 +381,7 @@ struct msmsdcc_curr_req {
 	unsigned int		xfer_remain;	/* Bytes remaining to send */
 	unsigned int		data_xfered;	/* Bytes acked by BLKEND irq */
 	int			got_dataend;
+<<<<<<< HEAD
 	bool			wait_for_auto_prog_done;
 	bool			got_auto_prog_done;
 	bool			use_wr_data_pend;
@@ -361,15 +433,40 @@ struct msmsdcc_host {
 	void __iomem		*bam_base;
 
 	struct platform_device	*pdev;
+=======
+	int			user_pages;
+};
+
+struct msmsdcc_stats {
+	unsigned int reqs;
+	unsigned int cmds;
+	unsigned int cmdpoll_hits;
+	unsigned int cmdpoll_misses;
+};
+
+struct msmsdcc_host {
+	struct resource		*cmd_irqres;
+	struct resource		*pio_irqres;
+	struct resource		*memres;
+	struct resource		*dmares;
+	void __iomem		*base;
+	int			pdev_id;
+	unsigned int		stat_irq;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	struct msmsdcc_curr_req	curr;
 
 	struct mmc_host		*mmc;
 	struct clk		*clk;		/* main MMC bus clock */
 	struct clk		*pclk;		/* SDCC peripheral bus clock */
+<<<<<<< HEAD
 	struct clk		*bus_clk;	/* SDCC bus voter clock */
 	unsigned long		bus_clk_rate;	/* peripheral bus clk rate */
 	atomic_t		clks_on;	/* set if clocks are enabled */
+=======
+	unsigned int		clks_on;	/* set if clocks are enabled */
+	struct timer_list	busclk_timer;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	unsigned int		eject;		/* eject state */
 
@@ -379,6 +476,7 @@ struct msmsdcc_host {
 	unsigned int		pclk_rate;
 
 	u32			pwr;
+<<<<<<< HEAD
 	struct mmc_platform_data *plat;
 	unsigned int		hw_caps;
 
@@ -392,11 +490,26 @@ struct msmsdcc_host {
 
 	unsigned int prog_enable;
 
+=======
+	u32			saved_irq0mask;	/* MMCIMASK0 reg value */
+	struct msm_mmc_platform_data *plat;
+
+	struct timer_list	timer;
+	unsigned int		oldstat;
+
+	struct msmsdcc_dma_data	dma;
+	struct msmsdcc_pio_data	pio;
+	int			cmdpoll;
+	struct msmsdcc_stats	stats;
+
+	struct tasklet_struct	dma_tlet;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Command parameters */
 	unsigned int		cmd_timeout;
 	unsigned int		cmd_pio_irqmask;
 	unsigned int		cmd_datactrl;
 	struct mmc_command	*cmd_cmd;
+<<<<<<< HEAD
 	u32					cmd_c;
 
 	unsigned int	mci_irqenable;
@@ -539,5 +652,13 @@ static inline int msmsdcc_lpm_disable(struct mmc_host *mmc)
 	return ret;
 }
 #endif
+=======
+	u32			cmd_c;
+	bool			gpio_config_status;
+
+	bool prog_scan;
+	bool prog_enable;
+};
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #endif

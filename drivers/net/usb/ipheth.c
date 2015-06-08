@@ -59,8 +59,15 @@
 #define USB_PRODUCT_IPHONE_3G   0x1292
 #define USB_PRODUCT_IPHONE_3GS  0x1294
 #define USB_PRODUCT_IPHONE_4	0x1297
+<<<<<<< HEAD
 #define USB_PRODUCT_IPHONE_4_VZW 0x129c
 #define USB_PRODUCT_IPHONE_4S	0x12a0
+=======
+#define USB_PRODUCT_IPAD 0x129a
+#define USB_PRODUCT_IPHONE_4_VZW 0x129c
+#define USB_PRODUCT_IPHONE_4S	0x12a0
+#define USB_PRODUCT_IPHONE_5	0x12a8
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define IPHETH_USBINTF_CLASS    255
 #define IPHETH_USBINTF_SUBCLASS 253
@@ -101,6 +108,13 @@ static struct usb_device_id ipheth_table[] = {
 		IPHETH_USBINTF_CLASS, IPHETH_USBINTF_SUBCLASS,
 		IPHETH_USBINTF_PROTO) },
 	{ USB_DEVICE_AND_INTERFACE_INFO(
+<<<<<<< HEAD
+=======
+		USB_VENDOR_APPLE, USB_PRODUCT_IPAD,
+		IPHETH_USBINTF_CLASS, IPHETH_USBINTF_SUBCLASS,
+		IPHETH_USBINTF_PROTO) },
+	{ USB_DEVICE_AND_INTERFACE_INFO(
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		USB_VENDOR_APPLE, USB_PRODUCT_IPHONE_4_VZW,
 		IPHETH_USBINTF_CLASS, IPHETH_USBINTF_SUBCLASS,
 		IPHETH_USBINTF_PROTO) },
@@ -108,6 +122,13 @@ static struct usb_device_id ipheth_table[] = {
 		USB_VENDOR_APPLE, USB_PRODUCT_IPHONE_4S,
 		IPHETH_USBINTF_CLASS, IPHETH_USBINTF_SUBCLASS,
 		IPHETH_USBINTF_PROTO) },
+<<<<<<< HEAD
+=======
+	{ USB_DEVICE_AND_INTERFACE_INFO(
+		USB_VENDOR_APPLE, USB_PRODUCT_IPHONE_5,
+		IPHETH_USBINTF_CLASS, IPHETH_USBINTF_SUBCLASS,
+		IPHETH_USBINTF_PROTO) },
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{ }
 };
 MODULE_DEVICE_TABLE(usb, ipheth_table);
@@ -419,21 +440,42 @@ static void ipheth_tx_timeout(struct net_device *net)
 	usb_unlink_urb(dev->tx_urb);
 }
 
+<<<<<<< HEAD
+=======
+static struct net_device_stats *ipheth_stats(struct net_device *net)
+{
+	struct ipheth_device *dev = netdev_priv(net);
+	return &dev->net->stats;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static u32 ipheth_ethtool_op_get_link(struct net_device *net)
 {
 	struct ipheth_device *dev = netdev_priv(net);
 	return netif_carrier_ok(dev->net);
 }
 
+<<<<<<< HEAD
 static const struct ethtool_ops ops = {
+=======
+static struct ethtool_ops ops = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.get_link = ipheth_ethtool_op_get_link
 };
 
 static const struct net_device_ops ipheth_netdev_ops = {
+<<<<<<< HEAD
 	.ndo_open = ipheth_open,
 	.ndo_stop = ipheth_close,
 	.ndo_start_xmit = ipheth_tx,
 	.ndo_tx_timeout = ipheth_tx_timeout,
+=======
+	.ndo_open = &ipheth_open,
+	.ndo_stop = &ipheth_close,
+	.ndo_start_xmit = &ipheth_tx,
+	.ndo_tx_timeout = &ipheth_tx_timeout,
+	.ndo_get_stats = &ipheth_stats,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int ipheth_probe(struct usb_interface *intf,
@@ -548,7 +590,29 @@ static struct usb_driver ipheth_driver = {
 	.id_table =	ipheth_table,
 };
 
+<<<<<<< HEAD
 module_usb_driver(ipheth_driver);
+=======
+static int __init ipheth_init(void)
+{
+	int retval;
+
+	retval = usb_register(&ipheth_driver);
+	if (retval) {
+		err("usb_register failed: %d", retval);
+		return retval;
+	}
+	return 0;
+}
+
+static void __exit ipheth_exit(void)
+{
+	usb_deregister(&ipheth_driver);
+}
+
+module_init(ipheth_init);
+module_exit(ipheth_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Diego Giagio <diego@giagio.com>");
 MODULE_DESCRIPTION("Apple iPhone USB Ethernet driver");

@@ -2,7 +2,10 @@
  * drivers/gpu/ion/ion_system_heap.c
  *
  * Copyright (C) 2011 Google, Inc.
+<<<<<<< HEAD
  * Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -15,6 +18,7 @@
  *
  */
 
+<<<<<<< HEAD
 #include <asm/page.h>
 #include <linux/dma-mapping.h>
 #include <linux/err.h>
@@ -245,10 +249,91 @@ void ion_system_heap_unmap_dma(struct ion_heap *heap,
 }
 
 static struct ion_heap_ops system_heap_ops = {
+=======
+#include <linux/err.h>
+#include <linux/ion.h>
+#include <linux/mm.h>
+#include <linux/scatterlist.h>
+#include <linux/slab.h>
+#include <linux/vmalloc.h>
+#include "ion_priv.h"
+
+static int ion_system_heap_allocate(struct ion_heap *heap,
+				     struct ion_buffer *buffer,
+				     unsigned long size, unsigned long align,
+				     unsigned long flags)
+{
+	buffer->priv_virt = vmalloc_user(size);
+	if (!buffer->priv_virt)
+		return -ENOMEM;
+	return 0;
+}
+
+void ion_system_heap_free(struct ion_buffer *buffer)
+{
+	vfree(buffer->priv_virt);
+}
+
+struct scatterlist *ion_system_heap_map_dma(struct ion_heap *heap,
+					    struct ion_buffer *buffer)
+{
+	struct scatterlist *sglist;
+	struct page *page;
+	int i;
+	int npages = PAGE_ALIGN(buffer->size) / PAGE_SIZE;
+	void *vaddr = buffer->priv_virt;
+
+	sglist = vmalloc(npages * sizeof(struct scatterlist));
+	if (!sglist)
+		return ERR_PTR(-ENOMEM);
+	memset(sglist, 0, npages * sizeof(struct scatterlist));
+	sg_init_table(sglist, npages);
+	for (i = 0; i < npages; i++) {
+		page = vmalloc_to_page(vaddr);
+		if (!page)
+			goto end;
+		sg_set_page(&sglist[i], page, PAGE_SIZE, 0);
+		vaddr += PAGE_SIZE;
+	}
+	/* XXX do cache maintenance for dma? */
+	return sglist;
+end:
+	vfree(sglist);
+	return NULL;
+}
+
+void ion_system_heap_unmap_dma(struct ion_heap *heap,
+			       struct ion_buffer *buffer)
+{
+	/* XXX undo cache maintenance for dma? */
+	if (buffer->sglist)
+		vfree(buffer->sglist);
+}
+
+void *ion_system_heap_map_kernel(struct ion_heap *heap,
+				 struct ion_buffer *buffer)
+{
+	return buffer->priv_virt;
+}
+
+void ion_system_heap_unmap_kernel(struct ion_heap *heap,
+				  struct ion_buffer *buffer)
+{
+}
+
+int ion_system_heap_map_user(struct ion_heap *heap, struct ion_buffer *buffer,
+			     struct vm_area_struct *vma)
+{
+	return remap_vmalloc_range(vma, buffer->priv_virt, vma->vm_pgoff);
+}
+
+static struct ion_heap_ops vmalloc_ops = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.allocate = ion_system_heap_allocate,
 	.free = ion_system_heap_free,
 	.map_dma = ion_system_heap_map_dma,
 	.unmap_dma = ion_system_heap_unmap_dma,
+<<<<<<< HEAD
 	.map_kernel = ion_heap_map_kernel,
 	.unmap_kernel = ion_heap_unmap_kernel,
 	.map_user = ion_heap_map_user,
@@ -417,10 +502,28 @@ err_alloc_cached_pools:
 err_alloc_uncached_pools:
 	kfree(heap);
 	return ERR_PTR(-ENOMEM);
+=======
+	.map_kernel = ion_system_heap_map_kernel,
+	.unmap_kernel = ion_system_heap_unmap_kernel,
+	.map_user = ion_system_heap_map_user,
+};
+
+struct ion_heap *ion_system_heap_create(struct ion_platform_heap *unused)
+{
+	struct ion_heap *heap;
+
+	heap = kzalloc(sizeof(struct ion_heap), GFP_KERNEL);
+	if (!heap)
+		return ERR_PTR(-ENOMEM);
+	heap->ops = &vmalloc_ops;
+	heap->type = ION_HEAP_TYPE_SYSTEM;
+	return heap;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 void ion_system_heap_destroy(struct ion_heap *heap)
 {
+<<<<<<< HEAD
 	struct ion_system_heap *sys_heap = container_of(heap,
 							struct ion_system_heap,
 							heap);
@@ -437,12 +540,18 @@ struct kmalloc_buffer_info {
 	void *vaddr;
 };
 
+=======
+	kfree(heap);
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int ion_system_contig_heap_allocate(struct ion_heap *heap,
 					   struct ion_buffer *buffer,
 					   unsigned long len,
 					   unsigned long align,
 					   unsigned long flags)
 {
+<<<<<<< HEAD
 	int ret;
 	struct kmalloc_buffer_info *info;
 
@@ -484,26 +593,41 @@ kfree_info:
 	kfree(info);
 out:
 	return ret;
+=======
+	buffer->priv_virt = kzalloc(len, GFP_KERNEL);
+	if (!buffer->priv_virt)
+		return -ENOMEM;
+	return 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 void ion_system_contig_heap_free(struct ion_buffer *buffer)
 {
+<<<<<<< HEAD
 	struct kmalloc_buffer_info *info = buffer->priv_virt;
 	sg_free_table(info->table);
 	kfree(info->table);
 	kfree(info->vaddr);
+=======
+	kfree(buffer->priv_virt);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static int ion_system_contig_heap_phys(struct ion_heap *heap,
 				       struct ion_buffer *buffer,
 				       ion_phys_addr_t *addr, size_t *len)
 {
+<<<<<<< HEAD
 	struct kmalloc_buffer_info *info = buffer->priv_virt;
 	*addr = virt_to_phys(info->vaddr);
+=======
+	*addr = virt_to_phys(buffer->priv_virt);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	*len = buffer->size;
 	return 0;
 }
 
+<<<<<<< HEAD
 struct sg_table *ion_system_contig_heap_map_dma(struct ion_heap *heap,
 						struct ion_buffer *buffer)
 {
@@ -514,6 +638,30 @@ struct sg_table *ion_system_contig_heap_map_dma(struct ion_heap *heap,
 void ion_system_contig_heap_unmap_dma(struct ion_heap *heap,
 				      struct ion_buffer *buffer)
 {
+=======
+struct scatterlist *ion_system_contig_heap_map_dma(struct ion_heap *heap,
+						   struct ion_buffer *buffer)
+{
+	struct scatterlist *sglist;
+
+	sglist = vmalloc(sizeof(struct scatterlist));
+	if (!sglist)
+		return ERR_PTR(-ENOMEM);
+	sg_init_table(sglist, 1);
+	sg_set_page(sglist, virt_to_page(buffer->priv_virt), buffer->size, 0);
+	return sglist;
+}
+
+int ion_system_contig_heap_map_user(struct ion_heap *heap,
+				    struct ion_buffer *buffer,
+				    struct vm_area_struct *vma)
+{
+	unsigned long pfn = __phys_to_pfn(virt_to_phys(buffer->priv_virt));
+	return remap_pfn_range(vma, vma->vm_start, pfn + vma->vm_pgoff,
+			       vma->vm_end - vma->vm_start,
+			       vma->vm_page_prot);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 static struct ion_heap_ops kmalloc_ops = {
@@ -521,10 +669,17 @@ static struct ion_heap_ops kmalloc_ops = {
 	.free = ion_system_contig_heap_free,
 	.phys = ion_system_contig_heap_phys,
 	.map_dma = ion_system_contig_heap_map_dma,
+<<<<<<< HEAD
 	.unmap_dma = ion_system_contig_heap_unmap_dma,
 	.map_kernel = ion_heap_map_kernel,
 	.unmap_kernel = ion_heap_unmap_kernel,
 	.map_user = ion_heap_map_user,
+=======
+	.unmap_dma = ion_system_heap_unmap_dma,
+	.map_kernel = ion_system_heap_map_kernel,
+	.unmap_kernel = ion_system_heap_unmap_kernel,
+	.map_user = ion_system_contig_heap_map_user,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 struct ion_heap *ion_system_contig_heap_create(struct ion_platform_heap *unused)

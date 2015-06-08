@@ -10,14 +10,22 @@
 #include <linux/sched.h>
 #include <linux/unistd.h>
 #include <linux/cpu.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/kthread.h>
 #include <linux/stop_machine.h>
 #include <linux/mutex.h>
 #include <linux/gfp.h>
 #include <linux/suspend.h>
 
+<<<<<<< HEAD
 #include <trace/events/sched.h>
+=======
+#include "smpboot.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_SMP
 /* Serializes the updates to cpu_online_mask, cpu_present_mask */
@@ -77,10 +85,13 @@ void put_online_cpus(void)
 	if (cpu_hotplug.active_writer == current)
 		return;
 	mutex_lock(&cpu_hotplug.lock);
+<<<<<<< HEAD
 
 	if (WARN_ON(!cpu_hotplug.refcount))
 		cpu_hotplug.refcount++; /* try to fix things up */
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!--cpu_hotplug.refcount && unlikely(cpu_hotplug.active_writer))
 		wake_up_process(cpu_hotplug.active_writer);
 	mutex_unlock(&cpu_hotplug.lock);
@@ -184,7 +195,12 @@ static inline void check_for_tasks(int cpu)
 	write_lock_irq(&tasklist_lock);
 	for_each_process(p) {
 		if (task_cpu(p) == cpu && p->state == TASK_RUNNING &&
+<<<<<<< HEAD
 		    (p->utime || p->stime))
+=======
+		    (!cputime_eq(p->utime, cputime_zero) ||
+		     !cputime_eq(p->stime, cputime_zero)))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			printk(KERN_WARNING "Task %s (pid = %d) is on cpu %d "
 				"(state = %ld, flags = %x)\n",
 				p->comm, task_pid_nr(p), cpu,
@@ -270,7 +286,10 @@ static int __ref _cpu_down(unsigned int cpu, int tasks_frozen)
 
 out_release:
 	cpu_hotplug_done();
+<<<<<<< HEAD
 	trace_sched_cpu_hotplug(cpu, err, 0);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!err)
 		cpu_notify_nofail(CPU_POST_DEAD | mod, hcpu);
 	return err;
@@ -307,6 +326,14 @@ static int __cpuinit _cpu_up(unsigned int cpu, int tasks_frozen)
 		return -EINVAL;
 
 	cpu_hotplug_begin();
+<<<<<<< HEAD
+=======
+
+	ret = smpboot_prepare(cpu);
+	if (ret)
+		goto out;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ret = __cpu_notify(CPU_UP_PREPARE | mod, hcpu, -1, &nr_calls);
 	if (ret) {
 		nr_calls--;
@@ -316,7 +343,11 @@ static int __cpuinit _cpu_up(unsigned int cpu, int tasks_frozen)
 	}
 
 	/* Arch-specific enabling code. */
+<<<<<<< HEAD
 	ret = __cpu_up(cpu);
+=======
+	ret = __cpu_up(cpu, idle_thread_get(cpu));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret != 0)
 		goto out_notify;
 	BUG_ON(!cpu_online(cpu));
@@ -327,8 +358,13 @@ static int __cpuinit _cpu_up(unsigned int cpu, int tasks_frozen)
 out_notify:
 	if (ret != 0)
 		__cpu_notify(CPU_UP_CANCELED | mod, hcpu, nr_calls, NULL);
+<<<<<<< HEAD
 	cpu_hotplug_done();
 	trace_sched_cpu_hotplug(cpu, ret, 1);
+=======
+out:
+	cpu_hotplug_done();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return ret;
 }
@@ -387,7 +423,10 @@ out:
 	cpu_maps_update_done();
 	return err;
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL_GPL(cpu_up);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_PM_SLEEP_SMP
 static cpumask_var_t frozen_cpus;
@@ -478,7 +517,11 @@ out:
 	cpu_maps_update_done();
 }
 
+<<<<<<< HEAD
 static int __init alloc_frozen_cpus(void)
+=======
+static int alloc_frozen_cpus(void)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	if (!alloc_cpumask_var(&frozen_cpus, GFP_KERNEL|__GFP_ZERO))
 		return -ENOMEM;
@@ -551,7 +594,11 @@ cpu_hotplug_pm_callback(struct notifier_block *nb,
 }
 
 
+<<<<<<< HEAD
 static int __init cpu_hotplug_pm_sync_init(void)
+=======
+int cpu_hotplug_pm_sync_init(void)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	pm_notifier(cpu_hotplug_pm_callback, 0);
 	return 0;

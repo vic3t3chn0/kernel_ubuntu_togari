@@ -185,4 +185,19 @@ static struct platform_driver sp_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(sp_driver);
+=======
+static int __init sp_init(void)
+{
+	return platform_driver_register(&sp_driver);
+}
+
+static void __exit sp_exit(void)
+{
+	platform_driver_unregister(&sp_driver);
+}
+
+module_init(sp_init);
+module_exit(sp_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

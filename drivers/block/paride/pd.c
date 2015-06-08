@@ -124,9 +124,14 @@
    by default.
 
 */
+<<<<<<< HEAD
 #include <linux/types.h>
 
 static bool verbose = 0;
+=======
+
+static int verbose = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int major = PD_MAJOR;
 static char *name = PD_NAME;
 static int cluster = 64;

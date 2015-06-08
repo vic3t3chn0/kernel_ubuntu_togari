@@ -474,14 +474,29 @@ static const struct xenbus_device_id netback_ids[] = {
 };
 
 
+<<<<<<< HEAD
 static DEFINE_XENBUS_DRIVER(netback, ,
+=======
+static struct xenbus_driver netback = {
+	.name = "vif",
+	.owner = THIS_MODULE,
+	.ids = netback_ids,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.probe = netback_probe,
 	.remove = netback_remove,
 	.uevent = netback_uevent,
 	.otherend_changed = frontend_changed,
+<<<<<<< HEAD
 );
 
 int xenvif_xenbus_init(void)
 {
 	return xenbus_register_backend(&netback_driver);
+=======
+};
+
+int xenvif_xenbus_init(void)
+{
+	return xenbus_register_backend(&netback);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }

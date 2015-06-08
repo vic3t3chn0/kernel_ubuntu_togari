@@ -22,7 +22,11 @@ static void __init error(char *x)
 
 static __initdata struct hash {
 	int ino, minor, major;
+<<<<<<< HEAD
 	umode_t mode;
+=======
+	mode_t mode;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct hash *next;
 	char name[N_ALIGN(PATH_MAX)];
 } *head[32];
@@ -35,7 +39,11 @@ static inline int hash(int major, int minor, int ino)
 }
 
 static char __init *find_link(int major, int minor, int ino,
+<<<<<<< HEAD
 			      umode_t mode, char *name)
+=======
+			      mode_t mode, char *name)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct hash **p, *q;
 	for (p = head + hash(major, minor, ino); *p; p = &(*p)->next) {
@@ -120,7 +128,11 @@ static __initdata time_t mtime;
 /* cpio header parsing */
 
 static __initdata unsigned long ino, major, minor, nlink;
+<<<<<<< HEAD
 static __initdata umode_t mode;
+=======
+static __initdata mode_t mode;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static __initdata unsigned long body_len, name_len;
 static __initdata uid_t uid;
 static __initdata gid_t gid;
@@ -276,7 +288,11 @@ static int __init maybe_link(void)
 	return 0;
 }
 
+<<<<<<< HEAD
 static void __init clean_path(char *path, umode_t mode)
+=======
+static void __init clean_path(char *path, mode_t mode)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct stat st;
 

@@ -12,7 +12,11 @@
 #include <linux/cpuset.h>
 #include <linux/unistd.h>
 #include <linux/file.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/mutex.h>
 #include <linux/slab.h>
 #include <linux/freezer.h>
@@ -59,6 +63,7 @@ int kthread_should_stop(void)
 EXPORT_SYMBOL(kthread_should_stop);
 
 /**
+<<<<<<< HEAD
  * kthread_freezable_should_stop - should this freezable kthread return now?
  * @was_frozen: optional out parameter, indicates whether %current was frozen
  *
@@ -84,6 +89,8 @@ bool kthread_freezable_should_stop(bool *was_frozen)
 EXPORT_SYMBOL_GPL(kthread_freezable_should_stop);
 
 /**
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * kthread_data - return data value specified on kthread creation
  * @task: kthread task in question
  *
@@ -282,7 +289,11 @@ int kthreadd(void *unused)
 	set_cpus_allowed_ptr(tsk, cpu_all_mask);
 	set_mems_allowed(node_states[N_HIGH_MEMORY]);
 
+<<<<<<< HEAD
 	current->flags |= PF_NOFREEZE;
+=======
+	current->flags |= PF_NOFREEZE | PF_FREEZER_NOSIG;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	for (;;) {
 		set_current_state(TASK_INTERRUPTIBLE);

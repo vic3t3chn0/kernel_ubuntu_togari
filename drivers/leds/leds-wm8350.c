@@ -17,7 +17,10 @@
 #include <linux/mfd/wm8350/pmic.h>
 #include <linux/regulator/consumer.h>
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Microamps */
 static const int isink_cur[] = {
@@ -227,7 +230,11 @@ static int wm8350_led_probe(struct platform_device *pdev)
 		goto err_isink;
 	}
 
+<<<<<<< HEAD
 	led = devm_kzalloc(&pdev->dev, sizeof(*led), GFP_KERNEL);
+=======
+	led = kzalloc(sizeof(*led), GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (led == NULL) {
 		ret = -ENOMEM;
 		goto err_dcdc;
@@ -259,10 +266,19 @@ static int wm8350_led_probe(struct platform_device *pdev)
 
 	ret = led_classdev_register(&pdev->dev, &led->cdev);
 	if (ret < 0)
+<<<<<<< HEAD
 		goto err_dcdc;
 
 	return 0;
 
+=======
+		goto err_led;
+
+	return 0;
+
+ err_led:
+	kfree(led);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  err_dcdc:
 	regulator_put(dcdc);
  err_isink:
@@ -279,6 +295,10 @@ static int wm8350_led_remove(struct platform_device *pdev)
 	wm8350_led_disable(led);
 	regulator_put(led->dcdc);
 	regulator_put(led->isink);
+<<<<<<< HEAD
+=======
+	kfree(led);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -292,7 +312,21 @@ static struct platform_driver wm8350_led_driver = {
 	.shutdown = wm8350_led_shutdown,
 };
 
+<<<<<<< HEAD
 module_platform_driver(wm8350_led_driver);
+=======
+static int __devinit wm8350_led_init(void)
+{
+	return platform_driver_register(&wm8350_led_driver);
+}
+module_init(wm8350_led_init);
+
+static void wm8350_led_exit(void)
+{
+	platform_driver_unregister(&wm8350_led_driver);
+}
+module_exit(wm8350_led_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Mark Brown");
 MODULE_DESCRIPTION("WM8350 LED driver");

@@ -307,8 +307,11 @@ void radeon_panel_mode_fixup(struct drm_encoder *encoder,
 bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
 				    u32 pixel_clock)
 {
+<<<<<<< HEAD
 	struct drm_device *dev = encoder->dev;
 	struct radeon_device *rdev = dev->dev_private;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct drm_connector *connector;
 	struct radeon_connector *radeon_connector;
 	struct radeon_connector_atom_dig *dig_connector;
@@ -326,7 +329,11 @@ bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
 	case DRM_MODE_CONNECTOR_HDMIB:
 		if (radeon_connector->use_digital) {
 			/* HDMI 1.3 supports up to 340 Mhz over single link */
+<<<<<<< HEAD
 			if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector->edid)) {
+=======
+			if (0 && drm_detect_hdmi_monitor(radeon_connector->edid)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				if (pixel_clock > 340000)
 					return true;
 				else
@@ -348,7 +355,11 @@ bool radeon_dig_monitor_is_duallink(struct drm_encoder *encoder,
 			return false;
 		else {
 			/* HDMI 1.3 supports up to 340 Mhz over single link */
+<<<<<<< HEAD
 			if (ASIC_IS_DCE6(rdev) && drm_detect_hdmi_monitor(radeon_connector->edid)) {
+=======
+			if (0 && drm_detect_hdmi_monitor(radeon_connector->edid)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				if (pixel_clock > 340000)
 					return true;
 				else

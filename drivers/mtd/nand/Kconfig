@@ -90,9 +90,22 @@ config MTD_NAND_DENALI_SCRATCH_REG_ADDR
           scratch register here to enable this feature. On Intel Moorestown
           boards, the scratch register is at 0xFF108018.
 
+<<<<<<< HEAD
 config MTD_NAND_H1900
 	tristate "iPAQ H1900 flash"
 	depends on ARCH_PXA && BROKEN
+=======
+config MTD_NAND_EDB7312
+	tristate "Support for Cirrus Logic EBD7312 evaluation board"
+	depends on ARCH_EDB7312
+	help
+	  This enables the driver for the Cirrus Logic EBD7312 evaluation
+	  board to access the onboard NAND Flash.
+
+config MTD_NAND_H1900
+	tristate "iPAQ H1900 flash"
+	depends on ARCH_PXA
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  This enables the driver for the iPAQ h1900 flash.
 
@@ -116,11 +129,38 @@ config MTD_NAND_AMS_DELTA
 	  Support for NAND flash on Amstrad E3 (Delta).
 
 config MTD_NAND_OMAP2
+<<<<<<< HEAD
 	tristate "NAND Flash device on OMAP2, OMAP3 and OMAP4"
 	depends on ARCH_OMAP2PLUS
 	help
           Support for NAND flash on Texas Instruments OMAP2, OMAP3 and OMAP4
 	  platforms.
+=======
+	tristate "NAND Flash device on OMAP2 and OMAP3"
+	depends on ARM && (ARCH_OMAP2 || ARCH_OMAP3)
+	help
+          Support for NAND flash on Texas Instruments OMAP2 and OMAP3 platforms.
+
+config MTD_NAND_OMAP_PREFETCH
+	bool "GPMC prefetch support for NAND Flash device"
+	depends on MTD_NAND_OMAP2
+	default y
+	help
+	 The NAND device can be accessed for Read/Write using GPMC PREFETCH engine
+	 to improve the performance.
+
+config MTD_NAND_OMAP_PREFETCH_DMA
+	depends on MTD_NAND_OMAP_PREFETCH
+	bool "DMA mode"
+	default n
+	help
+	 The GPMC PREFETCH engine can be configured eigther in MPU interrupt mode
+	 or in DMA interrupt mode.
+	 Say y for DMA mode or MPU mode will be used
+
+config MTD_NAND_IDS
+	tristate
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config MTD_NAND_RICOH
 	tristate "Ricoh xD card reader"
@@ -136,7 +176,11 @@ config MTD_NAND_RICOH
 
 config MTD_NAND_AU1550
 	tristate "Au1550/1200 NAND support"
+<<<<<<< HEAD
 	depends on MIPS_ALCHEMY
+=======
+	depends on SOC_AU1200 || SOC_AU1550
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  This enables the driver for the NAND flash controller on the
 	  AMD/Alchemy 1550 SOC.
@@ -191,7 +235,11 @@ config MTD_NAND_PPCHAMELEONEVB
 
 config MTD_NAND_S3C2410
 	tristate "NAND Flash support for Samsung S3C SoCs"
+<<<<<<< HEAD
 	depends on ARCH_S3C24XX || ARCH_S3C64XX
+=======
+	depends on ARCH_S3C2410 || ARCH_S3C64XX
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  This enables the NAND flash controller on the S3C24xx and S3C64xx
 	  SoCs
@@ -250,7 +298,10 @@ config MTD_NAND_BCM_UMI_HWCS
 config MTD_NAND_DISKONCHIP
 	tristate "DiskOnChip 2000, Millennium and Millennium Plus (NAND reimplementation) (EXPERIMENTAL)"
 	depends on EXPERIMENTAL
+<<<<<<< HEAD
 	depends on HAS_IOMEM
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	select REED_SOLOMON
 	select REED_SOLOMON_DEC16
 	help
@@ -318,6 +369,7 @@ config MTD_NAND_DISKONCHIP_BBTWRITE
 	  load time (assuming you build diskonchip as a module) with the module
 	  parameter "inftl_bbt_write=1".
 
+<<<<<<< HEAD
 config MTD_NAND_DOCG4
 	tristate "Support for DiskOnChip G4 (EXPERIMENTAL)"
 	depends on EXPERIMENTAL
@@ -338,6 +390,8 @@ config MTD_NAND_DOCG4
 	  by the block containing the saftl partition table.  This is probably
 	  typical.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config MTD_NAND_SHARPSL
 	tristate "Support for NAND Flash on Sharp SL Series (C7xx + others)"
 	depends on ARCH_PXA
@@ -442,6 +496,7 @@ config MTD_NAND_NANDSIM
 	  The simulator may simulate various NAND flash chips for the
 	  MTD nand layer.
 
+<<<<<<< HEAD
 config MTD_NAND_GPMI_NAND
         bool "GPMI NAND Flash Controller driver"
         depends on MTD_NAND && (SOC_IMX23 || SOC_IMX28)
@@ -456,6 +511,10 @@ config MTD_NAND_GPMI_NAND
 config MTD_NAND_PLATFORM
 	tristate "Support for generic platform NAND driver"
 	depends on HAS_IOMEM
+=======
+config MTD_NAND_PLATFORM
+	tristate "Support for generic platform NAND driver"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	help
 	  This implements a generic NAND driver for on-SOC platform
 	  devices. You will need to provide platform-specific functions
@@ -487,6 +546,7 @@ config MTD_NAND_FSL_ELBC
 	  Enabling this option will enable you to use this to control
 	  external NAND devices.
 
+<<<<<<< HEAD
 config MTD_NAND_FSL_IFC
 	tristate "NAND support for Freescale IFC controller"
 	depends on MTD_NAND && FSL_SOC
@@ -497,6 +557,8 @@ config MTD_NAND_FSL_IFC
 	  Enabling this option will enable you to use this to control
 	  external NAND devices.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config MTD_NAND_FSL_UPM
 	tristate "Support for NAND on Freescale UPM"
 	depends on PPC_83xx || PPC_85xx

@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 /* The industrial I/O core, trigger consumer functions
  *
  * Copyright (c) 2008-2011 Jonathan Cameron
+=======
+
+/* The industrial I/O core, trigger consumer handling functions
+ *
+ * Copyright (c) 2008 Jonathan Cameron
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License version 2 as published by
  * the Free Software Foundation.
  */
 
+<<<<<<< HEAD
 /**
  * struct iio_poll_func - poll function pair
  *
@@ -50,3 +58,42 @@ void iio_trigger_notify_done(struct iio_trigger *trig);
  */
 int iio_triggered_buffer_postenable(struct iio_dev *indio_dev);
 int iio_triggered_buffer_predisable(struct iio_dev *indio_dev);
+=======
+#ifdef CONFIG_IIO_TRIGGER
+/**
+ * iio_device_register_trigger_consumer() - set up an iio_dev to use triggers
+ * @dev_info: iio_dev associated with the device that will consume the trigger
+ **/
+int iio_device_register_trigger_consumer(struct iio_dev *dev_info);
+
+/**
+ * iio_device_unregister_trigger_consumer() - reverse the registration process
+ * @dev_info: iio_dev associated with the device that consumed the trigger
+ **/
+int iio_device_unregister_trigger_consumer(struct iio_dev *dev_info);
+
+#else
+
+/**
+ * iio_device_register_trigger_consumer() - set up an iio_dev to use triggers
+ * @dev_info: iio_dev associated with the device that will consume the trigger
+ **/
+static int iio_device_register_trigger_consumer(struct iio_dev *dev_info)
+{
+	return 0;
+};
+
+/**
+ * iio_device_unregister_trigger_consumer() - reverse the registration process
+ * @dev_info: iio_dev associated with the device that consumed the trigger
+ **/
+static int iio_device_unregister_trigger_consumer(struct iio_dev *dev_info)
+{
+	return 0;
+};
+
+#endif /* CONFIG_TRIGGER_CONSUMER */
+
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

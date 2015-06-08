@@ -35,7 +35,11 @@ extern int dvb_usb_af9005_debug;
 #define deb_i2c(args...)  dprintk(dvb_usb_af9005_debug,0x10,args)
 #define deb_fw(args...)   dprintk(dvb_usb_af9005_debug,0x20,args)
 
+<<<<<<< HEAD
 extern bool dvb_usb_af9005_led;
+=======
+extern int dvb_usb_af9005_led;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* firmware */
 #define FW_BULKOUT_SIZE 250

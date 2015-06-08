@@ -17,12 +17,19 @@
 #include <linux/highmem.h>
 #include <linux/scatterlist.h>
 #include <linux/log2.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/io.h>
 
 #define DRIVER_NAME "tifm_ms"
 
+<<<<<<< HEAD
 static bool no_dma;
+=======
+static int no_dma;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_param(no_dma, bool, 0644);
 
 /*
@@ -210,7 +217,11 @@ static unsigned int tifm_ms_transfer_data(struct tifm_ms *host)
 			p_cnt = min(p_cnt, length);
 
 			local_irq_save(flags);
+<<<<<<< HEAD
 			buf = kmap_atomic(pg) + p_off;
+=======
+			buf = kmap_atomic(pg, KM_BIO_SRC_IRQ) + p_off;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		} else {
 			buf = host->req->data + host->block_pos;
 			p_cnt = host->req->data_len - host->block_pos;
@@ -221,7 +232,11 @@ static unsigned int tifm_ms_transfer_data(struct tifm_ms *host)
 			 : tifm_ms_read_data(host, buf, p_cnt);
 
 		if (host->req->long_data) {
+<<<<<<< HEAD
 			kunmap_atomic(buf - p_off);
+=======
+			kunmap_atomic(buf - p_off, KM_BIO_SRC_IRQ);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			local_irq_restore(flags);
 		}
 

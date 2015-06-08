@@ -29,6 +29,10 @@
 
 /* driver definitions */
 #define DRIVER_AUTHOR "Tobias Lorenz <tobias.lorenz@gmx.net>"
+<<<<<<< HEAD
+=======
+#define DRIVER_KERNEL_VERSION KERNEL_VERSION(1, 0, 10)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define DRIVER_CARD "Silicon Labs Si470x FM Radio Receiver"
 #define DRIVER_DESC "USB radio driver for Si470x FM Radio Receivers"
 #define DRIVER_VERSION "1.0.10"
@@ -395,6 +399,10 @@ int si470x_disconnect_check(struct si470x_device *radio)
 static void si470x_int_in_callback(struct urb *urb)
 {
 	struct si470x_device *radio = urb->context;
+<<<<<<< HEAD
+=======
+	unsigned char buf[RDS_REPORT_SIZE];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int retval;
 	unsigned char regnr;
 	unsigned char blocknum;
@@ -422,6 +430,10 @@ static void si470x_int_in_callback(struct urb *urb)
 
 	if (urb->actual_length > 0) {
 		/* Update RDS registers with URB data */
+<<<<<<< HEAD
+=======
+		buf[0] = RDS_REPORT;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		for (regnr = 0; regnr < RDS_REGISTER_NUM; regnr++)
 			radio->registers[STATUSRSSI + regnr] =
 			    get_unaligned_be16(&radio->int_in_buffer[
@@ -623,6 +635,10 @@ int si470x_vidioc_querycap(struct file *file, void *priv,
 	strlcpy(capability->card, DRIVER_CARD, sizeof(capability->card));
 	usb_make_path(radio->usbdev, capability->bus_info,
 			sizeof(capability->bus_info));
+<<<<<<< HEAD
+=======
+	capability->version = DRIVER_KERNEL_VERSION;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	capability->capabilities = V4L2_CAP_HW_FREQ_SEEK |
 		V4L2_CAP_TUNER | V4L2_CAP_RADIO | V4L2_CAP_RDS_CAPTURE;
 
@@ -695,7 +711,11 @@ static int si470x_usb_driver_probe(struct usb_interface *intf,
 	radio->videodev = video_device_alloc();
 	if (!radio->videodev) {
 		retval = -ENOMEM;
+<<<<<<< HEAD
 		goto err_urb;
+=======
+		goto err_intbuffer;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	memcpy(radio->videodev, &si470x_viddev_template,
 			sizeof(si470x_viddev_template));
@@ -786,8 +806,11 @@ err_all:
 	kfree(radio->buffer);
 err_video:
 	video_device_release(radio->videodev);
+<<<<<<< HEAD
 err_urb:
 	usb_free_urb(radio->int_in_urb);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 err_intbuffer:
 	kfree(radio->int_in_buffer);
 err_radio:
@@ -861,7 +884,37 @@ static struct usb_driver si470x_usb_driver = {
 	.supports_autosuspend	= 1,
 };
 
+<<<<<<< HEAD
 module_usb_driver(si470x_usb_driver);
+=======
+
+
+/**************************************************************************
+ * Module Interface
+ **************************************************************************/
+
+/*
+ * si470x_module_init - module init
+ */
+static int __init si470x_module_init(void)
+{
+	printk(KERN_INFO DRIVER_DESC ", Version " DRIVER_VERSION "\n");
+	return usb_register(&si470x_usb_driver);
+}
+
+
+/*
+ * si470x_module_exit - module exit
+ */
+static void __exit si470x_module_exit(void)
+{
+	usb_deregister(&si470x_usb_driver);
+}
+
+
+module_init(si470x_module_init);
+module_exit(si470x_module_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR(DRIVER_AUTHOR);

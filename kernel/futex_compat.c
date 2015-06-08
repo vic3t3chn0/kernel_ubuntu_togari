@@ -142,8 +142,11 @@ compat_sys_get_robust_list(int pid, compat_uptr_t __user *head_ptr,
 	if (!futex_cmpxchg_enabled)
 		return -ENOSYS;
 
+<<<<<<< HEAD
 	WARN_ONCE(1, "deprecated: get_robust_list will be deleted in 2013.\n");
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	rcu_read_lock();
 
 	ret = -ESRCH;

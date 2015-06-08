@@ -22,7 +22,10 @@
  */
 
 #include <linux/slab.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <scsi/scsi.h>
 #include <scsi/scsi_dbg.h>
 #include <scsi/scsi_eh.h>
@@ -320,6 +323,7 @@ static const struct scsi_dh_devlist hp_sw_dh_data_list[] = {
 	{NULL, NULL},
 };
 
+<<<<<<< HEAD
 static bool hp_sw_match(struct scsi_device *sdev)
 {
 	int i;
@@ -338,6 +342,8 @@ static bool hp_sw_match(struct scsi_device *sdev)
 	return false;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int hp_sw_bus_attach(struct scsi_device *sdev);
 static void hp_sw_bus_detach(struct scsi_device *sdev);
 
@@ -349,7 +355,10 @@ static struct scsi_device_handler hp_sw_dh = {
 	.detach		= hp_sw_bus_detach,
 	.activate	= hp_sw_activate,
 	.prep_fn	= hp_sw_prep_fn,
+<<<<<<< HEAD
 	.match		= hp_sw_match,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int hp_sw_bus_attach(struct scsi_device *sdev)

@@ -53,6 +53,7 @@ static struct rtc_device	*rtcdev;
 static DEFINE_SPINLOCK(rtcdev_lock);
 
 /**
+<<<<<<< HEAD
  * alarmtimer_get_rtcdev - Return selected rtcdevice
  *
  * This function returns the rtc device to use for wakealarms.
@@ -128,6 +129,68 @@ static inline void alarmtimer_rtc_timer_init(void) { }
 void set_power_on_alarm(long secs, bool enable) { }
 #endif
 
+=======
+ * has_wakealarm - check rtc device has wakealarm ability
+ * @dev: current device
+ * @name_ptr: name to be returned
+ *
+ * This helper function checks to see if the rtc device can wake
+ * from suspend.
+ */
+static int has_wakealarm(struct device *dev, void *name_ptr)
+{
+	struct rtc_device *candidate = to_rtc_device(dev);
+
+	if (!candidate->ops->set_alarm)
+		return 0;
+	if (!device_may_wakeup(candidate->dev.parent))
+		return 0;
+
+	*(const char **)name_ptr = dev_name(dev);
+	return 1;
+}
+
+/**
+ * alarmtimer_get_rtcdev - Return selected rtcdevice
+ *
+ * This function returns the rtc device to use for wakealarms.
+ * If one has not already been chosen, it checks to see if a
+ * functional rtc device is available.
+ */
+static struct rtc_device *alarmtimer_get_rtcdev(void)
+{
+	struct device *dev;
+	char *str;
+	unsigned long flags;
+	struct rtc_device *ret;
+
+	spin_lock_irqsave(&rtcdev_lock, flags);
+	if (!rtcdev) {
+		/* Find an rtc device and init the rtc_timer */
+		dev = class_find_device(rtc_class, NULL, &str, has_wakealarm);
+		/* If we have a device then str is valid. See has_wakealarm() */
+		if (dev) {
+			rtcdev = rtc_class_open(str);
+			/*
+			 * Drop the reference we got in class_find_device,
+			 * rtc_open takes its own.
+			 */
+			put_device(dev);
+			rtc_timer_init(&rtctimer, NULL, NULL);
+		}
+	}
+	ret = rtcdev;
+	spin_unlock_irqrestore(&rtcdev_lock, flags);
+
+	return ret;
+}
+#else
+#define alarmtimer_get_rtcdev() (0)
+#define rtcdev (0)
+#endif
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * alarmtimer_enqueue - Adds an alarm timer to an alarm_base timerqueue
  * @base: pointer to the base where the timer is being run
@@ -141,8 +204,11 @@ void set_power_on_alarm(long secs, bool enable) { }
 static void alarmtimer_enqueue(struct alarm_base *base, struct alarm *alarm)
 {
 	timerqueue_add(&base->timerqueue, &alarm->node);
+<<<<<<< HEAD
 	alarm->state |= ALARMTIMER_STATE_ENQUEUED;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (&alarm->node == timerqueue_getnext(&base->timerqueue)) {
 		hrtimer_try_to_cancel(&base->timer);
 		hrtimer_start(&base->timer, alarm->node.expires,
@@ -164,12 +230,16 @@ static void alarmtimer_remove(struct alarm_base *base, struct alarm *alarm)
 {
 	struct timerqueue_node *next = timerqueue_getnext(&base->timerqueue);
 
+<<<<<<< HEAD
 	if (!(alarm->state & ALARMTIMER_STATE_ENQUEUED))
 		return;
 
 	timerqueue_del(&base->timerqueue, &alarm->node);
 	alarm->state &= ~ALARMTIMER_STATE_ENQUEUED;
 
+=======
+	timerqueue_del(&base->timerqueue, &alarm->node);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (next == &alarm->node) {
 		hrtimer_try_to_cancel(&base->timer);
 		next = timerqueue_getnext(&base->timerqueue);
@@ -196,7 +266,10 @@ static enum hrtimer_restart alarmtimer_fired(struct hrtimer *timer)
 	unsigned long flags;
 	ktime_t now;
 	int ret = HRTIMER_NORESTART;
+<<<<<<< HEAD
 	int restart = ALARMTIMER_NORESTART;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	spin_lock_irqsave(&base->lock, flags);
 	now = base->gettime();
@@ -210,6 +283,7 @@ static enum hrtimer_restart alarmtimer_fired(struct hrtimer *timer)
 		alarm = container_of(next, struct alarm, node);
 
 		timerqueue_del(&base->timerqueue, &alarm->node);
+<<<<<<< HEAD
 		alarm->state &= ~ALARMTIMER_STATE_ENQUEUED;
 
 		alarm->state |= ALARMTIMER_STATE_CALLBACK;
@@ -223,6 +297,19 @@ static enum hrtimer_restart alarmtimer_fired(struct hrtimer *timer)
 			timerqueue_add(&base->timerqueue, &alarm->node);
 			alarm->state |= ALARMTIMER_STATE_ENQUEUED;
 		}
+=======
+		alarm->enabled = 0;
+		/* Re-add periodic timers */
+		if (alarm->period.tv64) {
+			alarm->node.expires = ktime_add(expired, alarm->period);
+			timerqueue_add(&base->timerqueue, &alarm->node);
+			alarm->enabled = 1;
+		}
+		spin_unlock_irqrestore(&base->lock, flags);
+		if (alarm->function)
+			alarm->function(alarm);
+		spin_lock_irqsave(&base->lock, flags);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (next) {
@@ -259,7 +346,11 @@ static int alarmtimer_suspend(struct device *dev)
 	freezer_delta = ktime_set(0, 0);
 	spin_unlock_irqrestore(&freezer_delta_lock, flags);
 
+<<<<<<< HEAD
 	rtc = alarmtimer_get_rtcdev();
+=======
+	rtc = rtcdev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* If we have no rtcdev, just return */
 	if (!rtc)
 		return 0;
@@ -324,33 +415,59 @@ static void alarmtimer_freezerset(ktime_t absexp, enum alarmtimer_type type)
  * @function: callback that is run when the alarm fires
  */
 void alarm_init(struct alarm *alarm, enum alarmtimer_type type,
+<<<<<<< HEAD
 		enum alarmtimer_restart (*function)(struct alarm *, ktime_t))
 {
 	timerqueue_init(&alarm->node);
 	alarm->function = function;
 	alarm->type = type;
 	alarm->state = ALARMTIMER_STATE_INACTIVE;
+=======
+		void (*function)(struct alarm *))
+{
+	timerqueue_init(&alarm->node);
+	alarm->period = ktime_set(0, 0);
+	alarm->function = function;
+	alarm->type = type;
+	alarm->enabled = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
  * alarm_start - Sets an alarm to fire
  * @alarm: ptr to alarm to set
  * @start: time to run the alarm
+<<<<<<< HEAD
  */
 void alarm_start(struct alarm *alarm, ktime_t start)
+=======
+ * @period: period at which the alarm will recur
+ */
+void alarm_start(struct alarm *alarm, ktime_t start, ktime_t period)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct alarm_base *base = &alarm_bases[alarm->type];
 	unsigned long flags;
 
 	spin_lock_irqsave(&base->lock, flags);
+<<<<<<< HEAD
 	if (alarmtimer_active(alarm))
 		alarmtimer_remove(base, alarm);
 	alarm->node.expires = start;
 	alarmtimer_enqueue(base, alarm);
+=======
+	if (alarm->enabled)
+		alarmtimer_remove(base, alarm);
+	alarm->node.expires = start;
+	alarm->period = period;
+	alarmtimer_enqueue(base, alarm);
+	alarm->enabled = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_unlock_irqrestore(&base->lock, flags);
 }
 
 /**
+<<<<<<< HEAD
  * alarm_try_to_cancel - Tries to cancel an alarm timer
  * @alarm: ptr to alarm to be canceled
  *
@@ -429,6 +546,24 @@ u64 alarm_forward(struct alarm *alarm, ktime_t now, ktime_t interval)
 
 
 
+=======
+ * alarm_cancel - Tries to cancel an alarm timer
+ * @alarm: ptr to alarm to be canceled
+ */
+void alarm_cancel(struct alarm *alarm)
+{
+	struct alarm_base *base = &alarm_bases[alarm->type];
+	unsigned long flags;
+
+	spin_lock_irqsave(&base->lock, flags);
+	if (alarm->enabled)
+		alarmtimer_remove(base, alarm);
+	alarm->enabled = 0;
+	spin_unlock_irqrestore(&base->lock, flags);
+}
+
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * clock2alarm - helper that converts from clockid to alarmtypes
  * @clockid: clockid.
@@ -448,6 +583,7 @@ static enum alarmtimer_type clock2alarm(clockid_t clockid)
  *
  * Posix timer callback for expired alarm timers.
  */
+<<<<<<< HEAD
 static enum alarmtimer_restart alarm_handle_timer(struct alarm *alarm,
 							ktime_t now)
 {
@@ -463,6 +599,14 @@ static enum alarmtimer_restart alarm_handle_timer(struct alarm *alarm,
 		return ALARMTIMER_RESTART;
 	}
 	return ALARMTIMER_NORESTART;
+=======
+static void alarm_handle_timer(struct alarm *alarm)
+{
+	struct k_itimer *ptr = container_of(alarm, struct k_itimer,
+						it.alarmtimer);
+	if (posix_timer_event(ptr, 0) != 0)
+		ptr->it_overrun++;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -519,7 +663,11 @@ static int alarm_timer_create(struct k_itimer *new_timer)
 
 	type = clock2alarm(new_timer->it_clock);
 	base = &alarm_bases[type];
+<<<<<<< HEAD
 	alarm_init(&new_timer->it.alarm.alarmtimer, type, alarm_handle_timer);
+=======
+	alarm_init(&new_timer->it.alarmtimer, type, alarm_handle_timer);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -536,9 +684,15 @@ static void alarm_timer_get(struct k_itimer *timr,
 	memset(cur_setting, 0, sizeof(struct itimerspec));
 
 	cur_setting->it_interval =
+<<<<<<< HEAD
 			ktime_to_timespec(timr->it.alarm.interval);
 	cur_setting->it_value =
 		ktime_to_timespec(timr->it.alarm.alarmtimer.node.expires);
+=======
+			ktime_to_timespec(timr->it.alarmtimer.period);
+	cur_setting->it_value =
+			ktime_to_timespec(timr->it.alarmtimer.node.expires);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return;
 }
 
@@ -553,9 +707,13 @@ static int alarm_timer_del(struct k_itimer *timr)
 	if (!rtcdev)
 		return -ENOTSUPP;
 
+<<<<<<< HEAD
 	if (alarm_try_to_cancel(&timr->it.alarm.alarmtimer) < 0)
 		return TIMER_RETRY;
 
+=======
+	alarm_cancel(&timr->it.alarmtimer);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -575,10 +733,23 @@ static int alarm_timer_set(struct k_itimer *timr, int flags,
 	if (!rtcdev)
 		return -ENOTSUPP;
 
+<<<<<<< HEAD
+=======
+	/*
+	 * XXX HACK! Currently we can DOS a system if the interval
+	 * period on alarmtimers is too small. Cap the interval here
+	 * to 100us and solve this properly in a future patch! -jstultz
+	 */
+	if ((new_setting->it_interval.tv_sec == 0) &&
+			(new_setting->it_interval.tv_nsec < 100000))
+		new_setting->it_interval.tv_nsec = 100000;
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (old_setting)
 		alarm_timer_get(timr, old_setting);
 
 	/* If the timer was already set, cancel it */
+<<<<<<< HEAD
 	if (alarm_try_to_cancel(&timr->it.alarm.alarmtimer) < 0)
 		return TIMER_RETRY;
 
@@ -586,6 +757,14 @@ static int alarm_timer_set(struct k_itimer *timr, int flags,
 	timr->it.alarm.interval = timespec_to_ktime(new_setting->it_interval);
 	alarm_start(&timr->it.alarm.alarmtimer,
 			timespec_to_ktime(new_setting->it_value));
+=======
+	alarm_cancel(&timr->it.alarmtimer);
+
+	/* start the timer */
+	alarm_start(&timr->it.alarmtimer,
+			timespec_to_ktime(new_setting->it_value),
+			timespec_to_ktime(new_setting->it_interval));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 
@@ -595,15 +774,22 @@ static int alarm_timer_set(struct k_itimer *timr, int flags,
  *
  * Wakes up the task that set the alarmtimer
  */
+<<<<<<< HEAD
 static enum alarmtimer_restart alarmtimer_nsleep_wakeup(struct alarm *alarm,
 								ktime_t now)
+=======
+static void alarmtimer_nsleep_wakeup(struct alarm *alarm)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct task_struct *task = (struct task_struct *)alarm->data;
 
 	alarm->data = NULL;
 	if (task)
 		wake_up_process(task);
+<<<<<<< HEAD
 	return ALARMTIMER_NORESTART;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /**
@@ -618,7 +804,11 @@ static int alarmtimer_do_nsleep(struct alarm *alarm, ktime_t absexp)
 	alarm->data = (void *)current;
 	do {
 		set_current_state(TASK_INTERRUPTIBLE);
+<<<<<<< HEAD
 		alarm_start(alarm, absexp);
+=======
+		alarm_start(alarm, absexp, ktime_set(0, 0));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (likely(alarm->data))
 			schedule();
 
@@ -779,7 +969,10 @@ static struct platform_driver alarmtimer_driver = {
  */
 static int __init alarmtimer_init(void)
 {
+<<<<<<< HEAD
 	struct platform_device *pdev;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int error = 0;
 	int i;
 	struct k_clock alarm_clock = {
@@ -792,8 +985,11 @@ static int __init alarmtimer_init(void)
 		.nsleep		= alarm_timer_nsleep,
 	};
 
+<<<<<<< HEAD
 	alarmtimer_rtc_timer_init();
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	posix_timers_register_clock(CLOCK_REALTIME_ALARM, &alarm_clock);
 	posix_timers_register_clock(CLOCK_BOOTTIME_ALARM, &alarm_clock);
 
@@ -810,6 +1006,7 @@ static int __init alarmtimer_init(void)
 				HRTIMER_MODE_ABS);
 		alarm_bases[i].timer.function = alarmtimer_fired;
 	}
+<<<<<<< HEAD
 
 	error = alarmtimer_rtc_interface_setup();
 	if (error)
@@ -833,3 +1030,12 @@ out_if:
 	return error;
 }
 device_initcall(alarmtimer_init);
+=======
+	error = platform_driver_register(&alarmtimer_driver);
+	platform_device_register_simple("alarmtimer", -1, NULL, 0);
+
+	return error;
+}
+device_initcall(alarmtimer_init);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

@@ -353,7 +353,11 @@ static int ath6kl_usb_probe(struct usb_interface *interface,
 		goto err_usb_put;
 	}
 
+<<<<<<< HEAD
 	ar = ath6kl_core_create(&ar_usb->udev->dev);
+=======
+	ar = ath6kl_core_alloc(&ar_usb->udev->dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ar == NULL) {
 		ath6kl_err("Failed to alloc ath6kl core\n");
 		ret = -ENOMEM;
@@ -377,7 +381,11 @@ static int ath6kl_usb_probe(struct usb_interface *interface,
 	return ret;
 
 err_core_free:
+<<<<<<< HEAD
 	ath6kl_core_destroy(ar);
+=======
+	ath6kl_core_free(ar);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 err_usb_destroy:
 	ath6kl_usb_destroy(ar_usb);
 err_usb_put:
@@ -424,9 +432,17 @@ module_exit(ath6kl_usb_exit);
 MODULE_AUTHOR("Atheros Communications, Inc.");
 MODULE_DESCRIPTION("Driver support for Atheros AR600x USB devices");
 MODULE_LICENSE("Dual BSD/GPL");
+<<<<<<< HEAD
 MODULE_FIRMWARE(AR6004_HW_1_0_FIRMWARE_FILE);
 MODULE_FIRMWARE(AR6004_HW_1_0_BOARD_DATA_FILE);
 MODULE_FIRMWARE(AR6004_HW_1_0_DEFAULT_BOARD_DATA_FILE);
 MODULE_FIRMWARE(AR6004_HW_1_1_FIRMWARE_FILE);
+=======
+
+MODULE_FIRMWARE(AR6004_HW_1_0_FW_DIR "/" AR6004_HW_1_0_FIRMWARE_FILE);
+MODULE_FIRMWARE(AR6004_HW_1_0_BOARD_DATA_FILE);
+MODULE_FIRMWARE(AR6004_HW_1_0_DEFAULT_BOARD_DATA_FILE);
+MODULE_FIRMWARE(AR6004_HW_1_1_FW_DIR "/" AR6004_HW_1_1_FIRMWARE_FILE);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_FIRMWARE(AR6004_HW_1_1_BOARD_DATA_FILE);
 MODULE_FIRMWARE(AR6004_HW_1_1_DEFAULT_BOARD_DATA_FILE);

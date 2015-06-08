@@ -270,7 +270,11 @@ static bool nouveau_dsm_detect(void)
 	struct acpi_buffer buffer = {sizeof(acpi_method_name), acpi_method_name};
 	struct pci_dev *pdev = NULL;
 	int has_dsm = 0;
+<<<<<<< HEAD
 	int has_optimus = 0;
+=======
+	int has_optimus;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int vga_count = 0;
 	bool guid_valid;
 	int retval;

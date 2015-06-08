@@ -5,7 +5,11 @@
  *****************************************************************************/
 
 /*
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,7 +49,10 @@
 #define _ACUTILS_H
 
 extern const u8 acpi_gbl_resource_aml_sizes[];
+<<<<<<< HEAD
 extern const u8 acpi_gbl_resource_aml_serial_bus_sizes[];
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Strings used by the disassembler and debugger resource dump routines */
 
@@ -580,6 +587,7 @@ acpi_ut_create_list(char *list_name,
 #endif				/* ACPI_DBG_TRACK_ALLOCATIONS */
 
 /*
+<<<<<<< HEAD
  * utaddress - address range check
  */
 acpi_status
@@ -598,6 +606,8 @@ acpi_ut_check_address_range(acpi_adr_space_type space_id,
 void acpi_ut_delete_address_lists(void);
 
 /*
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * utxferror - various error/warning output functions
  */
 void ACPI_INTERNAL_VAR_XFACE

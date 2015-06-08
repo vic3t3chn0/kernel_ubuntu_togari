@@ -38,13 +38,22 @@
 #include <linux/delay.h>
 #include <linux/uio.h>
 #include <linux/init.h>
+<<<<<<< HEAD
 #include <linux/interrupt.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/ioport.h>
 #include <linux/wait.h>
 #include <linux/slab.h>
 
+<<<<<<< HEAD
 #include <asm/io.h>
 #include <linux/atomic.h>
+=======
+#include <asm/system.h>
+#include <asm/io.h>
+#include <asm/atomic.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/uaccess.h>
 #include <asm/string.h>
 #include <asm/byteorder.h>

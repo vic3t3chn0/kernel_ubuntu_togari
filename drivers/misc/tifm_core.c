@@ -13,7 +13,10 @@
 #include <linux/slab.h>
 #include <linux/init.h>
 #include <linux/idr.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define DRIVER_NAME "tifm_core"
 #define DRIVER_VERSION "0.8"

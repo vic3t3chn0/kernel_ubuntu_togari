@@ -24,7 +24,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: dhd_bus.h 313456 2012-02-07 22:03:40Z $
+=======
+ * $Id: dhd_bus.h 335569 2012-05-29 12:04:43Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef _dhd_bus_h_
@@ -106,4 +110,9 @@ extern uint dhd_bus_hdrlen(struct dhd_bus *bus);
 extern int dhd_bus_reg_sdio_notify(void* semaphore);
 extern void dhd_bus_unreg_sdio_notify(void);
 
+<<<<<<< HEAD
+=======
+extern void dhd_txglom_enable(dhd_pub_t *dhdp, bool enable);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif /* _dhd_bus_h_ */

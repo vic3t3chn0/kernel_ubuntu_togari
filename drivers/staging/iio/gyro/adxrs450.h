@@ -39,6 +39,7 @@
 
 #define ADXRS450_GET_ST(a)	((a >> 26) & 0x3)
 
+<<<<<<< HEAD
 enum {
 	ID_ADXRS450,
 	ID_ADXRS453,
@@ -57,6 +58,22 @@ struct adxrs450_state {
 	u8			tx[ADXRS450_MAX_RX] ____cacheline_aligned;
 	u8			rx[ADXRS450_MAX_TX];
 
+=======
+/**
+ * struct adxrs450_state - device instance specific data
+ * @us:			actual spi_device
+ * @indio_dev:		industrial I/O device structure
+ * @tx:			transmit buffer
+ * @rx:			recieve buffer
+ * @buf_lock:		mutex to protect tx and rx
+ **/
+struct adxrs450_state {
+	struct spi_device		*us;
+	struct iio_dev			*indio_dev;
+	u8				*tx;
+	u8				*rx;
+	struct mutex			buf_lock;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 #endif /* SPI_ADXRS450_H_ */

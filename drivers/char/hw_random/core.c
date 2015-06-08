@@ -19,7 +19,11 @@
 	Copyright 2000,2001 Philipp Rumpf <prumpf@mandrakesoft.com>
 
 	Added generic RNG API
+<<<<<<< HEAD
 	Copyright 2006 Michael Buesch <m@bues.ch>
+=======
+	Copyright 2006 Michael Buesch <mbuesch@freenet.de>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	Copyright 2005 (c) MontaVista Software, Inc.
 
 	Please read Documentation/hw_random.txt for details on use.
@@ -40,6 +44,10 @@
 #include <linux/init.h>
 #include <linux/miscdevice.h>
 #include <linux/delay.h>
+<<<<<<< HEAD
+=======
+#include <linux/slab.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/uaccess.h>
 
 
@@ -52,8 +60,17 @@ static struct hwrng *current_rng;
 static LIST_HEAD(rng_list);
 static DEFINE_MUTEX(rng_mutex);
 static int data_avail;
+<<<<<<< HEAD
 static u8 rng_buffer[SMP_CACHE_BYTES < 32 ? 32 : SMP_CACHE_BYTES]
 	__cacheline_aligned;
+=======
+static u8 *rng_buffer;
+
+static size_t rng_buffer_size(void)
+{
+	return SMP_CACHE_BYTES < 32 ? 32 : SMP_CACHE_BYTES;
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static inline int hwrng_init(struct hwrng *rng)
 {
@@ -116,7 +133,11 @@ static ssize_t rng_dev_read(struct file *filp, char __user *buf,
 
 		if (!data_avail) {
 			bytes_read = rng_get_data(current_rng, rng_buffer,
+<<<<<<< HEAD
 				sizeof(rng_buffer),
+=======
+				rng_buffer_size(),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				!(filp->f_flags & O_NONBLOCK));
 			if (bytes_read < 0) {
 				err = bytes_read;
@@ -307,6 +328,17 @@ int hwrng_register(struct hwrng *rng)
 
 	mutex_lock(&rng_mutex);
 
+<<<<<<< HEAD
+=======
+	/* kmalloc makes this safe for virt_to_page() in virtio_rng.c */
+	err = -ENOMEM;
+	if (!rng_buffer) {
+		rng_buffer = kmalloc(rng_buffer_size(), GFP_KERNEL);
+		if (!rng_buffer)
+			goto out_unlock;
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Must not register two RNGs with the same name. */
 	err = -EEXIST;
 	list_for_each_entry(tmp, &rng_list, list) {

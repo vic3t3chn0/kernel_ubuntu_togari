@@ -120,11 +120,26 @@ MODULE_PARM_DESC(quirks, "supplemental list of device IDs and their quirks");
 	.useTransport = use_transport,	\
 }
 
+<<<<<<< HEAD
+=======
+#define UNUSUAL_VENDOR_INTF(idVendor, cl, sc, pr, \
+		vendor_name, product_name, use_protocol, use_transport, \
+		init_function, Flags) \
+{ \
+	.vendorName = vendor_name,	\
+	.productName = product_name,	\
+	.useProtocol = use_protocol,	\
+	.useTransport = use_transport,	\
+	.initFunction = init_function,	\
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static struct us_unusual_dev us_unusual_dev_list[] = {
 #	include "unusual_devs.h" 
 	{ }		/* Terminating entry */
 };
 
+<<<<<<< HEAD
 static struct us_unusual_dev for_dynamic_ids =
 		USUAL_DEV(USB_SC_SCSI, USB_PR_BULK, 0);
 
@@ -161,6 +176,13 @@ static void us_set_lock_class(struct mutex *mutex,
 }
 
 #endif
+=======
+#undef UNUSUAL_DEV
+#undef COMPLIANT_DEV
+#undef USUAL_DEV
+#undef UNUSUAL_VENDOR_INTF
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_PM	/* Minimal support for suspend and resume */
 
@@ -742,6 +764,7 @@ static int get_pipes(struct us_data *us)
 	return 0;
 }
 
+<<<<<<< HEAD
 /* Initialize SCSI device auto-suspend timeout here */
 static void usb_stor_set_scsi_autosuspend(struct us_data *us)
 {
@@ -764,6 +787,8 @@ static void usb_stor_set_scsi_autosuspend(struct us_data *us)
 	}
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Initialize all the dynamic resources we need */
 static int usb_stor_acquire_resources(struct us_data *us)
 {
@@ -941,12 +966,21 @@ int usb_stor_probe1(struct us_data **pus,
 	/*
 	 * Allow 16-byte CDBs and thus > 2TB
 	 */
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_USB_HOST_NOTIFY
+	host->by_usb = 1;
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	host->max_cmd_len = 16;
 	host->sg_tablesize = usb_stor_sg_tablesize(intf);
 	*pus = us = host_to_us(host);
 	memset(us, 0, sizeof(struct us_data));
 	mutex_init(&(us->dev_mutex));
+<<<<<<< HEAD
 	us_set_lock_class(&us->dev_mutex, intf);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	init_completion(&us->cmnd_ready);
 	init_completion(&(us->notify));
 	init_waitqueue_head(&us->delay_wait);
@@ -1012,10 +1046,13 @@ int usb_stor_probe2(struct us_data *us)
 	result = usb_stor_acquire_resources(us);
 	if (result)
 		goto BadDevice;
+<<<<<<< HEAD
 
 	us->sdev_autosuspend_delay = -1;
 	usb_stor_set_scsi_autosuspend(us);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	snprintf(us->scsi_name, sizeof(us->scsi_name), "usb-storage %s",
 					dev_name(&us->pusb_intf->dev));
 	result = scsi_add_host(us_to_host(us), dev);
@@ -1058,10 +1095,15 @@ EXPORT_SYMBOL_GPL(usb_stor_disconnect);
 static int storage_probe(struct usb_interface *intf,
 			 const struct usb_device_id *id)
 {
+<<<<<<< HEAD
 	struct us_unusual_dev *unusual_dev;
 	struct us_data *us;
 	int result;
 	int size;
+=======
+	struct us_data *us;
+	int result;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/*
 	 * If libusual is configured, let it decide whether a standard
@@ -1080,6 +1122,7 @@ static int storage_probe(struct usb_interface *intf,
 	 * table, so we use the index of the id entry to find the
 	 * corresponding unusual_devs entry.
 	 */
+<<<<<<< HEAD
 
 	size = ARRAY_SIZE(us_unusual_dev_list);
 	if (id >= usb_storage_usb_ids && id < usb_storage_usb_ids + size) {
@@ -1093,6 +1136,10 @@ static int storage_probe(struct usb_interface *intf,
 	}
 
 	result = usb_stor_probe1(&us, intf, id, unusual_dev);
+=======
+	result = usb_stor_probe1(&us, intf, id,
+			(id - usb_storage_usb_ids) + us_unusual_dev_list);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (result)
 		return result;
 
@@ -1118,6 +1165,10 @@ static struct usb_driver usb_storage_driver = {
 	.id_table =	usb_storage_usb_ids,
 	.supports_autosuspend = 1,
 	.soft_unbind =	1,
+<<<<<<< HEAD
+=======
+	.no_dynamic_id = 1,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int __init usb_stor_init(void)

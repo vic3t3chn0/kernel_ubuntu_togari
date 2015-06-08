@@ -3,3 +3,16 @@
 #
 
 obj-$(CONFIG_ET131X) += et131x.o
+<<<<<<< HEAD
+=======
+
+et131x-y :=	et1310_eeprom.o \
+		et1310_mac.o \
+		et1310_phy.o \
+		et1310_pm.o \
+		et1310_rx.o \
+		et1310_tx.o \
+		et131x_initpci.o \
+		et131x_isr.o \
+		et131x_netdev.o
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

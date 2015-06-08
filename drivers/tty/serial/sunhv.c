@@ -23,14 +23,22 @@
 #include <asm/spitfire.h>
 #include <asm/prom.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
 #include <asm/setup.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #if defined(CONFIG_MAGIC_SYSRQ)
 #define SUPPORT_SYSRQ
 #endif
 
 #include <linux/serial_core.h>
+<<<<<<< HEAD
 #include <linux/sunserialcore.h>
+=======
+
+#include "suncore.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define CON_BREAK	((long)-1)
 #define CON_HUP		((long)-2)

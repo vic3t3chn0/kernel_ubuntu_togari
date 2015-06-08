@@ -46,7 +46,11 @@
 #define FULLPWRBIT          0x00000080
 #define NEXT_BOARD_POWER_BIT        0x00000004
 
+<<<<<<< HEAD
 static bool debug;
+=======
+static int debug;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Version Information */
 #define DRIVER_VERSION "v0.1"
@@ -70,6 +74,10 @@ static struct usb_driver ssu100_driver = {
 	.id_table		       = id_table,
 	.suspend		       = usb_serial_suspend,
 	.resume			       = usb_serial_resume,
+<<<<<<< HEAD
+=======
+	.no_dynamic_id		       = 1,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.supports_autosuspend	       = 1,
 };
 
@@ -676,6 +684,10 @@ static struct usb_serial_driver ssu100_device = {
 	},
 	.description	     = DRIVER_DESC,
 	.id_table	     = id_table,
+<<<<<<< HEAD
+=======
+	.usb_driver	     = &ssu100_driver,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.num_ports	     = 1,
 	.open		     = ssu100_open,
 	.close		     = ssu100_close,
@@ -691,11 +703,49 @@ static struct usb_serial_driver ssu100_device = {
 	.disconnect          = usb_serial_generic_disconnect,
 };
 
+<<<<<<< HEAD
 static struct usb_serial_driver * const serial_drivers[] = {
 	&ssu100_device, NULL
 };
 
 module_usb_serial_driver(ssu100_driver, serial_drivers);
+=======
+static int __init ssu100_init(void)
+{
+	int retval;
+
+	dbg("%s", __func__);
+
+	/* register with usb-serial */
+	retval = usb_serial_register(&ssu100_device);
+
+	if (retval)
+		goto failed_usb_sio_register;
+
+	retval = usb_register(&ssu100_driver);
+	if (retval)
+		goto failed_usb_register;
+
+	printk(KERN_INFO KBUILD_MODNAME ": " DRIVER_VERSION ":"
+	       DRIVER_DESC "\n");
+
+	return 0;
+
+failed_usb_register:
+	usb_serial_deregister(&ssu100_device);
+failed_usb_sio_register:
+	return retval;
+}
+
+static void __exit ssu100_exit(void)
+{
+	usb_deregister(&ssu100_driver);
+	usb_serial_deregister(&ssu100_device);
+}
+
+module_init(ssu100_init);
+module_exit(ssu100_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_LICENSE("GPL");

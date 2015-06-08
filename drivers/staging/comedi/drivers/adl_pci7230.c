@@ -44,7 +44,19 @@ Configuration Options:
 #define PCI_DEVICE_ID_PCI7230 0x7230
 
 static DEFINE_PCI_DEVICE_TABLE(adl_pci7230_pci_table) = {
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_ADLINK, PCI_DEVICE_ID_PCI7230) },
+=======
+	{
+		PCI_VENDOR_ID_ADLINK,
+		PCI_DEVICE_ID_PCI7230,
+		PCI_ANY_ID,
+		PCI_ANY_ID,
+		0,
+		0,
+		0
+	},
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	{0}
 };
 

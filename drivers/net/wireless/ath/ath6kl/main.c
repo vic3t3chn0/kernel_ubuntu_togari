@@ -20,6 +20,10 @@
 #include "cfg80211.h"
 #include "target.h"
 #include "debug.h"
+<<<<<<< HEAD
+=======
+#include "wmiconfig.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 struct ath6kl_sta *ath6kl_find_sta(struct ath6kl_vif *vif, u8 *node_addr)
 {
@@ -129,8 +133,14 @@ static u8 ath6kl_remove_sta(struct ath6kl *ar, u8 *mac, u16 reason)
 		for (i = 0; i < AP_MAX_NUM_STA; i++) {
 			if (memcmp(ar->sta_list[i].mac, mac, ETH_ALEN) == 0) {
 				ath6kl_dbg(ATH6KL_DBG_TRC,
+<<<<<<< HEAD
 					   "deleting station %pM aid=%d reason=%d\n",
 					   mac, ar->sta_list[i].aid, reason);
+=======
+				    "deleting station %s aid=%d reason=%d\n",
+				    sec_conv_mac(mac),
+				    ar->sta_list[i].aid, reason);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				ath6kl_sta_cleanup(ar, i);
 				removed = 1;
 				break;
@@ -338,6 +348,91 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_MACH_PX
+void ath6kl_print_ar6k_registers(struct ath6kl *ar)
+{
+#if 0
+	u32 reg_addr;
+	u32 epc_addr1, epc_addr2, epc_addr3, epc_addr4;
+	u32 epc1, epc2, epc3, epc4;
+	u32 intrs, resetc, ssleep;
+	int ret;
+
+	epc_addr1 = EPC1_ADDR;
+	if (epc_addr1 != 0x00)
+	{
+		epc_addr2 = epc_addr1 + 4;
+		epc_addr3 = epc_addr1 + 8;
+		epc_addr4 = epc_addr1 + 12;
+
+		reg_addr = TARG_VTOP(ar->target_type, le32_to_cpu(epc_addr1));
+
+		ret = ath6kl_diag_read32(ar, reg_addr, &epc1);
+		if (ret)
+			ath6kl_err("diag_read of epc1 is failed\n");
+
+
+		reg_addr = TARG_VTOP(ar->target_type, le32_to_cpu(epc_addr2));
+
+		ret = ath6kl_diag_read32(ar, reg_addr, &epc2);
+		if (ret)
+			ath6kl_err("diag_read of epc2 is failed\n");
+
+
+		reg_addr = TARG_VTOP(ar->target_type, le32_to_cpu(epc_addr3));
+
+		ret = ath6kl_diag_read32(ar, reg_addr, &epc3);
+		if (ret)
+			ath6kl_err("diag_read of epc3 is failed\n");
+
+
+		reg_addr = TARG_VTOP(ar->target_type, le32_to_cpu(epc_addr4));
+
+		ret = ath6kl_diag_read32(ar, reg_addr, &epc4);
+		if (ret)
+			ath6kl_err("diag_read of epc4 is failed\n");
+
+		ath6kl_dbg(ATH6KL_DBG_TRC, "ath6kl:reg_dump EPC: %x %x %x %x\n",
+							epc1, epc2, epc3, epc4);
+	}
+
+    /* Interrupt Status */
+	reg_addr = TARG_VTOP(ar->target_type, le32_to_cpu(0x4034));
+
+	ret = ath6kl_diag_read32(ar, reg_addr, &intrs);
+	if (ret)
+		ath6kl_err("diag_read of intrs is failed\n");
+	else
+		ath6kl_dbg(ATH6KL_DBG_TRC,
+			"ath6kl:reg_dump interrupt status: %x\n", intrs);
+
+    /* Reset Cause */
+	reg_addr = TARG_VTOP(ar->target_type, le32_to_cpu(0x40C0));
+
+	ret = ath6kl_diag_read32(ar, reg_addr, &resetc);
+	if (ret)
+		ath6kl_err("diag_read of resetc is failed\n");
+	else
+		ath6kl_dbg(ATH6KL_DBG_TRC, "ath6kl:reg_dump reset cause: %x\n",
+									resetc);
+
+
+    /* System Sleep */
+	reg_addr = TARG_VTOP(ar->target_type, le32_to_cpu(0x40C4));
+
+	ret = ath6kl_diag_read32(ar, reg_addr, &ssleep);
+	if (ret)
+		ath6kl_err("diag_read of ssleep is failed\n");
+	else
+		ath6kl_dbg(ATH6KL_DBG_TRC,
+			"ath6kl:reg_dump system sleep: %x\n", ssleep);
+#endif
+}
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* FIXME: move to a better place, target.h? */
 #define AR6003_RESET_CONTROL_ADDRESS 0x00004000
 #define AR6004_RESET_CONTROL_ADDRESS 0x00004000
@@ -350,7 +445,11 @@ void ath6kl_reset_device(struct ath6kl *ar, u32 target_type,
 	__le32 data;
 
 	if (target_type != TARGET_TYPE_AR6003 &&
+<<<<<<< HEAD
 	    target_type != TARGET_TYPE_AR6004)
+=======
+		target_type != TARGET_TYPE_AR6004)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return;
 
 	data = cold_reset ? cpu_to_le32(RESET_CONTROL_COLD_RST) :
@@ -447,7 +546,12 @@ void ath6kl_connect_ap_mode_sta(struct ath6kl_vif *vif, u16 aid, u8 *mac_addr,
 	size_t ies_len = 0;
 	struct station_info sinfo;
 
+<<<<<<< HEAD
 	ath6kl_dbg(ATH6KL_DBG_TRC, "new station %pM aid=%d\n", mac_addr, aid);
+=======
+	ath6kl_dbg(ATH6KL_DBG_TRC, "new station %s aid=%d\n",
+					sec_conv_mac(mac_addr), aid);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (assoc_req_len > sizeof(struct ieee80211_hdr_3addr)) {
 		struct ieee80211_mgmt *mgmt =
@@ -544,8 +648,13 @@ void ath6kl_ready_event(void *devt, u8 *datap, u32 sw_ver, u32 abi_ver)
 	struct ath6kl *ar = devt;
 
 	memcpy(ar->mac_addr, datap, ETH_ALEN);
+<<<<<<< HEAD
 	ath6kl_dbg(ATH6KL_DBG_TRC, "%s: mac addr = %pM\n",
 		   __func__, ar->mac_addr);
+=======
+	ath6kl_dbg(ATH6KL_DBG_TRC, "%s: mac addr = %s\n",
+		   __func__, sec_conv_mac(ar->mac_addr));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	ar->version.wlan_ver = sw_ver;
 	ar->version.abi_ver = abi_ver;
@@ -756,6 +865,15 @@ static void ath6kl_update_target_stats(struct ath6kl_vif *vif, u8 *ptr, u32 len)
 	stats->wow_evt_discarded +=
 		le16_to_cpu(tgt_stats->wow_stats.wow_evt_discarded);
 
+<<<<<<< HEAD
+=======
+	stats->arp_received = le32_to_cpu(tgt_stats->arp_stats.arp_received);
+	stats->arp_replied = le32_to_cpu(tgt_stats->arp_stats.arp_replied);
+	stats->arp_matched = le32_to_cpu(tgt_stats->arp_stats.arp_matched);
+
+	ath6kl_wmicfg_send_stats(vif, stats);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (test_bit(STATS_UPDATE_PEND, &vif->flags)) {
 		clear_bit(STATS_UPDATE_PEND, &vif->flags);
 		wake_up(&ar->event_wq);
@@ -948,8 +1066,13 @@ void ath6kl_disconnect_event(struct ath6kl_vif *vif, u8 reason, u8 *bssid,
 	}
 
 	ath6kl_cfg80211_disconnect_event(vif, reason, bssid,
+<<<<<<< HEAD
 					 assoc_resp_len, assoc_info,
 					 prot_reason_status);
+=======
+				       assoc_resp_len, assoc_info,
+				       prot_reason_status);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	aggr_reset_state(vif->aggr_cntxt->aggr_conn);
 
@@ -969,9 +1092,15 @@ void ath6kl_disconnect_event(struct ath6kl_vif *vif, u8 reason, u8 *bssid,
 	} else {
 		set_bit(CONNECT_PEND, &vif->flags);
 		if (((reason == ASSOC_FAILED) &&
+<<<<<<< HEAD
 		     (prot_reason_status == 0x11)) ||
 		    ((reason == ASSOC_FAILED) && (prot_reason_status == 0x0) &&
 		     (vif->reconnect_flag == 1))) {
+=======
+		    (prot_reason_status == 0x11)) ||
+		    ((reason == ASSOC_FAILED) && (prot_reason_status == 0x0)
+		     && (vif->reconnect_flag == 1))) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			set_bit(CONNECTED, &vif->flags);
 			return;
 		}
@@ -1048,8 +1177,13 @@ static struct net_device_stats *ath6kl_get_stats(struct net_device *dev)
 	return &vif->net_stats;
 }
 
+<<<<<<< HEAD
 static int ath6kl_set_features(struct net_device *dev,
 			       netdev_features_t features)
+=======
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,39))
+static int ath6kl_set_features(struct net_device *dev, u32 features)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	struct ath6kl_vif *vif = netdev_priv(dev);
 	struct ath6kl *ar = vif->ar;
@@ -1080,11 +1214,19 @@ static int ath6kl_set_features(struct net_device *dev,
 
 	return err;
 }
+<<<<<<< HEAD
+=======
+#endif /* (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,39)) */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static void ath6kl_set_multicast_list(struct net_device *ndev)
 {
 	struct ath6kl_vif *vif = netdev_priv(ndev);
+<<<<<<< HEAD
 	bool mc_all_on = false, mc_all_off = false;
+=======
+	bool mc_all_on = false;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int mc_count = netdev_mc_count(ndev);
 	struct netdev_hw_addr *ha;
 	bool found;
@@ -1096,6 +1238,7 @@ static void ath6kl_set_multicast_list(struct net_device *ndev)
 	    !test_bit(WLAN_ENABLED, &vif->flags))
 		return;
 
+<<<<<<< HEAD
 	mc_all_on = !!(ndev->flags & IFF_PROMISC) ||
 		    !!(ndev->flags & IFF_ALLMULTI) ||
 		    !!(mc_count > ATH6K_MAX_MC_FILTERS_PER_LIST);
@@ -1114,11 +1257,45 @@ static void ath6kl_set_multicast_list(struct net_device *ndev)
 		return;
 	}
 
+=======
+	/* Enable multicast-all filter. */
+	mc_all_on = !!(ndev->flags & IFF_PROMISC) ||
+		    !!(ndev->flags & IFF_ALLMULTI) ||
+			!!(mc_count > ATH6K_MAX_MC_FILTERS_PER_LIST) ||
+			(vif->ar->state == ATH6KL_STATE_ON);
+
+	if (!(ndev->flags & IFF_MULTICAST))
+		mc_all_on = false;
+
+	ath6kl_dbg(ATH6KL_DBG_TRC, "multicast state IFF_ALLMULTI = %d , IFF_MULTICAST = %d, "
+					"mc_count = %d, mc_all_on = %d",
+			  ndev->flags & IFF_ALLMULTI, ndev->flags & IFF_MULTICAST, mc_count,
+			  mc_all_on);
+
+	/* Enable/disable "multicast-all" filter*/
+	ath6kl_dbg(ATH6KL_DBG_TRC, "%s multicast-all filter\n",
+			mc_all_on ? "enabling" : "disabling");
+
+	ret = ath6kl_wmi_mcast_filter_cmd(vif->ar->wmi, vif->fw_vif_idx,
+			mc_all_on);
+
+	if (ret) {
+		ath6kl_warn("Failed to %s multicast receive\n",
+			    mc_all_on ? "enable" : "disable");
+		return;
+	}
+
+	/* Keep the driver and firmware mcast list in sync. */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	list_for_each_entry_safe(mc_filter, tmp, &vif->mc_filter, list) {
 		found = false;
 		netdev_for_each_mc_addr(ha, ndev) {
 			if (memcmp(ha->addr, mc_filter->hw_addr,
+<<<<<<< HEAD
 				   ATH6KL_MCAST_FILTER_MAC_ADDR_SIZE) == 0) {
+=======
+			    ATH6KL_MCAST_FILTER_MAC_ADDR_SIZE) == 0) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				found = true;
 				break;
 			}
@@ -1130,14 +1307,24 @@ static void ath6kl_set_multicast_list(struct net_device *ndev)
 			 * but not in the new request.
 			 */
 			ath6kl_dbg(ATH6KL_DBG_TRC,
+<<<<<<< HEAD
 				   "Removing %pM from multicast filter\n",
 				   mc_filter->hw_addr);
+=======
+				   "Removing %s from multicast filter\n",
+				   sec_conv_mac(mc_filter->hw_addr));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			ret = ath6kl_wmi_add_del_mcast_filter_cmd(vif->ar->wmi,
 					vif->fw_vif_idx, mc_filter->hw_addr,
 					false);
 			if (ret) {
+<<<<<<< HEAD
 				ath6kl_warn("Failed to remove multicast filter:%pM\n",
 					    mc_filter->hw_addr);
+=======
+				ath6kl_warn("Failed to remove multicast filter:%s\n",
+					     sec_conv_mac(mc_filter->hw_addr));
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				return;
 			}
 
@@ -1152,7 +1339,11 @@ static void ath6kl_set_multicast_list(struct net_device *ndev)
 		found = false;
 		list_for_each_entry(mc_filter, &vif->mc_filter, list) {
 			if (memcmp(ha->addr, mc_filter->hw_addr,
+<<<<<<< HEAD
 				   ATH6KL_MCAST_FILTER_MAC_ADDR_SIZE) == 0) {
+=======
+			    ATH6KL_MCAST_FILTER_MAC_ADDR_SIZE) == 0) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				found = true;
 				break;
 			}
@@ -1166,6 +1357,7 @@ static void ath6kl_set_multicast_list(struct net_device *ndev)
 				goto out;
 			}
 
+<<<<<<< HEAD
 			memcpy(mc_filter->hw_addr, ha->addr,
 			       ATH6KL_MCAST_FILTER_MAC_ADDR_SIZE);
 			/* Set the multicast filter */
@@ -1180,6 +1372,28 @@ static void ath6kl_set_multicast_list(struct net_device *ndev)
 					    mc_filter->hw_addr);
 				kfree(mc_filter);
 				goto out;
+=======
+			if (memcmp(ha->addr, "\x33\x33\x00\x00\x00\x01", ETH_ALEN) == 0) {
+				ath6kl_warn("Skipped : %s\n", sec_conv_mac(ha->addr));
+				kfree(mc_filter);
+				continue;
+			} else {
+				memcpy(mc_filter->hw_addr, ha->addr,
+				       ATH6KL_MCAST_FILTER_MAC_ADDR_SIZE);
+				/* Set the multicast filter */
+				ath6kl_dbg(ATH6KL_DBG_TRC,
+					   "Adding %s to multicast filter list\n",
+					   sec_conv_mac(mc_filter->hw_addr));
+				ret = ath6kl_wmi_add_del_mcast_filter_cmd(vif->ar->wmi,
+						vif->fw_vif_idx, mc_filter->hw_addr,
+						true);
+				if (ret) {
+					ath6kl_warn("Failed to add multicast filter :%s\n",
+						     sec_conv_mac(mc_filter->hw_addr));
+					kfree(mc_filter);
+					goto out;
+				}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			}
 
 			list_add_tail(&mc_filter->list, &mc_filter_new);
@@ -1190,18 +1404,32 @@ out:
 	list_splice_tail(&mc_filter_new, &vif->mc_filter);
 }
 
+<<<<<<< HEAD
 static const struct net_device_ops ath6kl_netdev_ops = {
+=======
+static struct net_device_ops ath6kl_netdev_ops = {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.ndo_open               = ath6kl_open,
 	.ndo_stop               = ath6kl_close,
 	.ndo_start_xmit         = ath6kl_data_tx,
 	.ndo_get_stats          = ath6kl_get_stats,
+<<<<<<< HEAD
 	.ndo_set_features       = ath6kl_set_features,
+=======
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,39))
+	.ndo_set_features       = ath6kl_set_features,
+#endif /* (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,39)) */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.ndo_set_rx_mode	= ath6kl_set_multicast_list,
 };
 
 void init_netdev(struct net_device *dev)
 {
+<<<<<<< HEAD
 	dev->netdev_ops = &ath6kl_netdev_ops;
+=======
+	netdev_attach_ops(dev, &ath6kl_netdev_ops);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	dev->destructor = free_netdev;
 	dev->watchdog_timeo = ATH6KL_TX_TIMEOUT;
 
@@ -1210,7 +1438,10 @@ void init_netdev(struct net_device *dev)
 				sizeof(struct wmi_data_hdr) + HTC_HDR_LENGTH
 				+ WMI_MAX_TX_META_SZ + ATH6KL_HTC_ALIGN_BYTES;
 
+<<<<<<< HEAD
 	dev->hw_features |= NETIF_F_IP_CSUM | NETIF_F_RXCSUM;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return;
 }

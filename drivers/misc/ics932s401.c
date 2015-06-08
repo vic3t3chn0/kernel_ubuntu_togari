@@ -480,12 +480,30 @@ static int ics932s401_remove(struct i2c_client *client)
 	return 0;
 }
 
+<<<<<<< HEAD
 module_i2c_driver(ics932s401_driver);
+=======
+static int __init ics932s401_init(void)
+{
+	return i2c_add_driver(&ics932s401_driver);
+}
+
+static void __exit ics932s401_exit(void)
+{
+	i2c_del_driver(&ics932s401_driver);
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Darrick J. Wong <djwong@us.ibm.com>");
 MODULE_DESCRIPTION("ICS932S401 driver");
 MODULE_LICENSE("GPL");
 
+<<<<<<< HEAD
+=======
+module_init(ics932s401_init);
+module_exit(ics932s401_exit);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* IBM IntelliStation Z30 */
 MODULE_ALIAS("dmi:bvnIBM:*:rn9228:*");
 MODULE_ALIAS("dmi:bvnIBM:*:rn9232:*");

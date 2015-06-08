@@ -6,7 +6,10 @@
  * This defines a simple but solid secure-computing mode.
  */
 
+<<<<<<< HEAD
 #include <linux/audit.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/seccomp.h>
 #include <linux/sched.h>
 #include <linux/compat.h>
@@ -55,7 +58,10 @@ void __secure_computing(int this_syscall)
 #ifdef SECCOMP_DEBUG
 	dump_stack();
 #endif
+<<<<<<< HEAD
 	audit_seccomp(this_syscall);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	do_exit(SIGKILL);
 }
 

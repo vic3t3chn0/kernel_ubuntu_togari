@@ -20,7 +20,11 @@
 * software in any way with any other Broadcom software provided under a license
 * other than the GPL, without Broadcom's express prior written consent.
 *
+<<<<<<< HEAD
 * $Id: dhd_custom_gpio.c 291086 2011-10-21 01:17:24Z $
+=======
+* $Id: dhd_custom_gpio.c 353280 2012-08-26 04:33:17Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 */
 
 #include <typedefs.h>
@@ -41,7 +45,11 @@
 extern  void bcm_wlan_power_off(int);
 extern  void bcm_wlan_power_on(int);
 #endif /* CUSTOMER_HW */
+<<<<<<< HEAD
 #if defined(CUSTOMER_HW2)
+=======
+#if defined(CUSTOMER_HW2) || defined(CUSTOMER_HW4)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_WIFI_CONTROL_FUNC
 int wifi_set_power(int on, unsigned long msec);
 int wifi_get_irq_number(unsigned long *irq_flags_ptr);
@@ -53,9 +61,15 @@ int wifi_get_irq_number(unsigned long *irq_flags_ptr) { return -1; }
 int wifi_get_mac_addr(unsigned char *buf) { return -1; }
 void *wifi_get_country_code(char *ccode) { return NULL; }
 #endif /* CONFIG_WIFI_CONTROL_FUNC */
+<<<<<<< HEAD
 #endif /* CUSTOMER_HW2 */
 
 #if defined(OOB_INTR_ONLY)
+=======
+#endif /* CUSTOMER_HW2 || CUSTOMER_HW4 */
+
+#if defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #if defined(BCMLXSDMMC)
 extern int sdioh_mmc_irq(int irq);
@@ -86,7 +100,11 @@ int dhd_customer_oob_irq_map(unsigned long *irq_flags_ptr)
 {
 	int  host_oob_irq = 0;
 
+<<<<<<< HEAD
 #ifdef CUSTOMER_HW2
+=======
+#if defined(CUSTOMER_HW2) || defined(CUSTOMER_HW4)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	host_oob_irq = wifi_get_irq_number(irq_flags_ptr);
 
 #else
@@ -94,7 +112,11 @@ int dhd_customer_oob_irq_map(unsigned long *irq_flags_ptr)
 	if (dhd_oob_gpio_num < 0) {
 		dhd_oob_gpio_num = CUSTOM_OOB_GPIO_NUM;
 	}
+<<<<<<< HEAD
 #endif /* CUSTOMER_HW2 */
+=======
+#endif /* CUSTOMER_OOB_GPIO_NUM */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (dhd_oob_gpio_num < 0) {
 		WL_ERROR(("%s: ERROR customer specific Host GPIO is NOT defined \n",
@@ -112,11 +134,19 @@ int dhd_customer_oob_irq_map(unsigned long *irq_flags_ptr)
 	host_oob_irq = gpio_to_irq(dhd_oob_gpio_num);
 	gpio_direction_input(dhd_oob_gpio_num);
 #endif /* CUSTOMER_HW */
+<<<<<<< HEAD
 #endif /* CUSTOMER_HW2 */
 
 	return (host_oob_irq);
 }
 #endif /* defined(OOB_INTR_ONLY) */
+=======
+#endif /* CUSTOMER_HW2 || CUSTOMER_HW4 */
+
+	return (host_oob_irq);
+}
+#endif /* defined(OOB_INTR_ONLY) || defined(BCMSPI_ANDROID) */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* Customer function to control hw specific wlan gpios */
 void
@@ -129,7 +159,11 @@ dhd_customer_gpio_wlan_ctrl(int onoff)
 #ifdef CUSTOMER_HW
 			bcm_wlan_power_off(2);
 #endif /* CUSTOMER_HW */
+<<<<<<< HEAD
 #ifdef CUSTOMER_HW2
+=======
+#if defined(CUSTOMER_HW2) || defined(CUSTOMER_HW4)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			wifi_set_power(0, 0);
 #endif
 			WL_ERROR(("=========== WLAN placed in RESET ========\n"));
@@ -141,7 +175,11 @@ dhd_customer_gpio_wlan_ctrl(int onoff)
 #ifdef CUSTOMER_HW
 			bcm_wlan_power_on(2);
 #endif /* CUSTOMER_HW */
+<<<<<<< HEAD
 #ifdef CUSTOMER_HW2
+=======
+#if defined(CUSTOMER_HW2) || defined(CUSTOMER_HW4)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			wifi_set_power(1, 0);
 #endif
 			WL_ERROR(("=========== WLAN going back to live  ========\n"));
@@ -195,6 +233,10 @@ dhd_custom_get_mac_address(unsigned char *buf)
 }
 #endif /* GET_CUSTOM_MAC_ENABLE */
 
+<<<<<<< HEAD
+=======
+#ifndef CUSTOMER_HW4
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Customized Locale table : OPTIONAL feature */
 const struct cntry_locales_custom translate_custom_table[] = {
 /* Table should be filled out based on custom platform regulatory requirement */
@@ -291,3 +333,7 @@ void get_customized_country_code(char *country_iso_code, wl_country_t *cspec)
 	return;
 #endif /* defined(CUSTOMER_HW2) && (LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 36)) */
 }
+<<<<<<< HEAD
+=======
+#endif /* CUSTOMER_HW4 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

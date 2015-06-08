@@ -702,11 +702,17 @@ static int bf5xx_nand_scan(struct mtd_info *mtd)
 		if (likely(mtd->writesize >= 512)) {
 			chip->ecc.size = 512;
 			chip->ecc.bytes = 6;
+<<<<<<< HEAD
 			chip->ecc.strength = 2;
 		} else {
 			chip->ecc.size = 256;
 			chip->ecc.bytes = 3;
 			chip->ecc.strength = 1;
+=======
+		} else {
+			chip->ecc.size = 256;
+			chip->ecc.bytes = 3;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			bfin_write_NFC_CTL(bfin_read_NFC_CTL() & ~(1 << NFC_PG_SIZE_OFFSET));
 			SSYNC();
 		}

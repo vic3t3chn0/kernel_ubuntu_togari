@@ -34,7 +34,10 @@
  */
 
 #include "drmP.h"
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #if defined(__ia64__)
 #include <linux/efi.h>
 #include <linux/slab.h>

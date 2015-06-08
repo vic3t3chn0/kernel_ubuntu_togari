@@ -60,6 +60,7 @@ config HW_RANDOM_AMD
 
 	  If unsure, say Y.
 
+<<<<<<< HEAD
 config HW_RANDOM_ATMEL
 	tristate "Atmel Random Number Generator support"
 	depends on HW_RANDOM && ARCH_AT91SAM9G45
@@ -73,6 +74,8 @@ config HW_RANDOM_ATMEL
 
 	  If unsure, say Y.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config HW_RANDOM_GEODE
 	tristate "AMD Geode HW Random Number Generator support"
 	depends on HW_RANDOM && X86_32 && PCI
@@ -223,6 +226,7 @@ config HW_RANDOM_PICOXCELL
 	  module will be called picoxcell-rng.
 
 	  If unsure, say Y.
+<<<<<<< HEAD
 
 config HW_RANDOM_PPC4XX
 	tristate "PowerPC 4xx generic true random number generator support"
@@ -263,3 +267,5 @@ config HW_RANDOM_MSM
 	  module will be called msm_rng.
 
 	  If unsure, say Y.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

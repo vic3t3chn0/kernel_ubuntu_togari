@@ -1,8 +1,15 @@
 VERSION = 3
+<<<<<<< HEAD
 PATCHLEVEL = 4
 SUBLEVEL = 0
 EXTRAVERSION =
 NAME = Saber-toothed Squirrel
+=======
+PATCHLEVEL = 0
+SUBLEVEL = 101
+EXTRAVERSION =
+NAME = Sodden Ben Lomond
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
@@ -192,8 +199,14 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
 # Default value for CROSS_COMPILE is not to prefix executables
 # Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile
 export KBUILD_BUILDHOST := $(SUBARCH)
+<<<<<<< HEAD
 ARCH		?= $(SUBARCH)
 CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
+=======
+ARCH		?= arm
+CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
+# CROSS_COMPILE=/usr/bin/arm-linux-gnueabi-
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
@@ -312,7 +325,11 @@ endif
 # If the user is running make -s (silent mode), suppress echoing of
 # commands
 
+<<<<<<< HEAD
 ifneq ($(filter s% -s%,$(MAKEFLAGS)),)
+=======
+ifneq ($(findstring s,$(MAKEFLAGS)),)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
   quiet=silent_
 endif
 
@@ -330,7 +347,11 @@ include $(srctree)/scripts/Kbuild.include
 
 AS		= $(CROSS_COMPILE)as
 LD		= $(CROSS_COMPILE)ld
+<<<<<<< HEAD
 REAL_CC		= $(CROSS_COMPILE)gcc
+=======
+CC		= $(CROSS_COMPILE)gcc
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 CPP		= $(CC) -E
 AR		= $(CROSS_COMPILE)ar
 NM		= $(CROSS_COMPILE)nm
@@ -345,16 +366,24 @@ KALLSYMS	= scripts/kallsyms
 PERL		= perl
 CHECK		= sparse
 
+<<<<<<< HEAD
 # Use the wrapper for the compiler.  This wrapper scans for new
 # warnings and causes the build to stop upon encountering them.
 CC		= $(srctree)/scripts/gcc-wrapper.py $(REAL_CC)
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
 CFLAGS_MODULE   =
 AFLAGS_MODULE   =
+<<<<<<< HEAD
 LDFLAGS_MODULE  =
 CFLAGS_KERNEL	=
+=======
+LDFLAGS_MODULE  = --strip-debug
+CFLAGS_KERNEL	= 
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
@@ -364,6 +393,7 @@ CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 LINUXINCLUDE    := -I$(srctree)/arch/$(hdr-arch)/include \
                    -Iarch/$(hdr-arch)/include/generated -Iinclude \
                    $(if $(KBUILD_SRC), -I$(srctree)/include) \
+<<<<<<< HEAD
                    -include $(srctree)/include/linux/kconfig.h
 
 KBUILD_CPPFLAGS := -D__KERNEL__
@@ -373,6 +403,32 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
 		   -fno-delete-null-pointer-checks
+=======
+                   -include include/generated/autoconf.h
+
+KBUILD_CPPFLAGS := -D__KERNEL__
+
+GOOGY_FLAGS   = -funswitch-loops -fpredictive-commoning -fgcse-after-reload \
+        	-fmodulo-sched -fmodulo-sched-allow-regmoves \
+        	-fipa-cp-clone -pipe -fno-pic \
+	 	-fgraphite-identity -fsched-spec-load \
+	 	-floop-interchange -floop-strip-mine -floop-block \
+	 	-fpredictive-commoning -fgcse-after-reload -ftree-vectorize -fipa-cp-clone \
+	 	-fmodulo-sched -fmodulo-sched-allow-regmoves
+#		-ftree-loop-distribution -floop-parallelize-all -ftree-parallelize-loops=4 \
+#	 	-fno-schedule-insns2
+
+KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
+		   -fno-strict-aliasing -fno-common \
+		   -Werror-implicit-function-declaration \
+		   -Wno-format-security -Wno-array-bounds \
+		   -fno-delete-null-pointer-checks \
+		   -munaligned-access \
+		   -mtune=cortex-a9 -march=armv7-a -mcpu=cortex-a9 -mfpu=neon -marm 
+#		   $(GOOGY_FLAGS)
+#		   -fno-inline-functions -ffast-math \
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
@@ -446,7 +502,11 @@ asm-generic:
 
 no-dot-config-targets := clean mrproper distclean \
 			 cscope gtags TAGS tags help %docs check% coccicheck \
+<<<<<<< HEAD
 			 include/linux/version.h headers_% archheaders archscripts \
+=======
+			 include/linux/version.h headers_% \
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			 kernelversion %src-pkg
 
 config-targets := 0
@@ -563,11 +623,28 @@ endif # $(dot-config)
 all: vmlinux
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
+<<<<<<< HEAD
 KBUILD_CFLAGS	+= -Os $(call cc-disable-warning,maybe-uninitialized,)
+=======
+KBUILD_CFLAGS	+= -Os
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 else
 KBUILD_CFLAGS	+= -O2
 endif
 
+<<<<<<< HEAD
+=======
+ifdef CONFIG_CC_CHECK_WARNING_STRICTLY
+KBUILD_CFLAGS	+= -fdiagnostics-show-option \
+		   -Wno-error=unused-function \
+		   -Wno-error=unused-variable \
+		   -Wno-error=unused-value \
+		   -Wno-error=unused-label
+endif
+
+# GGY says Here was KBUILD_CFLAGS	+= -fdiagnostics-show-option
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 include $(srctree)/arch/$(SRCARCH)/Makefile
 
 ifneq ($(CONFIG_FRAME_WARN),0)
@@ -864,7 +941,10 @@ endef
 # Generate .S file with all kernel symbols
 quiet_cmd_kallsyms = KSYM    $@
       cmd_kallsyms = $(NM) -n $< | $(KALLSYMS) \
+<<<<<<< HEAD
                      --page-offset=$(CONFIG_PAGE_OFFSET) \
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
                      $(if $(CONFIG_KALLSYMS_ALL),--all-symbols) > $@
 
 .tmp_kallsyms1.o .tmp_kallsyms2.o .tmp_kallsyms3.o: %.o: %.S scripts FORCE
@@ -984,10 +1064,18 @@ prepare1: prepare2 include/linux/version.h include/generated/utsrelease.h \
                    include/config/auto.conf
 	$(cmd_crmodverdir)
 
+<<<<<<< HEAD
 archprepare: archheaders archscripts prepare1 scripts_basic
 
 prepare0: archprepare FORCE
 	$(Q)$(MAKE) $(build)=.
+=======
+archprepare: prepare1 scripts_basic
+
+prepare0: archprepare FORCE
+	$(Q)$(MAKE) $(build)=.
+	$(Q)$(MAKE) $(build)=. missing-syscalls
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 # All the preparing..
 prepare: prepare0
@@ -1051,6 +1139,7 @@ hdr-inst := -rR -f $(srctree)/scripts/Makefile.headersinst obj
 # If we do an all arch process set dst to asm-$(hdr-arch)
 hdr-dst = $(if $(KBUILD_HEADERS), dst=include/asm-$(hdr-arch), dst=include/asm)
 
+<<<<<<< HEAD
 PHONY += archheaders
 archheaders:
 
@@ -1059,6 +1148,10 @@ archscripts:
 
 PHONY += __headers
 __headers: include/linux/version.h scripts_basic asm-generic archheaders archscripts FORCE
+=======
+PHONY += __headers
+__headers: include/linux/version.h scripts_basic asm-generic FORCE
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	$(Q)$(MAKE) $(build)=scripts build_unifdef
 
 PHONY += headers_install_all
@@ -1178,7 +1271,11 @@ MRPROPER_FILES += .config .config.old .version .old_version             \
 #
 clean: rm-dirs  := $(CLEAN_DIRS)
 clean: rm-files := $(CLEAN_FILES)
+<<<<<<< HEAD
 clean-dirs      := $(addprefix _clean_, . $(vmlinux-alldirs) Documentation samples)
+=======
+clean-dirs      := $(addprefix _clean_, . $(vmlinux-alldirs) Documentation)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 PHONY += $(clean-dirs) clean archclean
 $(clean-dirs):
@@ -1208,7 +1305,11 @@ distclean: mrproper
 	@find $(srctree) $(RCS_FIND_IGNORE) \
 		\( -name '*.orig' -o -name '*.rej' -o -name '*~' \
 		-o -name '*.bak' -o -name '#*#' -o -name '.*.orig' \
+<<<<<<< HEAD
 		-o -name '.*.rej' \
+=======
+		-o -name '.*.rej' -o -size 0 \
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		-o -name '*%' -o -name '.*.cmd' -o -name 'core' \) \
 		-type f -print | xargs rm -f
 
@@ -1300,12 +1401,19 @@ help:
 	@echo  '  make O=dir [targets] Locate all output files in "dir", including .config'
 	@echo  '  make C=1   [targets] Check all c source with $$CHECK (sparse by default)'
 	@echo  '  make C=2   [targets] Force check of all c source with $$CHECK'
+<<<<<<< HEAD
 	@echo  '  make RECORDMCOUNT_WARN=1 [targets] Warn about ignored mcount sections'
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	@echo  '  make W=n   [targets] Enable extra gcc checks, n=1,2,3 where'
 	@echo  '		1: warnings which may be relevant and do not occur too often'
 	@echo  '		2: warnings which occur quite often but may still be relevant'
 	@echo  '		3: more obscure warnings, can most likely be ignored'
 	@echo  '		Multiple levels can be combined with W=12 or W=123'
+<<<<<<< HEAD
+=======
+	@echo  '  make RECORDMCOUNT_WARN=1 [targets] Warn about ignored mcount sections'
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	@echo  ''
 	@echo  'Execute "make" or "make all" to build all targets marked with [*] '
 	@echo  'For further info see the ./README file'

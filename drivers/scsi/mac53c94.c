@@ -17,11 +17,18 @@
 #include <linux/stat.h>
 #include <linux/spinlock.h>
 #include <linux/interrupt.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/dbdma.h>
 #include <asm/io.h>
 #include <asm/pgtable.h>
 #include <asm/prom.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/pci-bridge.h>
 #include <asm/macio.h>
 

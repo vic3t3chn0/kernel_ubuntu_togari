@@ -22,7 +22,10 @@
 #include <linux/kernel.h>
 #include <linux/major.h>
 #include <linux/errno.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/tty.h>
 #include <linux/interrupt.h>
 #include <linux/mm.h>
@@ -93,7 +96,11 @@ vcs_poll_data_free(struct vcs_poll_data *poll)
 static struct vcs_poll_data *
 vcs_poll_data_get(struct file *file)
 {
+<<<<<<< HEAD
 	struct vcs_poll_data *poll = file->private_data;
+=======
+	struct vcs_poll_data *poll = file->private_data, *kill = NULL;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (poll)
 		return poll;
@@ -122,10 +129,19 @@ vcs_poll_data_get(struct file *file)
 		file->private_data = poll;
 	} else {
 		/* someone else raced ahead of us */
+<<<<<<< HEAD
 		vcs_poll_data_free(poll);
 		poll = file->private_data;
 	}
 	spin_unlock(&file->f_lock);
+=======
+		kill = poll;
+		poll = file->private_data;
+	}
+	spin_unlock(&file->f_lock);
+	if (kill)
+		vcs_poll_data_free(kill);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return poll;
 }
@@ -608,10 +624,17 @@ vcs_open(struct inode *inode, struct file *filp)
 	unsigned int currcons = iminor(inode) & 127;
 	int ret = 0;
 	
+<<<<<<< HEAD
 	console_lock();
 	if(currcons && !vc_cons_allocated(currcons-1))
 		ret = -ENXIO;
 	console_unlock();
+=======
+	tty_lock();
+	if(currcons && !vc_cons_allocated(currcons-1))
+		ret = -ENXIO;
+	tty_unlock();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return ret;
 }
 

@@ -21,7 +21,11 @@
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
  *
+<<<<<<< HEAD
  * $Id: siutils_priv.h 309193 2012-01-19 00:03:57Z $
+=======
+ * $Id: siutils_priv.h 348394 2012-08-01 18:38:50Z $
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 #ifndef	_siutils_priv_h_
@@ -146,6 +150,10 @@ typedef struct si_info {
 #define	ILP_DIV_5MHZ		0		/* ILP = 5 MHz */
 #define	ILP_DIV_1MHZ		4		/* ILP = 1 MHz */
 
+<<<<<<< HEAD
+=======
+/* Force fast clock for 4360b0 */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define PCI_FORCEHT(si)	\
 	(((PCIE_GEN1(si)) && (si->pub.chip == BCM4311_CHIP_ID) && ((si->pub.chiprev <= 1))) || \
 	((PCI(si) || PCIE_GEN1(si)) && (si->pub.chip == BCM4321_CHIP_ID)) || \

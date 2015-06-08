@@ -4,6 +4,10 @@
  * Author:  Daniel Martensson / Daniel.Martensson@stericsson.com
  * License terms: GNU General Public License (GPL) version 2.
  */
+<<<<<<< HEAD
+=======
+#include <linux/version.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/device.h>

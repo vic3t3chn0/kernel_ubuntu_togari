@@ -21,7 +21,10 @@
 #define _MWIFIEX_11N_AGGR_H_
 
 #define PKT_TYPE_AMSDU	0xE6
+<<<<<<< HEAD
 #define MIN_NUM_AMSDU 2
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 int mwifiex_11n_deaggregate_pkt(struct mwifiex_private *priv,
 				struct sk_buff *skb);

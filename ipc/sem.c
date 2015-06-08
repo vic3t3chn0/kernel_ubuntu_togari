@@ -90,6 +90,7 @@
 #include <asm/uaccess.h>
 #include "util.h"
 
+<<<<<<< HEAD
 /* One semaphore structure for each semaphore in the system. */
 struct sem {
 	int	semval;		/* current value */
@@ -136,6 +137,8 @@ struct sem_undo_list {
 };
 
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define sem_ids(ns)	((ns)->ids[IPC_SEM_IDS])
 
 #define sem_unlock(sma)		ipc_unlock(&(sma)->sem_perm)
@@ -735,6 +738,15 @@ static int count_semzcnt (struct sem_array * sma, ushort semnum)
 	return semzcnt;
 }
 
+<<<<<<< HEAD
+=======
+static void free_un(struct rcu_head *head)
+{
+	struct sem_undo *un = container_of(head, struct sem_undo, rcu);
+	kfree(un);
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Free a semaphore set. freeary() is called with sem_ids.rw_mutex locked
  * as a writer and the spinlock for this semaphore set hold. sem_ids.rw_mutex
  * remains locked on exit.
@@ -754,7 +766,11 @@ static void freeary(struct ipc_namespace *ns, struct kern_ipc_perm *ipcp)
 		un->semid = -1;
 		list_del_rcu(&un->list_proc);
 		spin_unlock(&un->ulp->lock);
+<<<<<<< HEAD
 		kfree_rcu(un, rcu);
+=======
+		call_rcu(&un->rcu, free_un);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	/* Wake up all pending processes and let them fail with EIDRM. */
@@ -1472,8 +1488,11 @@ SYSCALL_DEFINE4(semtimedop, int, semid, struct sembuf __user *, tsops,
 
 	queue.status = -EINTR;
 	queue.sleeper = current;
+<<<<<<< HEAD
 
 sleep_again:
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	current->state = TASK_INTERRUPTIBLE;
 	sem_unlock(sma);
 
@@ -1508,6 +1527,10 @@ sleep_again:
 	 * Array removed? If yes, leave without sem_unlock().
 	 */
 	if (IS_ERR(sma)) {
+<<<<<<< HEAD
+=======
+		error = -EIDRM;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		goto out_free;
 	}
 
@@ -1526,6 +1549,7 @@ sleep_again:
 	 */
 	if (timeout && jiffies_left == 0)
 		error = -EAGAIN;
+<<<<<<< HEAD
 
 	/*
 	 * If the wakeup was spurious, just retry
@@ -1533,6 +1557,8 @@ sleep_again:
 	if (error == -EINTR && !signal_pending(current))
 		goto sleep_again;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	unlink_queue(sma, &queue);
 
 out_unlock_free:
@@ -1669,7 +1695,11 @@ void exit_sem(struct task_struct *tsk)
 		sem_unlock(sma);
 		wake_up_sem_queue_do(&tasks);
 
+<<<<<<< HEAD
 		kfree_rcu(un, rcu);
+=======
+		call_rcu(&un->rcu, free_un);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 	kfree(ulp);
 }

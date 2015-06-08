@@ -18,7 +18,10 @@
 #include <linux/slab.h>
 #include <linux/init.h>
 #include <linux/err.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "mc13xxx.h"
 
 #define MC13783_REG_SWITCHERS5			29
@@ -337,17 +340,27 @@ static int __devinit mc13783_regulator_probe(struct platform_device *pdev)
 {
 	struct mc13xxx_regulator_priv *priv;
 	struct mc13xxx *mc13783 = dev_get_drvdata(pdev->dev.parent);
+<<<<<<< HEAD
 	struct mc13xxx_regulator_platform_data *pdata =
 		dev_get_platdata(&pdev->dev);
 	struct mc13xxx_regulator_init_data *init_data;
+=======
+	struct mc13783_regulator_platform_data *pdata =
+		dev_get_platdata(&pdev->dev);
+	struct mc13783_regulator_init_data *init_data;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int i, ret;
 
 	dev_dbg(&pdev->dev, "%s id %d\n", __func__, pdev->id);
 
+<<<<<<< HEAD
 	if (!pdata)
 		return -EINVAL;
 
 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv) +
+=======
+	priv = kzalloc(sizeof(*priv) +
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			pdata->num_regulators * sizeof(priv->regulators[0]),
 			GFP_KERNEL);
 	if (!priv)
@@ -360,7 +373,11 @@ static int __devinit mc13783_regulator_probe(struct platform_device *pdev)
 		init_data = &pdata->regulators[i];
 		priv->regulators[i] = regulator_register(
 				&mc13783_regulators[init_data->id].desc,
+<<<<<<< HEAD
 				&pdev->dev, init_data->init_data, priv, NULL);
+=======
+				&pdev->dev, init_data->init_data, priv);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		if (IS_ERR(priv->regulators[i])) {
 			dev_err(&pdev->dev, "failed to register regulator %s\n",
@@ -377,13 +394,22 @@ err:
 	while (--i >= 0)
 		regulator_unregister(priv->regulators[i]);
 
+<<<<<<< HEAD
+=======
+	kfree(priv);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return ret;
 }
 
 static int __devexit mc13783_regulator_remove(struct platform_device *pdev)
 {
 	struct mc13xxx_regulator_priv *priv = platform_get_drvdata(pdev);
+<<<<<<< HEAD
 	struct mc13xxx_regulator_platform_data *pdata =
+=======
+	struct mc13783_regulator_platform_data *pdata =
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		dev_get_platdata(&pdev->dev);
 	int i;
 
@@ -392,6 +418,10 @@ static int __devexit mc13783_regulator_remove(struct platform_device *pdev)
 	for (i = 0; i < pdata->num_regulators; i++)
 		regulator_unregister(priv->regulators[i]);
 
+<<<<<<< HEAD
+=======
+	kfree(priv);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 

@@ -27,7 +27,11 @@
  *	with nanosecond accuracy
  */
 
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/timex.h>
 #include <linux/capability.h>
 #include <linux/clocksource.h>
@@ -163,6 +167,10 @@ int do_sys_settimeofday(const struct timespec *tv, const struct timezone *tz)
 		return error;
 
 	if (tz) {
+<<<<<<< HEAD
+=======
+		/* SMP safe, global irq locking makes it work. */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		sys_tz = *tz;
 		update_vsyscall_tz();
 		if (firsttime) {
@@ -172,7 +180,16 @@ int do_sys_settimeofday(const struct timespec *tv, const struct timezone *tz)
 		}
 	}
 	if (tv)
+<<<<<<< HEAD
 		return do_settimeofday(tv);
+=======
+	{
+		/* SMP safe, again the code in arch/foo/time.c should
+		 * globally block out interrupts when it runs.
+		 */
+		return do_settimeofday(tv);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 

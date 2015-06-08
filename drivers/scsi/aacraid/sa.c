@@ -385,7 +385,10 @@ int aac_sa_init(struct aac_dev *dev)
 
 	if(aac_init_adapter(dev) == NULL)
 		goto error_irq;
+<<<<<<< HEAD
 	dev->sync_mode = 0;	/* sync. mode not supported */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (request_irq(dev->pdev->irq, dev->a_ops.adapter_intr,
 			IRQF_SHARED|IRQF_DISABLED,
 			"aacraid", (void *)dev ) < 0) {

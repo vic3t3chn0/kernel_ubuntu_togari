@@ -26,6 +26,10 @@
 #include <linux/kmod.h>
 #include <linux/slab.h>
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <media/v4l2-common.h>
 #include <media/v4l2-device.h>
@@ -145,9 +149,16 @@ static void v4l2_device_release(struct device *cd)
 	struct v4l2_device *v4l2_dev = vdev->v4l2_dev;
 
 	mutex_lock(&videodev_lock);
+<<<<<<< HEAD
 	if (WARN_ON(video_device[vdev->minor] != vdev)) {
 		/* should not happen */
 		mutex_unlock(&videodev_lock);
+=======
+	if (video_device[vdev->minor] != vdev) {
+		mutex_unlock(&videodev_lock);
+		/* should not happen */
+		WARN_ON(1);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return;
 	}
 
@@ -166,11 +177,16 @@ static void v4l2_device_release(struct device *cd)
 	mutex_unlock(&videodev_lock);
 
 #if defined(CONFIG_MEDIA_CONTROLLER)
+<<<<<<< HEAD
 	if (v4l2_dev && v4l2_dev->mdev &&
+=======
+	if (vdev->v4l2_dev && vdev->v4l2_dev->mdev &&
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	    vdev->vfl_type != VFL_TYPE_SUBDEV)
 		media_device_unregister_entity(&vdev->entity);
 #endif
 
+<<<<<<< HEAD
 	/* Do not call v4l2_device_put if there is no release callback set.
 	 * Drivers that have no v4l2_device release callback might free the
 	 * v4l2_dev instance in the video_device release callback below, so we
@@ -182,6 +198,8 @@ static void v4l2_device_release(struct device *cd)
 	if (v4l2_dev && v4l2_dev->release == NULL)
 		v4l2_dev = NULL;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/* Release video_device and perform other
 	   cleanups as needed. */
 	vdev->release(vdev);
@@ -554,7 +572,12 @@ int __video_register_device(struct video_device *vdev, int type, int nr,
 	vdev->minor = -1;
 
 	/* the release callback MUST be present */
+<<<<<<< HEAD
 	if (WARN_ON(!vdev->release))
+=======
+	WARN_ON(!vdev->release);
+	if (!vdev->release)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -EINVAL;
 
 	/* v4l2_fh support */
@@ -700,8 +723,13 @@ int __video_register_device(struct video_device *vdev, int type, int nr,
 	    vdev->vfl_type != VFL_TYPE_SUBDEV) {
 		vdev->entity.type = MEDIA_ENT_T_DEVNODE_V4L;
 		vdev->entity.name = vdev->name;
+<<<<<<< HEAD
 		vdev->entity.info.v4l.major = VIDEO_MAJOR;
 		vdev->entity.info.v4l.minor = vdev->minor;
+=======
+		vdev->entity.v4l.major = VIDEO_MAJOR;
+		vdev->entity.v4l.minor = vdev->minor;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		ret = media_device_register_entity(vdev->v4l2_dev->mdev,
 			&vdev->entity);
 		if (ret < 0)
@@ -787,7 +815,11 @@ static void __exit videodev_exit(void)
 	unregister_chrdev_region(dev, VIDEO_NUM_DEVICES);
 }
 
+<<<<<<< HEAD
 subsys_initcall(videodev_init);
+=======
+module_init(videodev_init)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 module_exit(videodev_exit)
 
 MODULE_AUTHOR("Alan Cox, Mauro Carvalho Chehab <mchehab@infradead.org>");

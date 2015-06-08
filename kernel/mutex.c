@@ -19,7 +19,11 @@
  */
 #include <linux/mutex.h>
 #include <linux/sched.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+#include <linux/module.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/spinlock.h>
 #include <linux/interrupt.h>
 #include <linux/debug_locks.h>
@@ -240,7 +244,13 @@ __mutex_lock_common(struct mutex *lock, long state, unsigned int subclass,
 
 		/* didn't get the lock, go to sleep: */
 		spin_unlock_mutex(&lock->wait_lock, flags);
+<<<<<<< HEAD
 		schedule_preempt_disabled();
+=======
+		preempt_enable_no_resched();
+		schedule();
+		preempt_disable();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spin_lock_mutex(&lock->wait_lock, flags);
 	}
 

@@ -1183,6 +1183,7 @@ static bool i915_switcheroo_can_switch(struct pci_dev *pdev)
 	return can_switch;
 }
 
+<<<<<<< HEAD
 static bool
 intel_enable_ppgtt(struct drm_device *dev)
 {
@@ -1198,6 +1199,8 @@ intel_enable_ppgtt(struct drm_device *dev)
 	return true;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int i915_load_gem_init(struct drm_device *dev)
 {
 	struct drm_i915_private *dev_priv = dev->dev_private;
@@ -1212,7 +1215,11 @@ static int i915_load_gem_init(struct drm_device *dev)
 	drm_mm_init(&dev_priv->mm.stolen, 0, prealloc_size);
 
 	mutex_lock(&dev->struct_mutex);
+<<<<<<< HEAD
 	if (intel_enable_ppgtt(dev) && HAS_ALIASING_PPGTT(dev)) {
+=======
+	if (i915_enable_ppgtt && HAS_ALIASING_PPGTT(dev)) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* PPGTT pdes are stolen from global gtt ptes, so shrink the
 		 * aperture accordingly when using aliasing ppgtt. */
 		gtt_size -= I915_PPGTT_PD_ENTRIES*PAGE_SIZE;
@@ -1222,10 +1229,15 @@ static int i915_load_gem_init(struct drm_device *dev)
 		i915_gem_do_init(dev, 0, mappable_size, gtt_size);
 
 		ret = i915_gem_init_aliasing_ppgtt(dev);
+<<<<<<< HEAD
 		if (ret) {
 			mutex_unlock(&dev->struct_mutex);
 			return ret;
 		}
+=======
+		if (ret)
+			return ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} else {
 		/* Let GEM Manage all of the aperture.
 		 *
@@ -1701,9 +1713,12 @@ void i915_update_gfx_val(struct drm_i915_private *dev_priv)
 	unsigned long diffms;
 	u32 count;
 
+<<<<<<< HEAD
 	if (dev_priv->info->gen != 5)
 		return;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	getrawmonotonic(&now);
 	diff1 = timespec_sub(now, dev_priv->last_time2);
 
@@ -2124,6 +2139,7 @@ int i915_driver_load(struct drm_device *dev, unsigned long flags)
 	setup_timer(&dev_priv->hangcheck_timer, i915_hangcheck_elapsed,
 		    (unsigned long) dev);
 
+<<<<<<< HEAD
 	if (IS_GEN5(dev)) {
 		spin_lock(&mchdev_lock);
 		i915_mch_dev = dev_priv;
@@ -2132,6 +2148,14 @@ int i915_driver_load(struct drm_device *dev, unsigned long flags)
 
 		ips_ping_for_i915_load();
 	}
+=======
+	spin_lock(&mchdev_lock);
+	i915_mch_dev = dev_priv;
+	dev_priv->mchdev_lock = &mchdev_lock;
+	spin_unlock(&mchdev_lock);
+
+	ips_ping_for_i915_load();
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 

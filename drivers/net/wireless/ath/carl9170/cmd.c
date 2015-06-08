@@ -36,7 +36,10 @@
  *    OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+<<<<<<< HEAD
 #include <asm/div64.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "carl9170.h"
 #include "cmd.h"
 
@@ -166,6 +169,7 @@ int carl9170_bcn_ctrl(struct ar9170 *ar, const unsigned int vif_id,
 	return __carl9170_exec_cmd(ar, cmd, true);
 }
 
+<<<<<<< HEAD
 int carl9170_collect_tally(struct ar9170 *ar)
 {
 	struct carl9170_tally_rsp tally;
@@ -199,6 +203,8 @@ int carl9170_collect_tally(struct ar9170 *ar)
 	return 0;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int carl9170_powersave(struct ar9170 *ar, const bool ps)
 {
 	struct carl9170_cmd *cmd;

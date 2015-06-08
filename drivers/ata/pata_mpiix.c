@@ -152,13 +152,22 @@ static struct ata_port_operations mpiix_port_ops = {
 static int mpiix_init_one(struct pci_dev *dev, const struct pci_device_id *id)
 {
 	/* Single threaded by the PCI probe logic */
+<<<<<<< HEAD
+=======
+	static int printed_version;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct ata_host *host;
 	struct ata_port *ap;
 	void __iomem *cmd_addr, *ctl_addr;
 	u16 idetim;
 	int cmd, ctl, irq;
 
+<<<<<<< HEAD
 	ata_print_version_once(&dev->dev, DRV_VERSION);
+=======
+	if (!printed_version++)
+		dev_printk(KERN_DEBUG, &dev->dev, "version " DRV_VERSION "\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	host = ata_host_alloc(&dev->dev, 1);
 	if (!host)

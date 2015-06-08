@@ -6,7 +6,10 @@
  * Licensed under the GPL-2 or later.
  */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/delay.h>
 #include <linux/mutex.h>
 #include <linux/device.h>
@@ -15,8 +18,16 @@
 #include <linux/slab.h>
 #include <linux/sysfs.h>
 
+<<<<<<< HEAD
 #include "../iio.h"
 #include "../sysfs.h"
+=======
+
+#include "../iio.h"
+#include "../sysfs.h"
+#include "gyro.h"
+#include "../adc/adc.h"
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define ADIS16060_GYRO		0x20 /* Measure Angular Rate (Gyro) */
 #define ADIS16060_TEMP_OUT	0x10 /* Measure Temperature */
@@ -27,23 +38,42 @@
  * struct adis16060_state - device instance specific data
  * @us_w:		actual spi_device to write config
  * @us_r:		actual spi_device to read back data
+<<<<<<< HEAD
+=======
+ * @indio_dev:		industrial I/O device structure
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * @buf:		transmit or receive buffer
  * @buf_lock:		mutex to protect tx and rx
  **/
 struct adis16060_state {
 	struct spi_device		*us_w;
 	struct spi_device		*us_r;
+<<<<<<< HEAD
+=======
+	struct iio_dev			*indio_dev;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct mutex			buf_lock;
 
 	u8 buf[3] ____cacheline_aligned;
 };
 
+<<<<<<< HEAD
 static struct iio_dev *adis16060_iio_dev;
 
 static int adis16060_spi_write(struct iio_dev *indio_dev, u8 val)
 {
 	int ret;
 	struct adis16060_state *st = iio_priv(indio_dev);
+=======
+static struct adis16060_state *adis16060_st;
+
+static int adis16060_spi_write(struct device *dev,
+		u8 val)
+{
+	int ret;
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	struct adis16060_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	mutex_lock(&st->buf_lock);
 	st->buf[2] = val; /* The last 8 bits clocked in are latched */
@@ -53,10 +83,19 @@ static int adis16060_spi_write(struct iio_dev *indio_dev, u8 val)
 	return ret;
 }
 
+<<<<<<< HEAD
 static int adis16060_spi_read(struct iio_dev *indio_dev, u16 *val)
 {
 	int ret;
 	struct adis16060_state *st = iio_priv(indio_dev);
+=======
+static int adis16060_spi_read(struct device *dev,
+		u16 *val)
+{
+	int ret;
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	struct adis16060_state *st = iio_dev_get_devdata(indio_dev);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	mutex_lock(&st->buf_lock);
 
@@ -76,6 +115,7 @@ static int adis16060_spi_read(struct iio_dev *indio_dev, u16 *val)
 	return ret;
 }
 
+<<<<<<< HEAD
 static int adis16060_read_raw(struct iio_dev *indio_dev,
 			      struct iio_chan_spec const *chan,
 			      int *val, int *val2,
@@ -139,10 +179,65 @@ static const struct iio_chan_spec adis16060_channels[] = {
 		IIO_CHAN_INFO_SCALE_SEPARATE_BIT,
 		.address = ADIS16060_TEMP_OUT,
 	}
+=======
+static ssize_t adis16060_read(struct device *dev,
+		struct device_attribute *attr,
+		char *buf)
+{
+	struct iio_dev_attr *this_attr = to_iio_dev_attr(attr);
+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+	u16 val = 0;
+	ssize_t ret;
+
+	/* Take the iio_dev status lock */
+	mutex_lock(&indio_dev->mlock);
+
+	ret = adis16060_spi_write(dev, this_attr->address);
+	if (ret < 0)
+		goto error_ret;
+	ret = adis16060_spi_read(dev, &val);
+error_ret:
+	mutex_unlock(&indio_dev->mlock);
+
+	if (ret == 0)
+		return sprintf(buf, "%d\n", val);
+	else
+		return ret;
+}
+
+static IIO_DEV_ATTR_GYRO_Z(adis16060_read, ADIS16060_GYRO);
+static IIO_DEVICE_ATTR(temp_raw, S_IRUGO, adis16060_read, NULL,
+		       ADIS16060_TEMP_OUT);
+static IIO_CONST_ATTR_TEMP_SCALE("34"); /* Milli degrees C */
+static IIO_CONST_ATTR_TEMP_OFFSET("-7461.117"); /* Milli degrees C */
+static IIO_DEV_ATTR_IN_RAW(0, adis16060_read, ADIS16060_AIN1);
+static IIO_DEV_ATTR_IN_RAW(1, adis16060_read, ADIS16060_AIN2);
+static IIO_CONST_ATTR(name, "adis16060");
+
+static struct attribute *adis16060_attributes[] = {
+	&iio_dev_attr_gyro_z_raw.dev_attr.attr,
+	&iio_dev_attr_temp_raw.dev_attr.attr,
+	&iio_const_attr_temp_scale.dev_attr.attr,
+	&iio_const_attr_temp_offset.dev_attr.attr,
+	&iio_dev_attr_in0_raw.dev_attr.attr,
+	&iio_dev_attr_in1_raw.dev_attr.attr,
+	&iio_const_attr_name.dev_attr.attr,
+	NULL
+};
+
+static const struct attribute_group adis16060_attribute_group = {
+	.attrs = adis16060_attributes,
+};
+
+static const struct iio_info adis16060_info = {
+	.attrs = &adis16060_attribute_group,
+	.driver_module = THIS_MODULE,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int __devinit adis16060_r_probe(struct spi_device *spi)
 {
+<<<<<<< HEAD
 	int ret;
 	struct adis16060_state *st;
 	struct iio_dev *indio_dev;
@@ -175,6 +270,46 @@ static int __devinit adis16060_r_probe(struct spi_device *spi)
 
 error_free_dev:
 	iio_free_device(indio_dev);
+=======
+	int ret, regdone = 0;
+	struct adis16060_state *st = kzalloc(sizeof *st, GFP_KERNEL);
+	if (!st) {
+		ret =  -ENOMEM;
+		goto error_ret;
+	}
+	/* this is only used for removal purposes */
+	spi_set_drvdata(spi, st);
+
+	st->us_r = spi;
+	mutex_init(&st->buf_lock);
+	/* setup the industrialio driver allocated elements */
+	st->indio_dev = iio_allocate_device(0);
+	if (st->indio_dev == NULL) {
+		ret = -ENOMEM;
+		goto error_free_st;
+	}
+
+	st->indio_dev->dev.parent = &spi->dev;
+	st->indio_dev->info = &adis16060_info;
+	st->indio_dev->dev_data = (void *)(st);
+	st->indio_dev->modes = INDIO_DIRECT_MODE;
+
+	ret = iio_device_register(st->indio_dev);
+	if (ret)
+		goto error_free_dev;
+	regdone = 1;
+
+	adis16060_st = st;
+	return 0;
+
+error_free_dev:
+	if (regdone)
+		iio_device_unregister(st->indio_dev);
+	else
+		iio_free_device(st->indio_dev);
+error_free_st:
+	kfree(st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 error_ret:
 	return ret;
 }
@@ -182,8 +317,16 @@ error_ret:
 /* fixme, confirm ordering in this function */
 static int adis16060_r_remove(struct spi_device *spi)
 {
+<<<<<<< HEAD
 	iio_device_unregister(spi_get_drvdata(spi));
 	iio_free_device(spi_get_drvdata(spi));
+=======
+	struct adis16060_state *st = spi_get_drvdata(spi);
+	struct iio_dev *indio_dev = st->indio_dev;
+
+	iio_device_unregister(indio_dev);
+	kfree(st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -191,6 +334,7 @@ static int adis16060_r_remove(struct spi_device *spi)
 static int __devinit adis16060_w_probe(struct spi_device *spi)
 {
 	int ret;
+<<<<<<< HEAD
 	struct iio_dev *indio_dev = adis16060_iio_dev;
 	struct adis16060_state *st;
 	if (!indio_dev) {
@@ -199,6 +343,14 @@ static int __devinit adis16060_w_probe(struct spi_device *spi)
 	}
 	st = iio_priv(indio_dev);
 	spi_set_drvdata(spi, indio_dev);
+=======
+	struct adis16060_state *st = adis16060_st;
+	if (!st) {
+		ret =  -ENODEV;
+		goto error_ret;
+	}
+	spi_set_drvdata(spi, st);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	st->us_w = spi;
 	return 0;
 

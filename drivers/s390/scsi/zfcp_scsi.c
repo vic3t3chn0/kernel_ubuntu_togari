@@ -9,12 +9,19 @@
 #define KMSG_COMPONENT "zfcp"
 #define pr_fmt(fmt) KMSG_COMPONENT ": " fmt
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/types.h>
 #include <linux/slab.h>
 #include <scsi/fc/fc_fcp.h>
 #include <scsi/scsi_eh.h>
+<<<<<<< HEAD
 #include <linux/atomic.h>
+=======
+#include <asm/atomic.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "zfcp_ext.h"
 #include "zfcp_dbf.h"
 #include "zfcp_fc.h"
@@ -25,8 +32,16 @@ module_param_named(queue_depth, default_depth, uint, 0600);
 MODULE_PARM_DESC(queue_depth, "Default queue depth for new SCSI devices");
 
 static bool enable_dif;
+<<<<<<< HEAD
 module_param_named(dif, enable_dif, bool, 0400);
 MODULE_PARM_DESC(dif, "Enable DIF/DIX data integrity support");
+=======
+
+#ifdef CONFIG_ZFCP_DIF
+module_param_named(dif, enable_dif, bool, 0600);
+MODULE_PARM_DESC(dif, "Enable DIF/DIX data integrity support");
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static bool allow_lun_scan = 1;
 module_param(allow_lun_scan, bool, 0600);
@@ -311,8 +326,13 @@ static struct scsi_host_template zfcp_scsi_host_template = {
 	.proc_name		 = "zfcp",
 	.can_queue		 = 4096,
 	.this_id		 = -1,
+<<<<<<< HEAD
 	.sg_tablesize		 = 1, /* adjusted later */
 	.max_sectors		 = 8, /* adjusted later */
+=======
+	.sg_tablesize		 = ZFCP_QDIO_MAX_SBALES_PER_REQ,
+	.max_sectors		 = (ZFCP_QDIO_MAX_SBALES_PER_REQ * 8),
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.dma_boundary		 = ZFCP_QDIO_SBALE_LEN - 1,
 	.cmd_per_lun		 = 1,
 	.use_clustering		 = 1,
@@ -670,9 +690,15 @@ void zfcp_scsi_set_prot(struct zfcp_adapter *adapter)
 	    adapter->adapter_features & FSF_FEATURE_DIX_PROT_TCPIP) {
 		mask |= SHOST_DIX_TYPE1_PROTECTION;
 		scsi_host_set_guard(shost, SHOST_DIX_GUARD_IP);
+<<<<<<< HEAD
 		shost->sg_prot_tablesize = adapter->qdio->max_sbale_per_req / 2;
 		shost->sg_tablesize = adapter->qdio->max_sbale_per_req / 2;
 		shost->max_sectors = shost->sg_tablesize * 8;
+=======
+		shost->sg_prot_tablesize = ZFCP_QDIO_MAX_SBALES_PER_REQ / 2;
+		shost->sg_tablesize = ZFCP_QDIO_MAX_SBALES_PER_REQ / 2;
+		shost->max_sectors = ZFCP_QDIO_MAX_SBALES_PER_REQ * 8 / 2;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	scsi_host_set_prot(shost, mask);

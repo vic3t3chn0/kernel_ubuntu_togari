@@ -196,7 +196,11 @@ static inline int dvb_isoc_copy(struct cx231xx *dev, struct urb *urb)
 	if (!dev)
 		return 0;
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
+=======
+	if ((dev->state & DEV_DISCONNECTED) || (dev->state & DEV_MISCONFIGURED))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return 0;
 
 	if (urb->status < 0) {
@@ -228,7 +232,11 @@ static inline int dvb_bulk_copy(struct cx231xx *dev, struct urb *urb)
 	if (!dev)
 		return 0;
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
+=======
+	if ((dev->state & DEV_DISCONNECTED) || (dev->state & DEV_MISCONFIGURED))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return 0;
 
 	if (urb->status < 0) {

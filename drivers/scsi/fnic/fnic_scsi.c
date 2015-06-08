@@ -406,7 +406,11 @@ static int fnic_queuecommand_lck(struct scsi_cmnd *sc, void (*done)(struct scsi_
 	if (sg_count) {
 		io_req->sgl_list =
 			mempool_alloc(fnic->io_sgl_pool[io_req->sgl_type],
+<<<<<<< HEAD
 				      GFP_ATOMIC);
+=======
+				      GFP_ATOMIC | GFP_DMA);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (!io_req->sgl_list) {
 			ret = SCSI_MLQUEUE_HOST_BUSY;
 			scsi_dma_unmap(sc);

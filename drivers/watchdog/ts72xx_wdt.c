@@ -34,8 +34,13 @@ MODULE_PARM_DESC(timeout, "Watchdog timeout in seconds. "
 			  __MODULE_STRING(TS72XX_WDT_DEFAULT_TIMEOUT)
 			  ")");
 
+<<<<<<< HEAD
 static bool nowayout = WATCHDOG_NOWAYOUT;
 module_param(nowayout, bool, 0);
+=======
+static int nowayout = WATCHDOG_NOWAYOUT;
+module_param(nowayout, int, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_PARM_DESC(nowayout, "Disable watchdog shutdown on close");
 
 /**
@@ -310,7 +315,12 @@ static long ts72xx_wdt_ioctl(struct file *file, unsigned int cmd,
 
 	case WDIOC_GETSTATUS:
 	case WDIOC_GETBOOTSTATUS:
+<<<<<<< HEAD
 		return put_user(0, p);
+=======
+		error = put_user(0, p);
+		break;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	case WDIOC_KEEPALIVE:
 		ts72xx_wdt_kick(wdt);
@@ -506,7 +516,21 @@ static struct platform_driver ts72xx_wdt_driver = {
 	},
 };
 
+<<<<<<< HEAD
 module_platform_driver(ts72xx_wdt_driver);
+=======
+static __init int ts72xx_wdt_init(void)
+{
+	return platform_driver_register(&ts72xx_wdt_driver);
+}
+module_init(ts72xx_wdt_init);
+
+static __exit void ts72xx_wdt_exit(void)
+{
+	platform_driver_unregister(&ts72xx_wdt_driver);
+}
+module_exit(ts72xx_wdt_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_AUTHOR("Mika Westerberg <mika.westerberg@iki.fi>");
 MODULE_DESCRIPTION("TS-72xx SBC Watchdog");

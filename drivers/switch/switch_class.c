@@ -22,6 +22,10 @@
 #include <linux/fs.h>
 #include <linux/err.h>
 #include <linux/switch.h>
+<<<<<<< HEAD
+=======
+#include <linux/hrtimer.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 struct class *switch_class;
 static atomic_t device_count;
@@ -32,6 +36,15 @@ static ssize_t state_show(struct device *dev, struct device_attribute *attr,
 	struct switch_dev *sdev = (struct switch_dev *)
 		dev_get_drvdata(dev);
 
+<<<<<<< HEAD
+=======
+	if (!sdev) {
+		printk(KERN_ERR "switch device is NULL\n");
+		BUG();
+		return 0; /* meaningless */
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (sdev->print_state) {
 		int ret = sdev->print_state(sdev, buf);
 		if (ret >= 0)
@@ -46,6 +59,15 @@ static ssize_t name_show(struct device *dev, struct device_attribute *attr,
 	struct switch_dev *sdev = (struct switch_dev *)
 		dev_get_drvdata(dev);
 
+<<<<<<< HEAD
+=======
+	if (!sdev) {
+		printk(KERN_ERR "switch device is NULL\n");
+		BUG();
+		return 0; /* meaningless */
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (sdev->print_name) {
 		int ret = sdev->print_name(sdev, buf);
 		if (ret >= 0)
@@ -61,8 +83,14 @@ void switch_set_state(struct switch_dev *sdev, int state)
 {
 	char name_buf[120];
 	char state_buf[120];
+<<<<<<< HEAD
 	char *prop_buf;
 	char *envp[3];
+=======
+	char timestamp_buf[120];
+	char *prop_buf;
+	char *envp[4];
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int env_offset = 0;
 	int length;
 
@@ -87,6 +115,12 @@ void switch_set_state(struct switch_dev *sdev, int state)
 					"SWITCH_STATE=%s", prop_buf);
 				envp[env_offset++] = state_buf;
 			}
+<<<<<<< HEAD
+=======
+			snprintf(timestamp_buf, sizeof(timestamp_buf),
+				 "SWITCH_TIME=%llu", ktime_to_ns(ktime_get()));
+			envp[env_offset++] = timestamp_buf;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			envp[env_offset] = NULL;
 			kobject_uevent_env(&sdev->dev->kobj, KOBJ_CHANGE, envp);
 			free_page((unsigned long)prop_buf);
@@ -151,8 +185,13 @@ void switch_dev_unregister(struct switch_dev *sdev)
 {
 	device_remove_file(sdev->dev, &dev_attr_name);
 	device_remove_file(sdev->dev, &dev_attr_state);
+<<<<<<< HEAD
 	dev_set_drvdata(sdev->dev, NULL);
 	device_destroy(switch_class, MKDEV(0, sdev->index));
+=======
+	device_destroy(switch_class, MKDEV(0, sdev->index));
+	dev_set_drvdata(sdev->dev, NULL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 EXPORT_SYMBOL_GPL(switch_dev_unregister);
 

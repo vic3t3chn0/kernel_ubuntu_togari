@@ -565,7 +565,21 @@ static struct i2c_driver fm3130_driver = {
 	.id_table	= fm3130_id,
 };
 
+<<<<<<< HEAD
 module_i2c_driver(fm3130_driver);
+=======
+static int __init fm3130_init(void)
+{
+	return i2c_add_driver(&fm3130_driver);
+}
+module_init(fm3130_init);
+
+static void __exit fm3130_exit(void)
+{
+	i2c_del_driver(&fm3130_driver);
+}
+module_exit(fm3130_exit);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 MODULE_DESCRIPTION("RTC driver for FM3130");
 MODULE_AUTHOR("Sergey Lapin <slapin@ossfans.org>");

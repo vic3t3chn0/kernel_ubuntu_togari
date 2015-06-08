@@ -23,7 +23,10 @@ obj-$(CONFIG_XILINX_SYSACE)	+= xsysace.o
 obj-$(CONFIG_CDROM_PKTCDVD)	+= pktcdvd.o
 obj-$(CONFIG_MG_DISK)		+= mg_disk.o
 obj-$(CONFIG_SUNVDC)		+= sunvdc.o
+<<<<<<< HEAD
 obj-$(CONFIG_BLK_DEV_NVME)	+= nvme.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 obj-$(CONFIG_BLK_DEV_OSD)	+= osdblk.o
 
 obj-$(CONFIG_BLK_DEV_UMEM)	+= umem.o
@@ -40,6 +43,9 @@ obj-$(CONFIG_XEN_BLKDEV_FRONTEND)	+= xen-blkfront.o
 obj-$(CONFIG_XEN_BLKDEV_BACKEND)	+= xen-blkback/
 obj-$(CONFIG_BLK_DEV_DRBD)     += drbd/
 obj-$(CONFIG_BLK_DEV_RBD)     += rbd.o
+<<<<<<< HEAD
 obj-$(CONFIG_BLK_DEV_PCIESSD_MTIP32XX)	+= mtip32xx/
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 swim_mod-y	:= swim.o swim_asm.o

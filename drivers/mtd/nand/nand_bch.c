@@ -93,8 +93,13 @@ int nand_bch_correct_data(struct mtd_info *mtd, unsigned char *buf,
 				buf[errloc[i] >> 3] ^= (1 << (errloc[i] & 7));
 			/* else error in ecc, no action needed */
 
+<<<<<<< HEAD
 			pr_debug("%s: corrected bitflip %u\n", __func__,
 					errloc[i]);
+=======
+			DEBUG(MTD_DEBUG_LEVEL0, "%s: corrected bitflip %u\n",
+			      __func__, errloc[i]);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		}
 	} else if (count < 0) {
 		printk(KERN_ERR "ecc unrecoverable error\n");

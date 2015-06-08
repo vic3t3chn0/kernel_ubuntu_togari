@@ -1,6 +1,10 @@
 config SLICOSS
 	tristate "Alacritech Gigabit IS-NIC support"
+<<<<<<< HEAD
 	depends on PCI && X86 && NET
+=======
+	depends on PCI && X86 && NETDEV_1000
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default n
 	help
 	  This driver supports Alacritech's IS-NIC gigabit ethernet cards.

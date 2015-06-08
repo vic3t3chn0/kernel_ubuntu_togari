@@ -918,7 +918,14 @@ static struct vio_driver ibmvstgt_driver = {
 	.id_table = ibmvstgt_device_table,
 	.probe = ibmvstgt_probe,
 	.remove = ibmvstgt_remove,
+<<<<<<< HEAD
 	.name = "ibmvscsis",
+=======
+	.driver = {
+		.name = "ibmvscsis",
+		.owner = THIS_MODULE,
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int get_system_info(void)

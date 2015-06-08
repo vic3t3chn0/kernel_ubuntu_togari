@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * drivers/video/fb_ddc.c - DDC/EDID read support.
+=======
+ * driver/vide/fb_ddc.c - DDC/EDID read support.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  *  Copyright (C) 2006 Dennis Munsie <dmunsie@cecropia.com>
  *
@@ -10,7 +14,10 @@
 
 #include <linux/delay.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/fb.h>
 #include <linux/i2c-algo-bit.h>
 #include <linux/slab.h>

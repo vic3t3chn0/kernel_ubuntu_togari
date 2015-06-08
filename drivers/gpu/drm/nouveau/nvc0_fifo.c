@@ -436,6 +436,7 @@ nvc0_fifo_isr_vm_fault(struct drm_device *dev, int unit)
 	printk(" on channel 0x%010llx\n", (u64)inst << 12);
 }
 
+<<<<<<< HEAD
 static int
 nvc0_fifo_page_flip(struct drm_device *dev, u32 chid)
 {
@@ -454,6 +455,8 @@ nvc0_fifo_page_flip(struct drm_device *dev, u32 chid)
 	return ret;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static void
 nvc0_fifo_isr_subfifo_intr(struct drm_device *dev, int unit)
 {
@@ -463,6 +466,7 @@ nvc0_fifo_isr_subfifo_intr(struct drm_device *dev, int unit)
 	u32 chid = nv_rd32(dev, 0x040120 + (unit * 0x2000)) & 0x7f;
 	u32 subc = (addr & 0x00070000);
 	u32 mthd = (addr & 0x00003ffc);
+<<<<<<< HEAD
 	u32 show = stat;
 
 	if (stat & 0x00200000) {
@@ -478,6 +482,13 @@ nvc0_fifo_isr_subfifo_intr(struct drm_device *dev, int unit)
 		NV_INFO(dev, "PFIFO%d: ch %d subc %d mthd 0x%04x data 0x%08x\n",
 			     unit, chid, subc, mthd, data);
 	}
+=======
+
+	NV_INFO(dev, "PSUBFIFO %d:", unit);
+	nouveau_bitfield_print(nvc0_fifo_subfifo_intr, stat);
+	NV_INFO(dev, "PSUBFIFO %d: ch %d subc %d mthd 0x%04x data 0x%08x\n",
+		unit, chid, subc, mthd, data);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	nv_wr32(dev, 0x0400c0 + (unit * 0x2000), 0x80600008);
 	nv_wr32(dev, 0x040108 + (unit * 0x2000), stat);

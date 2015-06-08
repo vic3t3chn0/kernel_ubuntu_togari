@@ -70,12 +70,16 @@ config BATTERY_DS2760
 
 config BATTERY_DS2780
 	tristate "DS2780 battery driver"
+<<<<<<< HEAD
 	depends on HAS_IOMEM
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	select W1
 	select W1_SLAVE_DS2780
 	help
 	  Say Y here to enable support for batteries with ds2780 chip.
 
+<<<<<<< HEAD
 config BATTERY_DS2781
 	tristate "2781 battery driver"
 	depends on HAS_IOMEM
@@ -90,6 +94,8 @@ config BATTERY_DS2781
 
 	  If you are unsure, say N.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config BATTERY_DS2782
 	tristate "DS2782/DS2786 standalone gas-gauge"
 	depends on I2C
@@ -130,12 +136,21 @@ config BATTERY_WM97XX
 	help
 	  Say Y to enable support for battery measured by WM97xx aux port.
 
+<<<<<<< HEAD
 config BATTERY_SBS
         tristate "SBS Compliant gas gauge"
         depends on I2C
         help
 	  Say Y to include support for SBS battery driver for SBS-compliant
 	  gas gauges.
+=======
+config BATTERY_BQ20Z75
+        tristate "TI BQ20z75 gas gauge"
+        depends on I2C
+        help
+         Say Y to include support for TI BQ20z75 SBS-compliant
+         gas gauge and protection IC.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config BATTERY_BQ27x00
 	tristate "BQ27x00 battery driver"
@@ -164,6 +179,7 @@ config BATTERY_DA9030
 	  Say Y here to enable support for batteries charger integrated into
 	  DA9030 PMIC.
 
+<<<<<<< HEAD
 config BATTERY_DA9052
 	tristate "Dialog DA9052 Battery"
 	depends on PMIC_DA9052
@@ -172,6 +188,8 @@ config BATTERY_DA9052
 	  Say Y here to enable support for batteries charger integrated into
 	  DA9052 PMIC.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config BATTERY_MAX17040
 	tristate "Maxim MAX17040 Fuel Gauge"
 	depends on I2C
@@ -200,7 +218,11 @@ config BATTERY_S3C_ADC
 	tristate "Battery driver for Samsung ADC based monitoring"
 	depends on S3C_ADC
 	help
+<<<<<<< HEAD
 	  Say Y here to enable support for iPAQ h1930/h1940/rx1950 battery
+=======
+	  Say Y to enable support for batteries with samsung chip.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config CHARGER_PCF50633
 	tristate "NXP PCF50633 MBC"
@@ -248,12 +270,15 @@ config CHARGER_TWL4030
 	help
 	  Say Y here to enable support for TWL4030 Battery Charge Interface.
 
+<<<<<<< HEAD
 config CHARGER_LP8727
 	tristate "TI/National Semiconductor LP8727 charger driver"
 	depends on I2C
 	help
 	  Say Y here to enable support for LP8727 Charger Driver.
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 config CHARGER_GPIO
 	tristate "GPIO charger"
 	depends on GPIOLIB
@@ -264,6 +289,7 @@ config CHARGER_GPIO
 	  This driver can be build as a module. If so, the module will be
 	  called gpio-charger.
 
+<<<<<<< HEAD
 config CHARGER_MANAGER
 	bool "Battery charger manager for multiple chargers"
 	depends on REGULATOR && RTC_CLASS
@@ -273,6 +299,13 @@ config CHARGER_MANAGER
           system. The charger-manager also can monitor charging status in
           runtime and in suspend-to-RAM by waking up the system periodically
           with help of suspend_again support.
+=======
+config BATTERY_SAMSUNG
+	tristate "Fake battery driver for samsung smdk boards"
+	depends on PLAT_SAMSUNG
+	help
+	  Say Y to enable support for batteries with samsung chip.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 config CHARGER_MAX8997
 	tristate "Maxim MAX8997/MAX8966 PMIC battery charger driver"
@@ -281,6 +314,7 @@ config CHARGER_MAX8997
 	  Say Y to enable support for the battery charger control sysfs and
 	  platform data of MAX8997/LP3974 PMICs.
 
+<<<<<<< HEAD
 config CHARGER_MAX8998
 	tristate "Maxim MAX8998/LP3974 PMIC battery charger driver"
 	depends on MFD_MAX8998 && REGULATOR_MAX8998
@@ -495,4 +529,98 @@ config QPNP_BMS
 	  Say Y here to enable support for QPNP chip bms device.
 	  It registers a fuelgauge bms power supply to report
 	  State of Charge.
+=======
+config CHARGER_MAX8997_U1
+	tristate "Maxim MAX8997/MAX8966 PMIC battery charger driver for Samsung Galaxy S2 ICS upgrade"
+	depends on MFD_MAX8997 && REGULATOR_MAX8997
+	help
+	  Say Y to enable support for the battery charger control sysfs and
+	  platform data of MAX8997/LP3974 PMICs.
+
+config CHARGER_MAX8997_PX
+	tristate "Maxim MAX8997/MAX8966 PMIC battery charger driver for Samsung Galaxy Tab ICS upgrade"
+	depends on MFD_MAX8997 && REGULATOR_MAX8997
+
+config BATTERY_SEC_U1
+	tristate "Battery driver for Samsung Galaxy S2"
+	depends on PLAT_SAMSUNG
+	help
+	  Say Y to enable support for batteries with samsung chip.
+
+config BATTERY_SEC_PX
+	tristate "Battery driver for Samsung Galaxy Tab"
+	depends on PLAT_SAMSUNG
+
+config CHARGER_MAX8922_U1
+	tristate "MAX8922 battery charger support for Samsung Galaxy S2 ICS upgrade"
+	depends on PLAT_SAMSUNG
+	help
+	  Say Y here to enable support for the battery charger in the Maxim
+	  MAX8922 Charger IC.
+
+config BATTERY_MAX17042_FUELGAUGE_U1
+	tristate "Maxim MAX17042/8997/8966 Fuel Gauge for Samsung Galaxy S2 ICS upgrade"
+	depends on I2C
+	help
+	  MAX17042 is fuel-gauge systems for lithium-ion (Li+) batteries
+	  in handheld and portable equipment. The MAX17042 is configured
+	  to operate with a single lithium cell. MAX8997 and MAX8966 are
+	  multi-function devices that include fuel gauages that are compatible
+	  with MAX17042.
+
+config BATTERY_MAX17042_FUELGAUGE_PX
+	tristate "Maxim MAX17042/8997/8966 Fuel Gauge for Samsung Galaxy Tab ICS upgrade"
+	depends on I2C
+	help
+	  MAX17042 is fuel-gauge systems for lithium-ion (Li+) batteries
+	  in handheld and portable equipment. The MAX17042 is configured
+	  to operate with a single lithium cell. MAX8997 and MAX8966 are
+	  multi-function devices that include fuel gauages that are compatible
+	  with MAX17042.
+
+config SMB136_CHARGER
+	tristate "SMB136 battery charger support"
+	depends on PLAT_SAMSUNG
+	help
+	  Say Y here to enable support for the battery charger in the SUMMIT
+	  SMB136 Charger IC.
+
+config SMB136_CHARGER_Q1
+	tristate "SMB136 battery charger support Q1 HWREV01"
+	depends on PLAT_SAMSUNG
+	help
+	  Say Y here to enable support for the battery charger in the SUMMIT
+	  SMB136 Charger IC.
+	  Support Q1 HWREV01.
+
+config SMB328_CHARGER
+	tristate "SMB328 battery charger support"
+	depends on PLAT_SAMSUNG
+	help
+	  Say Y here to enable support for the battery charger in the SUMMIT
+	  SMB328 Charger IC.
+
+config SMB347_CHARGER
+	tristate "SMB347 battery charger support"
+	depends on PLAT_SAMSUNG
+	help
+	  Say Y here to enable support for the battery charger in the SUMMIT
+	  SMB328 Charger IC.
+
+config CHARGER_MANAGER
+	tristate "Battery charger manager for multiple chargers"
+	help
+	  Say Y to enable charger-manager support, which allows multiple
+	  chargers attached to a battery and multiple batteries attached to a
+	  system. The charger-manager also can monitor charging status in
+	  runtime and in suspend-to-RAM by waking up the system periodically
+	  with help of pm-loop support.
+
+config SAMSUNG_LPM_MODE
+	bool "Off charging mode support in sec battery driver"
+	depends on BATTERY_SEC_PX
+	help
+	 Say Y to include support for samsungs off charging support
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 endif # POWER_SUPPLY

@@ -213,9 +213,13 @@ int wpa_set_wpadev(PSDevice pDevice, int val)
 	int uu, ii;
 
 
+<<<<<<< HEAD
 	if (param->u.wpa_key.alg_name > WPA_ALG_CCMP ||
 			param->u.wpa_key.key_len >= MAX_KEY_LEN ||
 			param->u.wpa_key.seq_len >= MAX_KEY_LEN)
+=======
+	if (param->u.wpa_key.alg_name > WPA_ALG_CCMP)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return -EINVAL;
 
     DBG_PRT(MSG_LEVEL_DEBUG, KERN_INFO "param->u.wpa_key.alg_name = %d \n", param->u.wpa_key.alg_name);

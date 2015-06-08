@@ -5,7 +5,11 @@
  *****************************************************************************/
 
 /*
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +52,11 @@
 
 #define _COMPONENT          ACPI_EVENTS
 ACPI_MODULE_NAME("evgpeinit")
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)	/* Entire module */
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * Note: History of _PRW support in ACPICA
  *
@@ -440,5 +448,8 @@ acpi_ev_match_gpe_method(acpi_handle obj_handle,
 			  name, gpe_number));
 	return_ACPI_STATUS(AE_OK);
 }
+<<<<<<< HEAD
 
 #endif				/* !ACPI_REDUCED_HARDWARE */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

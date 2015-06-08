@@ -108,7 +108,10 @@ struct au1100fb_device {
 	unsigned char* 		fb_mem;		/* FrameBuffer memory map */
 	size_t	      		fb_len;
 	dma_addr_t    		fb_phys;
+<<<<<<< HEAD
 	int			panel_idx;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 /********************************************************************/
@@ -365,6 +368,14 @@ static struct au1100fb_panel known_lcd_panels[] =
 	},
 };
 
+<<<<<<< HEAD
+=======
+struct au1100fb_drv_info {
+	int	panel_idx;
+	char 	*opt_mode;
+};
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /********************************************************************/
 
 /* Inline helpers */

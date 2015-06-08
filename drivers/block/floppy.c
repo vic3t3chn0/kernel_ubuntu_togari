@@ -188,6 +188,10 @@ static int print_unex = 1;
 #include <linux/init.h>
 #include <linux/platform_device.h>
 #include <linux/mod_devicetable.h>
+<<<<<<< HEAD
+=======
+#include <linux/buffer_head.h>	/* for invalidate_buffers() */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/mutex.h>
 #include <linux/io.h>
 #include <linux/uaccess.h>
@@ -202,6 +206,10 @@ static int slow_floppy;
 
 #include <asm/dma.h>
 #include <asm/irq.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int FLOPPY_IRQ = 6;
 static int FLOPPY_DMA = 2;
@@ -3796,7 +3804,11 @@ static int __floppy_read_block_0(struct block_device *bdev)
 	bio.bi_size = size;
 	bio.bi_bdev = bdev;
 	bio.bi_sector = 0;
+<<<<<<< HEAD
 	bio.bi_flags = (1 << BIO_QUIET);
+=======
+	bio.bi_flags = BIO_QUIET;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	init_completion(&complete);
 	bio.bi_private = &complete;
 	bio.bi_end_io = floppy_rb0_complete;
@@ -4161,6 +4173,10 @@ static int __init floppy_init(void)
 
 		disks[dr]->queue = blk_init_queue(do_fd_request, &floppy_lock);
 		if (!disks[dr]->queue) {
+<<<<<<< HEAD
+=======
+			put_disk(disks[dr]);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			err = -ENOMEM;
 			goto out_put_disk;
 		}
@@ -4332,6 +4348,7 @@ out_unreg_blkdev:
 out_put_disk:
 	while (dr--) {
 		del_timer_sync(&motor_off_timer[dr]);
+<<<<<<< HEAD
 		if (disks[dr]->queue) {
 			blk_cleanup_queue(disks[dr]->queue);
 			/*
@@ -4340,6 +4357,10 @@ out_put_disk:
 			 */
 			disks[dr]->queue = NULL;
 		}
+=======
+		if (disks[dr]->queue)
+			blk_cleanup_queue(disks[dr]->queue);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		put_disk(disks[dr]);
 	}
 	return err;
@@ -4548,6 +4569,7 @@ static void __exit floppy_module_exit(void)
 			platform_device_unregister(&floppy_device[drive]);
 		}
 		blk_cleanup_queue(disks[drive]->queue);
+<<<<<<< HEAD
 
 		/*
 		 * These disks have not called add_disk().  Don't put down
@@ -4557,6 +4579,8 @@ static void __exit floppy_module_exit(void)
 		    fdc_state[FDC(drive)].version == FDC_NONE)
 			disks[drive]->queue = NULL;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		put_disk(disks[drive]);
 	}
 

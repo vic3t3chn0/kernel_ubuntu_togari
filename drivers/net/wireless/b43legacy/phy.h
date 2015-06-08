@@ -4,7 +4,11 @@
 
   Copyright (c) 2005 Martin Langer <martin-langer@gmx.de>,
 		     Stefano Brivio <stefano.brivio@polimi.it>
+<<<<<<< HEAD
 		     Michael Buesch <m@bues.ch>
+=======
+		     Michael Buesch <mbuesch@freenet.de>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		     Danny van Dyk <kugelfang@gentoo.org>
 		     Andreas Jaggi <andreas.jaggi@waterwave.ch>
   Copyright (c) 2007 Larry Finger <Larry.Finger@lwfinger.net>

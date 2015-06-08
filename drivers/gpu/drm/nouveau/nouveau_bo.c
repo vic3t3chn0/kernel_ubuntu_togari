@@ -693,12 +693,25 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
 		     struct ttm_mem_reg *new_mem)
 {
 	struct drm_nouveau_private *dev_priv = nouveau_bdev(bo->bdev);
+<<<<<<< HEAD
 	struct nouveau_channel *chan = chan = dev_priv->channel;
 	struct nouveau_bo *nvbo = nouveau_bo(bo);
 	struct ttm_mem_reg *old_mem = &bo->mem;
 	int ret;
 
 	mutex_lock_nested(&chan->mutex, NOUVEAU_KCHANNEL_MUTEX);
+=======
+	struct nouveau_bo *nvbo = nouveau_bo(bo);
+	struct ttm_mem_reg *old_mem = &bo->mem;
+	struct nouveau_channel *chan;
+	int ret;
+
+	chan = nvbo->channel;
+	if (!chan) {
+		chan = dev_priv->channel;
+		mutex_lock_nested(&chan->mutex, NOUVEAU_KCHANNEL_MUTEX);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* create temporary vmas for the transfer and attach them to the
 	 * old nouveau_mem node, these will get cleaned up after ttm has
@@ -730,7 +743,12 @@ nouveau_bo_move_m2mf(struct ttm_buffer_object *bo, int evict, bool intr,
 	}
 
 out:
+<<<<<<< HEAD
 	mutex_unlock(&chan->mutex);
+=======
+	if (chan == dev_priv->channel)
+		mutex_unlock(&chan->mutex);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return ret;
 }
 
@@ -1030,7 +1048,11 @@ nouveau_ttm_fault_reserve_notify(struct ttm_buffer_object *bo)
 
 	nvbo->placement.fpfn = 0;
 	nvbo->placement.lpfn = dev_priv->fb_mappable_pages;
+<<<<<<< HEAD
 	nouveau_bo_placement_set(nvbo, TTM_PL_VRAM, 0);
+=======
+	nouveau_bo_placement_set(nvbo, TTM_PL_FLAG_VRAM, 0);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return nouveau_bo_validate(nvbo, false, true, false);
 }
 

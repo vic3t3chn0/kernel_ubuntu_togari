@@ -37,7 +37,11 @@
 				/* and pci_do_scan_bus */
 #include "rpaphp.h"
 
+<<<<<<< HEAD
 bool rpaphp_debug;
+=======
+int rpaphp_debug;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 LIST_HEAD(rpaphp_slot_head);
 
 #define DRIVER_VERSION	"0.1"

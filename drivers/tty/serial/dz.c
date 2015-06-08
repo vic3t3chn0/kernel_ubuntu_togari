@@ -47,11 +47,19 @@
 #include <linux/serial_core.h>
 #include <linux/sysrq.h>
 #include <linux/tty.h>
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
 
 #include <linux/atomic.h>
 #include <asm/bootinfo.h>
 #include <asm/io.h>
+=======
+
+#include <asm/atomic.h>
+#include <asm/bootinfo.h>
+#include <asm/io.h>
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <asm/dec/interrupts.h>
 #include <asm/dec/kn01.h>

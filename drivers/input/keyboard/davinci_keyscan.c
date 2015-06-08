@@ -271,7 +271,11 @@ static int __init davinci_ks_probe(struct platform_device *pdev)
 	}
 
 	error = request_irq(davinci_ks->irq, davinci_ks_interrupt,
+<<<<<<< HEAD
 			  0, pdev->name, davinci_ks);
+=======
+			  IRQF_DISABLED, pdev->name, davinci_ks);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (error < 0) {
 		dev_err(dev, "unable to register davinci key scan interrupt\n");
 		goto fail5;

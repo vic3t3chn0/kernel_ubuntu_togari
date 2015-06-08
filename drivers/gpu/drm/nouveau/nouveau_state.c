@@ -479,6 +479,7 @@ static int nouveau_init_engine_ptrs(struct drm_device *dev)
 		engine->pm.voltage_get		= nouveau_voltage_gpio_get;
 		engine->pm.voltage_set		= nouveau_voltage_gpio_set;
 		break;
+<<<<<<< HEAD
 	case 0xe0:
 		engine->instmem.init		= nvc0_instmem_init;
 		engine->instmem.takedown	= nvc0_instmem_takedown;
@@ -520,6 +521,8 @@ static int nouveau_init_engine_ptrs(struct drm_device *dev)
 		engine->vram.put		= nv50_vram_del;
 		engine->vram.flags_valid	= nvc0_vram_flags_valid;
 		break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	default:
 		NV_ERROR(dev, "NV%02x unsupported\n", dev_priv->chipset);
 		return 1;
@@ -593,6 +596,7 @@ static bool nouveau_switcheroo_can_switch(struct pci_dev *pdev)
 	return can_switch;
 }
 
+<<<<<<< HEAD
 static void
 nouveau_card_channel_fini(struct drm_device *dev)
 {
@@ -662,6 +666,8 @@ error:
 	return ret;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int
 nouveau_card_init(struct drm_device *dev)
 {
@@ -848,6 +854,7 @@ nouveau_card_init(struct drm_device *dev)
 	nouveau_backlight_init(dev);
 	nouveau_pm_init(dev);
 
+<<<<<<< HEAD
 	ret = nouveau_fence_init(dev);
 	if (ret)
 		goto out_pm;
@@ -856,6 +863,19 @@ nouveau_card_init(struct drm_device *dev)
 		ret = nouveau_card_channel_init(dev);
 		if (ret)
 			goto out_fence;
+=======
+	if (dev_priv->eng[NVOBJ_ENGINE_GR]) {
+		ret = nouveau_fence_init(dev);
+		if (ret)
+			goto out_pm;
+
+		ret = nouveau_channel_alloc(dev, &dev_priv->channel, NULL,
+					    NvDmaFB, NvDmaTT);
+		if (ret)
+			goto out_fence;
+
+		mutex_unlock(&dev_priv->channel->mutex);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (dev->mode_config.num_crtc) {
@@ -869,7 +889,11 @@ nouveau_card_init(struct drm_device *dev)
 	return 0;
 
 out_chan:
+<<<<<<< HEAD
 	nouveau_card_channel_fini(dev);
+=======
+	nouveau_channel_put_unlocked(&dev_priv->channel);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 out_fence:
 	nouveau_fence_fini(dev);
 out_pm:
@@ -927,8 +951,16 @@ static void nouveau_card_takedown(struct drm_device *dev)
 		nouveau_display_fini(dev);
 	}
 
+<<<<<<< HEAD
 	nouveau_card_channel_fini(dev);
 	nouveau_fence_fini(dev);
+=======
+	if (dev_priv->channel) {
+		nouveau_channel_put_unlocked(&dev_priv->channel);
+		nouveau_fence_fini(dev);
+	}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	nouveau_pm_fini(dev);
 	nouveau_backlight_exit(dev);
 	nouveau_display_destroy(dev);
@@ -1097,8 +1129,13 @@ static int nouveau_remove_conflicting_drivers(struct drm_device *dev)
 int nouveau_load(struct drm_device *dev, unsigned long flags)
 {
 	struct drm_nouveau_private *dev_priv;
+<<<<<<< HEAD
 	unsigned long long offset, length;
 	uint32_t reg0 = ~0, strap;
+=======
+	uint32_t reg0 = ~0, strap;
+	resource_size_t mmio_start_offs;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	int ret;
 
 	dev_priv = kzalloc(sizeof(*dev_priv), GFP_KERNEL);
@@ -1152,9 +1189,12 @@ int nouveau_load(struct drm_device *dev, unsigned long flags)
 			case 0xd0:
 				dev_priv->card_type = NV_D0;
 				break;
+<<<<<<< HEAD
 			case 0xe0:
 				dev_priv->card_type = NV_E0;
 				break;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			default:
 				break;
 			}
@@ -1179,6 +1219,7 @@ int nouveau_load(struct drm_device *dev, unsigned long flags)
 	NV_INFO(dev, "Detected an NV%2x generation card (0x%08x)\n",
 		     dev_priv->card_type, reg0);
 
+<<<<<<< HEAD
 	/* map the mmio regs, limiting the amount to preserve vmap space */
 	offset = pci_resource_start(dev->pdev, 0);
 	length = pci_resource_len(dev->pdev, 0);
@@ -1186,13 +1227,23 @@ int nouveau_load(struct drm_device *dev, unsigned long flags)
 		length = min(length, (unsigned long long)0x00800000);
 
 	dev_priv->mmio = ioremap(offset, length);
+=======
+	/* map the mmio regs */
+	mmio_start_offs = pci_resource_start(dev->pdev, 0);
+	dev_priv->mmio = ioremap(mmio_start_offs, 0x00800000);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!dev_priv->mmio) {
 		NV_ERROR(dev, "Unable to initialize the mmio mapping. "
 			 "Please report your setup to " DRIVER_EMAIL "\n");
 		ret = -EINVAL;
 		goto err_priv;
 	}
+<<<<<<< HEAD
 	NV_DEBUG(dev, "regs mapped ok at 0x%llx\n", offset);
+=======
+	NV_DEBUG(dev, "regs mapped ok at 0x%llx\n",
+					(unsigned long long)mmio_start_offs);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* determine frequency of timing crystal */
 	strap = nv_rd32(dev, 0x101000);
@@ -1250,7 +1301,11 @@ int nouveau_load(struct drm_device *dev, unsigned long flags)
 		}
 	} else {
 		dev_priv->ramin_size = 1 * 1024 * 1024;
+<<<<<<< HEAD
 		dev_priv->ramin = ioremap(offset + NV_RAMIN,
+=======
+		dev_priv->ramin = ioremap(mmio_start_offs + NV_RAMIN,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 					  dev_priv->ramin_size);
 		if (!dev_priv->ramin) {
 			NV_ERROR(dev, "Failed to map BAR0 PRAMIN.\n");

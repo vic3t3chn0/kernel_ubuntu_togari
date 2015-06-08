@@ -292,4 +292,7 @@ module_exit(au0828_exit);
 MODULE_DESCRIPTION("Driver for Auvitek AU0828 based products");
 MODULE_AUTHOR("Steven Toth <stoth@linuxtv.org>");
 MODULE_LICENSE("GPL");
+<<<<<<< HEAD
 MODULE_VERSION("0.0.2");
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

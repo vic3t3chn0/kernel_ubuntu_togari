@@ -42,7 +42,11 @@
 #ifndef PWC_TIMON_H
 #define PWC_TIMON_H
 
+<<<<<<< HEAD
 #include "pwc.h"
+=======
+#include <media/pwc-ioctl.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #define PWC_FPS_MAX_TIMON 6
 

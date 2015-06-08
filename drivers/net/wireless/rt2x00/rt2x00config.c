@@ -102,7 +102,11 @@ void rt2x00lib_config_erp(struct rt2x00_dev *rt2x00dev,
 
 	/* Update the AID, this is needed for dynamic PS support */
 	rt2x00dev->aid = bss_conf->assoc ? bss_conf->aid : 0;
+<<<<<<< HEAD
 	rt2x00dev->last_beacon = bss_conf->last_tsf;
+=======
+	rt2x00dev->last_beacon = bss_conf->timestamp;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* Update global beacon interval time, this is needed for PS support */
 	rt2x00dev->beacon_int = bss_conf->beacon_int;
@@ -232,9 +236,12 @@ void rt2x00lib_config(struct rt2x00_dev *rt2x00dev,
 		memcpy(&libconf.channel,
 		       &rt2x00dev->spec.channels_info[hw_value],
 		       sizeof(libconf.channel));
+<<<<<<< HEAD
 
 		/* Used for VCO periodic calibration */
 		rt2x00dev->rf_channel = libconf.rf.channel;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	if (test_bit(REQUIRE_PS_AUTOWAKE, &rt2x00dev->cap_flags) &&

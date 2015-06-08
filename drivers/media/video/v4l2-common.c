@@ -55,6 +55,10 @@
 #include <linux/spi/spi.h>
 #endif
 #include <asm/uaccess.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <asm/pgtable.h>
 #include <asm/io.h>
 #include <asm/div64.h>
@@ -104,9 +108,12 @@ int v4l2_ctrl_check(struct v4l2_ext_control *ctrl, struct v4l2_queryctrl *qctrl,
 		    menu_items[ctrl->value][0] == '\0')
 			return -EINVAL;
 	}
+<<<<<<< HEAD
 	if (qctrl->type == V4L2_CTRL_TYPE_BITMASK &&
 			(ctrl->value & ~qctrl->maximum))
 		return -ERANGE;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return 0;
 }
 EXPORT_SYMBOL(v4l2_ctrl_check);
@@ -584,6 +591,35 @@ int v4l_fill_dv_preset_info(u32 preset, struct v4l2_dv_enum_preset *info)
 		{ 1920, 1080, "1080p@30" },	/* V4L2_DV_1080P30 */
 		{ 1920, 1080, "1080p@50" },	/* V4L2_DV_1080P50 */
 		{ 1920, 1080, "1080p@60" },	/* V4L2_DV_1080P60 */
+<<<<<<< HEAD
+=======
+		{ 720,  480, "480p@60" },	/* V4L2_DV_480P60 */
+		{ 1920, 1080, "1080i@59.94" },	/* V4L2_DV_1080I59_94 */
+		{ 1920, 1080, "1080p@59.94" },	/* V4L2_DV_1080P59_94 */
+		{ 1280, 720, "720p@60_fp" },		/* V4L2_DV_720P60_FP */
+		{ 1280, 720, "720p@60_sb_half" },	/* V4L2_DV_720P60_SB_HALF */
+		{ 1280, 720, "720p@60_tb" },		/* V4L2_DV_720P60_TB */
+		{ 1280, 720, "720p@59_94_fp" },		/* V4L2_DV_720P59_94_FP */
+		{ 1280, 720, "720p@59_94_sb_half" },	/* V4L2_DV_720P59_94_SB_HALF */
+		{ 1280, 720, "720p@59_94_tb" },		/* V4L2_DV_720P59_94_TB */
+		{ 1280, 720, "720p@50_fp" },		/* V4L2_DV_720P50_FP */
+		{ 1280, 720, "720p@50_sb_half" },	/* V4L2_DV_720P50_SB_HALF */
+		{ 1280, 720, "720p@50_tb" },		/* V4L2_DV_720P50_TB */
+		{ 1920, 1080, "1080p@24_fp" },		/* V4L2_DV_1080P24_FP */
+		{ 1920, 1080, "1080p@24_sb_half" },	/* V4L2_DV_1080P24_SB_HALF */
+		{ 1920, 1080, "1080p@24_tb" },		/* V4L2_DV_1080P24_TB */
+		{ 1920, 1080, "1080p@23_98_fp" },	/* V4L2_DV_1080P23_98_FP */
+		{ 1920, 1080, "1080p@23_98_sb_half" },	/* V4L2_DV_1080P23_98_SB_HALF */
+		{ 1920, 1080, "1080p@23_98_tb" },	/* V4L2_DV_1080P23_98_TB */
+		{ 1920, 1080, "1080i@60_sb_half" },	/* V4L2_DV_1080I60_SB_HALF */
+		{ 1920, 1080, "1080i@59_94_sb_half" },	/* V4L2_DV_1080I59_94_SB_HALF */
+		{ 1920, 1080, "1080i@50_sb_half" },	/* V4L2_DV_1080I50_SB_HALF */
+		{ 1920, 1080, "1080p@60_sb_half" },     /* V4L2_DV_1080P60_SB_HALF */
+		{ 1920, 1080, "1080p@60_tb" },		/* V4L2_DV_1080P60_TB */
+		{ 1920, 1080, "1080p@30_fp" },		/* V4L2_DV_1080P30_FP */
+		{ 1920, 1080, "1080p@30_sb_half" },	/* V4L2_DV_1080P30_SB_HALF */
+		{ 1920, 1080, "1080p@30_tb" },		/* V4L2_DV_1080P30_TB */
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	};
 
 	if (info == NULL || preset >= ARRAY_SIZE(dv_presets))

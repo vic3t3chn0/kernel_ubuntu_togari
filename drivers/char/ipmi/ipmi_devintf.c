@@ -34,6 +34,10 @@
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/errno.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/poll.h>
 #include <linux/sched.h>
 #include <linux/spinlock.h>
@@ -837,13 +841,32 @@ static long compat_ipmi_ioctl(struct file *filep, unsigned int cmd,
 		return ipmi_ioctl(filep, cmd, arg);
 	}
 }
+<<<<<<< HEAD
+=======
+
+static long unlocked_compat_ipmi_ioctl(struct file *filep, unsigned int cmd,
+				       unsigned long arg)
+{
+	int ret;
+
+	mutex_lock(&ipmi_mutex);
+	ret = compat_ipmi_ioctl(filep, cmd, arg);
+	mutex_unlock(&ipmi_mutex);
+
+	return ret;
+}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 
 static const struct file_operations ipmi_fops = {
 	.owner		= THIS_MODULE,
 	.unlocked_ioctl	= ipmi_unlocked_ioctl,
 #ifdef CONFIG_COMPAT
+<<<<<<< HEAD
 	.compat_ioctl   = compat_ipmi_ioctl,
+=======
+	.compat_ioctl   = unlocked_compat_ipmi_ioctl,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 	.open		= ipmi_open,
 	.release	= ipmi_release,

@@ -1,6 +1,9 @@
 #include <linux/bio.h>
 #include <linux/io.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <xen/page.h>
 
 bool xen_biovec_phys_mergeable(const struct bio_vec *vec1,
@@ -12,4 +15,7 @@ bool xen_biovec_phys_mergeable(const struct bio_vec *vec1,
 	return __BIOVEC_PHYS_MERGEABLE(vec1, vec2) &&
 		((mfn1 == mfn2) || ((mfn1+1) == mfn2));
 }
+<<<<<<< HEAD
 EXPORT_SYMBOL(xen_biovec_phys_mergeable);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

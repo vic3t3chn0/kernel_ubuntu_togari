@@ -22,7 +22,10 @@
 #ifndef _ISLPCI_DEV_H
 #define _ISLPCI_DEV_H
 
+<<<<<<< HEAD
 #include <linux/irqreturn.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/netdevice.h>
 #include <linux/wireless.h>
 #include <net/iw_handler.h>

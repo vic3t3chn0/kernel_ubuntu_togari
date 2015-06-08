@@ -20,6 +20,10 @@
 #include <linux/workqueue.h>
 
 #include <asm/page.h>
+<<<<<<< HEAD
+=======
+#include <asm/system.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <dvb_demux.h>
 

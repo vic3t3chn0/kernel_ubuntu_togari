@@ -165,8 +165,11 @@ struct mxl5007t_state {
 	struct reg_pair_t tab_init_cable[ARRAY_SIZE(init_tab_cable)];
 	struct reg_pair_t tab_rftune[ARRAY_SIZE(reg_pair_rftune)];
 
+<<<<<<< HEAD
 	enum mxl5007t_if_freq if_freq;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	u32 frequency;
 	u32 bandwidth;
 };
@@ -288,8 +291,11 @@ static void mxl5007t_set_if_freq_bits(struct mxl5007t_state *state,
 	/* set inverted IF or normal IF */
 	set_reg_bits(state->tab_init, 0x02, 0x10, invert_if ? 0x10 : 0x00);
 
+<<<<<<< HEAD
 	state->if_freq = if_freq;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return;
 }
 
@@ -492,10 +498,16 @@ static int mxl5007t_write_regs(struct mxl5007t_state *state,
 
 static int mxl5007t_read_reg(struct mxl5007t_state *state, u8 reg, u8 *val)
 {
+<<<<<<< HEAD
 	u8 buf[2] = { 0xfb, reg };
 	struct i2c_msg msg[] = {
 		{ .addr = state->i2c_props.addr, .flags = 0,
 		  .buf = buf, .len = 2 },
+=======
+	struct i2c_msg msg[] = {
+		{ .addr = state->i2c_props.addr, .flags = 0,
+		  .buf = &reg, .len = 1 },
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		{ .addr = state->i2c_props.addr, .flags = I2C_M_RD,
 		  .buf = val, .len = 1 },
 	};
@@ -616,14 +628,21 @@ fail:
 
 /* ------------------------------------------------------------------------- */
 
+<<<<<<< HEAD
 static int mxl5007t_set_params(struct dvb_frontend *fe)
 {
 	struct dtv_frontend_properties *c = &fe->dtv_property_cache;
 	u32 delsys = c->delivery_system;
+=======
+static int mxl5007t_set_params(struct dvb_frontend *fe,
+			       struct dvb_frontend_parameters *params)
+{
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct mxl5007t_state *state = fe->tuner_priv;
 	enum mxl5007t_bw_mhz bw;
 	enum mxl5007t_mode mode;
 	int ret;
+<<<<<<< HEAD
 	u32 freq = c->frequency;
 
 	switch (delsys) {
@@ -653,6 +672,42 @@ static int mxl5007t_set_params(struct dvb_frontend *fe)
 		}
 		break;
 	default:
+=======
+	u32 freq = params->frequency;
+
+	if (fe->ops.info.type == FE_ATSC) {
+		switch (params->u.vsb.modulation) {
+		case VSB_8:
+		case VSB_16:
+			mode = MxL_MODE_ATSC;
+			break;
+		case QAM_64:
+		case QAM_256:
+			mode = MxL_MODE_CABLE;
+			break;
+		default:
+			mxl_err("modulation not set!");
+			return -EINVAL;
+		}
+		bw = MxL_BW_6MHz;
+	} else if (fe->ops.info.type == FE_OFDM) {
+		switch (params->u.ofdm.bandwidth) {
+		case BANDWIDTH_6_MHZ:
+			bw = MxL_BW_6MHz;
+			break;
+		case BANDWIDTH_7_MHZ:
+			bw = MxL_BW_7MHz;
+			break;
+		case BANDWIDTH_8_MHZ:
+			bw = MxL_BW_8MHz;
+			break;
+		default:
+			mxl_err("bandwidth not set!");
+			return -EINVAL;
+		}
+		mode = MxL_MODE_DVBT;
+	} else {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		mxl_err("modulation type not supported!");
 		return -EINVAL;
 	}
@@ -671,7 +726,12 @@ static int mxl5007t_set_params(struct dvb_frontend *fe)
 		goto fail;
 
 	state->frequency = freq;
+<<<<<<< HEAD
 	state->bandwidth = c->bandwidth_hz;
+=======
+	state->bandwidth = (fe->ops.info.type == FE_OFDM) ?
+		params->u.ofdm.bandwidth : 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 fail:
 	mutex_unlock(&state->lock);
 
@@ -737,6 +797,7 @@ static int mxl5007t_get_bandwidth(struct dvb_frontend *fe, u32 *bandwidth)
 	return 0;
 }
 
+<<<<<<< HEAD
 static int mxl5007t_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 {
 	struct mxl5007t_state *state = fe->tuner_priv;
@@ -781,6 +842,8 @@ static int mxl5007t_get_if_frequency(struct dvb_frontend *fe, u32 *frequency)
 	return 0;
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int mxl5007t_release(struct dvb_frontend *fe)
 {
 	struct mxl5007t_state *state = fe->tuner_priv;
@@ -810,7 +873,10 @@ static struct dvb_tuner_ops mxl5007t_tuner_ops = {
 	.get_frequency     = mxl5007t_get_frequency,
 	.get_bandwidth     = mxl5007t_get_bandwidth,
 	.release           = mxl5007t_release,
+<<<<<<< HEAD
 	.get_if_frequency  = mxl5007t_get_if_frequency,
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 static int mxl5007t_get_chip_id(struct mxl5007t_state *state)

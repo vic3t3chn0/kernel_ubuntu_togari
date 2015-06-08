@@ -54,7 +54,10 @@
 #include <linux/mutex.h>
 #include <linux/kthread.h>
 #include <linux/freezer.h>
+<<<<<<< HEAD
 #include <linux/console.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <mach/hardware.h>
 #include <asm/io.h>
@@ -731,12 +734,18 @@ static int overlayfb_open(struct fb_info *info, int user)
 	if (user == 0)
 		return -ENODEV;
 
+<<<<<<< HEAD
 	if (ofb->usage++ == 0) {
 		/* unblank the base framebuffer */
 		console_lock();
 		fb_blank(&ofb->fbi->fb, FB_BLANK_UNBLANK);
 		console_unlock();
 	}
+=======
+	if (ofb->usage++ == 0)
+		/* unblank the base framebuffer */
+		fb_blank(&ofb->fbi->fb, FB_BLANK_UNBLANK);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	return 0;
 }
@@ -1313,6 +1322,19 @@ static int pxafb_smart_init(struct pxafb_info *fbi)
 	return 0;
 }
 #else
+<<<<<<< HEAD
+=======
+int pxafb_smart_queue(struct fb_info *info, uint16_t *cmds, int n_cmds)
+{
+	return 0;
+}
+
+int pxafb_smart_flush(struct fb_info *info)
+{
+	return 0;
+}
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static inline int pxafb_smart_init(struct pxafb_info *fbi) { return 0; }
 #endif /* CONFIG_FB_PXA_SMARTPANEL */
 
@@ -1435,7 +1457,11 @@ static void pxafb_enable_controller(struct pxafb_info *fbi)
 	pr_debug("reg_lccr3 0x%08x\n", (unsigned int) fbi->reg_lccr3);
 
 	/* enable LCD controller clock */
+<<<<<<< HEAD
 	clk_prepare_enable(fbi->clk);
+=======
+	clk_enable(fbi->clk);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (fbi->lccr0 & LCCR0_LCDT)
 		return;
@@ -1475,7 +1501,11 @@ static void pxafb_disable_controller(struct pxafb_info *fbi)
 	wait_for_completion_timeout(&fbi->disable_done, 200 * HZ / 1000);
 
 	/* disable LCD controller clock */
+<<<<<<< HEAD
 	clk_disable_unprepare(fbi->clk);
+=======
+	clk_disable(fbi->clk);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 }
 
 /*
@@ -2185,7 +2215,11 @@ static int __devinit pxafb_probe(struct platform_device *dev)
 		goto failed_free_mem;
 	}
 
+<<<<<<< HEAD
 	ret = request_irq(irq, pxafb_handle_irq, 0, "LCD", fbi);
+=======
+	ret = request_irq(irq, pxafb_handle_irq, IRQF_DISABLED, "LCD", fbi);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret) {
 		dev_err(&dev->dev, "request_irq failed: %d\n", ret);
 		ret = -EBUSY;

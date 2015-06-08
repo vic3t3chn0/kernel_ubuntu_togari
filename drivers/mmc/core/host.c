@@ -4,8 +4,11 @@
  *  Copyright (C) 2003 Russell King, All Rights Reserved.
  *  Copyright (C) 2007-2008 Pierre Ossman
  *  Copyright (C) 2010 Linus Walleij
+<<<<<<< HEAD
  *  Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
  *  Copyright (C) 2013 Sony Mobile Communications AB.
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -18,11 +21,17 @@
 #include <linux/err.h>
 #include <linux/idr.h>
 #include <linux/pagemap.h>
+<<<<<<< HEAD
 #include <linux/export.h>
 #include <linux/leds.h>
 #include <linux/slab.h>
 #include <linux/suspend.h>
 #include <linux/pm_runtime.h>
+=======
+#include <linux/leds.h>
+#include <linux/slab.h>
+#include <linux/suspend.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include <linux/mmc/host.h>
 #include <linux/mmc/card.h>
@@ -35,6 +44,7 @@
 static void mmc_host_classdev_release(struct device *dev)
 {
 	struct mmc_host *host = cls_dev_to_mmc_host(dev);
+<<<<<<< HEAD
 	kfree(host->wlock_name);
 	kfree(host);
 }
@@ -118,6 +128,14 @@ static struct class mmc_host_class = {
 	.name		= "mmc_host",
 	.dev_release	= mmc_host_classdev_release,
 	.pm		= &mmc_host_pm_ops,
+=======
+	kfree(host);
+}
+
+static struct class mmc_host_class = {
+	.name		= "mmc_host",
+	.dev_release	= mmc_host_classdev_release,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 int mmc_register_host_class(void)
@@ -155,7 +173,10 @@ static ssize_t clkgate_delay_store(struct device *dev,
 	spin_unlock_irqrestore(&host->clk_lock, flags);
 	return count;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /*
  * Enabling clock gating will make the core call out to the host
  * once up and once down when it performs a request or card operation
@@ -189,8 +210,18 @@ static void mmc_host_clk_gate_delayed(struct mmc_host *host)
 	 */
 	if (!host->clk_requests) {
 		spin_unlock_irqrestore(&host->clk_lock, flags);
+<<<<<<< HEAD
 		tick_ns = DIV_ROUND_UP(1000000000, freq);
 		ndelay(host->clk_delay * tick_ns);
+=======
+		/* wait only when clk_gate_delay is 0 */
+#ifndef CONFIG_WIMAX_CMC
+		if (!host->clkgate_delay) {
+#endif
+			tick_ns = DIV_ROUND_UP(1000000000, freq);
+			ndelay(host->clk_delay * tick_ns);
+		}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	} else {
 		/* New users appeared while waiting for this work */
 		spin_unlock_irqrestore(&host->clk_lock, flags);
@@ -239,9 +270,12 @@ void mmc_host_clk_hold(struct mmc_host *host)
 	if (host->clk_gated) {
 		spin_unlock_irqrestore(&host->clk_lock, flags);
 		mmc_ungate_clock(host);
+<<<<<<< HEAD
 
 		/* Reset clock scaling stats as host is out of idle */
 		mmc_reset_clk_scale_stats(host);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		spin_lock_irqsave(&host->clk_lock, flags);
 		pr_debug("%s: ungated MCI clock\n", mmc_hostname(host));
 	}
@@ -254,11 +288,16 @@ void mmc_host_clk_hold(struct mmc_host *host)
  *	mmc_host_may_gate_card - check if this card may be gated
  *	@card: card to check.
  */
+<<<<<<< HEAD
 bool mmc_host_may_gate_card(struct mmc_card *card)
+=======
+static bool mmc_host_may_gate_card(struct mmc_card *card)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 {
 	/* If there is no card we may gate it */
 	if (!card)
 		return true;
+<<<<<<< HEAD
 
 	/*
 	 * SDIO3.0 card allows the clock to be gated off so check if
@@ -267,6 +306,8 @@ bool mmc_host_may_gate_card(struct mmc_card *card)
 	if (mmc_card_sdio(card) && card->cccr.async_intr_sup)
 		return true;
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	/*
 	 * Don't gate SDIO cards! These need to be clocked at all times
 	 * since they may be independent systems generating interrupts
@@ -296,6 +337,10 @@ void mmc_host_clk_release(struct mmc_host *host)
 	    !host->clk_requests)
 		queue_delayed_work(system_nrt_wq, &host->clk_gate_work,
 				msecs_to_jiffies(host->clkgate_delay));
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	spin_unlock_irqrestore(&host->clk_lock, flags);
 }
 
@@ -332,7 +377,11 @@ static inline void mmc_host_clk_init(struct mmc_host *host)
 	 * Default clock gating delay is 0ms to avoid wasting power.
 	 * This value can be tuned by writing into sysfs entry.
 	 */
+<<<<<<< HEAD
 	host->clkgate_delay = 0;
+=======
+	host->clkgate_delay = 3;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	host->clk_gated = false;
 	INIT_DELAYED_WORK(&host->clk_gate_work, mmc_host_clk_gate_work);
 	spin_lock_init(&host->clk_lock);
@@ -368,6 +417,10 @@ static inline void mmc_host_clk_sysfs_init(struct mmc_host *host)
 		pr_err("%s: Failed to create clkgate_delay sysfs entry\n",
 				mmc_hostname(host));
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #else
 
 static inline void mmc_host_clk_init(struct mmc_host *host)
@@ -381,7 +434,10 @@ static inline void mmc_host_clk_exit(struct mmc_host *host)
 static inline void mmc_host_clk_sysfs_init(struct mmc_host *host)
 {
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 
 /**
@@ -420,6 +476,7 @@ struct mmc_host *mmc_alloc_host(int extra, struct device *dev)
 
 	spin_lock_init(&host->lock);
 	init_waitqueue_head(&host->wq);
+<<<<<<< HEAD
 #ifdef CONFIG_MMC_BLOCK_DEFERRED_RESUME
 	init_waitqueue_head(&host->defer_wq);
 #endif
@@ -428,6 +485,12 @@ struct mmc_host *mmc_alloc_host(int extra, struct device *dev)
 	wake_lock_init(&host->detect_wake_lock, WAKE_LOCK_SUSPEND,
 			host->wlock_name);
 	INIT_DELAYED_WORK(&host->detect, mmc_rescan);
+=======
+	wake_lock_init(&host->detect_wake_lock, WAKE_LOCK_SUSPEND,
+		kasprintf(GFP_KERNEL, "%s_detect", mmc_hostname(host)));
+	INIT_DELAYED_WORK(&host->detect, mmc_rescan);
+	INIT_DELAYED_WORK_DEFERRABLE(&host->disable, mmc_host_deeper_disable);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_PM
 	host->pm_notify.notifier_call = mmc_pm_notify;
 #endif
@@ -452,6 +515,7 @@ free:
 
 EXPORT_SYMBOL(mmc_alloc_host);
 
+<<<<<<< HEAD
 static ssize_t show_enable(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
@@ -675,6 +739,8 @@ static struct attribute_group dev_attr_grp = {
 	.attrs = dev_attrs,
 };
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  *	mmc_add_host - initialise host hardware
  *	@host: mmc host
@@ -690,6 +756,7 @@ int mmc_add_host(struct mmc_host *host)
 	WARN_ON((host->caps & MMC_CAP_SDIO_IRQ) &&
 		!host->ops->enable_sdio_irq);
 
+<<<<<<< HEAD
 	err = pm_runtime_set_active(&host->class_dev);
 	if (err)
 		pr_err("%s: %s: failed setting runtime active: err: %d\n",
@@ -697,6 +764,8 @@ int mmc_add_host(struct mmc_host *host)
 	else if (mmc_use_core_runtime_pm(host))
 		pm_runtime_enable(&host->class_dev);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	err = device_add(&host->class_dev);
 	if (err)
 		return err;
@@ -706,6 +775,7 @@ int mmc_add_host(struct mmc_host *host)
 #ifdef CONFIG_DEBUG_FS
 	mmc_add_host_debugfs(host);
 #endif
+<<<<<<< HEAD
 	mmc_host_clk_sysfs_init(host);
 
 	host->clk_scaling.up_threshold = 35;
@@ -721,6 +791,10 @@ int mmc_add_host(struct mmc_host *host)
 	if (err)
 		pr_err("%s: failed to create sysfs group with err %d\n",
 							 __func__, err);
+=======
+
+	mmc_host_clk_sysfs_init(host);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	mmc_start_host(host);
 	if (!(host->pm_flags & MMC_PM_IGNORE_PM_NOTIFY))
@@ -749,8 +823,11 @@ void mmc_remove_host(struct mmc_host *host)
 #ifdef CONFIG_DEBUG_FS
 	mmc_remove_host_debugfs(host);
 #endif
+<<<<<<< HEAD
 	sysfs_remove_group(&host->parent->kobj, &dev_attr_grp);
 	sysfs_remove_group(&host->class_dev.kobj, &clk_scaling_attr_grp);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	device_del(&host->class_dev);
 

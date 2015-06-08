@@ -383,6 +383,7 @@ const struct soc_mbus_pixelfmt *soc_mbus_get_fmtdesc(
 }
 EXPORT_SYMBOL(soc_mbus_get_fmtdesc);
 
+<<<<<<< HEAD
 unsigned int soc_mbus_config_compatible(const struct v4l2_mbus_config *cfg,
 					unsigned int flags)
 {
@@ -416,6 +417,8 @@ unsigned int soc_mbus_config_compatible(const struct v4l2_mbus_config *cfg,
 }
 EXPORT_SYMBOL(soc_mbus_config_compatible);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int __init soc_mbus_init(void)
 {
 	return 0;

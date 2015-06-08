@@ -143,7 +143,11 @@ static bool ath_hw_set_keycache_entry(struct ath_common *common, u16 entry,
 		break;
 	case ATH_CIPHER_AES_CCM:
 		if (!(common->crypt_caps & ATH_CRYPT_CAP_CIPHER_AESCCM)) {
+<<<<<<< HEAD
 			ath_dbg(common, ANY,
+=======
+			ath_dbg(common, ATH_DBG_ANY,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				"AES-CCM not supported by this mac rev\n");
 			return false;
 		}
@@ -152,15 +156,24 @@ static bool ath_hw_set_keycache_entry(struct ath_common *common, u16 entry,
 	case ATH_CIPHER_TKIP:
 		keyType = AR_KEYTABLE_TYPE_TKIP;
 		if (entry + 64 >= common->keymax) {
+<<<<<<< HEAD
 			ath_dbg(common, ANY,
+=======
+			ath_dbg(common, ATH_DBG_ANY,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				"entry %u inappropriate for TKIP\n", entry);
 			return false;
 		}
 		break;
 	case ATH_CIPHER_WEP:
 		if (k->kv_len < WLAN_KEY_LEN_WEP40) {
+<<<<<<< HEAD
 			ath_dbg(common, ANY, "WEP key length %u too small\n",
 				k->kv_len);
+=======
+			ath_dbg(common, ATH_DBG_ANY,
+				"WEP key length %u too small\n", k->kv_len);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			return false;
 		}
 		if (k->kv_len <= WLAN_KEY_LEN_WEP40)

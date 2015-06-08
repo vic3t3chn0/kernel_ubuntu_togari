@@ -93,7 +93,11 @@ static inline int cx231xx_isoc_vbi_copy(struct cx231xx *dev, struct urb *urb)
 	if (!dev)
 		return 0;
 
+<<<<<<< HEAD
 	if (dev->state & DEV_DISCONNECTED)
+=======
+	if ((dev->state & DEV_DISCONNECTED) || (dev->state & DEV_MISCONFIGURED))
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return 0;
 
 	if (urb->status < 0) {
@@ -452,7 +456,11 @@ int cx231xx_init_vbi_isoc(struct cx231xx *dev, int max_packets,
 			return -ENOMEM;
 		}
 		dev->vbi_mode.bulk_ctl.urb[i] = urb;
+<<<<<<< HEAD
 		urb->transfer_flags = URB_NO_TRANSFER_DMA_MAP;
+=======
+		urb->transfer_flags = 0;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		dev->vbi_mode.bulk_ctl.transfer_buffer[i] =
 		    kzalloc(sb_size, GFP_KERNEL);

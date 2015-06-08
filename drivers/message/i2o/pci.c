@@ -31,7 +31,10 @@
 #include <linux/interrupt.h>
 #include <linux/slab.h>
 #include <linux/i2o.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "core.h"
 
 #define OSM_DESCRIPTION	"I2O-subsystem"

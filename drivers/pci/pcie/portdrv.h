@@ -34,6 +34,7 @@ struct pci_dev;
 
 extern void pcie_clear_root_pme_status(struct pci_dev *dev);
 
+<<<<<<< HEAD
 #ifdef CONFIG_HOTPLUG_PCI_PCIE
 extern bool pciehp_msi_disabled;
 
@@ -46,6 +47,8 @@ static inline bool pciehp_no_msi(void)
 static inline bool pciehp_no_msi(void) { return false; }
 #endif /* !CONFIG_HOTPLUG_PCI_PCIE */
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #ifdef CONFIG_PCIE_PME
 extern bool pcie_pme_msi_disabled;
 

@@ -1,6 +1,7 @@
 config CLKSRC_I8253
 	bool
 
+<<<<<<< HEAD
 config CLKEVT_I8253
 	bool
 
@@ -29,3 +30,7 @@ config CLKSRC_DBX500_PRCMU_SCHED_CLOCK
 	default y
 	help
 	  Use the always on PRCMU Timer as sched_clock
+=======
+config CLKSRC_MMIO
+	bool
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

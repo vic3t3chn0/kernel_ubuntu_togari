@@ -53,6 +53,10 @@
 #define SDMMC_IDINTEN		0x090
 #define SDMMC_DSCADDR		0x094
 #define SDMMC_BUFADDR		0x098
+<<<<<<< HEAD
+=======
+#define SDMMC_CLKSEL		0x09c
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define SDMMC_DATA(x)		(x)
 
 /*
@@ -111,6 +115,10 @@
 #define SDMMC_INT_ERROR			0xbfc2
 /* Command register defines */
 #define SDMMC_CMD_START			BIT(31)
+<<<<<<< HEAD
+=======
+#define SDMMC_USE_HOLD_REG		BIT(29)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #define SDMMC_CMD_CCS_EXP		BIT(23)
 #define SDMMC_CMD_CEATA_RD		BIT(22)
 #define SDMMC_CMD_UPD_CLK		BIT(21)
@@ -144,6 +152,7 @@
 
 /* Register access macros */
 #define mci_readl(dev, reg)			\
+<<<<<<< HEAD
 	__raw_readl((dev)->regs + SDMMC_##reg)
 #define mci_writel(dev, reg, value)			\
 	__raw_writel((value), (dev)->regs + SDMMC_##reg)
@@ -153,13 +162,30 @@
 	__raw_readw((dev)->regs + SDMMC_##reg)
 #define mci_writew(dev, reg, value)			\
 	__raw_writew((value), (dev)->regs + SDMMC_##reg)
+=======
+	__raw_readl(dev->regs + SDMMC_##reg)
+#define mci_writel(dev, reg, value)			\
+	__raw_writel((value), dev->regs + SDMMC_##reg)
+
+/* 16-bit FIFO access macros */
+#define mci_readw(dev, reg)			\
+	__raw_readw(dev->regs + SDMMC_##reg)
+#define mci_writew(dev, reg, value)			\
+	__raw_writew((value), dev->regs + SDMMC_##reg)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 /* 64-bit FIFO access macros */
 #ifdef readq
 #define mci_readq(dev, reg)			\
+<<<<<<< HEAD
 	__raw_readq((dev)->regs + SDMMC_##reg)
 #define mci_writeq(dev, reg, value)			\
 	__raw_writeq((value), (dev)->regs + SDMMC_##reg)
+=======
+	__raw_readq(dev->regs + SDMMC_##reg)
+#define mci_writeq(dev, reg, value)			\
+	__raw_writeq((value), dev->regs + SDMMC_##reg)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #else
 /*
  * Dummy readq implementation for architectures that don't define it.
@@ -170,6 +196,7 @@
  * rest of the code free from ifdefs.
  */
 #define mci_readq(dev, reg)			\
+<<<<<<< HEAD
 	(*(volatile u64 __force *)((dev)->regs + SDMMC_##reg))
 #define mci_writeq(dev, reg, value)			\
 	(*(volatile u64 __force *)((dev)->regs + SDMMC_##reg) = (value))
@@ -180,6 +207,11 @@ extern void dw_mci_remove(struct dw_mci *host);
 #ifdef CONFIG_PM
 extern int dw_mci_suspend(struct dw_mci *host);
 extern int dw_mci_resume(struct dw_mci *host);
+=======
+	(*(volatile u64 __force *)(dev->regs + SDMMC_##reg))
+#define mci_writeq(dev, reg, value)			\
+	(*(volatile u64 __force *)(dev->regs + SDMMC_##reg) = value)
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif
 
 #endif /* _DW_MMC_H_ */

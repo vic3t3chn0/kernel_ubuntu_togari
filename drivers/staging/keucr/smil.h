@@ -177,7 +177,12 @@ struct SSFDCTYPE {
 	WORD MaxLogBlocks;
 };
 
+<<<<<<< HEAD
 typedef struct SSFDCTYPE_T {
+=======
+typedef struct SSFDCTYPE_T
+{
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	BYTE Model;
 	BYTE Attribute;
 	BYTE MaxZones;
@@ -193,7 +198,12 @@ struct ADDRESS {
 	WORD LogBlock;	/* Logical Block Number of Zone */
 };
 
+<<<<<<< HEAD
 typedef struct ADDRESS_T {
+=======
+typedef struct ADDRESS_T
+{
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	BYTE Zone;	/* Zone Number */
 	BYTE Sector;	/* Sector(512byte) Number on Block */
 	WORD PhyBlock;	/* Physical Block Number on Zone */

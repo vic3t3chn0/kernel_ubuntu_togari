@@ -11,7 +11,10 @@
 #include <linux/types.h>
 #include <linux/string.h>
 #include <linux/kernel.h>
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/sched.h>
 #include <linux/interrupt.h>
 #include <linux/errno.h>
@@ -253,7 +256,11 @@ void ide_pio_bytes(ide_drive_t *drive, struct ide_cmd *cmd,
 		if (page_is_high)
 			local_irq_save(flags);
 
+<<<<<<< HEAD
 		buf = kmap_atomic(page) + offset;
+=======
+		buf = kmap_atomic(page, KM_BIO_SRC_IRQ) + offset;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		cmd->nleft -= nr_bytes;
 		cmd->cursg_ofs += nr_bytes;
@@ -269,7 +276,11 @@ void ide_pio_bytes(ide_drive_t *drive, struct ide_cmd *cmd,
 		else
 			hwif->tp_ops->input_data(drive, cmd, buf, nr_bytes);
 
+<<<<<<< HEAD
 		kunmap_atomic(buf);
+=======
+		kunmap_atomic(buf, KM_BIO_SRC_IRQ);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 		if (page_is_high)
 			local_irq_restore(flags);

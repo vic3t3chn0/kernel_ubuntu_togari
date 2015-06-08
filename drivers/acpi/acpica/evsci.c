@@ -6,7 +6,11 @@
  ******************************************************************************/
 
 /*
+<<<<<<< HEAD
  * Copyright (C) 2000 - 2012, Intel Corp.
+=======
+ * Copyright (C) 2000 - 2011, Intel Corp.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +52,11 @@
 
 #define _COMPONENT          ACPI_EVENTS
 ACPI_MODULE_NAME("evsci")
+<<<<<<< HEAD
 #if (!ACPI_REDUCED_HARDWARE)	/* Entire module */
+=======
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /* Local prototypes */
 static u32 ACPI_SYSTEM_XFACE acpi_ev_sci_xrupt_handler(void *context);
 
@@ -181,5 +189,8 @@ acpi_status acpi_ev_remove_sci_handler(void)
 
 	return_ACPI_STATUS(status);
 }
+<<<<<<< HEAD
 
 #endif				/* !ACPI_REDUCED_HARDWARE */
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

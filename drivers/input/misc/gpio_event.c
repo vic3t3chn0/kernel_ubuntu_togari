@@ -13,6 +13,10 @@
  *
  */
 
+<<<<<<< HEAD
+=======
+#include <linux/earlysuspend.h>
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/module.h>
 #include <linux/input.h>
 #include <linux/gpio_event.h>
@@ -23,6 +27,10 @@
 struct gpio_event {
 	struct gpio_event_input_devs *input_devs;
 	const struct gpio_event_platform_data *info;
+<<<<<<< HEAD
+=======
+	struct early_suspend early_suspend;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	void *state[0];
 };
 
@@ -99,6 +107,7 @@ err_no_func:
 	return ret;
 }
 
+<<<<<<< HEAD
 static void __maybe_unused gpio_event_suspend(struct gpio_event *ip)
 {
 	gpio_event_call_all_func(ip, GPIO_EVENT_FUNC_SUSPEND);
@@ -112,6 +121,25 @@ static void __maybe_unused gpio_event_resume(struct gpio_event *ip)
 		ip->info->power(ip->info, 1);
 	gpio_event_call_all_func(ip, GPIO_EVENT_FUNC_RESUME);
 }
+=======
+#ifdef CONFIG_HAS_EARLYSUSPEND
+void gpio_event_suspend(struct early_suspend *h)
+{
+	struct gpio_event *ip;
+	ip = container_of(h, struct gpio_event, early_suspend);
+	gpio_event_call_all_func(ip, GPIO_EVENT_FUNC_SUSPEND);
+	ip->info->power(ip->info, 0);
+}
+
+void gpio_event_resume(struct early_suspend *h)
+{
+	struct gpio_event *ip;
+	ip = container_of(h, struct gpio_event, early_suspend);
+	ip->info->power(ip->info, 1);
+	gpio_event_call_all_func(ip, GPIO_EVENT_FUNC_RESUME);
+}
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 static int gpio_event_probe(struct platform_device *pdev)
 {
@@ -163,8 +191,20 @@ static int gpio_event_probe(struct platform_device *pdev)
 	}
 	ip->input_devs->count = dev_count;
 	ip->info = event_info;
+<<<<<<< HEAD
 	if (event_info->power)
 		ip->info->power(ip->info, 1);
+=======
+	if (event_info->power) {
+#ifdef CONFIG_HAS_EARLYSUSPEND
+		ip->early_suspend.level = EARLY_SUSPEND_LEVEL_BLANK_SCREEN + 1;
+		ip->early_suspend.suspend = gpio_event_suspend;
+		ip->early_suspend.resume = gpio_event_resume;
+		register_early_suspend(&ip->early_suspend);
+#endif
+		ip->info->power(ip->info, 1);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	err = gpio_event_call_all_func(ip, GPIO_EVENT_FUNC_INIT);
 	if (err)
@@ -185,8 +225,17 @@ static int gpio_event_probe(struct platform_device *pdev)
 err_input_register_device_failed:
 	gpio_event_call_all_func(ip, GPIO_EVENT_FUNC_UNINIT);
 err_call_all_func_failed:
+<<<<<<< HEAD
 	if (event_info->power)
 		ip->info->power(ip->info, 0);
+=======
+	if (event_info->power) {
+#ifdef CONFIG_HAS_EARLYSUSPEND
+		unregister_early_suspend(&ip->early_suspend);
+#endif
+		ip->info->power(ip->info, 0);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (i = 0; i < registered; i++)
 		input_unregister_device(ip->input_devs->dev[i]);
 	for (i = dev_count - 1; i >= registered; i--) {
@@ -205,8 +254,17 @@ static int gpio_event_remove(struct platform_device *pdev)
 	int i;
 
 	gpio_event_call_all_func(ip, GPIO_EVENT_FUNC_UNINIT);
+<<<<<<< HEAD
 	if (ip->info->power)
 		ip->info->power(ip->info, 0);
+=======
+	if (ip->info->power) {
+#ifdef CONFIG_HAS_EARLYSUSPEND
+		unregister_early_suspend(&ip->early_suspend);
+#endif
+		ip->info->power(ip->info, 0);
+	}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	for (i = 0; i < ip->input_devs->count; i++)
 		input_unregister_device(ip->input_devs->dev[i]);
 	kfree(ip);

@@ -21,6 +21,7 @@
 #include <asm/firmware.h>
 #include <asm/ps3.h>
 
+<<<<<<< HEAD
 static void ps3_ehci_setup_insnreg(struct ehci_hcd *ehci)
 {
 	/* PS3 HC internal setup register offsets. */
@@ -49,6 +50,8 @@ static void ps3_ehci_setup_insnreg(struct ehci_hcd *ehci)
 		ps3_ehci_hc_insnreg03);
 }
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 static int ps3_ehci_hc_reset(struct usb_hcd *hcd)
 {
 	int result;
@@ -77,8 +80,11 @@ static int ps3_ehci_hc_reset(struct usb_hcd *hcd)
 
 	ehci_reset(ehci);
 
+<<<<<<< HEAD
 	ps3_ehci_setup_insnreg(ehci);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	return result;
 }
 
@@ -197,7 +203,11 @@ static int __devinit ps3_ehci_probe(struct ps3_system_bus_device *dev)
 
 	ps3_system_bus_set_drvdata(dev, hcd);
 
+<<<<<<< HEAD
 	result = usb_add_hcd(hcd, virq, 0);
+=======
+	result = usb_add_hcd(hcd, virq, IRQF_DISABLED);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (result) {
 		dev_dbg(&dev->core, "%s:%d: usb_add_hcd failed (%d)\n",

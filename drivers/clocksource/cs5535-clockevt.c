@@ -100,6 +100,10 @@ static struct clock_event_device cs5535_clockevent = {
 	.set_mode = mfgpt_set_mode,
 	.set_next_event = mfgpt_next_event,
 	.rating = 250,
+<<<<<<< HEAD
+=======
+	.cpumask = cpu_all_mask,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.shift = 32
 };
 
@@ -132,7 +136,11 @@ static irqreturn_t mfgpt_tick(int irq, void *dev_id)
 
 static struct irqaction mfgptirq  = {
 	.handler = mfgpt_tick,
+<<<<<<< HEAD
 	.flags = IRQF_DISABLED | IRQF_NOBALANCING | IRQF_TIMER | IRQF_SHARED,
+=======
+	.flags = IRQF_DISABLED | IRQF_NOBALANCING | IRQF_TIMER,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.name = DRV_NAME,
 };
 

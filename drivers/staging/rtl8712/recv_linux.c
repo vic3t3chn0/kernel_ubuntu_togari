@@ -28,15 +28,21 @@
 
 #define _RECV_OSDEP_C_
 
+<<<<<<< HEAD
 #include <linux/usb.h>
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "osdep_service.h"
 #include "drv_types.h"
 #include "wifi.h"
 #include "recv_osdep.h"
 #include "osdep_intf.h"
+<<<<<<< HEAD
 #include "ethernet.h"
 #include <linux/if_arp.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include "usb_ops.h"
 
 /*init os related resource in struct recv_priv*/
@@ -55,7 +61,11 @@ int r8712_os_recvbuf_resource_alloc(struct _adapter *padapter,
 	int res = _SUCCESS;
 
 	precvbuf->irp_pending = false;
+<<<<<<< HEAD
 	precvbuf->purb = usb_alloc_urb(0, GFP_KERNEL);
+=======
+	precvbuf->purb = _usb_alloc_urb(0, GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (precvbuf->purb == NULL)
 		res = _FAIL;
 	precvbuf->pskb = NULL;
@@ -117,6 +127,7 @@ void r8712_recv_indicatepkt(struct _adapter *padapter,
 	if (skb == NULL)
 		goto _recv_indicatepkt_drop;
 	skb->data = precv_frame->u.hdr.rx_data;
+<<<<<<< HEAD
 #ifdef NET_SKBUFF_DATA_USES_OFFSET
 	skb->tail = (sk_buff_data_t)(precv_frame->u.hdr.rx_tail -
 		     precv_frame->u.hdr.rx_head);
@@ -124,6 +135,10 @@ void r8712_recv_indicatepkt(struct _adapter *padapter,
 	skb->tail = (sk_buff_data_t)precv_frame->u.hdr.rx_tail;
 #endif
 	skb->len = precv_frame->u.hdr.len;
+=======
+	skb->len = precv_frame->u.hdr.len;
+	skb_set_tail_pointer(skb, skb->len);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if ((pattrib->tcpchk_valid == 1) && (pattrib->tcp_chkrpt == 1))
 		skb->ip_summed = CHECKSUM_UNNECESSARY;
 	else

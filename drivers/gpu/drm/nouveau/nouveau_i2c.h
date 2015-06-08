@@ -34,7 +34,10 @@
 struct nouveau_i2c_chan {
 	struct i2c_adapter adapter;
 	struct drm_device *dev;
+<<<<<<< HEAD
 	struct i2c_algo_bit_data bit;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	struct list_head head;
 	u8  index;
 	u8  type;

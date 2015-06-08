@@ -9,7 +9,10 @@
 #include <linux/dm-dirty-log.h>
 #include <linux/device-mapper.h>
 #include <linux/dm-log-userspace.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #include "dm-log-userspace-transfer.h"
 
@@ -31,7 +34,10 @@ struct flush_entry {
 
 struct log_c {
 	struct dm_target *ti;
+<<<<<<< HEAD
 	struct dm_dev *log_dev;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	uint32_t region_size;
 	region_t region_count;
 	uint64_t luid;
@@ -148,7 +154,11 @@ static int build_constructor_string(struct dm_target *ti,
  *	<UUID> <other args>
  * Where 'other args' is the userspace implementation specific log
  * arguments.  An example might be:
+<<<<<<< HEAD
  *	<UUID> clustered-disk <arg count> <log dev> <region_size> [[no]sync]
+=======
+ *	<UUID> clustered_disk <arg count> <log dev> <region_size> [[no]sync]
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * So, this module will strip off the <UUID> for identification purposes
  * when communicating with userspace about a log; but will pass on everything
@@ -163,15 +173,22 @@ static int userspace_ctr(struct dm_dirty_log *log, struct dm_target *ti,
 	struct log_c *lc = NULL;
 	uint64_t rdata;
 	size_t rdata_size = sizeof(rdata);
+<<<<<<< HEAD
 	char *devices_rdata = NULL;
 	size_t devices_rdata_size = DM_NAME_LEN;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (argc < 3) {
 		DMWARN("Too few arguments to userspace dirty log");
 		return -EINVAL;
 	}
 
+<<<<<<< HEAD
 	lc = kzalloc(sizeof(*lc), GFP_KERNEL);
+=======
+	lc = kmalloc(sizeof(*lc), GFP_KERNEL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!lc) {
 		DMWARN("Unable to allocate userspace log context.");
 		return -ENOMEM;
@@ -199,6 +216,7 @@ static int userspace_ctr(struct dm_dirty_log *log, struct dm_target *ti,
 		return str_size;
 	}
 
+<<<<<<< HEAD
 	devices_rdata = kzalloc(devices_rdata_size, GFP_KERNEL);
 	if (!devices_rdata) {
 		DMERR("Failed to allocate memory for device information");
@@ -212,6 +230,11 @@ static int userspace_ctr(struct dm_dirty_log *log, struct dm_target *ti,
 	r = dm_consult_userspace(lc->uuid, lc->luid, DM_ULOG_CTR,
 				 ctr_str, str_size,
 				 devices_rdata, &devices_rdata_size);
+=======
+	/* Send table string */
+	r = dm_consult_userspace(lc->uuid, lc->luid, DM_ULOG_CTR,
+				 ctr_str, str_size, NULL, NULL);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (r < 0) {
 		if (r == -ESRCH)
@@ -234,6 +257,7 @@ static int userspace_ctr(struct dm_dirty_log *log, struct dm_target *ti,
 	lc->region_size = (uint32_t)rdata;
 	lc->region_count = dm_sector_div_up(ti->len, lc->region_size);
 
+<<<<<<< HEAD
 	if (devices_rdata_size) {
 		if (devices_rdata[devices_rdata_size - 1] != '\0') {
 			DMERR("DM_ULOG_CTR device return string not properly terminated");
@@ -248,6 +272,9 @@ static int userspace_ctr(struct dm_dirty_log *log, struct dm_target *ti,
 	}
 out:
 	kfree(devices_rdata);
+=======
+out:
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (r) {
 		kfree(lc);
 		kfree(ctr_str);
@@ -268,9 +295,12 @@ static void userspace_dtr(struct dm_dirty_log *log)
 				 NULL, 0,
 				 NULL, NULL);
 
+<<<<<<< HEAD
 	if (lc->log_dev)
 		dm_put_device(lc->ti, lc->log_dev);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	kfree(lc->usr_argv_str);
 	kfree(lc);
 
@@ -424,7 +454,12 @@ static int flush_by_group(struct log_c *lc, struct list_head *flush_list)
 			group[count] = fe->region;
 			count++;
 
+<<<<<<< HEAD
 			list_move(&fe->list, &tmp_list);
+=======
+			list_del(&fe->list);
+			list_add(&fe->list, &tmp_list);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 			type = fe->type;
 			if (count >= MAX_FLUSH_GROUP_COUNT)

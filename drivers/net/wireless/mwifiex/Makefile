@@ -39,6 +39,9 @@ obj-$(CONFIG_MWIFIEX) += mwifiex.o
 
 mwifiex_sdio-y += sdio.o
 obj-$(CONFIG_MWIFIEX_SDIO) += mwifiex_sdio.o
+<<<<<<< HEAD
 
 mwifiex_pcie-y += pcie.o
 obj-$(CONFIG_MWIFIEX_PCIE) += mwifiex_pcie.o
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

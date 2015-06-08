@@ -19,6 +19,7 @@
 #include "../pci.h"
 #include "portdrv.h"
 
+<<<<<<< HEAD
 bool pciehp_msi_disabled;
 
 static int __init pciehp_setup(char *str)
@@ -30,6 +31,8 @@ static int __init pciehp_setup(char *str)
 }
 __setup("pcie_hp=", pciehp_setup);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 /**
  * release_pcie_device - free PCI Express port service device structure
  * @dev: Port service device to release
@@ -200,9 +203,14 @@ static int init_service_irqs(struct pci_dev *dev, int *irqs, int mask)
 {
 	int i, irq = -1;
 
+<<<<<<< HEAD
 	/* We have to use INTx if MSI cannot be used for PCIe PME or pciehp. */
 	if (((mask & PCIE_PORT_SERVICE_PME) && pcie_pme_no_msi()) ||
 	    ((mask & PCIE_PORT_SERVICE_HP) && pciehp_no_msi())) {
+=======
+	/* We have to use INTx if MSI cannot be used for PCIe PME. */
+	if ((mask & PCIE_PORT_SERVICE_PME) && pcie_pme_no_msi()) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		if (dev->pin)
 			irq = dev->irq;
 		goto no_msi;

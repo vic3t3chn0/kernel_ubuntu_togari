@@ -6,7 +6,10 @@
  *
  * This file is released under the GPLv2.
  */
+<<<<<<< HEAD
 #include <linux/export.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/init.h>
 #include <linux/list.h>
 #include <linux/device.h>

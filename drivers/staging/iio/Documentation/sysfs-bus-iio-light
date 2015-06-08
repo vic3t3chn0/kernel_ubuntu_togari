@@ -75,6 +75,7 @@ KernelVersion:	2.6.37
 Contact:	linux-iio@vger.kernel.org
 Description:
 		This property gets/sets the sensors ADC analog integration time.
+<<<<<<< HEAD
 
 What:		/sys/bus/iio/devices/device[n]/illuminance0_calibscale
 KernelVersion:	2.6.37
@@ -83,3 +84,5 @@ Description:
 		Hardware or software applied calibration scale factor assumed
 		to account for attenuation due to industrial design (glass
 		filters or aperture holes).
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0

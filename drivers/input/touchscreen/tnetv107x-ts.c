@@ -13,7 +13,10 @@
  * GNU General Public License for more details.
  */
 
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/kernel.h>
 #include <linux/err.h>
 #include <linux/errno.h>
@@ -378,9 +381,29 @@ static struct platform_driver tsc_driver = {
 	.driver.name	= "tnetv107x-ts",
 	.driver.owner	= THIS_MODULE,
 };
+<<<<<<< HEAD
 module_platform_driver(tsc_driver);
 
 MODULE_AUTHOR("Cyril Chemparathy");
 MODULE_DESCRIPTION("TNETV107X Touchscreen Driver");
 MODULE_ALIAS("platform:tnetv107x-ts");
+=======
+
+static int __init tsc_init(void)
+{
+	return platform_driver_register(&tsc_driver);
+}
+
+static void __exit tsc_exit(void)
+{
+	platform_driver_unregister(&tsc_driver);
+}
+
+module_init(tsc_init);
+module_exit(tsc_exit);
+
+MODULE_AUTHOR("Cyril Chemparathy");
+MODULE_DESCRIPTION("TNETV107X Touchscreen Driver");
+MODULE_ALIAS("platform: tnetv107x-ts");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 MODULE_LICENSE("GPL");

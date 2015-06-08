@@ -4,12 +4,19 @@
  * Copyright (C) 2010 Stephane Duverger
  *
  * Released under the GPLv2.
+<<<<<<< HEAD
+=======
+ *
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  */
 
 /* verbose messages */
 #include <linux/kernel.h>
 #include <linux/device.h>
+<<<<<<< HEAD
 #include <linux/module.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/usb/ch9.h>
 #include <linux/usb/gadget.h>
 
@@ -173,9 +180,13 @@ fail_1:
 
 static int __enable_ep(struct usb_ep *ep, struct usb_endpoint_descriptor *desc)
 {
+<<<<<<< HEAD
 	int err;
 	ep->desc = desc;
 	err = usb_ep_enable(ep);
+=======
+	int err = usb_ep_enable(ep, desc);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ep->driver_data = dbgp.gadget;
 	return err;
 }
@@ -270,8 +281,13 @@ static int __init dbgp_configure_endpoints(struct usb_gadget *gadget)
 	dbgp.serial->in = dbgp.i_ep;
 	dbgp.serial->out = dbgp.o_ep;
 
+<<<<<<< HEAD
 	dbgp.serial->in->desc = &i_desc;
 	dbgp.serial->out->desc = &o_desc;
+=======
+	dbgp.serial->in_desc = &i_desc;
+	dbgp.serial->out_desc = &o_desc;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	if (gserial_setup(gadget, 1) < 0) {
 		stp = 3;
@@ -314,6 +330,10 @@ static int __init dbgp_bind(struct usb_gadget *gadget)
 
 	dbgp.req->length = DBGP_REQ_EP0_LEN;
 	gadget->ep0->driver_data = gadget;
+<<<<<<< HEAD
+=======
+	device_desc.bMaxPacketSize0 = gadget->ep0->maxpacket;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 #ifdef CONFIG_USB_G_DBGP_SERIAL
 	dbgp.serial = kzalloc(sizeof(struct gserial), GFP_KERNEL);
@@ -364,7 +384,10 @@ static int dbgp_setup(struct usb_gadget *gadget,
 			dev_dbg(&dbgp.gadget->dev, "setup: desc device\n");
 			len = sizeof device_desc;
 			data = &device_desc;
+<<<<<<< HEAD
 			device_desc.bMaxPacketSize0 = gadget->ep0->maxpacket;
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			break;
 		case USB_DT_DEBUG:
 			dev_dbg(&dbgp.gadget->dev, "setup: desc debug\n");
@@ -404,7 +427,11 @@ fail:
 
 static struct usb_gadget_driver dbgp_driver = {
 	.function = "dbgp",
+<<<<<<< HEAD
 	.max_speed = USB_SPEED_HIGH,
+=======
+	.speed = USB_SPEED_HIGH,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	.unbind = dbgp_unbind,
 	.setup = dbgp_setup,
 	.disconnect = dbgp_disconnect,

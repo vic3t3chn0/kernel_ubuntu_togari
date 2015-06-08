@@ -122,7 +122,11 @@ nouveau_channel_alloc(struct drm_device *dev, struct nouveau_channel **chan_ret,
 	struct nouveau_fpriv *fpriv = nouveau_fpriv(file_priv);
 	struct nouveau_channel *chan;
 	unsigned long flags;
+<<<<<<< HEAD
 	int ret, i;
+=======
+	int ret;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	/* allocate and lock channel structure */
 	chan = kzalloc(sizeof(*chan), GFP_KERNEL);
@@ -184,7 +188,11 @@ nouveau_channel_alloc(struct drm_device *dev, struct nouveau_channel **chan_ret,
 		return ret;
 	}
 
+<<<<<<< HEAD
 	nouveau_dma_init(chan);
+=======
+	nouveau_dma_pre_init(chan);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	chan->user_put = 0x40;
 	chan->user_get = 0x44;
 	if (dev_priv->card_type >= NV_50)
@@ -202,6 +210,7 @@ nouveau_channel_alloc(struct drm_device *dev, struct nouveau_channel **chan_ret,
 
 	pfifo->reassign(dev, true);
 
+<<<<<<< HEAD
 	/* Insert NOPs for NOUVEAU_DMA_SKIPS */
 	ret = RING_SPACE(chan, NOUVEAU_DMA_SKIPS);
 	if (ret) {
@@ -214,6 +223,11 @@ nouveau_channel_alloc(struct drm_device *dev, struct nouveau_channel **chan_ret,
 	FIRE_RING(chan);
 
 	ret = nouveau_fence_channel_init(chan);
+=======
+	ret = nouveau_dma_init(chan);
+	if (!ret)
+		ret = nouveau_fence_channel_init(chan);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (ret) {
 		nouveau_channel_put(&chan);
 		return ret;
@@ -436,11 +450,26 @@ nouveau_ioctl_fifo_alloc(struct drm_device *dev, void *data,
 	}
 
 	if (dev_priv->card_type < NV_C0) {
+<<<<<<< HEAD
 		init->subchan[0].handle = 0x00000000;
 		init->subchan[0].grclass = 0x0000;
 		init->subchan[1].handle = NvSw;
 		init->subchan[1].grclass = NV_SW;
 		init->nr_subchan = 2;
+=======
+		init->subchan[0].handle = NvM2MF;
+		if (dev_priv->card_type < NV_50)
+			init->subchan[0].grclass = 0x0039;
+		else
+			init->subchan[0].grclass = 0x5039;
+		init->subchan[1].handle = NvSw;
+		init->subchan[1].grclass = NV_SW;
+		init->nr_subchan = 2;
+	} else {
+		init->subchan[0].handle  = 0x9039;
+		init->subchan[0].grclass = 0x9039;
+		init->nr_subchan = 1;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	}
 
 	/* Named memory object area */

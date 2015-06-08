@@ -506,8 +506,15 @@ struct das08_board_struct das08_cs_boards[NUM_DAS08_CS_BOARDS] = {
 
 #ifdef CONFIG_COMEDI_PCI
 static DEFINE_PCI_DEVICE_TABLE(das08_pci_table) = {
+<<<<<<< HEAD
 	{ PCI_DEVICE(PCI_VENDOR_ID_COMPUTERBOARDS, PCI_DEVICE_ID_PCIDAS08) },
 	{0}
+=======
+	{
+	PCI_VENDOR_ID_COMPUTERBOARDS, PCI_DEVICE_ID_PCIDAS08,
+		    PCI_ANY_ID, PCI_ANY_ID, 0, 0, 0}, {
+	0}
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 };
 
 MODULE_DEVICE_TABLE(pci, das08_pci_table);
@@ -653,7 +660,11 @@ static int das08jr_ao_winsn(struct comedi_device *dev,
 	int chan;
 
 	lsb = data[0] & 0xff;
+<<<<<<< HEAD
 	msb = (data[0] >> 8) & 0xf;
+=======
+	msb = (data[0] >> 8) & 0xff;
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	chan = CR_CHAN(insn->chanspec);
 

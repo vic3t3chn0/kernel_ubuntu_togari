@@ -57,14 +57,23 @@ struct sk_buff *ath_rxbuf_alloc(struct ath_common *common,
 }
 EXPORT_SYMBOL(ath_rxbuf_alloc);
 
+<<<<<<< HEAD
 void ath_printk(const char *level, const struct ath_common* common,
 		const char *fmt, ...)
 {
 	struct va_format vaf;
+=======
+void ath_printk(const char *level, const char *fmt, ...)
+{
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,36))
+	struct va_format vaf;
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	va_list args;
 
 	va_start(args, fmt);
 
+<<<<<<< HEAD
 	vaf.fmt = fmt;
 	vaf.va = &args;
 
@@ -73,6 +82,17 @@ void ath_printk(const char *level, const struct ath_common* common,
 		       level, wiphy_name(common->hw->wiphy), &vaf);
 	else
 		printk("%sath: %pV", level, &vaf);
+=======
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,36))
+	vaf.fmt = fmt;
+	vaf.va = &args;
+
+	printk("%sath: %pV", level, &vaf);
+#else
+	printk("%sath: ", level);
+	vprintk(fmt, args);
+#endif
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 	va_end(args);
 }

@@ -39,7 +39,10 @@
 
 #include <linux/interrupt.h>
 #include <linux/tty.h>
+<<<<<<< HEAD
 #include <linux/tty_flip.h>
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #include <linux/serial.h>
 #include <linux/console.h>
 #include <linux/module.h>
@@ -461,12 +464,20 @@ sn_receive_chars(struct sn_cons_port *port, unsigned long flags)
 	struct tty_struct *tty;
 
 	if (!port) {
+<<<<<<< HEAD
 		printk(KERN_ERR "sn_receive_chars - port NULL so can't receive\n");
+=======
+		printk(KERN_ERR "sn_receive_chars - port NULL so can't receieve\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return;
 	}
 
 	if (!port->sc_ops) {
+<<<<<<< HEAD
 		printk(KERN_ERR "sn_receive_chars - port->sc_ops  NULL so can't receive\n");
+=======
+		printk(KERN_ERR "sn_receive_chars - port->sc_ops  NULL so can't receieve\n");
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		return;
 	}
 
@@ -738,12 +749,19 @@ static void __init sn_sal_switch_to_interrupts(struct sn_cons_port *port)
 		DPRINTF("sn_console: switching to interrupt driven console\n");
 
 		if (request_irq(SGI_UART_VECTOR, sn_sal_interrupt,
+<<<<<<< HEAD
 				IRQF_SHARED,
+=======
+				IRQF_DISABLED | IRQF_SHARED,
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 				"SAL console driver", port) >= 0) {
 			spin_lock_irqsave(&port->sc_port.lock, flags);
 			port->sc_port.irq = SGI_UART_VECTOR;
 			port->sc_ops = &intr_ops;
+<<<<<<< HEAD
 			irq_set_handler(port->sc_port.irq, handle_level_irq);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 			/* turn on receive interrupts */
 			ia64_sn_console_intr_enable(SAL_CONSOLE_INTR_RECV);

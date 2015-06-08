@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+=======
+/* Copyright (c) 2012, Code Aurora Forum. All rights reserved.
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -14,6 +18,7 @@
 #define DIAGFWD_HSIC_H
 
 #include <mach/diag_bridge.h>
+<<<<<<< HEAD
 
 #define N_MDM_WRITE	8
 #define N_MDM_READ	1
@@ -56,4 +61,19 @@ struct diag_hsic_dev {
 	spinlock_t hsic_spinlock;
 };
 
+=======
+#define N_MDM_WRITE	1 /* Upgrade to 2 with ping pong buffer */
+#define N_MDM_READ	1
+
+enum {
+	WRITE_TO_USB = 0,
+	WRITE_TO_SD
+};
+
+void diagfwd_hsic_init(void);
+void diagfwd_hsic_exit(void);
+int diagfwd_connect_hsic(unsigned int);
+int diagfwd_disconnect_hsic(void);
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 #endif

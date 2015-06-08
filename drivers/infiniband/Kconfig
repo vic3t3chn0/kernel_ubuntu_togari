@@ -55,7 +55,10 @@ source "drivers/infiniband/hw/nes/Kconfig"
 source "drivers/infiniband/ulp/ipoib/Kconfig"
 
 source "drivers/infiniband/ulp/srp/Kconfig"
+<<<<<<< HEAD
 source "drivers/infiniband/ulp/srpt/Kconfig"
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 
 source "drivers/infiniband/ulp/iser/Kconfig"
 

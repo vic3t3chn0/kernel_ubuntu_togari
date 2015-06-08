@@ -190,9 +190,12 @@ void mdio45_ethtool_gset_npage(const struct mdio_if_info *mdio,
 	int reg;
 	u32 speed;
 
+<<<<<<< HEAD
 	BUILD_BUG_ON(MDIO_SUPPORTS_C22 != ETH_MDIO_SUPPORTS_C22);
 	BUILD_BUG_ON(MDIO_SUPPORTS_C45 != ETH_MDIO_SUPPORTS_C45);
 
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	ecmd->transceiver = XCVR_INTERNAL;
 	ecmd->phy_address = mdio->prtad;
 	ecmd->mdio_support =

@@ -265,11 +265,19 @@ static ssize_t keymap_store(struct kobject *kobj, struct kobj_attribute *attr,
 	unsigned long flags;
 
 	spk_lock(flags);
+<<<<<<< HEAD
 	in_buff = kmemdup(buf, count + 1, GFP_ATOMIC);
+=======
+	in_buff = kmalloc(count + 1, GFP_ATOMIC);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (!in_buff) {
 		spk_unlock(flags);
 		return -ENOMEM;
 	}
+<<<<<<< HEAD
+=======
+	memcpy(in_buff, buf, count + 1);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	if (strchr("dDrR", *in_buff)) {
 		set_key_info(key_defaults, key_buf);
 		pr_info("keymap set to default values\n");

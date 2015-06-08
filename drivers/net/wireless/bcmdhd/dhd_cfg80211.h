@@ -38,6 +38,18 @@ s32 dhd_cfg80211_set_p2p_info(struct wl_priv *wl, int val);
 s32 dhd_cfg80211_clean_p2p_info(struct wl_priv *wl);
 s32 dhd_config_dongle(struct wl_priv *wl, bool need_lock);
 
+<<<<<<< HEAD
+=======
+#ifdef CONFIG_NL80211_TESTMODE
+int dhd_cfg80211_testmode_cmd(struct wiphy *wiphy, void *data, int len);
+#else
+static inline int dhd_cfg80211_testmode_cmd(struct wiphy *wiphy, void *data, int len)
+{
+	return 0;
+}
+#endif
+
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 int wl_cfg80211_btcoex_init(struct wl_priv *wl);
 void wl_cfg80211_btcoex_deinit(struct wl_priv *wl);
 

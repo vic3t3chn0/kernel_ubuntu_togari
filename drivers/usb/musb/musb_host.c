@@ -774,10 +774,13 @@ static void musb_ep_program(struct musb *musb, u8 epnum,
 			if (musb->double_buffer_not_ok)
 				musb_writew(epio, MUSB_TXMAXP,
 						hw_ep->max_packet_sz_tx);
+<<<<<<< HEAD
 			else if (can_bulk_split(musb, qh->type))
 				musb_writew(epio, MUSB_TXMAXP, packet_sz
 					| ((hw_ep->max_packet_sz_tx /
 						packet_sz) - 1) << 11);
+=======
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 			else
 				musb_writew(epio, MUSB_TXMAXP,
 						qh->maxpacket |
@@ -1936,7 +1939,11 @@ static int musb_urb_enqueue(
 	INIT_LIST_HEAD(&qh->ring);
 	qh->is_ready = 1;
 
+<<<<<<< HEAD
 	qh->maxpacket = usb_endpoint_maxp(epd);
+=======
+	qh->maxpacket = le16_to_cpu(epd->wMaxPacketSize);
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 	qh->type = usb_endpoint_type(epd);
 
 	/* Bits 11 & 12 of wMaxPacketSize encode high bandwidth multiplier.
@@ -2098,7 +2105,11 @@ static int musb_cleanup_urb(struct urb *urb, struct musb_qh *qh)
 	}
 
 	/* turn off DMA requests, discard state, stop polling ... */
+<<<<<<< HEAD
 	if (ep->epnum && is_in) {
+=======
+	if (is_in) {
+>>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
 		/* giveback saves bulk toggle */
 		csr = musb_h_flush_rxfifo(ep, 0);
 

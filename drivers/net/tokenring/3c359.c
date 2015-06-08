@@ -69,9 +69,13 @@
 
 #include <asm/io.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <asm/system.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <asm/system.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #include "3c359.h"
 
@@ -286,10 +290,14 @@ static const struct net_device_ops xl_netdev_ops = {
 	.ndo_start_xmit		= xl_xmit,
 	.ndo_change_mtu		= xl_change_mtu,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= xl_set_rx_mode,
 =======
 	.ndo_set_multicast_list = xl_set_rx_mode,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list = xl_set_rx_mode,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.ndo_set_mac_address	= xl_set_mac_address,
 };
  
@@ -312,10 +320,14 @@ static int __devinit xl_probe(struct pci_dev *pdev,
 	if ((i = pci_request_regions(pdev,"3c359"))) { 
 		return i ; 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 	} ; 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	} ; 
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* 
 	 * Allowing init_trdev to allocate the private data will align
@@ -686,20 +698,30 @@ static int xl_open(struct net_device *dev)
 	xl_priv->xl_tx_ring = kzalloc((sizeof(struct xl_tx_desc) * XL_TX_RING_SIZE) + 7, GFP_DMA | GFP_KERNEL);
 	if (xl_priv->xl_tx_ring == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_WARNING "%s: Not enough memory to allocate tx buffers.\n",
 				     dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "%s: Not enough memory to allocate tx buffers.\n",
+				     dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_irq(dev->irq,dev);
 		return -ENOMEM;
 	}
 	xl_priv->xl_rx_ring = kzalloc((sizeof(struct xl_rx_desc) * XL_RX_RING_SIZE) +7, GFP_DMA | GFP_KERNEL);
 	if (xl_priv->xl_rx_ring == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_WARNING "%s: Not enough memory to allocate rx buffers.\n",
 				     dev->name);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "%s: Not enough memory to allocate rx buffers.\n",
+				     dev->name);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		free_irq(dev->irq,dev);
 		kfree(xl_priv->xl_tx_ring);
 		return -ENOMEM;
@@ -1791,12 +1813,16 @@ static void xl_wait_misr_flags(struct net_device *dev)
 		for (i=0; i<6; i++) { 
 			writel(MEM_BYTE_READ | 0xDFFE0 | i, xl_mmio + MMIO_MAC_ACCESS_CMD) ; 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			while (readb(xl_mmio + MMIO_MACDATA) != 0) {
 				;	/* Empty Loop */
 			}
 =======
 			while (readb(xl_mmio + MMIO_MACDATA) != 0 ) {} ; /* Empty Loop */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			while (readb(xl_mmio + MMIO_MACDATA) != 0 ) {} ; /* Empty Loop */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		} 
 	}
 

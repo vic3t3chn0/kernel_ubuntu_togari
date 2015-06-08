@@ -91,9 +91,12 @@ enum apimask_bits {
 			   APIMASK_ECC_UE_L | APIMASK_ECC_CE_L),
 };
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define APIMASK_ADI(n)		CPC925_BIT(((n)+1))
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /************************************************************
  *	Processor Interface Exception Register (APIEXCP)
@@ -586,6 +589,7 @@ static void cpc925_mc_check(struct mem_ctl_info *mci)
 
 /******************** CPU err device********************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 static u32 cpc925_cpu_mask_disabled(void)
 {
 	struct device_node *cpus;
@@ -636,10 +640,13 @@ static u32 cpc925_cpu_mask_disabled(void)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Enable CPU Errors detection */
 static void cpc925_cpu_init(struct cpc925_dev_info *dev_info)
 {
 	u32 apimask;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	u32 cpumask;
 
@@ -657,13 +664,18 @@ static void cpc925_cpu_init(struct cpc925_dev_info *dev_info)
 
 	__raw_writel(apimask, dev_info->vbase + REG_APIMASK_OFFSET);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	apimask = __raw_readl(dev_info->vbase + REG_APIMASK_OFFSET);
 	if ((apimask & CPU_MASK_ENABLE) == 0) {
 		apimask |= CPU_MASK_ENABLE;
 		__raw_writel(apimask, dev_info->vbase + REG_APIMASK_OFFSET);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /* Disable CPU Errors detection */
@@ -696,11 +708,14 @@ static void cpc925_cpu_check(struct edac_device_ctl_info *edac_dev)
 		return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if ((apiexcp & ~cpc925_cpu_mask_disabled()) == 0)
 		return;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	apimask = __raw_readl(dev_info->vbase + REG_APIMASK_OFFSET);
 	cpc925_printk(KERN_INFO, "Processor Interface Fault\n"
 				 "Processor Interface register dump:\n");

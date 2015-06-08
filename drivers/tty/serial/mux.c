@@ -18,17 +18,23 @@
 
 #include <linux/module.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/ioport.h>
 #include <linux/init.h>
 #include <linux/serial.h>
 #include <linux/tty.h>
 #include <linux/tty_flip.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/tty.h>
 #include <linux/ioport.h>
 #include <linux/init.h>
 #include <linux/serial.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/console.h>
 #include <linux/delay.h> /* for udelay */
 #include <linux/device.h>
@@ -506,10 +512,14 @@ static int __init mux_probe(struct parisc_device *dev)
 		port->iotype	= UPIO_MEM;
 		port->type	= PORT_MUX;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		port->irq	= 0;
 =======
 		port->irq	= NO_IRQ;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		port->irq	= NO_IRQ;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		port->uartclk	= 0;
 		port->fifosize	= MUX_FIFO_SIZE;
 		port->ops	= &mux_pops;

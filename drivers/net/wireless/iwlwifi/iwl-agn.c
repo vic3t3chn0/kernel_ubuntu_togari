@@ -1,10 +1,14 @@
 /******************************************************************************
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Copyright(c) 2003 - 2012 Intel Corporation. All rights reserved.
 =======
  * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * Copyright(c) 2003 - 2011 Intel Corporation. All rights reserved.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * Portions of this file are derived from the ipw3945 project, as well
  * as portions of the ieee80211 subsystem header files.
@@ -31,11 +35,14 @@
  *
  *****************************************************************************/
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/slab.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
@@ -46,16 +53,24 @@
 #include <linux/pci-aspm.h>
 #include <linux/slab.h>
 #include <linux/dma-mapping.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/delay.h>
 #include <linux/sched.h>
 #include <linux/skbuff.h>
 #include <linux/netdevice.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <linux/wireless.h>
 #include <linux/firmware.h>
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#include <linux/wireless.h>
+#include <linux/firmware.h>
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/etherdevice.h>
 #include <linux/if_arp.h>
 
@@ -64,14 +79,20 @@
 #include <asm/div64.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #define DRV_NAME        "iwlagn"
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#define DRV_NAME        "iwlagn"
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-eeprom.h"
 #include "iwl-dev.h"
 #include "iwl-core.h"
 #include "iwl-io.h"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #include "iwl-agn-calib.h"
 #include "iwl-agn.h"
@@ -79,12 +100,17 @@
 #include "iwl-trans.h"
 #include "iwl-op-mode.h"
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include "iwl-helpers.h"
 #include "iwl-sta.h"
 #include "iwl-agn-calib.h"
 #include "iwl-agn.h"
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /******************************************************************************
  *
@@ -111,30 +137,42 @@ MODULE_VERSION(DRV_VERSION);
 MODULE_AUTHOR(DRV_COPYRIGHT " " DRV_AUTHOR);
 MODULE_LICENSE("GPL");
 <<<<<<< HEAD
+<<<<<<< HEAD
 MODULE_ALIAS("iwlagn");
 =======
 
 static int iwlagn_ant_coupling;
 static bool iwlagn_bt_ch_announce = 1;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+static int iwlagn_ant_coupling;
+static bool iwlagn_bt_ch_announce = 1;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void iwl_update_chain_flags(struct iwl_priv *priv)
 {
 	struct iwl_rxon_context *ctx;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	for_each_context(priv, ctx) {
 		iwlagn_set_rxon_chain(priv, ctx);
 		if (ctx->active.rx_chain != ctx->staging.rx_chain)
 			iwlagn_commit_rxon(priv, ctx);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->cfg->ops->hcmd->set_rxon_chain) {
 		for_each_context(priv, ctx) {
 			priv->cfg->ops->hcmd->set_rxon_chain(priv, ctx);
 			if (ctx->active.rx_chain != ctx->staging.rx_chain)
 				iwlcore_commit_rxon(priv, ctx);
 		}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 }
 
@@ -171,12 +209,16 @@ int iwlagn_send_beacon_cmd(struct iwl_priv *priv)
 	struct iwl_host_cmd cmd = {
 		.id = REPLY_TX_BEACON,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		.flags = CMD_SYNC,
 	};
 	struct ieee80211_tx_info *info;
 =======
 	};
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	};
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 frame_size;
 	u32 rate_flags;
 	u32 rate;
@@ -218,6 +260,7 @@ int iwlagn_send_beacon_cmd(struct iwl_priv *priv)
 
 	/* Set up packet rate and flags */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	info = IEEE80211_SKB_CB(priv->beacon_skb);
 
 	/*
@@ -244,6 +287,8 @@ int iwlagn_send_beacon_cmd(struct iwl_priv *priv)
 	tx_beacon_cmd->tx.rate_n_flags =
 			iwl_hw_set_rate_n_flags(rate, rate_flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	rate = iwl_rate_get_lowest_plcp(priv, priv->beacon_ctx);
 	priv->mgmt_tx_ant = iwl_toggle_tx_ant(priv, priv->mgmt_tx_ant,
 					      priv->hw_params.valid_tx_ant);
@@ -252,7 +297,10 @@ int iwlagn_send_beacon_cmd(struct iwl_priv *priv)
 		rate_flags |= RATE_MCS_CCK_MSK;
 	tx_beacon_cmd->tx.rate_n_flags = iwl_hw_set_rate_n_flags(rate,
 			rate_flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Submit command */
 	cmd.len[0] = sizeof(*tx_beacon_cmd);
@@ -263,10 +311,14 @@ int iwlagn_send_beacon_cmd(struct iwl_priv *priv)
 	cmd.dataflags[1] = IWL_HCMD_DFL_NOCOPY;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return iwl_dvm_send_cmd(priv, &cmd);
 =======
 	return iwl_send_cmd_sync(priv, &cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return iwl_send_cmd_sync(priv, &cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void iwl_bg_beacon_update(struct work_struct *work)
@@ -320,10 +372,14 @@ static void iwl_bg_bt_runtime_config(struct work_struct *work)
 	if (!iwl_is_ready_rf(priv))
 		return;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwlagn_send_advance_bt_config(priv);
 =======
 	priv->cfg->ops->hcmd->send_bt_config(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	priv->cfg->ops->hcmd->send_bt_config(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void iwl_bg_bt_full_concurrency(struct work_struct *work)
@@ -351,19 +407,25 @@ static void iwl_bg_bt_full_concurrency(struct work_struct *work)
 	 */
 	for_each_context(priv, ctx) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		iwlagn_set_rxon_chain(priv, ctx);
 		iwlagn_commit_rxon(priv, ctx);
 	}
 
 	iwlagn_send_advance_bt_config(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (priv->cfg->ops->hcmd->set_rxon_chain)
 			priv->cfg->ops->hcmd->set_rxon_chain(priv, ctx);
 		iwlcore_commit_rxon(priv, ctx);
 	}
 
 	priv->cfg->ops->hcmd->send_bt_config(priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 out:
 	mutex_unlock(&priv->mutex);
 }
@@ -396,10 +458,14 @@ static void iwl_bg_statistics_periodic(unsigned long data)
 static void iwl_print_cont_event_trace(struct iwl_priv *priv, u32 base,
 					u32 start_idx, u32 num_events,
 <<<<<<< HEAD
+<<<<<<< HEAD
 					u32 capacity, u32 mode)
 =======
 					u32 mode)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+					u32 mode)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	u32 i;
 	u32 ptr;        /* SRAM byte address of log data */
@@ -413,6 +479,7 @@ static void iwl_print_cont_event_trace(struct iwl_priv *priv, u32 base,
 
 	/* Make sure device is powered up for SRAM reads */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	spin_lock_irqsave(&trans(priv)->reg_lock, reg_flags);
 	if (unlikely(!iwl_grab_nic_access(trans(priv)))) {
 		spin_unlock_irqrestore(&trans(priv)->reg_lock, reg_flags);
@@ -421,10 +488,16 @@ static void iwl_print_cont_event_trace(struct iwl_priv *priv, u32 base,
 	if (iwl_grab_nic_access(priv)) {
 		spin_unlock_irqrestore(&priv->reg_lock, reg_flags);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	spin_lock_irqsave(&priv->reg_lock, reg_flags);
+	if (iwl_grab_nic_access(priv)) {
+		spin_unlock_irqrestore(&priv->reg_lock, reg_flags);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return;
 	}
 
 	/* Set starting address; reads will auto-increment */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iwl_write32(trans(priv), HBUS_TARG_MEM_RADDR, ptr);
 
@@ -440,12 +513,17 @@ static void iwl_print_cont_event_trace(struct iwl_priv *priv, u32 base,
 	iwl_write32(priv, HBUS_TARG_MEM_RADDR, ptr);
 	rmb();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwl_write32(priv, HBUS_TARG_MEM_RADDR, ptr);
+	rmb();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*
 	 * "time" is actually "data" for mode 0 (no timestamp).
 	 * place event id # at far right for easier visual parsing.
 	 */
 	for (i = 0; i < num_events; i++) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ev = iwl_read32(trans(priv), HBUS_TARG_MEM_RDAT);
 		time = iwl_read32(trans(priv), HBUS_TARG_MEM_RDAT);
@@ -462,6 +540,8 @@ static void iwl_print_cont_event_trace(struct iwl_priv *priv, u32 base,
 	iwl_release_nic_access(trans(priv));
 	spin_unlock_irqrestore(&trans(priv)->reg_lock, reg_flags);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		ev = iwl_read32(priv, HBUS_TARG_MEM_RDAT);
 		time = iwl_read32(priv, HBUS_TARG_MEM_RDAT);
 		if (mode == 0) {
@@ -476,12 +556,16 @@ static void iwl_print_cont_event_trace(struct iwl_priv *priv, u32 base,
 	/* Allow device to power down */
 	iwl_release_nic_access(priv);
 	spin_unlock_irqrestore(&priv->reg_lock, reg_flags);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static void iwl_continuous_event_trace(struct iwl_priv *priv)
 {
 	u32 capacity;   /* event log capacity in # entries */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct {
 		u32 capacity;
@@ -491,11 +575,14 @@ static void iwl_continuous_event_trace(struct iwl_priv *priv)
 	} __packed read;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 base;       /* SRAM byte address of event log header */
 	u32 mode;       /* 0 - no timestamp, 1 - timestamp recorded */
 	u32 num_wraps;  /* # times uCode wrapped to top of log */
 	u32 next_entry; /* index of next entry to be written by uCode */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	base = priv->shrd->device_pointers.log_event_table;
 	if (iwlagn_hw_valid_rtc_data_addr(base)) {
@@ -564,6 +651,8 @@ static void iwl_continuous_event_trace(struct iwl_priv *priv)
 	}
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	base = priv->device_pointers.error_event_table;
 	if (priv->cfg->ops->lib->is_valid_rtc_data_addr(base)) {
 		capacity = iwl_read_targ_mem(priv, base);
@@ -604,7 +693,10 @@ static void iwl_continuous_event_trace(struct iwl_priv *priv)
 				next_entry, mode);
 		}
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->event_log.num_wraps = num_wraps;
 	priv->event_log.next_entry = next_entry;
 }
@@ -644,6 +736,7 @@ static void iwl_bg_tx_flush(struct work_struct *work)
 	if (!iwl_is_ready_rf(priv))
 		return;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	IWL_DEBUG_INFO(priv, "device request: flush all tx frames\n");
 	iwlagn_dev_txfifo_flush(priv, IWL_DROP_ALL);
@@ -994,6 +1087,8 @@ void iwl_down(struct iwl_priv *priv)
 	dev_kfree_skb(priv->beacon_skb);
 	priv->beacon_skb = NULL;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (priv->cfg->ops->lib->txfifo_flush) {
 		IWL_DEBUG_INFO(priv, "device request: flush all tx frames\n");
 		iwlagn_dev_txfifo_flush(priv, IWL_DROP_ALL);
@@ -2924,6 +3019,7 @@ static int iwl_mac_offchannel_tx(struct ieee80211_hw *hw, struct sk_buff *skb,
 	 * so need to add that again here.
 	 */
 	if (skb->len > hw->wiphy->max_scan_ie_len + 24 + 2) {
+<<<<<<< HEAD
 		ret = -ENOBUFS;
 		goto out;
 	}
@@ -3081,6 +3177,54 @@ static void iwlagn_disable_roc_work(struct work_struct *work)
 	struct iwl_priv *priv = container_of(work, struct iwl_priv,
 					     hw_roc_disable_work.work);
 =======
+=======
+		ret = -ENOBUFS;
+		goto out;
+	}
+
+	priv->_agn.offchan_tx_skb = skb;
+	priv->_agn.offchan_tx_timeout = wait;
+	priv->_agn.offchan_tx_chan = chan;
+
+	ret = iwl_scan_initiate(priv, priv->contexts[IWL_RXON_CTX_PAN].vif,
+				IWL_SCAN_OFFCH_TX, chan->band);
+	if (ret)
+		priv->_agn.offchan_tx_skb = NULL;
+ out:
+	mutex_unlock(&priv->mutex);
+ free:
+	if (ret < 0)
+		kfree_skb(skb);
+
+	return ret;
+}
+
+static int iwl_mac_offchannel_tx_cancel_wait(struct ieee80211_hw *hw)
+{
+	struct iwl_priv *priv = hw->priv;
+	int ret;
+
+	mutex_lock(&priv->mutex);
+
+	if (!priv->_agn.offchan_tx_skb) {
+		ret = -EINVAL;
+		goto unlock;
+	}
+
+	priv->_agn.offchan_tx_skb = NULL;
+
+	ret = iwl_scan_cancel_timeout(priv, 200);
+	if (ret)
+		ret = -EIO;
+unlock:
+	mutex_unlock(&priv->mutex);
+
+	return ret;
+}
+
+/*****************************************************************************
+ *
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * mac80211 entry point functions
  *
  *****************************************************************************/
@@ -3741,16 +3885,24 @@ static int iwl_mac_cancel_remain_on_channel(struct ieee80211_hw *hw)
 		return -EOPNOTSUPP;
 
 	cancel_delayed_work_sync(&priv->_agn.hw_roc_work);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	mutex_lock(&priv->mutex);
 	iwlagn_disable_roc(priv);
 	mutex_unlock(&priv->mutex);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /*****************************************************************************
@@ -3764,18 +3916,25 @@ static void iwl_setup_deferred_work(struct iwl_priv *priv)
 	priv->workqueue = create_singlethread_workqueue(DRV_NAME);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	INIT_WORK(&priv->restart, iwl_bg_restart);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	init_waitqueue_head(&priv->wait_command_queue);
 
 	INIT_WORK(&priv->restart, iwl_bg_restart);
 	INIT_WORK(&priv->rx_replenish, iwl_bg_rx_replenish);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_WORK(&priv->beacon_update, iwl_bg_beacon_update);
 	INIT_WORK(&priv->run_time_calib_work, iwl_bg_run_time_calib_work);
 	INIT_WORK(&priv->tx_flush, iwl_bg_tx_flush);
 	INIT_WORK(&priv->bt_full_concurrency, iwl_bg_bt_full_concurrency);
 	INIT_WORK(&priv->bt_runtime_config, iwl_bg_bt_runtime_config);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	INIT_DELAYED_WORK(&priv->hw_roc_disable_work,
 			  iwlagn_disable_roc_work);
@@ -3785,13 +3944,18 @@ static void iwl_setup_deferred_work(struct iwl_priv *priv)
 	if (cfg(priv)->bt_params)
 		iwlagn_bt_setup_deferred_work(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	INIT_DELAYED_WORK(&priv->_agn.hw_roc_work, iwlagn_bg_roc_done);
 
 	iwl_setup_scan_deferred_work(priv);
 
 	if (priv->cfg->ops->lib->setup_deferred_work)
 		priv->cfg->ops->lib->setup_deferred_work(priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	init_timer(&priv->statistics_periodic);
 	priv->statistics_periodic.data = (unsigned long)priv;
@@ -3805,6 +3969,7 @@ static void iwl_setup_deferred_work(struct iwl_priv *priv)
 	priv->watchdog.data = (unsigned long)priv;
 	priv->watchdog.function = iwl_bg_watchdog;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 
 void iwl_cancel_deferred_work(struct iwl_priv *priv)
@@ -3812,6 +3977,8 @@ void iwl_cancel_deferred_work(struct iwl_priv *priv)
 	if (cfg(priv)->bt_params)
 		iwlagn_bt_cancel_deferred_work(priv);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	tasklet_init(&priv->irq_tasklet, (void (*)(unsigned long))
 		iwl_irq_tasklet, (unsigned long)priv);
@@ -3821,7 +3988,10 @@ static void iwl_cancel_deferred_work(struct iwl_priv *priv)
 {
 	if (priv->cfg->ops->lib->cancel_deferred_work)
 		priv->cfg->ops->lib->cancel_deferred_work(priv);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cancel_work_sync(&priv->run_time_calib_work);
 	cancel_work_sync(&priv->beacon_update);
@@ -3831,20 +4001,28 @@ static void iwl_cancel_deferred_work(struct iwl_priv *priv)
 	cancel_work_sync(&priv->bt_full_concurrency);
 	cancel_work_sync(&priv->bt_runtime_config);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cancel_delayed_work_sync(&priv->hw_roc_disable_work);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	del_timer_sync(&priv->statistics_periodic);
 	del_timer_sync(&priv->ucode_trace);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static void iwl_init_hw_rates(struct ieee80211_rate *rates)
 =======
 static void iwl_init_hw_rates(struct iwl_priv *priv,
 			      struct ieee80211_rate *rates)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+static void iwl_init_hw_rates(struct iwl_priv *priv,
+			      struct ieee80211_rate *rates)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	int i;
 
@@ -3870,21 +4048,28 @@ static int iwl_init_drv(struct iwl_priv *priv)
 
 	spin_lock_init(&priv->sta_lock);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	mutex_init(&priv->mutex);
 
 	INIT_LIST_HEAD(&priv->calib_results);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	spin_lock_init(&priv->hcmd_lock);
 
 	mutex_init(&priv->mutex);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->ieee_channels = NULL;
 	priv->ieee_rates = NULL;
 	priv->band = IEEE80211_BAND_2GHZ;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	priv->plcp_delta_threshold =
 		cfg(priv)->base_params->plcp_delta_threshold;
@@ -3896,11 +4081,16 @@ static int iwl_init_drv(struct iwl_priv *priv)
 
 	priv->ucode_owner = IWL_OWNERSHIP_DRIVER;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	priv->iw_mode = NL80211_IFTYPE_STATION;
 	priv->current_ht_config.smps = IEEE80211_SMPS_STATIC;
 	priv->missed_beacon_threshold = IWL_MISSED_BEACON_THRESHOLD_DEF;
 	priv->_agn.agg_tids_count = 0;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* initialize force reset */
 	priv->force_reset[IWL_RF_RESET].reset_duration =
@@ -3912,16 +4102,23 @@ static int iwl_init_drv(struct iwl_priv *priv)
 
 	/* Choose which receivers/antennas to use */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwlagn_set_rxon_chain(priv, &priv->contexts[IWL_RXON_CTX_BSS]);
 =======
 	if (priv->cfg->ops->hcmd->set_rxon_chain)
 		priv->cfg->ops->hcmd->set_rxon_chain(priv,
 					&priv->contexts[IWL_RXON_CTX_BSS]);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->cfg->ops->hcmd->set_rxon_chain)
+		priv->cfg->ops->hcmd->set_rxon_chain(priv,
+					&priv->contexts[IWL_RXON_CTX_BSS]);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	iwl_init_scan_params(priv);
 
 	/* init bt coex */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (cfg(priv)->bt_params &&
 	    cfg(priv)->bt_params->advanced_bt_coexist) {
@@ -3929,6 +4126,10 @@ static int iwl_init_drv(struct iwl_priv *priv)
 	if (priv->cfg->bt_params &&
 	    priv->cfg->bt_params->advanced_bt_coexist) {
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (priv->cfg->bt_params &&
+	    priv->cfg->bt_params->advanced_bt_coexist) {
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		priv->kill_ack_mask = IWLAGN_BT_KILL_ACK_MASK_DEFAULT;
 		priv->kill_cts_mask = IWLAGN_BT_KILL_CTS_MASK_DEFAULT;
 		priv->bt_valid = IWLAGN_BT_ALL_VALID_MSK;
@@ -3944,19 +4145,27 @@ static int iwl_init_drv(struct iwl_priv *priv)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = iwl_init_geos(priv);
 =======
 	ret = iwlcore_init_geos(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = iwlcore_init_geos(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret) {
 		IWL_ERR(priv, "initializing geos failed: %d\n", ret);
 		goto err_free_channel_map;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_init_hw_rates(priv->ieee_rates);
 =======
 	iwl_init_hw_rates(priv, priv->ieee_rates);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	iwl_init_hw_rates(priv, priv->ieee_rates);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	return 0;
 
@@ -3968,6 +4177,7 @@ err:
 
 static void iwl_uninit_drv(struct iwl_priv *priv)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iwl_free_geos(priv);
 	iwl_free_channel_map(priv);
@@ -4064,6 +4274,8 @@ static struct iwl_op_mode *iwl_op_mode_dvm_start(struct iwl_trans *trans,
 		REPLY_TX,
 	};
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iwl_calib_free_results(priv);
 	iwlcore_free_geos(priv);
 	iwl_free_channel_map(priv);
@@ -4179,11 +4391,15 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	unsigned long flags;
 	u16 pci_cmd, num_mac;
 	u32 hw_rev;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/************************
 	 * 1. Allocating HW data
 	 ************************/
+<<<<<<< HEAD
 <<<<<<< HEAD
 	hw = iwl_alloc_all();
 	if (!hw) {
@@ -4244,6 +4460,8 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	/* enable/disable bt channel inhibition */
 	priv->bt_ch_announce = iwlagn_mod_params.bt_ch_announce;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	hw = iwl_alloc_all(cfg);
 	if (!hw) {
@@ -4321,13 +4539,17 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 
 	/* enable/disable bt channel inhibition */
 	priv->bt_ch_announce = iwlagn_bt_ch_announce;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IWL_DEBUG_INFO(priv, "BT channel inhibition is %s\n",
 		       (priv->bt_ch_announce) ? "On" : "Off");
 
 	if (iwl_alloc_traffic_mem(priv))
 		IWL_ERR(priv, "Not enough memory to generate traffic log\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* these spin locks will be used in apm_ops.init and EEPROM access
 	 * we should init now
@@ -4355,6 +4577,8 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 		IWL_ERR(priv, "Unable to init EEPROM\n");
 		goto out_free_traffic_mem;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/**************************
 	 * 2. Initializing PCI bus
 	 **************************/
@@ -4436,21 +4660,29 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	if (err) {
 		IWL_ERR(priv, "Unable to init EEPROM\n");
 		goto out_iounmap;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 	err = iwl_eeprom_check_version(priv);
 	if (err)
 		goto out_free_eeprom;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	err = iwl_eeprom_init_hw_params(priv);
 =======
 	err = iwl_eeprom_check_sku(priv);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	err = iwl_eeprom_check_sku(priv);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (err)
 		goto out_free_eeprom;
 
 	/* extract MAC Address */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iwl_eeprom_get_mac(priv->shrd, priv->addresses[0].addr);
 	IWL_DEBUG_INFO(priv, "MAC address: %pM\n", priv->addresses[0].addr);
@@ -4458,12 +4690,17 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	priv->hw->wiphy->n_addresses = 1;
 	num_mac = iwl_eeprom_query16(priv->shrd, EEPROM_NUM_MAC_ADDRESS);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iwl_eeprom_get_mac(priv, priv->addresses[0].addr);
 	IWL_DEBUG_INFO(priv, "MAC address: %pM\n", priv->addresses[0].addr);
 	priv->hw->wiphy->addresses = priv->addresses;
 	priv->hw->wiphy->n_addresses = 1;
 	num_mac = iwl_eeprom_query16(priv, EEPROM_NUM_MAC_ADDRESS);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (num_mac > 1) {
 		memcpy(priv->addresses[1].addr, priv->addresses[0].addr,
 		       ETH_ALEN);
@@ -4472,6 +4709,7 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	}
 
 	/************************
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 * 4. Setup HW constants
 	 ************************/
@@ -4495,6 +4733,8 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	/*******************
 	 * 5. Setup priv
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * 5. Setup HW constants
 	 ************************/
 	if (iwl_set_hw_params(priv)) {
@@ -4504,7 +4744,10 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 
 	/*******************
 	 * 6. Setup priv
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 *******************/
 
 	err = iwl_init_drv(priv);
@@ -4514,9 +4757,12 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 
 	/********************
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * 6. Setup services
 	 ********************/
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * 7. Setup services
 	 ********************/
 	spin_lock_irqsave(&priv->lock, flags);
@@ -4534,11 +4780,15 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 		goto out_disable_msi;
 	}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	iwl_setup_deferred_work(priv);
 	iwl_setup_rx_handlers(priv);
 	iwl_testmode_init(priv);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iwl_power_initialize(priv);
 	iwl_tt_initialize(priv);
@@ -4593,6 +4843,8 @@ static void iwl_op_mode_dvm_stop(struct iwl_op_mode *op_mode)
 {
 	struct iwl_priv *priv = IWL_OP_MODE_GET_DVM(op_mode);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/*********************************************
 	 * 8. Enable interrupts and read RFKILL state
 	 *********************************************/
@@ -4659,11 +4911,15 @@ static void __devexit iwl_pci_remove(struct pci_dev *pdev)
 		return;
 
 	wait_for_completion(&priv->_agn.firmware_loading_complete);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IWL_DEBUG_INFO(priv, "*** UNLOAD DRIVER ***\n");
 
 	iwl_dbgfs_unregister(priv);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	iwl_testmode_cleanup(priv);
@@ -4677,6 +4933,8 @@ static void __devexit iwl_pci_remove(struct pci_dev *pdev)
 
 	iwl_eeprom_free(priv->shrd);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	sysfs_remove_group(&pdev->dev.kobj, &iwl_attribute_group);
 
 	/* ieee80211_unregister_hw call wil cause iwl_mac_stop to
@@ -4715,16 +4973,23 @@ static void __devexit iwl_pci_remove(struct pci_dev *pdev)
 
 	iwl_eeprom_free(priv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/*netif_stop_queue(dev); */
 	flush_workqueue(priv->workqueue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* ieee80211_unregister_hw calls iwlagn_mac_stop, which flushes
 =======
 	/* ieee80211_unregister_hw calls iwl_mac_stop, which flushes
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* ieee80211_unregister_hw calls iwl_mac_stop, which flushes
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	 * priv->workqueue... so we can't take down the workqueue
 	 * until now... */
 	destroy_workqueue(priv->workqueue);
@@ -4732,9 +4997,12 @@ static void __devexit iwl_pci_remove(struct pci_dev *pdev)
 	iwl_free_traffic_mem(priv);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iwl_uninit_drv(priv);
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	free_irq(priv->pci_dev->irq, priv);
 	pci_disable_msi(priv->pci_dev);
 	pci_iounmap(pdev, priv->hw_base);
@@ -4746,12 +5014,16 @@ static void __devexit iwl_pci_remove(struct pci_dev *pdev)
 
 	iwl_free_isr_ict(priv);
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dev_kfree_skb(priv->beacon_skb);
 
 	ieee80211_free_hw(priv->hw);
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void iwl_cmd_queue_full(struct iwl_op_mode *op_mode)
 {
@@ -4821,6 +5093,8 @@ const struct iwl_op_mode_ops iwl_dvm_ops = {
 };
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 /*****************************************************************************
  *
@@ -4829,8 +5103,11 @@ const struct iwl_op_mode_ops iwl_dvm_ops = {
  *****************************************************************************/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 struct kmem_cache *iwl_tx_cmd_pool;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 /* Hardware specific file defines the PCI IDs table for that hardware module */
 static DEFINE_PCI_DEVICE_TABLE(iwl_hw_card_ids) = {
 	{IWL_PCI_DEVICE(0x4232, 0x1201, iwl5100_agn_cfg)}, /* Mini Card */
@@ -5029,7 +5306,10 @@ static struct pci_driver iwl_driver = {
 	.remove = __devexit_p(iwl_pci_remove),
 	.driver.pm = IWL_PM_OPS,
 };
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static int __init iwl_init(void)
 {
@@ -5038,6 +5318,7 @@ static int __init iwl_init(void)
 	pr_info(DRV_DESCRIPTION ", " DRV_VERSION "\n");
 	pr_info(DRV_COPYRIGHT "\n");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iwl_tx_cmd_pool = kmem_cache_create("iwl_dev_cmd",
 					    sizeof(struct iwl_device_cmd),
@@ -5061,6 +5342,8 @@ error_pci_register:
 error_rc_register:
 	kmem_cache_destroy(iwl_tx_cmd_pool);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	ret = iwlagn_rate_control_register();
 	if (ret) {
 		pr_err("Unable to register rate control algorithm: %d\n", ret);
@@ -5077,12 +5360,16 @@ error_rc_register:
 
 error_register:
 	iwlagn_rate_control_unregister();
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return ret;
 }
 
 static void __exit iwl_exit(void)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iwl_pci_unregister_driver();
 	iwlagn_rate_control_unregister();
@@ -5091,6 +5378,10 @@ static void __exit iwl_exit(void)
 	pci_unregister_driver(&iwl_driver);
 	iwlagn_rate_control_unregister();
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	pci_unregister_driver(&iwl_driver);
+	iwlagn_rate_control_unregister();
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 module_exit(iwl_exit);
@@ -5098,32 +5389,43 @@ module_init(iwl_init);
 
 #ifdef CONFIG_IWLWIFI_DEBUG
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param_named(debug, iwlagn_mod_params.debug_level, uint,
 		   S_IRUGO | S_IWUSR);
 =======
 module_param_named(debug, iwl_debug_level, uint, S_IRUGO | S_IWUSR);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+module_param_named(debug, iwl_debug_level, uint, S_IRUGO | S_IWUSR);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 MODULE_PARM_DESC(debug, "debug output mask");
 #endif
 
 module_param_named(swcrypto, iwlagn_mod_params.sw_crypto, int, S_IRUGO);
 MODULE_PARM_DESC(swcrypto, "using crypto in software (default 0 [hardware])");
 <<<<<<< HEAD
+<<<<<<< HEAD
 module_param_named(11n_disable, iwlagn_mod_params.disable_11n, uint, S_IRUGO);
 MODULE_PARM_DESC(11n_disable,
 	"disable 11n functionality, bitmap: 1: full, 2: agg TX, 4: agg RX");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(queues_num, iwlagn_mod_params.num_of_queues, int, S_IRUGO);
 MODULE_PARM_DESC(queues_num, "number of hw queues.");
 module_param_named(11n_disable, iwlagn_mod_params.disable_11n, int, S_IRUGO);
 MODULE_PARM_DESC(11n_disable, "disable 11n functionality");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(amsdu_size_8K, iwlagn_mod_params.amsdu_size_8K,
 		   int, S_IRUGO);
 MODULE_PARM_DESC(amsdu_size_8K, "enable 8K amsdu size");
 module_param_named(fw_restart, iwlagn_mod_params.restart_fw, int, S_IRUGO);
 MODULE_PARM_DESC(fw_restart, "restart firmware in case of error");
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 module_param_named(ucode_alternative,
 		   iwlagn_mod_params.wanted_ucode_alternative,
@@ -5141,6 +5443,8 @@ module_param_named(bt_ch_inhibition, iwlagn_mod_params.bt_ch_announce,
 MODULE_PARM_DESC(bt_ch_inhibition,
 		 "Enable BT channel inhibition (default: enable)");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 module_param_named(ucode_alternative, iwlagn_wanted_ucode_alternative, int,
 		   S_IRUGO);
 MODULE_PARM_DESC(ucode_alternative,
@@ -5153,13 +5457,17 @@ MODULE_PARM_DESC(antenna_coupling,
 module_param_named(bt_ch_inhibition, iwlagn_bt_ch_announce, bool, S_IRUGO);
 MODULE_PARM_DESC(bt_ch_inhibition,
 		 "Disable BT channel inhibition (default: enable)");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 module_param_named(plcp_check, iwlagn_mod_params.plcp_check, bool, S_IRUGO);
 MODULE_PARM_DESC(plcp_check, "Check plcp health (default: 1 [enabled])");
 
 module_param_named(ack_check, iwlagn_mod_params.ack_check, bool, S_IRUGO);
 MODULE_PARM_DESC(ack_check, "Check ack health (default: 0 [disabled])");
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 module_param_named(wd_disable, iwlagn_mod_params.wd_disable, int, S_IRUGO);
@@ -5217,3 +5525,5 @@ MODULE_PARM_DESC(no_sleep_autoadjust,
 		 "according to maximum network latency (default: true)");
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

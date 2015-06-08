@@ -27,9 +27,12 @@
 #include <linux/ethtool.h>
 #include <linux/if_arp.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/if_vlan.h>
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/if_link.h>
 #include <linux/if_macvlan.h>
 #include <net/rtnetlink.h>
@@ -174,12 +177,15 @@ static rx_handler_result_t macvlan_handle_frame(struct sk_buff **pskb)
 	port = macvlan_port_get_rcu(skb->dev);
 	if (is_multicast_ether_addr(eth->h_dest)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		skb = ip_check_defrag(skb, IP_DEFRAG_MACVLAN);
 		if (!skb)
 			return RX_HANDLER_CONSUMED;
 		eth = eth_hdr(skb);
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		src = macvlan_hash_lookup(port, eth->h_source);
 		if (!src)
 			/* frame comes from an external address */
@@ -201,6 +207,7 @@ static rx_handler_result_t macvlan_handle_frame(struct sk_buff **pskb)
 			macvlan_broadcast(skb, port, src->dev,
 					  MACVLAN_MODE_VEPA);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		else {
 			/* forward to original port. */
 			vlan = src;
@@ -210,6 +217,8 @@ static rx_handler_result_t macvlan_handle_frame(struct sk_buff **pskb)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return RX_HANDLER_PASS;
 	}
 
@@ -382,9 +391,12 @@ static int macvlan_set_mac_address(struct net_device *dev, void *p)
 	if (!(dev->flags & IFF_UP)) {
 		/* Just copy in the new address */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dev->addr_assign_type &= ~NET_ADDR_RANDOM;
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		memcpy(dev->dev_addr, addr->sa_data, ETH_ALEN);
 	} else {
 		/* Rehash and update the device filters */
@@ -440,11 +452,15 @@ static struct lock_class_key macvlan_netdev_addr_lock_key;
 	(NETIF_F_SG | NETIF_F_ALL_CSUM | NETIF_F_HIGHDMA | NETIF_F_FRAGLIST | \
 	 NETIF_F_GSO | NETIF_F_TSO | NETIF_F_UFO | NETIF_F_GSO_ROBUST | \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 NETIF_F_TSO_ECN | NETIF_F_TSO6 | NETIF_F_GRO | NETIF_F_RXCSUM | \
 	 NETIF_F_HW_VLAN_FILTER)
 =======
 	 NETIF_F_TSO_ECN | NETIF_F_TSO6 | NETIF_F_GRO | NETIF_F_RXCSUM)
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	 NETIF_F_TSO_ECN | NETIF_F_TSO6 | NETIF_F_GRO | NETIF_F_RXCSUM)
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 #define MACVLAN_STATE_MASK \
 	((1<<__LINK_STATE_NOCARRIER) | (1<<__LINK_STATE_DORMANT))
@@ -540,6 +556,7 @@ static struct rtnl_link_stats64 *macvlan_dev_get_stats64(struct net_device *dev,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int macvlan_vlan_rx_add_vid(struct net_device *dev,
 				    unsigned short vid)
 {
@@ -561,6 +578,8 @@ static int macvlan_vlan_rx_kill_vid(struct net_device *dev,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static void macvlan_ethtool_get_drvinfo(struct net_device *dev,
 					struct ethtool_drvinfo *drvinfo)
 {
@@ -573,11 +592,15 @@ static int macvlan_ethtool_get_settings(struct net_device *dev,
 {
 	const struct macvlan_dev *vlan = netdev_priv(dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	return __ethtool_get_settings(vlan->lowerdev, cmd);
 =======
 	return dev_ethtool_get_settings(vlan->lowerdev, cmd);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return dev_ethtool_get_settings(vlan->lowerdev, cmd);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static const struct ethtool_ops macvlan_ethtool_ops = {
@@ -596,6 +619,7 @@ static const struct net_device_ops macvlan_netdev_ops = {
 	.ndo_change_rx_flags	= macvlan_change_rx_flags,
 	.ndo_set_mac_address	= macvlan_set_mac_address,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	.ndo_set_rx_mode	= macvlan_set_multicast_list,
 	.ndo_get_stats64	= macvlan_dev_get_stats64,
 	.ndo_validate_addr	= eth_validate_addr,
@@ -606,6 +630,11 @@ static const struct net_device_ops macvlan_netdev_ops = {
 	.ndo_get_stats64	= macvlan_dev_get_stats64,
 	.ndo_validate_addr	= eth_validate_addr,
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	.ndo_set_multicast_list	= macvlan_set_multicast_list,
+	.ndo_get_stats64	= macvlan_dev_get_stats64,
+	.ndo_validate_addr	= eth_validate_addr,
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 void macvlan_common_setup(struct net_device *dev)
@@ -718,10 +747,14 @@ int macvlan_common_newlink(struct net *src_net, struct net_device *dev,
 
 	if (!tb[IFLA_ADDRESS])
 <<<<<<< HEAD
+<<<<<<< HEAD
 		eth_hw_addr_random(dev);
 =======
 		random_ether_addr(dev->dev_addr);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		random_ether_addr(dev->dev_addr);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (!macvlan_port_exists(lowerdev)) {
 		err = macvlan_port_create(lowerdev);

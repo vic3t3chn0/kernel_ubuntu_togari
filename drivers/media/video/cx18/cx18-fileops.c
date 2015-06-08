@@ -752,11 +752,14 @@ int cx18_v4l2_close(struct file *filp)
 	CX18_DEBUG_IOCTL("close() of %s\n", s->name);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	mutex_lock(&cx->serialize_lock);
 	/* Stop radio */
 	if (id->type == CX18_ENC_STREAM_TYPE_RAD &&
 			v4l2_fh_is_singular_file(filp)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	v4l2_fh_del(fh);
 	v4l2_fh_exit(fh);
 
@@ -771,7 +774,10 @@ int cx18_v4l2_close(struct file *filp)
 	/* Stop radio */
 	mutex_lock(&cx->serialize_lock);
 	if (id->type == CX18_ENC_STREAM_TYPE_RAD) {
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		/* Closing radio device, return to TV mode */
 		cx18_mute(cx);
 		/* Mark that the radio is no longer in use */
@@ -789,6 +795,7 @@ int cx18_v4l2_close(struct file *filp)
 		/* Done! Unmute and continue. */
 		cx18_unmute(cx);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 
 	v4l2_fh_del(fh);
@@ -798,13 +805,18 @@ int cx18_v4l2_close(struct file *filp)
 	if (s->id == id->open_id)
 		cx18_stop_capture(id, 0);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		cx18_release_stream(s);
 	} else {
 		cx18_stop_capture(id, 0);
 		if (id->type == CX18_ENC_STREAM_TYPE_YUV)
 			videobuf_mmap_free(&id->vbuf_q);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	kfree(id);
 	mutex_unlock(&cx->serialize_lock);
 	return 0;
@@ -831,11 +843,14 @@ static int cx18_serialized_open(struct cx18_stream *s, struct file *filp)
 	item->open_id = cx->open_id++;
 	filp->private_data = &item->fh;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	v4l2_fh_add(&item->fh);
 
 	if (item->type == CX18_ENC_STREAM_TYPE_RAD &&
 			v4l2_fh_is_singular_file(filp)) {
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (item->type == CX18_ENC_STREAM_TYPE_RAD) {
 		/* Try to claim this stream */
@@ -846,16 +861,23 @@ static int cx18_serialized_open(struct cx18_stream *s, struct file *filp)
 			return -EBUSY;
 		}
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (!test_bit(CX18_F_I_RADIO_USER, &cx->i_flags)) {
 			if (atomic_read(&cx->ana_capturing) > 0) {
 				/* switching to radio while capture is
 				   in progress is not polite */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				v4l2_fh_del(&item->fh);
 =======
 				cx18_release_stream(s);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+				cx18_release_stream(s);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 				v4l2_fh_exit(&item->fh);
 				kfree(item);
 				return -EBUSY;
@@ -874,9 +896,13 @@ static int cx18_serialized_open(struct cx18_stream *s, struct file *filp)
 		cx18_unmute(cx);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	v4l2_fh_add(&item->fh);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	v4l2_fh_add(&item->fh);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	return 0;
 }
 

@@ -96,9 +96,13 @@ ivb_update_plane(struct drm_plane *plane, struct drm_framebuffer *fb,
 	sprctl |= SPRITE_TRICKLE_FEED_DISABLE;
 	sprctl |= SPRITE_ENABLE;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	sprctl |= SPRITE_DEST_KEY;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	sprctl |= SPRITE_DEST_KEY;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* Sizes are 0 based */
 	src_w--;
@@ -229,14 +233,19 @@ snb_update_plane(struct drm_plane *plane, struct drm_framebuffer *fb,
 	/* Mask out pixel format bits in case we change it */
 	dvscntr &= ~DVS_PIXFORMAT_MASK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	dvscntr &= ~DVS_RGB_ORDER_XBGR;
 =======
 	dvscntr &= ~DVS_RGB_ORDER_RGBX;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	dvscntr &= ~DVS_RGB_ORDER_RGBX;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	dvscntr &= ~DVS_YUV_BYTE_ORDER_MASK;
 
 	switch (fb->pixel_format) {
 	case DRM_FORMAT_XBGR8888:
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dvscntr |= DVS_FORMAT_RGBX888 | DVS_RGB_ORDER_XBGR;
 		pixel_size = 4;
@@ -244,12 +253,17 @@ snb_update_plane(struct drm_plane *plane, struct drm_framebuffer *fb,
 	case DRM_FORMAT_XRGB8888:
 		dvscntr |= DVS_FORMAT_RGBX888;
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		dvscntr |= DVS_FORMAT_RGBX888;
 		pixel_size = 4;
 		break;
 	case DRM_FORMAT_XRGB8888:
 		dvscntr |= DVS_FORMAT_RGBX888 | DVS_RGB_ORDER_RGBX;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pixel_size = 4;
 		break;
 	case DRM_FORMAT_YUYV:
@@ -427,11 +441,14 @@ intel_update_plane(struct drm_plane *plane, struct drm_crtc *crtc,
 	old_obj = intel_plane->obj;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	src_w = src_w >> 16;
 	src_h = src_h >> 16;
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* Pipe must be running... */
 	if (!(I915_READ(PIPECONF(pipe)) & PIPECONF_ENABLE))
 		return -EINVAL;

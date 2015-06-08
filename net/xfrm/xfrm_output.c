@@ -21,7 +21,15 @@
 
 static int xfrm_output2(struct sk_buff *skb);
 
+<<<<<<< HEAD
 static int xfrm_skb_check_space(struct sk_buff *skb)
+=======
+<<<<<<< HEAD
+static int xfrm_skb_check_space(struct sk_buff *skb)
+=======
+static int xfrm_state_check_space(struct xfrm_state *x, struct sk_buff *skb)
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	struct dst_entry *dst = skb_dst(skb);
 	int nhead = dst->header_len + LL_RESERVED_SPACE(dst->dev)
@@ -48,7 +56,15 @@ static int xfrm_output_one(struct sk_buff *skb, int err)
 		goto resume;
 
 	do {
+<<<<<<< HEAD
 		err = xfrm_skb_check_space(skb);
+=======
+<<<<<<< HEAD
+		err = xfrm_skb_check_space(skb);
+=======
+		err = xfrm_state_check_space(x, skb);
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		if (err) {
 			XFRM_INC_STATS(net, LINUX_MIB_XFRMOUTERROR);
 			goto error_nolock;

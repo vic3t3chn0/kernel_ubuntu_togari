@@ -25,6 +25,7 @@ static int perf_trace_event_perm(struct ftrace_event_call *tp_event,
 				 struct perf_event *p_event)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* The ftrace function trace is allowed only for root. */
 	if (ftrace_event_is_function(tp_event) &&
 	    perf_paranoid_kernel() && !capable(CAP_SYS_ADMIN))
@@ -32,6 +33,8 @@ static int perf_trace_event_perm(struct ftrace_event_call *tp_event,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	/* No tracing, just counting, so no obvious leak */
 	if (!(p_event->attr.sample_type & PERF_SAMPLE_RAW))
 		return 0;
@@ -53,6 +56,7 @@ static int perf_trace_event_perm(struct ftrace_event_call *tp_event,
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 static int perf_trace_event_reg(struct ftrace_event_call *tp_event,
 				struct perf_event *p_event)
 {
@@ -61,6 +65,8 @@ static int perf_trace_event_reg(struct ftrace_event_call *tp_event,
 	int cpu;
 
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 static int perf_trace_event_init(struct ftrace_event_call *tp_event,
 				 struct perf_event *p_event)
 {
@@ -72,16 +78,24 @@ static int perf_trace_event_init(struct ftrace_event_call *tp_event,
 	if (ret)
 		return ret;
 
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	p_event->tp_event = tp_event;
 	if (tp_event->perf_refcount++ > 0)
 		return 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	ret = -ENOMEM;
 
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = -ENOMEM;
+
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	list = alloc_percpu(struct hlist_head);
 	if (!list)
 		goto fail;
@@ -105,10 +119,14 @@ static int perf_trace_event_init(struct ftrace_event_call *tp_event,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	ret = tp_event->class->reg(tp_event, TRACE_REG_PERF_REGISTER, NULL);
 =======
 	ret = tp_event->class->reg(tp_event, TRACE_REG_PERF_REGISTER);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	ret = tp_event->class->reg(tp_event, TRACE_REG_PERF_REGISTER);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	if (ret)
 		goto fail;
 
@@ -133,6 +151,7 @@ fail:
 	return ret;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 static void perf_trace_event_unreg(struct perf_event *p_event)
 {
@@ -199,6 +218,8 @@ static int perf_trace_event_init(struct ftrace_event_call *tp_event,
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int perf_trace_init(struct perf_event *p_event)
 {
 	struct ftrace_event_call *tp_event;
@@ -222,6 +243,7 @@ int perf_trace_init(struct perf_event *p_event)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void perf_trace_destroy(struct perf_event *p_event)
 {
 	mutex_lock(&event_mutex);
@@ -232,6 +254,8 @@ void perf_trace_destroy(struct perf_event *p_event)
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 int perf_trace_add(struct perf_event *p_event, int flags)
 {
 	struct ftrace_event_call *tp_event = p_event->tp_event;
@@ -249,19 +273,26 @@ int perf_trace_add(struct perf_event *p_event, int flags)
 	hlist_add_head_rcu(&p_event->hlist_entry, list);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return tp_event->class->reg(tp_event, TRACE_REG_PERF_ADD, p_event);
 =======
 	return 0;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	return 0;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 void perf_trace_del(struct perf_event *p_event, int flags)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ftrace_event_call *tp_event = p_event->tp_event;
 	hlist_del_rcu(&p_event->hlist_entry);
 	tp_event->class->reg(tp_event, TRACE_REG_PERF_DEL, p_event);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	hlist_del_rcu(&p_event->hlist_entry);
 }
 
@@ -294,7 +325,10 @@ void perf_trace_destroy(struct perf_event *p_event)
 out:
 	module_put(tp_event->mod);
 	mutex_unlock(&event_mutex);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 __kprobes void *perf_trace_buf_prepare(int size, unsigned short type,
@@ -326,6 +360,7 @@ __kprobes void *perf_trace_buf_prepare(int size, unsigned short type,
 	return raw_data;
 }
 EXPORT_SYMBOL_GPL(perf_trace_buf_prepare);
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 #ifdef CONFIG_FUNCTION_TRACER
@@ -412,3 +447,5 @@ int perf_ftrace_event_register(struct ftrace_event_call *call,
 #endif /* CONFIG_FUNCTION_TRACER */
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2

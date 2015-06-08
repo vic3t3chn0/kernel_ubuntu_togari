@@ -129,7 +129,15 @@ static void __init wbd222_init(void)
 }
 
 MACHINE_START(WBD222, "Wiliboard WBD-222")
+<<<<<<< HEAD
 	.atag_offset	= 0x100,
+=======
+<<<<<<< HEAD
+	.atag_offset	= 0x100,
+=======
+	.boot_params	= 0x100,
+>>>>>>> 58a75b6a81be54a8b491263ca1af243e9d8617b9
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	.map_io		= gemini_map_io,
 	.init_irq	= gemini_init_irq,
 	.timer		= &wbd222_timer,

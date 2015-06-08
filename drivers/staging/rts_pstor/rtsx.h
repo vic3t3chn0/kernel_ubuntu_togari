@@ -25,19 +25,25 @@
 #define __REALTEK_RTSX_H
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <linux/io.h>
 #include <linux/bitops.h>
 #include <linux/delay.h>
 #include <linux/interrupt.h>
 #include <linux/kernel.h>
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <asm/io.h>
 #include <asm/bitops.h>
 #include <linux/delay.h>
 #include <linux/interrupt.h>
 #include <linux/kernel.h>
 #include <linux/version.h>
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/init.h>
@@ -90,10 +96,14 @@
 #define wait_timeout_x(task_state, msecs)		\
 do {							\
 <<<<<<< HEAD
+<<<<<<< HEAD
 		set_current_state((task_state));	\
 =======
 		set_current_state((task_state)); 	\
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		set_current_state((task_state)); 	\
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		schedule_timeout((msecs) * HZ / 1000);	\
 } while (0)
 #define wait_timeout(msecs)	wait_timeout_x(TASK_INTERRUPTIBLE, (msecs))
@@ -116,23 +126,32 @@ struct rtsx_chip;
 
 struct rtsx_dev {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct pci_dev *pci;
 =======
 	struct pci_dev 		*pci;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	struct pci_dev 		*pci;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* pci resources */
 	unsigned long 		addr;
 	void __iomem 		*remap_addr;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int irq;
 =======
 	int 			irq;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int 			irq;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	/* locks */
 	spinlock_t 		reg_lock;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	struct task_struct	*ctl_thread;	 /* the control thread   */
 	struct task_struct	*polling_thread; /* the polling thread   */
@@ -149,6 +168,11 @@ struct rtsx_dev {
 	struct semaphore	sema;		 /* to sleep thread on	    */
 	struct completion	notify;		 /* thread begin/end	    */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	/* mutual exclusion and synchronization structures */
+	struct semaphore	sema;		 /* to sleep thread on	    */
+	struct completion	notify;		 /* thread begin/end	    */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	wait_queue_head_t	delay_wait;	 /* wait during scan, reset */
 	struct mutex		dev_mutex;
 

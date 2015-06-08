@@ -15,10 +15,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/capability.h>
@@ -303,9 +306,13 @@ static int __devinit pci200_pci_init_one(struct pci_dev *pdev,
 	card = kzalloc(sizeof(card_t), GFP_KERNEL);
 	if (card == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		printk(KERN_ERR "pci200syn: unable to allocate memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "pci200syn: unable to allocate memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci_release_regions(pdev);
 		pci_disable_device(pdev);
 		return -ENOBUFS;
@@ -315,10 +322,14 @@ static int __devinit pci200_pci_init_one(struct pci_dev *pdev,
 	card->ports[1].netdev = alloc_hdlcdev(&card->ports[1]);
 	if (!card->ports[0].netdev || !card->ports[1].netdev) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("unable to allocate memory\n");
 =======
 		printk(KERN_ERR "pci200syn: unable to allocate memory\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "pci200syn: unable to allocate memory\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci200_pci_remove_one(pdev);
 		return -ENOMEM;
 	}
@@ -327,10 +338,14 @@ static int __devinit pci200_pci_init_one(struct pci_dev *pdev,
 	    pci_resource_len(pdev, 2) != PCI200SYN_SCA_SIZE ||
 	    pci_resource_len(pdev, 3) < 16384) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("invalid card EEPROM parameters\n");
 =======
 		printk(KERN_ERR "pci200syn: invalid card EEPROM parameters\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "pci200syn: invalid card EEPROM parameters\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci200_pci_remove_one(pdev);
 		return -EFAULT;
 	}
@@ -348,10 +363,14 @@ static int __devinit pci200_pci_init_one(struct pci_dev *pdev,
 	    card->scabase == NULL ||
 	    card->rambase == NULL) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("ioremap() failed\n");
 =======
 		printk(KERN_ERR "pci200syn: ioremap() failed\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "pci200syn: ioremap() failed\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci200_pci_remove_one(pdev);
 		return -EFAULT;
 	}
@@ -378,6 +397,7 @@ static int __devinit pci200_pci_init_one(struct pci_dev *pdev,
 						    card->rx_ring_buffers);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	pr_info("%u KB RAM at 0x%x, IRQ%u, using %u TX + %u RX packets rings\n",
 		ramsize / 1024, ramphys,
 		pdev->irq, card->tx_ring_buffers, card->rx_ring_buffers);
@@ -385,13 +405,18 @@ static int __devinit pci200_pci_init_one(struct pci_dev *pdev,
 	if (card->tx_ring_buffers < 1) {
 		pr_err("RAM test failed\n");
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	printk(KERN_INFO "pci200syn: %u KB RAM at 0x%x, IRQ%u, using %u TX +"
 	       " %u RX packets rings\n", ramsize / 1024, ramphys,
 	       pdev->irq, card->tx_ring_buffers, card->rx_ring_buffers);
 
 	if (card->tx_ring_buffers < 1) {
 		printk(KERN_ERR "pci200syn: RAM test failed\n");
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci200_pci_remove_one(pdev);
 		return -EFAULT;
 	}
@@ -403,11 +428,16 @@ static int __devinit pci200_pci_init_one(struct pci_dev *pdev,
 	/* Allocate IRQ */
 	if (request_irq(pdev->irq, sca_intr, IRQF_SHARED, "pci200syn", card)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_warn("could not allocate IRQ%d\n", pdev->irq);
 =======
 		printk(KERN_WARNING "pci200syn: could not allocate IRQ%d.\n",
 		       pdev->irq);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_WARNING "pci200syn: could not allocate IRQ%d.\n",
+		       pdev->irq);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		pci200_pci_remove_one(pdev);
 		return -EBUSY;
 	}
@@ -434,22 +464,32 @@ static int __devinit pci200_pci_init_one(struct pci_dev *pdev,
 		sca_init_port(port);
 		if (register_hdlc_device(dev)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			pr_err("unable to register hdlc device\n");
 =======
 			printk(KERN_ERR "pci200syn: unable to register hdlc "
 			       "device\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+			printk(KERN_ERR "pci200syn: unable to register hdlc "
+			       "device\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 			port->card = NULL;
 			pci200_pci_remove_one(pdev);
 			return -ENOBUFS;
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		netdev_info(dev, "PCI200SYN channel %d\n", port->chan);
 =======
 		printk(KERN_INFO "%s: PCI200SYN channel %d\n",
 		       dev->name, port->chan);
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_INFO "%s: PCI200SYN channel %d\n",
+		       dev->name, port->chan);
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	}
 
 	sca_flush(card);
@@ -477,10 +517,14 @@ static int __init pci200_init_module(void)
 {
 	if (pci_clock_freq < 1000000 || pci_clock_freq > 80000000) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		pr_err("Invalid PCI clock frequency\n");
 =======
 		printk(KERN_ERR "pci200syn: Invalid PCI clock frequency\n");
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+		printk(KERN_ERR "pci200syn: Invalid PCI clock frequency\n");
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return -EINVAL;
 	}
 	return pci_register_driver(&pci200_pci_driver);

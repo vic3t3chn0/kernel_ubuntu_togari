@@ -105,9 +105,13 @@
  * struct adis16209_state - device instance specific data
  * @us:			actual spi_device
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * @indio_dev:		industrial I/O device structure
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ * @indio_dev:		industrial I/O device structure
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  * @trig:		data ready trigger registered with iio
  * @tx:			transmit buffer
  * @rx:			receive buffer
@@ -115,19 +119,25 @@
  **/
 struct adis16209_state {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct spi_device	*us;
 	struct iio_trigger	*trig;
 	struct mutex		buf_lock;
 	u8			tx[ADIS16209_MAX_TX] ____cacheline_aligned;
 	u8			rx[ADIS16209_MAX_RX];
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	struct spi_device		*us;
 	struct iio_dev			*indio_dev;
 	struct iio_trigger		*trig;
 	u8				*tx;
 	u8				*rx;
 	struct mutex			buf_lock;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 };
 
 int adis16209_set_irq(struct iio_dev *indio_dev, bool enable);
@@ -142,10 +152,14 @@ int adis16209_set_irq(struct iio_dev *indio_dev, bool enable);
 #define ADIS16209_SCAN_ROT	7
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_IIO_BUFFER
 =======
 #ifdef CONFIG_IIO_RING_BUFFER
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#ifdef CONFIG_IIO_RING_BUFFER
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 void adis16209_remove_trigger(struct iio_dev *indio_dev);
 int adis16209_probe_trigger(struct iio_dev *indio_dev);
@@ -158,10 +172,14 @@ int adis16209_configure_ring(struct iio_dev *indio_dev);
 void adis16209_unconfigure_ring(struct iio_dev *indio_dev);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #else /* CONFIG_IIO_BUFFER */
 =======
 #else /* CONFIG_IIO_RING_BUFFER */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#else /* CONFIG_IIO_RING_BUFFER */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 static inline void adis16209_remove_trigger(struct iio_dev *indio_dev)
 {
@@ -190,8 +208,12 @@ static inline void adis16209_unconfigure_ring(struct iio_dev *indio_dev)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif /* CONFIG_IIO_BUFFER */
 =======
 #endif /* CONFIG_IIO_RING_BUFFER */
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+#endif /* CONFIG_IIO_RING_BUFFER */
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 #endif /* SPI_ADIS16209_H_ */

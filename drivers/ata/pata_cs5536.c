@@ -2,9 +2,12 @@
  * pata_cs5536.c	- CS5536 PATA for new ATA layer
  *			  (C) 2007 Martin K. Petersen <mkp@mkp.net>
 <<<<<<< HEAD
+<<<<<<< HEAD
  *			  (C) 2011 Bartlomiej Zolnierkiewicz
 =======
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -60,6 +63,7 @@ MODULE_PARM_DESC(msr, "Force using MSR to configure IDE function (Default: 0)");
 
 enum {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	MSR_IDE_CFG		= 0x51300010,
 	PCI_IDE_CFG		= 0x40,
 
@@ -71,6 +75,8 @@ enum {
 	IDE_CFG_CHANEN		= (1 << 1),
 	IDE_CFG_CABLE		= (1 << 17) | (1 << 16),
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	CFG			= 0,
 	DTC			= 1,
 	CAST			= 2,
@@ -89,7 +95,10 @@ enum {
 
 	IDE_CFG_CHANEN		= 0x2,
 	IDE_CFG_CABLE		= 0x10000,
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	IDE_D0_SHIFT		= 24,
 	IDE_D1_SHIFT		= 16,
@@ -102,11 +111,14 @@ enum {
 	IDE_CAST_CMD_SHIFT	= 24,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IDE_ETC_UDMA_MASK	= 0xc0,
 };
 
 static int cs5536_read(struct pci_dev *pdev, int reg, u32 *val)
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	IDE_ETC_NODMA		= 0x03,
 };
 
@@ -119,11 +131,15 @@ static const u8 pci_reg[4] = {
 };
 
 static inline int cs5536_read(struct pci_dev *pdev, int reg, u32 *val)
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 {
 	if (unlikely(use_msr)) {
 		u32 dummy __maybe_unused;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		rdmsr(MSR_IDE_CFG + reg, *val, dummy);
 		return 0;
@@ -153,6 +169,8 @@ static void cs5536_program_dtc(struct ata_device *adev, u8 tim)
 	dtc |= tim << dshift;
 	cs5536_write(pdev, DTC, dtc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		rdmsr(msr_reg[reg], *val, dummy);
 		return 0;
 	}
@@ -168,13 +186,17 @@ static inline int cs5536_write(struct pci_dev *pdev, int reg, int val)
 	}
 
 	return pci_write_config_dword(pdev, pci_reg[reg], val);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
  *	cs5536_cable_detect	-	detect cable type
  *	@ap: Port to detect on
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  *	Perform cable detection for ATA66 capable cable.
  *
@@ -183,6 +205,10 @@ static inline int cs5536_write(struct pci_dev *pdev, int reg, int val)
  *	Perform cable detection for ATA66 capable cable. Return a libata
  *	cable type.
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+ *	Perform cable detection for ATA66 capable cable. Return a libata
+ *	cable type.
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
  */
 
 static int cs5536_cable_detect(struct ata_port *ap)
@@ -193,10 +219,14 @@ static int cs5536_cable_detect(struct ata_port *ap)
 	cs5536_read(pdev, CFG, &cfg);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (cfg & IDE_CFG_CABLE)
 =======
 	if (cfg & (IDE_CFG_CABLE << ap->port_no))
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	if (cfg & (IDE_CFG_CABLE << ap->port_no))
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 		return ATA_CBL_PATA80;
 	else
 		return ATA_CBL_PATA40;
@@ -227,6 +257,7 @@ static void cs5536_set_piomode(struct ata_port *ap, struct ata_device *adev)
 	int mode = adev->pio_mode - XFER_PIO_0;
 	int cmdmode = mode;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int cshift = adev->devno ? IDE_CAST_D1_SHIFT : IDE_CAST_D0_SHIFT;
 	u32 cast;
 =======
@@ -234,22 +265,33 @@ static void cs5536_set_piomode(struct ata_port *ap, struct ata_device *adev)
 	int cshift = adev->devno ? IDE_CAST_D1_SHIFT : IDE_CAST_D0_SHIFT;
 	u32 dtc, cast, etc;
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+	int dshift = adev->devno ? IDE_D1_SHIFT : IDE_D0_SHIFT;
+	int cshift = adev->devno ? IDE_CAST_D1_SHIFT : IDE_CAST_D0_SHIFT;
+	u32 dtc, cast, etc;
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	if (pair)
 		cmdmode = min(mode, pair->pio_mode - XFER_PIO_0);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cs5536_program_dtc(adev, drv_timings[mode]);
 
 	cs5536_read(pdev, CAST, &cast);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	cs5536_read(pdev, DTC, &dtc);
 	cs5536_read(pdev, CAST, &cast);
 	cs5536_read(pdev, ETC, &etc);
 
 	dtc &= ~(IDE_DRV_MASK << dshift);
 	dtc |= drv_timings[mode] << dshift;
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 
 	cast &= ~(IDE_CAST_DRV_MASK << cshift);
 	cast |= addr_timings[mode] << cshift;
@@ -258,15 +300,21 @@ static void cs5536_set_piomode(struct ata_port *ap, struct ata_device *adev)
 	cast |= cmd_timings[cmdmode] << IDE_CAST_CMD_SHIFT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cs5536_write(pdev, CAST, cast);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	etc &= ~(IDE_DRV_MASK << dshift);
 	etc |= IDE_ETC_NODMA << dshift;
 
 	cs5536_write(pdev, DTC, dtc);
 	cs5536_write(pdev, CAST, cast);
 	cs5536_write(pdev, ETC, etc);
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 /**
@@ -288,6 +336,7 @@ static void cs5536_set_dmamode(struct ata_port *ap, struct ata_device *adev)
 
 	struct pci_dev *pdev = to_pci_dev(ap->host->dev);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	u32 etc;
 	int mode = adev->dma_mode;
 	int dshift = adev->devno ? IDE_D1_SHIFT : IDE_D0_SHIFT;
@@ -304,6 +353,8 @@ static void cs5536_set_dmamode(struct ata_port *ap, struct ata_device *adev)
 
 	cs5536_write(pdev, ETC, etc);
 =======
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 	u32 dtc, etc;
 	int mode = adev->dma_mode;
 	int dshift = adev->devno ? IDE_D1_SHIFT : IDE_D0_SHIFT;
@@ -323,7 +374,10 @@ static void cs5536_set_dmamode(struct ata_port *ap, struct ata_device *adev)
 
 		cs5536_write(pdev, DTC, dtc);
 	}
+<<<<<<< HEAD
 >>>>>>> 73a10a64c2f389351ff1594d88983f47c8de08f0
+=======
+>>>>>>> ae1773bb70f3d7cf73324ce8fba787e01d8fa9f2
 }
 
 static struct scsi_host_template cs5536_sht = {
